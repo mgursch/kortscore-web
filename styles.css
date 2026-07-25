@@ -1040,7 +1040,8 @@ h1, h2, h3 {
      sondern normal fließen lassen. */
   .scene {
     height: auto;
-    padding-bottom: clamp(70px, 10vh, 110px);
+    /* Gleicher Rhythmus wie die übrigen Sektionen (.feature/.privacy). */
+    padding-bottom: clamp(90px, 12vh, 150px);
   }
   .scene__sticky {
     position: static;
