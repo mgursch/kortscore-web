@@ -69,9 +69,28 @@ Watch-/Handy-Modell und Spielhäufigkeit optional). Bewusst **kein Formular**:
 GitHub Pages ist statisch und kann Formulare weder annehmen noch Mails
 versenden – dafür wäre ein Fremddienst nötig.
 
+Der Block `.reqs` listet die Systemanforderungen. Die Werte stammen aus dem
+App-Repo und müssen mitgezogen werden, wenn sich dort etwas ändert:
+
+| Anforderung | Quelle |
+|-------------|--------|
+| Wear OS 3 / Android 11 (API 30) | `wear/build.gradle.kts` → `minSdk = 30` |
+| Android 8.0 (API 26) | `mobile/build.gradle.kts` → `minSdk = 26` |
+| Kopplung Uhr ↔ Handy | Data Layer via `play-services-wearable` |
+| Kein Internet nötig | keine `INTERNET`-Permission in beiden Manifests |
+
 Beim Release: Sektion `#tester` durch einen Play-Store-Button ersetzen und die
 Anker in Nav und Hero (`href="#tester"`) sowie den Hinweis `.hero__note`
 anpassen.
+
+## Tonalität
+
+Die Seite spricht durchgehend in der **Wir-Form** (swordi.studios als Absender),
+den Leser mit **du**. Die einzige Ich-Form steht bewusst im `mailto`-Body – dort
+schreibt der Tester an uns.
+
+Firmenname immer **swordi.studios** (klein, mit Punkt), verlinkt auf
+<https://www.swordistudios.com>.
 
 ## Inhalt anpassen
 

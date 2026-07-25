@@ -72,7 +72,8 @@
 </section>
 
 <!-- ── Feature 1: Tracking ──────────────────────────────────────────────── -->
-<section class="feature" id="tracking">
+<section class="feature">
+  <span class="anchor" id="tracking" aria-hidden="true"></span>
   <div class="feature__inner">
     <div class="feature__copy reveal">
       <p class="eyebrow"><span class="eyebrow__num">01</span> Während des Matches</p>
@@ -84,9 +85,7 @@
       <ul class="checks">
         <li>Ein Tipp für dich, zwei für den Gegner – das ist alles</li>
         <li>Spürbare Haptik bestätigt jeden Punkt, auch ohne Hinsehen</li>
-        <li>Undo für den letzten Punkt, falls es doch mal schnell ging</li>
         <li>Always-On-Display: der Stand bleibt sichtbar</li>
-        <li>Läuft im Hintergrund weiter – auch bei gesperrtem Display</li>
       </ul>
     </div>
 
@@ -124,7 +123,8 @@
 </section>
 
 <!-- ── Feature 2: Auswertung ────────────────────────────────────────────── -->
-<section class="feature feature--alt" id="auswertung">
+<section class="feature feature--alt">
+  <span class="anchor" id="auswertung" aria-hidden="true"></span>
   <div class="feature__inner feature__inner--rev">
     <div class="feature__copy reveal">
       <p class="eyebrow"><span class="eyebrow__num">02</span> Nach dem Match</p>
@@ -167,7 +167,8 @@
 </section>
 
 <!-- ── Feature 3: Live-Score ────────────────────────────────────────────── -->
-<section class="feature" id="live">
+<section class="feature">
+  <span class="anchor" id="live" aria-hidden="true"></span>
   <div class="feature__inner">
     <div class="feature__copy reveal">
       <p class="eyebrow"><span class="eyebrow__num">03</span> Auf dem gekoppelten Handy</p>
@@ -204,13 +205,17 @@
 </section>
 
 <!-- ── Tester werden ────────────────────────────────────────────────────── -->
-<section class="download" id="tester">
+<!-- Anker sitzt auf einem eigenen Element vor dem Inhalt: Die Sektion ist
+     höher als der Viewport, ein Anker auf <section> würde den Kopf beim
+     Sprung hinter die fixierte Nav schieben. -->
+<section class="download">
+  <span class="anchor" id="tester" aria-hidden="true"></span>
   <div class="download__inner reveal">
     <img class="download__icon" src="assets/icon.png" alt="" width="88" height="88">
     <p class="badge">Geschlossene Testphase</p>
     <h2>Werde Tester</h2>
     <p>
-      Kortscore ist noch nicht im Play Store – ich suche Tennisspielerinnen und
+      Kortscore ist noch nicht im Play Store – wir suchen Tennisspielerinnen und
       -spieler mit einer Wear-OS-Uhr, die die App auf dem Platz ausprobieren.
     </p>
 
@@ -234,11 +239,11 @@
     <div class="steps">
       <div class="step">
         <b>1</b>
-        <p>Du schickst mir die <strong>E-Mail-Adresse deines Google-Kontos</strong> – nur damit kann Google dich für den Test freischalten.</p>
+        <p>Du schickst uns die <strong>E-Mail-Adresse deines Google-Kontos</strong> – nur damit kann Google dich für den Test freischalten.</p>
       </div>
       <div class="step">
         <b>2</b>
-        <p>Ich füge dich zur Testgruppe hinzu und du bekommst den Einladungslink zum Play Store.</p>
+        <p>Wir fügen dich zur Testgruppe hinzu und du bekommst den Einladungslink zum Play Store.</p>
       </div>
       <div class="step">
         <b>3</b>
@@ -246,7 +251,30 @@
       </div>
     </div>
 
-    <p class="download__meta">Wear OS · Companion-App für Android</p>
+    <div class="reqs">
+      <h3 class="reqs__title">Das brauchst du zum Testen</h3>
+      <ul class="reqs__list">
+        <li>
+          <b>Smartwatch mit Wear OS 3</b>
+          <span>oder neuer (Android 11 / API 30). Also z. B. Pixel Watch, Galaxy Watch 4 und aufwärts.</span>
+        </li>
+        <li>
+          <b>Android-Handy ab Android 8.0</b>
+          <span>für die Companion-App mit Live-Score und Auswertung.</span>
+        </li>
+        <li>
+          <b>Uhr und Handy gekoppelt</b>
+          <span>über die Wear-OS-App – darüber läuft die Übertragung der Punkte.</span>
+        </li>
+        <li>
+          <b>Google-Konto</b>
+          <span>für die Freischaltung im Play Store. Kein Internet nötig, um zu zählen.</span>
+        </li>
+      </ul>
+      <p class="reqs__note">
+        Ein iPhone funktioniert nicht – Wear OS lässt die nötige Kopplung nur mit Android zu.
+      </p>
+    </div>
   </div>
 </section>
 
@@ -258,7 +286,10 @@
       <span>Kortscore</span>
     </div>
     <p class="footer__claim">Du spielst. Die Uhr zählt.</p>
-    <p class="footer__legal">© <span id="year">2026</span> Swordi Studios</p>
+    <p class="footer__legal">
+      © <span id="year">2026</span>
+      <a class="link" href="https://www.swordistudios.com" target="_blank" rel="noopener">swordi.studios</a>
+    </p>
   </div>
 </footer>
 

@@ -430,11 +430,18 @@ h1, h2, h3 {
 }
 
 /* ── Download ──────────────────────────────────────────────────────────── */
+/* Unsichtbarer Sprungpunkt am Sektionsanfang. Sitzt der Anker auf der Sektion
+   selbst, richtet der Browser eine viewporthöhere Sektion am unteren Rand aus
+   und der Kopf verschwindet hinter der Nav. Bewusst im Fluss (nicht absolut
+   positioniert), damit scroll-margin-top zuverlässig greift. */
+.anchor {
+  display: block;
+  height: 0;
+  scroll-margin-top: 96px;
+}
+
 .download {
   position: relative;
-  /* Oben knapper als die anderen Sektionen: mit den drei Schritten ist die
-     Sektion höher als der Viewport, und ein zu großes Top-Padding schiebt
-     Badge und Headline beim Anker-Sprung hinter die fixierte Nav. */
   padding: clamp(96px, 11vh, 124px) var(--gutter) clamp(96px, 15vh, 168px);
   border-top: 1px solid var(--hairline);
   background:
@@ -526,6 +533,70 @@ h1, h2, h3 {
 }
 .step strong { color: var(--paper); font-weight: 700; }
 
+/* Anforderungen: was für den Test vorhanden sein muss. */
+.reqs {
+  margin-top: 52px;
+  padding: 30px clamp(20px, 4vw, 34px);
+  border-radius: var(--radius);
+  background: rgba(20, 23, 15, .75);
+  box-shadow: inset 0 0 0 1px var(--hairline);
+  text-align: left;
+}
+.reqs__title {
+  margin: 0 0 6px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--lime);
+}
+.reqs__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px 32px;
+}
+.reqs__list li {
+  position: relative;
+  padding: 16px 0 16px 30px;
+  border-bottom: 1px solid var(--hairline);
+}
+/* Häkchen als reines CSS – keine Icon-Datei nötig. */
+.reqs__list li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 22px;
+  width: 11px;
+  height: 6px;
+  border-left: 2px solid var(--lime);
+  border-bottom: 2px solid var(--lime);
+  transform: rotate(-45deg);
+}
+.reqs__list b {
+  display: block;
+  font-size: 15.5px;
+  letter-spacing: -0.01em;
+}
+.reqs__list span {
+  display: block;
+  margin-top: 3px;
+  color: var(--sage);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.reqs__note {
+  margin: 22px 0 0 !important;
+  max-width: none !important;
+  padding-left: 16px;
+  border-left: 2px solid rgba(217, 247, 100, .4);
+  font-size: 14px;
+  text-align: left;
+}
+
 /* ── Footer ────────────────────────────────────────────────────────────── */
 .footer {
   padding: 44px var(--gutter);
@@ -591,6 +662,7 @@ h1, h2, h3 {
   .phone { --w: 280px; }
   .stats { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
+  .reqs__list { grid-template-columns: 1fr; }
   .sync { flex-direction: column; align-items: center; }
   .sync__link { transform: rotate(90deg); }
   .footer__inner { flex-direction: column; text-align: center; }
