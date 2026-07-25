@@ -1064,7 +1064,9 @@ h1, h2, h3 {
 
 @media (max-width: 620px) {
   body { font-size: 16px; }
-  .scene { height: 360vh; }
+  /* Kein height für .scene hier: Die Szene ist unter 900px nicht gepinnt
+     (height: auto). Ein Wert wie 360vh würde die Sektion wieder aufblähen,
+     während der Inhalt oben klebt – genau die Überlappung mit Block 02. */
   /* Drei Kacheln in zwei Spalten lassen eine leere Zelle stehen. */
   .tiles { grid-template-columns: repeat(3, 1fr); }
   .tile { padding: 14px 12px; }
