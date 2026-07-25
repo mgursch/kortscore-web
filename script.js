@@ -10,23 +10,28 @@
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* Schritte der gepinnten Szene. `mine`/`theirs` ist der Stand, den das
-     nachgebaute Uhr-Display zeigt – der Score zählt beim Scrollen echt mit. */
+     nachgebaute Uhr-Display zeigt – der Score zählt beim Scrollen echt mit.
+
+     Start bewusst bei 15:30: von 40:30 aus wäre das Game nach einem eigenen
+     Punkt bereits gewonnen, die Uhr würde das Sieger-Banner zeigen statt
+     weiterzuzählen. So bleibt die Sequenz im laufenden Game plausibel:
+     15:30 → (1×) 30:30 → (2×) 30:40 → (3× Undo) zurück auf 30:30. */
   var STEPS = [
     {
-      tap: 0, mine: '40', theirs: '30',
+      tap: 0, mine: '15', theirs: '30',
       cap: 'Aufschlag. Die Uhr ist bereit – du musst nur noch spielen.'
     },
     {
-      tap: 1, mine: 'A', theirs: '40',
+      tap: 1, mine: '30', theirs: '30',
       cap: 'Einmal tippen: dein Punkt steht. Die Haptik bestätigt, du musst nicht hinsehen.'
     },
     {
-      tap: 2, mine: '40', theirs: '40',
+      tap: 2, mine: '30', theirs: '40',
       cap: 'Zweimal tippen für den Gegner. Mehr Bedienung gibt es nicht.'
     },
     {
-      tap: 3, mine: 'A', theirs: '40',
-      cap: 'Dreimal tippen macht den letzten Punkt rückgängig – falls doch mal falsch getippt.'
+      tap: 3, mine: '30', theirs: '30',
+      cap: 'Dreimal tippen macht den letzten Punkt rückgängig – der Gegnerpunkt ist weg.'
     }
   ];
 
