@@ -19,7 +19,7 @@
   var STEPS = [
     {
       tap: 0, mine: '15', theirs: '30',
-      cap: 'Aufschlag. Die Uhr ist bereit – du musst nur noch spielen.'
+      cap: 'Aufschlag. Die Uhr ist bereit, du musst nur noch spielen.'
     },
     {
       tap: 1, mine: '30', theirs: '30',
@@ -31,7 +31,7 @@
     },
     {
       tap: 3, mine: '30', theirs: '30',
-      cap: 'Dreimal tippen macht den letzten Punkt rückgängig – der Gegnerpunkt ist weg.'
+      cap: 'Dreimal tippen macht den letzten Punkt rückgängig. Der Gegnerpunkt ist weg.'
     }
   ];
 
