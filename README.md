@@ -6,14 +6,17 @@ Keine Build-Tools, kein Framework – reines HTML/CSS/JS.
 ## Struktur
 
 ```
-index.html     Seiteninhalt (Hero + 3 Feature-Sektionen + Download + Footer)
-styles.css     Design-System und Layout
-script.js      Scroll-Reveal, Nav-Zustand, Footer-Jahr
+index.html     Seiteninhalt (Hero, Bühne, gepinnte Szene, Live, Auswertung,
+               Datenschutz, Tester, Footer)
+styles.css     Design-System, Layout, @font-face
+script.js      Reveals, Parallax, Nav-Zustand, gepinnte Szene, Count-ups
 assets/
-  icon.png     App-Icon (aus tenniswatch/playstore/ic_launcher_playstore.png)
+  icon.png     App-Icon (aus tenniswatch/playstore/)
   icon.svg     App-Icon als Vektor
   watch.png    Screenshot: laufendes Match auf der Uhr
+  live.png     Screenshot: Live-Match am Handy
   phone.png    Screenshot: Matchauswertung am Handy
+  fonts/       Archivo, Archivo Black, JetBrains Mono (woff2-Subsets)
 ```
 
 ## Lokal ansehen
@@ -42,66 +45,52 @@ Source **GitHub Actions** gewählt sein.
 
 ## Design
 
-Palette und Bildsprache sind aus `tenniswatch/playstore/feature_graphic.svg`
-übernommen, damit Store-Auftritt und Website zusammenpassen:
+Direction **B "Court Paper"** aus dem Redesign: die Cream/Ink-Palette der App
+wird zur Website, Display-Schrift ist Archivo Black, Labels in JetBrains Mono.
 
 | Token | Wert | Verwendung |
 |-------|------|------------|
-| `--ink` | `#0B0D09` | Grundfläche („Night Session") |
-| `--ink-raised` | `#14170F` | abgesetzte Sektionen, Icon-Ground |
-| `--lime` | `#D9F764` | Akzent, Buttons, Zahlen |
-| `--paper` | `#ECEFE4` | Fließtext, Headlines |
-| `--sage` | `#9AA08C` | Sekundärtext |
-| `--mine` / `--theirs` | `#A5E06B` / `#F98A7B` | Punktefarben wie in der App |
+| `--paper` | `#F2F4E4` | Grundfläche (Cream aus der App) |
+| `--ink` | `#14170F` | Text und dunkle Panels |
+| `--lime` | `#D9F764` | Akzent auf dunklem Grund |
+| `--moss` | `#4C6B2F` | Akzent auf Cream (kontraststark) |
+| `--clay` | `#C0272D` | Ziffern, Live-Punkt |
+| `--sage` | `#6E7358` | Mono-Labels |
+| `--body` | `#3B402E` | Fließtext |
 
-Der Hero greift den Aufbau des Play-Store-Feature-Graphics auf: Icon,
-Wortmarke, Lime-Linie, zweizeiliger Claim „Du spielst. / Die Uhr zählt."
+Die Fonts liegen als woff2-Subsets (latin + latin-ext) in `assets/fonts/` und
+werden lokal geladen – kein Google-Fonts-Aufruf, also kein Drittanbieter-Request.
 
-## Tester-Anmeldung
+### Gepinnte Zähl-Szene
 
-Die App ist noch nicht veröffentlicht; die Seite endet daher mit der Sektion
-`#tester` statt mit einem Play-Store-Button. Interessenten schicken per
-`mailto:`-Link ihre Google-Konto-Adresse an `swordistudios@gmail.com` – nur mit
-dieser Adresse kann Google jemanden für die geschlossene Testphase freischalten.
+Die Sektion `#zaehlen` ist 520vh hoch (mobil kürzer) und pinnt ihren Inhalt via
+`position: sticky`. `script.js` rechnet den Scroll-Fortschritt in vier Schritte
+um und schaltet Caption, Tap-Karten und Punktestand mit.
 
-Der Link enthält eine vorbereitete Textvorlage (Play-Store-E-Mail als Pflicht,
-Watch-/Handy-Modell und Spielhäufigkeit optional). Bewusst **kein Formular**:
-GitHub Pages ist statisch und kann Formulare weder annehmen noch Mails
-versenden – dafür wäre ein Fremddienst nötig.
+Das Uhr-Display ist **in HTML/CSS nachgebaut** (`.face`), nicht als Bild oder
+Video: nur so kann der Stand beim Scrollen echt mitzählen (40:30 → Punkt →
+Undo). Es skaliert über Container-Queries (`cqw`/`cqh`) mit dem Gehäuse, die
+Geometrie ist am App-Screenshot ausgerichtet. Das Video aus der Design-Session
+ist bewusst nicht enthalten.
 
-Der Block `.reqs` listet die Systemanforderungen. Die Werte stammen aus dem
-App-Repo und müssen mitgezogen werden, wenn sich dort etwas ändert:
+Bei `prefers-reduced-motion: reduce` wird die Szene entpinnt und zeigt den
+ersten Schritt statisch.
 
-| Anforderung | Quelle |
-|-------------|--------|
-| Wear OS 3 / Android 11 (API 30) | `wear/build.gradle.kts` → `minSdk = 30` |
-| Android 8.0 (API 26) | `mobile/build.gradle.kts` → `minSdk = 26` |
-| Kopplung Uhr ↔ Handy | Data Layer via `play-services-wearable` |
-| Kein Internet nötig | keine `INTERNET`-Permission in beiden Manifests |
-
-Beim Release: Sektion `#tester` durch einen Play-Store-Button ersetzen und die
-Anker in Nav und Hero (`href="#tester"`) sowie den Hinweis `.hero__note`
-anpassen.
-
-## Tonalität
-
-Die Seite spricht durchgehend in der **Wir-Form** (swordi.studios als Absender),
-den Leser mit **du**. Die einzige Ich-Form steht bewusst im `mailto`-Body – dort
-schreibt der Tester an uns.
-
-Firmenname immer **swordi.studios** (klein, mit Punkt), verlinkt auf
-<https://www.swordistudios.com>.
 
 ## Inhalt anpassen
 
-- **Weitere Screenshots:** in `assets/` legen und im gewünschten
-  `.feature__visual` einbinden. Für Handy-Screenshots `.phone__bezel`
-  verwenden, für Uhr-Screenshots `.watch__bezel` (rund maskiert).
-- **Play-Store-Link:** in `index.html` im Abschnitt `#download`; zeigt auf
-  `com.swordistudios.kortscore`.
-- **Sektionen:** jede Feature-Sektion ist ein `<section class="feature">`.
-  `feature--alt` setzt den Hintergrund ab, `feature__inner--rev` dreht
-  Text/Bild auf dem Desktop (mobil immer Text zuerst).
+- **Sektionen** sind `<section class="feature">` (Text/Bild-Paar),
+  `.stage` (dunkles Panel), `.privacy`, `.tester`. Sprungziele sitzen auf
+  eigenen `<span class="anchor" id="...">` direkt am Sektionsanfang – ein
+  Anker auf `<section>` selbst würde den Kopf hinter die fixierte Nav schieben.
+- **Weitere Screenshots:** in `assets/` legen. Für Handy `.phone`
+  (`.phone--crop` schneidet lange Screenshots oben zu), für Uhr `.watch`.
+- **Schritte der Zähl-Szene:** Array `STEPS` in `script.js` – `cap` ist der
+  Text, `mine`/`theirs` der Stand auf dem Uhr-Display, `tap` die hervorgehobene
+  Karte. Mehr Schritte brauchen keine weitere Änderung.
+- **Statistik-Kacheln** zählen via `data-count` + `data-count-suffix` hoch.
+- **Beim Release:** Sektion `#tester` durch einen Play-Store-Button ersetzen
+  und die CTAs in Nav und Hero (`href="#tester"`) anpassen.
 
 ## Barrierefreiheit / Verhalten
 
@@ -110,3 +99,6 @@ Firmenname immer **swordi.studios** (klein, mit Punkt), verlinkt auf
 - Screenshots haben beschreibende `alt`-Texte, rein dekorative Elemente
   sind mit `aria-hidden` ausgezeichnet.
 - Getestet ohne horizontales Scrollen bei 390 px und 1440 px Breite.
+- Bei `#hash`-Aufruf springt `script.js` nach dem Layout erneut zum Ziel: die
+  520vh-Szene und die Reveals verändern die Höhen, wodurch der ursprüngliche
+  Sprung des Browsers sonst ins Leere zeigt.

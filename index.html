@@ -4,121 +4,184 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kortscore – Du spielst. Die Uhr zählt.</title>
-<meta name="description" content="Kortscore zählt dein Tennismatch direkt am Handgelenk: Punkte-Tracking auf der Wear-OS-Uhr, Live-Score am Handy, detaillierte Auswertung. Aktuell in der geschlossenen Testphase – Tester gesucht.">
+<meta name="description" content="Kortscore zählt dein Tennismatch am Handgelenk: ein Tipp pro Punkt auf der Wear-OS-Uhr, Live-Score am Handy, detaillierte Auswertung danach. Aktuell in der geschlossenen Testphase – Tester gesucht.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kortscore – Du spielst. Die Uhr zählt.">
-<meta property="og:description" content="Tennis zählen am Handgelenk. Live-Score am Handy, detaillierte Auswertung nach dem Match.">
+<meta property="og:description" content="Tennis zählen am Handgelenk. Ein Tipp pro Punkt, Live-Score am Handy, jede Statistik danach.">
 <!-- og:image braucht eine absolute URL – Social-Previews laden sonst kein Bild. -->
 <meta property="og:image" content="https://kortscore.com/assets/icon.png">
 <meta property="og:url" content="https://kortscore.com/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0B0D09">
+<meta name="theme-color" content="#F2F4E4">
 <link rel="canonical" href="https://kortscore.com/">
 
 <link rel="icon" type="image/png" href="assets/icon.png">
 <link rel="apple-touch-icon" href="assets/icon.png">
+
+<link rel="preload" href="assets/fonts/ArchivoBlack-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <!-- ── Nav ──────────────────────────────────────────────────────────────── -->
-<header class="nav">
+<header class="nav" data-nav>
   <a class="nav__brand" href="#top">
-    <img src="assets/icon.png" alt="" width="32" height="32">
+    <img src="assets/icon.png" alt="" width="30" height="30">
     <span>Kortscore</span>
   </a>
   <nav class="nav__links">
-    <a href="#tracking">Tracking</a>
+    <a href="#zaehlen">Zählen</a>
+    <a href="#live">Live</a>
     <a href="#auswertung">Auswertung</a>
-    <a href="#live">Live-Score</a>
+    <a href="#privat">Privat</a>
   </nav>
-  <a class="btn btn--sm" href="#tester">Tester werden</a>
+  <a class="nav__cta" href="#tester">Tester werden</a>
 </header>
 
 <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
 <section class="hero" id="top">
-  <div class="hero__glow" aria-hidden="true"></div>
-  <div class="hero__inner">
-    <div class="hero__copy">
-      <div class="hero__icon reveal">
-        <img src="assets/icon.png" alt="Kortscore App-Icon" width="112" height="112">
-      </div>
-      <h1 class="hero__title reveal" data-delay="1">Kortscore</h1>
-      <div class="hero__rule reveal" data-delay="2" aria-hidden="true"></div>
-      <p class="hero__claim reveal" data-delay="3">
-        <span class="accent">Du spielst.</span><br>
-        <span class="muted">Die Uhr zählt.</span>
-      </p>
-      <p class="hero__lede reveal" data-delay="4">
-        Punktezählen für Tennis direkt am Handgelenk – ohne Zettel, ohne Diskussion.
-        Deine Wear-OS-Uhr zählt mit, das Handy verfolgt live mit und wertet danach alles aus.
-        <span class="hero__note">Die App ist in der geschlossenen Testphase – Tester sind willkommen.</span>
-      </p>
-      <div class="hero__cta reveal" data-delay="5">
-        <a class="btn" href="#tester">Tester werden</a>
-        <a class="btn btn--ghost" href="#tracking">Features ansehen</a>
-      </div>
+  <div class="wrap">
+    <div class="hero__meta" data-fx="up">
+      <span class="hero__phase"><i class="dot-live" aria-hidden="true"></i>Geschlossene Testphase</span>
+      <span class="hero__meta-spacer">Wear OS 3+ · Android 8+</span>
+      <span>swordi.studios</span>
     </div>
 
-    <div class="hero__stage reveal" data-delay="3">
-      <div class="watch">
-        <div class="watch__bezel">
+    <h1 class="hero__title" data-fx="up" data-fx-delay="1">
+      Du spielst.<br><em>Die Uhr</em><br>zählt.
+    </h1>
+
+    <div class="hero__cols">
+      <div data-fx="up" data-fx-delay="2">
+        <p class="hero__lede">
+          Tennis zählen am Handgelenk. Ein Tipp pro Punkt – kein Zettel, keine
+          Diskussion. Danach jede Statistik, die du willst.
+        </p>
+        <div class="hero__cta">
+          <a class="btn" href="#tester">Tester werden</a>
+          <a class="btn btn--ghost" href="#zaehlen">So funktioniert's</a>
+        </div>
+      </div>
+
+      <div class="tiles" data-fx="up" data-fx-delay="2">
+        <div class="tile"><b>1</b><span>Tipp pro Punkt</span></div>
+        <div class="tile"><b>0</b><span>Konten nötig</span></div>
+        <div class="tile"><b>∞</b><span>Matches im Archiv</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Bühne: Uhr am Handgelenk ─────────────────────────────────────────── -->
+<section class="stage">
+  <div class="stage__panel wrap" data-fx="up">
+    <div>
+      <p class="stage__eyebrow">Am Handgelenk</p>
+      <h2>Der Platz ist<br>dein Interface</h2>
+      <p>
+        Kein Handy aus der Tasche, kein Blick weg vom Ball. Die Uhr zeigt Satz,
+        Games und Punkte – Always-On, auch zwischen den Ballwechseln.
+      </p>
+    </div>
+    <div class="stage__visual">
+      <div class="watch" data-parallax="0.045">
+        <div class="watch__screen">
           <img src="assets/watch.png" alt="Kortscore auf der Wear-OS-Uhr: Satz 1, 5:4, Punktestand 40:30">
         </div>
       </div>
     </div>
   </div>
-
-  <a class="scroll-hint" href="#tracking" aria-label="Weiter zu den Features">
-    <span></span>
-  </a>
 </section>
 
-<!-- ── Feature 1: Tracking ──────────────────────────────────────────────── -->
-<section class="feature">
-  <span class="anchor" id="tracking" aria-hidden="true"></span>
-  <div class="feature__inner">
-    <div class="feature__copy reveal">
-      <p class="eyebrow"><span class="eyebrow__num">01</span> Während des Matches</p>
-      <h2>Intuitives Tracking der Punkte</h2>
-      <p class="lead">
-        Ein Tipp für deinen Punkt, zwei für den Gegner. Das ist die ganze Bedienung.
-        Kein Blick aufs Handy, kein Rausnehmen aus der Tasche – du bleibst im Spiel.
-      </p>
-      <ul class="checks">
-        <li>Ein Tipp für dich, zwei für den Gegner – das ist alles</li>
-        <li>Spürbare Haptik bestätigt jeden Punkt, auch ohne Hinsehen</li>
-        <li>Always-On-Display: der Stand bleibt sichtbar</li>
-      </ul>
-    </div>
+<!-- ── Szene 01: gepinnt, scrollgesteuert ───────────────────────────────── -->
+<section class="scene" data-scene>
+  <span class="anchor" id="zaehlen" aria-hidden="true"></span>
+  <div class="scene__sticky">
+    <div class="scene__grid">
+      <div>
+        <p class="eyebrow"><span class="eyebrow__num">01</span> Während des Matches</p>
+        <h2>Ein Tipp.<br>Punkt<br>gezählt.</h2>
+        <p class="scene__caption" data-scene-caption>
+          Aufschlag. Die Uhr ist bereit – du musst nur noch spielen.
+        </p>
 
-    <div class="feature__visual reveal" data-delay="2">
-      <div class="watch watch--lg">
-        <div class="watch__bezel">
-          <img src="assets/watch.png" alt="Punktestand 40:30 im laufenden Satz auf der Uhr">
+        <div class="taps">
+          <div class="tap" data-tap="1">
+            <span class="tap__dots"><i></i></span>
+            <span class="tap__label">1× tippen</span>
+            <span class="tap__hint">dein Punkt</span>
+          </div>
+          <div class="tap" data-tap="2">
+            <span class="tap__dots"><i></i><i></i></span>
+            <span class="tap__label">2× tippen</span>
+            <span class="tap__hint">Gegner</span>
+          </div>
+          <div class="tap" data-tap="3">
+            <span class="tap__dots"><i></i><i></i><i></i></span>
+            <span class="tap__label">3× tippen</span>
+            <span class="tap__hint">Undo</span>
+          </div>
         </div>
       </div>
-      <div class="taps" aria-hidden="true">
-        <div class="tap-card">
-          <span class="tap-card__dots"><i></i></span>
-          <div>
-            <strong>1× tippen</strong>
-            <em>Punkt für dich</em>
+
+      <div>
+        <div class="scene__panel">
+          <div class="scene__head">
+            <span class="scene__live"><i aria-hidden="true"></i>Live</span>
+            <span class="scene__step" data-scene-step>01 / 04</span>
           </div>
-        </div>
-        <div class="tap-card">
-          <span class="tap-card__dots"><i></i><i></i></span>
-          <div>
-            <strong>2× tippen</strong>
-            <em>Punkt für den Gegner</em>
+
+          <div class="scene__watchwrap">
+            <!-- Uhr-Display in HTML/CSS nachgebaut, damit der Stand beim
+                 Scrollen echt mitzählt (statt eines Videos). -->
+            <div class="watch" data-scene-watch>
+              <div class="watch__screen">
+                <div class="face" role="img" aria-label="Uhr-Display: Satz 1, 5:4, Punktestand 40:30">
+                  <div class="face__time">17:38</div>
+                  <div class="face__set" data-face-set>SATZ 1 · 5:4</div>
+                  <div class="face__rows">
+                    <div class="face__row face__row--mine">
+                      <span class="face__who">ICH</span>
+                      <span class="face__pts" data-face-mine>40</span>
+                      <span class="face__games" data-face-gmine>5</span>
+                    </div>
+                    <div class="face__row face__row--theirs">
+                      <span class="face__who">
+                        <i class="face__serve" data-face-serve aria-hidden="true"></i>GEG
+                      </span>
+                      <span class="face__pts" data-face-theirs>30</span>
+                      <span class="face__games" data-face-gtheirs>4</span>
+                    </div>
+                  </div>
+                  <div class="face__dots" aria-hidden="true">
+                    <i></i><i class="is-on"></i><i></i>
+                  </div>
+                </div>
+                <div class="tap-flash" data-tap-flash aria-hidden="true"></div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="tap-card">
-          <span class="tap-card__dots"><i></i><i></i><i></i></span>
-          <div>
-            <strong>3× tippen</strong>
-            <em>Undo</em>
+
+          <div class="scene__rail-row">
+            <span>Ablauf</span>
+            <span class="scene__track"><span class="scene__rail" data-scene-rail></span></span>
+          </div>
+
+          <div class="vtaps">
+            <div class="vtap" data-vtap="1">
+              <span class="vtap__dots"><i></i></span>
+              <b>1× Tipp</b><span>dein Punkt</span>
+            </div>
+            <div class="vtap" data-vtap="2">
+              <span class="vtap__dots"><i></i><i></i></span>
+              <b>2× Tipp</b><span>Gegnerpunkt</span>
+            </div>
+            <div class="vtap" data-vtap="3">
+              <span class="vtap__dots"><i></i><i></i><i></i></span>
+              <b>3× Tipp</b><span>Undo</span>
+            </div>
           </div>
         </div>
       </div>
@@ -126,158 +189,141 @@
   </div>
 </section>
 
-<!-- ── Feature 2: Auswertung ────────────────────────────────────────────── -->
-<section class="feature feature--alt">
-  <span class="anchor" id="auswertung" aria-hidden="true"></span>
-  <div class="feature__inner feature__inner--rev">
-    <div class="feature__copy reveal">
-      <p class="eyebrow"><span class="eyebrow__num">02</span> Nach dem Match</p>
-      <h2>Detaillierte Auswertung</h2>
+<!-- ── 02 Live-Score ────────────────────────────────────────────────────── -->
+<section class="feature">
+  <span class="anchor" id="live" aria-hidden="true"></span>
+  <div class="feature__inner">
+    <div data-fx="up">
+      <p class="eyebrow"><span class="eyebrow__num">02</span> Auf dem gekoppelten Handy</p>
+      <h2>Live mitlesen,<br>ohne Internet</h2>
       <p class="lead">
-        Jeder Punkt wird als Ereignis mitgeschrieben – daraus entsteht mehr als nur ein Endergebnis.
-        Satzverlauf, Aufschlagquote, Spieldauer und der komplette Punkteverlauf, Punkt für Punkt.
+        Die Uhr zählt, das Handy zeigt mit – in Echtzeit über die
+        Wear-OS-Kopplung. Perfekt, wenn am Zaun jemand mitschaut.
+      </p>
+      <ul class="numlist">
+        <li><b>01</b><span>Punktestand spiegelt sich sofort aufs Handy</span></li>
+        <li><b>02</b><span>Punkteverlauf Punkt für Punkt, schon während des Matches</span></li>
+        <li><b>03</b><span>Bluetooth-Reichweite genügt – kein Netz, kein Konto</span></li>
+      </ul>
+    </div>
+
+    <div class="devices" data-fx="up" data-fx-delay="2">
+      <div class="phone" data-parallax="0.05">
+        <img src="assets/live.png" alt="Live-Match am Handy: Watch verbunden, Stand 3:2 und Punkteverlauf Punkt für Punkt">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 03 Auswertung ────────────────────────────────────────────────────── -->
+<section class="feature">
+  <span class="anchor" id="auswertung" aria-hidden="true"></span>
+  <div class="feature__inner">
+    <div class="devices" data-fx="up">
+      <div class="phone phone--crop" data-parallax="0.04">
+        <img src="assets/phone.png" alt="Matchauswertung am Handy: Satzergebnis 6:4, 4:6, 7:6, Punktestatistik und Punkteverlauf">
+      </div>
+    </div>
+
+    <div data-fx="up" data-fx-delay="2">
+      <p class="eyebrow"><span class="eyebrow__num">03</span> Nach dem Match</p>
+      <h2>Jeder Punkt<br>bleibt lesbar</h2>
+      <p class="lead">
+        Jeder Punkt wird als Ereignis mitgeschrieben. Daraus wird mehr als ein
+        Endergebnis: Satzverlauf, Aufschlagquote, Spieldauer – Punkt für Punkt
+        im Archiv.
       </p>
       <div class="stats">
         <div class="stat">
-          <b>77 : 75</b>
+          <b data-count="77" data-count-suffix=" : 75">0 : 75</b>
           <span>Punkte im Match</span>
         </div>
         <div class="stat">
-          <b>69 %</b>
-          <span>Servicespiele gewonnen</span>
+          <b data-count="69" data-count-suffix=" %">0 %</b>
+          <span>Servicespiele</span>
         </div>
         <div class="stat">
           <b>2:32</b>
           <span>Ø je Game</span>
         </div>
         <div class="stat">
-          <b>84'</b>
+          <b data-count="84" data-count-suffix="'">0'</b>
           <span>Matchdauer</span>
-        </div>
-      </div>
-      <p class="note">
-        Abgeschlossene Matches landen automatisch im Archiv auf dem Handy – jederzeit nachlesbar.
-      </p>
-    </div>
-
-    <div class="feature__visual reveal" data-delay="2">
-      <div class="phone">
-        <div class="phone__bezel">
-          <img src="assets/phone.png" alt="Matchauswertung am Handy: Satzergebnis 6:4, 4:6, 7:6, Punktestatistik und Punkteverlauf">
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Feature 3: Live-Score ────────────────────────────────────────────── -->
-<section class="feature">
-  <span class="anchor" id="live" aria-hidden="true"></span>
-  <div class="feature__inner">
-    <div class="feature__copy reveal">
-      <p class="eyebrow"><span class="eyebrow__num">03</span> Auf dem gekoppelten Handy</p>
-      <h2>Live-Score Anzeige</h2>
-      <p class="lead">
-        Die Uhr zählt, das Handy zeigt mit. In Echtzeit, ohne Internet – direkt über die
-        Wear-OS-Kopplung. Ideal, wenn am Zaun jemand mitschaut oder das Handy einfach daneben liegt.
-      </p>
-      <ul class="checks">
-        <li>Punktestand spiegelt sich in Echtzeit aufs Handy</li>
-        <li>Punkteverlauf Punkt für Punkt schon während des Matches</li>
-        <li>Kein Konto, keine Cloud – die Daten bleiben auf deinen Geräten</li>
-      </ul>
+<!-- ── 04 Datenschutz ───────────────────────────────────────────────────── -->
+<section class="privacy">
+  <span class="anchor" id="privat" aria-hidden="true"></span>
+  <div class="privacy__inner">
+    <div data-fx="up">
+      <p class="eyebrow"><span class="eyebrow__num">04</span> Datenschutz</p>
+      <h2>Deine Matches<br>bleiben deine</h2>
     </div>
-
-    <div class="feature__visual feature__visual--pair reveal" data-delay="2">
-      <div class="sync">
-        <div class="watch watch--sm" aria-hidden="true">
-          <div class="watch__bezel"><img src="assets/watch.png" alt=""></div>
-        </div>
-        <div class="sync__link" aria-hidden="true">
-          <span class="sync__dot"></span>
-          <span class="sync__dot"></span>
-          <span class="sync__dot"></span>
-        </div>
-        <div class="phone phone--live">
-          <div class="phone__bezel">
-            <img src="assets/live.png" alt="Live-Match am Handy: Watch verbunden, Stand 3:2 und Punkteverlauf Punkt für Punkt">
-          </div>
-        </div>
-      </div>
-    </div>
+    <ul class="privacy__list" data-fx="up" data-fx-delay="2">
+      <li>
+        <b>01</b>
+        <strong>Kein Konto, keine Anmeldung</strong>
+        <span>Installieren und zählen. Nichts auszufüllen.</span>
+      </li>
+      <li>
+        <b>02</b>
+        <strong>Keine Cloud, kein Tracking</strong>
+        <span>Matches liegen auf Uhr und Handy – sonst nirgends.</span>
+      </li>
+    </ul>
   </div>
 </section>
 
 <!-- ── Tester werden ────────────────────────────────────────────────────── -->
-<!-- Anker sitzt auf einem eigenen Element vor dem Inhalt: Die Sektion ist
-     höher als der Viewport, ein Anker auf <section> würde den Kopf beim
-     Sprung hinter die fixierte Nav schieben. -->
-<section class="download">
+<section class="tester">
   <span class="anchor" id="tester" aria-hidden="true"></span>
-  <div class="download__inner reveal">
-    <img class="download__icon" src="assets/icon.png" alt="" width="88" height="88">
-    <p class="badge">Geschlossene Testphase</p>
-    <h2>Werde Tester</h2>
-    <p>
-      Kortscore ist noch nicht im Play Store – wir suchen Tennisspielerinnen und
-      -spieler mit einer Wear-OS-Uhr, die die App auf dem Platz ausprobieren.
+  <div class="tester__inner" data-fx="up">
+    <p class="tester__badge"><i class="dot-live" aria-hidden="true"></i>Geschlossene Testphase</p>
+    <h2>Spiel die App,<br>bevor es<br>alle tun</h2>
+    <p class="tester__lede">
+      Wir suchen Spielerinnen und Spieler mit Wear-OS-Uhr, die Kortscore auf dem
+      Platz testen. Schick uns die E-Mail deines Google-Kontos – nur damit kann
+      Google dich freischalten.
     </p>
 
-    <!-- mailto: bewusst ohne Formular – GitHub Pages ist statisch und kann
+    <!-- mailto bewusst ohne Formular: GitHub Pages ist statisch und kann
          Formulare weder annehmen noch Mails versenden. -->
-    <a class="btn btn--lg"
-       href="mailto:swordistudios@gmail.com?subject=Kortscore%20%E2%80%93%20Tester%20werden&body=Hi%2C%0D%0A%0D%0Aich%20m%C3%B6chte%20Kortscore%20testen.%0D%0A%0D%0AMeine%20Play-Store-E-Mail%20(Google-Konto)%3A%20%0D%0A%0D%0AOptional%3A%0D%0AWatch-Modell%3A%20%0D%0AHandy-Modell%20%2B%20Android-Version%3A%20%0D%0AWie%20oft%20spiele%20ich%3A%20%0D%0A%0D%0AViele%20Gr%C3%BC%C3%9Fe%0D%0A">
-      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-        <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              d="M3 6.5h18v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Zm0 .5 9 6.5 9-6.5"/>
-      </svg>
-      E-Mail zum Mitmachen öffnen
-    </a>
-
-    <p class="download__hint">
-      Der Button öffnet dein Mailprogramm mit vorbereitetem Text.
-      Klappt das nicht, schreib einfach direkt an
-      <a class="link" href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>.
-    </p>
-
-    <div class="steps">
-      <div class="step">
-        <b>1</b>
-        <p>Du schickst uns die <strong>E-Mail-Adresse deines Google-Kontos</strong> – nur damit kann Google dich für den Test freischalten.</p>
-      </div>
-      <div class="step">
-        <b>2</b>
-        <p>Wir fügen dich zur Testgruppe hinzu und du bekommst den Einladungslink zum Play Store.</p>
-      </div>
-      <div class="step">
-        <b>3</b>
-        <p>Installieren, spielen, Feedback geben – gern auch, was dich stört.</p>
-      </div>
+    <div class="tester__cta">
+      <a class="btn"
+         href="mailto:swordistudios@gmail.com?subject=Kortscore%20%E2%80%93%20Tester%20werden&body=Hi%2C%0D%0A%0D%0Aich%20m%C3%B6chte%20Kortscore%20testen.%0D%0A%0D%0AMeine%20Play-Store-E-Mail%20(Google-Konto)%3A%20%0D%0A%0D%0AOptional%3A%0D%0AWatch-Modell%3A%20%0D%0AHandy-Modell%20%2B%20Android-Version%3A%20%0D%0AWie%20oft%20spiele%20ich%3A%20%0D%0A%0D%0AViele%20Gr%C3%BC%C3%9Fe%0D%0A">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                d="M3 6.5h18v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Zm0 .5 9 6.5 9-6.5"/>
+        </svg>
+        E-Mail zum Mitmachen öffnen
+      </a>
     </div>
 
+    <p class="tester__hint">
+      Öffnet dein Mailprogramm mit vorbereitetem Text. Klappt das nicht:
+      <a class="link" href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
+    </p>
+
     <div class="reqs">
-      <h3 class="reqs__title">Das brauchst du zum Testen</h3>
-      <ul class="reqs__list">
-        <li>
-          <b>Smartwatch mit Wear OS 3</b>
-          <span>oder neuer (Android 11 / API 30). Also z. B. Pixel Watch, Galaxy Watch 4 und aufwärts.</span>
-        </li>
-        <li>
-          <b>Android-Handy ab Android 8.0</b>
-          <span>für die Companion-App mit Live-Score und Auswertung.</span>
-        </li>
-        <li>
-          <b>Uhr und Handy gekoppelt</b>
-          <span>über die Wear-OS-App – darüber läuft die Übertragung der Punkte.</span>
-        </li>
-        <li>
-          <b>Google-Konto</b>
-          <span>für die Freischaltung im Play Store. Kein Internet nötig, um zu zählen.</span>
-        </li>
-      </ul>
-      <p class="reqs__note">
-        Ein iPhone funktioniert nicht – Wear OS lässt die nötige Kopplung nur mit Android zu.
-      </p>
+      <div class="req">
+        <span class="req__label">Uhr</span>
+        <span class="req__value">Wear OS 3+</span>
+        <span class="req__note">Pixel Watch, Galaxy Watch 4 und neuer</span>
+      </div>
+      <div class="req">
+        <span class="req__label">Handy</span>
+        <span class="req__value">Android 8.0+</span>
+        <span class="req__note">gekoppelt über die Wear-OS-App</span>
+      </div>
+      <div class="req">
+        <span class="req__label">Freischaltung</span>
+        <span class="req__value">Google-Konto</span>
+        <span class="req__note">iPhone geht nicht – Wear OS erlaubt es nicht</span>
+      </div>
     </div>
   </div>
 </section>
