@@ -179,16 +179,14 @@
     var travel = scene.offsetHeight - vh;
     var p;
 
-    /* Mindest-Scrollweg, damit sich vier Schritte sinnvoll verteilen. Bleibt
-       weniger übrig (entpinnte Sektion, hohe Viewports), wäre der Fortschritt
-       über wenige Pixel erledigt – dann besser die Viewport-Variante. */
-    if (travel > vh * 0.5) {
-      /* Gepinnt: Fortschritt 0…1 über die Scrollhöhe der Sektion. */
+    if (travel > 0) {
+      /* Gepinnt (Normalfall, Desktop und Mobil): Der Fortschritt zählt erst,
+         sobald die Sektion oben anliegt – vorher steht Schritt 1, und die
+         Karten werden nicht markiert, während der Block erst hereinscrollt. */
       p = Math.max(0, Math.min(1, -r.top / travel));
     } else {
-      /* Nicht gepinnt (Mobil/reduced-motion): Die Sektion ist niedriger als
-         der Viewport. Fortschritt aus ihrer Lage im Viewport ableiten, damit
-         die Schritte trotzdem durchlaufen. */
+      /* Nur reduced-motion: Sektion nicht gepinnt, Fortschritt aus der Lage
+         im Viewport ableiten. */
       p = Math.max(0, Math.min(1,
         (vh - r.top) / (vh + scene.offsetHeight)));
     }

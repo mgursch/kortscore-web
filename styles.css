@@ -994,9 +994,12 @@ h1, h2, h3 {
      ein Viewport. Gepinnt würde er unten aus dem Sticky-Bereich ragen und
      optisch in die Folgesektion (02) laufen. Deshalb hier nicht pinnen,
      sondern normal fließen lassen. */
+  /* Standard unter 900px: nicht gepinnt. Der gestapelte Inhalt braucht je nach
+     Gerät bis zu ~800px Höhe; auf kurzen Displays würde er aus dem gepinnten
+     Bereich ragen und in Block 02 laufen. Gepinnt wird nur, wenn genug Höhe
+     vorhanden ist (siehe @media min-height weiter unten). */
   .scene {
     height: auto;
-    /* Gleicher Rhythmus wie die übrigen Sektionen (.feature/.privacy). */
     padding-bottom: clamp(90px, 12vh, 150px);
   }
   .scene__sticky {
@@ -1004,9 +1007,26 @@ h1, h2, h3 {
     height: auto;
   }
   .scene__grid {
-    padding-top: clamp(80px, 12vh, 110px);
-    padding-bottom: 0;
+    /* Kompakter als am Desktop, damit der gestapelte Inhalt möglichst in eine
+       Bildschirmhöhe passt. */
+    padding-top: clamp(64px, 9vh, 84px);
+    padding-bottom: clamp(16px, 3vh, 28px);
+    gap: clamp(18px, 3vh, 28px);
   }
+
+  /* Szenen-Inhalt kompakter, damit alles in die gepinnte Höhe passt. */
+  .scene h2 { font-size: clamp(28px, 7vw, 40px); }
+  .scene__caption {
+    margin-top: 14px;
+    min-height: 3.2em;
+    font-size: 15.5px;
+  }
+  .taps { margin-top: 18px; max-width: none; }
+  .tap { padding: 10px 12px; }
+  .scene__panel { padding: 18px; }
+  .scene__watchwrap { margin-top: 14px; }
+  .scene .watch { width: clamp(150px, 40vw, 190px); }
+  .scene__rail-row { margin-top: 16px; }
 
   /* Drei Kacheln dürfen nicht in ein 2-Spalten-Raster fallen, sonst bleibt
      eine leere Zelle in der Rasterfarbe stehen. */
@@ -1030,6 +1050,20 @@ h1, h2, h3 {
   .scene__grid { padding-top: clamp(80px, 12vh, 100px); }
   .footer__inner { flex-direction: column; text-align: center; }
   .footer__claim { margin: 0; }
+}
+
+/* Mobil pinnen, aber nur mit genug Höhe: Der gestapelte Szenen-Inhalt braucht
+   rund 810px. Ist das Display kürzer (iPhone SE, viele 16:9-Androids), bleibt
+   die Sektion ungepinnt – sonst ragt der Inhalt heraus und überlappt Block 02.
+   Ab 820px Höhe verhält sich die Szene wie am Desktop: Bereich bleibt stehen,
+   die vier Schritte wechseln beim Scrollen. */
+@media (max-width: 900px) and (min-height: 820px) {
+  .scene { height: 300vh; }
+  .scene__sticky {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+  }
 }
 
 /* Kein Sticky/Parallax, wenn Bewegung reduziert werden soll. */
