@@ -46,7 +46,6 @@
   var faceTheirs = document.querySelector('[data-face-theirs]');
   var parallax = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
   var taps  = Array.prototype.slice.call(document.querySelectorAll('[data-tap]'));
-  var vtaps = Array.prototype.slice.call(document.querySelectorAll('[data-vtap]'));
 
   var step = -1;
   var ticking = false;
@@ -145,9 +144,6 @@
     taps.forEach(function (el) {
       el.classList.toggle('is-on', Number(el.dataset.tap) === s.tap);
     });
-    vtaps.forEach(function (el) {
-      el.classList.toggle('is-on', Number(el.dataset.vtap) === s.tap);
-    });
 
     if (flash && s.tap && !reduced) {
       flash.style.opacity = '1';
@@ -183,7 +179,10 @@
     var travel = scene.offsetHeight - vh;
     var p;
 
-    if (travel > 0) {
+    /* Mindest-Scrollweg, damit sich vier Schritte sinnvoll verteilen. Bleibt
+       weniger übrig (entpinnte Sektion, hohe Viewports), wäre der Fortschritt
+       über wenige Pixel erledigt – dann besser die Viewport-Variante. */
+    if (travel > vh * 0.5) {
       /* Gepinnt: Fortschritt 0…1 über die Scrollhöhe der Sektion. */
       p = Math.max(0, Math.min(1, -r.top / travel));
     } else {
@@ -205,10 +204,23 @@
     if (i !== step) { step = i; applyStep(i); }
   }
 
+  /* Scroll-Events werden per rAF gebündelt. Falls rAF gedrosselt wird (etwa in
+     Hintergrund-Tabs oder eingebetteten Ansichten), greift ein Timer-Fallback,
+     damit die Szene nicht auf dem ersten Schritt stehen bleibt. */
   function onScroll() {
     if (ticking) return;
     ticking = true;
-    requestAnimationFrame(function () { ticking = false; frame(); });
+
+    var done = false;
+    var run = function () {
+      if (done) return;
+      done = true;
+      ticking = false;
+      frame();
+    };
+
+    requestAnimationFrame(run);
+    setTimeout(run, 120);
   }
 
   /* Beim Laden mit #hash: Nach dem ersten Layout erneut zum Ziel springen.

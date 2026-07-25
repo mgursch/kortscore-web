@@ -695,50 +695,6 @@ h1, h2, h3 {
   transition: width .2s linear;
 }
 
-/* Drei dunkle Tap-Kacheln im Panel */
-.vtaps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  margin-top: 16px;
-  background: rgba(242, 244, 228, .12);
-}
-.vtap {
-  padding: 12px 10px;
-  background: var(--ink);
-  transition: background .3s, box-shadow .3s;
-}
-.vtap.is-on {
-  background: var(--ink-2);
-  box-shadow: inset 0 0 0 1px rgba(217, 247, 100, .45);
-}
-.vtap__dots {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 8px;
-}
-.vtap__dots i {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--lime);
-}
-.vtap b {
-  display: block;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--paper);
-}
-.vtap span {
-  display: block;
-  margin-top: 2px;
-  font-size: 12.5px;
-  color: var(--sage-2);
-}
-
 /* ── Standard-Feature-Sektion ──────────────────────────────────────────── */
 .feature {
   position: relative;
@@ -1072,7 +1028,6 @@ h1, h2, h3 {
   .tiles { grid-template-columns: repeat(3, 1fr); }
   .tile { padding: 14px 12px; }
   .scene__grid { padding-top: clamp(80px, 12vh, 100px); }
-  .vtaps { grid-template-columns: 1fr; }
   .footer__inner { flex-direction: column; text-align: center; }
   .footer__claim { margin: 0; }
 }
@@ -1084,5 +1039,5 @@ h1, h2, h3 {
   .scene__sticky { position: static; height: auto; }
   .dot-live, .scene__live i { animation: none; }
   .btn:hover, .nav__cta:hover { transform: none; }
-  .face__pts, .scene__caption, .tap, .vtap { transition: none; }
+  .face__pts, .scene__caption, .tap { transition: none; }
 }
