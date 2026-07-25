@@ -179,11 +179,20 @@
 
     if (!scene) return;
 
-    /* Fortschritt 0…1 über die gesamte Scrollhöhe der gepinnten Sektion. */
-    var travel = scene.offsetHeight - vh;
-    if (travel <= 0) return;                     // reduced-motion: nicht gepinnt
     var r = scene.getBoundingClientRect();
-    var p = Math.max(0, Math.min(1, -r.top / travel));
+    var travel = scene.offsetHeight - vh;
+    var p;
+
+    if (travel > 0) {
+      /* Gepinnt: Fortschritt 0…1 über die Scrollhöhe der Sektion. */
+      p = Math.max(0, Math.min(1, -r.top / travel));
+    } else {
+      /* Nicht gepinnt (Mobil/reduced-motion): Die Sektion ist niedriger als
+         der Viewport. Fortschritt aus ihrer Lage im Viewport ableiten, damit
+         die Schritte trotzdem durchlaufen. */
+      p = Math.max(0, Math.min(1,
+        (vh - r.top) / (vh + scene.offsetHeight)));
+    }
 
     if (rail) rail.style.width = (p * 100).toFixed(1) + '%';
 

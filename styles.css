@@ -341,6 +341,7 @@ h1, h2, h3 {
   padding: 18px 16px;
   background: var(--paper);
 }
+.tile:last-child { grid-column: auto / -1; }
 .tile b {
   display: block;
   font-family: var(--display);
@@ -793,6 +794,9 @@ h1, h2, h3 {
   background: var(--line);
 }
 .stat { padding: 20px 18px; background: var(--paper); }
+/* Letzte Kachel füllt einen etwaigen Spaltenrest, damit nie eine leere Zelle
+   in der Rasterfarbe stehen bleibt (auto-fit kann ungerade Reste erzeugen). */
+.stat:last-child { grid-column: auto / -1; }
 .stat b {
   display: block;
   font-family: var(--display);
@@ -945,6 +949,7 @@ h1, h2, h3 {
   text-align: left;
 }
 .req { padding: 22px 20px; background: var(--paper); }
+.req:last-child  { grid-column: auto / -1; }
 .req__label {
   display: block;
   font-family: var(--mono);
@@ -1028,8 +1033,33 @@ h1, h2, h3 {
 /* ── Responsive ────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .nav__links { display: none; }
-  /* Gepinnte Szene auf Mobil kürzer – 520vh Scrollen wirkt dort endlos. */
-  .scene { height: 400vh; }
+
+  /* Unter 900px stapeln die Spalten, wodurch der Szenen-Inhalt höher wird als
+     ein Viewport. Gepinnt würde er unten aus dem Sticky-Bereich ragen und
+     optisch in die Folgesektion (02) laufen. Deshalb hier nicht pinnen,
+     sondern normal fließen lassen. */
+  .scene {
+    height: auto;
+    padding-bottom: clamp(70px, 10vh, 110px);
+  }
+  .scene__sticky {
+    position: static;
+    height: auto;
+  }
+  .scene__grid {
+    padding-top: clamp(80px, 12vh, 110px);
+    padding-bottom: 0;
+  }
+
+  /* Drei Kacheln dürfen nicht in ein 2-Spalten-Raster fallen, sonst bleibt
+     eine leere Zelle in der Rasterfarbe stehen. */
+  .tiles { grid-template-columns: repeat(3, 1fr); }
+
+  /* Feste Spaltenzahlen ohne Rest: 4 Statistik-Kacheln in 2 Spalten,
+     3 Anforderungen einspaltig. auto-fit trifft in diesem Bereich sonst
+     Spaltenzahlen, die nicht aufgehen, und hinterlässt leere Zellen. */
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .reqs  { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 620px) {
