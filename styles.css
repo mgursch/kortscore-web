@@ -182,6 +182,13 @@ h1, h2, h3 {
   color: var(--sage);
   font-size: clamp(16px, 1.7vw, 19px);
 }
+/* Testphasen-Hinweis als eigene Zeile am Ende des Lede. */
+.hero__note {
+  display: block;
+  margin-top: 14px;
+  color: var(--lime);
+  font-size: .94em;
+}
 .hero__cta {
   display: flex;
   flex-wrap: wrap;
@@ -425,7 +432,10 @@ h1, h2, h3 {
 /* ── Download ──────────────────────────────────────────────────────────── */
 .download {
   position: relative;
-  padding: clamp(96px, 15vh, 168px) var(--gutter);
+  /* Oben knapper als die anderen Sektionen: mit den drei Schritten ist die
+     Sektion höher als der Viewport, und ein zu großes Top-Padding schiebt
+     Badge und Headline beim Anker-Sprung hinter die fixierte Nav. */
+  padding: clamp(96px, 11vh, 124px) var(--gutter) clamp(96px, 15vh, 168px);
   border-top: 1px solid var(--hairline);
   background:
     radial-gradient(ellipse 70% 100% at 50% 100%, rgba(217, 247, 100, .11), transparent 70%),
@@ -446,12 +456,75 @@ h1, h2, h3 {
   color: var(--sage);
 }
 .download__meta {
-  margin: 22px 0 0 !important;
+  margin: 34px 0 0 !important;
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: .12em;
   text-transform: uppercase;
 }
+
+/* Status-Badge über der Tester-Headline. */
+.badge {
+  display: inline-block;
+  margin: 0 0 18px !important;
+  padding: 7px 15px;
+  border-radius: 999px;
+  background: rgba(217, 247, 100, .12);
+  box-shadow: inset 0 0 0 1px rgba(217, 247, 100, .28);
+  color: var(--lime) !important;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+/* Fallback-Hinweis unter dem mailto-Button. */
+.download__hint {
+  margin: 20px auto 0 !important;
+  max-width: 42ch;
+  font-size: 14.5px;
+}
+.link {
+  color: var(--lime);
+  text-decoration: underline;
+  text-decoration-color: rgba(217, 247, 100, .4);
+  text-underline-offset: 3px;
+}
+.link:hover { text-decoration-color: var(--lime); }
+
+/* Drei Schritte: was nach der Mail passiert. */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 38px;
+  text-align: left;
+}
+.step {
+  padding: 22px 20px;
+  border-radius: 16px;
+  background: rgba(20, 23, 15, .75);
+  box-shadow: inset 0 0 0 1px var(--hairline);
+}
+.step b {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+  background: var(--lime);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+.step p {
+  margin: 0 !important;
+  max-width: none !important;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.step strong { color: var(--paper); font-weight: 700; }
 
 /* ── Footer ────────────────────────────────────────────────────────────── */
 .footer {
@@ -517,6 +590,7 @@ h1, h2, h3 {
   .watch--lg { --size: 270px; }
   .phone { --w: 280px; }
   .stats { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
   .sync { flex-direction: column; align-items: center; }
   .sync__link { transform: rotate(90deg); }
   .footer__inner { flex-direction: column; text-align: center; }

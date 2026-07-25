@@ -57,6 +57,22 @@ Palette und Bildsprache sind aus `tenniswatch/playstore/feature_graphic.svg`
 Der Hero greift den Aufbau des Play-Store-Feature-Graphics auf: Icon,
 Wortmarke, Lime-Linie, zweizeiliger Claim „Du spielst. / Die Uhr zählt."
 
+## Tester-Anmeldung
+
+Die App ist noch nicht veröffentlicht; die Seite endet daher mit der Sektion
+`#tester` statt mit einem Play-Store-Button. Interessenten schicken per
+`mailto:`-Link ihre Google-Konto-Adresse an `swordistudios@gmail.com` – nur mit
+dieser Adresse kann Google jemanden für die geschlossene Testphase freischalten.
+
+Der Link enthält eine vorbereitete Textvorlage (Play-Store-E-Mail als Pflicht,
+Watch-/Handy-Modell und Spielhäufigkeit optional). Bewusst **kein Formular**:
+GitHub Pages ist statisch und kann Formulare weder annehmen noch Mails
+versenden – dafür wäre ein Fremddienst nötig.
+
+Beim Release: Sektion `#tester` durch einen Play-Store-Button ersetzen und die
+Anker in Nav und Hero (`href="#tester"`) sowie den Hinweis `.hero__note`
+anpassen.
+
 ## Inhalt anpassen
 
 - **Weitere Screenshots:** in `assets/` legen und im gewünschten
