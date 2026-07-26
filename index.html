@@ -21,26 +21,22 @@
 
 <link rel="preload" href="assets/fonts/ArchivoBlack-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=202607261029">
+<link rel="stylesheet" href="styles.css?v=202607261046">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
      nötig (Google Analytics wäre in Österreich einwilligungspflichtig, weil
      Daten in die USA übertragen werden).
 
-     EINRICHTEN – zwei Schritte:
-       1. Auf cloud.umami.is die Website kortscore.com anlegen.
-       2. Unten UMAMI_ID durch die dort angezeigte Website-ID ersetzen
-          (Format: 8-4-4-4-12 Hex-Zeichen).
-
-     Solange der Platzhalter drinsteht, wird das Skript absichtlich NICHT
-     geladen – so entstehen keine fehlschlagenden Requests auf der Live-Seite.
+     Die Website-ID stammt aus dem Umami-Cloud-Dashboard. Der Guard unten lädt
+     das Skript nur bei gültigem UUID-Format – ein Platzhalter oder Tippfehler
+     erzeugt so keine fehlschlagenden Requests.
 
      Selbst gehostet: zusätzlich SRC auf die eigene Instanz zeigen lassen.
      ────────────────────────────────────────────────────────────────────── -->
 <script>
 (function () {
-  var UMAMI_ID  = 'UMAMI-WEBSITE-ID-HIER-EINSETZEN';
+  var UMAMI_ID  = '5d4bc72b-d15a-49f0-9083-bc763e4ce7b1';
   var UMAMI_SRC = 'https://cloud.umami.is/script.js';
 
   // Nur mit echter ID laden (Platzhalter enthält Bindestrich-Wörter, keine UUID).
@@ -359,6 +355,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=202607261029"></script>
+<script src="script.js?v=202607261046"></script>
 </body>
 </html>
