@@ -291,8 +291,6 @@ h1, h2, h3 {
   background: currentColor;
   animation: ks-live 1.6s ease-in-out infinite;
 }
-.hero__meta-spacer { margin-left: auto; }
-
 .hero__title {
   margin: clamp(28px, 4vw, 48px) 0 0;
   font-size: clamp(54px, 13vw, 190px);
