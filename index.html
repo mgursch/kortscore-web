@@ -21,7 +21,7 @@
 
 <link rel="preload" href="assets/fonts/ArchivoBlack-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=202607311430">
+<link rel="stylesheet" href="styles.css?v=202607312205">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -85,7 +85,7 @@
         <p class="hero__lede">
           Tennis zählen am Handgelenk. Ein Tipp pro Punkt, kein Zettel, keine
           Diskussion. Ein Link genügt, und Freunde verfolgen den Stand live im
-          Browser. Danach jede Statistik, die du willst.
+          Browser oder in der App. Danach jede Statistik, die du willst.
         </p>
         <div class="hero__cta">
           <a class="btn" href="#tester">Tester werden</a>
@@ -139,16 +139,21 @@
           <div class="tap" data-tap="1">
             <span class="tap__dots"><i></i></span>
             <span class="tap__label">1× tippen</span>
-            <span class="tap__hint">dein Punkt</span>
+            <span class="tap__hint">Punkt für dich</span>
           </div>
           <div class="tap" data-tap="2">
             <span class="tap__dots"><i></i><i></i></span>
             <span class="tap__label">2× tippen</span>
-            <span class="tap__hint">Gegner</span>
+            <span class="tap__hint">Punkt für deinen Gegner</span>
           </div>
           <div class="tap" data-tap="3">
             <span class="tap__dots"><i></i><i></i><i></i></span>
             <span class="tap__label">3× tippen</span>
+            <span class="tap__hint">letzten Punkt umdrehen</span>
+          </div>
+          <div class="tap" data-tap="4">
+            <span class="tap__dots"><i></i><i></i><i></i><i></i></span>
+            <span class="tap__label">4× tippen</span>
             <span class="tap__hint">Undo</span>
           </div>
         </div>
@@ -158,7 +163,7 @@
         <div class="scene__panel">
           <div class="scene__head">
             <span class="scene__live"><i aria-hidden="true"></i>Live</span>
-            <span class="scene__step" data-scene-step>01 / 04</span>
+            <span class="scene__step" data-scene-step>01 / 05</span>
           </div>
 
           <div class="scene__watchwrap">
@@ -244,8 +249,8 @@
       <h2>Ein Link,<br>und sie<br>schauen zu</h2>
       <p class="lead">
         Vom Handy aus teilst du das laufende Match als Link. Familie und Freunde
-        verfolgen den Spielstand in Echtzeit im Browser, Punkt für Punkt. Ohne
-        App, ohne Konto.
+        verfolgen den Spielstand in Echtzeit im Browser oder in der App, Punkt
+        für Punkt. Ganz ohne eigenes Konto.
       </p>
       <ul class="numlist">
         <li><b>01</b><span>Ein Tap am Handy erzeugt den Link, du gibst zwei Anzeigenamen ein</span></li>
@@ -317,12 +322,6 @@
           </dl>
         </div>
       </div>
-
-      <p class="share__note">
-        Die Seite rechnet dieselbe Regel-Engine über das Punktprotokoll wie die
-        Uhr. Stand am Handgelenk und Stand im Browser können sich nicht
-        widersprechen.
-      </p>
     </div>
   </div>
 </section>
@@ -364,16 +363,9 @@
         </div>
       </div>
       <p class="note">
-        Ein Druckpunkt ist ein Punkt, bei dem der Druck auf dir liegt – weil du
-        zurückliegst oder es eng steht. Führst du, ist es kein Druckpunkt.
-      </p>
-      <p class="note">
         Über allen Matches gibt es die Gesamtstatistik: Siegquote, Form der
         letzten zehn Matches, Siegquoten-Trend, Bilanz nach Wochentag und
-        Tageszeit – Einzel und Doppel getrennt. Und: keine geschätzten Zahlen.
-        Alte Matches ohne Aufschlagdaten bleiben aus den Aufschlag-Statistiken
-        draußen, statt hochgerechnet zu werden. Was nicht erfasst wurde, wird
-        nicht erfunden.
+        Tageszeit – Einzel und Doppel getrennt.
       </p>
     </div>
   </div>
@@ -429,8 +421,8 @@
         <strong>Abschalten geht jederzeit</strong>
         <span>
           Ein Tap deaktiviert den Link endgültig, danach zeigt die Seite nichts
-          mehr. Während des Teilens läuft eine Benachrichtigung mit Stopp-Knopf.
-          Mehr dazu im <a class="link" href="rechtliches.html#app">Datenschutz</a>.
+          mehr. Mehr dazu im
+          <a class="link" href="rechtliches.html#app">Datenschutz</a>.
         </span>
       </li>
     </ul>
@@ -506,6 +498,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=202607311430"></script>
+<script src="script.js?v=202607312205"></script>
 </body>
 </html>

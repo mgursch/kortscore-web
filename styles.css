@@ -814,15 +814,6 @@ h1, h2, h3 {
   justify-items: center;
   gap: 20px;
 }
-.share__note {
-  margin: 0;
-  max-width: 38ch;
-  color: var(--sage);
-  font-size: 14px;
-  line-height: 1.5;
-  text-wrap: pretty;
-}
-
 /* Browser-Chrome: dunkle Leiste, helle Seite – bewusst schlicht, damit die
    Karte nicht mit den Geräte-Rahmen (.phone/.watch) konkurriert. */
 .browser {
@@ -1231,7 +1222,6 @@ h1, h2, h3 {
   /* Die Browser-Karte steht gestapelt allein in der Spalte und darf dann etwas
      breiter werden als neben dem Text. */
   .browser { width: min(100%, 440px); }
-  .share__note { max-width: 44ch; text-align: center; }
 }
 
 @media (max-width: 620px) {

@@ -15,7 +15,8 @@
      Start bewusst bei 15:30: von 40:30 aus wäre das Game nach einem eigenen
      Punkt bereits gewonnen, die Uhr würde das Sieger-Banner zeigen statt
      weiterzuzählen. So bleibt die Sequenz im laufenden Game plausibel:
-     15:30 → (1×) 30:30 → (2×) 30:40 → (3× Undo) zurück auf 30:30. */
+     15:30 → (1×) 30:30 → (2×) 30:40 → (3× umdrehen) 40:30 → (4× Undo)
+     zurück auf 30:30 – der umgedrehte Punkt ist danach ganz weg. */
   var STEPS = [
     {
       tap: 0, mine: '15', theirs: '30',
@@ -30,8 +31,12 @@
       cap: 'Zweimal tippen für den Gegner. Mehr Bedienung gibt es nicht.'
     },
     {
-      tap: 3, mine: '30', theirs: '30',
-      cap: 'Dreimal tippen macht den letzten Punkt rückgängig. Der Gegnerpunkt ist weg.'
+      tap: 3, mine: '40', theirs: '30',
+      cap: 'Vertippt? Dreimal tippen dreht den letzten Punkt um – aus dem Gegnerpunkt wird deiner.'
+    },
+    {
+      tap: 4, mine: '30', theirs: '30',
+      cap: 'Viermal tippen macht den letzten Punkt ganz rückgängig.'
     }
   ];
 
