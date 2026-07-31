@@ -83,12 +83,31 @@
   text-transform: uppercase;
   color: var(--clay);
 }
+/* Unterpunkte innerhalb eines h3-Blocks (z. B. Live-Teilen). Bewusst kleiner
+   gewichtet als h3: gleiche Mono-Optik, aber ohne Versalien und in --ink, damit
+   die Gliederung h2 → h3 → h4 auch visuell absteigt. */
+.legal h4 {
+  margin: 24px 0 8px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: var(--ink);
+}
 .legal p {
   margin: 0 0 14px;
   color: var(--body);
   font-size: 16px;
   line-height: 1.65;
   text-wrap: pretty;
+}
+.legal code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--line-soft);
+  font-family: var(--mono);
+  font-size: .92em;
+  color: var(--ink);
 }
 .legal__lead {
   font-size: 17.5px !important;
@@ -168,6 +187,12 @@
   color: var(--sage-3) !important;
   font-size: 15.5px !important;
 }
+/* --moss wäre auf dem dunklen Callout kaum lesbar. */
+.callout .link {
+  color: var(--lime);
+  text-decoration-color: rgba(217, 247, 100, .45);
+}
+.callout .link:hover { text-decoration-color: var(--lime); }
 
 .legal__stand {
   margin-top: 28px !important;

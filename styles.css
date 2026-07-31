@@ -797,6 +797,198 @@ h1, h2, h3 {
   flex-wrap: wrap;
 }
 
+/* Ehrlichkeits-Nachsatz unter Fließtext/Kacheln: kleiner als .lead, damit er
+   als Fußnote gelesen wird und die Kernbotschaft nicht verdrängt. */
+.note {
+  margin: 22px 0 0;
+  max-width: 42ch;
+  color: var(--sage);
+  font-size: 14.5px;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* ── Teilen: Share-Seite als Browser-Karte (HTML/CSS, kein Screenshot) ─── */
+.share__visual {
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+}
+.share__note {
+  margin: 0;
+  max-width: 38ch;
+  color: var(--sage);
+  font-size: 14px;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* Browser-Chrome: dunkle Leiste, helle Seite – bewusst schlicht, damit die
+   Karte nicht mit den Geräte-Rahmen (.phone/.watch) konkurriert. */
+.browser {
+  width: min(100%, 400px);
+  border-radius: 16px;
+  background: var(--ink);
+  overflow: hidden;
+  box-shadow: 0 40px 90px -40px rgba(20, 23, 15, .55),
+              inset 0 0 0 1px rgba(242, 244, 228, .14);
+}
+.browser__bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+}
+.browser__dots {
+  display: flex;
+  gap: 5px;
+  flex: 0 0 auto;
+}
+.browser__dots i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4A4F3E;
+}
+.browser__url {
+  flex: 1;
+  min-width: 0;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(242, 244, 228, .08);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .04em;
+  color: var(--sage-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.browser__page {
+  padding: clamp(18px, 2.4vw, 24px);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.sharepage__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.sharepage__live {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--clay);
+}
+.sharepage__live i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: ks-live 1.6s ease-in-out infinite;
+}
+.sharepage__meta { margin-left: auto; color: var(--sage); }
+
+/* Satz-Tabelle: Spielername links, Sätze und laufende Punkte rechts.
+   tabular-nums hält die Ziffernspalten in einer Achse. */
+.sharepage__table {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.sharepage__table th,
+.sharepage__table td {
+  padding: 9px 0;
+  text-align: right;
+  font-weight: 700;
+}
+.sharepage__table thead th {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--sage);
+  padding-bottom: 6px;
+}
+.sharepage__table thead th:first-child,
+.sharepage__table tbody th { text-align: left; }
+/* Kein display:flex auf den Zellen – das nimmt sie aus dem Tabellen-Layout
+   und die beiden Zeilen laufen unterschiedlich hoch. */
+.sharepage__table tbody th,
+.sharepage__table tbody td { vertical-align: middle; }
+.sharepage__table tbody th {
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.sharepage__table tbody tr + tr th,
+.sharepage__table tbody tr + tr td {
+  border-top: 1px solid var(--line-soft);
+}
+.sharepage__table tbody td {
+  width: 2.6ch;
+  font-family: var(--display);
+  font-size: 19px;
+  letter-spacing: -0.02em;
+}
+/* Laufendes Game farbig abgesetzt, wie auf dem Uhr-Display. */
+.sharepage__table tbody td.is-pts { color: var(--moss); }
+/* Aufschlag-Anzeige: derselbe Punkt wie im Uhr-Nachbau (.face__serve),
+   auf Cream aber in Moss statt Lime – Lime hätte hier keinen Kontrast.
+   Der Platz wird in beiden Zeilen reserviert (padding-left auf der Zelle),
+   damit "Anna" und "Markus" auf derselben Kante beginnen. */
+.sharepage__table tbody th,
+.sharepage__table thead th:first-child { padding-left: 15px; }
+.sharepage__table tbody th { position: relative; }
+.sharepage__serve {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin-top: -3.5px;
+  border-radius: 50%;
+  background: var(--moss);
+}
+
+/* Drei Statistik-Zeilen: 1px-Gaps als Trennlinien, wie bei .stats/.tiles. */
+.sharepage__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin: 18px 0 0;
+  background: var(--line);
+}
+.sharepage__stats > div {
+  padding: 12px 10px;
+  background: var(--paper);
+}
+.sharepage__stats dt {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+.sharepage__stats dd {
+  margin: 5px 0 0;
+  font-family: var(--display);
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
 /* ── Datenschutz ───────────────────────────────────────────────────────── */
 .privacy {
   padding: clamp(90px, 12vh, 150px) var(--gutter);
@@ -1035,6 +1227,11 @@ h1, h2, h3 {
      Spaltenzahlen, die nicht aufgehen, und hinterlässt leere Zellen. */
   .stats { grid-template-columns: repeat(2, 1fr); }
   .reqs  { grid-template-columns: 1fr; }
+
+  /* Die Browser-Karte steht gestapelt allein in der Spalte und darf dann etwas
+     breiter werden als neben dem Text. */
+  .browser { width: min(100%, 440px); }
+  .share__note { max-width: 44ch; text-align: center; }
 }
 
 @media (max-width: 620px) {
@@ -1046,6 +1243,9 @@ h1, h2, h3 {
   .tiles { grid-template-columns: repeat(3, 1fr); }
   .tile { padding: 14px 12px; }
   .scene__grid { padding-top: clamp(80px, 12vh, 100px); }
+  /* Die drei Statistik-Spalten der Browser-Karte bleiben auch hier dreispaltig:
+     die Mono-Labels passen bis 320px einzeilig, ein 2-Spalten-Raster würde nur
+     eine überbreite dritte Zelle erzeugen. */
   .footer__inner { flex-direction: column; text-align: center; }
   .footer__claim { margin: 0; }
 }
@@ -1069,7 +1269,7 @@ h1, h2, h3 {
   html { scroll-behavior: auto; }
   .scene { height: auto; padding-bottom: clamp(60px, 8vh, 90px); }
   .scene__sticky { position: static; height: auto; }
-  .dot-live, .scene__live i { animation: none; }
+  .dot-live, .scene__live i, .sharepage__live i { animation: none; }
   .btn:hover, .nav__cta:hover { transform: none; }
   .face__pts, .scene__caption, .tap { transition: none; }
 }
