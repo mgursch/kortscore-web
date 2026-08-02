@@ -21,7 +21,7 @@
 
 <link rel="preload" href="assets/fonts/ArchivoBlack-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=202607312205">
+<link rel="stylesheet" href="styles.css?v=202608010947">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -63,6 +63,7 @@
     <a href="#live">Live</a>
     <a href="#teilen">Teilen</a>
     <a href="#auswertung">Auswertung</a>
+    <a href="#plus">Plus</a>
     <a href="#privat">Privat</a>
   </nav>
   <a class="nav__cta" href="#tester">Tester werden</a>
@@ -97,6 +98,7 @@
         <div class="tile"><b>1</b><span>Tipp pro Punkt</span></div>
         <div class="tile"><b>0</b><span>Konten nötig</span></div>
         <div class="tile"><b>∞</b><span>Matches im Archiv</span></div>
+        <div class="tile"><b>0</b><span>Werbung</span></div>
       </div>
     </div>
   </div>
@@ -371,12 +373,104 @@
   </div>
 </section>
 
-<!-- ── 05 Datenschutz ───────────────────────────────────────────────────── -->
+<!-- ── 05 Werbefrei & Kortscore Plus ────────────────────────────────────── -->
+<!-- Bewusst eine gemeinsame Sektion: Werbefreiheit und der Einmalkauf sind
+     dieselbe Aussage über das Geschäftsmodell. Getrennt gelesen klingt das
+     eine nach Versprechen und das andere nach Haken. -->
+<section class="plus">
+  <span class="anchor" id="plus" aria-hidden="true"></span>
+  <div class="plus__inner">
+    <div class="plus__head" data-fx="up">
+      <p class="eyebrow"><span class="eyebrow__num">05</span> Was die App kostet</p>
+      <h2>Keine Werbung.<br>Ein Kauf.<br>Fertig.</h2>
+      <p class="lead">
+        Kortscore verkauft weder deine Aufmerksamkeit noch deine Matches. Es
+        gibt genau ein Upgrade, und das kaufst du einmal – oder eben nie.
+      </p>
+    </div>
+
+    <div class="plus__cols">
+      <!-- Block A: Werbefrei. Gilt ohne Sternchen, auch ohne Plus. -->
+      <div class="plus__card plus__card--ads" data-fx="up">
+        <p class="plus__kicker">Werbefrei</p>
+        <p class="plus__claim">Kein Banner.<br>Kein Werbe-SDK.</p>
+        <p class="plus__body">
+          In der App steckt kein Werbenetzwerk – nicht in der Gratis-Version und
+          nicht sonst irgendwo. Nichts blinkt zwischen zwei Ballwechseln, nichts
+          schiebt sich vor den Punktestand. Das gilt für alle, nicht nur für
+          Käufer.
+        </p>
+      </div>
+
+      <!-- Block B: Kortscore Plus. Preis ist bewusst nicht genannt – er steht
+           nirgends fest, und eine erfundene Zahl wäre schlicht falsch. -->
+      <div class="plus__card plus__card--plus" data-fx="up" data-fx-delay="1">
+        <p class="plus__kicker">Kortscore Plus</p>
+        <p class="plus__claim">Einmal kaufen.<br>Kein Abo.</p>
+        <p class="plus__body">
+          Ein Kauf, keine Laufzeit, keine monatliche Abbuchung. Er gilt
+          dauerhaft, und nach einer Neuinstallation stellt ihn die App still
+          wieder her. Drei Dinge schaltet er frei:
+        </p>
+        <ul class="plus__feats">
+          <li>
+            <b>01</b>
+            <strong>Ausführliche Statistiken</strong>
+            <span>
+              Im Match-Detail Pressure Points, Uhren-Akku und das
+              Punkteverlauf-Chart. In der Gesamtstatistik alles jenseits der
+              Basis: Aufschlag, Pressure Points, Zeit, Zeitraum, tiefe Bilanz.
+            </span>
+          </li>
+          <li>
+            <b>02</b>
+            <strong>Matchverlauf</strong>
+            <span>
+              Jeder einzelne Punkt eines gespeicherten Matches – Satz für Satz,
+              Spiel für Spiel.
+            </span>
+          </li>
+          <li>
+            <b>03</b>
+            <strong>Auto-Backup</strong>
+            <span>
+              Die App sichert dein Archiv unbeaufsichtigt, du musst nicht mehr
+              daran denken.
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Die Gegenprobe: Was Plus ausdrücklich nicht einsperrt. Ohne diese
+         Liste liest sich die Sektion wie eine Paywall, und das wäre falsch. -->
+    <div class="plus__free" data-fx="up">
+      <p class="plus__kicker">Frei bleibt</p>
+      <ul class="plus__freelist">
+        <li>Zählen auf der Uhr</li>
+        <li>Unbegrenztes Match-Archiv</li>
+        <li>Ergebnis und Basis-Statistik jedes Matches</li>
+        <li>Punkte, Punktanteil, Servicespiele</li>
+        <li>Siegquote, Form der letzten 10, Satzbilanz</li>
+        <li>Live-Teilen: Link, Zuschauen, Punkteverlauf</li>
+        <li>Manuelles Backup und Wiederherstellen</li>
+      </ul>
+      <p class="plus__principle">
+        Zwei Grundsätze dahinter: Das Ergebnis deines eigenen Matches verkaufen
+        wir dir nicht zurück. Und dich vor Datenverlust zu schützen, kostet nie
+        Geld – manuelles Backup bleibt frei. Plus kauft nur die Bequemlichkeit,
+        dass es von allein passiert.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── 06 Datenschutz ───────────────────────────────────────────────────── -->
 <section class="privacy">
   <span class="anchor" id="privat" aria-hidden="true"></span>
   <div class="privacy__inner">
     <div data-fx="up">
-      <p class="eyebrow"><span class="eyebrow__num">05</span> Datenschutz</p>
+      <p class="eyebrow"><span class="eyebrow__num">06</span> Datenschutz</p>
       <h2>Du entscheidest,<br>was rausgeht</h2>
     </div>
     <!-- Seit dem Live-Sharing stimmt "bleibt alles lokal" nicht mehr pauschal.
@@ -498,6 +592,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=202607312205"></script>
+<script src="script.js?v=202608010947"></script>
 </body>
 </html>
