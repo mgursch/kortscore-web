@@ -21,7 +21,7 @@
 
 <link rel="preload" href="assets/fonts/ArchivoBlack-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=202608010947">
+<link rel="stylesheet" href="styles.css?v=202608011100">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -373,95 +373,103 @@
   </div>
 </section>
 
-<!-- ── 05 Werbefrei & Kortscore Plus ────────────────────────────────────── -->
-<!-- Bewusst eine gemeinsame Sektion: Werbefreiheit und der Einmalkauf sind
-     dieselbe Aussage über das Geschäftsmodell. Getrennt gelesen klingt das
-     eine nach Versprechen und das andere nach Haken. -->
+<!-- ── 05 Kostenlos & Kortscore Plus ────────────────────────────────────── -->
+<!-- Kernbotschaft zuerst: Die App kostet nichts und zeigt keine Werbung.
+     Plus ist der Nachsatz, nicht die Hauptsache – deshalb trägt die Tabelle
+     die Gratis-Spalte links und Plus rechts, nicht umgekehrt. -->
 <section class="plus">
   <span class="anchor" id="plus" aria-hidden="true"></span>
   <div class="plus__inner">
     <div class="plus__head" data-fx="up">
       <p class="eyebrow"><span class="eyebrow__num">05</span> Was die App kostet</p>
-      <h2>Keine Werbung.<br>Ein Kauf.<br>Fertig.</h2>
+      <h2>Kostenlos.<br>Werbefrei.<br>Punkt.</h2>
       <p class="lead">
-        Kortscore verkauft weder deine Aufmerksamkeit noch deine Matches. Es
-        gibt genau ein Upgrade, und das kaufst du einmal – oder eben nie.
+        Kortscore kostet nichts und zeigt keine Werbung – kein Banner, kein
+        Werbe-SDK, für alle gleich. Wer tiefer graben will, holt sich Kortscore
+        Plus: einmaliger Kauf, kein Abo.
       </p>
     </div>
 
-    <div class="plus__cols">
-      <!-- Block A: Werbefrei. Gilt ohne Sternchen, auch ohne Plus. -->
-      <div class="plus__card plus__card--ads" data-fx="up">
-        <p class="plus__kicker">Werbefrei</p>
-        <p class="plus__claim">Kein Banner.<br>Kein Werbe-SDK.</p>
-        <p class="plus__body">
-          In der App steckt kein Werbenetzwerk – nicht in der Gratis-Version und
-          nicht sonst irgendwo. Nichts blinkt zwischen zwei Ballwechseln, nichts
-          schiebt sich vor den Punktestand. Das gilt für alle, nicht nur für
-          Käufer.
-        </p>
-      </div>
-
-      <!-- Block B: Kortscore Plus. Preis ist bewusst nicht genannt – er steht
-           nirgends fest, und eine erfundene Zahl wäre schlicht falsch. -->
-      <div class="plus__card plus__card--plus" data-fx="up" data-fx-delay="1">
-        <p class="plus__kicker">Kortscore Plus</p>
-        <p class="plus__claim">Einmal kaufen.<br>Kein Abo.</p>
-        <p class="plus__body">
-          Ein Kauf, keine Laufzeit, keine monatliche Abbuchung. Er gilt
-          dauerhaft, und nach einer Neuinstallation stellt ihn die App still
-          wieder her. Drei Dinge schaltet er frei:
-        </p>
-        <ul class="plus__feats">
-          <li>
-            <b>01</b>
-            <strong>Ausführliche Statistiken</strong>
-            <span>
-              Im Match-Detail Pressure Points, Uhren-Akku und das
-              Punkteverlauf-Chart. In der Gesamtstatistik alles jenseits der
-              Basis: Aufschlag, Pressure Points, Zeit, Zeitraum, tiefe Bilanz.
-            </span>
-          </li>
-          <li>
-            <b>02</b>
-            <strong>Matchverlauf</strong>
-            <span>
-              Jeder einzelne Punkt eines gespeicherten Matches – Satz für Satz,
-              Spiel für Spiel.
-            </span>
-          </li>
-          <li>
-            <b>03</b>
-            <strong>Auto-Backup</strong>
-            <span>
-              Die App sichert dein Archiv unbeaufsichtigt, du musst nicht mehr
-              daran denken.
-            </span>
-          </li>
-        </ul>
-      </div>
+    <!-- Echte Tabelle statt Karten: Die Frage "was kostet mich was" ist ein
+         Vergleich, und ein Vergleich gehört in Zeilen und Spalten. -->
+    <div class="plus__tablewrap" data-fx="up" data-fx-delay="1">
+      <table class="plus__table">
+        <caption class="plus__caption">
+          Kortscore Gratis im Vergleich zu Kortscore Plus
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Funktion</th>
+            <th scope="col">Gratis</th>
+            <th scope="col" class="is-plus">Plus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Keine Werbung</th>
+            <td><i class="tick" role="img" aria-label="enthalten"></i></td>
+            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
+          </tr>
+          <tr>
+            <th scope="row">Punktestand über die Uhr eintragen</th>
+            <td><i class="tick" role="img" aria-label="enthalten"></i></td>
+            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
+          </tr>
+          <tr>
+            <th scope="row">Unbegrenztes Match-Archiv</th>
+            <td><i class="tick" role="img" aria-label="enthalten"></i></td>
+            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
+          </tr>
+          <tr>
+            <th scope="row">Ergebnis und Basis-Statistik jedes Matches</th>
+            <td><i class="tick" role="img" aria-label="enthalten"></i></td>
+            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
+          </tr>
+          <tr>
+            <th scope="row">Live-Teilen: Link, Zuschauen, Punkteverlauf</th>
+            <td><i class="tick" role="img" aria-label="enthalten"></i></td>
+            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
+          </tr>
+          <tr>
+            <th scope="row">Manuelles Backup und Wiederherstellen</th>
+            <td><i class="tick" role="img" aria-label="enthalten"></i></td>
+            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
+          </tr>
+          <tr>
+            <th scope="row">
+              Ausführliche Statistiken
+              <span>Pressure Points, Uhren-Akku, Punkteverlauf-Chart</span>
+            </th>
+            <td><span class="dash" role="img" aria-label="nicht enthalten"></span></td>
+            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
+          </tr>
+          <tr>
+            <th scope="row">
+              Matchverlauf
+              <span>Satz für Satz, Spiel für Spiel</span>
+            </th>
+            <td><span class="dash" role="img" aria-label="nicht enthalten"></span></td>
+            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
+          </tr>
+          <tr>
+            <th scope="row">
+              Auto-Backup
+              <span>sichert das Archiv unbeaufsichtigt</span>
+            </th>
+            <td><span class="dash" role="img" aria-label="nicht enthalten"></span></td>
+            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- Die Gegenprobe: Was Plus ausdrücklich nicht einsperrt. Ohne diese
-         Liste liest sich die Sektion wie eine Paywall, und das wäre falsch. -->
-    <div class="plus__free" data-fx="up">
-      <p class="plus__kicker">Frei bleibt</p>
-      <ul class="plus__freelist">
-        <li>Zählen auf der Uhr</li>
-        <li>Unbegrenztes Match-Archiv</li>
-        <li>Ergebnis und Basis-Statistik jedes Matches</li>
-        <li>Punkte, Punktanteil, Servicespiele</li>
-        <li>Siegquote, Form der letzten 10, Satzbilanz</li>
-        <li>Live-Teilen: Link, Zuschauen, Punkteverlauf</li>
-        <li>Manuelles Backup und Wiederherstellen</li>
-      </ul>
-      <p class="plus__principle">
-        Zwei Grundsätze dahinter: Das Ergebnis deines eigenen Matches verkaufen
-        wir dir nicht zurück. Und dich vor Datenverlust zu schützen, kostet nie
-        Geld – manuelles Backup bleibt frei. Plus kauft nur die Bequemlichkeit,
-        dass es von allein passiert.
-      </p>
-    </div>
+    <p class="plus__note" data-fx="up">
+      Plus ist ein einmaliger Kauf, kein Abo – er gilt dauerhaft, nach einer
+      Neuinstallation stellt ihn die App still wieder her. Das Ergebnis deines
+      eigenen Matches verkaufen wir dir nicht zurück, und dich vor Datenverlust
+      zu schützen kostet nie Geld: Plus kauft nur die Bequemlichkeit, dass das
+      Backup von allein passiert.
+    </p>
   </div>
 </section>
 
@@ -592,6 +600,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=202608010947"></script>
+<script src="script.js?v=202608011100"></script>
 </body>
 </html>
