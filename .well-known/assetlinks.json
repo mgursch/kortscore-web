@@ -1,0 +1,17 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.swordistudios.kortscore",
+      "sha256_cert_fingerprints": [
+        "30:BF:D3:23:B5:31:C3:FE:D5:06:D7:93:8D:82:76:03:CD:44:D6:12:A4:11:09:1A:C8:C8:5C:A6:9C:12:9E:6E",
+        "9B:1B:44:AB:63:74:8C:F1:27:10:B7:B6:59:24:CE:EA:94:90:D4:66:AF:E4:69:9B:00:CE:EE:92:01:D5:F4:E4",
+        "1B:2D:AE:63:A3:45:DB:D6:D2:87:9E:A2:F1:2E:B7:47:6C:47:97:74:A6:06:74:ED:78:CC:03:F9:DC:C0:B2:C1"
+      ]
+    }
+  }
+]
