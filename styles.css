@@ -1275,6 +1275,41 @@ h1, h2, h3 {
 }
 .footer .link:hover { text-decoration-color: var(--lime); }
 
+/* ── Chat-Button (lädt Tawk.to erst auf Klick) ─────────────────────────── */
+/* z-index 55 hält ihn unter der fixierten Nav (60), damit er beim Scrollen
+   nicht über die Navigationsleiste wandert. Tawk.tos eigenes Widget legt
+   sich später ohnehin darüber – dann ist dieser Button schon ausgeblendet. */
+.chat {
+  position: fixed;
+  right: clamp(14px, 3vw, 26px);
+  bottom: clamp(14px, 3vw, 26px);
+  z-index: 55;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--lime);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 14px 30px -12px rgba(20, 23, 15, .55);
+  transition: transform .25s cubic-bezier(.2, .8, .3, 1), box-shadow .25s;
+}
+.chat[hidden] { display: none; }
+.chat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 38px -14px rgba(20, 23, 15, .65);
+}
+.chat:active { transform: translateY(0); }
+.chat:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 3px;
+}
+
 /* ── Animationen ───────────────────────────────────────────────────────── */
 @keyframes ks-live {
   0%, 100% { opacity: 1; }
@@ -1381,6 +1416,11 @@ h1, h2, h3 {
      eine überbreite dritte Zelle erzeugen. */
   .footer__inner { flex-direction: column; text-align: center; }
   .footer__claim { margin: 0; }
+  /* Nur noch das Sprechblasen-Icon: Der Schriftzug würde hier gut ein Drittel
+     der Bildschirmbreite belegen und über dem Inhalt kleben. Das aria-label
+     ersetzt die sichtbare Beschriftung für Screenreader. */
+  .chat { padding: 0; width: 52px; height: 52px; justify-content: center; }
+  .chat [data-chat-label] { display: none; }
 }
 
 /* Mobil pinnen, aber nur mit genug Höhe: Der gestapelte Szenen-Inhalt braucht

@@ -256,6 +256,98 @@
   requestAnimationFrame(honourHash);
   window.addEventListener('load', function () { setTimeout(honourHash, 60); });
 
+  /* ── Chat: Tawk.to erst auf Klick ────────────────────────────────────── */
+  /* Das Tawk.to-Skript setzt Cookies und überträgt die IP an einen
+     US-Dienst. Beim Seitenaufruf geladen, wäre die Seite nicht mehr
+     cookiefrei und bräuchte ein Consent-Banner. Deshalb fällt der erste
+     Request erst, wenn jemand den Chat wirklich will – bis dahin gibt es
+     nur den eigenen Button.
+
+     Danach übernimmt das Widget von Tawk.to die Ecke rechts unten, also
+     blendet sich unser Button aus, sobald das Widget bereit ist. */
+  function setupChat() {
+    var btn = document.querySelector('[data-chat]');
+    if (!btn) return;
+
+    /* Erst hier sichtbar machen: Ohne JS könnte der Button nichts laden. */
+    btn.hidden = false;
+
+    var label = btn.querySelector('[data-chat-label]');
+    var loading = false;
+    var injected = false;
+    var mailFallback = false;
+
+    btn.addEventListener('click', function () {
+      /* Skript kam nicht durch (Blocker, Netz): Der Button ist jetzt ein
+         E-Mail-Button, damit der Kontaktweg nicht ins Leere führt. */
+      if (mailFallback) {
+        window.location.href = 'mailto:swordistudios@gmail.com';
+        return;
+      }
+
+      /* Zweiter Klick, während das Skript noch lädt, würde es ein zweites
+         Mal einhängen – Tawk.to beschwert sich dann über eine doppelte
+         Einbindung. */
+      if (loading) return;
+
+      /* Skript ist schon da, das Widget hat sich nur nicht gemeldet (siehe
+         Zeitgrenze unten): dann direkt über die geladene API öffnen statt
+         ein zweites Mal zu laden. */
+      if (injected) {
+        if (window.Tawk_API && window.Tawk_API.maximize) window.Tawk_API.maximize();
+        return;
+      }
+
+      loading = true;
+      injected = true;
+      if (label) label.textContent = 'Chat wird geladen …';
+
+      window.Tawk_API = window.Tawk_API || {};
+      window.Tawk_LoadStart = new Date();
+
+      /* Falls onLoad ausbleibt (Widget-Property nicht freigegeben, Skript
+         teilweise blockiert), soll wenigstens die Beschriftung nicht ewig
+         "wird geladen" behaupten. Zurück auf den Ausgangstext, ein weiterer
+         Klick maximiert dann über die bereits geladene API. */
+      var settle = setTimeout(function () {
+        if (btn.hidden) return;
+        loading = false;
+        if (label) label.textContent = 'Fragen? Schreib uns';
+      }, 8000);
+
+      /* Ohne diesen Hook bliebe der Chat nach dem Laden zu und der Nutzer
+         müsste ein zweites Mal klicken – auf das Widget, das er gerade
+         erst geöffnet hat. */
+      window.Tawk_API.onLoad = function () {
+        clearTimeout(settle);
+        btn.hidden = true;
+        if (window.Tawk_API.maximize) window.Tawk_API.maximize();
+      };
+
+      var s1 = document.createElement('script');
+      var s0 = document.getElementsByTagName('script')[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/6a75f79ec010c21d4b6318b2/1jvecuhhm';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+
+      /* Blockt ein Adblocker das Skript, bliebe sonst "Chat wird geladen …"
+         für immer stehen. Dann lieber ehrlich auf die E-Mail verweisen –
+         der Klick-Handler oben ist ab hier stillgelegt (mailFallback), weil
+         ein erneuter Ladeversuch am Blocker genauso scheitern würde. */
+      s1.onerror = function () {
+        clearTimeout(settle);
+        loading = false;
+        mailFallback = true;
+        if (label) label.textContent = 'Schreib uns eine E-Mail';
+      };
+
+      s0.parentNode.insertBefore(s1, s0);
+    });
+  }
+
+  setupChat();
+
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 })();
