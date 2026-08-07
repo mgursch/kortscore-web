@@ -78,8 +78,11 @@
   --sage-2:     #8C927E;
   --sage-3:     #A8AE99;
   --body:       #3B402E;  /* Fließtext */
-  --lime:       #D9F764;  /* Akzent auf Dunkel */
-  --moss:       #4C6B2F;  /* Akzent auf Cream (kontraststark) */
+  /* Akzent auf Dunkel. Seit dem App-Redesign das Grün der App (#3EA56B) statt
+     des früheren Lime – Website, Icon und Screenshots tragen denselben Ton.
+     Auf --ink rund 5.9:1, also über AA für Text. */
+  --lime:       #3EA56B;
+  --moss:       #1F5C34;  /* Akzent auf Cream, = accent-light der App */
   --clay:       #C0272D;  /* Ziffern, Live-Punkt */
   --bezel-a:    #4C5340;
   --bezel-b:    #31382A;
@@ -291,32 +294,25 @@ h1, h2, h3 {
   background: currentColor;
   animation: ks-live 1.6s ease-in-out infinite;
 }
+/* Der Claim führt die Seite an, dominiert sie aber nicht mehr: Die Bühne
+   gehört der Feature-Grafik darunter. Deshalb einzeilig und deutlich
+   kleiner als die frühere dreizeilige Wand. */
 .hero__title {
-  margin: clamp(28px, 4vw, 48px) 0 0;
-  font-size: clamp(54px, 13vw, 190px);
-  /* .86 aus dem Design kollidiert bei "ZÄHLT" – das Ä-Trema stößt in die
-     Zeile darüber. .95 hält die Enge, lässt Umlaute aber frei stehen. */
-  line-height: .95;
-  letter-spacing: -0.05em;
+  margin: clamp(22px, 3vw, 34px) 0 0;
+  font-size: clamp(34px, 4.4vw, 58px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
 }
 .hero__title em {
   font-style: normal;
   color: var(--moss);
 }
-
-.hero__cols {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
-  gap: clamp(28px, 4vw, 64px);
-  margin-top: clamp(36px, 5vw, 60px);
-  padding-top: clamp(28px, 4vw, 44px);
-  border-top: 1px solid var(--line);
-}
 .hero__lede {
-  margin: 0;
-  max-width: 34ch;
+  margin: clamp(18px, 2vw, 24px) 0 0;
+  max-width: 46ch;
   color: var(--body);
-  font-size: clamp(17px, 1.5vw, 20px);
+  font-size: clamp(16.5px, 1.4vw, 19px);
   line-height: 1.5;
   text-wrap: pretty;
 }
@@ -324,7 +320,71 @@ h1, h2, h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 32px;
+  margin-top: clamp(24px, 3vw, 32px);
+}
+
+/* ── Feature-Grafik: drei Handys + Uhr ─────────────────────────────────────
+   Aufgefächert: Das mittlere Handy steht gerade und vorn, die beiden äußeren
+   sind leicht gedreht, etwas kleiner und rücken so weit ein, dass sie den
+   mittleren Screen unten überlappen. Kein overflow:hidden auf dem Container –
+   die Uhr ragt bewusst über die linke Kante hinaus. */
+.showcase {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: clamp(40px, 6vw, 76px);
+  padding-top: clamp(28px, 4vw, 44px);
+  border-top: 1px solid var(--line);
+}
+.showcase__item {
+  margin: 0;
+  width: min(31vw, 300px);
+  flex: 0 0 auto;
+}
+/* Die Außenpositionen liegen hinter der Mitte und kippen nach außen weg.
+   transform-origin unten, damit die Unterkanten beim Drehen beieinander
+   bleiben und die Überlappung sauber aussieht. */
+.showcase__item--left,
+.showcase__item--right {
+  width: min(29vw, 278px);
+  /* Höher als die Mitte, damit die gedrehten Unterkanten nicht unter dem
+     vorderen Screen hervorschauen – sonst kippt die Tiefenwirkung. */
+  margin-bottom: clamp(28px, 3.4vw, 46px);
+  z-index: 1;
+}
+.showcase__item--left {
+  transform: rotate(-7deg);
+  transform-origin: bottom right;
+  margin-right: clamp(-72px, -6vw, -40px);
+}
+.showcase__item--right {
+  transform: rotate(7deg);
+  transform-origin: bottom left;
+  margin-left: clamp(-72px, -6vw, -40px);
+}
+/* Der mittlere Screen liegt vorn und bleibt ungedreht. */
+.showcase__item--center {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 720px) {
+  /* Enger fächern und stärker überlappen: Sonst schrumpfen drei Geräte
+     nebeneinander unter die Lesbarkeitsgrenze. Die Drehung bleibt, sie
+     trägt die Staffelung. */
+  .showcase__item { width: 36vw; }
+  .showcase__item--left,
+  .showcase__item--right { width: 32vw; margin-bottom: 14px; }
+  .showcase__item--left  { margin-right: -12vw; }
+  .showcase__item--right { margin-left: -12vw; }
+  /* Flacher drehen: Bei kleiner Breite schiebt die Drehung die äußeren
+     Ecken sonst über den Rand. */
+  .showcase__item--left  { transform: rotate(-5deg); }
+  .showcase__item--right { transform: rotate(5deg); }
+  /* Rahmen und Ecken mitskalieren, sonst wirkt der Rand viel zu dick. */
+  .showcase .phone { padding: 6px; border-radius: 22px; }
+  .showcase .phone img { border-radius: 17px; }
 }
 
 /* Kennzahlen-Raster: 1px-Gaps erzeugen die Trennlinien. */
@@ -368,10 +428,11 @@ h1, h2, h3 {
   overflow: hidden;
   padding: clamp(30px, 5vw, 70px);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-  gap: clamp(28px, 4vw, 60px);
-  align-items: center;
+  gap: clamp(30px, 4vw, 54px);
 }
+/* Breiter als der Fließtext darunter, damit die Überschrift in zwei statt
+   vier Zeilen umbricht. */
+.stage__head { max-width: 62ch; }
 .stage__eyebrow {
   margin: 0 0 18px;
   font-family: var(--mono);
@@ -383,7 +444,8 @@ h1, h2, h3 {
 }
 .stage h2 {
   color: var(--paper);
-  font-size: clamp(30px, 4.4vw, 56px);
+  font-size: clamp(28px, 3.4vw, 46px);
+  line-height: 1.05;
 }
 .stage p {
   margin: 20px 0 0;
@@ -392,7 +454,41 @@ h1, h2, h3 {
   font-size: clamp(15.5px, 1.3vw, 17.5px);
   line-height: 1.55;
 }
-.stage__visual { display: flex; justify-content: center; }
+/* Drei Versprechen nebeneinander, durch 1px-Gaps getrennt wie die
+   Kennzahl-Kacheln – gleiche Sprache, nur auf dunklem Grund. */
+.promises {
+  list-style: none;
+  margin: 0;
+  padding: clamp(28px, 4vw, 40px) 0 0;
+  border-top: 1px solid var(--on-dark);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: clamp(26px, 3.4vw, 46px);
+}
+.promise__num {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  color: var(--lime);
+}
+.promise h3 {
+  margin: 14px 0 0;
+  color: var(--paper);
+  font-family: var(--display);
+  font-size: clamp(19px, 1.7vw, 23px);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+.promise p {
+  margin: 10px 0 0;
+  max-width: none;
+  color: var(--sage-3);
+  font-size: 15.5px;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
 
 /* ── Uhr-Gehäuse + nachgebautes Display ────────────────────────────────── */
 .watch {
@@ -785,6 +881,11 @@ h1, h2, h3 {
 .phone img {
   border-radius: 30px;
   width: 100%;
+  /* Screenshots sind 1080×2424; ohne feste Ratio springt das Layout,
+     bis das Bild geladen ist. */
+  aspect-ratio: 1080 / 2424;
+  object-fit: cover;
+  object-position: top;
 }
 .phone--crop img {
   max-height: 620px;
@@ -797,6 +898,33 @@ h1, h2, h3 {
   gap: clamp(14px, 2.5vw, 28px);
   align-items: center;
   flex-wrap: wrap;
+}
+
+/* ── Feature-Grafik: die Uhr ───────────────────────────────────────────────
+   Muss nach .watch und .phone stehen, sonst gewinnen deren Basiswerte für
+   width/position. Die Uhr sitzt vor der Handy-Gruppe, unten links versetzt,
+   und wird komplett gezeigt – Gehäuse samt Armband. Sie ist bewusst klein:
+   Sie soll das Gerät benennen, nicht die Screens verdecken. */
+.showcase__watch {
+  position: absolute;
+  /* Mittig vor dem vorderen Screen. Zentriert wird das Display, nicht das
+     Bild: Rechts hängt das Armband dran, translateX(-50%) würde die Uhr
+     nach links versetzt aussehen lassen. Der Displaymittelpunkt liegt bei
+     27,2 % der Bildbreite (aus der Gehäusegeometrie gerechnet), genau um
+     diesen Wert wird zurückgeschoben. */
+  left: 50%;
+  transform: translateX(-27.2%);
+  bottom: 0;
+  z-index: 3;
+  /* Vom Bild sind gut 40 % Armband, die Breite rechnet das mit ein. */
+  width: clamp(118px, 12vw, 168px);
+  /* Der Schatten folgt der freigestellten Silhouette, nicht einem Rechteck. */
+  filter: drop-shadow(0 18px 26px rgba(20, 23, 15, .4));
+}
+.showcase__watch img { width: 100%; height: auto; }
+
+@media (max-width: 720px) {
+  .showcase__watch { width: clamp(92px, 26vw, 128px); }
 }
 
 /* Ehrlichkeits-Nachsatz unter Fließtext/Kacheln: kleiner als .lead, damit er

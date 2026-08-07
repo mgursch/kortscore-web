@@ -16,12 +16,15 @@
 <meta name="theme-color" content="#F2F4E4">
 <link rel="canonical" href="https://kortscore.com/">
 
-<link rel="icon" type="image/png" href="assets/icon.png">
-<link rel="apple-touch-icon" href="assets/icon.png">
+<!-- Icons aus dem App-Redesign (Scorebug-Marke, Akzent-Grün). Das SVG wird
+     von modernen Browsern bevorzugt, .ico bleibt als Fallback. -->
+<link rel="icon" href="assets/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
 <link rel="preload" href="assets/fonts/ArchivoBlack-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=202608011530">
+<link rel="stylesheet" href="styles.css?v=202608072140">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -78,50 +81,98 @@
     </div>
 
     <h1 class="hero__title" data-fx="up" data-fx-delay="1">
-      Du spielst.<br><em>Die Uhr</em><br>zählt.
+      Du spielst. <em>Die Uhr</em> zählt.
     </h1>
 
-    <div class="hero__cols">
-      <div data-fx="up" data-fx-delay="2">
-        <p class="hero__lede">
-          Tennis zählen am Handgelenk. Ein Tipp pro Punkt, kein Zettel, keine
-          Diskussion. Ein Link genügt, und Freunde verfolgen den Stand live im
-          Browser oder in der App. Danach jede Statistik, die du willst.
-        </p>
-        <div class="hero__cta">
-          <a class="btn" href="#tester">Tester werden</a>
-          <a class="btn btn--ghost" href="#zaehlen">So funktioniert's</a>
+    <p class="hero__lede" data-fx="up" data-fx-delay="1">
+      Ein Tipp pro Punkt auf der Uhr. Freunde schauen live zu. Nach dem Match
+      wartet die ganze Auswertung auf dem Handy.
+    </p>
+
+    <div class="hero__cta" data-fx="up" data-fx-delay="2">
+      <a class="btn" href="#tester">Tester werden</a>
+      <a class="btn btn--ghost" href="#zaehlen">So funktioniert's</a>
+    </div>
+
+    <!-- Feature-Grafik statt Claim-Wand: drei Handy-Screens plus die Uhr zeigen
+         auf einen Blick, was die App tut. Aufgefächert – das mittlere Handy
+         steht gerade und vorn, die beiden äußeren leicht gedreht dahinter.
+         Die Uhr liegt als eigenes Element über der Gruppe, nicht im
+         Handy-Rahmen: dort würde ihr Armband am Rahmen abgeschnitten. -->
+    <div class="showcase" data-fx="up" data-fx-delay="2">
+      <div class="showcase__item showcase__item--left">
+        <div class="phone">
+          <img src="assets/shot-spielen.png" width="1080" height="2424" loading="eager"
+               alt="Startbildschirm der App: gespeicherte Match-Kombinationen, jede mit einem Play-Knopf zum Sofortstart">
         </div>
       </div>
 
-      <div class="tiles" data-fx="up" data-fx-delay="2">
-        <div class="tile"><b>1</b><span>Tipp pro Punkt</span></div>
-        <div class="tile"><b>0</b><span>Konten nötig</span></div>
-        <div class="tile"><b>∞</b><span>Matches im Archiv</span></div>
-        <div class="tile"><b>0</b><span>Werbung</span></div>
+      <div class="showcase__item showcase__item--center">
+        <div class="phone">
+          <img src="assets/shot-live.png" width="1080" height="2424" loading="eager"
+               alt="Live-Match am Handy: Stand 40:15 und der Punkteverlauf Punkt für Punkt">
+        </div>
+      </div>
+
+      <div class="showcase__item showcase__item--right">
+        <div class="phone">
+          <img src="assets/shot-detail.png" width="1080" height="2424" loading="eager"
+               alt="Matchauswertung: Satzergebnisse, Punkteverteilung, Breakbälle und weitere Statistiken">
+        </div>
+      </div>
+
+      <div class="showcase__watch">
+        <img src="assets/shot-watch-device.png" width="387" height="440" loading="eager"
+             alt="Kortscore auf der Galaxy Watch: Punktestand 40:15, Spielzeit 2:02">
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Bühne: Uhr am Handgelenk ─────────────────────────────────────────── -->
+<!-- ── Bühne: die drei Versprechen der App ──────────────────────────────────
+     Ersetzt die frühere Uhr-am-Handgelenk-Bühne. Kernbotschaft der App ist
+     nicht "es gibt eine Uhr-Ansicht", sondern dass die Bedienung während des
+     Spiels praktisch verschwindet – und alles Aufwendige davor und danach
+     passiert. Deshalb drei Punkte statt eines Bildes. -->
 <section class="stage">
   <div class="stage__panel wrap" data-fx="up">
-    <div>
-      <p class="stage__eyebrow">Am Handgelenk</p>
-      <h2>Der Platz ist<br>dein Interface</h2>
+    <div class="stage__head">
+      <p class="stage__eyebrow">Warum Kortscore</p>
+      <h2>Während des Matches<br>fast unsichtbar</h2>
       <p>
-        Kein Handy aus der Tasche, kein Blick weg vom Ball. Die Uhr zeigt Satz,
-        Games und Punkte im Always-On, auch zwischen den Ballwechseln.
+        Zählen darf nicht zum zweiten Gegner werden. Deshalb passiert am Platz
+        so wenig wie möglich – und nach dem Match so viel wie du willst.
       </p>
     </div>
-    <div class="stage__visual">
-      <div class="watch" data-parallax="0.045">
-        <div class="watch__screen">
-          <img src="assets/watch.png" alt="Kortscore auf der Wear-OS-Uhr: Satz 1, 5:4, Punktestand 40:30">
-        </div>
-      </div>
-    </div>
+
+    <ul class="promises">
+      <li class="promise">
+        <span class="promise__num" aria-hidden="true">01</span>
+        <h3>Ein Tipp, sonst nichts</h3>
+        <p>
+          Kein Menü, kein Handy aus der Tasche, kein Blick weg vom Ball. Ein
+          Tipp auf die Uhr zählt den Punkt, den Rest rechnet die App: Games,
+          Sätze, Tiebreak, Aufschlagwechsel.
+        </p>
+      </li>
+      <li class="promise">
+        <span class="promise__num" aria-hidden="true">02</span>
+        <h3>Freunde fiebern live mit</h3>
+        <p>
+          Ein Link genügt, und Familie und Freunde sehen jeden Punkt in
+          Echtzeit im Browser – ohne App, ohne Konto, egal wo sie gerade sind.
+        </p>
+      </li>
+      <li class="promise">
+        <span class="promise__num" aria-hidden="true">03</span>
+        <h3>Danach die ganze Auswertung</h3>
+        <p>
+          Breakbälle, Druckpunkte, Servicespiele, Punkteverlauf, Spielzeiten:
+          Nach dem Match liegt alles am Handy bereit, ohne dass du währenddessen
+          etwas dafür tun musstest.
+        </p>
+      </li>
+    </ul>
   </div>
 </section>
 
@@ -236,7 +287,8 @@
 
     <div class="devices" data-fx="up" data-fx-delay="2">
       <div class="phone" data-parallax="0.05">
-        <img src="assets/live.png" alt="Live-Match am Handy: Watch verbunden, Stand 3:2 und Punkteverlauf Punkt für Punkt">
+        <img src="assets/shot-live.png" width="1080" height="2424" loading="lazy"
+             alt="Live-Match am Handy: Watch verbunden, Stand 40:15 und Punkteverlauf Punkt für Punkt">
       </div>
     </div>
   </div>
@@ -334,7 +386,8 @@
   <div class="feature__inner">
     <div class="devices" data-fx="up">
       <div class="phone phone--crop" data-parallax="0.04">
-        <img src="assets/phone.png" alt="Matchauswertung am Handy: Satzergebnis 6:4, 4:6, 7:6, Punktestatistik und Punkteverlauf">
+        <img src="assets/shot-matches.png" width="1080" height="2424" loading="lazy"
+             alt="Match-Historie am Handy: 78 Prozent Siegquote, Aufschlag- und Spielzeit-Kennzahlen, darunter die Matches nach Monaten gruppiert">
       </div>
     </div>
 
@@ -346,26 +399,8 @@
         Endergebnis: Breakbälle, Satz- und Matchbälle, Einstand-Games, längste
         Punkteserie – die Punkte, an denen das Match entschieden wurde.
       </p>
-      <div class="stats">
-        <div class="stat">
-          <b data-count="7" data-count-suffix=" / 10">0 / 10</b>
-          <span>Breakbälle verwertet</span>
-        </div>
-        <div class="stat">
-          <b data-count="60" data-count-suffix=" %">0 %</b>
-          <span>Druckpunkte gewonnen</span>
-        </div>
-        <div class="stat">
-          <b data-count="69" data-count-suffix=" %">0 %</b>
-          <span>Servicespiele</span>
-        </div>
-        <div class="stat">
-          <b>2:32</b>
-          <span>Ø je Game</span>
-        </div>
-      </div>
-      <p class="note">
-        Über allen Matches gibt es die Gesamtstatistik: Siegquote, Form der
+      <p class="lead">
+        Und über allen Matches steht die Gesamtstatistik: Siegquote, Form der
         letzten zehn Matches, Siegquoten-Trend, Bilanz nach Wochentag und
         Tageszeit – Einzel und Doppel getrennt.
       </p>
@@ -618,6 +653,6 @@
   <span data-chat-label>Fragen? Schreib uns</span>
 </button>
 
-<script src="script.js?v=202608011530"></script>
+<script src="script.js?v=202608072140"></script>
 </body>
 </html>

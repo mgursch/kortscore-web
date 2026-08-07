@@ -35,8 +35,10 @@
       cap: 'Vertippt? Dreimal tippen dreht den letzten Punkt um – aus dem Gegnerpunkt wird deiner.'
     },
     {
+      // Ohne Untertitel: Der Schritt zeigt das Undo am mitzählenden Display,
+      // die Geste selbst steht schon in der Tap-Liste daneben.
       tap: 4, mine: '30', theirs: '30',
-      cap: 'Viermal tippen macht den letzten Punkt ganz rückgängig.'
+      cap: ''
     }
   ];
 

@@ -1,25 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 108 108">
-  <!-- Full-bleed background: Play Store icons are NOT adaptive, they must fill the canvas. -->
-  <rect x="0" y="0" width="108" height="108" fill="#0B0D09"/>
+  <rect x="0" y="0" width="108" height="108" fill="#16150F"/>
+  <g transform="translate(54,54) scale(1.96) translate(-54,-54)">
+    <path fill="#3EA56B" d="M40,29 h28 a11.5,11.5 0 0 1 0,23 h-28 a11.5,11.5 0 0 1 0,-23 z"/>
+    <path fill="#26251D" d="M40,56 h28 a11.5,11.5 0 0 1 0,23 h-28 a11.5,11.5 0 0 1 0,-23 z"/>
 
-  <!-- Foreground, scaled 1.5x about the centre (54,54): an adaptive launcher only shows the
-       inner 72dp of the 108dp canvas, so this reproduces the on-device framing. -->
-  <g transform="translate(54,54) scale(1.5) translate(-54,-54)">
-    <!-- Top pill: lime -->
-    <path fill="#D9F764" d="M40,29 h28 a11.5,11.5 0 0 1 0,23 h-28 a11.5,11.5 0 0 1 0,-23 z"/>
-    <!-- Bottom pill: dark surface -->
-    <path fill="#26281F" d="M40,56 h28 a11.5,11.5 0 0 1 0,23 h-28 a11.5,11.5 0 0 1 0,-23 z"/>
-
-    <!-- "40" on the lime pill -->
-    <path stroke="#0B0D09" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"
+    <path stroke="#16150F" stroke-width="3.8" fill="none" stroke-linecap="round" stroke-linejoin="round"
           d="M46,33.5 L40,44 L51,44 M48.5,33.5 L48.5,47.5"/>
-    <path stroke="#0B0D09" stroke-width="3" fill="none"
+    <path stroke="#16150F" stroke-width="3.8" fill="none"
           d="M60.5,33.5 a4,4 0 0 1 4,4 v6 a4,4 0 0 1 -8,0 v-6 a4,4 0 0 1 4,-4 z"/>
 
-    <!-- "30" on the dark pill -->
-    <path stroke="#ECEFE4" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"
+    <path stroke="#F2F3F0" stroke-width="3.8" fill="none" stroke-linecap="round" stroke-linejoin="round"
           d="M41,61.5 a4,4 0 0 1 8,1.5 a3.3,3.3 0 0 1 -3.3,3.3 a3.3,3.3 0 0 1 3.3,3.3 a4,4 0 0 1 -8,1.5"/>
-    <path stroke="#ECEFE4" stroke-width="3" fill="none"
+    <path stroke="#F2F3F0" stroke-width="3.8" fill="none"
           d="M60.5,60.5 a4,4 0 0 1 4,4 v6 a4,4 0 0 1 -8,0 v-6 a4,4 0 0 1 4,-4 z"/>
   </g>
 </svg>
