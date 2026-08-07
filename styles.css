@@ -263,29 +263,11 @@ h1, h2, h3 {
 .nav__cta:hover { transform: translateY(-2px); }
 
 /* ── Hero ──────────────────────────────────────────────────────────────── */
+/* Oben nur so viel Luft, dass die Grafik nicht an der Menüleiste klebt –
+   sie soll das Erste sein, was im Bild steht. */
 .hero {
   position: relative;
-  padding: clamp(120px, 16vh, 180px) var(--gutter) clamp(60px, 8vh, 90px);
-}
-.hero__meta {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--line);
-  font-family: var(--mono);
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--sage);
-}
-.hero__phase {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: var(--clay);
+  padding: clamp(86px, 11vh, 116px) var(--gutter) clamp(60px, 8vh, 90px);
 }
 .dot-live {
   width: 7px;
@@ -294,11 +276,19 @@ h1, h2, h3 {
   background: currentColor;
   animation: ks-live 1.6s ease-in-out infinite;
 }
-/* Der Claim führt die Seite an, dominiert sie aber nicht mehr: Die Bühne
-   gehört der Feature-Grafik darunter. Deshalb einzeilig und deutlich
-   kleiner als die frühere dreizeilige Wand. */
+/* Claim und Buttons stehen unter der Grafik und sind mittig gesetzt: Sie
+   fassen zusammen, was man darüber schon gesehen hat. */
+.hero__copy {
+  margin-top: clamp(30px, 4vw, 48px);
+  padding-top: clamp(26px, 3.4vw, 40px);
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
 .hero__title {
-  margin: clamp(22px, 3vw, 34px) 0 0;
+  margin: 0;
   font-size: clamp(34px, 4.4vw, 58px);
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -309,8 +299,8 @@ h1, h2, h3 {
   color: var(--moss);
 }
 .hero__lede {
-  margin: clamp(18px, 2vw, 24px) 0 0;
-  max-width: 46ch;
+  margin: clamp(16px, 1.8vw, 22px) auto 0;
+  max-width: 52ch;
   color: var(--body);
   font-size: clamp(16.5px, 1.4vw, 19px);
   line-height: 1.5;
@@ -319,8 +309,9 @@ h1, h2, h3 {
 .hero__cta {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
-  margin-top: clamp(24px, 3vw, 32px);
+  margin-top: clamp(22px, 2.6vw, 30px);
 }
 
 /* ── Feature-Grafik: drei Handys + Uhr ─────────────────────────────────────
@@ -333,9 +324,6 @@ h1, h2, h3 {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  margin-top: clamp(40px, 6vw, 76px);
-  padding-top: clamp(28px, 4vw, 44px);
-  border-top: 1px solid var(--line);
 }
 .showcase__item {
   margin: 0;

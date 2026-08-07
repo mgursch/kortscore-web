@@ -24,7 +24,7 @@
 
 <link rel="preload" href="assets/fonts/ArchivoBlack-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=202608072140">
+<link rel="stylesheet" href="styles.css?v=202608072200">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -75,31 +75,12 @@
 <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
 <section class="hero" id="top">
   <div class="wrap">
-    <div class="hero__meta" data-fx="up">
-      <span class="hero__phase"><i class="dot-live" aria-hidden="true"></i>Geschlossene Testphase</span>
-      <span>Wear OS 3+ · Android 8+</span>
-    </div>
-
-    <h1 class="hero__title" data-fx="up" data-fx-delay="1">
-      Du spielst. <em>Die Uhr</em> zählt.
-    </h1>
-
-    <p class="hero__lede" data-fx="up" data-fx-delay="1">
-      Ein Tipp pro Punkt auf der Uhr. Freunde schauen live zu. Nach dem Match
-      wartet die ganze Auswertung auf dem Handy.
-    </p>
-
-    <div class="hero__cta" data-fx="up" data-fx-delay="2">
-      <a class="btn" href="#tester">Tester werden</a>
-      <a class="btn btn--ghost" href="#zaehlen">So funktioniert's</a>
-    </div>
-
-    <!-- Feature-Grafik statt Claim-Wand: drei Handy-Screens plus die Uhr zeigen
-         auf einen Blick, was die App tut. Aufgefächert – das mittlere Handy
-         steht gerade und vorn, die beiden äußeren leicht gedreht dahinter.
-         Die Uhr liegt als eigenes Element über der Gruppe, nicht im
-         Handy-Rahmen: dort würde ihr Armband am Rahmen abgeschnitten. -->
-    <div class="showcase" data-fx="up" data-fx-delay="2">
+    <!-- Feature-Grafik steht ganz oben, direkt unter der Menüleiste: Was die
+         App tut, soll man sehen, bevor man es liest. Aufgefächert – das
+         mittlere Handy steht gerade und vorn, die beiden äußeren leicht
+         gedreht dahinter. Die Uhr liegt als eigenes Element über der Gruppe,
+         nicht im Handy-Rahmen: dort würde ihr Armband abgeschnitten. -->
+    <div class="showcase" data-fx="up">
       <div class="showcase__item showcase__item--left">
         <div class="phone">
           <img src="assets/shot-spielen.png" width="1080" height="2424" loading="eager"
@@ -126,6 +107,22 @@
              alt="Kortscore auf der Galaxy Watch: Punktestand 40:15, Spielzeit 2:02">
       </div>
     </div>
+
+    <div class="hero__copy">
+      <h1 class="hero__title" data-fx="up" data-fx-delay="1">
+        Du spielst. <em>Die Uhr</em> zählt.
+      </h1>
+
+      <p class="hero__lede" data-fx="up" data-fx-delay="1">
+        Ein Tipp pro Punkt auf der Uhr. Freunde schauen live zu. Nach dem Match
+        wartet die ganze Auswertung auf dem Handy.
+      </p>
+
+      <div class="hero__cta" data-fx="up" data-fx-delay="2">
+        <a class="btn" href="#tester">Tester werden</a>
+        <a class="btn btn--ghost" href="#warum">Warum Kortscore</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -135,6 +132,7 @@
      Spiels praktisch verschwindet – und alles Aufwendige davor und danach
      passiert. Deshalb drei Punkte statt eines Bildes. -->
 <section class="stage">
+  <span class="anchor" id="warum" aria-hidden="true"></span>
   <div class="stage__panel wrap" data-fx="up">
     <div class="stage__head">
       <p class="stage__eyebrow">Warum Kortscore</p>
@@ -653,6 +651,6 @@
   <span data-chat-label>Fragen? Schreib uns</span>
 </button>
 
-<script src="script.js?v=202608072140"></script>
+<script src="script.js?v=202608072200"></script>
 </body>
 </html>
