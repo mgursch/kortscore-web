@@ -1403,6 +1403,24 @@ h1, h2, h3 {
   text-wrap: pretty;
 }
 .tester__cta { margin-top: 34px; }
+
+/* Google-Badge: feste Höhe statt Breite, damit beide Sprachfassungen trotz
+   unterschiedlich langer Beschriftung gleich hoch stehen. Der eingebaute
+   Schutzraum des PNG ist Teil des Bildes – deshalb kein eigenes Padding und
+   kein Rahmen, beides würde die Markenvorgaben verletzen. */
+.storebadge {
+  display: inline-block;
+  transition: transform .25s cubic-bezier(.2, .8, .3, 1);
+}
+.storebadge img {
+  height: clamp(56px, 6vw, 68px);
+  width: auto;
+}
+.storebadge:hover { transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) {
+  .storebadge { transition: none; }
+  .storebadge:hover { transform: none; }
+}
 .tester__hint {
   margin: 20px auto 0;
   max-width: 44ch;

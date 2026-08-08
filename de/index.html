@@ -29,7 +29,7 @@
 
 <link rel="preload" href="../assets/fonts/ArchivoBlack-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../styles.css?v=202608081130">
+<link rel="stylesheet" href="../styles.css?v=202608081230">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -626,13 +626,15 @@
       brauchen weder Uhr noch App: zum Mitschauen genügt der Link im Browser.
     </p>
 
+    <!-- Offizielles Google-Badge, unverändert: Die Markenrichtlinien verbieten
+         Umfärben, eigenen Text und Beschneiden. Das PNG bringt seinen
+         Schutzraum als transparenten Rand mit, zusätzliches Padding braucht es
+         also nicht. Der Link ist die Beschriftung – daher Alt-Text statt
+         Bildunterschrift. -->
     <div class="tester__cta">
-      <a class="btn" href="https://play.google.com/store/apps/details?id=com.swordistudios.kortscore" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-          <path fill="currentColor"
-                d="M3.6 2.3a1 1 0 0 0-.4.8v17.8a1 1 0 0 0 .4.8l.1.1 10-10v-.2l-10-10-.1.1Zm11.2 8.8 2.9-2.9-8.4-4.8 5.5 7.7Zm0 1.8-5.5 7.7 8.4-4.8-2.9-2.9Zm4.3-2.4-2.3-1.3-3.1 3.1 3.1 3.1 2.3-1.3a1.2 1.2 0 0 0 0-2.1v-.5Z"/>
-        </svg>
-        Bei Google Play laden
+      <a class="storebadge" href="https://play.google.com/store/apps/details?id=com.swordistudios.kortscore" target="_blank" rel="noopener">
+        <img src="../assets/google-play-de.png" width="323" height="125"
+             alt="Jetzt bei Google Play">
       </a>
     </div>
 
@@ -700,6 +702,6 @@
   <span data-chat-label>Fragen? Schreib uns</span>
 </button>
 
-<script src="../script.js?v=202608081130"></script>
+<script src="../script.js?v=202608081230"></script>
 </body>
 </html>
