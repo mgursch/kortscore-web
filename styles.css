@@ -211,9 +211,47 @@ h1, h2, h3 {
 .link:hover { text-decoration-color: var(--moss); }
 
 /* ── Nav ───────────────────────────────────────────────────────────────── */
-.nav {
+/* ── Sprachhinweis ─────────────────────────────────────────────────────────
+   Liegt über der fixierten Navigation und schiebt sie per Klasse am <body>
+   nach unten, statt sich unter sie zu legen. Dunkel wie die Fußzeile, damit
+   er als Systemhinweis und nicht als Teil der Seite gelesen wird. */
+.langbar {
   position: fixed;
   inset: 0 0 auto 0;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  padding: 10px var(--gutter);
+  background: var(--ink);
+  color: var(--sage-3);
+  font-size: 14.5px;
+}
+.langbar[hidden] { display: none; }
+.langbar__go {
+  color: var(--lime);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.langbar__close {
+  padding: 4px 10px;
+  border: 1px solid var(--on-dark);
+  border-radius: 8px;
+  background: none;
+  color: var(--sage-3);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.langbar__close:hover { color: var(--paper); border-color: var(--sage-3); }
+
+.nav {
+  position: fixed;
+  /* --langbar-h ist 0, solange kein Sprachhinweis steht; das Skript setzt die
+     gemessene Höhe, sobald er erscheint. */
+  inset: var(--langbar-h, 0px) 0 auto 0;
   z-index: 60;
   display: flex;
   align-items: center;

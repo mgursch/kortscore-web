@@ -269,6 +269,14 @@
     btn.hidden = false;
 
     var label = btn.querySelector('[data-chat-label]');
+
+    /* Die drei Beschriftungen stehen als data-Attribute am Button, weil beide
+       Sprachfassungen dieselbe Skriptdatei laden. Der zweite Parameter ist der
+       deutsche Bestandstext für den Fall, dass ein Attribut fehlt. */
+    function chatText(key, fallback) {
+      var v = btn.getAttribute('data-chat-' + key);
+      return v === null ? fallback : v;
+    }
     var loading = false;
     var injected = false;
     var mailFallback = false;
@@ -296,7 +304,7 @@
 
       loading = true;
       injected = true;
-      if (label) label.textContent = 'Chat wird geladen …';
+      if (label) label.textContent = chatText('loading', 'Chat wird geladen …');
 
       window.Tawk_API = window.Tawk_API || {};
       window.Tawk_LoadStart = new Date();
@@ -308,7 +316,7 @@
       var settle = setTimeout(function () {
         if (btn.hidden) return;
         loading = false;
-        if (label) label.textContent = 'Fragen? Schreib uns';
+        if (label) label.textContent = chatText('idle', 'Fragen? Schreib uns');
       }, 8000);
 
       /* Ohne diesen Hook bliebe der Chat nach dem Laden zu und der Nutzer
@@ -335,7 +343,7 @@
         clearTimeout(settle);
         loading = false;
         mailFallback = true;
-        if (label) label.textContent = 'Schreib uns eine E-Mail';
+        if (label) label.textContent = chatText('mail', 'Schreib uns eine E-Mail');
       };
 
       s0.parentNode.insertBefore(s1, s0);
@@ -343,6 +351,88 @@
   }
 
   setupChat();
+
+  /* ── Sprachhinweis ────────────────────────────────────────────────────────
+     Besucher mit deutschem Browser sollen die deutsche Fassung finden, ohne
+     dass ihnen jemand die Seite unter den Füßen wegzieht. Deshalb ein Hinweis
+     statt einer Weiterleitung: Ein automatischer Sprung macht den Zurück-Button
+     unbrauchbar (zurück landet wieder auf der Seite, die sofort weiterleitet)
+     und schickt geteilte Links woanders hin, als der Absender wollte.
+
+     Die Leiste erscheint höchstens einmal. Sobald jemand eine Sprache aktiv
+     wählt – über die Leiste oder den Umschalter in der Navigation – merkt sich
+     das die Seite und hält von da an den Mund. Ohne localStorage (privater
+     Modus, alte Browser) passiert schlicht nichts: Die Seite bleibt, wie sie
+     ist, nur der Hinweis kommt dann bei jedem Besuch neu.
+     ───────────────────────────────────────────────────────────────────────── */
+  function setupLangHint() {
+    var bar = document.querySelector('[data-langbar]');
+    if (!bar) return;
+
+    var KEY = 'ks-lang';
+
+    function stored(v) {
+      try {
+        if (v) { localStorage.setItem(KEY, v); return v; }
+        return localStorage.getItem(KEY);
+      } catch (e) {
+        return null;   /* localStorage gesperrt: kein Grund, hier auszusteigen */
+      }
+    }
+
+    /* Der Umschalter in der Navigation ist eine bewusste Wahl – ab dann nie
+       wieder fragen, egal in welche Richtung er führt. */
+    var toggle = document.querySelector('.nav__lang');
+    if (toggle) {
+      toggle.addEventListener('click', function () {
+        stored(toggle.getAttribute('hreflang') || 'en');
+      });
+    }
+
+    /* Nur auf der Startseite fragen. Auf den Rechtsseiten wäre der Hinweis
+       aufdringlich, und wer dort gezielt hinnavigiert hat, sucht keinen
+       Sprachwechsel. */
+    if (!bar.hasAttribute('data-langbar-home')) return;
+
+    var pageLang  = document.documentElement.lang || 'en';
+    var wantsGerman = (navigator.languages || [navigator.language || ''])
+      .some(function (l) { return /^de\b/i.test(l); });
+
+    /* Schon entschieden, oder der Browser spricht ohnehin die Seitensprache:
+       nichts zu tun. */
+    if (stored()) return;
+    if (wantsGerman === (pageLang === 'de')) return;
+
+    bar.hidden = false;
+
+    /* Die Navigation ist fixiert und läge sonst unter der Leiste. Ihre Höhe
+       wird gemessen statt geschätzt: Bei schmalen Fenstern bricht die Leiste
+       um und ist dann höher als ein fester Wert es je träfe. */
+    function offsetNav() {
+      document.documentElement.style.setProperty(
+        '--langbar-h', bar.hidden ? '0px' : bar.offsetHeight + 'px');
+    }
+    offsetNav();
+    window.addEventListener('resize', offsetNav);
+
+    var dismiss = bar.querySelector('[data-langbar-close]');
+    if (dismiss) {
+      dismiss.addEventListener('click', function () {
+        stored(pageLang);          /* "ich bleibe hier" ist auch eine Wahl */
+        bar.hidden = true;
+        offsetNav();
+      });
+    }
+
+    var accept = bar.querySelector('[data-langbar-go]');
+    if (accept) {
+      accept.addEventListener('click', function () {
+        stored(accept.getAttribute('hreflang') || 'de');
+      });
+    }
+  }
+
+  setupLangHint();
 
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();

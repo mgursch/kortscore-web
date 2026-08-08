@@ -30,7 +30,7 @@
 
 <link rel="preload" href="assets/fonts/ArchivoBlack-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=202608080900">
+<link rel="stylesheet" href="styles.css?v=202608081000">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -60,6 +60,18 @@
 </script>
 </head>
 <body>
+
+<!-- ── Language hint ────────────────────────────────────────────────────────
+     Shown only to visitors whose browser asks for German, and only once: the
+     script hides it again as soon as a language has been chosen. It starts
+     hidden so it never flashes for everyone else, and stays hidden entirely
+     without JavaScript. In German, because it addresses German speakers. -->
+<div class="langbar" data-langbar data-langbar-home hidden>
+  <span>Diese Seite gibt es auch auf Deutsch.</span>
+  <a class="langbar__go" href="de/" hreflang="de" lang="de" data-langbar-go>Zur deutschen Fassung</a>
+  <button class="langbar__close" type="button" data-langbar-close
+          aria-label="Hinweis schließen" lang="de">Nein danke</button>
+</div>
 
 <!-- ── Nav ──────────────────────────────────────────────────────────────────
      The anchor ids stay German in both languages: they are shared with the
@@ -659,7 +671,10 @@
      it as expected. Without JavaScript it stays hidden (script.js reveals it),
      since without JS it could not load anything anyway.
      ────────────────────────────────────────────────────────────────────── -->
-<button class="chat" type="button" data-chat hidden aria-label="Open chat">
+<button class="chat" type="button" data-chat hidden aria-label="Open chat"
+        data-chat-idle="Questions? Message us"
+        data-chat-loading="Loading chat …"
+        data-chat-mail="Send us an email">
   <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
     <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
           d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.9 9.9 0 0 1-2.8-.4L3 21l1.9-5.1A8.3 8.3 0 0 1 4 11.5 8.4 8.4 0 0 1 12.5 3 8.4 8.4 0 0 1 21 11.5Z"/>
@@ -667,6 +682,6 @@
   <span data-chat-label>Questions? Message us</span>
 </button>
 
-<script src="script.js?v=202608080900"></script>
+<script src="script.js?v=202608081000"></script>
 </body>
 </html>

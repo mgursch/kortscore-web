@@ -29,7 +29,7 @@
 
 <link rel="preload" href="../assets/fonts/ArchivoBlack-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../styles.css?v=202608080900">
+<link rel="stylesheet" href="../styles.css?v=202608081000">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -59,6 +59,18 @@
 </script>
 </head>
 <body>
+
+<!-- ── Sprachhinweis ────────────────────────────────────────────────────────
+     Erscheint nur bei nicht-deutschem Browser und nur einmal; sobald eine
+     Sprache gewählt wurde, blendet das Skript ihn dauerhaft aus. Startet
+     versteckt, damit er bei allen anderen nie aufblitzt, und bleibt ohne
+     JavaScript ganz weg. Auf Englisch, weil er Englischsprachige anspricht. -->
+<div class="langbar" data-langbar data-langbar-home hidden>
+  <span lang="en">This page is also available in English.</span>
+  <a class="langbar__go" href="../" hreflang="en" lang="en" data-langbar-go>Go to English version</a>
+  <button class="langbar__close" type="button" data-langbar-close
+          aria-label="Close notice" lang="en">No thanks</button>
+</div>
 
 <!-- ── Nav ──────────────────────────────────────────────────────────────── -->
 <header class="nav" data-nav>
@@ -656,7 +668,10 @@
      bedienen. Ohne JavaScript bleibt er ausgeblendet (script.js zeigt ihn),
      denn ohne JS kann er ohnehin nichts laden.
      ────────────────────────────────────────────────────────────────────── -->
-<button class="chat" type="button" data-chat hidden aria-label="Chat öffnen">
+<button class="chat" type="button" data-chat hidden aria-label="Chat öffnen"
+        data-chat-idle="Fragen? Schreib uns"
+        data-chat-loading="Chat wird geladen …"
+        data-chat-mail="Schreib uns eine E-Mail">
   <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
     <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
           d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.9 9.9 0 0 1-2.8-.4L3 21l1.9-5.1A8.3 8.3 0 0 1 4 11.5 8.4 8.4 0 0 1 12.5 3 8.4 8.4 0 0 1 21 11.5Z"/>
@@ -664,6 +679,6 @@
   <span data-chat-label>Fragen? Schreib uns</span>
 </button>
 
-<script src="../script.js?v=202608080900"></script>
+<script src="../script.js?v=202608081000"></script>
 </body>
 </html>
