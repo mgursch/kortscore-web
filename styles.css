@@ -262,6 +262,28 @@ h1, h2, h3 {
 }
 .nav__cta:hover { transform: translateY(-2px); }
 
+/* Sprachumschalter: Er zeigt die Sprache, in die er führt, nicht die aktuelle.
+   Bewusst nur ein Rahmen – die gefüllte Fläche daneben gehört dem CTA, und
+   zwei gleich laute Knöpfe würden sich gegenseitig entwerten. */
+.nav__lang {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: var(--sage);
+  transition: border-color .2s, color .2s;
+}
+.nav__lang:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
 /* ── Hero ──────────────────────────────────────────────────────────────── */
 /* Oben nur so viel Luft, dass die Grafik nicht an der Menüleiste klebt –
    sie soll das Erste sein, was im Bild steht. */

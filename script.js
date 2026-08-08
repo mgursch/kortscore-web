@@ -18,28 +18,13 @@
      15:30 → (1×) 30:30 → (2×) 30:40 → (3× umdrehen) 40:30 → (4× Undo)
      zurück auf 30:30 – der umgedrehte Punkt ist danach ganz weg. */
   var STEPS = [
-    {
-      tap: 0, mine: '15', theirs: '30',
-      cap: 'Aufschlag. Die Uhr ist bereit, du musst nur noch spielen.'
-    },
-    {
-      tap: 1, mine: '30', theirs: '30',
-      cap: 'Einmal tippen: dein Punkt steht. Die Haptik bestätigt, du musst nicht hinsehen.'
-    },
-    {
-      tap: 2, mine: '30', theirs: '40',
-      cap: 'Zweimal tippen für den Gegner. Mehr Bedienung gibt es nicht.'
-    },
-    {
-      tap: 3, mine: '40', theirs: '30',
-      cap: 'Vertippt? Dreimal tippen dreht den letzten Punkt um – aus dem Gegnerpunkt wird deiner.'
-    },
-    {
-      // Ohne Untertitel: Der Schritt zeigt das Undo am mitzählenden Display,
-      // die Geste selbst steht schon in der Tap-Liste daneben.
-      tap: 4, mine: '30', theirs: '30',
-      cap: ''
-    }
+    { tap: 0, mine: '15', theirs: '30' },
+    { tap: 1, mine: '30', theirs: '30' },
+    { tap: 2, mine: '30', theirs: '40' },
+    { tap: 3, mine: '40', theirs: '30' },
+    // Der letzte Schritt trägt bewusst keinen Untertitel: Er zeigt das Undo am
+    // mitzählenden Display, die Geste selbst steht schon in der Tap-Liste.
+    { tap: 4, mine: '30', theirs: '30' }
   ];
 
   var scene   = document.querySelector('[data-scene]');
@@ -56,6 +41,15 @@
 
   var step = -1;
   var ticking = false;
+
+  /* Die Untertitel stehen als data-cap-N am Caption-Element, nicht in dieser
+     Datei: Sie ist für beide Sprachfassungen dieselbe, die Texte sind es
+     nicht. Fehlt ein Attribut, bleibt der Untertitel leer. */
+  function captionFor(i) {
+    if (!caption) return '';
+    var v = caption.getAttribute('data-cap-' + i);
+    return v === null ? '' : v;
+  }
 
   /* ── Count-up für die Statistik-Kacheln ──────────────────────────────── */
   function countUp(node) {
@@ -140,7 +134,7 @@
     if (caption) {
       caption.style.opacity = '0';
       setTimeout(function () {
-        caption.textContent = s.cap;
+        caption.textContent = captionFor(i);
         caption.style.opacity = '1';
       }, reduced ? 0 : 180);
     }
