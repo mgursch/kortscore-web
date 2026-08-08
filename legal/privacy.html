@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kortscore – Datenschutzerklärung / Privacy Policy</title>
+  <meta name="description" content="Datenschutzerklärung für die App Kortscore. / Privacy policy for the Kortscore app." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/assets/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <!-- Schriften lokal aus /assets/fonts statt von fonts.googleapis.com: Ein
+       Google-Fonts-Aufruf überträgt die IP jedes Besuchers an Google und würde
+       der eigenen Datenschutzerklärung widersprechen, die für diese Website
+       cookie- und drittanbieterfrei argumentiert. Archivo und JetBrains Mono
+       liegen ohnehin schon hier und tragen den Rest der Seite. -->
+  <style>
+    @font-face {
+      font-family: 'Archivo';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url("/assets/fonts/Archivo-latin.woff2") format('woff2');
+    }
+    @font-face {
+      font-family: 'Archivo';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url("/assets/fonts/Archivo-latin-ext.woff2") format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+        U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0;
+    }
+    @font-face {
+      font-family: 'Archivo Black';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("/assets/fonts/ArchivoBlack-latin.woff2") format('woff2');
+    }
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: normal;
+      font-weight: 100 800;
+      font-display: swap;
+      src: url("/assets/fonts/JetBrainsMono-latin.woff2") format('woff2');
+    }
+  </style>
+  <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#121315" media="(prefers-color-scheme: dark)" />
+  <style>
+    /* Same palette as index.html (the app's redesign theme), simplified for a text-heavy legal page. */
+    :root {
+      --ink: #16150f;
+      --paper: #faf9f5;
+      --surface: #ffffff;
+      --surface-alt: #efece0;
+      --muted: #66635b;
+      --accent: #1f5c34;
+      --accent-ink: #f6f8f4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --ink: #f2f3f0; --paper: #121315; --surface: #181a1d; --surface-alt: #25292e; --muted: #8b9199; --accent: #3ea56b; --accent-ink: #0f1a13; }
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Archivo, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    body { display: flex; justify-content: center; padding: 24px 16px 64px; }
+    main { width: 100%; max-width: 720px; }
+
+    .brand { display: flex; align-items: center; gap: 9px; margin-bottom: 8px; }
+    .brand-icon { width: 26px; height: 26px; border-radius: 7px; background: #16150f; flex: none; }
+    .brand-name {
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .lang-toggle { margin: 4px 0 24px; font-size: 14px; }
+    .lang-toggle a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+    .lang-toggle a.current { color: var(--ink); font-weight: 600; text-decoration: none; }
+    .lang-toggle span.sep { color: var(--surface-alt); margin: 0 8px; }
+
+    h1 { font-family: 'Archivo Black', Archivo, system-ui, sans-serif; font-size: 32px; font-weight: 700; margin: 0 0 4px; }
+    .updated { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; color: var(--muted); margin: 0 0 28px; }
+    h2 { font-family: 'Archivo Black', Archivo, system-ui, sans-serif; font-size: 22px; font-weight: 700; margin: 36px 0 10px; }
+    h3 { font-size: 16px; font-weight: 600; margin: 20px 0 8px; }
+    p { margin: 0 0 12px; }
+    ul { margin: 0 0 12px; padding-left: 22px; }
+    li { margin-bottom: 6px; }
+    a { color: var(--accent); }
+
+    .card {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin: 12px 0 20px;
+    }
+    .card p:last-child { margin-bottom: 0; }
+    .placeholder { color: var(--accent); font-weight: 600; }
+
+    .notice {
+      background: var(--surface-alt);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0 0 28px;
+    }
+    .warning {
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 12px 0 20px;
+      background: var(--surface-alt);
+      border-left: 3px solid var(--accent);
+    }
+    .warning p:last-child { margin-bottom: 0; }
+
+    table { width: 100%; border-collapse: collapse; margin: 8px 0 20px; font-size: 14px; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--surface-alt); vertical-align: top; }
+    th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
+
+    hr.split { border: 0; border-top: 1px solid var(--surface-alt); margin: 48px 0; }
+
+    .foot { margin-top: 40px; text-align: center; color: var(--muted); font-size: 13px; }
+    .foot a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+    .foot .links { margin-bottom: 8px; }
+    .foot .links a { margin: 0 8px; }
+  </style>
+</head>
+<body>
+<main>
+
+  <!-- ============================= DEUTSCH ============================= -->
+  <p class="brand"><img class="brand-icon" src="/assets/icon.svg" alt="" width="26" height="26" /><span class="brand-name">Kortscore</span></p>
+
+  <p class="lang-toggle">
+    <a class="current" href="https://kortscore.com/legal/privacy.html">Deutsch</a><span class="sep">/</span><a href="#en">English</a>
+  </p>
+
+  <h1>Datenschutzerklärung</h1>
+  <p class="updated">Stand: 8. August 2026</p>
+
+  <h2>1. Verantwortlicher</h2>
+  <div class="card">
+    <p>
+      Gursch Markus, BSc<br />
+      swordi.studios<br />
+      Gregorygasse 10A, 1230 Wien, Österreich<br />
+      E-Mail: <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
+    </p>
+    <p>Vollständige Angaben siehe <a href="https://kortscore.com/legal/impressum.html">Impressum</a>.</p>
+  </div>
+  <p>
+    Kortscore wird unter der Marke „swordi.studios" entwickelt und vertrieben
+    (Play-Store-Paket <code>com.swordistudios.kortscore</code>). Verantwortlich im Sinne der
+    Datenschutz-Grundverordnung (DSGVO) ist die oben genannte Person/Gesellschaft.
+  </p>
+
+  <h2>2. Überblick</h2>
+  <p>
+    Kortscore ist eine Tennis-Zählapp für Wear OS mit Smartphone-Begleit-App. Die App funktioniert
+    grundsätzlich lokal auf dem Gerät. Es gibt <strong>keine Nutzerkonten</strong>, <strong>keine
+    Werbe-SDKs</strong>, <strong>keine standortbezogenen Daten</strong> und <strong>kein Tracking über
+    andere Apps oder Websites hinweg</strong>. Daten werden nur in den unten beschriebenen Fällen
+    verarbeitet.
+  </p>
+
+  <h2>3. Firebase Analytics</h2>
+  <p>
+    Wir verwenden Firebase Analytics (Google LLC bzw. Google Ireland Limited) zur Erhebung
+    grober Produktnutzungs-Ereignisse, u. a.:
+  </p>
+  <ul>
+    <li>Match archiviert (nur: Doppel ja/nein, Anzahl Sätze, grobe Dauer-Kategorie)</li>
+    <li>Live-Übertragung geöffnet ("Share opened")</li>
+    <li>Backup erstellt</li>
+    <li>Kortscore Plus gekauft</li>
+    <li>Bildschirmaufrufe (Screen Views)</li>
+  </ul>
+  <p>
+    Es werden dabei <strong>keine Namen und keine exakten Zeitstempel/Dauern</strong> übertragen –
+    lediglich grobe, produktbezogene Kategorien. Analytics ist in Debug-Builds vollständig
+    deaktiviert.
+  </p>
+  <p>
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der
+    Verbesserung und Fehlerbehebung der App).<br />
+    <strong>Speicherdauer:</strong> gemäß den Standard-Aufbewahrungsfristen von Google Analytics
+    for Firebase (derzeit standardmäßig 14 Monate für nutzerbezogene Ereignisdaten, siehe Google-
+    Dokumentation).<br />
+    <strong>Empfänger:</strong> Google LLC / Google Ireland Limited als Auftragsverarbeiter.
+  </p>
+
+  <h2>4. Firebase Crashlytics</h2>
+  <p>
+    Firebase Crashlytics (Google) erhebt Absturzberichte, nicht-fatale Fehler, Geräte-Metadaten
+    (z. B. Gerätemodell, Betriebssystemversion) sowie von uns gesetzte benutzerdefinierte
+    Schlüssel (z. B. ob eine Uhr verbunden ist), um Fehler zu erkennen und zu beheben.
+    Crashlytics ist in Debug-Builds vollständig deaktiviert.
+  </p>
+  <p>
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an
+    stabiler, fehlerfreier Software).<br />
+    <strong>Speicherdauer:</strong> gemäß den Standard-Aufbewahrungsfristen von Firebase
+    Crashlytics (derzeit standardmäßig 90 Tage).<br />
+    <strong>Empfänger:</strong> Google LLC / Google Ireland Limited als Auftragsverarbeiter.
+  </p>
+
+  <h2>5. Live-Match teilen (Cloud Firestore)</h2>
+  <div class="warning">
+    <p>
+      <strong>Wichtiger Hinweis:</strong> Wenn Sie aktiv einen Live-Match-Link teilen, werden der
+      Punkteverlauf des Matches, Zeitstempel sowie die von Ihnen eingegebenen Anzeigenamen
+      (eigener Name und Name des Gegners/der Gegnerin) in eine Cloud-Datenbank (Google Cloud
+      Firestore) hochgeladen. Diese Daten sind <strong>öffentlich lesbar für jede Person, die den
+      Link kennt</strong> – der Link ist die einzige Zugriffskontrolle.
+    </p>
+    <p>
+      Sie können einen geteilten Link jederzeit in der App widerrufen. Der Widerruf ist
+      <strong>endgültig</strong>: der Link funktioniert danach dauerhaft nicht mehr.
+    </p>
+  </div>
+  <p>
+    Ohne aktives Teilen werden keine Match-Daten in die Cloud übertragen. Beim ersten Teilen
+    erzeugt Firebase Anonymous Authentication eine anonyme, geräteseitige Kennung, die für sich
+    genommen keine Identifizierung der Person ermöglicht.
+  </p>
+  <p>
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Erfüllung des von Ihnen aktiv
+    angestoßenen Vertrags/der von Ihnen gewünschten Funktion "Live-Teilen").<br />
+    <strong>Speicherdauer:</strong> bis zum Widerruf des Links durch Sie.<br />
+    <strong>Empfänger:</strong> Google LLC / Google Ireland Limited (Cloud Firestore, Anonymous
+    Auth) als Auftragsverarbeiter; zusätzlich jede Person, der Sie den Link mitteilen oder die
+    ihn erhält.
+  </p>
+
+  <h2>6. Google Play Billing (Kortscore Plus)</h2>
+  <p>
+    Der einmalige In-App-Kauf „Kortscore Plus" wird vollständig über Google Play Billing
+    abgewickelt. Zahlungsdaten (Kreditkarte etc.) verarbeitet ausschließlich Google im Rahmen
+    Ihres Google-Kontos; wir erhalten und speichern <strong>keine Zahlungsdaten</strong>. Die App
+    speichert nach einem erfolgreichen Kauf lediglich ein lokales Freischalt-Flag auf dem Gerät.
+  </p>
+  <p>
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Erfüllung des Kaufvertrags über
+    die Zusatzfunktion).<br />
+    <strong>Empfänger:</strong> Google LLC / Google Ireland Limited als Zahlungsabwickler.
+  </p>
+
+  <h2>7. Lokale Daten &amp; Backups</h2>
+  <p>
+    Matches, Einstellungen und manuelle Backups verbleiben grundsätzlich auf Ihrem Gerät bzw. im
+    von Ihnen gewählten Backup-Ordner. Zusätzlich kann Android Auto-Backup (eine
+    Systemfunktion von Google) App-Daten automatisch in Ihrem Google-Konto sichern; dies
+    unterliegt den Datenschutzbestimmungen von Google und lässt sich in den Android-
+    Systemeinstellungen deaktivieren.
+  </p>
+
+  <h2>8. Keine Datenweitergabe zu Werbezwecken</h2>
+  <p>
+    Wir verkaufen keine Daten. Über die in dieser Erklärung genannten Google-Dienste hinaus
+    findet keine Weitergabe an Dritte statt.
+  </p>
+
+  <h2>9. Empfänger &amp; Übermittlung in Drittländer</h2>
+  <table>
+    <thead><tr><th>Dienst</th><th>Anbieter</th><th>Verarbeitungsort</th></tr></thead>
+    <tbody>
+      <tr><td>Firebase Analytics</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
+      <tr><td>Firebase Crashlytics</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
+      <tr><td>Cloud Firestore / Anonymous Auth</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
+      <tr><td>Google Play Billing</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
+      <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>gemäß Google-Kontoeinstellungen</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Soweit Daten in die USA übermittelt werden, stützt sich dies auf die Standardvertragsklauseln
+    der EU-Kommission mit den jeweiligen Google-Gesellschaften.
+  </p>
+
+  <h2>10. Ihre Rechte</h2>
+  <p>Sie haben nach der DSGVO folgende Rechte:</p>
+  <ul>
+    <li>Auskunft (Art. 15 DSGVO)</li>
+    <li>Berichtigung (Art. 16 DSGVO)</li>
+    <li>Löschung (Art. 17 DSGVO)</li>
+    <li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+    <li>Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
+    <li>Datenübertragbarkeit (Art. 20 DSGVO)</li>
+    <li>Beschwerde bei einer Aufsichtsbehörde, insbesondere bei der österreichischen
+      Datenschutzbehörde: <a href="https://www.dsb.gv.at" target="_blank" rel="noopener">dsb.gv.at</a></li>
+  </ul>
+  <p>
+    Zur Ausübung dieser Rechte wenden Sie sich bitte an die im Abschnitt „Verantwortlicher"
+    genannte Kontaktadresse.
+  </p>
+
+  <h2>11. Kontakt</h2>
+  <p>
+    Fragen zum Datenschutz richten Sie bitte an:
+    <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
+    (siehe <a href="https://kortscore.com/legal/impressum.html">Impressum</a>).
+  </p>
+
+  <hr class="split" id="en" />
+
+  <!-- ============================= ENGLISH ============================= -->
+  <p class="brand"><img class="brand-icon" src="/assets/icon.svg" alt="" width="26" height="26" /><span class="brand-name">Kortscore</span></p>
+
+  <p class="lang-toggle">
+    <a href="https://kortscore.com/legal/privacy.html">Deutsch</a><span class="sep">/</span><a class="current" href="#en">English</a>
+  </p>
+
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: August 8, 2026</p>
+
+  <h2>1. Controller (Data Controller)</h2>
+  <div class="card">
+    <p>
+      Gursch Markus, BSc<br />
+      swordi.studios<br />
+      Gregorygasse 10A, 1230 Vienna, Austria<br />
+      Email: <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
+    </p>
+    <p>Full details: see the <a href="https://kortscore.com/legal/impressum.html">Impressum</a> (legal notice).</p>
+  </div>
+  <p>
+    Kortscore is developed and published under the brand "swordi.studios" (Play Store package
+    <code>com.swordistudios.kortscore</code>). The person/entity named above is the controller
+    under the General Data Protection Regulation (GDPR).
+  </p>
+
+  <h2>2. Overview</h2>
+  <p>
+    Kortscore is a tennis scoring app for Wear OS with a phone companion app. The app works
+    primarily locally on your device. There are <strong>no user accounts</strong>, <strong>no
+    advertising SDKs</strong>, <strong>no location data</strong>, and <strong>no cross-app/cross-
+    site tracking</strong>. Data is processed only in the cases described below.
+  </p>
+
+  <h2>3. Firebase Analytics</h2>
+  <p>
+    We use Firebase Analytics (Google LLC / Google Ireland Limited) to collect coarse product
+    usage events, including:
+  </p>
+  <ul>
+    <li>Match archived (only: doubles yes/no, number of sets, coarse duration bucket)</li>
+    <li>Share opened (live match sharing)</li>
+    <li>Backup created</li>
+    <li>Kortscore Plus purchased</li>
+    <li>Screen views</li>
+  </ul>
+  <p>
+    No names and no precise timestamps or durations are transmitted – only coarse, product-level
+    categories. Analytics is fully disabled in debug builds.
+  </p>
+  <p>
+    <strong>Legal basis:</strong> Art. 6(1)(f) GDPR (legitimate interest in improving and fixing
+    the app).<br />
+    <strong>Retention:</strong> per Google Analytics for Firebase's standard retention settings
+    (currently 14 months by default for user-level event data; see Google's documentation).<br />
+    <strong>Recipients:</strong> Google LLC / Google Ireland Limited as processor.
+  </p>
+
+  <h2>4. Firebase Crashlytics</h2>
+  <p>
+    Firebase Crashlytics (Google) collects crash reports, non-fatal errors, device metadata
+    (e.g. device model, OS version), and custom keys we set (e.g. whether a watch is connected)
+    to detect and fix bugs. Crashlytics is fully disabled in debug builds.
+  </p>
+  <p>
+    <strong>Legal basis:</strong> Art. 6(1)(f) GDPR (legitimate interest in stable, working
+    software).<br />
+    <strong>Retention:</strong> per Firebase Crashlytics' standard retention settings (currently
+    90 days by default).<br />
+    <strong>Recipients:</strong> Google LLC / Google Ireland Limited as processor.
+  </p>
+
+  <h2>5. Sharing a live match (Cloud Firestore)</h2>
+  <div class="warning">
+    <p>
+      <strong>Important:</strong> When you actively share a live match link, the match's point
+      event log, timestamps, and the display names you entered (your own name and your
+      opponent's name) are uploaded to a cloud database (Google Cloud Firestore). This data is
+      <strong>publicly readable by anyone who has the link</strong> – the link itself is the
+      entire access control.
+    </p>
+    <p>
+      You can revoke a shared link at any time in the app. Revocation is
+      <strong>permanent</strong>: the link stops working for good.
+    </p>
+  </div>
+  <p>
+    No match data is uploaded unless you actively start sharing. On first share, Firebase
+    Anonymous Authentication creates an anonymous, device-level identifier that does not by
+    itself identify you personally.
+  </p>
+  <p>
+    <strong>Legal basis:</strong> Art. 6(1)(b) GDPR (performing the feature/contract you actively
+    requested by choosing to share live).<br />
+    <strong>Retention:</strong> until you revoke the link.<br />
+    <strong>Recipients:</strong> Google LLC / Google Ireland Limited (Cloud Firestore, Anonymous
+    Auth) as processor; additionally, anyone you share the link with or who otherwise obtains it.
+  </p>
+
+  <h2>6. Google Play Billing (Kortscore Plus)</h2>
+  <p>
+    The one-time in-app purchase "Kortscore Plus" is processed entirely through Google Play
+    Billing. Payment details (credit card, etc.) are handled solely by Google as part of your
+    Google account; we do not receive or store any payment data. After a successful purchase,
+    the app stores only a local entitlement flag on the device.
+  </p>
+  <p>
+    <strong>Legal basis:</strong> Art. 6(1)(b) GDPR (performing the purchase contract for the
+    add-on feature).<br />
+    <strong>Recipients:</strong> Google LLC / Google Ireland Limited as payment processor.
+  </p>
+
+  <h2>7. Local data &amp; backups</h2>
+  <p>
+    Matches, settings, and manual backups generally stay on your device or in the backup folder
+    you chose. In addition, Android Auto-Backup (a Google system feature) may back up app data
+    to your Google account automatically; this is governed by Google's own privacy terms and can
+    be disabled in Android system settings.
+  </p>
+
+  <h2>8. No sale or third-party sharing</h2>
+  <p>
+    We do not sell any data. Beyond the Google services listed in this policy, we do not share
+    data with third parties.
+  </p>
+
+  <h2>9. Recipients &amp; international transfers</h2>
+  <table>
+    <thead><tr><th>Service</th><th>Provider</th><th>Processing location</th></tr></thead>
+    <tbody>
+      <tr><td>Firebase Analytics</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
+      <tr><td>Firebase Crashlytics</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
+      <tr><td>Cloud Firestore / Anonymous Auth</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
+      <tr><td>Google Play Billing</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
+      <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>per your Google account settings</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Where data is transferred to the US, this relies on the European Commission's Standard
+    Contractual Clauses with the respective Google entities.
+  </p>
+
+  <h2>10. Your rights</h2>
+  <p>Under the GDPR you have the right to:</p>
+  <ul>
+    <li>Access (Art. 15 GDPR)</li>
+    <li>Rectification (Art. 16 GDPR)</li>
+    <li>Erasure (Art. 17 GDPR)</li>
+    <li>Restriction of processing (Art. 18 GDPR)</li>
+    <li>Object to processing (Art. 21 GDPR)</li>
+    <li>Data portability (Art. 20 GDPR)</li>
+    <li>Lodge a complaint with a supervisory authority, in particular the Austrian data
+      protection authority: <a href="https://www.dsb.gv.at" target="_blank" rel="noopener">dsb.gv.at</a></li>
+  </ul>
+  <p>
+    To exercise these rights, please contact us using the address in the "Controller" section
+    above.
+  </p>
+
+  <h2>11. Contact</h2>
+  <p>
+    For privacy questions, please contact:
+    <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
+    (see <a href="https://kortscore.com/legal/impressum.html">Impressum</a>).
+  </p>
+
+  <div class="foot">
+    <p class="links"><a href="https://kortscore.com/legal/privacy.html">Datenschutz / Privacy</a><a href="https://kortscore.com/legal/terms.html">Nutzungsbedingungen / Terms</a><a href="https://kortscore.com/legal/impressum.html">Impressum</a></p>
+    <p>Kortscore – swordi.studios</p>
+  </div>
+
+</main>
+</body>
+</html>
