@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Legal Notice &amp; Privacy – Kortscore</title>
-<meta name="description" content="Legal notice and privacy policy for the website kortscore.com and the Kortscore app.">
+<meta name="description" content="Legal notice and privacy policy for the website kortscore.com.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#F2F4E4">
 <link rel="canonical" href="https://kortscore.com/legal.html">
@@ -18,8 +18,8 @@
 
 <link rel="preload" href="assets/fonts/ArchivoBlack-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=202608081600">
-<link rel="stylesheet" href="legal.css?v=202608081600">
+<link rel="stylesheet" href="styles.css?v=202608081700">
+<link rel="stylesheet" href="legal.css?v=202608081700">
 
 <!-- Analytics: see index.html. Cookie-free, without personal data. -->
 <script>
@@ -56,7 +56,6 @@
       <a href="#impressum">Legal notice</a>
       <a href="#datenschutz">Privacy</a>
       <a href="#website">Website</a>
-      <a href="#app">App</a>
       <a href="#rechte">Your rights</a>
     </nav>
 
@@ -122,20 +121,18 @@
       <span class="anchor" id="datenschutz" aria-hidden="true"></span>
       <h2>Privacy policy</h2>
       <p class="legal__lead">
-        This policy applies to the website <strong>kortscore.com</strong> and to
-        the <strong>Kortscore</strong> app (Wear OS and Android). It describes
-        which data we process and why.
+        This policy applies to the website <strong>kortscore.com</strong>. It
+        describes which data we process and why. The privacy policy for the
+        <strong>Kortscore</strong> app is published separately.
       </p>
 
       <div class="callout">
         <b>The most important point first</b>
         <p>
-          Your match data stays on your devices as long as you do not share a
-          match live. Without this feature we transmit no scores, statistics or
-          match histories to us or to third parties. There is no user account
-          and no registration. If you deliberately share a match via a link,
-          exactly that match is uploaded to a server –
-          see <a class="link" href="#live">Live sharing via link</a>.
+          This page covers the website only. Visiting it requires no account and
+          sets no cookies; the reach measurement works without them and without
+          personal data. What the Kortscore app stores and transmits is covered
+          by its own privacy policy.
         </p>
       </div>
 
@@ -225,169 +222,6 @@
       </p>
     </section>
 
-    <!-- ── App ──────────────────────────────────────────────────────────── -->
-    <section class="legal__section">
-      <span class="anchor" id="app" aria-hidden="true"></span>
-      <h2>Kortscore app</h2>
-
-      <h3>Match data stays on your devices</h3>
-      <p>
-        Scores, match history, statistics and the archive are stored exclusively
-        locally on the watch and the phone. The transfer between watch and phone
-        runs via the Wear OS pairing (Bluetooth or local network) and not via our
-        servers. We have no access to this data. A user account is not required.
-      </p>
-      <p>
-        This applies as long as you do not share a match live. Live sharing is
-        the only feature in which match data leaves your device. It is off by
-        default and must be started separately for each match.
-      </p>
-
-      <span class="anchor" id="live" aria-hidden="true"></span>
-      <h3>Live sharing via link</h3>
-      <p>
-        You can share an ongoing or finished match via a link so that others can
-        follow the score. This feature is <strong>voluntary and must be
-        activated separately for each match</strong>. Without your explicit
-        activation no match leaves your device; nothing else about the app's
-        behaviour changes.
-      </p>
-      <p>
-        When you activate it, the app asks for two display names ("Your name"
-        and "Opponent"), which you type in yourself. The dialog points out that
-        these names are publicly visible. So you decide for yourself whether you
-        use real names, first names or nicknames.
-      </p>
-
-      <h4>What is transmitted</h4>
-      <ul class="legal__list">
-        <li>the two display names you entered</li>
-        <li>the complete point log of the match (who won which point and when, with timestamps)</li>
-        <li>the match configuration (set format, no-ad and the like), the first server, start and end time as well as the match status (in progress, finished or abandoned)</li>
-      </ul>
-      <p>
-        Not transmitted are your email address, location, device ID or your real
-        name – the latter only if you type it in as a display name yourself.
-      </p>
-
-      <h4>The link is unlisted, but public</h4>
-      <p>
-        The link takes the form
-        <strong>share.kortscore.com/&lt;ID&gt;</strong> with a 22-character,
-        cryptographically random ID that cannot be guessed. The page is excluded
-        from search engines via <code>noindex</code>, and the database does not
-        allow matches to be listed, only retrieved via the exact ID. Anyone who
-        knows the link, however, can view the score without signing in and pass
-        the link on. Treat it therefore like a publication within a small circle,
-        not like a password.
-      </p>
-      <p>
-        Spectators need neither the app nor an account. The page reads only that
-        one shared match, sets no cookies and contains no reach measurement.
-      </p>
-
-      <h4>Recipients and storage location</h4>
-      <p>
-        For live sharing we use <strong>Google Firebase</strong> (Google Ireland
-        Limited, Gordon House, Barrow Street, Dublin 4, Ireland): Cloud Firestore
-        as the database and Firebase Hosting for the page share.kortscore.com.
-        The database is located in the <strong>EU region
-        (europe-west)</strong>. Like any web server, Firebase Hosting logs the IP
-        addresses of requests for technical reasons; in that respect Google is
-        the operator.
-        Details: <a class="link" href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a>.
-      </p>
-      <p>
-        The first time you share, the app creates an <strong>anonymous Firebase
-        sign-in</strong>: a random identifier tied to the installation, without a
-        login and without any input from you. It is not contained in the
-        publicly readable match but in a separate record that nobody can read,
-        and its sole purpose is to ensure that only your device can write to your
-        link. If you never share, this service is never contacted either. To
-        protect against misuse we additionally use <strong>Firebase App
-        Check</strong> with Google Play Integrity.
-      </p>
-
-      <h4>Duration and deactivation</h4>
-      <p>
-        The link does not expire automatically. The shared match remains stored
-        until you select <strong>"Deactivate link"</strong> in the app.
-        Deactivation is final and is enforced server-side: afterwards the page is
-        no longer accessible to anyone, not even to people who already have the
-        link. The record is not, however, physically deleted in the process, but
-        kept in the database in a blocked state. We carry out the final deletion
-        on request by email to
-        <a class="link" href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>.
-      </p>
-      <p>
-        As long as a match is being shared live, the app shows a persistent
-        notification with an action to stop it, so that sharing does not continue
-        unnoticed.
-      </p>
-      <p>
-        The legal basis is the performance of the service you requested, namely
-        providing the link (Art. 6(1)(b) GDPR), and, for publishing the display
-        names you entered, your consent, which you give by activating sharing
-        (Art. 6(1)(a) GDPR). You can withdraw your consent at any time by
-        deactivating the link in the app.
-      </p>
-
-      <h3>Usage statistics and stability</h3>
-      <p>
-        The phone app uses <strong>Firebase Analytics</strong> and
-        <strong>Firebase Crashlytics</strong> (Google Ireland Limited, Gordon
-        House, Barrow Street, Dublin 4, Ireland) in order to understand which
-        features are used and to detect and fix errors.
-      </p>
-      <p>Only coarse, non-personal information is deliberately reported:</p>
-      <ul class="legal__list">
-        <li>a match was archived (singles or doubles, number of sets, playing time as a range such as "30–60 minutes")</li>
-        <li>a match was shared (singles or doubles, number of sets) – without stating whether as an image or via link, and without the link ID</li>
-        <li>a backup was created or restored (number of matches it contains)</li>
-        <li>whether a watch was connected at the time of a crash</li>
-      </ul>
-      <p>
-        Neither scores nor names, opponents, times of individual matches or any
-        other content are transmitted. In addition, Firebase processes technical
-        information such as device model, operating system version, app version,
-        approximate region and a randomly generated installation ID, as well as
-        crash data in the event of an error. The legal basis is our legitimate
-        interest in a functioning and stable app (Art. 6(1)(f) GDPR).
-        Details: <a class="link" href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a>.
-      </p>
-
-      <h3>Backups</h3>
-      <p>
-        Backups of your matches are written to a folder that you choose yourself.
-        The file only leaves your device if you choose a folder that is synced
-        with a cloud service. In that case the terms of the respective provider
-        additionally apply.
-      </p>
-
-      <h3>Sharing as an image</h3>
-      <p>
-        Independently of live sharing, the app can create an image of the match
-        and hand it over to the application you select in the share dialog.
-        Nothing is transmitted to us in the process; what happens to the image
-        afterwards depends on the respective application.
-      </p>
-
-      <h3>Permissions</h3>
-      <p>
-        The app only requests vibration (haptic feedback), notifications and a
-        foreground service so that an ongoing match keeps counting when the
-        display is locked. The watch app requests <strong>no internet
-        permission</strong>.
-      </p>
-
-      <h3>Installation via Google Play</h3>
-      <p>
-        The app is obtained and installed via Google Play. We have no influence
-        over the data processed by Google in the process.
-        Details: <a class="link" href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.
-      </p>
-    </section>
-
     <!-- ── Rights ───────────────────────────────────────────────────────── -->
     <section class="legal__section">
       <span class="anchor" id="rechte" aria-hidden="true"></span>
@@ -400,18 +234,6 @@
         is sufficient.
       </p>
       <p>
-        We have no access to the match data on your devices, so we can neither
-        hand it over nor delete it. You can delete it yourself in the app at any
-        time or uninstall the app.
-      </p>
-      <p>
-        Matches that you have shared via a link are a different case: these are
-        stored on our server. You can deactivate the link yourself in the app at
-        any time, which makes the match inaccessible to everyone. We carry out
-        the final deletion of the record on request – an email with the link in
-        question is sufficient for that.
-      </p>
-      <p>
         If you believe that the processing of your data infringes the GDPR, you
         can lodge a complaint with the Austrian Data Protection Authority
         (Österreichische Datenschutzbehörde, Barichgasse 40–42, 1030 Vienna,
@@ -420,11 +242,11 @@
 
       <h3>Changes</h3>
       <p>
-        We adapt this policy when the app or the website changes. The version
+        We adapt this policy when the website changes. The version
         published here is the one that applies.
       </p>
 
-      <p class="legal__stand">Last updated: 1 August 2026</p>
+      <p class="legal__stand">Last updated: 8 August 2026</p>
     </section>
 
   </div>
