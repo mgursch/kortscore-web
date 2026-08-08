@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kortscore: You play. The watch counts.</title>
-<meta name="description" content="Kortscore scores your tennis match on your wrist: one tap per point on your Wear OS watch, a live score friends can follow by link in any browser, and detailed stats afterwards. Currently in closed testing, testers wanted.">
+<meta name="description" content="Kortscore scores your tennis match on your wrist: one tap per point on your Wear OS watch, a live score friends can follow by link in any browser, and detailed stats afterwards.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kortscore: You play. The watch counts.">
@@ -30,7 +30,7 @@
 
 <link rel="preload" href="assets/fonts/ArchivoBlack-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=202608081000">
+<link rel="stylesheet" href="styles.css?v=202608081130">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -90,7 +90,7 @@
     <a href="#plus">Plus</a>
     <a href="#privat">Privacy</a>
   </nav>
-  <a class="nav__cta" href="#tester">Become a tester</a>
+  <a class="nav__cta" href="#laden">Get the app</a>
   <a class="nav__lang" href="de/" hreflang="de" lang="de">DE</a>
 </header>
 
@@ -141,7 +141,7 @@
       </p>
 
       <div class="hero__cta" data-fx="up" data-fx-delay="2">
-        <a class="btn" href="#tester">Become a tester</a>
+        <a class="btn" href="#laden">Get the app</a>
         <a class="btn btn--ghost" href="#warum">Why Kortscore</a>
       </div>
     </div>
@@ -452,6 +452,26 @@
       </p>
     </div>
 
+    <!-- Three tiles ahead of the table: the fact that the app is free and
+         ad-free is the answer most visitors are looking for, and it should not
+         have to be read out of a comparison table. -->
+    <ul class="claims" data-fx="up" data-fx-delay="1">
+      <li class="claim">
+        <b>0 €</b>
+        <span>The app costs nothing – counting, live sharing and the match
+        archive are included, not a trial.</span>
+      </li>
+      <li class="claim">
+        <b>0 ads</b>
+        <span>No banner, no interstitial, no ad SDK. Nothing tracks you across
+        other apps, because nothing is there to.</span>
+      </li>
+      <li class="claim">
+        <b>0 accounts</b>
+        <span>No sign-up, no email, no password. Install and start counting.</span>
+      </li>
+    </ul>
+
     <!-- A real table instead of cards: "what costs me what" is a comparison,
          and a comparison belongs in rows and columns. -->
     <div class="plus__tablewrap" data-fx="up" data-fx-delay="1">
@@ -592,34 +612,34 @@
   </div>
 </section>
 
-<!-- ── Become a tester ──────────────────────────────────────────────────── -->
+<!-- ── Download ─────────────────────────────────────────────────────────────
+     Replaces the former tester call: the app is heading for the Play Store, so
+     the page closes with the download instead of a request to join the test.
+     The requirements stay – they answer "will this run for me?", and the
+     iPhone note saves a pointless trip to the Store. -->
 <section class="tester">
-  <span class="anchor" id="tester" aria-hidden="true"></span>
+  <span class="anchor" id="laden" aria-hidden="true"></span>
   <div class="tester__inner" data-fx="up">
-    <p class="tester__badge"><i class="dot-live" aria-hidden="true"></i>Closed testing</p>
-    <h2>Help build the app,<br>instead of<br>waiting for it</h2>
+    <p class="tester__badge">Free &amp; ad-free</p>
+    <h2>Get it on<br>your wrist</h2>
     <p class="tester__lede">
-      We are looking for players with a Wear OS watch to test Kortscore on
-      court. Send us the email address of your Google account – it is the only
-      way Google can grant you access. Your friends and family need neither a
-      watch nor the app: to watch along, the link in a browser is enough.
+      Kortscore costs nothing, shows no ads and needs no account. Install it,
+      pair your watch, start counting. Friends and family need neither a watch
+      nor the app: to follow along, the link in a browser is enough.
     </p>
 
-    <!-- mailto deliberately instead of a form: GitHub Pages is static and can
-         neither accept forms nor send mail. -->
     <div class="tester__cta">
-      <a class="btn"
-         href="mailto:swordistudios@gmail.com?subject=Kortscore%20%E2%80%93%20become%20a%20tester&body=Hi%2C%0D%0A%0D%0AI%27d%20like%20to%20test%20Kortscore.%0D%0A%0D%0AMy%20Play%20Store%20email%20(Google%20account)%3A%20%0D%0A%0D%0AOptional%3A%0D%0AWatch%20model%3A%20%0D%0APhone%20model%20%2B%20Android%20version%3A%20%0D%0AHow%20often%20I%20play%3A%20%0D%0A%0D%0ABest%20regards%0D%0A">
+      <a class="btn" href="https://play.google.com/store/apps/details?id=com.swordistudios.kortscore" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                d="M3 6.5h18v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Zm0 .5 9 6.5 9-6.5"/>
+          <path fill="currentColor"
+                d="M3.6 2.3a1 1 0 0 0-.4.8v17.8a1 1 0 0 0 .4.8l.1.1 10-10v-.2l-10-10-.1.1Zm11.2 8.8 2.9-2.9-8.4-4.8 5.5 7.7Zm0 1.8-5.5 7.7 8.4-4.8-2.9-2.9Zm4.3-2.4-2.3-1.3-3.1 3.1 3.1 3.1 2.3-1.3a1.2 1.2 0 0 0 0-2.1v-.5Z"/>
         </svg>
-        Open an email to join in
+        Get it on Google Play
       </a>
     </div>
 
     <p class="tester__hint">
-      Opens your mail app with the text prepared. If that does not work:
+      Opens the Play Store. Questions before you install?
       <a class="link" href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
     </p>
 
@@ -635,9 +655,9 @@
         <span class="req__note">paired via the Wear OS app</span>
       </div>
       <div class="req">
-        <span class="req__label">Access</span>
-        <span class="req__value">Google account</span>
-        <span class="req__note">iPhone will not work – Wear OS does not allow it</span>
+        <span class="req__label">Price</span>
+        <span class="req__value">Free</span>
+        <span class="req__note">no ads, no account, no subscription</span>
       </div>
     </div>
   </div>
@@ -682,6 +702,6 @@
   <span data-chat-label>Questions? Message us</span>
 </button>
 
-<script src="script.js?v=202608081000"></script>
+<script src="script.js?v=202608081130"></script>
 </body>
 </html>

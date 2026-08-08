@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kortscore: Du spielst. Die Uhr zählt.</title>
-<meta name="description" content="Kortscore zählt dein Tennismatch am Handgelenk: ein Tipp pro Punkt auf der Wear-OS-Uhr, Live-Score für Freunde per Link im Browser, detaillierte Auswertung danach. Aktuell in der geschlossenen Testphase, Tester gesucht.">
+<meta name="description" content="Kortscore zählt dein Tennismatch am Handgelenk: ein Tipp pro Punkt auf der Wear-OS-Uhr, Live-Score für Freunde per Link im Browser, detaillierte Auswertung danach.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kortscore: Du spielst. Die Uhr zählt.">
@@ -29,7 +29,7 @@
 
 <link rel="preload" href="../assets/fonts/ArchivoBlack-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../styles.css?v=202608081000">
+<link rel="stylesheet" href="../styles.css?v=202608081130">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -86,7 +86,7 @@
     <a href="#plus">Plus</a>
     <a href="#privat">Privat</a>
   </nav>
-  <a class="nav__cta" href="#tester">Tester werden</a>
+  <a class="nav__cta" href="#laden">App holen</a>
   <a class="nav__lang" href="../" hreflang="en" lang="en">EN</a>
 </header>
 
@@ -137,7 +137,7 @@
       </p>
 
       <div class="hero__cta" data-fx="up" data-fx-delay="2">
-        <a class="btn" href="#tester">Tester werden</a>
+        <a class="btn" href="#laden">App holen</a>
         <a class="btn btn--ghost" href="#warum">Warum Kortscore</a>
       </div>
     </div>
@@ -448,6 +448,27 @@
       </p>
     </div>
 
+    <!-- Drei Kacheln vor der Tabelle: Dass die App gratis und werbefrei ist,
+         ist die Antwort, die die meisten Besucher suchen – sie sollte man
+         nicht erst aus einer Vergleichstabelle herauslesen müssen. -->
+    <ul class="claims" data-fx="up" data-fx-delay="1">
+      <li class="claim">
+        <b>0 €</b>
+        <span>Die App kostet nichts – Zählen, Live-Teilen und das Match-Archiv
+        sind enthalten, nicht auf Probe.</span>
+      </li>
+      <li class="claim">
+        <b>0 Werbung</b>
+        <span>Kein Banner, keine Einblendung, kein Werbe-SDK. Nichts verfolgt
+        dich über andere Apps, weil dafür nichts eingebaut ist.</span>
+      </li>
+      <li class="claim">
+        <b>0 Konten</b>
+        <span>Keine Registrierung, keine E-Mail, kein Passwort. Installieren
+        und loszählen.</span>
+      </li>
+    </ul>
+
     <!-- Echte Tabelle statt Karten: Die Frage "was kostet mich was" ist ein
          Vergleich, und ein Vergleich gehört in Zeilen und Spalten. -->
     <div class="plus__tablewrap" data-fx="up" data-fx-delay="1">
@@ -589,34 +610,34 @@
   </div>
 </section>
 
-<!-- ── Tester werden ────────────────────────────────────────────────────── -->
+<!-- ── Laden ────────────────────────────────────────────────────────────────
+     Ersetzt den früheren Tester-Aufruf: Die App geht in den Play Store, also
+     endet die Seite mit dem Download statt mit der Bitte mitzutesten. Die
+     Voraussetzungen bleiben – sie beantworten "läuft das bei mir?", und der
+     iPhone-Hinweis erspart den vergeblichen Weg in den Store. -->
 <section class="tester">
-  <span class="anchor" id="tester" aria-hidden="true"></span>
+  <span class="anchor" id="laden" aria-hidden="true"></span>
   <div class="tester__inner" data-fx="up">
-    <p class="tester__badge"><i class="dot-live" aria-hidden="true"></i>Geschlossene Testphase</p>
-    <h2>Bau an der App mit,<br>statt<br>abzuwarten</h2>
+    <p class="tester__badge">Kostenlos &amp; werbefrei</p>
+    <h2>Hol sie dir<br>aufs Handgelenk</h2>
     <p class="tester__lede">
-      Wir suchen Spielerinnen und Spieler mit Wear-OS-Uhr, die Kortscore auf dem
-      Platz testen. Schick uns die E-Mail deines Google-Kontos. Nur damit kann
-      Google dich freischalten. Deine Freunde und deine Familie brauchen keine
-      Uhr und keine App – zum Zuschauen genügt der Link im Browser.
+      Kortscore kostet nichts, zeigt keine Werbung und braucht kein Konto.
+      Installieren, Uhr koppeln, zählen. Deine Freunde und deine Familie
+      brauchen weder Uhr noch App: zum Mitschauen genügt der Link im Browser.
     </p>
 
-    <!-- mailto bewusst ohne Formular: GitHub Pages ist statisch und kann
-         Formulare weder annehmen noch Mails versenden. -->
     <div class="tester__cta">
-      <a class="btn"
-         href="mailto:swordistudios@gmail.com?subject=Kortscore%20%E2%80%93%20Tester%20werden&body=Hi%2C%0D%0A%0D%0Aich%20m%C3%B6chte%20Kortscore%20testen.%0D%0A%0D%0AMeine%20Play-Store-E-Mail%20(Google-Konto)%3A%20%0D%0A%0D%0AOptional%3A%0D%0AWatch-Modell%3A%20%0D%0AHandy-Modell%20%2B%20Android-Version%3A%20%0D%0AWie%20oft%20spiele%20ich%3A%20%0D%0A%0D%0AViele%20Gr%C3%BC%C3%9Fe%0D%0A">
+      <a class="btn" href="https://play.google.com/store/apps/details?id=com.swordistudios.kortscore" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                d="M3 6.5h18v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Zm0 .5 9 6.5 9-6.5"/>
+          <path fill="currentColor"
+                d="M3.6 2.3a1 1 0 0 0-.4.8v17.8a1 1 0 0 0 .4.8l.1.1 10-10v-.2l-10-10-.1.1Zm11.2 8.8 2.9-2.9-8.4-4.8 5.5 7.7Zm0 1.8-5.5 7.7 8.4-4.8-2.9-2.9Zm4.3-2.4-2.3-1.3-3.1 3.1 3.1 3.1 2.3-1.3a1.2 1.2 0 0 0 0-2.1v-.5Z"/>
         </svg>
-        E-Mail zum Mitmachen öffnen
+        Bei Google Play laden
       </a>
     </div>
 
     <p class="tester__hint">
-      Öffnet dein Mailprogramm mit vorbereitetem Text. Klappt das nicht:
+      Öffnet den Play Store. Fragen vor dem Installieren?
       <a class="link" href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
     </p>
 
@@ -632,9 +653,9 @@
         <span class="req__note">gekoppelt über die Wear-OS-App</span>
       </div>
       <div class="req">
-        <span class="req__label">Freischaltung</span>
-        <span class="req__value">Google-Konto</span>
-        <span class="req__note">iPhone geht nicht, Wear OS erlaubt es nicht</span>
+        <span class="req__label">Preis</span>
+        <span class="req__value">Kostenlos</span>
+        <span class="req__note">keine Werbung, kein Konto, kein Abo</span>
       </div>
     </div>
   </div>
@@ -679,6 +700,6 @@
   <span data-chat-label>Fragen? Schreib uns</span>
 </button>
 
-<script src="../script.js?v=202608081000"></script>
+<script src="../script.js?v=202608081130"></script>
 </body>
 </html>
