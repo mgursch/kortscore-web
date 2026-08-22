@@ -164,6 +164,23 @@ h1, h2, h3 {
 }
 .eyebrow__num { color: var(--clay); }
 
+/* Plus-Marker am Trainer-Eyebrow: dass die Analyse zu Plus gehört, soll man
+   sehen, bevor man den Abschnitt liest – nicht erst im letzten Listenpunkt. */
+.plustag {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 2px 10px;
+  border: 1px solid var(--moss);
+  border-radius: 999px;
+  color: var(--moss);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
 .lead {
   margin: 22px 0 0;
   max-width: 34ch;
@@ -541,6 +558,12 @@ h1, h2, h3 {
   line-height: 1.55;
   text-wrap: pretty;
 }
+/* Zwei Säulen statt drei Versprechen: dieselbe Karte, nur mit mehr Gewicht.
+   Bei zwei Spalten hat jede Karte deutlich mehr Breite, und die Überschrift
+   der Drei-Karten-Optik wirkt darin zu leicht. Das Grid ist auto-fit, es
+   braucht also keine eigene Spaltenregel. */
+.promise--pillar h3 { font-size: clamp(20px, 2.2vw, 26px); }
+.promise--pillar p { max-width: none; }
 
 /* ── Uhr-Gehäuse + nachgebautes Display ────────────────────────────────── */
 .watch {
@@ -775,6 +798,21 @@ h1, h2, h3 {
 }
 .tap.is-on .tap__dots i { background: var(--lime); }
 .tap.is-on .tap__hint { color: var(--sage-3); }
+
+/* Fußnote unter der Tap-Liste: Long-Tap für Ass und Doppelfehler. Steht als
+   Geschwister-<p> nach dem .taps-Grid, nicht darin – sonst würde sie eine
+   eigene Rasterzelle mit 1px-Trennlinie bekommen und wie eine fünfte
+   Tap-Zeile aussehen. Mono wie die Hints, damit sie als Beiwerk liest.
+   Farbe --sage wie .tap__hint, nicht --sage-3: die linke Spalte steht auf
+   Cream, dort hätte das hellere Sage-3 rund 1,9:1 Kontrast. */
+.taps__more {
+  margin: 12px 0 0;
+  max-width: 44ch;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--sage);
+}
 
 /* Dunkles Szenen-Panel (rechts) */
 .scene__panel {
@@ -1680,6 +1718,11 @@ h1, h2, h3 {
     top: 0;
     height: 100svh;
   }
+  /* Die Long-Tap-Fußnote fliegt hier raus: Das Höhenbudget der gepinnten
+     Szene ist auf rund 810px berechnet, drei zusätzliche Mono-Zeilen würden
+     den Inhalt aus dem Sticky-Bereich schieben. Die Information ist ein
+     Zusatz, das Pinning nicht. */
+  .taps__more { display: none; }
 }
 
 /* Kein Sticky/Parallax, wenn Bewegung reduziert werden soll. */
