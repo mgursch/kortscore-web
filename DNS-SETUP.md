@@ -2,7 +2,7 @@
 
 Stand: Domain liegt bei World4You (Nameserver `ns1/ns2.world4you.at`) und zeigt
 noch auf die Parking-Seite `81.19.154.98`. Auf GitHub ist alles fertig
-eingerichtet – es fehlt nur die DNS-Änderung im World4You-Kundenbereich.
+eingerichtet, es fehlt nur die DNS-Änderung im World4You-Kundenbereich.
 
 ## Was bei World4You einzustellen ist
 
@@ -11,7 +11,7 @@ Im World4You-Kundenbereich → **Domains** → `kortscore.com` → **DNS-Einstel
 
 ### 1. Bestehende A-Records löschen
 
-Der vorhandene A-Record auf `81.19.154.98` (die Parking-Seite) muss weg –
+Der vorhandene A-Record auf `81.19.154.98` (die Parking-Seite) muss weg -
 sowohl für `@` als auch für `www`, falls dort einer existiert.
 
 ### 2. Vier A-Records für die Hauptdomain anlegen
@@ -25,7 +25,7 @@ Name/Host `@` (manche Oberflächen: leer lassen oder `kortscore.com`):
 | A   | `@`  | 185.199.110.153 |
 | A   | `@`  | 185.199.111.153 |
 
-Alle vier anlegen – GitHub verteilt den Traffic darüber. Nur einer funktioniert
+Alle vier anlegen, GitHub verteilt den Traffic darüber. Nur einer funktioniert
 auch, ist aber unnötig fragil.
 
 ### 3. CNAME für www

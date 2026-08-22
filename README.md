@@ -1,7 +1,7 @@
-# Kortscore – Landingpage
+# Kortscore, Landingpage
 
 Statische Landingpage für die Kortscore-App (Wear OS + Android Companion).
-Keine Build-Tools, kein Framework – reines HTML/CSS/JS.
+Keine Build-Tools, kein Framework, reines HTML/CSS/JS.
 
 ## Struktur
 
@@ -31,7 +31,7 @@ Dann `http://localhost:8000` öffnen. (Ein direktes Öffnen der Datei per
 ## Deployment
 
 Die Seite läuft auf GitHub Pages und wird bei jedem Push auf `main` automatisch
-veröffentlicht – siehe [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+veröffentlicht, siehe [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
 Es gibt keinen Build-Schritt: das Repo-Root wird 1:1 als Artefakt hochgeladen.
 
 ```bash
@@ -60,7 +60,7 @@ der Datenschutzbehörde).
 3. In [`index.html`](index.html) im Umami-Block `UMAMI_ID` ersetzen.
 4. Committen und pushen, danach die Cache-Version erhöhen (siehe unten).
 
-Solange der Platzhalter drinsteht, wird das Skript bewusst **nicht** geladen –
+Solange der Platzhalter drinsteht, wird das Skript bewusst **nicht** geladen -
 so gibt es auf der Live-Seite keine fehlschlagenden Requests. Der Guard prüft
 die ID gegen das UUID-Format.
 
@@ -68,7 +68,7 @@ Selbst gehostet: zusätzlich `UMAMI_SRC` auf die eigene Instanz zeigen lassen.
 
 ### Was erfasst wird
 
-Seitenaufrufe, Referrer, Land, Gerätetyp und Browser – aggregiert, ohne
+Seitenaufrufe, Referrer, Land, Gerätetyp und Browser, aggregiert, ohne
 Cookies, ohne Fingerprinting, ohne IP-Speicherung.
 
 ## Design
@@ -87,7 +87,7 @@ wird zur Website, Display-Schrift ist Archivo Black, Labels in JetBrains Mono.
 | `--body` | `#3B402E` | Fließtext |
 
 Die Fonts liegen als woff2-Subsets (latin + latin-ext) in `assets/fonts/` und
-werden lokal geladen – kein Google-Fonts-Aufruf, also kein Drittanbieter-Request.
+werden lokal geladen, kein Google-Fonts-Aufruf, also kein Drittanbieter-Request.
 
 ### Gepinnte Zähl-Szene
 
@@ -98,7 +98,7 @@ Tap-Karten und Punktestand mit. Die Punktefolge ist bewusst mitten im Game:
 nach einem eigenen Punkt gewonnen, die Uhr würde das Sieger-Banner zeigen.
 
 Höhen: 520vh am Desktop, 300vh mobil. Gepinnt wird mobil nur ab
-`min-height: 820px` – der gestapelte Inhalt braucht rund 810px, auf kürzeren
+`min-height: 820px`, der gestapelte Inhalt braucht rund 810px, auf kürzeren
 Displays (iPhone SE, viele 16:9-Androids) würde er sonst aus dem Sticky-Bereich
 ragen und in Block 02 laufen. Dort fließt die Sektion normal, die Schritte
 laufen über die Viewport-Position.
@@ -116,11 +116,11 @@ ersten Schritt statisch.
 
 - **Sektionen** sind `<section class="feature">` (Text/Bild-Paar),
   `.stage` (dunkles Panel), `.privacy`, `.tester`. Sprungziele sitzen auf
-  eigenen `<span class="anchor" id="...">` direkt am Sektionsanfang – ein
+  eigenen `<span class="anchor" id="...">` direkt am Sektionsanfang, ein
   Anker auf `<section>` selbst würde den Kopf hinter die fixierte Nav schieben.
 - **Weitere Screenshots:** in `assets/` legen. Für Handy `.phone`
   (`.phone--crop` schneidet lange Screenshots oben zu), für Uhr `.watch`.
-- **Schritte der Zähl-Szene:** Array `STEPS` in `script.js` – `cap` ist der
+- **Schritte der Zähl-Szene:** Array `STEPS` in `script.js`, `cap` ist der
   Text, `mine`/`theirs` der Stand auf dem Uhr-Display, `tap` die hervorgehobene
   Karte. Mehr Schritte brauchen keine weitere Änderung.
 - **Statistik-Kacheln** zählen via `data-count` + `data-count-suffix` hoch.

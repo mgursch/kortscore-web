@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────────────────
-   Kortscore – Landingpage  ·  Direction B "Court Paper"
+   Kortscore, Landingpage  ·  Direction B "Court Paper"
    Palette und Typografie aus dem Redesign; Cream/Ink der App als Website.
    ───────────────────────────────────────────────────────────────────────── */
 
@@ -79,7 +79,7 @@
   --sage-3:     #A8AE99;
   --body:       #3B402E;  /* Fließtext */
   /* Akzent auf Dunkel. Seit dem App-Redesign das Grün der App (#3EA56B) statt
-     des früheren Lime – Website, Icon und Screenshots tragen denselben Ton.
+     des früheren Lime, Website, Icon und Screenshots tragen denselben Ton.
      Auf --ink rund 5.9:1, also über AA für Text. */
   --lime:       #3EA56B;
   --moss:       #1F5C34;  /* Akzent auf Cream, = accent-light der App */
@@ -165,7 +165,7 @@ h1, h2, h3 {
 .eyebrow__num { color: var(--clay); }
 
 /* Plus-Marker am Trainer-Eyebrow: dass die Analyse zu Plus gehört, soll man
-   sehen, bevor man den Abschnitt liest – nicht erst im letzten Listenpunkt. */
+   sehen, bevor man den Abschnitt liest, nicht erst im letzten Listenpunkt. */
 .plustag {
   display: inline-block;
   margin-left: 10px;
@@ -318,7 +318,7 @@ h1, h2, h3 {
 .nav__cta:hover { transform: translateY(-2px); }
 
 /* Sprachumschalter: Er zeigt die Sprache, in die er führt, nicht die aktuelle.
-   Bewusst nur ein Rahmen – die gefüllte Fläche daneben gehört dem CTA, und
+   Bewusst nur ein Rahmen, die gefüllte Fläche daneben gehört dem CTA, und
    zwei gleich laute Knöpfe würden sich gegenseitig entwerten. */
 .nav__lang {
   display: inline-flex;
@@ -340,7 +340,7 @@ h1, h2, h3 {
 }
 
 /* ── Hero ──────────────────────────────────────────────────────────────── */
-/* Oben nur so viel Luft, dass die Grafik nicht an der Menüleiste klebt –
+/* Oben nur so viel Luft, dass die Grafik nicht an der Menüleiste klebt -
    sie soll das Erste sein, was im Bild steht. */
 .hero {
   position: relative;
@@ -394,7 +394,7 @@ h1, h2, h3 {
 /* ── Feature-Grafik: drei Handys + Uhr ─────────────────────────────────────
    Aufgefächert: Das mittlere Handy steht gerade und vorn, die beiden äußeren
    sind leicht gedreht, etwas kleiner und rücken so weit ein, dass sie den
-   mittleren Screen unten überlappen. Kein overflow:hidden auf dem Container –
+   mittleren Screen unten überlappen. Kein overflow:hidden auf dem Container -
    die Uhr ragt bewusst über die linke Kante hinaus. */
 .showcase {
   position: relative;
@@ -414,7 +414,7 @@ h1, h2, h3 {
 .showcase__item--right {
   width: min(21.75vw, 209px);
   /* Höher als die Mitte, damit die gedrehten Unterkanten nicht unter dem
-     vorderen Screen hervorschauen – sonst kippt die Tiefenwirkung. */
+     vorderen Screen hervorschauen, sonst kippt die Tiefenwirkung. */
   margin-bottom: clamp(21px, 2.6vw, 35px);
   z-index: 1;
 }
@@ -524,7 +524,7 @@ h1, h2, h3 {
   line-height: 1.55;
 }
 /* Drei Versprechen nebeneinander, durch 1px-Gaps getrennt wie die
-   Kennzahl-Kacheln – gleiche Sprache, nur auf dunklem Grund. */
+   Kennzahl-Kacheln, gleiche Sprache, nur auf dunklem Grund. */
 .promises {
   list-style: none;
   margin: 0;
@@ -634,7 +634,7 @@ h1, h2, h3 {
   display: grid;
   gap: 2cqh;
 }
-/* Label links, Punkte mittig-rechts, Games rechts – wie in der App auf
+/* Label links, Punkte mittig-rechts, Games rechts, wie in der App auf
    gemeinsamer Grundlinie. Feste Spalten halten die Ziffern ruhig. */
 .face__row {
   display: grid;
@@ -729,7 +729,7 @@ h1, h2, h3 {
 .scene__grid {
   width: 100%;
   max-width: var(--max);
-  /* min-width:0 bricht die automatische Mindestbreite von Grid-Items auf –
+  /* min-width:0 bricht die automatische Mindestbreite von Grid-Items auf -
      ohne das bleibt die Spur breiter als der Viewport. */
   min-width: 0;
   display: grid;
@@ -770,7 +770,7 @@ h1, h2, h3 {
 .tap__dots {
   display: flex;
   gap: 5px;
-  /* 51px fasst auch die Vier-Punkte-Reihe (4×9px + 3×5px Lücke) – bei 44px
+  /* 51px fasst auch die Vier-Punkte-Reihe (4×9px + 3×5px Lücke), bei 44px
      schob der vierte Punkt sein Label aus der Flucht der anderen Zeilen. */
   min-width: 51px;
 }
@@ -800,7 +800,7 @@ h1, h2, h3 {
 .tap.is-on .tap__hint { color: var(--sage-3); }
 
 /* Fußnote unter der Tap-Liste: Long-Tap für Ass und Doppelfehler. Steht als
-   Geschwister-<p> nach dem .taps-Grid, nicht darin – sonst würde sie eine
+   Geschwister-<p> nach dem .taps-Grid, nicht darin, sonst würde sie eine
    eigene Rasterzelle mit 1px-Trennlinie bekommen und wie eine fünfte
    Tap-Zeile aussehen. Mono wie die Hints, damit sie als Beiwerk liest.
    Farbe --sage wie .tap__hint, nicht --sage-3: die linke Spalte steht auf
@@ -993,7 +993,7 @@ h1, h2, h3 {
 /* ── Feature-Grafik: die Uhr ───────────────────────────────────────────────
    Muss nach .watch und .phone stehen, sonst gewinnen deren Basiswerte für
    width/position. Die Uhr sitzt vor der Handy-Gruppe, unten links versetzt,
-   und wird komplett gezeigt – Gehäuse samt Armband. Sie ist bewusst klein:
+   und wird komplett gezeigt, Gehäuse samt Armband. Sie ist bewusst klein:
    Sie soll das Gerät benennen, nicht die Screens verdecken. */
 .showcase__watch {
   position: absolute;
@@ -1037,7 +1037,7 @@ h1, h2, h3 {
   justify-items: center;
   gap: 20px;
 }
-/* Browser-Chrome: dunkle Leiste, helle Seite – bewusst schlicht, damit die
+/* Browser-Chrome: dunkle Leiste, helle Seite, bewusst schlicht, damit die
    Karte nicht mit den Geräte-Rahmen (.phone/.watch) konkurriert. */
 .browser {
   width: min(100%, 400px);
@@ -1135,7 +1135,7 @@ h1, h2, h3 {
 }
 .sharepage__table thead th:first-child,
 .sharepage__table tbody th { text-align: left; }
-/* Kein display:flex auf den Zellen – das nimmt sie aus dem Tabellen-Layout
+/* Kein display:flex auf den Zellen, das nimmt sie aus dem Tabellen-Layout
    und die beiden Zeilen laufen unterschiedlich hoch. */
 .sharepage__table tbody th,
 .sharepage__table tbody td { vertical-align: middle; }
@@ -1157,7 +1157,7 @@ h1, h2, h3 {
 /* Laufendes Game farbig abgesetzt, wie auf dem Uhr-Display. */
 .sharepage__table tbody td.is-pts { color: var(--moss); }
 /* Aufschlag-Anzeige: derselbe Punkt wie im Uhr-Nachbau (.face__serve),
-   auf Cream aber in Moss statt Lime – Lime hätte hier keinen Kontrast.
+   auf Cream aber in Moss statt Lime, Lime hätte hier keinen Kontrast.
    Der Platz wird in beiden Zeilen reserviert (padding-left auf der Zelle),
    damit "Anna" und "Markus" auf derselben Kante beginnen. */
 .sharepage__table tbody th,
@@ -1216,7 +1216,7 @@ h1, h2, h3 {
 .plus__head .lead { max-width: 46ch; }
 
 /* Drei Null-Kacheln vor der Tabelle. Die Ziffer trägt die Aussage, deshalb
-   groß und in der Display-Schrift – "0 €" liest man im Vorbeiscrollen, eine
+   groß und in der Display-Schrift, "0 €" liest man im Vorbeiscrollen, eine
    Tabellenzeile nicht. */
 .claims {
   list-style: none;
@@ -1227,7 +1227,7 @@ h1, h2, h3 {
   gap: 1px;
   background: var(--line);
   /* Breite wie die Vergleichstabelle darunter, aber mittig in der Sektion
-     statt linksbündig – so stehen die drei Nullen als eigener Block. */
+     statt linksbündig, so stehen die drei Nullen als eigener Block. */
   max-width: 760px;
   margin-inline: auto;
 }
@@ -1240,7 +1240,7 @@ h1, h2, h3 {
   font-family: var(--display);
   /* Kleiner als zuvor, damit alle drei Kacheln einzeilig bleiben: In der
      schmaleren Spalte bräche sonst "0 accounts" um, im Deutschen zuerst
-     "0 Werbung" – zweizeilig neben zwei einzeiligen Kacheln sieht es aus
+     "0 Werbung", zweizeilig neben zwei einzeiligen Kacheln sieht es aus
      wie ein Fehler. Der Wert ist am längsten Wort beider Sprachen bemessen. */
   font-size: clamp(24px, 2.6vw, 33px);
   line-height: 1;
@@ -1272,7 +1272,7 @@ h1, h2, h3 {
      Haken-Spalten unnötig breit. */
   table-layout: fixed;
 }
-/* Caption nur für Screenreader – die Überschrift darüber sagt es sehend. */
+/* Caption nur für Screenreader, die Überschrift darüber sagt es sehend. */
 .plus__caption {
   position: absolute;
   width: 1px;
@@ -1334,7 +1334,7 @@ h1, h2, h3 {
 .plus__table thead th.is-plus,
 .plus__table tbody td.is-plus { background: rgba(76, 107, 47, .06); }
 
-/* Häkchen als CSS-Glyphe statt Icon-Datei – keine zusätzliche Ressource. */
+/* Häkchen als CSS-Glyphe statt Icon-Datei, keine zusätzliche Ressource. */
 .tick {
   display: inline-block;
   width: 13px;
@@ -1343,7 +1343,7 @@ h1, h2, h3 {
   border-bottom: 2.5px solid var(--moss);
   transform: rotate(-45deg) translate(1px, -2px);
 }
-/* Kein Haken: neutraler Strich, kein rotes Kreuz – die Gratis-Version ist
+/* Kein Haken: neutraler Strich, kein rotes Kreuz, die Gratis-Version ist
    nichts, wofür man sich entschuldigen müsste. */
 .dash {
   display: inline-block;
@@ -1455,7 +1455,7 @@ h1, h2, h3 {
 
 /* Google-Badge: feste Höhe statt Breite, damit beide Sprachfassungen trotz
    unterschiedlich langer Beschriftung gleich hoch stehen. Der eingebaute
-   Schutzraum des PNG ist Teil des Bildes – deshalb kein eigenes Padding und
+   Schutzraum des PNG ist Teil des Bildes, deshalb kein eigenes Padding und
    kein Rahmen, beides würde die Markenvorgaben verletzen. */
 .storebadge {
   display: inline-block;
@@ -1561,7 +1561,7 @@ h1, h2, h3 {
 /* ── Chat-Button (lädt Tawk.to erst auf Klick) ─────────────────────────── */
 /* z-index 55 hält ihn unter der fixierten Nav (60), damit er beim Scrollen
    nicht über die Navigationsleiste wandert. Tawk.tos eigenes Widget legt
-   sich später ohnehin darüber – dann ist dieser Button schon ausgeblendet. */
+   sich später ohnehin darüber, dann ist dieser Button schon ausgeblendet. */
 .chat {
   position: fixed;
   right: clamp(14px, 3vw, 26px);
@@ -1640,7 +1640,7 @@ h1, h2, h3 {
   }
   .taps { margin-top: 18px; max-width: none; }
   /* Die langen Hinweise ("Punkt für deinen Gegner") passen hier nicht mehr
-     rechts neben das Label – gequetscht umgebrochen sahen zwei von vier
+     rechts neben das Label, gequetscht umgebrochen sahen zwei von vier
      Zeilen anders aus als der Rest. Stattdessen rückt der Hinweis bei allen
      vier Zeilen einheitlich in eine eigene Zeile unter dem Label ein. */
   .tap { padding: 10px 12px; flex-wrap: wrap; row-gap: 2px; }
@@ -1656,7 +1656,7 @@ h1, h2, h3 {
 
   /* Vier Kacheln: 2×2 geht ohne Rest auf, es bleibt keine leere Zelle in der
      Rasterfarbe stehen. Gemessen bei 375px: 169px pro Zelle, alle vier Labels
-     einzeilig – dreispaltig bräuchten sie hier drei Zeilen. */
+     einzeilig, dreispaltig bräuchten sie hier drei Zeilen. */
   .tiles { grid-template-columns: repeat(2, 1fr); }
 
   /* Feste Spaltenzahlen ohne Rest: 4 Statistik-Kacheln in 2 Spalten,
@@ -1669,7 +1669,7 @@ h1, h2, h3 {
      breiter werden als neben dem Text. */
   .browser { width: min(100%, 440px); }
 
-  /* Die Vergleichstabelle bleibt dreispaltig – nur die Funktionsspalte gibt
+  /* Die Vergleichstabelle bleibt dreispaltig, nur die Funktionsspalte gibt
      Breite ab. Umbauen zu Karten wäre hier unnötig: Bei 375px bleiben den
      zwei Wertspalten je 72px, der Rest geht an die Funktion. */
   .plus__table thead th:nth-child(2),
@@ -1681,7 +1681,7 @@ h1, h2, h3 {
   body { font-size: 16px; }
   /* Kein height für .scene hier: Die Szene ist unter 900px nicht gepinnt
      (height: auto). Ein Wert wie 360vh würde die Sektion wieder aufblähen,
-     während der Inhalt oben klebt – genau die Überlappung mit Block 02. */
+     während der Inhalt oben klebt, genau die Überlappung mit Block 02. */
   /* Bleibt 2×2 (siehe 900px-Block). Bei 320px wickelt nur noch
      "Matches im Archiv" auf zwei Zeilen, ohne horizontalen Überlauf. */
   .tile { padding: 14px 12px; }
@@ -1708,7 +1708,7 @@ h1, h2, h3 {
 
 /* Mobil pinnen, aber nur mit genug Höhe: Der gestapelte Szenen-Inhalt braucht
    rund 810px. Ist das Display kürzer (iPhone SE, viele 16:9-Androids), bleibt
-   die Sektion ungepinnt – sonst ragt der Inhalt heraus und überlappt Block 02.
+   die Sektion ungepinnt, sonst ragt der Inhalt heraus und überlappt Block 02.
    Ab 820px Höhe verhält sich die Szene wie am Desktop: Bereich bleibt stehen,
    die vier Schritte wechseln beim Scrollen. */
 @media (max-width: 900px) and (min-height: 820px) {

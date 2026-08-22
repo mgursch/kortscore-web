@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────────────────
-   Kortscore – Landingpage
+   Kortscore, Landingpage
    Scroll-Reveals, Parallax, Nav-Zustand und die gepinnte Zähl-Szene.
    Kein Framework, keine Abhängigkeiten.
    ───────────────────────────────────────────────────────────────────────── */
@@ -10,13 +10,13 @@
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* Schritte der gepinnten Szene. `mine`/`theirs` ist der Stand, den das
-     nachgebaute Uhr-Display zeigt – der Score zählt beim Scrollen echt mit.
+     nachgebaute Uhr-Display zeigt, der Score zählt beim Scrollen echt mit.
 
      Start bewusst bei 15:30: von 40:30 aus wäre das Game nach einem eigenen
      Punkt bereits gewonnen, die Uhr würde das Sieger-Banner zeigen statt
      weiterzuzählen. So bleibt die Sequenz im laufenden Game plausibel:
      15:30 → (1×) 30:30 → (2×) 30:40 → (3× umdrehen) 40:30 → (4× Undo)
-     zurück auf 30:30 – der umgedrehte Punkt ist danach ganz weg. */
+     zurück auf 30:30, der umgedrehte Punkt ist danach ganz weg. */
   var STEPS = [
     { tap: 0, mine: '15', theirs: '30' },
     { tap: 1, mine: '30', theirs: '30' },
@@ -106,7 +106,7 @@
     els.forEach(function (el) { io.observe(el); });
 
     /* Sicherheitsnetz: Was beim Laden (z. B. nach Anker-Sprung) schon im Bild
-       steht, wird sofort gezeigt – sonst bliebe es unsichtbar. */
+       steht, wird sofort gezeigt, sonst bliebe es unsichtbar. */
     function revealInView() {
       els.forEach(function (el) {
         if (el.dataset.revealed) return;
@@ -182,7 +182,7 @@
 
     if (travel > 0) {
       /* Gepinnt (Normalfall, Desktop und Mobil): Der Fortschritt zählt erst,
-         sobald die Sektion oben anliegt – vorher steht Schritt 1, und die
+         sobald die Sektion oben anliegt, vorher steht Schritt 1, und die
          Karten werden nicht markiert, während der Block erst hereinscrollt. */
       p = Math.max(0, Math.min(1, -r.top / travel));
     } else {
@@ -233,7 +233,7 @@
     var behavior = root.style.scrollBehavior;
     root.style.scrollBehavior = 'auto';
 
-    /* Absolute Dokumentposition selbst rechnen und setzen – scrollIntoView()
+    /* Absolute Dokumentposition selbst rechnen und setzen, scrollIntoView()
        verlässt sich auf Layout, das sich hier noch verschiebt. */
     var y = target.getBoundingClientRect().top + window.pageYOffset -
             (parseFloat(getComputedStyle(target).scrollMarginTop) || 0);
@@ -256,7 +256,7 @@
   /* Das Tawk.to-Skript setzt Cookies und überträgt die IP an einen
      US-Dienst. Beim Seitenaufruf geladen, wäre die Seite nicht mehr
      cookiefrei und bräuchte ein Consent-Banner. Deshalb fällt der erste
-     Request erst, wenn jemand den Chat wirklich will – bis dahin gibt es
+     Request erst, wenn jemand den Chat wirklich will, bis dahin gibt es
      nur den eigenen Button.
 
      Danach übernimmt das Widget von Tawk.to die Ecke rechts unten, also
@@ -290,7 +290,7 @@
       }
 
       /* Zweiter Klick, während das Skript noch lädt, würde es ein zweites
-         Mal einhängen – Tawk.to beschwert sich dann über eine doppelte
+         Mal einhängen, Tawk.to beschwert sich dann über eine doppelte
          Einbindung. */
       if (loading) return;
 
@@ -320,7 +320,7 @@
       }, 8000);
 
       /* Ohne diesen Hook bliebe der Chat nach dem Laden zu und der Nutzer
-         müsste ein zweites Mal klicken – auf das Widget, das er gerade
+         müsste ein zweites Mal klicken, auf das Widget, das er gerade
          erst geöffnet hat. */
       window.Tawk_API.onLoad = function () {
         clearTimeout(settle);
@@ -336,7 +336,7 @@
       s1.setAttribute('crossorigin', '*');
 
       /* Blockt ein Adblocker das Skript, bliebe sonst "Chat wird geladen …"
-         für immer stehen. Dann lieber ehrlich auf die E-Mail verweisen –
+         für immer stehen. Dann lieber ehrlich auf die E-Mail verweisen -
          der Klick-Handler oben ist ab hier stillgelegt (mailFallback), weil
          ein erneuter Ladeversuch am Blocker genauso scheitern würde. */
       s1.onerror = function () {
@@ -360,7 +360,7 @@
      und schickt geteilte Links woanders hin, als der Absender wollte.
 
      Die Leiste erscheint höchstens einmal. Sobald jemand eine Sprache aktiv
-     wählt – über die Leiste oder den Umschalter in der Navigation – merkt sich
+     wählt, über die Leiste oder den Umschalter in der Navigation, merkt sich
      das die Seite und hält von da an den Mund. Ohne localStorage (privater
      Modus, alte Browser) passiert schlicht nichts: Die Seite bleibt, wie sie
      ist, nur der Hinweis kommt dann bei jedem Besuch neu.
@@ -380,7 +380,7 @@
       }
     }
 
-    /* Der Umschalter in der Navigation ist eine bewusste Wahl – ab dann nie
+    /* Der Umschalter in der Navigation ist eine bewusste Wahl, ab dann nie
        wieder fragen, egal in welche Richtung er führt. */
     var toggle = document.querySelector('.nav__lang');
     if (toggle) {
