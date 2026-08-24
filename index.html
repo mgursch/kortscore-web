@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kortscore: You play. The watch counts.</title>
-<meta name="description" content="Kortscore scores your tennis match on your wrist: one tap per point on your Wear OS watch, a live score friends can follow by link in any browser, and detailed stats afterwards.">
+<meta name="description" content="Kortscore scores tennis on your wrist: one tap per point, live broadcasting of your match or anyone else's by link, and an AI coach that reads every stat afterwards.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kortscore: You play. The watch counts.">
-<meta property="og:description" content="Score tennis on your wrist. One tap per point, a live score for friends by link, every stat afterwards.">
-<!-- og:image needs an absolute URL – social previews load no image otherwise. -->
+<meta property="og:description" content="Kortscore scores tennis on your wrist: one tap per point, live broadcasting of your match or anyone else's by link, and an AI coach that reads every stat afterwards.">
+<!-- og:image needs an absolute URL, social previews load no image otherwise. -->
 <meta property="og:image" content="https://kortscore.com/assets/icon.png">
 <meta property="og:url" content="https://kortscore.com/">
 <meta name="twitter:card" content="summary_large_image">
@@ -30,7 +30,7 @@
 
 <link rel="preload" href="assets/fonts/ArchivoBlack-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=202608082000">
+<link rel="stylesheet" href="styles.css?v=202608241030">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -38,7 +38,7 @@
      Daten in die USA übertragen werden).
 
      Die Website-ID stammt aus dem Umami-Cloud-Dashboard. Der Guard unten lädt
-     das Skript nur bei gültigem UUID-Format – ein Platzhalter oder Tippfehler
+     das Skript nur bei gültigem UUID-Format, ein Platzhalter oder Tippfehler
      erzeugt so keine fehlschlagenden Requests.
 
      Selbst gehostet: zusätzlich SRC auf die eigene Instanz zeigen lassen.
@@ -85,10 +85,10 @@
   <nav class="nav__links">
     <a href="#zaehlen">Scoring</a>
     <a href="#live">Live</a>
-    <a href="#teilen">Sharing</a>
+    <a href="#uebertragen">Broadcast</a>
     <a href="#auswertung">Stats</a>
+    <a href="#trainer">Trainer</a>
     <a href="#plus">Plus</a>
-    <a href="#privat">Privacy</a>
   </nav>
   <a class="nav__cta" href="#laden">Get the app</a>
   <a class="nav__lang" href="de/" hreflang="de" lang="de">DE</a>
@@ -98,7 +98,7 @@
 <section class="hero" id="top">
   <div class="wrap">
     <!-- The feature graphic sits right at the top, directly under the menu bar:
-         what the app does should be seen before it is read. Fanned out – the
+         what the app does should be seen before it is read. Fanned out, the
          middle phone stands straight and in front, the outer two rotated behind
          it. The watch is its own element on top of the group, not inside a
          phone frame: there its strap would be cut off. -->
@@ -136,8 +136,9 @@
       </h1>
 
       <p class="hero__lede" data-fx="up" data-fx-delay="1">
-        One tap per point on your watch. Friends follow along live. After the
-        match, the full breakdown is waiting on your phone.
+        One tap per point on your watch, for your match or anyone's.
+        Everyone follows live by link, no app needed. Afterwards: the full
+        breakdown, down to a coach's verdict.
       </p>
 
       <div class="hero__cta" data-fx="up" data-fx-delay="2">
@@ -148,48 +149,43 @@
   </div>
 </section>
 
-<!-- ── Bühne: die drei Versprechen der App ──────────────────────────────────
-     Replaces the earlier watch-on-the-wrist stage. The app's core message is
-     not "there is a watch view" but that operating it during play all but
-     disappears – and everything demanding happens before and after. Hence
-     three points instead of one image. -->
+<!-- ── Bühne: die zwei Säulen der App ───────────────────────────────────────
+     Two cards instead of the earlier three promises. The three read as a
+     feature list; the app has grown two clear pillars instead, live
+     broadcasting of any match, and one tap during play against the deepest
+     breakdown afterwards. Everything the page shows below hangs off one of
+     the two, so the stage names them before the chapters start. -->
 <section class="stage">
   <span class="anchor" id="warum" aria-hidden="true"></span>
   <div class="stage__panel wrap" data-fx="up">
     <div class="stage__head">
       <p class="stage__eyebrow">Why Kortscore</p>
-      <h2>All but invisible<br>during the match</h2>
+      <h2>Two things,<br>done right.</h2>
       <p>
-        Keeping score must not become your second opponent. So as little as
-        possible happens on court – and as much as you like afterwards.
+        Kortscore does not try to be everything. It broadcasts tennis live:
+        your matches and anyone else's. And it counts with one tap, then hands
+        you the deepest breakdown of your game.
       </p>
     </div>
 
     <ul class="promises">
-      <li class="promise">
+      <li class="promise promise--pillar">
         <span class="promise__num" aria-hidden="true">01</span>
-        <h3>One tap, nothing else</h3>
+        <h3>Every match, live for everyone</h3>
         <p>
-          No menu, no phone out of your bag, no looking away from the ball. One
-          tap on the watch counts the point, the app works out the rest: games,
-          sets, tiebreaks, change of serve.
+          For your own match the watch counts, and a link carries the score
+          to anyone, anywhere, with no app and no account for spectators. And
+          it does not have to be your match: a stranger's game you broadcast
+          straight from your phone, no watch needed.
         </p>
       </li>
-      <li class="promise">
+      <li class="promise promise--pillar">
         <span class="promise__num" aria-hidden="true">02</span>
-        <h3>Friends follow live</h3>
+        <h3>One tap now, every answer later</h3>
         <p>
-          One link is enough, and family and friends see every point in real
-          time in their browser – no app, no account, wherever they are.
-        </p>
-      </li>
-      <li class="promise">
-        <span class="promise__num" aria-hidden="true">03</span>
-        <h3>The full breakdown afterwards</h3>
-        <p>
-          Break points, pressure points, service games, point history, game
-          times: after the match it is all there on your phone, without you
-          having done a thing for it while playing.
+          During the match, one tap is the whole interface. Afterwards, nothing
+          is missing: every point, every pressure moment, set by set. And a
+          coach who read it all and tells you what to train.
         </p>
       </li>
     </ul>
@@ -210,7 +206,7 @@
            data-cap-0="Serve. The watch is ready, all you have to do is play."
            data-cap-1="One tap: your point is in. The haptic confirms it, you never have to look."
            data-cap-2="Two taps for your opponent. That is the whole interface."
-           data-cap-3="Mistapped? Three taps flip the last point – your opponent's becomes yours."
+           data-cap-3="Mistapped? Three taps flip the last point: your opponent's becomes yours."
            data-cap-4="">
           Serve. The watch is ready, all you have to do is play.
 </p>
@@ -237,6 +233,11 @@
             <span class="tap__hint">Undo</span>
           </div>
         </div>
+
+        <!-- Long tap as a footnote, not a fifth tap row: aces and double
+             faults are the one thing the four-row list leaves out, but they
+             only apply on your own serve and would overload the list. -->
+        <p class="taps__more">On your serve, hold the last tap: 1 short + 1 long = ace, 2 short + 1 long = double fault. The haptic answers on release.</p>
       </div>
 
       <div>
@@ -301,7 +302,7 @@
       <ul class="numlist">
         <li><b>01</b><span>The score mirrors onto the paired phone instantly (if you want it to)</span></li>
         <li><b>02</b><span>Point-by-point history, already during the match</span></li>
-        <li><b>03</b><span>Bluetooth range is enough – no network and no account needed</span></li>
+        <li><b>03</b><span>Bluetooth range is enough, no network and no account needed</span></li>
         <li>
           <b>04</b>
           <span>
@@ -335,9 +336,9 @@
       </p>
       <ul class="numlist">
         <li><b>01</b><span>You get a link to share, and friends and family can follow the score and statistics live</span></li>
-        <li><b>02</b><span>Sharing is per match – by default the app shares nothing</span></li>
-        <li><b>03</b><span>The link can be disabled for good at any time</span></li>
-        <li><b>04</b><span>The “Watch” tab collects matches whose link you were sent</span></li>
+        <li><b>02</b><span>Sharing is per match, by default the app shares nothing</span></li>
+        <li><b>03</b><span>The link can be disabled for good at any time: deleting a match takes its page offline</span></li>
+        <li><b>04</b><span>The “Watch” tab collects matches whose link you were sent: “Live now” at the top, “Watched recently” below</span></li>
       </ul>
     </div>
 
@@ -406,46 +407,119 @@
   </div>
 </section>
 
-<!-- ── 04 Auswertung ────────────────────────────────────────────────────── -->
+<!-- ── 04 Übertragen ────────────────────────────────────────────────────────
+     The other half of the live pillar, and the part nobody expects: the match
+     being broadcast does not have to be yours. You sit at the fence with your
+     watch and count someone else's game, and the players need nothing at all.
+     It follows sharing because it is the same link, only pointed outwards.
+     Same DOM shape as block 02, text first, phone right. -->
+<section class="feature">
+  <span class="anchor" id="uebertragen" aria-hidden="true"></span>
+  <div class="feature__inner">
+    <div data-fx="up">
+      <p class="eyebrow"><span class="eyebrow__num">04</span> Someone else's match</p>
+      <h2>Their match.<br>Your<br>broadcast.</h2>
+      <p class="lead">
+        Your kid's tournament, your club's team match: you sit at the fence
+        keeping score on your phone, and everyone who could not come watches
+        live. You need no watch for this, and the players need neither the app
+        nor an account.
+      </p>
+      <ul class="numlist">
+        <li><b>01</b><span>In the Watch tab, tap “Broadcast a match”: type both names (suggestions fill them in) and pick the format</span></li>
+        <li><b>02</b><span>You score it right on your phone, with both real names on the scoreboard</span></li>
+        <li><b>03</b><span>The live link is created automatically: share it now, share it again after the match</span></li>
+        <li><b>04</b><span>Broadcast matches stay out of your own archive and statistics</span></li>
+      </ul>
+    </div>
+
+    <div class="devices" data-fx="up" data-fx-delay="2">
+      <div class="phone" data-parallax="0.05">
+        <img src="assets/shot-broadcast-en.png" width="1080" height="2424" loading="lazy"
+             alt="Broadcast setup on the phone: both player names entered, format picked, ready to start">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 05 Auswertung ────────────────────────────────────────────────────── -->
 <section class="feature">
   <span class="anchor" id="auswertung" aria-hidden="true"></span>
   <div class="feature__inner">
     <div class="devices" data-fx="up">
       <div class="phone phone--crop" data-parallax="0.04">
-        <img src="assets/shot-stats-en.png" width="1080" height="2424" loading="lazy"
-             alt="Overall statistics on the phone: 67 percent win rate, recent form, sets, games, points and tiebreak record">
+        <img src="assets/shot-sets-en.png" width="1080" height="2424" loading="lazy"
+             alt="Match statistics on the phone: set filter Overall, Set 1, Set 2; break points, pressure points, service games and the point log">
       </div>
     </div>
 
     <div data-fx="up" data-fx-delay="2">
-      <p class="eyebrow"><span class="eyebrow__num">04</span> After the match</p>
+      <p class="eyebrow"><span class="eyebrow__num">05</span> After the match</p>
       <h2>Not whether.<br>But<br>when.</h2>
       <p class="lead">
         Every point is recorded as an event. That makes for more than a final
         score: break points, set and match points, deuce games, longest run of
-        points – the moments where the match was decided.
+        points: the moments where the match was decided. Filter every stat per
+        set from two sets on, and scroll the point log, game by game.
       </p>
       <p class="lead">
         And across all your matches sit the overall statistics: win rate, form
         over the last ten matches, win-rate trend, record by weekday and time
-        of day – singles and doubles kept apart.
+        of day, singles and doubles kept apart.
       </p>
     </div>
   </div>
 </section>
 
-<!-- ── 05 Free & Kortscore Plus ─────────────────────────────────────────── -->
+<!-- ── 06 Trainer ───────────────────────────────────────────────────────────
+     The end of the second pillar: the stats above answer "when was it
+     decided", the coach answers "so what do I train". Mirrored against block
+     05, text left, phone right, so the two do not read as one long column.
+     The Plus tag sits on the eyebrow because this is the one chapter that is
+     not free, and that should be clear before the first sentence. -->
+<section class="feature">
+  <span class="anchor" id="trainer" aria-hidden="true"></span>
+  <div class="feature__inner">
+    <div data-fx="up">
+      <p class="eyebrow"><span class="eyebrow__num">06</span> Your coach <span class="plustag">Kortscore Plus</span></p>
+      <h2>A coach who<br>saw every<br>point.</h2>
+      <p class="lead">
+        Kortscore Trainer analyses your match, every break point, every run
+        and your record against this exact opponent, and gives you short,
+        focused instructions on how to improve your game.
+      </p>
+      <ul class="numlist">
+        <li><b>01</b><span>Analyses individual matches and gives you valuable tips</span></li>
+        <li><b>02</b><span>Recognises matches against the same opponent and widens the analysis to all of them</span></li>
+        <li><b>03</b><span>A full analysis with training tips across everything you have played</span></li>
+      </ul>
+      <p class="note">
+        Analysis runs locally (on supported devices) or through Google
+        Firebase.
+      </p>
+    </div>
+
+    <div class="devices" data-fx="up" data-fx-delay="2">
+      <div class="phone" data-parallax="0.05">
+        <img src="assets/shot-trainer-en.png" width="1008" height="2244" loading="lazy"
+             alt="Match detail with the Match Analysis card: a short coach's assessment and one training tip">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 07 Free & Kortscore Plus ─────────────────────────────────────────── -->
 <!-- Core message first: the app costs nothing and shows no ads. Plus is the
-     footnote, not the headline – which is why the table carries the free
+     footnote, not the headline, which is why the table carries the free
      column on the left and Plus on the right, not the other way round. -->
 <section class="plus">
   <span class="anchor" id="plus" aria-hidden="true"></span>
   <div class="plus__inner">
     <div class="plus__head" data-fx="up">
-      <p class="eyebrow"><span class="eyebrow__num">05</span> What the app costs</p>
+      <p class="eyebrow"><span class="eyebrow__num">07</span> What the app costs</p>
       <h2>Free.<br>Ad-free.<br>Full stop.</h2>
       <p class="lead">
-        Kortscore costs nothing and shows no ads – no banner, no ad SDK, the
+        Kortscore costs nothing and shows no ads: no banner, no ad SDK, the
         same for everyone. If you want to dig deeper, there is Kortscore Plus:
         a one-off purchase, not a subscription.
       </p>
@@ -457,8 +531,8 @@
     <ul class="claims" data-fx="up" data-fx-delay="1">
       <li class="claim">
         <b>0 €</b>
-        <span>The app costs nothing – counting, live sharing and the match
-        archive are all included.</span>
+        <span>The app costs nothing: counting, live sharing, broadcasting
+        other people's matches and the match archive are all included.</span>
       </li>
       <li class="claim">
         <b>0 ads</b>
@@ -512,6 +586,14 @@
             <td class="is-plus"><i class="tick" role="img" aria-label="included"></i></td>
           </tr>
           <tr>
+            <th scope="row">
+              Broadcast someone else's match
+              <span>from the sideline, live link included</span>
+            </th>
+            <td><i class="tick" role="img" aria-label="included"></i></td>
+            <td class="is-plus"><i class="tick" role="img" aria-label="included"></i></td>
+          </tr>
+          <tr>
             <th scope="row">Manual backup and restore</th>
             <td><i class="tick" role="img" aria-label="included"></i></td>
             <td class="is-plus"><i class="tick" role="img" aria-label="included"></i></td>
@@ -519,7 +601,7 @@
           <tr>
             <th scope="row">
               Detailed statistics
-              <span>Pressure points, watch battery, point-history chart</span>
+              <span>Pressure points, per-set stats, watch battery, point-history chart</span>
             </th>
             <td><span class="dash" role="img" aria-label="not included"></span></td>
             <td class="is-plus"><i class="tick" role="img" aria-label="included"></i></td>
@@ -540,12 +622,20 @@
             <td><span class="dash" role="img" aria-label="not included"></span></td>
             <td class="is-plus"><i class="tick" role="img" aria-label="included"></i></td>
           </tr>
+          <tr>
+            <th scope="row">
+              Kortscore Trainer
+              <span>AI match and career analysis, on-device</span>
+            </th>
+            <td><span class="dash" role="img" aria-label="not included"></span></td>
+            <td class="is-plus"><i class="tick" role="img" aria-label="included"></i></td>
+          </tr>
         </tbody>
       </table>
     </div>
 
     <p class="plus__note" data-fx="up">
-      Plus is a one-off purchase, not a subscription – it lasts, and after a
+      Plus is a one-off purchase, not a subscription. It lasts, and after a
       reinstall the app restores it quietly. We do not sell you the result of
       your own match back, and protecting you from data loss never costs money:
       Plus only buys the convenience of the backup happening on its own.
@@ -553,12 +643,12 @@
   </div>
 </section>
 
-<!-- ── 06 Privacy ───────────────────────────────────────────────────────── -->
+<!-- ── 08 Privacy ───────────────────────────────────────────────────────── -->
 <section class="privacy">
   <span class="anchor" id="privat" aria-hidden="true"></span>
   <div class="privacy__inner">
     <div data-fx="up">
-      <p class="eyebrow"><span class="eyebrow__num">06</span> Privacy</p>
+      <p class="eyebrow"><span class="eyebrow__num">08</span> Privacy</p>
       <h2>You decide<br>what leaves</h2>
     </div>
     <!-- Since live sharing arrived, "everything stays local" is no longer true
@@ -586,7 +676,8 @@
         <strong>You decide about sharing per match</strong>
         <span>
           Only the two display names you type yourself go to the share page,
-          plus the score and the point log. Nothing else.
+          plus the score and the point log. Nothing else. The same holds when
+          you broadcast someone else's match.
         </span>
       </li>
       <li>
@@ -597,6 +688,24 @@
           nothing.
         </span>
       </li>
+      <li>
+        <b>05</b>
+        <strong>The AI coach thinks on your phone</strong>
+        <span>
+          Analysis runs on-device by default. The cloud only helps if you
+          explicitly opt in, and you can take that back in settings at any
+          time.
+        </span>
+      </li>
+      <li>
+        <b>06</b>
+        <strong>Even the cloud gets numbers only</strong>
+        <span>
+          At most twelve anonymous fact lines leave the device: scores and
+          stats, never names. Results are stored locally and stay out of
+          backups.
+        </span>
+      </li>
     </ul>
   </div>
 </section>
@@ -604,7 +713,7 @@
 <!-- ── Download ─────────────────────────────────────────────────────────────
      Replaces the former tester call: the app is heading for the Play Store, so
      the page closes with the download instead of a request to join the test.
-     The requirements stay – they answer "will this run for me?", and the
+     The requirements stay, they answer "will this run for me?", and the
      iPhone note saves a pointless trip to the Store. -->
 <section class="tester">
   <span class="anchor" id="laden" aria-hidden="true"></span>
@@ -613,14 +722,15 @@
     <h2>Get it on<br>your wrist</h2>
     <p class="tester__lede">
       Kortscore costs nothing, shows no ads and needs no account. Install it,
-      pair your watch, start counting. Friends and family need neither a watch
-      nor the app: to follow along, the link in a browser is enough.
+      pair your watch, start counting: your match or the one in front of you.
+      Friends and family need neither a watch nor the app: to follow along, the
+      link in a browser is enough.
     </p>
 
     <!-- Google's official badge, unaltered: the brand guidelines forbid
          recolouring, adding text or cropping it. The PNG carries its own
          transparent clear space, so no extra padding is needed. The link
-         itself is the label – hence alt text instead of a caption. -->
+         itself is the label, hence alt text instead of a caption. -->
     <div class="tester__cta">
       <a class="storebadge" href="https://play.google.com/store/apps/details?id=com.swordistudios.kortscore" target="_blank" rel="noopener">
         <img src="assets/google-play-en.png" width="323" height="125"
@@ -678,7 +788,7 @@
      cookies and transfers the IP address to the USA, and that is exactly what
      would break this site's cookie-free promise (see the Umami comment above)
      along with the claim that no consent banner is needed. So Tawk.to only
-     loads on click – anyone who never chats never contacts the service. The
+     loads on click, anyone who never chats never contacts the service. The
      button is a real <button>, not a div, so keyboard and screen readers treat
      it as expected. Without JavaScript it stays hidden (script.js reveals it),
      since without JS it could not load anything anyway.
@@ -694,6 +804,6 @@
   <span data-chat-label>Questions? Message us</span>
 </button>
 
-<script src="script.js?v=202608082000"></script>
+<script src="script.js?v=202608241030"></script>
 </body>
 </html>
