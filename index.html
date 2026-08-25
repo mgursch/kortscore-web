@@ -30,7 +30,7 @@
 
 <link rel="preload" href="assets/fonts/ArchivoBlack-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=202608241030">
+<link rel="stylesheet" href="styles.css?v=202608251955">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -707,6 +707,102 @@
         </span>
       </li>
     </ul>
+  </div>
+</section>
+
+<!-- ── Empfohlene Uhren ─────────────────────────────────────────────────────
+     The one question the download section cannot answer: which watch to buy.
+     The requirements below say "Wear OS 3+", which is correct and useless to
+     anyone standing in a shop. So three concrete watches, right before the
+     download, each with the one reason it fits this app (bright screen,
+     battery, updates). No prices and no specs, both go stale.
+
+     The links are Amazon affiliate links, hence rel="nofollow sponsored" and
+     the visible disclosure inside the section: the Amazon programme requires
+     it to be readable, not buried.
+     ────────────────────────────────────────────────────────────────────── -->
+<section class="watches">
+  <span class="anchor" id="uhren" aria-hidden="true"></span>
+  <div class="watches__inner">
+    <div class="watches__head" data-fx="up">
+      <p class="eyebrow"><span class="eyebrow__num">09</span> Which watch</p>
+      <h2>Three watches<br>that fit</h2>
+      <p class="lead">
+        Kortscore runs on any Wear OS 3 watch. If you are still picking one,
+        these three do the job on court: readable in the sun, enough battery
+        for a long match, and updates that keep coming.
+      </p>
+    </div>
+
+    <!-- All three photos are in, as WebP in 480 and 960 wide (srcset), cropped
+         square on the watch from our own shots: Amazon's own product images may
+         not be hosted by us. The Pixel Watch frame is 16:9 and shot close, so
+         its square crop sits slightly tighter than the other two; letterboxing
+         it would have read as a fault. .watchcard__shot keeps its watch glyph
+         as a fallback for a file that fails to load, and the fixed width and
+         height stop the row from shifting while the images arrive. -->
+    <ul class="watchcards" data-fx="up" data-fx-delay="1">
+      <li class="watchcard">
+        <div class="watchcard__shot">
+          <img src="assets/watch-galaxy-watch-8.webp"
+               srcset="assets/watch-galaxy-watch-8.webp 480w,
+                       assets/watch-galaxy-watch-8@2x.webp 960w"
+               sizes="(max-width: 900px) 88vw, 30vw"
+               width="480" height="480" loading="lazy" decoding="async"
+               alt="Samsung Galaxy Watch 8, silver case with a dark band">
+        </div>
+        <h3>Samsung Galaxy Watch 8</h3>
+        <p>
+          Runs Wear OS 6. The display stays readable in direct sun, and the
+          battery carries a long match programme.
+        </p>
+        <a class="btn watchcard__btn" href="https://amzlink.to/az0Q86fDm7t5p"
+           target="_blank" rel="nofollow sponsored noopener">View on Amazon</a>
+      </li>
+
+      <li class="watchcard">
+        <div class="watchcard__shot">
+          <img src="assets/watch-galaxy-watch-ultra.webp"
+               srcset="assets/watch-galaxy-watch-ultra.webp 480w,
+                       assets/watch-galaxy-watch-ultra@2x.webp 960w"
+               sizes="(max-width: 900px) 88vw, 30vw"
+               width="480" height="480" loading="lazy" decoding="async"
+               alt="Samsung Galaxy Watch Ultra (2025), titanium case with a blue band">
+        </div>
+        <h3>Samsung Galaxy Watch Ultra (2025)</h3>
+        <p>
+          A rugged case and the largest battery of the three, built for long
+          tournament days outdoors.
+        </p>
+        <a class="btn watchcard__btn" href="https://amzlink.to/az0f04miu49Xg"
+           target="_blank" rel="nofollow sponsored noopener">View on Amazon</a>
+      </li>
+
+      <li class="watchcard">
+        <div class="watchcard__shot">
+          <img src="assets/watch-pixel-watch-5.webp?v=2"
+               srcset="assets/watch-pixel-watch-5.webp?v=2 480w,
+                       assets/watch-pixel-watch-5@2x.webp?v=2 960w"
+               sizes="(max-width: 900px) 88vw, 30vw"
+               width="480" height="480" loading="lazy" decoding="async"
+               alt="Google Pixel Watch 5, black case with a black band">
+        </div>
+        <h3>Google Pixel Watch 5</h3>
+        <p>
+          Wear OS straight from Google, so it gets updates first. Compact on
+          the wrist, it stays out of the way of your stroke.
+        </p>
+        <a class="btn watchcard__btn" href="https://amzlink.to/az0o6BdeJ1gGu"
+           target="_blank" rel="nofollow sponsored noopener">View on Amazon</a>
+      </li>
+    </ul>
+
+    <!-- Amazon requires this disclosure to be clear and conspicuous. It sits
+         at the end of the section, after the cards it applies to, small but in
+         readable body colour: quiet, not hidden. -->
+    <p class="watches__disclosure" data-fx="up" data-fx-delay="2">
+      As an Amazon Associate we earn from qualifying purchases.
+    </p>
   </div>
 </section>
 

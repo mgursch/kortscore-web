@@ -1411,6 +1411,106 @@ h1, h2, h3 {
   line-height: 1.5;
 }
 
+/* ── Empfohlene Uhren (Amazon-Partnerlinks) ─────────────────────────────── */
+/* Steht zwischen Datenschutz und Download, deshalb wieder auf --paper: die
+   Datenschutz-Sektion hat --paper-2, so bleibt der Wechsel sichtbar. */
+.watches {
+  padding: clamp(90px, 12vh, 150px) var(--gutter);
+  border-top: 1px solid var(--line);
+}
+.watches__inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.watches h2 { font-size: clamp(30px, 4.6vw, 58px); }
+.watches__head .lead { max-width: 46ch; }
+
+/* Der Partnerhinweis steht klein am Ende der Sektion, direkt unter den Karten,
+   auf die er sich bezieht. Klein, aber in Textfarbe und nicht ausgegraut: Das
+   Partnerprogramm verlangt ihn deutlich lesbar. */
+.watches__disclosure {
+  margin: 20px 0 0;
+  color: var(--body);
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+/* Drei Karten, 1px-Gaps als Trennlinien wie bei .claims und .reqs. Unter
+   900px greift der Responsive-Block weiter unten und stellt eine Spalte. */
+.watchcards {
+  list-style: none;
+  margin: clamp(38px, 5vw, 60px) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+}
+.watchcard {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(22px, 2.6vw, 30px);
+  background: var(--paper);
+}
+.watchcard h3 {
+  margin: 20px 0 0;
+  font-size: clamp(18px, 1.9vw, 21px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.watchcard p {
+  margin: 10px 0 0;
+  color: var(--body);
+  font-size: 15.5px;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+/* Der Button sitzt immer unten, damit die drei Karten trotz unterschiedlich
+   langer Begründung auf einer Linie abschließen. margin-top: auto schiebt ihn
+   nach unten, garantiert aber keinen Abstand: In der längsten Karte klebte er
+   sonst am Text. Deshalb zusätzlich ein Mindestabstand über padding-block des
+   Vorgängers, hier als eigene Regel mit auto plus fixem Wert. */
+.watchcard__btn {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  font-size: 15px;
+}
+/* Der Mindestabstand zwischen Begründung und Button, auch wenn margin-top:auto
+   in der höchsten Karte auf 0 zusammenfällt. */
+.watchcard p { margin-bottom: 24px; }
+.watchcard__btn + * { margin-top: 0; }
+
+/* Bildplatz mit eigenem Platzhalter: Die drei Produktfotos fehlen noch
+   (Amazons Bilder dürfen wir nicht selbst hosten). Das Uhrensymbol liegt als
+   Background im Container, das img darüber. Fehlt die Datei, bleibt das
+   Symbol stehen, das Seitenverhältnis hält die Karte trotzdem in Form. */
+.watchcard__shot {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  background-color: var(--paper-2);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23A8AE99' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='20' y='20' width='24' height='24' rx='7'/%3E%3Cpath d='M26 20v-6h12v6M26 44v6h12v-6M44 28h3v6h-3'/%3E%3Cpath d='M32 27v5l3.5 2.5'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 42% auto;
+  margin-top: 0;
+}
+/* Das Bild liegt absolut im Container, damit die Kartenhöhe allein aus dem
+   aspect-ratio kommt, nicht aus der Datei. Alle drei Fotos sind gesetzt, das
+   Uhrensymbol im Hintergrund bleibt als Rückfall, falls eine Datei fehlt. */
+.watchcard__shot img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 14px;
+}
+
 /* ── Abschluss: Download ───────────────────────────────────────────────── */
 .tester {
   position: relative;
@@ -1664,6 +1764,16 @@ h1, h2, h3 {
      Spaltenzahlen, die nicht aufgehen, und hinterlässt leere Zellen. */
   .stats { grid-template-columns: repeat(2, 1fr); }
   .reqs  { grid-template-columns: 1fr; }
+
+  /* Uhren-Karten einspaltig: Dreispaltig bliebe für Modellname plus Begründung
+     zu wenig Breite, "Samsung Galaxy Watch Ultra (2025)" zerfiele in
+     Ein-Wort-Zeilen. Das Bild wird dabei nicht formatfüllend breit. */
+  .watchcards { grid-template-columns: 1fr; }
+  .watchcard__shot {
+    aspect-ratio: auto;
+    height: clamp(150px, 34vw, 200px);
+    background-size: auto 58%;
+  }
 
   /* Die Browser-Karte steht gestapelt allein in der Spalte und darf dann etwas
      breiter werden als neben dem Text. */
