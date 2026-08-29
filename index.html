@@ -90,6 +90,15 @@ gtag('set', 'ads_data_redaction', true);
 
 gtag('js', new Date());
 gtag('config', 'AW-18314402307');
+
+// Conversion "Seitenaufruf": feuert bei jedem Aufruf dieser Seite, also auch
+// bei Besuchern, die sofort wieder weggehen. Der Wert ist eine Rechengröße für
+// die Gebotsstrategie, kein tatsächlicher Umsatz.
+gtag('event', 'conversion', {
+  send_to: 'AW-18314402307/rVvTCNqX_OkcEIO0_pxE',
+  value: 1.0,
+  currency: 'EUR'
+});
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18314402307"></script>
 </head>
