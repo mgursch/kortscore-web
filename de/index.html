@@ -57,6 +57,40 @@
   document.head.appendChild(s);
 })();
 </script>
+
+<!-- ── Google Ads: Conversion ohne Cookies ──────────────────────────────────
+     Misst, ob eine Anzeige zum Play-Store-Klick geführt hat. Der Consent Mode
+     steht auf denied, bevor gtag.js überhaupt lädt: Google setzt dann keine
+     Werbe-Cookies und speichert nichts auf dem Gerät, sondern liefert nur
+     modellierte, aggregierte Conversions. Deshalb bleibt die Seite ohne
+     Consent-Banner, wie schon bei Umami, und die Aussage "kein Werbe-SDK,
+     nichts verfolgt dich" auf dieser Seite bleibt wahr.
+
+     url_passthrough und ads_data_redaction gehören dazu: Ersteres hängt die
+     Klick-Kennung an die URL statt ins Cookie, Letzteres kürzt die Daten, die
+     ohne Einwilligung überhaupt an Google gehen.
+
+     Wer später doch volle Messung will, braucht ein echtes Einwilligungs-
+     Banner und darf erst nach dem Klick auf granted schalten.
+     ────────────────────────────────────────────────────────────────────── -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+// Vor dem Laden setzen, sonst greift die Voreinstellung zu spät.
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: 'denied'
+});
+gtag('set', 'url_passthrough', true);
+gtag('set', 'ads_data_redaction', true);
+
+gtag('js', new Date());
+gtag('config', 'AW-18314402307');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18314402307"></script>
 </head>
 <body>
 
