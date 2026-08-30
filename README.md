@@ -1,22 +1,28 @@
 # Kortscore, Landingpage
 
-Statische Landingpage für die Kortscore-App (Wear OS + Android Companion).
+Statische Website für die Kortscore-App (Wear OS + Android Companion).
 Keine Build-Tools, kein Framework, reines HTML/CSS/JS.
 
 ## Struktur
 
 ```
-index.html     Seiteninhalt (Hero, Bühne, gepinnte Szene, Live, Auswertung,
-               Datenschutz, Tester, Footer)
-styles.css     Design-System, Layout, @font-face
-script.js      Reveals, Parallax, Nav-Zustand, gepinnte Szene, Count-ups
+index.html          Startseite, Englisch (Hero, Warum, So funktioniert's,
+                    Vereine, Uhren-Teaser, CTA, Footer)
+de/index.html       Startseite, Deutsch, gleiche Struktur
+watches.html        Unterseite: drei empfohlene Uhren (Amazon-Affiliate)
+de/uhren.html       dieselbe Unterseite auf Deutsch
+styles.css          Design-System, Layout, @font-face, alles in einer Datei
+script.js           nur der Sprachhinweis, sonst nichts
+legal/              Impressum, Datenschutz, AGB (eigenständige Seiten)
+legal.html          Weiterleitung auf legal/impressum.html (Altlink)
+rechtliches.html    dito
+de/rechtliches.html dito
 assets/
-  icon.png     App-Icon (aus tenniswatch/playstore/)
-  icon.svg     App-Icon als Vektor
-  watch.png    Screenshot: laufendes Match auf der Uhr
-  live.png     Screenshot: Live-Match am Handy
-  phone.png    Screenshot: Matchauswertung am Handy
-  fonts/       Archivo, Archivo Black, JetBrains Mono (woff2-Subsets)
+  icon.png/.svg     App-Icon
+  shot-*.png        Screenshots, je Sprache (-en für Englisch)
+  watch-*.webp      Produktfotos der empfohlenen Uhren, 480 und 960 breit
+  google-play-*.png offizielle Play-Badges, je Sprache
+  fonts/            Barlow Condensed, IBM Plex Sans, IBM Plex Mono
 ```
 
 ## Lokal ansehen
@@ -25,8 +31,36 @@ assets/
 python3 -m http.server 8000
 ```
 
-Dann `http://localhost:8000` öffnen. (Ein direktes Öffnen der Datei per
-`file://` funktioniert ebenfalls, `http://` entspricht aber dem späteren Hosting.)
+Dann `http://localhost:8000` öffnen. Über `file://` funktionieren die
+Sprachwechsel-Links nicht sauber, deshalb besser per `http://`.
+
+## Zweisprachigkeit
+
+Englisch ist die Voreinstellung und liegt im Root, Deutsch unter `/de/`. Beide
+Fassungen sind vollständige Dateien, es gibt keine Übersetzung zur Laufzeit.
+
+Die Zuordnung:
+
+| Englisch | Deutsch |
+|---|---|
+| `/` | `/de/` |
+| `/watches.html` | `/de/uhren.html` |
+
+Jede Seite verlinkt ihr Gegenstück über `hreflang` im Kopf und über den
+Umschalter in der Navigation.
+
+**Sprachwahl:** Es wird niemand automatisch umgeleitet. Wer mit einem
+deutschsprachigen Browser auf einer englischen Seite landet, sieht oben einen
+schmalen Hinweisbalken mit dem Angebot, zu wechseln. Die Entscheidung landet in
+`localStorage` (`ks-lang`), danach erscheint der Balken nicht mehr, egal ob per
+"Nein danke" abgelehnt oder per Wechsel angenommen. Ohne JavaScript bleibt der
+Balken unsichtbar und die Seite funktioniert unverändert.
+
+Die Prüfung sieht `navigator.languages` der Reihe nach durch: Steht die andere
+Sprache vor der aktuellen, kommt der Hinweis. Bei `en, de` also nicht, bei
+`fr, de` auf der englischen Seite schon.
+
+Beim Ändern von Texten immer beide Sprachfassungen anfassen.
 
 ## Deployment
 
@@ -43,6 +77,9 @@ gh run watch        # Fortschritt verfolgen
 `_`-Präfix ignoriert). Einmalig muss in den Repo-Settings unter *Pages* als
 Source **GitHub Actions** gewählt sein.
 
+Nach Änderungen an `styles.css` oder `script.js` den `?v=`-Parameter in allen
+vier Seiten hochzählen, sonst liefern Caches die alte Datei aus.
+
 ## Statistik (Umami)
 
 Die Seite nutzt [Umami](https://umami.is) statt Google Analytics. Umami setzt
@@ -51,89 +88,83 @@ Consent-Banner** nötig. Google Analytics wäre in Österreich
 einwilligungspflichtig, weil Daten in die USA übertragen werden (Entscheidung
 der Datenschutzbehörde).
 
-### Einrichten
+Die Website-ID steht im Umami-Block jeder Seite. Ein Guard prüft sie gegen das
+UUID-Format und lädt das Skript nur bei gültiger ID, ein Platzhalter erzeugt so
+keine fehlschlagenden Requests.
 
-1. Auf [cloud.umami.is](https://cloud.umami.is) einen Account anlegen
-   (kostenlos bis 100.000 Ereignisse/Monat) und die Website `kortscore.com`
-   hinzufügen.
-2. Die angezeigte **Website-ID** kopieren (Format `8-4-4-4-12` Hex).
-3. In [`index.html`](index.html) im Umami-Block `UMAMI_ID` ersetzen.
-4. Committen und pushen, danach die Cache-Version erhöhen (siehe unten).
+Erfasst werden Seitenaufrufe, Referrer, Land, Gerätetyp und Browser, aggregiert,
+ohne Cookies, ohne Fingerprinting, ohne IP-Speicherung.
 
-Solange der Platzhalter drinsteht, wird das Skript bewusst **nicht** geladen -
-so gibt es auf der Live-Seite keine fehlschlagenden Requests. Der Guard prüft
-die ID gegen das UUID-Format.
+## Google Ads (Conversion ohne Cookies)
 
-Selbst gehostet: zusätzlich `UMAMI_SRC` auf die eigene Instanz zeigen lassen.
+Zusätzlich läuft `gtag.js` für die Conversion-Messung von Anzeigen
+(`AW-18314402307`). Der Consent Mode steht auf `denied`, **bevor** das Skript
+lädt: Google setzt dann keine Werbe-Cookies und speichert nichts auf dem Gerät,
+sondern liefert nur modellierte, aggregierte Conversions. Dazu gehören
+`url_passthrough` (Klick-Kennung in der URL statt im Cookie) und
+`ads_data_redaction`.
 
-### Was erfasst wird
-
-Seitenaufrufe, Referrer, Land, Gerätetyp und Browser, aggregiert, ohne
-Cookies, ohne Fingerprinting, ohne IP-Speicherung.
+Deshalb bleibt die Seite ohne Consent-Banner. Wer volle Messung will, braucht
+ein echtes Einwilligungsbanner und darf erst nach dem Klick auf `granted`
+schalten.
 
 ## Design
 
-Direction **B "Court Paper"** aus dem Redesign: die Cream/Ink-Palette der App
-wird zur Website, Display-Schrift ist Archivo Black, Labels in JetBrains Mono.
+Umgesetzt nach dem Claude-Design-File *Kortscore Website*, die Tokens stammen
+aus dem Handoff-Bundle des App-Redesigns, damit App und Website dieselbe
+Sprache sprechen.
 
 | Token | Wert | Verwendung |
 |-------|------|------------|
-| `--paper` | `#F2F4E4` | Grundfläche (Cream aus der App) |
-| `--ink` | `#14170F` | Text und dunkle Panels |
-| `--lime` | `#D9F764` | Akzent auf dunklem Grund |
-| `--moss` | `#4C6B2F` | Akzent auf Cream (kontraststark) |
-| `--clay` | `#C0272D` | Ziffern, Live-Punkt |
-| `--sage` | `#6E7358` | Mono-Labels |
-| `--body` | `#3B402E` | Fließtext |
+| `--bg` | `#faf9f5` | Grundfläche |
+| `--bg-alt` | `#f1efe4` | abgesetzte Sektion (Vereine) |
+| `--bg-dark` | `#16150f` | dunkle Sektion (Warum Kortscore) |
+| `--surface-dark` | `#26251d` | Karten auf dunklem Grund |
+| `--text` | `#16150f` | Primärtext |
+| `--text-secondary` | `#4a4842` | Fließtext |
+| `--text-muted` | `#66635b` | Mono-Labels, Captions |
+| `--accent` | `#3ea56b` | **nur Flächen** |
+| `--accent-text` | `#1f5c34` | **nur Text auf hellem Grund** |
 
-Die Fonts liegen als woff2-Subsets (latin + latin-ext) in `assets/fonts/` und
-werden lokal geladen, kein Google-Fonts-Aufruf, also kein Drittanbieter-Request.
+**Wichtig zu den zwei Grüntönen:** `#3ea56b` erreicht auf `#faf9f5` nur rund
+2,3:1 und ist als Text unlesbar. Es ist im Handoff der Dark-Mode-Akzent und
+dient hier ausschließlich als Fläche (Buttons, CTA-Block, Live-Punkt), immer mit
+dunkler Schrift darauf. Grüner **Text** auf hellem Grund nimmt `--accent-text`.
 
-### Gepinnte Zähl-Szene
+Schriften: Barlow Condensed 700 für Überschriften und Buttons (Versalien),
+IBM Plex Sans für Fließtext, IBM Plex Mono für Labels und alle Zahlen. Sie
+liegen als woff2-Subsets (latin + latin-ext) in `assets/fonts/` und werden lokal
+geladen, kein Google-Fonts-Aufruf, also kein Drittanbieter-Request. IBM Plex
+Sans ist eine Variable Font und deckt 400 bis 600 mit einer Datei ab.
 
-Die Sektion `#zaehlen` pinnt ihren Inhalt via `position: sticky`. `script.js`
-rechnet den Scroll-Fortschritt in vier Schritte um und schaltet Caption,
-Tap-Karten und Punktestand mit. Die Punktefolge ist bewusst mitten im Game:
-`15:30 → (1×) 30:30 → (2×) 30:40 → (3× Undo) 30:30`. Ab 40:30 wäre das Game
-nach einem eigenen Punkt gewonnen, die Uhr würde das Sieger-Banner zeigen.
-
-Höhen: 520vh am Desktop, 300vh mobil. Gepinnt wird mobil nur ab
-`min-height: 820px`, der gestapelte Inhalt braucht rund 810px, auf kürzeren
-Displays (iPhone SE, viele 16:9-Androids) würde er sonst aus dem Sticky-Bereich
-ragen und in Block 02 laufen. Dort fließt die Sektion normal, die Schritte
-laufen über die Viewport-Position.
-
-Das Uhr-Display ist **in HTML/CSS nachgebaut** (`.face`), nicht als Bild oder
-Video: nur so kann der Stand beim Scrollen echt mitzählen. Es skaliert über
-Container-Queries (`cqw`/`cqh`) mit dem Gehäuse, die Geometrie ist am
-App-Screenshot ausgerichtet. Das Video aus der Design-Session ist bewusst nicht
-enthalten.
-
-Bei `prefers-reduced-motion: reduce` wird die Szene entpinnt und zeigt den
-ersten Schritt statisch.
+Zahlen stehen durchgehend auf `font-variant-numeric: tabular-nums`, damit
+Scores in Spalten untereinander stehen und beim Zählen nicht springen.
 
 ## Inhalt anpassen
 
-- **Sektionen** sind `<section class="feature">` (Text/Bild-Paar),
-  `.stage` (dunkles Panel), `.privacy`, `.tester`. Sprungziele sitzen auf
-  eigenen `<span class="anchor" id="...">` direkt am Sektionsanfang, ein
-  Anker auf `<section>` selbst würde den Kopf hinter die fixierte Nav schieben.
-- **Weitere Screenshots:** in `assets/` legen. Für Handy `.phone`
-  (`.phone--crop` schneidet lange Screenshots oben zu), für Uhr `.watch`.
-- **Schritte der Zähl-Szene:** Array `STEPS` in `script.js`, `cap` ist der
-  Text, `mine`/`theirs` der Stand auf dem Uhr-Display, `tap` die hervorgehobene
-  Karte. Mehr Schritte brauchen keine weitere Änderung.
-- **Statistik-Kacheln** zählen via `data-count` + `data-count-suffix` hoch.
-- **Beim Release:** Sektion `#tester` durch einen Play-Store-Button ersetzen
-  und die CTAs in Nav und Hero (`href="#tester"`) anpassen.
+- **Sektionen** der Startseite: `.hero`, `.benefits` (dunkel), `.steps`,
+  `.clubs` (abgesetzt, mit Ticker-Attrappe), `.teaser` (Uhren), `.cta`.
+  Der Container `.shell` zentriert auf 1060px, farbige Flächen liegen außen
+  herum, damit der Grund über die volle Breite läuft.
+- **Screenshots austauschen:** in `assets/` legen, je Sprache eine Datei
+  (`-en` für Englisch). Der Uhren-Slot im Hero ist rund und erwartet einen
+  quadratischen Screenshot, kein Gerätefoto: `object-fit: cover` würde ein
+  Foto mit Armband beschneiden.
+- **Uhren-Empfehlungen:** stehen in `watches.html` und `de/uhren.html`, der
+  Teaser auf der Startseite verlinkt nur dorthin. Die Affiliate-Offenlegung ist
+  Pflicht und muss am Ende der Kartenliste stehen bleiben.
+- **Play-Badge:** liegt unverändert als PNG vor. Googles Richtlinien verbieten
+  Umfärben, Zuschneiden und zusätzlichen Text, das PNG bringt seine eigene
+  Schutzzone mit.
 
 ## Barrierefreiheit / Verhalten
 
-- Scroll-Reveal via `IntersectionObserver`; ohne Support ist alles direkt sichtbar.
-- `prefers-reduced-motion: reduce` schaltet Animationen und Smooth-Scroll ab.
-- Screenshots haben beschreibende `alt`-Texte, rein dekorative Elemente
-  sind mit `aria-hidden` ausgezeichnet.
-- Getestet ohne horizontales Scrollen bei 390 px und 1440 px Breite.
-- Bei `#hash`-Aufruf springt `script.js` nach dem Layout erneut zum Ziel: die
-  520vh-Szene und die Reveals verändern die Höhen, wodurch der ursprüngliche
-  Sprung des Browsers sonst ins Leere zeigt.
+- Die Seite funktioniert vollständig ohne JavaScript, das Skript blendet nur
+  den Sprachhinweis ein.
+- `prefers-reduced-motion: reduce` schaltet Animationen ab (betrifft den
+  pulsierenden Live-Punkt).
+- Screenshots haben beschreibende `alt`-Texte, die Ticker-Attrappe ist
+  `aria-hidden`, weil der Text daneben dasselbe schon sagt.
+- Getestet ohne horizontales Scrollen bei 375px und 1280px Breite.
+- Unter 900px löst sich der Screenshot-Fächer in eine Reihe auf, unter 640px
+  entfällt das dritte Telefon.

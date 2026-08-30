@@ -3,33 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kortscore: Du spielst. Die Uhr zählt.</title>
-<meta name="description" content="Kortscore zählt dein Tennismatch am Handgelenk: ein Tipp pro Punkt, Live-Übertragung deines Matches oder jedes anderen per Link, und ein KI-Trainer, der danach jede Statistik liest.">
+<title>Kortscore: Dein Match. Dein Score. Ein Tap.</title>
+<meta name="description" content="Kortscore zählt dein Tennismatch am Handgelenk mit, Punkt für Punkt, ohne das Spiel zu unterbrechen. Und wer nicht auf dem Platz steht, schaut live zu.">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Kortscore: Du spielst. Die Uhr zählt.">
-<meta property="og:description" content="Kortscore zählt dein Tennismatch am Handgelenk: ein Tipp pro Punkt, Live-Übertragung deines Matches oder jedes anderen per Link, und ein KI-Trainer, der danach jede Statistik liest.">
-<!-- og:image braucht eine absolute URL, Social-Previews laden sonst kein Bild. -->
+<meta property="og:title" content="Kortscore: Dein Match. Dein Score. Ein Tap.">
+<meta property="og:description" content="Kortscore zählt dein Tennismatch am Handgelenk mit, Punkt für Punkt, ohne das Spiel zu unterbrechen. Und wer nicht auf dem Platz steht, schaut live zu.">
+<!-- og:image needs an absolute URL, social previews load no image otherwise. -->
 <meta property="og:image" content="https://kortscore.com/assets/icon.png">
 <meta property="og:url" content="https://kortscore.com/de/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#F2F4E4">
+<meta name="theme-color" content="#faf9f5">
 <link rel="canonical" href="https://kortscore.com/de/">
 
-<!-- Beide Sprachen verweisen aufeinander; x-default zeigt auf Englisch. -->
+<!-- Each language points at the other so search engines serve the right one;
+     x-default points at English. -->
 <link rel="alternate" hreflang="en" href="https://kortscore.com/">
 <link rel="alternate" hreflang="de" href="https://kortscore.com/de/">
 <link rel="alternate" hreflang="x-default" href="https://kortscore.com/">
 
-<!-- Icons aus dem App-Redesign (Scorebug-Marke, Akzent-Grün). Das SVG wird
-     von modernen Browsern bevorzugt, .ico bleibt als Fallback. -->
 <link rel="icon" href="../assets/favicon.ico" sizes="32x32">
 <link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 
-<link rel="preload" href="../assets/fonts/ArchivoBlack-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../styles.css?v=202608251955">
+<!-- Only the two faces above the fold are preloaded: the hero headline and the
+     body copy next to it. The rest arrive with the stylesheet. -->
+<link rel="preload" href="../assets/fonts/BarlowCondensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/IBMPlexSans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../styles.css?v=202608301100">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -39,8 +40,6 @@
      Die Website-ID stammt aus dem Umami-Cloud-Dashboard. Der Guard unten lädt
      das Skript nur bei gültigem UUID-Format, ein Platzhalter oder Tippfehler
      erzeugt so keine fehlschlagenden Requests.
-
-     Selbst gehostet: zusätzlich SRC auf die eigene Instanz zeigen lassen.
      ────────────────────────────────────────────────────────────────────── -->
 <script>
 (function () {
@@ -63,8 +62,7 @@
      steht auf denied, bevor gtag.js überhaupt lädt: Google setzt dann keine
      Werbe-Cookies und speichert nichts auf dem Gerät, sondern liefert nur
      modellierte, aggregierte Conversions. Deshalb bleibt die Seite ohne
-     Consent-Banner, wie schon bei Umami, und die Aussage "kein Werbe-SDK,
-     nichts verfolgt dich" auf dieser Seite bleibt wahr.
+     Consent-Banner, wie schon bei Umami.
 
      url_passthrough und ads_data_redaction gehören dazu: Ersteres hängt die
      Klick-Kennung an die URL statt ins Cookie, Letzteres kürzt die Daten, die
@@ -103,826 +101,271 @@ gtag('event', 'conversion', {
 </head>
 <body>
 
-<!-- ── Sprachhinweis ────────────────────────────────────────────────────────
-     Erscheint nur bei nicht-deutschem Browser und nur einmal; sobald eine
-     Sprache gewählt wurde, blendet das Skript ihn dauerhaft aus. Startet
-     versteckt, damit er bei allen anderen nie aufblitzt, und bleibt ohne
-     JavaScript ganz weg. Auf Englisch, weil er Englischsprachige anspricht. -->
-<div class="langbar" data-langbar data-langbar-home hidden>
+<!-- ── Language hint ────────────────────────────────────────────────────────
+     Shown only to visitors whose browser asks for German, and only once: the
+     script hides it again as soon as a language has been chosen. It starts
+     hidden so it never flashes for everyone else, and stays hidden entirely
+     without JavaScript. In German, because it addresses German speakers. -->
+<div class="langbar" data-langbar data-langbar-lang="en" hidden>
   <span lang="en">This page is also available in English.</span>
-  <a class="langbar__go" href="../" hreflang="en" lang="en" data-langbar-go>Go to English version</a>
-  <button class="langbar__close" type="button" data-langbar-close
-          aria-label="Close notice" lang="en">No thanks</button>
+  <a class="langbar__go" href="../" hreflang="en" lang="en" data-langbar-go>Switch to English</a>
+  <button class="langbar__close" type="button" data-langbar-close lang="en">No thanks</button>
 </div>
 
 <!-- ── Nav ──────────────────────────────────────────────────────────────── -->
-<header class="nav" data-nav>
+<header class="nav">
   <a class="nav__brand" href="#top">
     <img src="../assets/icon.png" alt="" width="30" height="30">
     <span>Kortscore</span>
   </a>
-  <nav class="nav__links">
-    <a href="#zaehlen">Zählen</a>
-    <a href="#live">Live</a>
-    <a href="#uebertragen">Übertragen</a>
-    <a href="#auswertung">Auswertung</a>
-    <a href="#trainer">Trainer</a>
-    <a href="#plus">Plus</a>
-  </nav>
-  <a class="nav__cta" href="#laden">App holen</a>
-  <a class="nav__lang" href="../" hreflang="en" lang="en">EN</a>
+  <div class="nav__right">
+    <a class="nav__lang" href="../" hreflang="en" lang="en" data-lang-switch>English</a>
+    <a class="btn btn--small nav__cta" href="#get">Jetzt laden</a>
+  </div>
 </header>
 
 <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
-<section class="hero" id="top">
-  <div class="wrap">
-    <!-- Feature-Grafik steht ganz oben, direkt unter der Menüleiste: Was die
-         App tut, soll man sehen, bevor man es liest. Aufgefächert, das
-         mittlere Handy steht gerade und vorn, die beiden äußeren leicht
-         gedreht dahinter. Die Uhr liegt als eigenes Element über der Gruppe,
-         nicht im Handy-Rahmen: dort würde ihr Armband abgeschnitten. -->
-    <div class="showcase" data-fx="up">
-      <div class="showcase__item showcase__item--left">
-        <div class="phone">
-          <img src="../assets/shot-spielen.png" width="1080" height="2424" loading="eager"
-               alt="Startbildschirm der App: gespeicherte Match-Kombinationen, jede mit einem Play-Knopf zum Sofortstart">
-        </div>
-      </div>
-
-      <div class="showcase__item showcase__item--center">
-        <div class="phone">
-          <img src="../assets/shot-live.png" width="1080" height="2424" loading="eager"
-               alt="Live-Match am Handy: Stand 40:15 und der Punkteverlauf Punkt für Punkt">
-        </div>
-      </div>
-
-      <div class="showcase__item showcase__item--right">
-        <div class="phone">
-          <img src="../assets/shot-detail.png" width="1080" height="2424" loading="eager"
-               alt="Matchauswertung: Satzergebnisse, Punkteverteilung, Breakbälle und weitere Statistiken">
-        </div>
-      </div>
-
-      <div class="showcase__watch">
-        <img src="../assets/shot-watch-device.png" width="387" height="440" loading="eager"
-             alt="Kortscore auf der Galaxy Watch: Punktestand 40:15, Spielzeit 2:02">
-      </div>
+<main id="top">
+<section class="hero">
+  <div class="hero__copy">
+    <p class="eyebrow">Tennis zählen · Handy &amp; Uhr</p>
+    <h1 class="hero__title">Dein Match.<br>Dein Score.<br><em>Ein Tap.</em></h1>
+    <p class="hero__lede">
+      Kortscore zählt dein Tennismatch am Handgelenk mit, Punkt für Punkt, ohne
+      das Spiel zu unterbrechen. Und wer nicht auf dem Platz steht, schaut live zu.
+    </p>
+    <div class="hero__actions">
+      <a class="btn btn--accent" href="#get">Gratis im Play Store</a>
+      <span class="hero__meta">Wear OS + Android</span>
     </div>
+  </div>
 
-    <div class="hero__copy">
-      <h1 class="hero__title" data-fx="up" data-fx-delay="1">
-        Du spielst. <em>Die Uhr</em> zählt.
-      </h1>
-
-      <p class="hero__lede" data-fx="up" data-fx-delay="1">
-        Ein Tipp pro Punkt auf der Uhr, bei deinem Match oder jedem anderen.
-        Alle schauen live zu, per Link, ohne App. Danach: die ganze
-        Auswertung, bis zum Trainer-Urteil.
-      </p>
-
-      <div class="hero__cta" data-fx="up" data-fx-delay="2">
-        <a class="btn" href="#laden">App holen</a>
-        <a class="btn btn--ghost" href="#warum">Warum Kortscore</a>
-      </div>
+  <!-- The three phones and the watch are the app itself, so they carry real
+       screenshots rather than a device mock. Widths and heights are set so the
+       row keeps its place while the images arrive. -->
+  <div class="hero__shots">
+    <div class="phone phone--back phone--left">
+      <img src="../assets/shot-spielen.png" width="168" height="356"
+           loading="eager" decoding="async"
+           alt="Kortscore Startbildschirm mit den Match-Formaten">
+    </div>
+    <div class="phone phone--front">
+      <img src="../assets/shot-live.png" width="180" height="382"
+           loading="eager" decoding="async"
+           alt="Ein laufendes Match in Kortscore mit dem Live-Punktestand">
+    </div>
+    <div class="phone phone--back phone--right">
+      <img src="../assets/shot-stats.png" width="168" height="356"
+           loading="lazy" decoding="async"
+           alt="Kortscore Statistik mit Siegquote und Satzbilanz">
+    </div>
+    <div class="watchshot">
+      <img src="../assets/shot-watch.png" width="190" height="190"
+           loading="eager" decoding="async"
+           alt="Kortscore auf einer Smartwatch mit dem aktuellen Punktestand">
     </div>
   </div>
 </section>
 
-<!-- ── Bühne: die zwei Säulen der App ───────────────────────────────────────
-     Zwei Karten statt der früheren drei Versprechen. Die drei lasen sich wie
-     eine Feature-Liste; inzwischen hat die App zwei klare Säulen, Tennis
-     live übertragen, egal wessen Match, und ein Tipp im Spiel gegen die
-     tiefste Auswertung danach. Jedes Kapitel weiter unten hängt an einer der
-     beiden, also benennt die Bühne sie, bevor die Kapitel anfangen. -->
-<section class="stage">
-  <span class="anchor" id="warum" aria-hidden="true"></span>
-  <div class="stage__panel wrap" data-fx="up">
-    <div class="stage__head">
-      <p class="stage__eyebrow">Warum Kortscore</p>
-      <h2>Zwei Dinge,<br>richtig gemacht.</h2>
-      <p>
-        Kortscore will nicht alles können. Es überträgt Tennis live: deine
-        Matches und jedes andere. Und es zählt mit einem Tipp, um dir danach
-        die tiefste Auswertung deines Spiels zu geben.
-      </p>
-    </div>
-
-    <ul class="promises">
-      <li class="promise promise--pillar">
-        <span class="promise__num" aria-hidden="true">01</span>
-        <h3>Jedes Match live, für alle</h3>
-        <p>
-          Die Uhr zählt, ein Link bringt den Spielstand zu allen. Ohne App und
-        ohne Konto für die Zuschauer.
+<!-- ── Benefits ─────────────────────────────────────────────────────────── -->
+<section class="benefits">
+  <div class="shell">
+    <h2 class="section-title">Warum Kortscore</h2>
+    <div class="benefits__grid">
+      <article class="stat">
+        <p class="stat__num">1×</p>
+        <h3 class="stat__title">Einfachste Bedienung</h3>
+        <p class="stat__body">
+          Ein Tap auf die Uhr, Punkt gezählt. Zweimal für den Gegner, viermal
+          für Undo. Kein Blick aufs Display nötig, kein unterbrochenes Spiel.
         </p>
-      </li>
-      <li class="promise promise--pillar">
-        <span class="promise__num" aria-hidden="true">02</span>
-        <h3>Ein Tipp jetzt, jede Antwort später</h3>
-        <p>
-          Ein Tipp ist die ganze Bedienung. Danach fehlt nichts: jeder Punkt,
-        jeder Druckmoment, und ein Trainer, der daraus liest, was du trainieren
-        sollst.
+      </article>
+      <article class="stat">
+        <p class="stat__num">67%</p>
+        <h3 class="stat__title">Statistiken, die zählen</h3>
+        <p class="stat__body">
+          Siegquote, Satzbilanz, Punkteverlauf jedes Matches: deine gesamte
+          Tennis-Historie, automatisch ausgewertet.
         </p>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<!-- ── Szene 01: gepinnt, scrollgesteuert ───────────────────────────────── -->
-<section class="scene" data-scene>
-  <span class="anchor" id="zaehlen" aria-hidden="true"></span>
-  <div class="scene__sticky">
-    <div class="scene__grid">
-      <div>
-        <p class="eyebrow"><span class="eyebrow__num">01</span> Während des Matches</p>
-        <h2>Ein Tipp.<br>Punkt<br>gezählt.</h2>
-        <!-- Die Untertitel der Szene stehen hier, nicht in script.js: Das
-             Skript teilen sich beide Sprachfassungen. Schritt 5 trägt keinen. -->
-        <p class="scene__caption" data-scene-caption
-           data-cap-0="Aufschlag. Die Uhr ist bereit, du musst nur noch spielen."
-           data-cap-1="Einmal tippen: dein Punkt steht. Die Haptik bestätigt, du musst nicht hinsehen."
-           data-cap-2="Zweimal tippen für den Gegner. Mehr Bedienung gibt es nicht."
-           data-cap-3="Vertippt? Dreimal tippen dreht den letzten Punkt um: Aus dem Gegnerpunkt wird deiner."
-           data-cap-4="">
-          Aufschlag. Die Uhr ist bereit, du musst nur noch spielen.
-</p>
-
-        <div class="taps">
-          <div class="tap" data-tap="1">
-            <span class="tap__dots"><i></i></span>
-            <span class="tap__label">1× tippen</span>
-            <span class="tap__hint">Punkt für dich</span>
-          </div>
-          <div class="tap" data-tap="2">
-            <span class="tap__dots"><i></i><i></i></span>
-            <span class="tap__label">2× tippen</span>
-            <span class="tap__hint">Punkt für deinen Gegner</span>
-          </div>
-          <div class="tap" data-tap="3">
-            <span class="tap__dots"><i></i><i></i><i></i></span>
-            <span class="tap__label">3× tippen</span>
-            <span class="tap__hint">letzten Punkt umdrehen</span>
-          </div>
-          <div class="tap" data-tap="4">
-            <span class="tap__dots"><i></i><i></i><i></i><i></i></span>
-            <span class="tap__label">4× tippen</span>
-            <span class="tap__hint">Undo</span>
-          </div>
-        </div>
-
-        <!-- Long-Tap als Fußnote, nicht als fünfte Tap-Zeile: Ass und
-             Doppelfehler sind das Einzige, was die vier Zeilen auslassen,
-             gelten aber nur bei eigenem Aufschlag und würden die Liste
-             überladen. -->
-        <p class="taps__more">Bei eigenem Aufschlag den letzten Tipp halten: 1 kurz + 1 lang = Ass, 2 kurz + 1 lang = Doppelfehler. Die Haptik antwortet beim Loslassen.</p>
-      </div>
-
-      <div>
-        <div class="scene__panel">
-          <div class="scene__head">
-            <span class="scene__live"><i aria-hidden="true"></i>Live</span>
-            <span class="scene__step" data-scene-step>01 / 05</span>
-          </div>
-
-          <div class="scene__watchwrap">
-            <!-- Uhr-Display in HTML/CSS nachgebaut, damit der Stand beim
-                 Scrollen echt mitzählt (statt eines Videos). -->
-            <div class="watch" data-scene-watch>
-              <div class="watch__screen">
-                <div class="face" role="img" aria-label="Uhr-Display: Satz 1, 5:4, Punktestand 15:30">
-                  <div class="face__time">17:38</div>
-                  <div class="face__set" data-face-set>SATZ 1 · 5:4</div>
-                  <div class="face__rows">
-                    <div class="face__row face__row--mine">
-                      <span class="face__who">ICH</span>
-                      <span class="face__pts" data-face-mine>15</span>
-                      <span class="face__games" data-face-gmine>5</span>
-                    </div>
-                    <div class="face__row face__row--theirs">
-                      <span class="face__who">
-                        <i class="face__serve" data-face-serve aria-hidden="true"></i>GEG
-                      </span>
-                      <span class="face__pts" data-face-theirs>30</span>
-                      <span class="face__games" data-face-gtheirs>4</span>
-                    </div>
-                  </div>
-                  <div class="face__dots" aria-hidden="true">
-                    <i></i><i class="is-on"></i><i></i>
-                  </div>
-                </div>
-                <div class="tap-flash" data-tap-flash aria-hidden="true"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="scene__rail-row">
-            <span>Ablauf</span>
-            <span class="scene__track"><span class="scene__rail" data-scene-rail></span></span>
-          </div>
-        </div>
-      </div>
+      </article>
+      <article class="stat">
+        <p class="stat__live"><span class="livedot"></span>Live</p>
+        <h3 class="stat__title">Live-Ticker für Zuschauer</h3>
+        <p class="stat__body">
+          Familie, Freunde und Vereinskollegen verfolgen dein Match in Echtzeit
+          am Handy, Punkt für Punkt, von überall.
+        </p>
+      </article>
+      <article class="stat">
+        <p class="stat__num">0&nbsp;€</p>
+        <h3 class="stat__title">Gratis</h3>
+        <p class="stat__body">
+          Zählen, Historie und Live-Ticker kosten nichts. Wer tiefer auswerten
+          will, holt sich Kortscore Plus.
+        </p>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- ── 02 Live-Score ────────────────────────────────────────────────────── -->
-<section class="feature">
-  <span class="anchor" id="live" aria-hidden="true"></span>
-  <div class="feature__inner">
-    <div data-fx="up">
-      <p class="eyebrow"><span class="eyebrow__num">02</span> Auf dem gekoppelten Handy</p>
-      <h2>Live mitlesen,<br>ohne Internet</h2>
-      <p class="lead">
-        Die Uhr zählt, dein eigenes gekoppeltes Handy zeigt mit. Über Bluetooth,
-        ohne Internet. Perfekt, wenn am Zaun jemand mitschaut.
+<!-- ── Steps ────────────────────────────────────────────────────────────── -->
+<section class="steps shell">
+  <h2 class="section-title">So funktioniert’s</h2>
+  <div class="steps__grid">
+    <div class="step">
+      <p class="step__num mono">01</p>
+      <h3 class="step__title">Match starten</h3>
+      <p class="step__body">
+        Format wählen, oder einfach die letzte Kombination antippen. Einzel,
+        Doppel, Best of 3, ein Satz: alles geht.
       </p>
-      <ul class="numlist">
-        <li><b>01</b><span>Punktestand spiegelt sich sofort aufs gekoppelte Handy</span></li>
-        <li><b>02</b><span>Punkteverlauf Punkt für Punkt, schon während des Matches</span></li>
-        <li><b>03</b><span>Bluetooth-Reichweite genügt, kein Netz und kein Konto nötig</span></li>
-        <li>
-          <b>04</b>
-          <span>
-            Wer nicht am Platz ist, bekommt einen
-            <a class="link" href="#teilen">Link zum Mitschauen</a>
-          </span>
-        </li>
+    </div>
+    <div class="step">
+      <p class="step__num mono">02</p>
+      <h3 class="step__title">Spielen und tippen</h3>
+      <p class="step__body">
+        Die Uhr zählt Punkte, Games und Sätze nach echten Tennisregeln,
+        inklusive Tiebreak und Champions-Tiebreak.
+      </p>
+    </div>
+    <div class="step">
+      <p class="step__num mono">03</p>
+      <h3 class="step__title">Auswerten und teilen</h3>
+      <p class="step__body">
+        Das Match landet automatisch in deiner Historie am Handy, mit Score in
+        Broadcast-Notation, Dauer und Punkteverlauf.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Clubs ────────────────────────────────────────────────────────────── -->
+<section class="clubs">
+  <div class="shell clubs__inner">
+    <div class="clubs__copy">
+      <p class="eyebrow">Für Vereine &amp; Meisterschaft</p>
+      <h2 class="clubs__title">Der ganze Verein<br>schaut mit</h2>
+      <p class="lead clubs__lead">
+        Bei Meisterschaftsspielen laufen mehrere Matches gleichzeitig, und keiner
+        kann überall sein. Mit dem Live-Ticker verfolgen Mannschaft, Kapitän und
+        Fans jedes Match in Echtzeit: vom Nebenplatz, aus der Kantine oder von
+        zu Hause.
+      </p>
+      <ul class="dashlist">
+        <li>Link teilen genügt, Zuschauer brauchen keine App und kein Konto.</li>
+        <li>Punktestand, Satzverlauf und Aufschlag live, Punkt für Punkt.</li>
+        <li>Nach dem Match bleibt das Ergebnis in Broadcast-Notation abrufbar.</li>
       </ul>
     </div>
 
-    <div class="devices" data-fx="up" data-fx-delay="2">
-      <div class="phone" data-parallax="0.05">
-        <img src="../assets/shot-live.png" width="1080" height="2424" loading="lazy"
-             alt="Live-Match am Handy: Watch verbunden, Stand 40:15 und Punkteverlauf Punkt für Punkt">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── 03 Teilen ────────────────────────────────────────────────────────── -->
-<section class="feature share">
-  <span class="anchor" id="teilen" aria-hidden="true"></span>
-  <div class="feature__inner">
-    <div data-fx="up">
-      <p class="eyebrow"><span class="eyebrow__num">03</span> Für alle anderen</p>
-      <h2>Ein Link,<br>und alle<br>schauen zu</h2>
-      <p class="lead">
-        Vom Handy aus teilst du das laufende Match als Link. Familie und Freunde schauen live zu, im Browser oder in der App, ohne eigenes Konto.
-      </p>
-      <p class="lead">
-        Am Meisterschaftstag teilt jede und jeder das eigene Match in die Mannschaftsgruppe. Wer alle Links öffnet, hat jeden Platz auf einem Bildschirm: Niemand muss mehr fragen, wie es steht.
-      </p>
-      <ul class="numlist">
-        <li><b>01</b><span>Teilen ist pro Match einzeln, standardmäßig teilt die App nichts</span></li>
-        <li><b>02</b><span>Der Link lässt sich endgültig abschalten: Ein gelöschtes Match nimmt seine Seite mit offline</span></li>
-        <li><b>03</b><span>Mehrere Links gehen genauso, live nebeneinander</span></li>
-        <li><b>04</b><span>Im Doppel genügt es, wenn eine oder einer der beiden zählt</span></li>
-      </ul>
-    </div>
-
-    <div class="share__visual" data-fx="up" data-fx-delay="2">
-      <!-- Share-Seite in HTML/CSS nachgebaut, gleiches Muster wie das
-           Uhr-Display in Szene 01: kein Screenshot, der beim nächsten
-           App-Update veraltet, und skaliert auf jedem Display mit. -->
-      <div class="browser" role="img"
-           aria-label="Share-Seite im Browser: share.kortscore.com, Match läuft live. Anna führt mit 6:4 im ersten Satz, 3:5 im zweiten, 40:30 im laufenden Game gegen Markus. Darunter Statistiken: 58 Prozent Punktanteil, 7 von 10 Breakbällen verwertet, 62 Minuten Dauer.">
-        <div class="browser__bar" aria-hidden="true">
-          <span class="browser__dots"><i></i><i></i><i></i></span>
-          <span class="browser__url">share.kortscore.com/7f3a…</span>
+    <!-- A mock of the spectator view, not live data: the scores are an
+         example. aria-hidden keeps the illustration out of the reading order,
+         the paragraph above already says what it shows. -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__card">
+        <div class="ticker__head">
+          <span class="ticker__label">Meisterschaft · Runde 4</span>
+          <span class="ticker__live"><span class="livedot"></span>Live</span>
         </div>
-
-        <div class="browser__page">
-          <div class="sharepage__head">
-            <span class="sharepage__live"><i aria-hidden="true"></i>Live</span>
-            <span class="sharepage__meta">Satz 2</span>
+        <div class="ticker__rows">
+          <div class="ticker__row ticker__row--home">
+            <span class="ticker__name">M. Berger</span>
+            <span class="ticker__set">6</span>
+            <span class="ticker__set">5</span>
+            <span class="ticker__points">40</span>
           </div>
-
-          <!-- Satz-Tabelle: Aufschlag-Punkt vor dem Namen, wie in der App. -->
-          <table class="sharepage__table">
-            <thead>
-              <tr>
-                <th scope="col">Spieler</th>
-                <th scope="col">1</th>
-                <th scope="col">2</th>
-                <th scope="col">Spiel</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">
-                  <i class="sharepage__serve" aria-hidden="true"></i>Anna
-                </th>
-                <td>6</td>
-                <td>3</td>
-                <td class="is-pts">40</td>
-              </tr>
-              <tr>
-                <th scope="row">Markus</th>
-                <td>4</td>
-                <td>5</td>
-                <td class="is-pts">30</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <dl class="sharepage__stats">
-            <div>
-              <dt>Punktanteil</dt>
-              <dd>58 %</dd>
-            </div>
-            <div>
-              <dt>Breakbälle</dt>
-              <dd>7 / 10</dd>
-            </div>
-            <div>
-              <dt>Dauer</dt>
-              <dd>62'</dd>
-            </div>
-          </dl>
+          <div class="ticker__rule"></div>
+          <div class="ticker__row ticker__row--away">
+            <span class="ticker__name">T. Wallner</span>
+            <span class="ticker__set">4</span>
+            <span class="ticker__set">5</span>
+            <span class="ticker__points">15</span>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── 04 Übertragen ────────────────────────────────────────────────────────
-     Die andere Hälfte der Live-Säule, und der Teil, den niemand erwartet: Das
-     übertragene Match muss nicht deines sein. Du sitzt mit der Uhr am Zaun
-     und zählst ein fremdes Spiel, die Spieler brauchen gar nichts. Steht nach
-     dem Teilen, weil es derselbe Link ist, nur nach außen gedreht. Gleiche
-     DOM-Form wie Block 02, Text zuerst, Handy rechts. -->
-<section class="feature">
-  <span class="anchor" id="uebertragen" aria-hidden="true"></span>
-  <div class="feature__inner">
-    <div data-fx="up">
-      <p class="eyebrow"><span class="eyebrow__num">04</span> Fremdes Match</p>
-      <h2>Ihr Match.<br>Deine<br>Übertragung.</h2>
-      <p class="lead">
-        Das Turnier deines Kindes, das Finale einer Freundin: Du sitzt am
-        Zaun, zählst am Handy mit, und alle, die nicht kommen konnten, schauen
-        live zu. Eine Uhr brauchst du dafür nicht, die
-        Spieler brauchen weder App noch Konto.
-      </p>
-      <ul class="numlist">
-        <li><b>01</b><span>Im Tab „Zuschauen“ auf „Match übertragen“ tippen: beide Namen eingeben, Format wählen</span></li>
-        <li><b>02</b><span>Gezählt wird am Handy, mit beiden echten Namen auf der Anzeige</span></li>
-        <li><b>03</b><span>Der Live-Link entsteht automatisch, sofort teilbar</span></li>
-        <li><b>04</b><span>Übertragene Matches bleiben aus deinem Archiv und deinen Statistiken draußen</span></li>
-      </ul>
-    </div>
-
-    <div class="devices" data-fx="up" data-fx-delay="2">
-      <div class="phone" data-parallax="0.05">
-        <img src="../assets/shot-broadcast.png" width="1080" height="2424" loading="lazy"
-             alt="Übertragung einrichten am Handy: beide Spielernamen eingegeben, Format gewählt, bereit zum Start">
+      <div class="ticker__second">
+        <span class="ticker__name">Doppel 1 · Platz 3</span>
+        <span class="ticker__score"><span class="livedot"></span>7–6⁴  2–3</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── 05 Auswertung ────────────────────────────────────────────────────── -->
-<section class="feature">
-  <span class="anchor" id="auswertung" aria-hidden="true"></span>
-  <div class="feature__inner">
-    <div class="devices" data-fx="up">
-      <div class="phone phone--crop" data-parallax="0.04">
-        <img src="../assets/shot-sets.png" width="1080" height="2424" loading="lazy"
-             alt="Matchstatistik am Handy: Satz-Filter Gesamt, Satz 1, Satz 2; Breakbälle, Druckpunkte, Servicespiele und das Punkteprotokoll">
-      </div>
+<!-- ── Watch teaser ─────────────────────────────────────────────────────────
+     Only a pointer: the three recommendations with their affiliate links live
+     on their own page, so the landing page does not carry that section. -->
+<section class="teaser shell">
+  <div class="teaser__head">
+    <div>
+      <p class="eyebrow">Welche Uhr</p>
+      <h2 class="section-title">Empfohlene Uhren</h2>
     </div>
-
-    <div data-fx="up" data-fx-delay="2">
-      <p class="eyebrow"><span class="eyebrow__num">05</span> Nach dem Match</p>
-      <h2>Nicht ob.<br>Sondern<br>wann.</h2>
-      <p class="lead">
-        Jeder Punkt wird mitgeschrieben. Daraus wird mehr als ein Endergebnis: Breakbälle, Satz- und Matchbälle, Einstand-Games, längste Serie, die Punkte also, an denen das Match entschieden wurde.
-      </p>
-      <p class="lead">
-        Über allen Matches steht die Gesamtstatistik: Siegquote, Form, Bilanz nach Wochentag und Tageszeit, Einzel und Doppel getrennt.
-      </p>
-    </div>
+    <a class="back" href="uhren.html">Alle drei Uhren →</a>
+  </div>
+  <div class="teaser__grid">
+    <a class="teaser__card" href="uhren.html">
+      <img src="../assets/watch-galaxy-watch-8.webp" width="56" height="56"
+           loading="lazy" decoding="async" alt="">
+      <span>
+        <span class="teaser__name">Samsung Galaxy Watch 8</span>
+        <span class="teaser__note">Wear OS 6</span>
+      </span>
+    </a>
+    <a class="teaser__card" href="uhren.html">
+      <img src="../assets/watch-galaxy-watch-ultra.webp" width="56" height="56"
+           loading="lazy" decoding="async" alt="">
+      <span>
+        <span class="teaser__name">Galaxy Watch Ultra</span>
+        <span class="teaser__note">Große Batterie</span>
+      </span>
+    </a>
+    <a class="teaser__card" href="uhren.html">
+      <img src="../assets/watch-pixel-watch-5.webp" width="56" height="56"
+           loading="lazy" decoding="async" alt="">
+      <span>
+        <span class="teaser__name">Google Pixel Watch 5</span>
+        <span class="teaser__note">Kompakt</span>
+      </span>
+    </a>
   </div>
 </section>
 
-<!-- ── 06 Trainer ───────────────────────────────────────────────────────────
-     Das Ende der zweiten Säule: Die Statistik oben beantwortet "wann wurde es
-     entschieden", der Trainer beantwortet "was trainiere ich deshalb".
-     Gespiegelt zu Block 05, Text links, Handy rechts, damit die beiden
-     nicht als eine lange Spalte lesen. Der Plus-Tag sitzt am Eyebrow, weil
-     dies das einzige Kapitel ist, das nicht gratis ist, und das soll vor dem
-     ersten Satz klar sein. -->
-<section class="feature">
-  <span class="anchor" id="trainer" aria-hidden="true"></span>
-  <div class="feature__inner">
-    <div data-fx="up">
-      <p class="eyebrow"><span class="eyebrow__num">06</span> Dein Trainer <span class="plustag">Kortscore Plus</span></p>
-      <h2>Ein Trainer, der<br>jeden Punkt<br>gesehen hat.</h2>
-      <p class="lead">
-        Der Kortscore Trainer liest dein Match, jeden Breakball und jede Serie, und sagt dir in kurzen Sätzen, was du verbessern sollst.
-      </p>
-      <ul class="numlist">
-        <li><b>01</b><span>Analysiert einzelne Matches und gibt konkrete Tipps</span></li>
-        <li><b>02</b><span>Erkennt Spiele gegen dieselben Gegner und bezieht sie in die Analyse ein</span></li>
-        <li><b>03</b><span>Gesamtanalyse mit Trainingstipps über alle Matches</span></li>
-      </ul>
-      <p class="note">
-        Analyse passiert lokal (auf unterstützten Geräten) oder über Google
-        Firebase.
-      </p>
-    </div>
+<!-- ── CTA ──────────────────────────────────────────────────────────────── -->
+<section class="cta" id="get">
+  <div class="cta__inner">
+    <h2 class="cta__title">Nächstes Match? Zähl mit.</h2>
+    <p class="cta__lede">Gratis für Wear OS und Android. In zwei Minuten startklar.</p>
 
-    <div class="devices" data-fx="up" data-fx-delay="2">
-      <div class="phone" data-parallax="0.05">
-        <img src="../assets/shot-trainer.png" width="1008" height="2244" loading="lazy"
-             alt="Matchdetail mit der Match-Analyse-Karte: kurze Trainer-Einschätzung und ein Trainingstipp">
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- Google's official badge, unaltered: the brand guidelines forbid
+         recolouring, adding text or cropping it. The PNG carries its own
+         transparent clear space, so no extra padding is needed. The link
+         itself is the label, hence alt text instead of a caption. -->
+    <a class="storebadge" href="https://play.google.com/store/apps/details?id=com.swordistudios.kortscore" target="_blank" rel="noopener">
+      <img src="../assets/google-play-de.png" width="323" height="125"
+           alt="Jetzt bei Google Play">
+    </a>
 
-<!-- ── 07 Kostenlos & Kortscore Plus ────────────────────────────────────── -->
-<!-- Kernbotschaft zuerst: Die App kostet nichts und zeigt keine Werbung.
-     Plus ist der Nachsatz, nicht die Hauptsache, deshalb trägt die Tabelle
-     die Gratis-Spalte links und Plus rechts, nicht umgekehrt. -->
-<section class="plus">
-  <span class="anchor" id="plus" aria-hidden="true"></span>
-  <div class="plus__inner">
-    <div class="plus__head" data-fx="up">
-      <p class="eyebrow"><span class="eyebrow__num">07</span> Was die App kostet</p>
-      <h2>Kostenlos.<br>Werbefrei.<br>Punkt.</h2>
-      <p class="lead">
-        Kortscore kostet nichts und zeigt keine Werbung: kein Banner, kein
-        Werbe-SDK, für alle gleich. Wer tiefer graben will, holt sich Kortscore
-        Plus: einmaliger Kauf, kein Abo.
-      </p>
-    </div>
-
-    <!-- Drei Kacheln vor der Tabelle: Dass die App gratis und werbefrei ist,
-         ist die Antwort, die die meisten Besucher suchen, sie sollte man
-         nicht erst aus einer Vergleichstabelle herauslesen müssen. -->
-    <ul class="claims" data-fx="up" data-fx-delay="1">
-      <li class="claim">
-        <b>0 €</b>
-        <span>Zählen, Live-Teilen, Übertragen und das Match-Archiv sind enthalten.</span>
-      </li>
-      <li class="claim">
-        <b>0 Werbung</b>
-        <span>Kein Banner, keine Einblendung, kein Werbe-SDK. Nichts verfolgt dich über andere Apps.</span>
-      </li>
-      <li class="claim">
-        <b>0 Konten</b>
-        <span>Keine Registrierung, keine E-Mail, kein Passwort. Installieren
-        und loszählen.</span>
-      </li>
-    </ul>
-
-    <!-- Echte Tabelle statt Karten: Die Frage "was kostet mich was" ist ein
-         Vergleich, und ein Vergleich gehört in Zeilen und Spalten. -->
-    <div class="plus__tablewrap" data-fx="up" data-fx-delay="1">
-      <table class="plus__table">
-        <caption class="plus__caption">
-          Kortscore Gratis im Vergleich zu Kortscore Plus
-        </caption>
-        <thead>
-          <tr>
-            <th scope="col">Funktion</th>
-            <th scope="col">Gratis</th>
-            <th scope="col" class="is-plus">Plus</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Keine Werbung</th>
-            <td><i class="tick" role="img" aria-label="enthalten"></i></td>
-            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">Punktestand über die Uhr eintragen</th>
-            <td><i class="tick" role="img" aria-label="enthalten"></i></td>
-            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">Unbegrenztes Match-Archiv</th>
-            <td><i class="tick" role="img" aria-label="enthalten"></i></td>
-            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">Ergebnis und Basis-Statistik jedes Matches</th>
-            <td><i class="tick" role="img" aria-label="enthalten"></i></td>
-            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">Live-Teilen: Link, Zuschauen, Punkteverlauf</th>
-            <td><i class="tick" role="img" aria-label="enthalten"></i></td>
-            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">
-              Fremdes Match übertragen
-              <span>vom Spielfeldrand, Live-Link inklusive</span>
-            </th>
-            <td><i class="tick" role="img" aria-label="enthalten"></i></td>
-            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">Manuelles Backup und Wiederherstellen</th>
-            <td><i class="tick" role="img" aria-label="enthalten"></i></td>
-            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">
-              Ausführliche Statistiken
-              <span>Druckpunkte, Statistik pro Satz, Uhr-Akku, Punkteverlauf</span>
-            </th>
-            <td><span class="dash" role="img" aria-label="nicht enthalten"></span></td>
-            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">
-              Matchverlauf
-              <span>Satz für Satz, Spiel für Spiel</span>
-            </th>
-            <td><span class="dash" role="img" aria-label="nicht enthalten"></span></td>
-            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">
-              Auto-Backup
-              <span>sichert das Archiv unbeaufsichtigt</span>
-            </th>
-            <td><span class="dash" role="img" aria-label="nicht enthalten"></span></td>
-            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">
-              Kortscore Trainer
-              <span>KI-Match- und Karriere-Analyse, direkt am Gerät</span>
-            </th>
-            <td><span class="dash" role="img" aria-label="nicht enthalten"></span></td>
-            <td class="is-plus"><i class="tick" role="img" aria-label="enthalten"></i></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p class="plus__note" data-fx="up">
-      Plus ist ein einmaliger Kauf, kein Abo. Er gilt dauerhaft, nach einer
-      Neuinstallation stellt ihn die App still wieder her. Das Ergebnis deines
-      eigenen Matches verkaufen wir dir nicht zurück, und dich vor Datenverlust
-      zu schützen kostet nie Geld: Plus kauft nur die Bequemlichkeit, dass das
-      Backup von allein passiert.
+    <p class="cta__hint">
+      Wear OS 3+ · Android 8.0+ · keine Werbung, kein Konto
     </p>
   </div>
 </section>
-
-<!-- ── 08 Datenschutz ───────────────────────────────────────────────────── -->
-<section class="privacy">
-  <span class="anchor" id="privat" aria-hidden="true"></span>
-  <div class="privacy__inner">
-    <div data-fx="up">
-      <p class="eyebrow"><span class="eyebrow__num">08</span> Datenschutz</p>
-      <h2>Du entscheidest,<br>was rausgeht</h2>
-    </div>
-    <!-- Seit dem Live-Sharing stimmt "bleibt alles lokal" nicht mehr pauschal.
-         Deshalb hier getrennt: Default lokal, Teilen als bewusste Ausnahme,
-         und exakt benannt, was dabei die Seite erreicht. -->
-    <ul class="privacy__list" data-fx="up" data-fx-delay="2">
-      <li>
-        <b>01</b>
-        <strong>Kein Konto, keine Anmeldung</strong>
-        <span>
-          Installieren und zählen, auch fürs Teilen und Zuschauen.
-        </span>
-      </li>
-      <li>
-        <b>02</b>
-        <strong>Standardmäßig bleibt alles lokal</strong>
-        <span>
-          Alles liegt auf Uhr und Handy. Solange du nichts teilst, verlässt kein Match das Gerät.
-        </span>
-      </li>
-      <li>
-        <b>03</b>
-        <strong>Teilen entscheidest du pro Match</strong>
-        <span>
-          Auf die Share-Seite gehen nur die zwei Anzeigenamen, Spielstand und Punktprotokoll. Sonst nichts.
-        </span>
-      </li>
-      <li>
-        <b>04</b>
-        <strong>Abschalten geht jederzeit</strong>
-        <span>
-          Ein Tap deaktiviert den Link endgültig.
-        </span>
-      </li>
-      <li>
-        <b>05</b>
-        <strong>Der KI-Trainer denkt auf deinem Handy</strong>
-        <span>
-          Die Analyse läuft standardmäßig am Gerät. Die Cloud hilft nur, wenn du zustimmst.
-        </span>
-      </li>
-      <li>
-        <b>06</b>
-        <strong>Selbst die Cloud bekommt nur Zahlen</strong>
-        <span>
-          Höchstens zwölf anonyme Fakten-Zeilen verlassen das Gerät: Spielstände und Statistiken, nie Namen.
-        </span>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<!-- ── Empfohlene Uhren ─────────────────────────────────────────────────────
-     Die eine Frage, die die Download-Sektion nicht beantwortet: welche Uhr.
-     Die Voraussetzungen darunter sagen "Wear OS 3+", das ist richtig und im
-     Laden stehend nutzlos. Deshalb drei konkrete Uhren direkt vor dem
-     Download, jede mit dem einen Grund, der zu dieser App passt (helles
-     Display, Akku, Updates). Keine Preise, keine Datenblätter, beides
-     veraltet.
-
-     Die Links sind Amazon-Partnerlinks, daher rel="nofollow sponsored" und
-     der sichtbare Hinweis in der Sektion: Das Partnerprogramm verlangt ihn
-     lesbar, nicht versteckt.
-     ────────────────────────────────────────────────────────────────────── -->
-<section class="watches">
-  <span class="anchor" id="uhren" aria-hidden="true"></span>
-  <div class="watches__inner">
-    <div class="watches__head" data-fx="up">
-      <p class="eyebrow"><span class="eyebrow__num">09</span> Welche Uhr</p>
-      <h2>Drei Uhren,<br>die passen</h2>
-      <p class="lead">
-        Kortscore läuft auf jeder Wear-OS-3-Uhr. Wer noch sucht: Diese drei machen ihre Arbeit auf dem Platz.
-      </p>
-    </div>
-
-    <!-- Alle drei Fotos sind drin, als WebP in 480 und 960 Pixel Breite
-         (srcset), quadratisch auf die Uhr geschnitten, aus eigenen Aufnahmen:
-         Amazons eigene Produktbilder dürfen wir nicht selbst hosten. Die
-         Aufnahme der Pixel Watch liegt in 16:9 und ist nah dran, ihr
-         quadratischer Ausschnitt sitzt deshalb etwas enger als die anderen
-         zwei; Balken oben und unten hätten wie ein Fehler gewirkt.
-         .watchcard__shot behält sein Uhrensymbol als Rückfall für eine Datei,
-         die nicht lädt, und die festen Werte für width und height halten die
-         Reihe ruhig, während die Bilder kommen. -->
-    <ul class="watchcards" data-fx="up" data-fx-delay="1">
-      <li class="watchcard">
-        <div class="watchcard__shot">
-          <img src="../assets/watch-galaxy-watch-8.webp"
-               srcset="../assets/watch-galaxy-watch-8.webp 480w,
-                       ../assets/watch-galaxy-watch-8@2x.webp 960w"
-               sizes="(max-width: 900px) 88vw, 30vw"
-               width="480" height="480" loading="lazy" decoding="async"
-               alt="Samsung Galaxy Watch 8, silbernes Gehäuse mit dunklem Armband">
-        </div>
-        <h3>Samsung Galaxy Watch 8</h3>
-        <p>
-          Wear OS 6, in direkter Sonne lesbar, Akku für ein langes Matchprogramm.
-        </p>
-        <a class="btn watchcard__btn" href="https://amzlink.to/az0Q86fDm7t5p"
-           target="_blank" rel="nofollow sponsored noopener">Bei Amazon ansehen</a>
-      </li>
-
-      <li class="watchcard">
-        <div class="watchcard__shot">
-          <img src="../assets/watch-galaxy-watch-ultra.webp"
-               srcset="../assets/watch-galaxy-watch-ultra.webp 480w,
-                       ../assets/watch-galaxy-watch-ultra@2x.webp 960w"
-               sizes="(max-width: 900px) 88vw, 30vw"
-               width="480" height="480" loading="lazy" decoding="async"
-               alt="Samsung Galaxy Watch Ultra (2025), Titangehäuse mit blauem Armband">
-        </div>
-        <h3>Samsung Galaxy Watch Ultra (2025)</h3>
-        <p>
-          Robustes Gehäuse, größter Akku der drei, für lange Turniertage im Freien.
-        </p>
-        <a class="btn watchcard__btn" href="https://amzlink.to/az0f04miu49Xg"
-           target="_blank" rel="nofollow sponsored noopener">Bei Amazon ansehen</a>
-      </li>
-
-      <li class="watchcard">
-        <div class="watchcard__shot">
-          <img src="../assets/watch-pixel-watch-5.webp?v=2"
-               srcset="../assets/watch-pixel-watch-5.webp?v=2 480w,
-                       ../assets/watch-pixel-watch-5@2x.webp?v=2 960w"
-               sizes="(max-width: 900px) 88vw, 30vw"
-               width="480" height="480" loading="lazy" decoding="async"
-               alt="Google Pixel Watch 5, schwarzes Gehäuse mit schwarzem Armband">
-        </div>
-        <h3>Google Pixel Watch 5</h3>
-        <p>
-          Wear OS direkt von Google, bekommt Updates zuerst. Kompakt am Handgelenk.
-        </p>
-        <a class="btn watchcard__btn" href="https://amzlink.to/az0o6BdeJ1gGu"
-           target="_blank" rel="nofollow sponsored noopener">Bei Amazon ansehen</a>
-      </li>
-    </ul>
-
-    <!-- Amazon verlangt diesen Hinweis klar und deutlich. Er steht am Ende der
-         Sektion, nach den Karten, auf die er sich bezieht, klein aber in
-         lesbarer Textfarbe: dezent, nicht versteckt. -->
-    <p class="watches__disclosure" data-fx="up" data-fx-delay="2">
-      Als Amazon-Partner verdienen wir an qualifizierten Verkäufen.
-    </p>
-  </div>
-</section>
-
-<!-- ── Laden ────────────────────────────────────────────────────────────────
-     Ersetzt den früheren Tester-Aufruf: Die App geht in den Play Store, also
-     endet die Seite mit dem Download statt mit der Bitte mitzutesten. Die
-     Voraussetzungen bleiben, sie beantworten "läuft das bei mir?", und der
-     iPhone-Hinweis erspart den vergeblichen Weg in den Store. -->
-<section class="tester">
-  <span class="anchor" id="laden" aria-hidden="true"></span>
-  <div class="tester__inner" data-fx="up">
-    <p class="tester__badge">Kostenlos &amp; werbefrei</p>
-    <h2>Hol sie dir<br>aufs Handgelenk</h2>
-    <p class="tester__lede">
-      Kortscore kostet nichts, zeigt keine Werbung und braucht kein Konto.
-      Installieren, Uhr koppeln, loszählen: dein Match oder das vor deinen
-      Augen. Deine Freunde und deine Familie brauchen weder Uhr noch App: zum
-      Mitschauen genügt der Link im Browser.
-    </p>
-
-    <!-- Offizielles Google-Badge, unverändert: Die Markenrichtlinien verbieten
-         Umfärben, eigenen Text und Beschneiden. Das PNG bringt seinen
-         Schutzraum als transparenten Rand mit, zusätzliches Padding braucht es
-         also nicht. Der Link ist die Beschriftung, daher Alt-Text statt
-         Bildunterschrift. -->
-    <div class="tester__cta">
-      <a class="storebadge" href="https://play.google.com/store/apps/details?id=com.swordistudios.kortscore" target="_blank" rel="noopener">
-        <img src="../assets/google-play-de.png" width="323" height="125"
-             alt="Jetzt bei Google Play">
-      </a>
-    </div>
-
-    <p class="tester__hint">
-      Öffnet den Play Store. Fragen vor dem Installieren?
-      <a class="link" href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
-    </p>
-
-    <div class="reqs">
-      <div class="req">
-        <span class="req__label">Uhr</span>
-        <span class="req__value">Wear OS 3+</span>
-        <span class="req__note">Pixel Watch, Galaxy Watch 4 und neuer</span>
-      </div>
-      <div class="req">
-        <span class="req__label">Handy</span>
-        <span class="req__value">Android 8.0+</span>
-        <span class="req__note">gekoppelt über die Wear-OS-App</span>
-      </div>
-      <div class="req">
-        <span class="req__label">Preis</span>
-        <span class="req__value">Kostenlos</span>
-        <span class="req__note">keine Werbung, kein Konto, kein Abo</span>
-      </div>
-    </div>
-  </div>
-</section>
+</main>
 
 <!-- ── Footer ───────────────────────────────────────────────────────────── -->
 <footer class="footer">
   <div class="footer__inner">
-    <div class="footer__brand">
-      <img src="../assets/icon.png" alt="" width="28" height="28">
-      <span>Kortscore</span>
-    </div>
-    <p class="footer__claim">Du spielst. Die Uhr zählt.</p>
-    <p class="footer__legal">
-      <a class="link" href="https://kortscore.com/legal/impressum.html">Impressum</a> ·
-      <a class="link" href="https://kortscore.com/legal/privacy.html">Datenschutz</a> ·
-      <a class="link" href="https://kortscore.com/legal/terms.html">Nutzungsbedingungen</a>
-    </p>
-    <p class="footer__legal">
-      © <span id="year">2026</span>
-      <a class="link" href="https://www.swordistudios.com" target="_blank" rel="noopener">swordi.studios</a>
+    <p class="footer__claim">Kortscore · Tennis zählen am Handgelenk</p>
+    <p class="footer__links">
+      <a href="uhren.html">Uhren</a>
+      <a href="../legal/impressum.html">Impressum</a>
+      <a href="../legal/privacy.html">Datenschutz</a>
+      <a href="../legal/terms.html">AGB</a>
+      <a href="https://www.swordistudios.com" target="_blank" rel="noopener">swordi.studios</a>
     </p>
   </div>
 </footer>
 
-<!-- ── Chat ─────────────────────────────────────────────────────────────────
-     Eigener Button statt des Tawk.to-Widgets: Das fremde Skript setzt Cookies
-     und überträgt die IP in die USA, und genau das würde das cookiefreie
-     Versprechen dieser Seite (siehe Umami-Kommentar oben) samt der Aussage
-     "kein Consent-Banner nötig" kippen. Deshalb lädt Tawk.to erst auf Klick -
-     wer nicht chattet, kontaktiert den Dienst nie. Der Button ist ein echter
-     <button>, kein div, damit Tastatur und Screenreader ihn wie erwartet
-     bedienen. Ohne JavaScript bleibt er ausgeblendet (script.js zeigt ihn),
-     denn ohne JS kann er ohnehin nichts laden.
-     ────────────────────────────────────────────────────────────────────── -->
-<button class="chat" type="button" data-chat hidden aria-label="Chat öffnen"
-        data-chat-idle="Fragen? Schreib uns"
-        data-chat-loading="Chat wird geladen …"
-        data-chat-mail="Schreib uns eine E-Mail">
-  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.9 9.9 0 0 1-2.8-.4L3 21l1.9-5.1A8.3 8.3 0 0 1 4 11.5 8.4 8.4 0 0 1 12.5 3 8.4 8.4 0 0 1 21 11.5Z"/>
-  </svg>
-  <span data-chat-label>Fragen? Schreib uns</span>
-</button>
-
-<script src="../script.js?v=202608241030"></script>
+<script src="../script.js?v=202608301100"></script>
 </body>
 </html>

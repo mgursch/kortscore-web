@@ -1,1846 +1,1009 @@
-/* ─────────────────────────────────────────────────────────────────────────
-   Kortscore, Landingpage  ·  Direction B "Court Paper"
-   Palette und Typografie aus dem Redesign; Cream/Ink der App als Website.
+/* ============================================================================
+   Kortscore — Website
+   ============================================================================
+   Neu aufgebaut nach dem Design "Kortscore Website.dc.html" aus dem Claude-
+   Design-Handoff. Die Tokens stammen aus der README desselben Bundles, damit
+   Website und App dieselbe Sprache sprechen.
+
+   Aufbau: Tokens, Reset, Typo-Primitive, Layout, dann die Sektionen in der
+   Reihenfolge, in der sie auf der Seite stehen.
+   ========================================================================= */
+
+/* ── Fonts ────────────────────────────────────────────────────────────────
+   Lokal eingebunden statt über Google Fonts: ein Drittanbieter-Request würde
+   die IP der Besucher an Google übertragen und damit die Aussage kippen, dass
+   diese Seite ohne Einwilligungsbanner auskommt.
+
+   Barlow Condensed traegt Überschriften und Buttons, IBM Plex Sans den
+   Fließtext, IBM Plex Mono die Labels und alle Zahlen.
    ───────────────────────────────────────────────────────────────────────── */
-
-/* ── Fonts (lokal, kein Google-Fonts-Aufruf) ───────────────────────────── */
 @font-face {
-  font-family: 'Archivo';
+  font-family: 'Barlow Condensed';
+  src: url('assets/fonts/BarlowCondensed-600-latin.woff2') format('woff2');
+  font-weight: 600;
   font-style: normal;
-  font-weight: 100 900;
-  font-stretch: 100%;
   font-display: swap;
-  src: url("assets/fonts/Archivo-latin.woff2") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
-    U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Archivo';
-  font-style: normal;
-  font-weight: 100 900;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url("assets/fonts/Archivo-latin-ext.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
-    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
-    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Archivo Black';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/fonts/ArchivoBlack-latin.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
-    U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Archivo Black';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/fonts/ArchivoBlack-latin-ext.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
-    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
-    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 100 800;
-  font-display: swap;
-  src: url("assets/fonts/JetBrainsMono-latin.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
-    U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 100 800;
-  font-display: swap;
-  src: url("assets/fonts/JetBrainsMono-latin-ext.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
-    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
-    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+                 U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+                 U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* ── Tokens ────────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Barlow Condensed';
+  src: url('assets/fonts/BarlowCondensed-600-latin-ext.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+                 U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Barlow Condensed';
+  src: url('assets/fonts/BarlowCondensed-700-latin.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                 U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+                 U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Barlow Condensed';
+  src: url('assets/fonts/BarlowCondensed-700-latin-ext.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+                 U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('assets/fonts/IBMPlexSans-latin.woff2') format('woff2');
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                 U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+                 U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('assets/fonts/IBMPlexSans-latin-ext.woff2') format('woff2');
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+                 U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('assets/fonts/IBMPlexMono-400-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                 U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+                 U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('assets/fonts/IBMPlexMono-400-latin-ext.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+                 U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('assets/fonts/IBMPlexMono-600-latin.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                 U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+                 U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('assets/fonts/IBMPlexMono-600-latin-ext.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+                 U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ── Tokens ───────────────────────────────────────────────────────────────
+   Farben aus dem Handoff, Spalte "hell".
+
+   Zwei Grüntöne, und der Unterschied ist wichtig: --accent (#3ea56b) ist eine
+   Flächenfarbe, --accent-text (#1f5c34) eine Textfarbe. Das helle Grün auf dem
+   hellen Grund erreicht nur rund 2,3:1 und ist damit als Text unlesbar, als
+   Fläche mit dunkler Schrift darauf aber genau richtig. Deshalb: Flächen in
+   --accent, grüner Text auf hellem Grund immer in --accent-text.
+   ───────────────────────────────────────────────────────────────────────── */
 :root {
-  --paper:      #F2F4E4;  /* Grundfläche, Cream aus der App */
-  --paper-2:    #EAEDD8;  /* leicht abgesetzt */
-  --ink:        #14170F;  /* Text und dunkle Panels */
-  --ink-2:      #20250F;  /* aktives Panel in der Szene */
-  --ink-deep:   #0C0E08;
-  --sage:       #6E7358;  /* Mono-Labels */
-  --sage-2:     #8C927E;
-  --sage-3:     #A8AE99;
-  --body:       #3B402E;  /* Fließtext */
-  /* Akzent auf Dunkel. Seit dem App-Redesign das Grün der App (#3EA56B) statt
-     des früheren Lime, Website, Icon und Screenshots tragen denselben Ton.
-     Auf --ink rund 5.9:1, also über AA für Text. */
-  --lime:       #3EA56B;
-  --moss:       #1F5C34;  /* Akzent auf Cream, = accent-light der App */
-  --clay:       #C0272D;  /* Ziffern, Live-Punkt */
-  --bezel-a:    #4C5340;
-  --bezel-b:    #31382A;
+  --bg:            #faf9f5;
+  --bg-alt:        #f1efe4;  /* abgesetzte Sektion (Vereine)                */
+  --bg-dark:       #16150f;  /* dunkle Sektion (Warum Kortscore)            */
+  --surface:       #ffffff;
+  --surface-dark:  #26251d;  /* Karten auf dunklem Grund                    */
+  --border:        #e3e0d2;
+  --hairline:      #eceada;
 
-  --line:       rgba(20, 23, 15, .16);
-  --line-soft:  rgba(20, 23, 15, .09);
-  --on-dark:    rgba(242, 244, 228, .14);
+  --text:          #16150f;
+  --text-secondary:#4a4842;
+  --text-muted:    #66635b;
+  --text-on-dark:  #f2f3f0;
+  --text-on-dark-muted: #a19d93;
 
-  --max:    1320px;
-  --gutter: clamp(18px, 4vw, 44px);
+  --accent:        #3ea56b;  /* nur Flächen                                 */
+  --accent-text:   #1f5c34;  /* nur Text auf hellem Grund                   */
+  --on-accent:     #0f1a13;  /* Text auf --accent                           */
+  --on-dark:       #faf9f5;  /* Text auf --bg-dark                          */
 
-  --sans:    Archivo, system-ui, -apple-system, sans-serif;
-  --display: 'Archivo Black', Archivo, system-ui, sans-serif;
-  --mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;
+  --font-body:    'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+
+  --shell:   1060px;  /* Inhaltsbreite aus dem Design                       */
+  --gutter:  32px;
+  --radius:  16px;
+
+  --shadow-card: 0 16px 40px rgba(22, 21, 15, 0.08);
+  --shadow-shot: 0 24px 60px rgba(22, 21, 15, 0.22);
 }
 
-* { box-sizing: border-box; }
+/* ── Reset ──────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
+html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--sans);
-  font-size: 17px;
-  line-height: 1.6;
-  overflow-x: clip;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16.5px;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
 
-img { display: block; max-width: 100%; height: auto; }
-a { color: inherit; text-decoration: none; }
+img, svg { display: block; max-width: 100%; }
+ul { margin: 0; padding: 0; list-style: none; }
+p  { margin: 0; }
 
-h1, h2, h3 {
-  margin: 0;
-  font-family: var(--display);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: -0.04em;
-  line-height: .94;
+/* Zahlen stehen überall tabellarisch: Scores und Kennzahlen sollen beim
+   Wechsel nicht springen und in Spalten exakt untereinander stehen. */
+:where(.mono, .stat__num, .ticker) { font-variant-numeric: tabular-nums; }
+
+a { color: var(--accent-text); }
+a:hover { color: var(--accent); }
+
+:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
-/* Sprungziele: unsichtbare Anker, damit fixierte Nav nichts verdeckt. */
-.anchor {
-  display: block;
-  height: 0;
-  scroll-margin-top: 88px;
+/* Der Rest der Seite darf sich bewegen, wer das abbestellt hat, bekommt alles
+   sofort und ohne Übergang. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
-/* ── Wiederkehrende Bausteine ──────────────────────────────────────────── */
-.wrap {
-  max-width: var(--max);
-  margin: 0 auto;
+/* ── Primitive ──────────────────────────────────────────────────────────── */
+
+/* Zentrierte Inhaltsspalte. Jede Sektion, die volle Breite braucht (farbiger
+   Grund), bekommt den Grund außen und diesen Container innen. */
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
 }
 
-.mono {
-  font-family: var(--mono);
-  font-weight: 700;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-}
-
-/* Sektions-Label: "01 Während des Matches" */
 .eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 0 0 20px;
-  font-family: var(--mono);
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: .2em;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--sage);
+  color: var(--text-muted);
 }
-.eyebrow__num { color: var(--clay); }
 
-/* Plus-Marker am Trainer-Eyebrow: dass die Analyse zu Plus gehört, soll man
-   sehen, bevor man den Abschnitt liest, nicht erst im letzten Listenpunkt. */
-.plustag {
-  display: inline-block;
-  margin-left: 10px;
-  padding: 2px 10px;
-  border: 1px solid var(--moss);
-  border-radius: 999px;
-  color: var(--moss);
-  font-family: var(--mono);
-  font-size: 11px;
+.section-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 34px;
   font-weight: 700;
-  letter-spacing: .08em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  vertical-align: middle;
+  line-height: 1.05;
 }
 
 .lead {
-  margin: 22px 0 0;
-  max-width: 34ch;
-  color: var(--body);
-  font-size: clamp(16px, 1.4vw, 18.5px);
-  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary);
   text-wrap: pretty;
 }
 
+/* Buttons. Die Pillenform und die Condensed-Versalien kommen aus dem Design;
+   --btn-bg und --btn-fg machen die Varianten zu einer Frage von zwei Zeilen. */
 .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 28px;
-  border-radius: 12px;
-  background: var(--ink);
-  color: var(--lime);
-  font-weight: 600;
-  font-size: 16px;
-  transition: transform .25s cubic-bezier(.2, .8, .3, 1), box-shadow .25s;
-}
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 34px -14px rgba(20, 23, 15, .5);
-}
-.btn:active { transform: translateY(0); }
-
-.btn--ghost {
-  background: transparent;
-  color: var(--ink);
-  box-shadow: inset 0 0 0 1.5px rgba(20, 23, 15, .2);
-}
-.btn--ghost:hover {
-  background: rgba(20, 23, 15, .05);
-  box-shadow: inset 0 0 0 1.5px rgba(20, 23, 15, .45);
-  transform: none;
-}
-
-.link {
-  color: var(--moss);
-  text-decoration: underline;
-  text-decoration-color: rgba(76, 107, 47, .4);
-  text-underline-offset: 3px;
-}
-.link:hover { text-decoration-color: var(--moss); }
-
-/* ── Nav ───────────────────────────────────────────────────────────────── */
-/* ── Sprachhinweis ─────────────────────────────────────────────────────────
-   Liegt über der fixierten Navigation und schiebt sie per Klasse am <body>
-   nach unten, statt sich unter sie zu legen. Dunkel wie die Fußzeile, damit
-   er als Systemhinweis und nicht als Teil der Seite gelesen wird. */
-.langbar {
-  position: fixed;
-  inset: 0 0 auto 0;
-  z-index: 70;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px 18px;
-  padding: 10px var(--gutter);
-  background: var(--ink);
-  color: var(--sage-3);
-  font-size: 14.5px;
-}
-.langbar[hidden] { display: none; }
-.langbar__go {
-  color: var(--lime);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.langbar__close {
-  padding: 4px 10px;
-  border: 1px solid var(--on-dark);
-  border-radius: 8px;
-  background: none;
-  color: var(--sage-3);
-  font: inherit;
-  font-size: 13px;
+  display: inline-block;
+  background: var(--btn-bg, var(--text));
+  color: var(--btn-fg, var(--on-dark));
+  border: 0;
+  border-radius: 999px;
+  padding: 15px 30px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
   cursor: pointer;
+  transition: transform 0.18s ease, filter 0.18s ease;
 }
-.langbar__close:hover { color: var(--paper); border-color: var(--sage-3); }
+.btn:hover  { filter: brightness(1.06); color: var(--btn-fg, var(--on-dark)); }
+.btn:active { transform: translateY(1px); }
 
-.nav {
-  position: fixed;
-  /* --langbar-h ist 0, solange kein Sprachhinweis steht; das Skript setzt die
-     gemessene Höhe, sobald er erscheint. */
-  inset: var(--langbar-h, 0px) 0 auto 0;
-  z-index: 60;
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  padding: 16px var(--gutter);
-  transition: background .4s ease, box-shadow .4s ease;
-}
-.nav__brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-right: auto;
-  font-family: var(--display);
-  font-size: 17px;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-}
-.nav__brand img { border-radius: 9px; }
-.nav__links {
-  display: flex;
-  gap: 24px;
-  font-family: var(--mono);
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--sage);
-}
-.nav__links a { transition: color .2s; }
-.nav__links a:hover { color: var(--ink); }
+.btn--accent { --btn-bg: var(--accent); --btn-fg: var(--on-accent); }
+.btn--small  { padding: 10px 20px; font-size: 17px; }
 
-.nav__cta {
-  display: inline-flex;
-  align-items: center;
-  padding: 11px 22px;
-  border-radius: 10px;
-  background: var(--ink);
-  color: var(--lime);
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  transition: transform .25s cubic-bezier(.2, .8, .3, 1);
-}
-.nav__cta:hover { transform: translateY(-2px); }
-
-/* Sprachumschalter: Er zeigt die Sprache, in die er führt, nicht die aktuelle.
-   Bewusst nur ein Rahmen, die gefüllte Fläche daneben gehört dem CTA, und
-   zwei gleich laute Knöpfe würden sich gegenseitig entwerten. */
-.nav__lang {
-  display: inline-flex;
-  align-items: center;
-  margin-left: 10px;
-  padding: 10px 12px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  color: var(--sage);
-  transition: border-color .2s, color .2s;
-}
-.nav__lang:hover {
-  border-color: var(--ink);
-  color: var(--ink);
-}
-
-/* ── Hero ──────────────────────────────────────────────────────────────── */
-/* Oben nur so viel Luft, dass die Grafik nicht an der Menüleiste klebt -
-   sie soll das Erste sein, was im Bild steht. */
-.hero {
-  position: relative;
-  padding: clamp(86px, 11vh, 116px) var(--gutter) clamp(60px, 8vh, 90px);
-}
-.dot-live {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: currentColor;
-  animation: ks-live 1.6s ease-in-out infinite;
-}
-/* Claim und Buttons stehen unter der Grafik und sind mittig gesetzt: Sie
-   fassen zusammen, was man darüber schon gesehen hat. */
-.hero__copy {
-  margin-top: clamp(24px, 3vw, 36px);
-  padding-top: clamp(22px, 2.8vw, 32px);
-  border-top: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-.hero__title {
-  margin: 0;
-  font-size: clamp(34px, 4.4vw, 58px);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  text-wrap: balance;
-}
-.hero__title em {
-  font-style: normal;
-  color: var(--moss);
-}
-.hero__lede {
-  margin: clamp(16px, 1.8vw, 22px) auto 0;
-  max-width: 52ch;
-  color: var(--body);
-  font-size: clamp(16.5px, 1.4vw, 19px);
-  line-height: 1.5;
-  text-wrap: pretty;
-}
-.hero__cta {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-top: clamp(22px, 2.6vw, 30px);
-}
-
-/* ── Feature-Grafik: drei Handys + Uhr ─────────────────────────────────────
-   Aufgefächert: Das mittlere Handy steht gerade und vorn, die beiden äußeren
-   sind leicht gedreht, etwas kleiner und rücken so weit ein, dass sie den
-   mittleren Screen unten überlappen. Kein overflow:hidden auf dem Container -
-   die Uhr ragt bewusst über die linke Kante hinaus. */
-.showcase {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-.showcase__item {
-  margin: 0;
-  width: min(23vw, 225px);
-  flex: 0 0 auto;
-}
-/* Die Außenpositionen liegen hinter der Mitte und kippen nach außen weg.
-   transform-origin unten, damit die Unterkanten beim Drehen beieinander
-   bleiben und die Überlappung sauber aussieht. */
-.showcase__item--left,
-.showcase__item--right {
-  width: min(21.75vw, 209px);
-  /* Höher als die Mitte, damit die gedrehten Unterkanten nicht unter dem
-     vorderen Screen hervorschauen, sonst kippt die Tiefenwirkung. */
-  margin-bottom: clamp(21px, 2.6vw, 35px);
-  z-index: 1;
-}
-.showcase__item--left {
-  transform: rotate(-7deg);
-  transform-origin: bottom right;
-  margin-right: clamp(-54px, -4.5vw, -30px);
-}
-.showcase__item--right {
-  transform: rotate(7deg);
-  transform-origin: bottom left;
-  margin-left: clamp(-54px, -4.5vw, -30px);
-}
-/* Der mittlere Screen liegt vorn und bleibt ungedreht. */
-.showcase__item--center {
-  position: relative;
-  z-index: 2;
-}
-/* Rahmen und Radien mitverkleinern: Die Basiswerte von .phone sind für
-   320 px gedacht und wirken bei den schmaleren Geräten hier zu wuchtig. */
-.showcase .phone { padding: 8px; border-radius: 30px; }
-.showcase .phone img { border-radius: 23px; }
-
-@media (max-width: 720px) {
-  /* Enger fächern und stärker überlappen: Sonst schrumpfen drei Geräte
-     nebeneinander unter die Lesbarkeitsgrenze. Die Drehung bleibt, sie
-     trägt die Staffelung. */
-  .showcase__item { width: 36vw; }
-  .showcase__item--left,
-  .showcase__item--right { width: 32vw; margin-bottom: 14px; }
-  .showcase__item--left  { margin-right: -12vw; }
-  .showcase__item--right { margin-left: -12vw; }
-  /* Flacher drehen: Bei kleiner Breite schiebt die Drehung die äußeren
-     Ecken sonst über den Rand. */
-  .showcase__item--left  { transform: rotate(-5deg); }
-  .showcase__item--right { transform: rotate(5deg); }
-  /* Rahmen und Ecken mitskalieren, sonst wirkt der Rand viel zu dick. */
-  .showcase .phone { padding: 6px; border-radius: 22px; }
-  .showcase .phone img { border-radius: 17px; }
-}
-
-/* Kennzahlen-Raster: 1px-Gaps erzeugen die Trennlinien. */
-.tiles {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(120px, 100%), 1fr));
-  gap: 1px;
-  background: var(--line);
-  align-self: start;
-}
-.tile {
-  padding: 18px 16px;
-  background: var(--paper);
-}
-.tile:last-child { grid-column: auto / -1; }
-.tile b {
-  display: block;
-  font-family: var(--display);
-  font-size: clamp(24px, 3vw, 34px);
-  letter-spacing: -0.03em;
-}
-.tile span {
-  display: block;
-  margin-top: 4px;
-  font-family: var(--mono);
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--sage);
-}
-
-/* ── Panel-Sektion (dunkle Bühne mit Uhr-Screenshot) ───────────────────── */
-.stage {
-  padding: 0 var(--gutter) clamp(40px, 6vh, 80px);
-}
-.stage__panel {
-  position: relative;
-  border-radius: 26px;
-  background: var(--ink);
-  overflow: hidden;
-  padding: clamp(30px, 5vw, 70px);
-  display: grid;
-  gap: clamp(30px, 4vw, 54px);
-}
-/* Breiter als der Fließtext darunter, damit die Überschrift in zwei statt
-   vier Zeilen umbricht. */
-.stage__head { max-width: 62ch; }
-.stage__eyebrow {
-  margin: 0 0 18px;
-  font-family: var(--mono);
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--lime);
-}
-.stage h2 {
-  color: var(--paper);
-  font-size: clamp(28px, 3.4vw, 46px);
-  line-height: 1.05;
-}
-.stage p {
-  margin: 20px 0 0;
-  max-width: 38ch;
-  color: var(--sage-3);
-  font-size: clamp(15.5px, 1.3vw, 17.5px);
-  line-height: 1.55;
-}
-/* Drei Versprechen nebeneinander, durch 1px-Gaps getrennt wie die
-   Kennzahl-Kacheln, gleiche Sprache, nur auf dunklem Grund. */
-.promises {
-  list-style: none;
-  margin: 0;
-  padding: clamp(28px, 4vw, 40px) 0 0;
-  border-top: 1px solid var(--on-dark);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
-  gap: clamp(26px, 3.4vw, 46px);
-}
-.promise__num {
-  display: block;
-  font-family: var(--mono);
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: .2em;
-  color: var(--lime);
-}
-.promise h3 {
-  margin: 14px 0 0;
-  color: var(--paper);
-  font-family: var(--display);
-  font-size: clamp(19px, 1.7vw, 23px);
-  letter-spacing: -0.015em;
-  line-height: 1.15;
-}
-.promise p {
-  margin: 10px 0 0;
-  max-width: none;
-  color: var(--sage-3);
-  font-size: 15.5px;
-  line-height: 1.55;
-  text-wrap: pretty;
-}
-/* Zwei Säulen statt drei Versprechen: dieselbe Karte, nur mit mehr Gewicht.
-   Bei zwei Spalten hat jede Karte deutlich mehr Breite, und die Überschrift
-   der Drei-Karten-Optik wirkt darin zu leicht. Das Grid ist auto-fit, es
-   braucht also keine eigene Spaltenregel. */
-.promise--pillar h3 { font-size: clamp(20px, 2.2vw, 26px); }
-.promise--pillar p { max-width: none; }
-
-/* ── Uhr-Gehäuse + nachgebautes Display ────────────────────────────────── */
-.watch {
-  position: relative;
-  width: clamp(210px, 26vw, 300px);
-  aspect-ratio: 1;
-  padding: 10px;
-  border-radius: 50%;
-  background: linear-gradient(155deg, var(--bezel-a), var(--bezel-b) 55%, var(--bezel-a));
-  box-shadow: 0 30px 70px -24px rgba(0, 0, 0, .8),
-              inset 0 0 0 1px rgba(242, 244, 228, .16);
-  will-change: transform;
-}
-.watch__screen {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: #000;
-  overflow: hidden;
-  /* Alles im Display skaliert über cq-Einheiten mit dem Gehäuse. */
-  container-type: size;
-  font-family: var(--mono);
-}
-.watch__screen img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-/* Nachbau des App-Displays: Zeit, Satzzeile, ICH/GEG, Games, Page-Dots. */
-.face {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  color: var(--paper);
-}
-.face__time {
-  position: absolute;
-  top: 6cqh;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 8cqw;
-  font-weight: 700;
-  color: #C9CDBC;
-  letter-spacing: .04em;
-}
-.face__set {
-  position: absolute;
-  top: 23cqh;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 5.6cqw;
-  font-weight: 700;
-  letter-spacing: .18em;
-  color: var(--lime);
-}
-/* Runder Screen: seitlich genug Luft lassen, damit nichts an der Rundung
-   abgeschnitten wird (rechts mehr, dort sitzen noch die Page-Dots). */
-.face__rows {
-  position: absolute;
-  top: 34cqh;
-  left: 11cqw;
-  right: 15cqw;
-  display: grid;
-  gap: 2cqh;
-}
-/* Label links, Punkte mittig-rechts, Games rechts, wie in der App auf
-   gemeinsamer Grundlinie. Feste Spalten halten die Ziffern ruhig. */
-.face__row {
-  display: grid;
-  grid-template-columns: 1fr auto 2.2ch;
-  align-items: baseline;
-  gap: 2.5cqw;
-}
-.face__who {
-  display: flex;
-  align-items: center;
-  gap: 1.6cqw;
-  /* Etwas tiefer als die Grundlinie der großen Ziffern, wie in der App. */
-  transform: translateY(-1cqh);
-  font-size: 6cqw;
-  font-weight: 700;
-  letter-spacing: .12em;
-  color: #9BA189;
-}
-.face__serve {
-  width: 2.4cqw;
-  height: 2.4cqw;
-  border-radius: 50%;
-  background: var(--lime);
-  flex: 0 0 auto;
-}
-/* Feste Breite für zwei Zeichen ("40", "A"), damit die Ziffern beim Wechsel
-   nicht springen. In Monospace ist 1ch = Zeichenbreite, mehr als 2 sprengt
-   das runde Display. */
-.face__pts {
-  min-width: 2.1ch;
-  text-align: right;
-  font-size: 19cqw;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  font-variant-numeric: tabular-nums;
-  transition: opacity .18s ease;
-}
-.face__row--mine .face__pts   { color: #8FDD6A; }
-.face__row--theirs .face__pts { color: #F9857A; }
-.face__games {
-  min-width: 2ch;
-  text-align: right;
-  font-size: 8cqw;
-  font-weight: 700;
-  color: #9BA189;
-  font-variant-numeric: tabular-nums;
-}
-.face__dots {
-  position: absolute;
-  right: 3cqw;
-  top: 50%;
-  transform: translateY(-50%);
-  display: grid;
-  gap: 1.4cqh;
-}
-.face__dots i {
-  width: 2cqw;
-  height: 2cqw;
-  border-radius: 50%;
-  background: #4A4F3E;
-}
-.face__dots i.is-on { background: var(--paper); }
-
-/* Lime-Aufblitzen bei gezähltem Punkt. */
-.tap-flash {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(217, 247, 100, .22), transparent 60%);
-  opacity: 0;
-  transition: opacity .45s ease;
-  pointer-events: none;
-}
-
-/* ── Szene: gepinnt, scrollgesteuert ───────────────────────────────────── */
-.scene {
-  position: relative;
-  height: 520vh;
-  padding: 0 var(--gutter);
-}
-.scene__sticky {
-  position: sticky;
-  top: 0;
-  height: 100svh;
-  display: grid;
-  /* justify-items: center würde das Grid über die Containerbreite hinaus
-     wachsen lassen; stretch hält es exakt auf Parent-Breite. */
-  align-items: center;
-  justify-items: stretch;
-}
-.scene__grid {
-  width: 100%;
-  max-width: var(--max);
-  /* min-width:0 bricht die automatische Mindestbreite von Grid-Items auf -
-     ohne das bleibt die Spur breiter als der Viewport. */
-  min-width: 0;
-  display: grid;
-  /* min() statt fixer 300px: sonst kann die Spalte auf schmalen Displays
-     nicht schrumpfen und erzeugt horizontalen Überlauf. */
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-  gap: clamp(26px, 4vw, 64px);
-  align-items: center;
-  padding: clamp(70px, 10vh, 90px) 0 clamp(40px, 6vh, 60px);
-}
-.scene h2 { font-size: clamp(32px, 5vw, 64px); }
-.scene__caption {
-  margin: 22px 0 0;
-  min-height: 3.4em;
-  max-width: 32ch;
-  color: var(--body);
-  font-size: clamp(16px, 1.4vw, 18.5px);
-  line-height: 1.5;
-  transition: opacity .35s ease;
-}
-
-/* Tap-Liste hell (links) */
-.taps {
-  display: grid;
-  gap: 1px;
-  margin-top: 30px;
-  max-width: 360px;
-  background: var(--line);
-}
-.tap {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 13px 14px;
-  background: var(--paper);
-  transition: background .3s, color .3s, padding .3s;
-}
-.tap__dots {
-  display: flex;
-  gap: 5px;
-  /* 51px fasst auch die Vier-Punkte-Reihe (4×9px + 3×5px Lücke), bei 44px
-     schob der vierte Punkt sein Label aus der Flucht der anderen Zeilen. */
-  min-width: 51px;
-}
-.tap__dots i {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--ink);
-  transition: background .3s;
-}
-.tap__label { font-size: 15px; font-weight: 600; }
-.tap__hint {
-  margin-left: auto;
-  font-family: var(--mono);
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--sage);
-}
-.tap.is-on {
-  background: var(--ink);
-  color: var(--paper);
-  padding-left: 20px;
-}
-.tap.is-on .tap__dots i { background: var(--lime); }
-.tap.is-on .tap__hint { color: var(--sage-3); }
-
-/* Fußnote unter der Tap-Liste: Long-Tap für Ass und Doppelfehler. Steht als
-   Geschwister-<p> nach dem .taps-Grid, nicht darin, sonst würde sie eine
-   eigene Rasterzelle mit 1px-Trennlinie bekommen und wie eine fünfte
-   Tap-Zeile aussehen. Mono wie die Hints, damit sie als Beiwerk liest.
-   Farbe --sage wie .tap__hint, nicht --sage-3: die linke Spalte steht auf
-   Cream, dort hätte das hellere Sage-3 rund 1,9:1 Kontrast. */
-.taps__more {
-  margin: 12px 0 0;
-  max-width: 44ch;
-  font-family: var(--mono);
-  font-size: 12.5px;
-  line-height: 1.5;
-  color: var(--sage);
-}
-
-/* Dunkles Szenen-Panel (rechts) */
-.scene__panel {
-  position: relative;
-  border-radius: 24px;
-  background: var(--ink);
-  padding: clamp(24px, 3vw, 40px);
-  box-shadow: 0 40px 90px -40px rgba(20, 23, 15, .5);
-}
-.scene__head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--sage);
-}
-.scene__live {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--lime);
-}
-.scene__live i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--lime);
-  animation: ks-live 1.6s ease-in-out infinite;
-}
-.scene__step { margin-left: auto; color: var(--paper); }
-
-.scene__watchwrap {
-  display: flex;
-  justify-content: center;
-  margin-top: clamp(18px, 2.4vw, 28px);
-}
-
-/* Fortschrittsschiene unter der Uhr */
-.scene__rail-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: clamp(18px, 2.4vw, 26px);
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--sage);
-}
-.scene__track {
-  position: relative;
-  flex: 1;
-  height: 1px;
-  background: var(--on-dark);
-}
-.scene__rail {
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 0;
-  background: var(--lime);
-  transition: width .2s linear;
-}
-
-/* ── Standard-Feature-Sektion ──────────────────────────────────────────── */
-.feature {
-  position: relative;
-  padding: clamp(90px, 12vh, 150px) var(--gutter);
-  border-top: 1px solid var(--line);
-}
-.feature__inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-  gap: clamp(40px, 6vw, 90px);
-  align-items: center;
-}
-.feature h2 { font-size: clamp(30px, 4.6vw, 58px); }
-
-/* Nummerierte Liste 01/02/03 */
-.numlist {
-  list-style: none;
-  margin: 32px 0 0;
-  padding: 0;
-  display: grid;
-  gap: 1px;
-  background: var(--line);
-}
-.numlist li {
-  display: flex;
-  gap: 16px;
-  padding: 15px 2px;
-  background: var(--paper);
-}
-.numlist b {
-  font-family: var(--mono);
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  color: var(--clay);
-  padding-top: 3px;
-}
-.numlist span {
-  font-size: 15.5px;
-  line-height: 1.5;
-  color: var(--body);
-}
-
-/* Statistik-Kacheln (mit Count-up) */
-/* 160px Mindestbreite, damit "77 : 75" nicht umbricht. */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr));
-  gap: 1px;
-  margin-top: 34px;
-  background: var(--line);
-}
-.stat { padding: 20px 18px; background: var(--paper); }
-/* Letzte Kachel füllt einen etwaigen Spaltenrest, damit nie eine leere Zelle
-   in der Rasterfarbe stehen bleibt (auto-fit kann ungerade Reste erzeugen). */
-.stat:last-child { grid-column: auto / -1; }
-.stat b {
-  display: block;
-  font-family: var(--display);
-  font-size: clamp(24px, 3vw, 36px);
-  letter-spacing: -0.03em;
-  color: var(--moss);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;   /* "77 : 75" bleibt einzeilig */
-}
-.stat span {
-  display: block;
-  margin-top: 4px;
-  font-family: var(--mono);
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--sage);
-}
-
-/* ── Geräte-Rahmen (Handy) ─────────────────────────────────────────────── */
-.phone {
-  width: min(100%, 320px);
-  padding: 11px;
-  border-radius: 40px;
-  background: linear-gradient(155deg, var(--bezel-a), var(--ink-deep) 55%, var(--bezel-b));
-  box-shadow: 0 44px 90px -38px rgba(20, 23, 15, .55),
-              inset 0 0 0 1px rgba(242, 244, 228, .14);
-}
-.phone img {
-  border-radius: 30px;
-  width: 100%;
-  /* Screenshots sind 1080×2424; ohne feste Ratio springt das Layout,
-     bis das Bild geladen ist. */
-  aspect-ratio: 1080 / 2424;
-  object-fit: cover;
-  object-position: top;
-}
-.phone--crop img {
-  max-height: 620px;
-  object-fit: cover;
-  object-position: top;
-}
-.devices {
-  display: flex;
-  justify-content: center;
-  gap: clamp(14px, 2.5vw, 28px);
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-/* ── Feature-Grafik: die Uhr ───────────────────────────────────────────────
-   Muss nach .watch und .phone stehen, sonst gewinnen deren Basiswerte für
-   width/position. Die Uhr sitzt vor der Handy-Gruppe, unten links versetzt,
-   und wird komplett gezeigt, Gehäuse samt Armband. Sie ist bewusst klein:
-   Sie soll das Gerät benennen, nicht die Screens verdecken. */
-.showcase__watch {
-  position: absolute;
-  /* Mittig vor dem vorderen Screen. Zentriert wird das Display, nicht das
-     Bild: Rechts hängt das Armband dran, translateX(-50%) würde die Uhr
-     nach links versetzt aussehen lassen. Der Displaymittelpunkt liegt bei
-     27,2 % der Bildbreite (aus der Gehäusegeometrie gerechnet), genau um
-     diesen Wert wird zurückgeschoben. */
-  left: 50%;
-  transform: translateX(-27.2%);
-  bottom: 0;
-  z-index: 3;
-  /* Vom Bild sind gut 40 % Armband, die Breite rechnet das mit ein. */
-  width: clamp(116px, 11.7vw, 164px);
-  /* Der Schatten folgt der freigestellten Silhouette, nicht einem Rechteck. */
-  filter: drop-shadow(0 18px 26px rgba(20, 23, 15, .4));
-}
-.showcase__watch img { width: 100%; height: auto; }
-
-@media (max-width: 720px) {
-  /* Nicht die vollen 30 % wie am Desktop: Die Handys sind hier selbst nur
-     36 vw breit, eine mitgewachsene Uhr würde den mittleren Screen fast
-     vollständig verdecken. */
-  .showcase__watch { width: clamp(104px, 29vw, 140px); }
-}
-
-/* Ehrlichkeits-Nachsatz unter Fließtext/Kacheln: kleiner als .lead, damit er
-   als Fußnote gelesen wird und die Kernbotschaft nicht verdrängt. */
-.note {
-  margin: 22px 0 0;
-  max-width: 42ch;
-  color: var(--sage);
-  font-size: 14.5px;
-  line-height: 1.5;
-  text-wrap: pretty;
-}
-
-/* ── Teilen: Share-Seite als Browser-Karte (HTML/CSS, kein Screenshot) ─── */
-.share__visual {
-  display: grid;
-  justify-items: center;
-  gap: 20px;
-}
-/* Browser-Chrome: dunkle Leiste, helle Seite, bewusst schlicht, damit die
-   Karte nicht mit den Geräte-Rahmen (.phone/.watch) konkurriert. */
-.browser {
-  width: min(100%, 400px);
-  border-radius: 16px;
-  background: var(--ink);
-  overflow: hidden;
-  box-shadow: 0 40px 90px -40px rgba(20, 23, 15, .55),
-              inset 0 0 0 1px rgba(242, 244, 228, .14);
-}
-.browser__bar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-}
-.browser__dots {
-  display: flex;
-  gap: 5px;
-  flex: 0 0 auto;
-}
-.browser__dots i {
+/* Der pulsierende Live-Punkt. Sitzt im Ticker und in der Benefit-Karte. */
+.livedot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #4A4F3E;
+  background: var(--accent);
+  animation: ks-pulse 1.8s ease-in-out infinite;
 }
-.browser__url {
-  flex: 1;
-  min-width: 0;
-  padding: 5px 12px;
-  border-radius: 999px;
-  background: rgba(242, 244, 228, .08);
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .04em;
-  color: var(--sage-3);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.browser__page {
-  padding: clamp(18px, 2.4vw, 24px);
-  background: var(--paper);
-  color: var(--ink);
+@keyframes ks-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
 }
 
-.sharepage__head {
+/* ── Sprachhinweis ────────────────────────────────────────────────────────
+   Startet hidden und wird nur eingeblendet, wenn der Browser die andere
+   Sprache bevorzugt und noch keine Wahl getroffen wurde. Ohne JavaScript
+   bleibt er unsichtbar, siehe script.js.
+   ───────────────────────────────────────────────────────────────────────── */
+.langbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  background: var(--bg-dark);
+  color: var(--on-dark);
+  padding: 10px 20px;
+  font-size: 14px;
+}
+.langbar[hidden] { display: none; }
+
+.langbar__go {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.langbar__go:hover { color: var(--accent); }
+
+.langbar__close {
+  background: none;
+  border: 0;
+  padding: 4px 6px;
+  color: var(--text-on-dark-muted);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.langbar__close:hover { color: var(--on-dark); }
+
+/* ── Nav ────────────────────────────────────────────────────────────────── */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: 26px var(--gutter);
+}
+
+.nav__brand {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--line);
-  font-family: var(--mono);
-  font-size: 10.5px;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav__brand img { border-radius: 7px; }
+.nav__brand span {
+  font-family: var(--font-display);
+  font-size: 22px;
   font-weight: 700;
-  letter-spacing: .18em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-.sharepage__live {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: var(--clay);
-}
-.sharepage__live i {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: currentColor;
-  animation: ks-live 1.6s ease-in-out infinite;
-}
-.sharepage__meta { margin-left: auto; color: var(--sage); }
 
-/* Satz-Tabelle: Spielername links, Sätze und laufende Punkte rechts.
-   tabular-nums hält die Ziffernspalten in einer Achse. */
-.sharepage__table {
-  width: 100%;
-  margin-top: 16px;
-  border-collapse: collapse;
-  font-variant-numeric: tabular-nums;
-}
-.sharepage__table th,
-.sharepage__table td {
-  padding: 9px 0;
-  text-align: right;
-  font-weight: 700;
-}
-.sharepage__table thead th {
-  font-family: var(--mono);
-  font-size: 9.5px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--sage);
-  padding-bottom: 6px;
-}
-.sharepage__table thead th:first-child,
-.sharepage__table tbody th { text-align: left; }
-/* Kein display:flex auf den Zellen, das nimmt sie aus dem Tabellen-Layout
-   und die beiden Zeilen laufen unterschiedlich hoch. */
-.sharepage__table tbody th,
-.sharepage__table tbody td { vertical-align: middle; }
-.sharepage__table tbody th {
-  font-size: 16px;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-}
-.sharepage__table tbody tr + tr th,
-.sharepage__table tbody tr + tr td {
-  border-top: 1px solid var(--line-soft);
-}
-.sharepage__table tbody td {
-  width: 2.6ch;
-  font-family: var(--display);
-  font-size: 19px;
-  letter-spacing: -0.02em;
-}
-/* Laufendes Game farbig abgesetzt, wie auf dem Uhr-Display. */
-.sharepage__table tbody td.is-pts { color: var(--moss); }
-/* Aufschlag-Anzeige: derselbe Punkt wie im Uhr-Nachbau (.face__serve),
-   auf Cream aber in Moss statt Lime, Lime hätte hier keinen Kontrast.
-   Der Platz wird in beiden Zeilen reserviert (padding-left auf der Zelle),
-   damit "Anna" und "Markus" auf derselben Kante beginnen. */
-.sharepage__table tbody th,
-.sharepage__table thead th:first-child { padding-left: 15px; }
-.sharepage__table tbody th { position: relative; }
-.sharepage__serve {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 7px;
-  height: 7px;
-  margin-top: -3.5px;
-  border-radius: 50%;
-  background: var(--moss);
-}
+.nav__right { display: flex; align-items: center; gap: 14px; }
 
-/* Drei Statistik-Zeilen: 1px-Gaps als Trennlinien, wie bei .stats/.tiles. */
-.sharepage__stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  margin: 18px 0 0;
-  background: var(--line);
-}
-.sharepage__stats > div {
-  padding: 12px 10px;
-  background: var(--paper);
-}
-.sharepage__stats dt {
-  font-family: var(--mono);
-  font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--sage);
-}
-.sharepage__stats dd {
-  margin: 5px 0 0;
-  font-family: var(--display);
-  font-size: 20px;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-
-/* ── Kostenlos & Kortscore Plus ────────────────────────────────────────── */
-.plus {
-  padding: clamp(90px, 12vh, 150px) var(--gutter);
-  border-top: 1px solid var(--line);
-}
-.plus__inner {
-  max-width: var(--max);
-  margin: 0 auto;
-}
-.plus h2 { font-size: clamp(30px, 4.6vw, 58px); }
-.plus__head .lead { max-width: 46ch; }
-
-/* Drei Null-Kacheln vor der Tabelle. Die Ziffer trägt die Aussage, deshalb
-   groß und in der Display-Schrift, "0 €" liest man im Vorbeiscrollen, eine
-   Tabellenzeile nicht. */
-.claims {
-  list-style: none;
-  margin: clamp(34px, 4.5vw, 52px) 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
-  gap: 1px;
-  background: var(--line);
-  /* Breite wie die Vergleichstabelle darunter, aber mittig in der Sektion
-     statt linksbündig, so stehen die drei Nullen als eigener Block. */
-  max-width: 760px;
-  margin-inline: auto;
-}
-.claim {
-  padding: clamp(22px, 2.6vw, 30px);
-  background: var(--paper);
-}
-.claim b {
-  display: block;
-  font-family: var(--display);
-  /* Kleiner als zuvor, damit alle drei Kacheln einzeilig bleiben: In der
-     schmaleren Spalte bräche sonst "0 accounts" um, im Deutschen zuerst
-     "0 Werbung", zweizeilig neben zwei einzeiligen Kacheln sieht es aus
-     wie ein Fehler. Der Wert ist am längsten Wort beider Sprachen bemessen. */
-  font-size: clamp(24px, 2.6vw, 33px);
-  line-height: 1;
-  letter-spacing: -0.03em;
-  white-space: nowrap;
-  color: var(--moss);
-}
-.claim span {
-  display: block;
-  margin-top: 12px;
-  color: var(--body);
-  font-size: 15.5px;
-  line-height: 1.5;
-  text-wrap: pretty;
-}
-
-/* Vergleichstabelle Gratis/Plus. Aufbau wie .sharepage__table: Zeilenköpfe
-   links, Werte rechts, 1px-Linien statt Rahmen. */
-/* Breitenlimit: Über die volle 1320px-Spur gezogen stünden die Haken einsam
-   weit rechts vom Funktionsnamen und wären kaum noch zuzuordnen. */
-.plus__tablewrap {
-  margin-top: clamp(38px, 5vw, 60px);
-  max-width: 760px;
-}
-.plus__table {
-  width: 100%;
-  border-collapse: collapse;
-  /* Feste Spaltenbreiten: sonst zieht der längste Funktionsname die
-     Haken-Spalten unnötig breit. */
-  table-layout: fixed;
-}
-/* Caption nur für Screenreader, die Überschrift darüber sagt es sehend. */
-.plus__caption {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-.plus__table thead th {
-  padding: 0 0 12px;
-  border-bottom: 1px solid var(--line);
-  font-family: var(--mono);
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--sage);
-  text-align: center;
-  vertical-align: bottom;
-}
-.plus__table thead th:first-child { text-align: left; }
-/* Plus-Spalte abgesetzt: Sie ist die einzige, die etwas kostet. */
-.plus__table thead th.is-plus { color: var(--moss); }
-
-/* Die zwei Wertspalten bleiben schmal, die Funktionsspalte bekommt den Rest
-   und darf umbrechen. */
-.plus__table thead th:nth-child(2),
-.plus__table thead th:nth-child(3) { width: clamp(72px, 12vw, 130px); }
-
-.plus__table tbody th,
-.plus__table tbody td {
-  padding: 15px 0;
-  border-bottom: 1px solid var(--line-soft);
-  vertical-align: middle;
-}
-.plus__table tbody th {
-  padding-right: 14px;
-  text-align: left;
-  font-size: 15.5px;
+/* Sprachumschalter: klein, mono, damit er neben dem CTA nicht mitspielt. */
+.nav__lang {
+  font-family: var(--font-mono);
+  font-size: 12px;
   font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  text-wrap: pretty;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 6px 4px;
 }
-/* Unterzeile bei den drei Plus-Funktionen: erklärt knapp, was drinsteckt. */
-.plus__table tbody th span {
-  display: block;
-  margin-top: 4px;
-  font-size: 13.5px;
-  font-weight: 400;
-  line-height: 1.4;
-  color: var(--sage);
-}
-.plus__table tbody td { text-align: center; }
-/* Plus-Spalte durchgehend leicht hinterlegt, damit das Auge der Spalte folgt. */
-.plus__table thead th.is-plus,
-.plus__table tbody td.is-plus { background: rgba(76, 107, 47, .06); }
+.nav__lang:hover { color: var(--text); }
 
-/* Häkchen als CSS-Glyphe statt Icon-Datei, keine zusätzliche Ressource. */
-.tick {
-  display: inline-block;
-  width: 13px;
-  height: 7px;
-  border-left: 2.5px solid var(--moss);
-  border-bottom: 2.5px solid var(--moss);
-  transform: rotate(-45deg) translate(1px, -2px);
-}
-/* Kein Haken: neutraler Strich, kein rotes Kreuz, die Gratis-Version ist
-   nichts, wofür man sich entschuldigen müsste. */
-.dash {
-  display: inline-block;
-  width: 14px;
-  height: 2px;
-  background: var(--sage-3);
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 48px;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: 44px var(--gutter) 72px;
 }
 
-.plus__note {
-  margin: clamp(24px, 3vw, 32px) 0 0;
-  max-width: 68ch;
-  color: var(--sage);
-  font-size: 14.5px;
-  line-height: 1.55;
-  text-wrap: pretty;
+.hero__copy {
+  flex: 1 1 380px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
 }
 
-/* ── Datenschutz ───────────────────────────────────────────────────────── */
-.privacy {
-  padding: clamp(90px, 12vh, 150px) var(--gutter);
-  border-top: 1px solid var(--line);
-  background: var(--paper-2);
-}
-.privacy__inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-  gap: clamp(36px, 5vw, 80px);
-  align-items: start;
-}
-.privacy h2 { font-size: clamp(30px, 4.4vw, 56px); }
-.privacy__list {
-  list-style: none;
+.hero__title {
   margin: 0;
-  padding: 0;
+  font-family: var(--font-display);
+  font-size: clamp(44px, 7vw, 64px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+/* Die dritte Zeile trägt den Akzent. Als große Versalie über 24px reicht das
+   hellere Grün hier aus, dennoch steht der dunklere Ton, weil die Zeile Text
+   ist und kein Element. */
+.hero__title em {
+  font-style: normal;
+  color: var(--accent-text);
+}
+
+.hero__lede {
+  font-size: 16.5px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  max-width: 420px;
+  text-wrap: pretty;
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.hero__meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Screenshot-Fächer: zwei gedrehte Telefone hinten, eines gerade in der Mitte,
+   die Uhr überlappt unten. Absolut positioniert, weil die Überlappung genau so
+   gemeint ist; unter 900px fällt das Ganze auf eine schlichte Reihe zurück. */
+.hero__shots {
+  flex: 0 1 520px;
+  min-width: 340px;
+  position: relative;
+  height: 460px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.phone {
+  background: #1c1d1f;
+  border-radius: 24px;
+  padding: 6px;
+  box-shadow: var(--shadow-shot);
+}
+.phone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 19px;
+}
+
+.phone--back {
+  position: absolute;
+  top: 34px;
+  width: 168px;
+  height: 356px;
+  z-index: 1;
+}
+.phone--left  { left: 8px;  transform: rotate(-7deg); }
+.phone--right { right: 8px; transform: rotate(7deg); }
+
+.phone--front {
+  position: relative;
+  width: 180px;
+  height: 382px;
+  z-index: 2;
+  box-shadow: 0 28px 64px rgba(22, 21, 15, 0.28);
+}
+
+.watchshot {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: #1c1d1f;
+  padding: 7px;
+  box-shadow: 0 24px 60px rgba(22, 21, 15, 0.3);
+  z-index: 3;
+}
+.watchshot img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ── Benefits ───────────────────────────────────────────────────────────── */
+.benefits {
+  background: var(--bg-dark);
+  color: var(--on-dark);
+  padding-block: 64px;
+}
+.benefits .section-title { color: var(--on-dark); }
+
+.benefits__grid {
   display: grid;
-  gap: 1px;
-  background: var(--line);
-}
-.privacy__list li {
-  padding: 22px 20px;
-  background: var(--paper-2);
-}
-.privacy__list b {
-  display: block;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .14em;
-  color: var(--clay);
-  margin-bottom: 9px;
-}
-.privacy__list strong {
-  display: block;
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-.privacy__list span {
-  display: block;
-  margin-top: 5px;
-  color: var(--body);
-  font-size: 15px;
-  line-height: 1.5;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 40px;
 }
 
-/* ── Empfohlene Uhren (Amazon-Partnerlinks) ─────────────────────────────── */
-/* Steht zwischen Datenschutz und Download, deshalb wieder auf --paper: die
-   Datenschutz-Sektion hat --paper-2, so bleibt der Wechsel sichtbar. */
-.watches {
-  padding: clamp(90px, 12vh, 150px) var(--gutter);
-  border-top: 1px solid var(--line);
+.stat {
+  background: var(--surface-dark);
+  border-radius: var(--radius);
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-.watches__inner {
-  max-width: var(--max);
-  margin: 0 auto;
+.stat__num {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
 }
-.watches h2 { font-size: clamp(30px, 4.6vw, 58px); }
-.watches__head .lead { max-width: 46ch; }
-
-/* Der Partnerhinweis steht klein am Ende der Sektion, direkt unter den Karten,
-   auf die er sich bezieht. Klein, aber in Textfarbe und nicht ausgegraut: Das
-   Partnerprogramm verlangt ihn deutlich lesbar. */
-.watches__disclosure {
-  margin: 20px 0 0;
-  color: var(--body);
+/* Die Live-Karte trägt statt einer Zahl den Puls; die feste Höhe hält ihren
+   Kopf auf einer Linie mit den Zahlen der Nachbarkarten. */
+.stat__live {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.stat__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-on-dark);
+}
+.stat__body {
   font-size: 13.5px;
-  line-height: 1.45;
+  line-height: 1.5;
+  color: var(--text-on-dark-muted);
+  text-wrap: pretty;
 }
 
-/* Drei Karten, 1px-Gaps als Trennlinien wie bei .claims und .reqs. Unter
-   900px greift der Responsive-Block weiter unten und stellt eine Spalte. */
-.watchcards {
-  list-style: none;
-  margin: clamp(38px, 5vw, 60px) 0 0;
-  padding: 0;
+/* ── Steps ──────────────────────────────────────────────────────────────── */
+.steps { padding-block: 72px; }
+
+.steps__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--line);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 32px;
+  margin-top: 36px;
 }
+
+.step { display: flex; flex-direction: column; gap: 8px; }
+.step__num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+}
+.step__title { margin: 0; font-size: 17px; font-weight: 600; }
+.step__body {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  text-wrap: pretty;
+}
+
+/* ── Clubs ──────────────────────────────────────────────────────────────── */
+.clubs {
+  background: var(--bg-alt);
+  padding-block: 64px;
+}
+.clubs__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 48px;
+}
+.clubs__copy {
+  flex: 1 1 380px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.clubs__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.clubs__lead { max-width: 440px; }
+
+.dashlist {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 4px;
+}
+.dashlist li {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+/* Der Gedankenstrich ist Dekoration und wird deshalb nicht vorgelesen. */
+.dashlist li::before {
+  content: "—";
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-text);
+}
+
+/* Ticker-Attrappe: zeigt, was Zuschauer sehen, ohne echte Daten zu behaupten */
+.ticker {
+  flex: 0 1 400px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ticker__card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: var(--shadow-card);
+}
+.ticker__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.ticker__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.ticker__live {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+.ticker__live .livedot { width: 6px; height: 6px; }
+
+.ticker__rows { display: flex; flex-direction: column; gap: 10px; }
+.ticker__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ticker__name {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 600;
+}
+.ticker__set {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.ticker__points {
+  width: 44px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+}
+/* Die zweite Zeile ist der Gegner: gedimmt, damit die Führung ablesbar ist. */
+.ticker__row--away .ticker__name,
+.ticker__row--away .ticker__set { color: var(--text-muted); }
+.ticker__row--away .ticker__set { color: var(--text-on-dark-muted); }
+.ticker__row--home .ticker__points { color: var(--accent-text); }
+.ticker__row--away .ticker__points { color: var(--text); }
+
+.ticker__rule { height: 1px; background: var(--hairline); }
+
+.ticker__second {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.75;
+}
+.ticker__second .ticker__name { color: var(--text-muted); font-size: 14px; }
+.ticker__score {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.ticker__score .livedot { animation: none; width: 6px; height: 6px; }
+
+/* ── Uhren-Teaser ─────────────────────────────────────────────────────────
+   Nur ein Anreißer, die drei Empfehlungen stehen auf der Unterseite. Drei
+   kleine Karten, damit die Namen schon hier stehen, ohne dass die Startseite
+   die Affiliate-Sektion trägt.
+   ───────────────────────────────────────────────────────────────────────── */
+.teaser { padding-block: 72px; }
+
+.teaser__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.teaser__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.teaser__card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+.teaser__card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  color: inherit;
+}
+.teaser__card img {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex: none;
+}
+/* Name und Label sind spans: ohne block laufen sie in eine Zeile. */
+.teaser__card > span { min-width: 0; }
+.teaser__name {
+  display: block;
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.teaser__note {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+/* ── CTA ────────────────────────────────────────────────────────────────── */
+.cta { padding: 0 var(--gutter) 80px; }
+.cta__inner {
+  max-width: calc(var(--shell) - var(--gutter) * 2);
+  margin-inline: auto;
+  background: var(--accent);
+  border-radius: 20px;
+  padding: 52px var(--gutter);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+}
+.cta__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 42px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--on-accent);
+}
+.cta__lede {
+  font-size: 15px;
+  color: var(--on-accent);
+  max-width: 400px;
+  text-wrap: pretty;
+}
+
+/* Der offizielle Play-Badge. Google verbietet Umfärben, Zuschneiden und
+   zusätzlichen Text, deshalb liegt er unverändert im PNG mit eigener
+   Schutzzone. Die Höhe steuert die Größe, das Seitenverhältnis bleibt. */
+.storebadge { display: inline-block; }
+.storebadge img { height: 60px; width: auto; }
+
+.cta__hint {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--on-accent);
+  opacity: 0.8;
+}
+.cta__hint a { color: var(--on-accent); }
+
+/* ── Footer ─────────────────────────────────────────────────────────────── */
+.footer {
+  border-top: 1px solid var(--hairline);
+}
+.footer__inner {
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: 24px var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer__claim {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.footer__links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+}
+.footer__links a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.footer__links a:hover { color: var(--text); text-decoration: underline; }
+
+/* ── Unterseite: Uhren ────────────────────────────────────────────────────
+   Eigene Seite, deshalb ein eigener Kopf statt der Hero-Sektion.
+   ───────────────────────────────────────────────────────────────────────── */
+.subhead {
+  padding: 48px var(--gutter) 40px;
+  max-width: var(--shell);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.subhead__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(38px, 6vw, 52px);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.subhead .lead { max-width: 560px; font-size: 16.5px; }
+
+.back {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.back:hover { color: var(--text); }
+
+.watchcards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
 .watchcard {
   display: flex;
   flex-direction: column;
-  padding: clamp(22px, 2.6vw, 30px);
-  background: var(--paper);
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
 }
-.watchcard h3 {
-  margin: 20px 0 0;
-  font-size: clamp(18px, 1.9vw, 21px);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  text-wrap: balance;
-}
-.watchcard p {
-  margin: 10px 0 0;
-  color: var(--body);
-  font-size: 15.5px;
-  line-height: 1.5;
-  text-wrap: pretty;
-}
-/* Der Button sitzt immer unten, damit die drei Karten trotz unterschiedlich
-   langer Begründung auf einer Linie abschließen. margin-top: auto schiebt ihn
-   nach unten, garantiert aber keinen Abstand: In der längsten Karte klebte er
-   sonst am Text. Deshalb zusätzlich ein Mindestabstand über padding-block des
-   Vorgängers, hier als eigene Regel mit auto plus fixem Wert. */
-.watchcard__btn {
-  align-self: flex-start;
-  margin-top: auto;
-  padding-top: 14px;
-  padding-bottom: 14px;
-  font-size: 15px;
-}
-/* Der Mindestabstand zwischen Begründung und Button, auch wenn margin-top:auto
-   in der höchsten Karte auf 0 zusammenfällt. */
-.watchcard p { margin-bottom: 24px; }
-.watchcard__btn + * { margin-top: 0; }
-
-/* Bildplatz mit eigenem Platzhalter: Die drei Produktfotos fehlen noch
-   (Amazons Bilder dürfen wir nicht selbst hosten). Das Uhrensymbol liegt als
-   Background im Container, das img darüber. Fehlt die Datei, bleibt das
-   Symbol stehen, das Seitenverhältnis hält die Karte trotzdem in Form. */
+/* Feste Maße, damit die Reihe beim Nachladen der Bilder nicht springt. */
 .watchcard__shot {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  border-radius: 14px;
-  background-color: var(--paper-2);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23A8AE99' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='20' y='20' width='24' height='24' rx='7'/%3E%3Cpath d='M26 20v-6h12v6M26 44v6h12v-6M44 28h3v6h-3'/%3E%3Cpath d='M32 27v5l3.5 2.5'/%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: 42% auto;
-  margin-top: 0;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-alt);
 }
-/* Das Bild liegt absolut im Container, damit die Kartenhöhe allein aus dem
-   aspect-ratio kommt, nicht aus der Datei. Alle drei Fotos sind gesetzt, das
-   Uhrensymbol im Hintergrund bleibt als Rückfall, falls eine Datei fehlt. */
 .watchcard__shot img {
-  position: absolute;
-  inset: 0;
-  display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  border-radius: 14px;
+  object-fit: cover;
 }
-
-/* ── Abschluss: Download ───────────────────────────────────────────────── */
-.tester {
-  position: relative;
-  padding: clamp(96px, 13vh, 160px) var(--gutter);
-  border-top: 1px solid var(--line);
-  background:
-    radial-gradient(ellipse 70% 100% at 50% 0%, rgba(76, 107, 47, .10), transparent 70%),
-    var(--paper);
-  text-align: center;
-}
-.tester__inner {
-  max-width: 820px;
-  margin: 0 auto;
-}
-.tester__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 22px;
-  font-family: var(--mono);
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  /* Grün statt des früheren Rot: Das Signal ist "gratis", nicht "Achtung,
-     begrenzte Testphase". */
-  color: var(--moss);
-}
-.tester h2 {
-  font-size: clamp(34px, 6vw, 76px);
-  line-height: .92;
-}
-.tester__lede {
-  margin: 26px auto 0;
-  max-width: 46ch;
-  color: var(--body);
-  font-size: clamp(16px, 1.4vw, 18.5px);
-  line-height: 1.55;
-  text-wrap: pretty;
-}
-.tester__cta { margin-top: 34px; }
-
-/* Google-Badge: feste Höhe statt Breite, damit beide Sprachfassungen trotz
-   unterschiedlich langer Beschriftung gleich hoch stehen. Der eingebaute
-   Schutzraum des PNG ist Teil des Bildes, deshalb kein eigenes Padding und
-   kein Rahmen, beides würde die Markenvorgaben verletzen. */
-.storebadge {
-  display: inline-block;
-  transition: transform .25s cubic-bezier(.2, .8, .3, 1);
-}
-.storebadge img {
-  height: clamp(56px, 6vw, 68px);
-  width: auto;
-}
-.storebadge:hover { transform: translateY(-2px); }
-@media (prefers-reduced-motion: reduce) {
-  .storebadge { transition: none; }
-  .storebadge:hover { transform: none; }
-}
-.tester__hint {
-  margin: 20px auto 0;
-  max-width: 44ch;
-  font-size: 14.5px;
-  color: var(--sage);
-}
-
-/* Anforderungen als drei Spalten */
-.reqs {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
-  gap: 1px;
-  margin-top: 52px;
-  background: var(--line);
-  text-align: left;
-}
-.req { padding: 22px 20px; background: var(--paper); }
-.req:last-child  { grid-column: auto / -1; }
-.req__label {
-  display: block;
-  font-family: var(--mono);
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--sage);
-}
-.req__value {
-  display: block;
-  margin-top: 8px;
-  font-family: var(--display);
-  font-size: clamp(19px, 2vw, 24px);
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-}
-.req__note {
-  display: block;
-  margin-top: 7px;
-  font-size: 14px;
-  line-height: 1.45;
-  color: var(--body);
-}
-
-/* ── Footer ────────────────────────────────────────────────────────────── */
-.footer {
-  padding: 44px var(--gutter);
-  border-top: 1px solid var(--line);
-  background: var(--ink);
-  color: var(--paper);
-}
-.footer__inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px 32px;
-}
-.footer__brand {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  font-family: var(--display);
-  font-size: 16px;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-}
-.footer__brand img { border-radius: 8px; }
-.footer__claim {
-  margin: 0 auto 0 0;
-  color: var(--lime);
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-}
-.footer__legal {
+.watchcard h2 {
   margin: 0;
-  color: var(--sage-3);
-  font-size: 14px;
-}
-.footer .link {
-  color: var(--lime);
-  text-decoration-color: rgba(217, 247, 100, .45);
-}
-.footer .link:hover { text-decoration-color: var(--lime); }
-
-/* ── Chat-Button (lädt Tawk.to erst auf Klick) ─────────────────────────── */
-/* z-index 55 hält ihn unter der fixierten Nav (60), damit er beim Scrollen
-   nicht über die Navigationsleiste wandert. Tawk.tos eigenes Widget legt
-   sich später ohnehin darüber, dann ist dieser Button schon ausgeblendet. */
-.chat {
-  position: fixed;
-  right: clamp(14px, 3vw, 26px);
-  bottom: clamp(14px, 3vw, 26px);
-  z-index: 55;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 13px 20px;
-  border: 0;
-  border-radius: 999px;
-  background: var(--ink);
-  color: var(--lime);
-  font-family: var(--sans);
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 14px 30px -12px rgba(20, 23, 15, .55);
-  transition: transform .25s cubic-bezier(.2, .8, .3, 1), box-shadow .25s;
+  line-height: 1.3;
 }
-.chat[hidden] { display: none; }
-.chat:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 38px -14px rgba(20, 23, 15, .65);
+.watchcard p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  text-wrap: pretty;
+  flex: 1;
 }
-.chat:active { transform: translateY(0); }
-.chat:focus-visible {
-  outline: 2px solid var(--lime);
-  outline-offset: 3px;
-}
-
-/* ── Animationen ───────────────────────────────────────────────────────── */
-@keyframes ks-live {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: .25; }
-}
-@keyframes ks-pulse {
-  0%, 100% { opacity: .5; transform: scale(.75); }
-  50%      { opacity: 1;  transform: scale(1.1); }
+.watchcard .btn {
+  align-self: flex-start;
+  font-size: 17px;
+  padding: 11px 22px;
 }
 
-/* ── Responsive ────────────────────────────────────────────────────────── */
+/* Amazon verlangt einen deutlich sichtbaren Hinweis. Er steht nach den Karten,
+   auf die er sich bezieht, klein, aber in lesbarer Textfarbe. */
+.disclosure {
+  max-width: var(--shell);
+  margin: 32px auto 0;
+  padding: 0 var(--gutter) 72px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+
+/* Unter 900px hat der Fächer keinen Platz mehr: die Telefone stellen sich
+   gerade nebeneinander, die Uhr rückt aus der Überlappung in die Reihe. */
 @media (max-width: 900px) {
-  .nav__links { display: none; }
+  .hero { padding-bottom: 56px; }
 
-  /* Unter 900px stapeln die Spalten, wodurch der Szenen-Inhalt höher wird als
-     ein Viewport. Gepinnt würde er unten aus dem Sticky-Bereich ragen und
-     optisch in die Folgesektion (02) laufen. Deshalb hier nicht pinnen,
-     sondern normal fließen lassen. */
-  /* Standard unter 900px: nicht gepinnt. Der gestapelte Inhalt braucht je nach
-     Gerät bis zu ~800px Höhe; auf kurzen Displays würde er aus dem gepinnten
-     Bereich ragen und in Block 02 laufen. Gepinnt wird nur, wenn genug Höhe
-     vorhanden ist (siehe @media min-height weiter unten). */
-  .scene {
+  .hero__shots {
+    flex: 1 1 100%;
+    min-width: 0;
+    /* Der Faecher braucht seine feste Hoehe nur fuer die Ueberlappung. Hier
+       stehen die Geraete in einer normalen Reihe, deshalb bestimmt der Inhalt
+       die Hoehe: auto allein genuegt nicht, solange die Basisregel 460px
+       vorgibt, also wird sie ausdruecklich zurueckgesetzt. */
     height: auto;
-    padding-bottom: clamp(90px, 12vh, 150px);
+    min-height: 0;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: center;
+    gap: 12px;
   }
-  .scene__sticky {
+  .phone--back,
+  .phone--front {
     position: static;
-    height: auto;
+    transform: none;
+    width: 150px;
+    height: 318px;
+    box-shadow: var(--shadow-shot);
   }
-  .scene__grid {
-    /* Kompakter als am Desktop, damit der gestapelte Inhalt möglichst in eine
-       Bildschirmhöhe passt. */
-    padding-top: clamp(64px, 9vh, 84px);
-    padding-bottom: clamp(16px, 3vh, 28px);
-    gap: clamp(18px, 3vh, 28px);
+  .watchshot {
+    position: static;
+    transform: none;
+    width: 150px;
+    height: 150px;
   }
-
-  /* Szenen-Inhalt kompakter, damit alles in die gepinnte Höhe passt. */
-  .scene h2 { font-size: clamp(28px, 7vw, 40px); }
-  .scene__caption {
-    margin-top: 14px;
-    min-height: 3.2em;
-    font-size: 15.5px;
-  }
-  .taps { margin-top: 18px; max-width: none; }
-  /* Die langen Hinweise ("Punkt für deinen Gegner") passen hier nicht mehr
-     rechts neben das Label, gequetscht umgebrochen sahen zwei von vier
-     Zeilen anders aus als der Rest. Stattdessen rückt der Hinweis bei allen
-     vier Zeilen einheitlich in eine eigene Zeile unter dem Label ein. */
-  .tap { padding: 10px 12px; flex-wrap: wrap; row-gap: 2px; }
-  .tap__hint {
-    margin-left: 0;
-    flex-basis: 100%;
-    padding-left: calc(51px + 14px); /* Punkte-Spalte + Lücke = Label-Flucht */
-  }
-  .scene__panel { padding: 18px; }
-  .scene__watchwrap { margin-top: 14px; }
-  .scene .watch { width: clamp(150px, 40vw, 190px); }
-  .scene__rail-row { margin-top: 16px; }
-
-  /* Vier Kacheln: 2×2 geht ohne Rest auf, es bleibt keine leere Zelle in der
-     Rasterfarbe stehen. Gemessen bei 375px: 169px pro Zelle, alle vier Labels
-     einzeilig, dreispaltig bräuchten sie hier drei Zeilen. */
-  .tiles { grid-template-columns: repeat(2, 1fr); }
-
-  /* Feste Spaltenzahlen ohne Rest: 4 Statistik-Kacheln in 2 Spalten,
-     3 Anforderungen einspaltig. auto-fit trifft in diesem Bereich sonst
-     Spaltenzahlen, die nicht aufgehen, und hinterlässt leere Zellen. */
-  .stats { grid-template-columns: repeat(2, 1fr); }
-  .reqs  { grid-template-columns: 1fr; }
-
-  /* Uhren-Karten einspaltig: Dreispaltig bliebe für Modellname plus Begründung
-     zu wenig Breite, "Samsung Galaxy Watch Ultra (2025)" zerfiele in
-     Ein-Wort-Zeilen. Das Bild wird dabei nicht formatfüllend breit. */
-  .watchcards { grid-template-columns: 1fr; }
-  .watchcard__shot {
-    aspect-ratio: auto;
-    height: clamp(150px, 34vw, 200px);
-    background-size: auto 58%;
-  }
-
-  /* Die Browser-Karte steht gestapelt allein in der Spalte und darf dann etwas
-     breiter werden als neben dem Text. */
-  .browser { width: min(100%, 440px); }
-
-  /* Die Vergleichstabelle bleibt dreispaltig, nur die Funktionsspalte gibt
-     Breite ab. Umbauen zu Karten wäre hier unnötig: Bei 375px bleiben den
-     zwei Wertspalten je 72px, der Rest geht an die Funktion. */
-  .plus__table thead th:nth-child(2),
-  .plus__table thead th:nth-child(3) { width: 72px; }
-  .plus__table tbody th { font-size: 15px; padding-right: 10px; }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 640px) {
+  :root { --gutter: 20px; }
+
   body { font-size: 16px; }
-  /* Kein height für .scene hier: Die Szene ist unter 900px nicht gepinnt
-     (height: auto). Ein Wert wie 360vh würde die Sektion wieder aufblähen,
-     während der Inhalt oben klebt, genau die Überlappung mit Block 02. */
-  /* Bleibt 2×2 (siehe 900px-Block). Bei 320px wickelt nur noch
-     "Matches im Archiv" auf zwei Zeilen, ohne horizontalen Überlauf. */
-  .tile { padding: 14px 12px; }
-  /* Ganz schmale Displays: Wertspalten weiter zusammen, damit der längste
-     Funktionsname ("Ergebnis und Basis-Statistik jedes Matches") nicht in
-     Ein-Wort-Zeilen zerfällt. */
-  .plus__table thead th:nth-child(2),
-  .plus__table thead th:nth-child(3) { width: 60px; }
-  .plus__table thead th { font-size: 10px; letter-spacing: .12em; }
-  .plus__table tbody th { font-size: 14.5px; }
-  .plus__table tbody th span { font-size: 13px; }
-  .scene__grid { padding-top: clamp(80px, 12vh, 100px); }
-  /* Die drei Statistik-Spalten der Browser-Karte bleiben auch hier dreispaltig:
-     die Mono-Labels passen bis 320px einzeilig, ein 2-Spalten-Raster würde nur
-     eine überbreite dritte Zelle erzeugen. */
-  .footer__inner { flex-direction: column; text-align: center; }
-  .footer__claim { margin: 0; }
-  /* Nur noch das Sprechblasen-Icon: Der Schriftzug würde hier gut ein Drittel
-     der Bildschirmbreite belegen und über dem Inhalt kleben. Das aria-label
-     ersetzt die sichtbare Beschriftung für Screenreader. */
-  .chat { padding: 0; width: 52px; height: 52px; justify-content: center; }
-  .chat [data-chat-label] { display: none; }
-}
 
-/* Mobil pinnen, aber nur mit genug Höhe: Der gestapelte Szenen-Inhalt braucht
-   rund 810px. Ist das Display kürzer (iPhone SE, viele 16:9-Androids), bleibt
-   die Sektion ungepinnt, sonst ragt der Inhalt heraus und überlappt Block 02.
-   Ab 820px Höhe verhält sich die Szene wie am Desktop: Bereich bleibt stehen,
-   die vier Schritte wechseln beim Scrollen. */
-@media (max-width: 900px) and (min-height: 820px) {
-  .scene { height: 300vh; }
-  .scene__sticky {
-    position: sticky;
-    top: 0;
-    height: 100svh;
-  }
-  /* Die Long-Tap-Fußnote fliegt hier raus: Das Höhenbudget der gepinnten
-     Szene ist auf rund 810px berechnet, drei zusätzliche Mono-Zeilen würden
-     den Inhalt aus dem Sticky-Bereich schieben. Die Information ist ein
-     Zusatz, das Pinning nicht. */
-  .taps__more { display: none; }
-}
+  .nav { padding-block: 18px; }
+  /* Der CTA im Kopf weicht dem Logo, der Download steht ohnehin im Hero. */
+  .nav__cta { display: none; }
 
-/* Kein Sticky/Parallax, wenn Bewegung reduziert werden soll. */
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .scene { height: auto; padding-bottom: clamp(60px, 8vh, 90px); }
-  .scene__sticky { position: static; height: auto; }
-  .dot-live, .scene__live i, .sharepage__live i { animation: none; }
-  .btn:hover, .nav__cta:hover { transform: none; }
-  .face__pts, .scene__caption, .tap { transition: none; }
+  .hero { padding-top: 24px; gap: 32px; }
+
+  .benefits, .clubs { padding-block: 48px; }
+  .steps, .teaser    { padding-block: 48px; }
+
+  .clubs__inner { gap: 32px; }
+
+  .cta__inner { padding: 40px 24px; }
+
+  .footer__inner { justify-content: flex-start; }
+
+  /* Auf schmalen Schirmen passen zwei Telefone nebeneinander, das dritte
+     würde auf Briefmarkengröße schrumpfen. */
+  .phone--right { display: none; }
 }

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drei Uhren für Kortscore</title>
+<meta name="description" content="Kortscore läuft auf jeder Wear-OS-3-Uhr. Wer noch keine hat, fährt mit diesen drei am Platz gut.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Drei Uhren für Kortscore">
+<meta property="og:description" content="Kortscore läuft auf jeder Wear-OS-3-Uhr. Wer noch keine hat, fährt mit diesen drei am Platz gut.">
+<!-- og:image needs an absolute URL, social previews load no image otherwise. -->
+<meta property="og:image" content="https://kortscore.com/assets/icon.png">
+<meta property="og:url" content="https://kortscore.com/de/uhren.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#faf9f5">
+<link rel="canonical" href="https://kortscore.com/de/uhren.html">
+
+<!-- Each language points at the other so search engines serve the right one;
+     x-default points at English. -->
+<link rel="alternate" hreflang="en" href="https://kortscore.com/watches.html">
+<link rel="alternate" hreflang="de" href="https://kortscore.com/de/uhren.html">
+<link rel="alternate" hreflang="x-default" href="https://kortscore.com/watches.html">
+
+<link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+
+<!-- Only the two faces above the fold are preloaded: the hero headline and the
+     body copy next to it. The rest arrive with the stylesheet. -->
+<link rel="preload" href="../assets/fonts/BarlowCondensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/IBMPlexSans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../styles.css?v=202608301100">
+
+<!-- ── Statistik: Umami ──────────────────────────────────────────────────────
+     Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
+     nötig (Google Analytics wäre in Österreich einwilligungspflichtig, weil
+     Daten in die USA übertragen werden).
+
+     Die Website-ID stammt aus dem Umami-Cloud-Dashboard. Der Guard unten lädt
+     das Skript nur bei gültigem UUID-Format, ein Platzhalter oder Tippfehler
+     erzeugt so keine fehlschlagenden Requests.
+     ────────────────────────────────────────────────────────────────────── -->
+<script>
+(function () {
+  var UMAMI_ID  = '5d4bc72b-d15a-49f0-9083-bc763e4ce7b1';
+  var UMAMI_SRC = 'https://cloud.umami.is/script.js';
+
+  // Nur mit echter ID laden (Platzhalter enthält Bindestrich-Wörter, keine UUID).
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(UMAMI_ID)) return;
+
+  var s = document.createElement('script');
+  s.defer = true;
+  s.src = UMAMI_SRC;
+  s.setAttribute('data-website-id', UMAMI_ID);
+  document.head.appendChild(s);
+})();
+</script>
+
+<!-- ── Google Ads: Conversion ohne Cookies ──────────────────────────────────
+     Misst, ob eine Anzeige zum Play-Store-Klick geführt hat. Der Consent Mode
+     steht auf denied, bevor gtag.js überhaupt lädt: Google setzt dann keine
+     Werbe-Cookies und speichert nichts auf dem Gerät, sondern liefert nur
+     modellierte, aggregierte Conversions. Deshalb bleibt die Seite ohne
+     Consent-Banner, wie schon bei Umami.
+
+     url_passthrough und ads_data_redaction gehören dazu: Ersteres hängt die
+     Klick-Kennung an die URL statt ins Cookie, Letzteres kürzt die Daten, die
+     ohne Einwilligung überhaupt an Google gehen.
+
+     Wer später doch volle Messung will, braucht ein echtes Einwilligungs-
+     Banner und darf erst nach dem Klick auf granted schalten.
+     ────────────────────────────────────────────────────────────────────── -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+// Vor dem Laden setzen, sonst greift die Voreinstellung zu spät.
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: 'denied'
+});
+gtag('set', 'url_passthrough', true);
+gtag('set', 'ads_data_redaction', true);
+
+gtag('js', new Date());
+gtag('config', 'AW-18314402307');
+
+// Conversion "Seitenaufruf": feuert bei jedem Aufruf dieser Seite, also auch
+// bei Besuchern, die sofort wieder weggehen. Der Wert ist eine Rechengröße für
+// die Gebotsstrategie, kein tatsächlicher Umsatz.
+gtag('event', 'conversion', {
+  send_to: 'AW-18314402307/rVvTCNqX_OkcEIO0_pxE',
+  value: 1.0,
+  currency: 'EUR'
+});
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18314402307"></script>
+</head>
+<body>
+
+<!-- ── Language hint ────────────────────────────────────────────────────────
+     Same mechanism as on the landing page: shown only to visitors whose
+     browser asks for German, hidden again once a language has been chosen. -->
+<div class="langbar" data-langbar data-langbar-lang="en" hidden>
+  <span lang="en">This page is also available in English.</span>
+  <a class="langbar__go" href="../watches.html" hreflang="en" lang="en" data-langbar-go>Switch to English</a>
+  <button class="langbar__close" type="button" data-langbar-close lang="en">No thanks</button>
+</div>
+
+<!-- ── Nav ──────────────────────────────────────────────────────────────── -->
+<header class="nav">
+  <a class="nav__brand" href="../">
+    <img src="../assets/icon.png" alt="" width="30" height="30">
+    <span>Kortscore</span>
+  </a>
+  <div class="nav__right">
+    <a class="nav__lang" href="../watches.html" hreflang="en" lang="en" data-lang-switch>English</a>
+    <a class="btn btn--small nav__cta" href="../#get">Jetzt laden</a>
+  </div>
+</header>
+
+<main>
+<div class="subhead">
+  <a class="back" href="../">← Zurück zum Start</a>
+  <p class="eyebrow">Welche Uhr</p>
+  <h1 class="subhead__title">Drei Uhren,<br>die passen</h1>
+  <p class="lead">
+    Kortscore läuft auf jeder Wear-OS-3-Uhr. Wer noch keine hat, fährt mit
+    diesen drei am Platz gut.
+  </p>
+</div>
+
+<!-- All three photos are our own shots, as WebP in 480 and 960 wide (srcset),
+     cropped square on the watch: Amazon's own product images may not be hosted
+     by us. The fixed width and height stop the row from shifting while the
+     images arrive. -->
+<ul class="watchcards">
+      <li class="watchcard">
+        <div class="watchcard__shot">
+          <img src="../assets/watch-galaxy-watch-8.webp"
+               srcset="../assets/watch-galaxy-watch-8.webp 480w,
+                       ../assets/watch-galaxy-watch-8@2x.webp 960w"
+               sizes="(max-width: 900px) 88vw, 30vw"
+               width="480" height="480" loading="lazy" decoding="async"
+               alt="Samsung Galaxy Watch 8, silbernes Gehäuse mit dunklem Armband">
+        </div>
+        <h2>Samsung Galaxy Watch 8</h2>
+        <p>Wear OS 6, in praller Sonne ablesbar, Akku für ein langes Matchprogramm.</p>
+        <a class="btn watchcard__btn" href="https://amzlink.to/az0Q86fDm7t5p"
+           target="_blank" rel="nofollow sponsored noopener">Bei Amazon ansehen</a>
+      </li>
+      <li class="watchcard">
+        <div class="watchcard__shot">
+          <img src="../assets/watch-galaxy-watch-ultra.webp"
+               srcset="../assets/watch-galaxy-watch-ultra.webp 480w,
+                       ../assets/watch-galaxy-watch-ultra@2x.webp 960w"
+               sizes="(max-width: 900px) 88vw, 30vw"
+               width="480" height="480" loading="lazy" decoding="async"
+               alt="Samsung Galaxy Watch Ultra (2025), Titangehäuse mit blauem Armband">
+        </div>
+        <h2>Samsung Galaxy Watch Ultra (2025)</h2>
+        <p>Robustes Gehäuse, größter Akku der drei, für lange Turniertage im Freien.</p>
+        <a class="btn watchcard__btn" href="https://amzlink.to/az0f04miu49Xg"
+           target="_blank" rel="nofollow sponsored noopener">Bei Amazon ansehen</a>
+      </li>
+      <li class="watchcard">
+        <div class="watchcard__shot">
+          <img src="../assets/watch-pixel-watch-5.webp?v=2"
+               srcset="../assets/watch-pixel-watch-5.webp?v=2 480w,
+                       ../assets/watch-pixel-watch-5@2x.webp?v=2 960w"
+               sizes="(max-width: 900px) 88vw, 30vw"
+               width="480" height="480" loading="lazy" decoding="async"
+               alt="Google Pixel Watch 5, schwarzes Gehäuse mit schwarzem Armband">
+        </div>
+        <h2>Google Pixel Watch 5</h2>
+        <p>Wear OS direkt von Google, bekommt Updates zuerst. Kompakt am Handgelenk.</p>
+        <a class="btn watchcard__btn" href="https://amzlink.to/az0o6BdeJ1gGu"
+           target="_blank" rel="nofollow sponsored noopener">Bei Amazon ansehen</a>
+      </li>
+</ul>
+
+<!-- Amazon requires this disclosure to be clear and conspicuous. It sits at the
+     end, after the cards it applies to, small but in readable body colour. -->
+<p class="disclosure">
+  Als Amazon-Partner verdienen wir an qualifizierten Käufen.
+</p>
+</main>
+
+<!-- ── Footer ───────────────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer__inner">
+    <p class="footer__claim">Kortscore · Tennis zählen am Handgelenk</p>
+    <p class="footer__links">
+      <a href="../">Startseite</a>
+      <a href="../legal/impressum.html">Impressum</a>
+      <a href="../legal/privacy.html">Datenschutz</a>
+      <a href="../legal/terms.html">AGB</a>
+      <a href="https://www.swordistudios.com" target="_blank" rel="noopener">swordi.studios</a>
+    </p>
+  </div>
+</footer>
+
+<script src="../script.js?v=202608301100"></script>
+</body>
+</html>

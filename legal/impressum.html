@@ -12,38 +12,38 @@
   <!-- Schriften lokal aus /assets/fonts statt von fonts.googleapis.com: Ein
        Google-Fonts-Aufruf überträgt die IP jedes Besuchers an Google und würde
        der eigenen Datenschutzerklärung widersprechen, die für diese Website
-       cookie- und drittanbieterfrei argumentiert. Archivo und JetBrains Mono
-       liegen ohnehin schon hier und tragen den Rest der Seite. -->
+       cookie- und drittanbieterfrei argumentiert. Dieselben Familien wie auf
+       der übrigen Website, damit die Rechtstexte nicht aus dem Rahmen fallen. -->
   <style>
     @font-face {
-      font-family: 'Archivo';
+      font-family: 'Barlow Condensed';
       font-style: normal;
-      font-weight: 100 900;
+      font-weight: 700;
       font-display: swap;
-      src: url("/assets/fonts/Archivo-latin.woff2") format('woff2');
+      src: url("/assets/fonts/BarlowCondensed-700-latin.woff2") format('woff2');
     }
     @font-face {
-      font-family: 'Archivo';
+      font-family: 'IBM Plex Sans';
       font-style: normal;
-      font-weight: 100 900;
+      font-weight: 400 600;
       font-display: swap;
-      src: url("/assets/fonts/Archivo-latin-ext.woff2") format('woff2');
-      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
-        U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0;
+      src: url("/assets/fonts/IBMPlexSans-latin.woff2") format('woff2');
     }
     @font-face {
-      font-family: 'Archivo Black';
+      font-family: 'IBM Plex Sans';
       font-style: normal;
-      font-weight: 400;
+      font-weight: 400 600;
       font-display: swap;
-      src: url("/assets/fonts/ArchivoBlack-latin.woff2") format('woff2');
+      src: url("/assets/fonts/IBMPlexSans-latin-ext.woff2") format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+        U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
     }
     @font-face {
-      font-family: 'JetBrains Mono';
+      font-family: 'IBM Plex Mono';
       font-style: normal;
-      font-weight: 100 800;
+      font-weight: 400 600;
       font-display: swap;
-      src: url("/assets/fonts/JetBrainsMono-latin.woff2") format('woff2');
+      src: url("/assets/fonts/IBMPlexMono-400-latin.woff2") format('woff2');
     }
   </style>
   <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)" />
@@ -67,7 +67,7 @@
       padding: 0;
       background: var(--paper);
       color: var(--ink);
-      font-family: Archivo, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
       line-height: 1.6;
     }
@@ -77,7 +77,7 @@
     .brand { display: flex; align-items: center; gap: 9px; margin-bottom: 8px; }
     .brand-icon { width: 26px; height: 26px; border-radius: 7px; background: #16150f; flex: none; }
     .brand-name {
-      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.18em;
@@ -90,9 +90,9 @@
     .lang-toggle a.current { color: var(--ink); font-weight: 600; text-decoration: none; }
     .lang-toggle span.sep { color: var(--surface-alt); margin: 0 8px; }
 
-    h1 { font-family: 'Archivo Black', Archivo, system-ui, sans-serif; font-size: 32px; font-weight: 700; margin: 0 0 4px; }
-    .updated { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; color: var(--muted); margin: 0 0 28px; }
-    h2 { font-family: 'Archivo Black', Archivo, system-ui, sans-serif; font-size: 22px; font-weight: 700; margin: 36px 0 10px; }
+    h1 { font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif; font-size: 40px; font-weight: 700; letter-spacing: 0.01em; text-transform: uppercase; line-height: 1.05; margin: 0 0 4px; }
+    .updated { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; color: var(--muted); margin: 0 0 28px; }
+    h2 { font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif; font-size: 27px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; line-height: 1.15; margin: 36px 0 10px; }
     p { margin: 0 0 12px; }
     a { color: var(--accent); }
 
