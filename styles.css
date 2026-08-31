@@ -945,6 +945,140 @@ a:hover { color: var(--accent); }
   color: var(--text-muted);
 }
 
+/* ── iOS-Interesse ────────────────────────────────────────────────────────
+   Steht zwischen Uhren-Teaser und CTA und darf dem Play-Store-Button keine
+   Aufmerksamkeit wegnehmen: heller Grund, keine Akzentflaeche, ein einzelnes
+   Feld. Die Karte ist schmaler als die Inhaltsspalte, damit sie als Einschub
+   und nicht als zweiter Hauptaufruf gelesen wird.
+   ───────────────────────────────────────────────────────────────────────── */
+.ios {
+  padding: 0 var(--gutter) 80px;
+}
+.ios__inner {
+  max-width: 720px;
+  margin-inline: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px var(--gutter);
+  text-align: center;
+}
+.ios__title {
+  margin: 10px 0 0;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+.ios__lede {
+  margin-top: 12px;
+  margin-inline: auto;
+  max-width: 52ch;
+}
+
+/* Das Formular. Feld und Button stehen nebeneinander, solange Platz ist, und
+   brechen darunter untereinander um: dafuer genuegt flex-wrap, eine
+   Medienabfrage braucht es nicht. */
+/* Der Button traegt bewusst nicht den gruenen Akzent: der gehoert dem
+   Play-Store-Aufruf direkt darunter. Zwei gleich laute Rufe nebeneinander
+   nehmen sich gegenseitig die Wirkung, deshalb hier die dunkle Grundform. */
+.ios__form {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.ios__field {
+  flex: 1 1 260px;
+  max-width: 340px;
+  min-width: 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 14px 20px;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text);
+}
+.ios__field::placeholder { color: var(--text-muted); }
+.ios__field:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+  border-color: transparent;
+}
+
+/* Der Honeypot faengt Bots ab und darf deshalb weder sichtbar noch fuer
+   Screenreader oder die Tabulatortaste erreichbar sein. display:none waere
+   das Naheliegende, wird von manchen Bots aber erkannt und uebersprungen. */
+.ios__trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Das Label des E-Mail-Felds. Sichtbar braucht es niemand, der Platzhalter
+   sagt dasselbe, vorgelesen werden muss es trotzdem: ein Feld ohne Label ist
+   fuer einen Screenreader namenlos. Deshalb aus dem Bild geschoben statt
+   versteckt, anders als die Falle darueber. */
+.ios__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Die Einwilligung. Klein gesetzt, aber nicht versteckt: sie ist die
+   Rechtsgrundlage fuer das Speichern und muss lesbar bleiben. */
+.ios__consent {
+  margin-top: 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  text-align: left;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 46ch;
+  margin-inline: auto;
+}
+.ios__consent input {
+  flex: none;
+  margin: 2px 0 0;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+
+.ios__note {
+  margin-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+/* Rueckmeldung nach dem Absenden. Sie ersetzt das Formular nicht, sondern
+   tritt darunter, damit der Fokus im Dokument nicht ins Leere laeuft.
+   role="status" im HTML sorgt dafuer, dass Screenreader sie vorlesen. */
+.ios__msg {
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.ios__msg:empty { display: none; }
+.ios__msg--ok   { color: var(--accent-text); }
+.ios__msg--err  { color: #a4341f; }
+
 /* ── Responsive ─────────────────────────────────────────────────────────── */
 
 /* Unter 900px hat der Fächer keinen Platz mehr: die Telefone stellen sich
@@ -1000,6 +1134,12 @@ a:hover { color: var(--accent); }
   .clubs__inner { gap: 32px; }
 
   .cta__inner { padding: 40px 24px; }
+  .ios__inner { padding: 32px 24px; }
+
+  /* Nebeneinander bliebe das Feld auf schmalen Schirmen zu kurz zum Lesen der
+     eigenen Adresse, deshalb hier ausdruecklich untereinander. */
+  .ios__field { flex-basis: 100%; max-width: none; }
+  .ios__form .btn { width: 100%; }
 
   .footer__inner { justify-content: flex-start; }
 

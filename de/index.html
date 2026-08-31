@@ -30,7 +30,7 @@
      body copy next to it. The rest arrive with the stylesheet. -->
 <link rel="preload" href="../assets/fonts/BarlowCondensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/IBMPlexSans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../styles.css?v=202608301100">
+<link rel="stylesheet" href="../styles.css?v=202608312000">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -329,6 +329,60 @@ gtag('event', 'conversion', {
   </div>
 </section>
 
+<!-- ── iOS-Interesse ────────────────────────────────────────────────────────
+     Kein Versprechen, sondern eine Frage: eine Fassung für iPhone und Apple
+     Watch ist denkbar, und hier wird gezählt, wie viele sie wollen. Das
+     Formular postet an ein Google Apps Script, das die Adresse an eine
+     Tabelle anhängt und uns eine Notiz mailt; an den Interessenten selbst geht
+     nichts, siehe tools/ios-interest-setup.md.
+
+     Ohne JavaScript wird das Formular trotzdem abgeschickt, der Browser
+     landet dann auf der JSON-Antwort des Skripts statt auf der Seite zu
+     bleiben. Selten, und besser als ein Button ohne Wirkung. -->
+<section class="ios shell" id="ios">
+  <div class="ios__inner">
+    <p class="eyebrow">iPhone &amp; Apple Watch</p>
+    <h2 class="ios__title">Willst du das auf iOS?</h2>
+    <p class="lead ios__lede">
+      Kortscore läuft heute auf Android und Wear OS. Eine Fassung für iPhone
+      und Apple Watch ist durchaus möglich, und wie viele danach fragen,
+      entscheidet, ob sie gebaut wird. Trag deine Adresse ein, dann melden wir
+      uns, sobald es etwas zum Ausprobieren gibt.
+    </p>
+
+    <form class="ios__form" data-ios-form
+          action="https://script.google.com/macros/s/AKfycbyEQU3paAcHWt3_nRv7D5kJwf2ratika-nWdOTZuJ3uN3nyG7nqKrFCLhKdTe-A_pGa/exec" method="post">
+      <label class="ios__trap" aria-hidden="true">
+        Dieses Feld bitte leer lassen
+        <input type="text" name="website" tabindex="-1" autocomplete="off">
+      </label>
+
+      <label class="ios__label" for="ios-email">Deine E-Mail-Adresse</label>
+      <input class="ios__field" id="ios-email" type="email" name="email"
+             required autocomplete="email" inputmode="email"
+             placeholder="du@beispiel.at">
+
+      <button class="btn" type="submit">Benachrichtigen</button>
+
+      <label class="ios__consent">
+        <input type="checkbox" name="consent" required>
+        <span>
+          Meine Adresse darf gespeichert werden, um mich über eine
+          iOS-Version zu informieren. Sonst nichts, und ich kann die Löschung
+          jederzeit verlangen.
+        </span>
+      </label>
+    </form>
+
+    <p class="ios__msg" data-ios-msg role="status" aria-live="polite"></p>
+
+    <p class="ios__note">
+      Kein Newsletter · keine Weitergabe ·
+      <a href="../legal/privacy.html">Datenschutz</a>
+    </p>
+  </div>
+</section>
+
 <!-- ── CTA ──────────────────────────────────────────────────────────────── -->
 <section class="cta" id="get">
   <div class="cta__inner">
@@ -365,6 +419,6 @@ gtag('event', 'conversion', {
   </div>
 </footer>
 
-<script src="../script.js?v=202608301100"></script>
+<script src="../script.js?v=202608312000"></script>
 </body>
 </html>

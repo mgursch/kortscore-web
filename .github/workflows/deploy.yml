@@ -32,6 +32,11 @@ jobs:
       # .well-known/assetlinks.json traegt die App-Link-Verifikation, ohne die
       # Kortscore-Deeplinks im Browser statt in der App landen. .git und .github
       # bleiben in jedem Fall aussen vor, dafuer sorgt die Action selbst.
+      # tools/ enthaelt das Apps Script und seine Anleitung. Beides gehoert ins
+      # Repo, aber nicht auf die Website: veroeffentlicht wird nur, was
+      # Besucher brauchen.
+      - run: rm -rf tools
+
       - uses: actions/upload-pages-artifact@v5
         with:
           path: .
