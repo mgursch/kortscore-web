@@ -106,11 +106,10 @@
 
   var ADS_ID = 'AW-18314402307';
 
-  /* Conversion-Label der Aktion "Play-Store-Klick" aus Google Ads. Solange
-     hier der Platzhalter steht, wird bewusst keine Conversion gesendet —
-     dasselbe Prinzip wie beim Umami-Guard weiter oben. Referrer und eigene
-     Statistik laufen trotzdem. */
-  var ADS_LABEL = 'LABEL_HIER_EINSETZEN';
+  /* Conversion-Label der Aktion "Play-Store-Klick" aus Google Ads. Leer lassen
+     schaltet die Meldung ab, ohne den Rest anzuruehren: Referrer und eigene
+     Statistik laufen dann trotzdem. */
+  var ADS_LABEL = 'cDUqCM-ViOwcEIO0_pxE';
 
   var FIELDS = ['gclid', 'utm_source', 'utm_medium', 'utm_campaign',
                 'utm_content', 'utm_term'];
@@ -171,7 +170,7 @@
     }
 
     a.addEventListener('click', function () {
-      if (ADS_LABEL !== 'LABEL_HIER_EINSETZEN' && typeof gtag === 'function') {
+      if (ADS_LABEL && typeof gtag === 'function') {
         gtag('event', 'conversion', {
           send_to: ADS_ID + '/' + ADS_LABEL,
           value: 1.0,
