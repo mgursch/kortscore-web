@@ -460,24 +460,27 @@ a:hover { color: var(--accent); }
   box-shadow: 0 28px 64px rgba(22, 21, 15, 0.28);
 }
 
+/* Der Render bringt Gehaeuse und Armband schon mit und liegt frei auf
+   transparentem Grund. Deshalb keine nachgebaute Huelle mehr: kein runder
+   Rahmen, keine Maske, kein Hintergrund. Ein border-radius wuerde hier das
+   Armband abschneiden.
+
+   Das Bild ist hochformatig (292x338), die Hoehe steuert die Groesse und die
+   Breite folgt dem Seitenverhaeltnis. Der Schatten sitzt am Bild statt am
+   Kasten, sonst laege er als Rechteck hinter der freigestellten Uhr. */
 .watchshot {
   position: absolute;
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
-  width: 190px;
-  height: 190px;
-  border-radius: 50%;
-  background: #1c1d1f;
-  padding: 7px;
-  box-shadow: 0 24px 60px rgba(22, 21, 15, 0.3);
+  width: auto;
+  height: 230px;
   z-index: 3;
 }
 .watchshot img {
-  width: 100%;
+  width: auto;
   height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
+  filter: drop-shadow(0 18px 34px rgba(22, 21, 15, 0.3));
 }
 
 /* ── Benefits ───────────────────────────────────────────────────────────── */
@@ -1112,8 +1115,8 @@ a:hover { color: var(--accent); }
   .watchshot {
     position: static;
     transform: none;
-    width: 150px;
-    height: 150px;
+    width: auto;
+    height: 190px;
   }
 }
 
