@@ -208,7 +208,7 @@
 })();
 
 /* ============================================================================
-   iOS-Interesse: Adresse eintragen, ohne die Seite zu verlassen
+   iOS-Warteliste: Adresse eintragen, ohne die Seite zu verlassen
    ============================================================================
    Das Formular funktioniert auch ohne dieses Skript, dann laedt der Browser
    die JSON-Antwort des Apps Scripts als neue Seite. Hier wird daraus ein
@@ -247,11 +247,11 @@
 
     var TEXT = lang === 'de' ? {
       sending: 'Wird eingetragen …',
-      ok:      'Danke, du stehst auf der Liste.',
+      ok:      'Danke, du stehst auf der Warteliste.',
       err:     'Das hat nicht geklappt. Bitte später noch einmal versuchen.'
     } : {
       sending: 'Signing you up …',
-      ok:      'Thanks, you are on the list.',
+      ok:      'Thanks, you are on the waitlist.',
       err:     'That did not work. Please try again later.'
     };
 

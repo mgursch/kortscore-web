@@ -376,9 +376,9 @@ gtag('event', 'conversion', {
   </div>
 </section>
 
-<!-- ── iOS-Interesse ────────────────────────────────────────────────────────
-     Kein Versprechen, sondern eine Frage: eine Fassung für iPhone und Apple
-     Watch ist denkbar, und hier wird gezählt, wie viele sie wollen. Das
+<!-- ── iOS-Warteliste ───────────────────────────────────────────────────────
+     Kein Versprechen, sondern eine Warteliste: eine Fassung für iPhone und
+     Apple Watch ist denkbar, und hier wird gezählt, wie viele sie wollen. Das
      Formular postet an ein Google Apps Script, das die Adresse an eine
      Tabelle anhängt und uns eine Notiz mailt; an den Interessenten selbst geht
      nichts, siehe tools/ios-interest-setup.md.
@@ -389,12 +389,11 @@ gtag('event', 'conversion', {
 <section class="ios shell" id="ios">
   <div class="ios__inner">
     <p class="eyebrow">iPhone &amp; Apple Watch</p>
-    <h2 class="ios__title">Willst du das auf iOS?</h2>
+    <h2 class="ios__title">iOS und Apple Watch Warteliste</h2>
     <p class="lead ios__lede">
-      Kortscore läuft heute auf Android und Wear OS. Eine Fassung für iPhone
-      und Apple Watch ist durchaus möglich, und wie viele danach fragen,
-      entscheidet, ob sie gebaut wird. Trag deine Adresse ein, dann melden wir
-      uns, sobald es etwas zum Ausprobieren gibt.
+      Kortscore läuft heute auf Android und Wear OS. Eine iOS-Version wird über
+      die nächste Zeit auch umgesetzt werden. Setz dich auf die Warteliste und
+      wir informieren dich, sobald es die erste Version zum Testen gibt.
     </p>
 
     <form class="ios__form" data-ios-form
@@ -409,14 +408,14 @@ gtag('event', 'conversion', {
              required autocomplete="email" inputmode="email"
              placeholder="du@beispiel.at">
 
-      <button class="btn" type="submit">Benachrichtigen</button>
+      <button class="btn" type="submit">Auf die Warteliste</button>
 
       <label class="ios__consent">
         <input type="checkbox" name="consent" required>
         <span>
-          Meine Adresse darf gespeichert werden, um mich über eine
-          iOS-Version zu informieren. Sonst nichts, und ich kann die Löschung
-          jederzeit verlangen.
+          Meine Adresse darf auf der Warteliste gespeichert werden, um mich
+          über eine iOS-Version zu informieren. Sonst nichts, und ich kann die
+          Löschung jederzeit verlangen.
         </span>
       </label>
     </form>
