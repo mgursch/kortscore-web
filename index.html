@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kortscore: Your match. Your score. One tap.</title>
-<meta name="description" content="Kortscore scores your tennis match on your wrist, point by point, without interrupting play. And whoever is not on court follows along live.">
+<meta name="description" content="Kortscore scores your tennis and padel match on your wrist, point by point, without interrupting play. And whoever is not on court follows along live.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kortscore: Your match. Your score. One tap.">
-<meta property="og:description" content="Kortscore scores your tennis match on your wrist, point by point, without interrupting play. And whoever is not on court follows along live.">
+<meta property="og:description" content="Kortscore scores your tennis and padel match on your wrist, point by point, without interrupting play. And whoever is not on court follows along live.">
 <!-- og:image needs an absolute URL, social previews load no image otherwise. -->
 <meta property="og:image" content="https://kortscore.com/assets/icon.png">
 <meta property="og:url" content="https://kortscore.com/">
@@ -30,7 +30,7 @@
      body copy next to it. The rest arrive with the stylesheet. -->
 <link rel="preload" href="assets/fonts/BarlowCondensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/IBMPlexSans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=202609011600">
+<link rel="stylesheet" href="styles.css?v=202609021000">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -128,11 +128,11 @@ gtag('event', 'conversion', {
 <main id="top">
 <section class="hero">
   <div class="hero__copy">
-    <p class="eyebrow">Tennis scoring · Phone &amp; watch</p>
+    <p class="eyebrow">Tennis &amp; padel · Phone &amp; watch</p>
     <h1 class="hero__title">Your match.<br>Your score.<br><em>One tap.</em></h1>
     <p class="hero__lede">
-      Kortscore counts your tennis match on your wrist, point by point, without
-      interrupting play. And whoever is not on court watches live.
+      Kortscore counts your tennis or padel match on your wrist, point by point,
+      without interrupting play. And whoever is not on court watches live.
     </p>
     <div class="hero__actions">
       <a class="btn btn--accent" href="#get">Free on Play Store</a>
@@ -186,7 +186,7 @@ gtag('event', 'conversion', {
         <h3 class="stat__title">Statistics that count</h3>
         <p class="stat__body">
           Win rate, set record, the point history of every match: your whole
-          tennis history, evaluated automatically.
+          match history, evaluated automatically.
         </p>
       </article>
       <article class="stat">
@@ -217,16 +217,16 @@ gtag('event', 'conversion', {
       <p class="step__num mono">01</p>
       <h3 class="step__title">Start the match</h3>
       <p class="step__body">
-        Pick a format, or just tap the last combination. Singles, doubles, best
-        of 3, a single set: it all works.
+        Pick a format, or just tap the last combination. Singles, doubles, NoAd,
+        best of 3, a single set: it all works.
       </p>
     </div>
     <div class="step">
       <p class="step__num mono">02</p>
       <h3 class="step__title">Play and tap</h3>
       <p class="step__body">
-        The watch counts points, games and sets by real tennis rules, tiebreak
-        and champions tiebreak included.
+        The watch counts points, games and sets by real tennis and padel rules,
+        tiebreak and champions tiebreak included.
       </p>
     </div>
     <div class="step">
@@ -237,6 +237,52 @@ gtag('event', 'conversion', {
         score in broadcast notation, duration and point history.
       </p>
     </div>
+  </div>
+</section>
+
+<!-- ── Padel ────────────────────────────────────────────────────────────────
+     A padel player's first question about a tennis app is whether it counts
+     correctly. It does, because the scoring is the same, so this section says
+     so plainly and backs it with the two things that actually differ in
+     padel: NoAd and doubles. Both were already there. -->
+<section class="padel" id="padel">
+  <div class="shell padel__inner">
+    <div class="padel__copy">
+      <p class="eyebrow">Also for padel</p>
+      <h2 class="padel__title">Padel? Counts the same.</h2>
+      <p class="lead padel__lead">
+        Padel scores like tennis: 15, 30, 40, game, set. So Kortscore needs no
+        special treatment for it, the watch simply counts along. One tap per
+        point, on court, without interrupting play.
+      </p>
+      <div class="padel__count" aria-hidden="true">
+        <span>15</span><span>30</span><span>40</span><span>Game</span><span>Set</span>
+      </div>
+    </div>
+
+    <dl class="padel__facts">
+      <div class="padel__fact">
+        <dt>Golden Point</dt>
+        <dd>
+          Built into the app as NoAd. Pick it once and the deciding point at
+          40&ndash;40 settles the game, exactly as your league plays it.
+        </dd>
+      </div>
+      <div class="padel__fact">
+        <dt>Doubles</dt>
+        <dd>
+          Padel is nearly always doubles, and so is Kortscore's doubles mode:
+          not a special case, just one of the formats on the start screen.
+        </dd>
+      </div>
+      <div class="padel__fact">
+        <dt>Live for spectators</dt>
+        <dd>
+          Share the link and whoever is off court follows every point, from the
+          next court or from home.
+        </dd>
+      </div>
+    </dl>
   </div>
 </section>
 
@@ -407,7 +453,7 @@ gtag('event', 'conversion', {
 <!-- ── Footer ───────────────────────────────────────────────────────────── -->
 <footer class="footer">
   <div class="footer__inner">
-    <p class="footer__claim">Kortscore · Tennis scoring on your wrist</p>
+    <p class="footer__claim">Kortscore · Tennis &amp; padel scoring on your wrist</p>
     <p class="footer__links">
       <a href="watches.html">Watches</a>
       <a href="legal/impressum.html">Legal notice</a>

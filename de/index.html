@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kortscore: Dein Match. Dein Score. Ein Tap.</title>
-<meta name="description" content="Kortscore zählt dein Tennismatch am Handgelenk mit, Punkt für Punkt, ohne das Spiel zu unterbrechen. Und wer nicht auf dem Platz steht, schaut live zu.">
+<meta name="description" content="Kortscore zählt dein Tennis- oder Padelmatch am Handgelenk mit, Punkt für Punkt, ohne das Spiel zu unterbrechen. Und wer nicht auf dem Platz steht, schaut live zu.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kortscore: Dein Match. Dein Score. Ein Tap.">
-<meta property="og:description" content="Kortscore zählt dein Tennismatch am Handgelenk mit, Punkt für Punkt, ohne das Spiel zu unterbrechen. Und wer nicht auf dem Platz steht, schaut live zu.">
+<meta property="og:description" content="Kortscore zählt dein Tennis- oder Padelmatch am Handgelenk mit, Punkt für Punkt, ohne das Spiel zu unterbrechen. Und wer nicht auf dem Platz steht, schaut live zu.">
 <!-- og:image needs an absolute URL, social previews load no image otherwise. -->
 <meta property="og:image" content="https://kortscore.com/assets/icon.png">
 <meta property="og:url" content="https://kortscore.com/de/">
@@ -30,7 +30,7 @@
      body copy next to it. The rest arrive with the stylesheet. -->
 <link rel="preload" href="../assets/fonts/BarlowCondensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/IBMPlexSans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../styles.css?v=202609011600">
+<link rel="stylesheet" href="../styles.css?v=202609021000">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -128,11 +128,12 @@ gtag('event', 'conversion', {
 <main id="top">
 <section class="hero">
   <div class="hero__copy">
-    <p class="eyebrow">Tennis zählen · Handy &amp; Uhr</p>
+    <p class="eyebrow">Tennis &amp; Padel · Handy &amp; Uhr</p>
     <h1 class="hero__title">Dein Match.<br>Dein Score.<br><em>Ein Tap.</em></h1>
     <p class="hero__lede">
-      Kortscore zählt dein Tennismatch am Handgelenk mit, Punkt für Punkt, ohne
-      das Spiel zu unterbrechen. Und wer nicht auf dem Platz steht, schaut live zu.
+      Kortscore zählt dein Tennis- oder Padelmatch am Handgelenk mit, Punkt für
+      Punkt, ohne das Spiel zu unterbrechen. Und wer nicht auf dem Platz steht,
+      schaut live zu.
     </p>
     <div class="hero__actions">
       <a class="btn btn--accent" href="#get">Gratis im Play Store</a>
@@ -185,7 +186,7 @@ gtag('event', 'conversion', {
         <h3 class="stat__title">Statistiken, die zählen</h3>
         <p class="stat__body">
           Siegquote, Satzbilanz, Punkteverlauf jedes Matches: deine gesamte
-          Tennis-Historie, automatisch ausgewertet.
+          Match-Historie, automatisch ausgewertet.
         </p>
       </article>
       <article class="stat">
@@ -217,15 +218,15 @@ gtag('event', 'conversion', {
       <h3 class="step__title">Match starten</h3>
       <p class="step__body">
         Format wählen, oder einfach die letzte Kombination antippen. Einzel,
-        Doppel, Best of 3, ein Satz: alles geht.
+        Doppel, NoAd, Best of 3, ein Satz: alles geht.
       </p>
     </div>
     <div class="step">
       <p class="step__num mono">02</p>
       <h3 class="step__title">Spielen und tippen</h3>
       <p class="step__body">
-        Die Uhr zählt Punkte, Games und Sätze nach echten Tennisregeln,
-        inklusive Tiebreak und Champions-Tiebreak.
+        Die Uhr zählt Punkte, Games und Sätze nach echten Tennis- und
+        Padelregeln, inklusive Tiebreak und Champions-Tiebreak.
       </p>
     </div>
     <div class="step">
@@ -236,6 +237,52 @@ gtag('event', 'conversion', {
         Broadcast-Notation, Dauer und Punkteverlauf.
       </p>
     </div>
+  </div>
+</section>
+
+<!-- ── Padel ────────────────────────────────────────────────────────────────
+     Die erste Frage eines Padel-Spielers an eine Tennis-App ist, ob sie
+     richtig zählt. Sie tut es, weil die Zählweise dieselbe ist, deshalb sagt
+     die Sektion das direkt und belegt es mit den zwei Dingen, die im Padel
+     tatsächlich anders sind: NoAd und Doppel. Beides war schon da. -->
+<section class="padel" id="padel">
+  <div class="shell padel__inner">
+    <div class="padel__copy">
+      <p class="eyebrow">Auch für Padel</p>
+      <h2 class="padel__title">Padel? Zählt genauso.</h2>
+      <p class="lead padel__lead">
+        Padel zählt wie Tennis: 15, 30, 40, Game, Satz. Deshalb braucht
+        Kortscore dafür keine Extrawurst, die Uhr zählt einfach mit. Ein Tap
+        pro Punkt, am Platz, ohne das Spiel zu unterbrechen.
+      </p>
+      <div class="padel__count" aria-hidden="true">
+        <span>15</span><span>30</span><span>40</span><span>Game</span><span>Satz</span>
+      </div>
+    </div>
+
+    <dl class="padel__facts">
+      <div class="padel__fact">
+        <dt>Golden Point</dt>
+        <dd>
+          Als NoAd in die App integriert. Einmal auswählen, dann entscheidet
+          der Punkt bei 40:40 das Game, genau so, wie deine Liga spielt.
+        </dd>
+      </div>
+      <div class="padel__fact">
+        <dt>Doppel</dt>
+        <dd>
+          Padel läuft fast immer im Doppel, und genau das ist in Kortscore kein
+          Sonderfall, sondern eines der Formate auf dem Startbildschirm.
+        </dd>
+      </div>
+      <div class="padel__fact">
+        <dt>Live für Zuschauer</dt>
+        <dd>
+          Link teilen genügt, dann verfolgt jeder abseits des Platzes jeden
+          Punkt, vom Nebenplatz oder von zu Hause.
+        </dd>
+      </div>
+    </dl>
   </div>
 </section>
 
@@ -408,7 +455,7 @@ gtag('event', 'conversion', {
 <!-- ── Footer ───────────────────────────────────────────────────────────── -->
 <footer class="footer">
   <div class="footer__inner">
-    <p class="footer__claim">Kortscore · Tennis zählen am Handgelenk</p>
+    <p class="footer__claim">Kortscore · Tennis &amp; Padel zählen am Handgelenk</p>
     <p class="footer__links">
       <a href="uhren.html">Uhren</a>
       <a href="../legal/impressum.html">Impressum</a>

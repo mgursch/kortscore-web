@@ -948,6 +948,89 @@ a:hover { color: var(--accent); }
   color: var(--text-muted);
 }
 
+/* ── Padel ────────────────────────────────────────────────────────────────
+   Beantwortet die eine Frage, die ein Padel-Spieler an eine Tennis-App
+   stellt: zaehlt die ueberhaupt richtig? Deshalb steht die Sektion direkt
+   hinter den Spielregeln und vor den Vereinen.
+
+   Abgesetzter Grund wie bei den Vereinen, damit sie als eigene Aussage
+   gelesen wird und nicht als vierter Schritt.
+   ───────────────────────────────────────────────────────────────────────── */
+.padel {
+  background: var(--bg-alt);
+  padding-block: 64px;
+}
+.padel__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+}
+.padel__copy {
+  flex: 1 1 340px;
+  min-width: 0;
+}
+.padel__title {
+  margin: 10px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 34px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+.padel__lead { margin-top: 14px; }
+
+/* Die drei Belege. Keine Liste mit Punkten, sondern Karten: jede traegt eine
+   eigene Aussage und soll einzeln lesbar sein. */
+.padel__facts {
+  flex: 1 1 300px;
+  min-width: 0;
+  display: grid;
+  gap: 12px;
+}
+.padel__fact {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+}
+.padel__fact dt {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.padel__fact dd {
+  margin: 6px 0 0;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  text-wrap: pretty;
+}
+
+/* Die Zaehlweise als Beleg: dieselben Werte wie im Tennis, deshalb in Mono
+   und tabellarisch, damit sie wie eine Anzeige gelesen wird. */
+.padel__count {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent-text);
+}
+.padel__count span::after {
+  content: "·";
+  margin-left: 8px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+.padel__count span:last-child::after { content: none; }
+
 /* ── iOS-Interesse ────────────────────────────────────────────────────────
    Steht zwischen Uhren-Teaser und CTA und darf dem Play-Store-Button keine
    Aufmerksamkeit wegnehmen: heller Grund, keine Akzentflaeche, ein einzelnes
