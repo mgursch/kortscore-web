@@ -953,12 +953,15 @@ a:hover { color: var(--accent); }
    stellt: zaehlt die ueberhaupt richtig? Deshalb steht die Sektion direkt
    hinter den Spielregeln und vor den Vereinen.
 
-   Abgesetzter Grund wie bei den Vereinen, damit sie als eigene Aussage
-   gelesen wird und nicht als vierter Schritt.
+   Sie liegt zwischen zwei Nachbarn, die ihr keine Farbe uebrig lassen: die
+   Schritte darueber sind hell, die Vereine darunter beige. Statt einer
+   dritten Flaechenfarbe trennt oben eine Haarlinie, und die Karten tragen
+   das Beige. So bleibt die Sektion abgegrenzt, ohne dass zwei gleiche
+   Gruende aneinanderstossen.
    ───────────────────────────────────────────────────────────────────────── */
 .padel {
-  background: var(--bg-alt);
   padding-block: 64px;
+  border-top: 1px solid var(--hairline);
 }
 .padel__inner {
   display: flex;
@@ -990,7 +993,7 @@ a:hover { color: var(--accent); }
   gap: 12px;
 }
 .padel__fact {
-  background: var(--surface);
+  background: var(--bg-alt);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 16px 20px;
@@ -1043,7 +1046,7 @@ a:hover { color: var(--accent); }
 .ios__inner {
   max-width: 720px;
   margin-inline: auto;
-  background: var(--surface);
+  background: var(--bg-alt);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 40px var(--gutter);
@@ -1081,7 +1084,7 @@ a:hover { color: var(--accent); }
   flex: 1 1 260px;
   max-width: 340px;
   min-width: 0;
-  background: var(--bg);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 999px;
   padding: 14px 20px;
