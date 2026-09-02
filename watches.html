@@ -104,7 +104,7 @@ gtag('event', 'conversion', {
 <!-- ── Language hint ────────────────────────────────────────────────────────
      Same mechanism as on the landing page: shown only to visitors whose
      browser asks for German, hidden again once a language has been chosen. -->
-<div class="langbar" data-langbar data-langbar-lang="de" hidden>
+<div class="langbar" data-langbar data-langbar-lang="de" data-langbar-redirect="de/uhren.html" hidden>
   <span lang="de">Diese Seite gibt es auch auf Deutsch.</span>
   <a class="langbar__go" href="de/uhren.html" hreflang="de" lang="de" data-langbar-go>Zur deutschen Fassung</a>
   <button class="langbar__close" type="button" data-langbar-close lang="de">Nein danke</button>
@@ -203,6 +203,6 @@ gtag('event', 'conversion', {
   </div>
 </footer>
 
-<script src="script.js?v=202609011700"></script>
+<script src="script.js?v=202609011800"></script>
 </body>
 </html>

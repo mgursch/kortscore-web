@@ -2,8 +2,9 @@
    Kortscore — Website
    ============================================================================
    Die Seite funktioniert vollstaendig ohne JavaScript. Dieses Skript ergaenzt
-   drei Dinge: den Sprachhinweis, die Messung des Play-Store-Klicks samt
-   Kampagnen-Referrer, und das Absenden des iOS-Formulars ohne Seitenwechsel.
+   vier Dinge: die Sprachweiche, den Sprachhinweis als Rueckweg, die Messung
+   des Play-Store-Klicks samt Kampagnen-Referrer, und das Absenden des
+   iOS-Formulars ohne Seitenwechsel.
    ========================================================================= */
 (function () {
   'use strict';
@@ -34,35 +35,56 @@
     });
   }
 
-  /* ── Hinweisbalken ──────────────────────────────────────────────────────
-     Erscheint nur, wenn drei Dinge zusammenkommen: der Balken existiert, der
-     Besucher hat noch nie gewaehlt, und der Browser bevorzugt die andere
-     Sprache. Sonst bleibt er hidden, so wie er aus dem HTML kommt.
+  /* Prueft, ob der Besucher die angebotene Sprache der Sprache dieser Seite
+     vorzieht. navigator.languages ist die vollstaendige Wunschliste,
+     navigator.language nur der erste Eintrag: wer Deutsch an zweiter Stelle
+     fuehrt, versteht es auch. Steht die Sprache dieser Seite weiter vorne,
+     ist die Sache erledigt. */
+  function prefers(other) {
+    var prefs = navigator.languages || [navigator.language || ''];
+    for (var i = 0; i < prefs.length; i++) {
+      var p = (prefs[i] || '').toLowerCase();
+      if (p.indexOf(other) === 0) { return true; }
+      if (p.indexOf(pageLang) === 0) { return false; }
+    }
+    return false;
+  }
 
-     Damit ergibt sich das gewuenschte Verhalten von selbst: Englisch ist die
-     Vorgabe, Deutschsprachige bekommen einen dezenten Hinweis, und niemand
-     wird ungefragt umgeleitet.
-     ─────────────────────────────────────────────────────────────────────── */
   var bar = document.querySelector('[data-langbar]');
   if (!bar) return;
 
   var offers = (bar.getAttribute('data-langbar-lang') || '').slice(0, 2);
   if (!offers || offers === pageLang) return;
 
+  /* ── Sprachweiche ───────────────────────────────────────────────────────
+     Wer Deutsch bevorzugt, soll nicht erst auf einer englischen Seite landen
+     und dort einen Hinweis wegklicken muessen. Deshalb schickt ihn diese
+     Weiche gleich auf die deutsche Fassung.
+
+     Sie greift nur einmal: Bei der Umleitung wird die Zielsprache notiert,
+     und readChoice() weiter unten haelt jeden weiteren Aufruf davon ab. Wer
+     auf der deutschen Seite auf "English" klickt, ueberschreibt die Notiz und
+     bleibt danach bei Englisch. Ohne dieses Gedaechtnis wuerde die Weiche den
+     Umschalter sofort wieder rueckgaengig machen.
+
+     Nur in eine Richtung: Der Balken auf der deutschen Seite bietet Englisch
+     an, umgeleitet wird von dort aber nie. Sonst haetten zwei Weichen
+     einander abwechselnd aufgerufen.
+     ───────────────────────────────────────────────────────────────────────
+   */
+  var target = bar.getAttribute('data-langbar-redirect');
+  if (target && !readChoice() && prefers(offers)) {
+    writeChoice(offers);
+    /* replace statt href: der Zurueck-Knopf soll auf die Seite davor fuehren
+       und nicht in die Umleitung zurueck. Hash und Suchparameter kommen mit,
+       damit Anker und Kampagnen-Parameter die Weiche ueberleben. */
+    location.replace(target + location.search + location.hash);
+    return;
+  }
+
   if (readChoice()) return;
 
-  /* navigator.languages ist die vollstaendige Wunschliste des Besuchers,
-     navigator.language nur der erste Eintrag. Wir sehen die ganze Liste an:
-     wer Deutsch an zweiter Stelle fuehrt, versteht es auch. */
-  var prefs = navigator.languages || [navigator.language || ''];
-  var wantsOther = false;
-  for (var i = 0; i < prefs.length; i++) {
-    var p = (prefs[i] || '').toLowerCase();
-    if (p.indexOf(offers) === 0) { wantsOther = true; break; }
-    /* Steht die Sprache dieser Seite weiter vorne, ist die Sache erledigt. */
-    if (p.indexOf(pageLang) === 0) break;
-  }
-  if (!wantsOther) return;
+  if (!prefers(offers)) return;
 
   bar.hidden = false;
 
