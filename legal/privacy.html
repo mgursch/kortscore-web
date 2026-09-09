@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kortscore · Datenschutzerklärung / Privacy Policy</title>
-  <meta name="description" content="Datenschutzerklärung für die App Kortscore. / Privacy policy for the Kortscore app." />
+  <title>Kortscore · Datenschutz · Privacy Policy · Politique de confidentialité · Política de privacidad · Informativa privacy</title>
+  <meta name="description" content="Datenschutz für Kortscore – Privacy Policy · Politique de confidentialité · Política de privacidad · Informativa privacy." />
   <meta name="robots" content="noindex" />
   <link rel="icon" href="/assets/favicon.ico" sizes="32x32" />
   <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
@@ -86,7 +86,7 @@
       color: var(--muted);
     }
 
-    .lang-toggle { margin: 4px 0 24px; font-size: 14px; }
+    .lang-toggle { display: flex; flex-wrap: wrap; align-items: center; row-gap: 4px; margin: 4px 0 24px; font-size: 14px; }
     .lang-toggle a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
     .lang-toggle a.current { color: var(--ink); font-weight: 600; text-decoration: none; }
     .lang-toggle span.sep { color: var(--surface-alt); margin: 0 8px; }
@@ -145,7 +145,7 @@
   <p class="brand"><img class="brand-icon" src="/assets/icon.svg" alt="" width="26" height="26" /><span class="brand-name">Kortscore</span></p>
 
   <p class="lang-toggle">
-    <a class="current" href="https://kortscore.com/legal/privacy.html">Deutsch</a><span class="sep">/</span><a href="#en">English</a>
+    <a class="current" href="https://kortscore.com/legal/privacy.html">Deutsch</a><span class="sep">·</span><a href="#en">English</a><span class="sep">·</span><a href="#fr">Français</a><span class="sep">·</span><a href="#es">Español</a><span class="sep">·</span><a href="#it">Italiano</a>
   </p>
 
   <h1>Datenschutzerklärung</h1>
@@ -258,7 +258,40 @@
     <strong>Empfänger:</strong> Google LLC / Google Ireland Limited als Zahlungsabwickler.
   </p>
 
-  <h2>7. Lokale Daten &amp; Backups</h2>
+  <h2>7. Push-Benachrichtigungen (Firebase Cloud Messaging)</h2>
+  <p>
+    Wir nutzen Firebase Cloud Messaging (FCM), um allgemeine Produktankündigungen (z. B. Hinweise
+    auf neue Funktionen) an alle Installationen der App zu senden. Diese Ankündigungen werden
+    manuell über die Firebase Console versendet; wir betreiben keinen eigenen Server, der
+    FCM-Tokens speichert oder Nutzer gezielt adressiert.
+  </p>
+  <p>
+    Das FCM-Registrierungs-Token ist eine geräteabhängige Kennung und damit ein personenbezogenes
+    Datum im Sinne von Art. 4 Nr. 1 DSGVO.
+  </p>
+  <p>
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an
+    produktbezogenen Ankündigungen). Diese Abwägung wird gestützt durch: die
+    Benachrichtigungs-Berechtigung ab Android 13 als ausdrückliches Opt-in auf Betriebssystem-
+    Ebene, den Verzicht auf Profiling sowie den Verzicht auf Targeting anhand von
+    Nutzerdaten.<br />
+    <strong>Widerspruch/Deaktivierung:</strong> Sie können Benachrichtigungen jederzeit über die
+    Benachrichtigungseinstellungen des Betriebssystems (bzw. die zugehörigen Kanäle) UND in den
+    Einstellungen der App selbst deaktivieren. Die „Generellen Benachrichtigungen" sind
+    jederzeit in den App-Einstellungen abschaltbar; dabei wird die Geräte-Kennung (Token)
+    gelöscht.<br />
+    <strong>Speicherdauer:</strong> Das Token besteht, bis es gelöscht wird (durch Deaktivierung
+    in der App oder durch Deinstallation der App); die weitere Verarbeitung durch Google richtet
+    sich nach den Firebase-Nutzungsbedingungen.<br />
+    <strong>Empfänger:</strong> Google LLC / Google Ireland Limited als Auftragsverarbeiter;
+    Übermittlungen in die USA erfolgen auf Grundlage der EU-Standardvertragsklauseln.
+  </p>
+  <p>
+    Die separate lokale Match-Ende-Benachrichtigung wird vollständig auf dem Gerät erzeugt und
+    beinhaltet keine Datenübertragung an Dritte.
+  </p>
+
+  <h2>8. Lokale Daten &amp; Backups</h2>
   <p>
     Matches, Einstellungen und manuelle Backups verbleiben grundsätzlich auf Ihrem Gerät bzw. im
     von Ihnen gewählten Backup-Ordner. Zusätzlich kann Android Auto-Backup (eine
@@ -267,7 +300,7 @@
     Systemeinstellungen deaktivieren.
   </p>
 
-  <h2>8. Interesse an einer iOS-Version (Website)</h2>
+  <h2>9. Interesse an einer iOS-Version (Website)</h2>
   <p>
     Auf kortscore.com können Sie freiwillig Ihre E-Mail-Adresse hinterlassen, um informiert zu
     werden, falls eine Version für iPhone und Apple Watch erscheint. Gespeichert werden dabei
@@ -290,13 +323,13 @@
     eine iOS-Version bzw. bis zu deren Veröffentlichung. Danach wird die Liste gelöscht.
   </p>
 
-  <h2>9. Keine Datenweitergabe zu Werbezwecken</h2>
+  <h2>10. Keine Datenweitergabe zu Werbezwecken</h2>
   <p>
     Wir verkaufen keine Daten. Über die in dieser Erklärung genannten Google-Dienste hinaus
     findet keine Weitergabe an Dritte statt.
   </p>
 
-  <h2>10. Empfänger &amp; Übermittlung in Drittländer</h2>
+  <h2>11. Empfänger &amp; Übermittlung in Drittländer</h2>
   <table>
     <thead><tr><th>Dienst</th><th>Anbieter</th><th>Verarbeitungsort</th></tr></thead>
     <tbody>
@@ -304,6 +337,7 @@
       <tr><td>Firebase Crashlytics</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
       <tr><td>Cloud Firestore / Anonymous Auth</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
       <tr><td>Google Play Billing</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
+      <tr><td>Firebase Cloud Messaging</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
       <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>gemäß Google-Kontoeinstellungen</td></tr>
       <tr><td>Google Sheets (iOS-Interesse)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
     </tbody>
@@ -313,7 +347,7 @@
     der EU-Kommission mit den jeweiligen Google-Gesellschaften.
   </p>
 
-  <h2>11. Ihre Rechte</h2>
+  <h2>12. Ihre Rechte</h2>
   <p>Sie haben nach der DSGVO folgende Rechte:</p>
   <ul>
     <li>Auskunft (Art. 15 DSGVO)</li>
@@ -330,7 +364,7 @@
     genannte Kontaktadresse.
   </p>
 
-  <h2>12. Kontakt</h2>
+  <h2>13. Kontakt</h2>
   <p>
     Fragen zum Datenschutz richten Sie bitte an:
     <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
@@ -343,7 +377,7 @@
   <p class="brand"><img class="brand-icon" src="/assets/icon.svg" alt="" width="26" height="26" /><span class="brand-name">Kortscore</span></p>
 
   <p class="lang-toggle">
-    <a href="https://kortscore.com/legal/privacy.html">Deutsch</a><span class="sep">/</span><a class="current" href="#en">English</a>
+    <a href="https://kortscore.com/legal/privacy.html">Deutsch</a><span class="sep">·</span><a class="current" href="#en">English</a><span class="sep">·</span><a href="#fr">Français</a><span class="sep">·</span><a href="#es">Español</a><span class="sep">·</span><a href="#it">Italiano</a>
   </p>
 
   <h1>Privacy Policy</h1>
@@ -451,7 +485,38 @@
     <strong>Recipients:</strong> Google LLC / Google Ireland Limited as payment processor.
   </p>
 
-  <h2>7. Local data &amp; backups</h2>
+  <h2>7. Push notifications (Firebase Cloud Messaging)</h2>
+  <p>
+    We use Firebase Cloud Messaging (FCM) to send general product announcements (e.g. notices
+    about new features) to all installations of the app. These announcements are sent manually
+    via the Firebase Console; we do not operate our own server that stores FCM tokens or targets
+    individual users.
+  </p>
+  <p>
+    The FCM registration token is a device-bound identifier and therefore personal data within
+    the meaning of Art. 4 No. 1 GDPR.
+  </p>
+  <p>
+    <strong>Legal basis:</strong> Art. 6(1)(f) GDPR (legitimate interest in product-related
+    announcements). This balancing test is supported by: the Android 13 notification permission
+    as an explicit opt-in at the operating-system level, the absence of profiling, and the
+    absence of targeting based on user data.<br />
+    <strong>Objection/opt-out:</strong> You can disable notifications at any time via the
+    operating system's notification settings (or the corresponding channels) AND in the app's
+    own settings. You can switch off "General notifications" at any time in the app's settings;
+    doing so deletes the device identifier (token).<br />
+    <strong>Retention:</strong> The token exists until it is deleted (by disabling it in the app
+    or by uninstalling the app); further processing by Google is governed by Firebase's terms of
+    service.<br />
+    <strong>Recipients:</strong> Google LLC / Google Ireland Limited as processor; transfers to
+    the US rely on the EU Standard Contractual Clauses.
+  </p>
+  <p>
+    The separate local match-end notification is generated entirely on-device and involves no
+    data transfer to third parties.
+  </p>
+
+  <h2>8. Local data &amp; backups</h2>
   <p>
     Matches, settings, and manual backups generally stay on your device or in the backup folder
     you chose. In addition, Android Auto-Backup (a Google system feature) may back up app data
@@ -459,7 +524,7 @@
     be disabled in Android system settings.
   </p>
 
-  <h2>8. Interest in an iOS version (website)</h2>
+  <h2>9. Interest in an iOS version (website)</h2>
   <p>
     On kortscore.com you may voluntarily leave your email address to be notified if a version for
     iPhone and Apple Watch is released. We store only the email address you enter, the time of
@@ -480,13 +545,13 @@
     an iOS version or release it. The list is deleted afterwards.
   </p>
 
-  <h2>9. No sale or third-party sharing</h2>
+  <h2>10. No sale or third-party sharing</h2>
   <p>
     We do not sell any data. Beyond the Google services listed in this policy, we do not share
     data with third parties.
   </p>
 
-  <h2>10. Recipients &amp; international transfers</h2>
+  <h2>11. Recipients &amp; international transfers</h2>
   <table>
     <thead><tr><th>Service</th><th>Provider</th><th>Processing location</th></tr></thead>
     <tbody>
@@ -494,6 +559,7 @@
       <tr><td>Firebase Crashlytics</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
       <tr><td>Cloud Firestore / Anonymous Auth</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
       <tr><td>Google Play Billing</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
+      <tr><td>Firebase Cloud Messaging</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
       <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>per your Google account settings</td></tr>
       <tr><td>Google Sheets (iOS interest)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
     </tbody>
@@ -503,7 +569,7 @@
     Contractual Clauses with the respective Google entities.
   </p>
 
-  <h2>11. Your rights</h2>
+  <h2>12. Your rights</h2>
   <p>Under the GDPR you have the right to:</p>
   <ul>
     <li>Access (Art. 15 GDPR)</li>
@@ -520,11 +586,737 @@
     above.
   </p>
 
-  <h2>12. Contact</h2>
+  <h2>13. Contact</h2>
   <p>
     For privacy questions, please contact:
     <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
     (see <a href="https://kortscore.com/legal/impressum.html">Impressum</a>).
+  </p>
+
+  <hr class="split" id="fr" />
+
+  <!-- ============================= FRANÇAIS ============================= -->
+  <p class="brand"><img class="brand-icon" src="/assets/icon.svg" alt="" width="26" height="26" /><span class="brand-name">Kortscore</span></p>
+
+  <p class="lang-toggle">
+    <a href="https://kortscore.com/legal/privacy.html">Deutsch</a><span class="sep">·</span><a href="#en">English</a><span class="sep">·</span><a class="current" href="#fr">Français</a><span class="sep">·</span><a href="#es">Español</a><span class="sep">·</span><a href="#it">Italiano</a>
+  </p>
+
+  <h1>Politique de confidentialité</h1>
+  <p><em>Cette traduction est fournie à titre d’information. Seule la version allemande fait foi.</em></p>
+  <p class="updated">Mise à jour : 8 août 2026</p>
+
+  <h2>1. Responsable du traitement</h2>
+  <div class="card">
+    <p>
+      Gursch Markus, BSc<br />
+      swordi.studios<br />
+      Gregorygasse 10A, 1230 Vienne, Autriche<br />
+      E-mail : <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
+    </p>
+    <p>Coordonnées complètes : voir les <a href="https://kortscore.com/legal/impressum.html">Mentions légales</a>.</p>
+  </div>
+  <p>
+    Kortscore est développée et distribuée sous la marque « swordi.studios » (paquet Play Store
+    <code>com.swordistudios.kortscore</code>). La personne/société mentionnée ci-dessus est le
+    responsable du traitement au sens du règlement général sur la protection des données (RGPD).
+  </p>
+
+  <h2>2. Aperçu</h2>
+  <p>
+    Kortscore est une application de comptage de points de tennis pour Wear OS avec application
+    compagnon pour smartphone. L’application fonctionne par principe localement sur l’appareil. Il
+    n’y a <strong>aucun compte utilisateur</strong>, <strong>aucun SDK publicitaire</strong>,
+    <strong>aucune donnée de localisation</strong> et <strong>aucun suivi (tracking) au-delà
+    d’autres applications ou sites web</strong>. Les données ne sont traitées que dans les cas
+    décrits ci-dessous.
+  </p>
+
+  <h2>3. Firebase Analytics</h2>
+  <p>
+    Nous utilisons Firebase Analytics (Google LLC ou Google Ireland Limited) pour collecter des
+    événements d’utilisation du produit de manière sommaire, notamment&nbsp;:
+  </p>
+  <ul>
+    <li>Match archivé (uniquement&nbsp;: double oui/non, nombre de sets, catégorie de durée sommaire)</li>
+    <li>Diffusion en direct ouverte (« Share opened »)</li>
+    <li>Sauvegarde créée</li>
+    <li>Kortscore Plus acheté</li>
+    <li>Affichages d’écran (Screen Views)</li>
+  </ul>
+  <p>
+    Aucun nom ni horodatage/durée exact n’est transmis à cette occasion&nbsp;: uniquement des
+    catégories sommaires liées au produit. Analytics est entièrement désactivé dans les versions de
+    débogage (debug builds).
+  </p>
+  <p>
+    <strong>Base juridique&nbsp;:</strong> art. 6, par. 1, point f) du RGPD (intérêt légitime à
+    l’amélioration et à la correction des dysfonctionnements de l’application).<br />
+    <strong>Durée de conservation&nbsp;:</strong> selon les délais de conservation standard de
+    Google Analytics for Firebase (actuellement 14 mois par défaut pour les données d’événements
+    liées à l’utilisateur, voir la documentation Google).<br />
+    <strong>Destinataires&nbsp;:</strong> Google LLC / Google Ireland Limited en tant que
+    sous-traitant.
+  </p>
+
+  <h2>4. Firebase Crashlytics</h2>
+  <p>
+    Firebase Crashlytics (Google) collecte des rapports de plantage, des erreurs non fatales, des
+    métadonnées de l’appareil (par ex. modèle de l’appareil, version du système d’exploitation)
+    ainsi que des clés personnalisées définies par nos soins (par ex. si une montre est connectée),
+    afin de détecter et de corriger les dysfonctionnements. Crashlytics est entièrement désactivé
+    dans les versions de débogage.
+  </p>
+  <p>
+    <strong>Base juridique&nbsp;:</strong> art. 6, par. 1, point f) du RGPD (intérêt légitime à
+    disposer d’un logiciel stable et sans erreur).<br />
+    <strong>Durée de conservation&nbsp;:</strong> selon les délais de conservation standard de
+    Firebase Crashlytics (actuellement 90 jours par défaut).<br />
+    <strong>Destinataires&nbsp;:</strong> Google LLC / Google Ireland Limited en tant que
+    sous-traitant.
+  </p>
+
+  <h2>5. Partage d’un match en direct (Cloud Firestore)</h2>
+  <div class="warning">
+    <p>
+      <strong>Remarque importante&nbsp;:</strong> lorsque vous partagez activement un lien de match
+      en direct, l’historique des points du match, les horodatages ainsi que les noms d’affichage
+      que vous avez saisis (votre propre nom et celui de votre adversaire) sont téléversés vers une
+      base de données en nuage (Google Cloud Firestore). Ces données sont <strong>lisibles
+      publiquement par toute personne connaissant le lien</strong>&nbsp;: le lien constitue l’unique
+      contrôle d’accès.
+    </p>
+    <p>
+      Vous pouvez révoquer un lien partagé à tout moment dans l’application. La révocation est
+      <strong>définitive</strong>&nbsp;: le lien cesse alors durablement de fonctionner.
+    </p>
+  </div>
+  <p>
+    Sans partage actif, aucune donnée de match n’est transmise vers le nuage. Lors du premier
+    partage, Firebase Anonymous Authentication génère un identifiant anonyme propre à l’appareil,
+    qui ne permet pas à lui seul d’identifier la personne.
+  </p>
+  <p>
+    <strong>Base juridique&nbsp;:</strong> art. 6, par. 1, point b) du RGPD (exécution du
+    contrat/de la fonctionnalité « partage en direct » que vous avez activement déclenché(e)).<br />
+    <strong>Durée de conservation&nbsp;:</strong> jusqu’à la révocation du lien par vos soins.<br />
+    <strong>Destinataires&nbsp;:</strong> Google LLC / Google Ireland Limited (Cloud Firestore,
+    Anonymous Auth) en tant que sous-traitant&nbsp;; ainsi que toute personne à qui vous
+    communiquez le lien ou qui l’obtient d’une autre manière.
+  </p>
+
+  <h2>6. Google Play Billing (Kortscore Plus)</h2>
+  <p>
+    L’achat intégré unique « Kortscore Plus » est intégralement traité via Google Play Billing.
+    Les données de paiement (carte de crédit, etc.) sont traitées exclusivement par Google dans le
+    cadre de votre compte Google&nbsp;; nous ne recevons ni ne stockons <strong>aucune donnée de
+    paiement</strong>. Après un achat réussi, l’application enregistre uniquement un indicateur de
+    déblocage local sur l’appareil.
+  </p>
+  <p>
+    <strong>Base juridique&nbsp;:</strong> art. 6, par. 1, point b) du RGPD (exécution du contrat
+    d’achat portant sur la fonctionnalité complémentaire).<br />
+    <strong>Destinataires&nbsp;:</strong> Google LLC / Google Ireland Limited en tant que
+    prestataire de paiement.
+  </p>
+
+  <h2>7. Notifications push (Firebase Cloud Messaging)</h2>
+  <p>
+    Nous utilisons Firebase Cloud Messaging (FCM) pour envoyer des annonces générales relatives au
+    produit (par ex. des informations sur de nouvelles fonctionnalités) à toutes les installations
+    de l’application. Ces annonces sont envoyées manuellement via la Firebase Console&nbsp;; nous
+    n’exploitons aucun serveur propre qui stockerait des jetons FCM ou cibleraient des
+    utilisateurs de manière individuelle.
+  </p>
+  <p>
+    Le jeton d’enregistrement FCM est un identifiant propre à l’appareil et constitue donc une
+    donnée à caractère personnel au sens de l’art. 4, point 1) du RGPD.
+  </p>
+  <p>
+    <strong>Base juridique&nbsp;:</strong> art. 6, par. 1, point f) du RGPD (intérêt légitime à
+    diffuser des annonces relatives au produit). Cette mise en balance est étayée par&nbsp;:
+    l’autorisation de notification à partir d’Android 13, qui constitue un consentement explicite
+    (opt-in) au niveau du système d’exploitation, la renonciation au profilage ainsi que la
+    renonciation au ciblage sur la base de données utilisateur.<br />
+    <strong>Opposition/désactivation&nbsp;:</strong> vous pouvez désactiver les notifications à tout
+    moment via les paramètres de notification du système d’exploitation (ou les canaux
+    correspondants) ET dans les paramètres de l’application elle-même. Les « Notifications
+    générales » peuvent être désactivées à tout moment dans les paramètres de l’application&nbsp;;
+    l’identifiant de l’appareil (jeton) est alors supprimé.<br />
+    <strong>Durée de conservation&nbsp;:</strong> le jeton subsiste jusqu’à sa suppression (par
+    désactivation dans l’application ou par désinstallation de l’application)&nbsp;; le traitement
+    ultérieur par Google est régi par les conditions d’utilisation de Firebase.<br />
+    <strong>Destinataires&nbsp;:</strong> Google LLC / Google Ireland Limited en tant que
+    sous-traitant&nbsp;; les transferts vers les États-Unis reposent sur les clauses contractuelles
+    types de l’UE.
+  </p>
+  <p>
+    La notification locale distincte de fin de match est générée intégralement sur l’appareil et
+    n’implique aucune transmission de données à des tiers.
+  </p>
+
+  <h2>8. Données locales et sauvegardes</h2>
+  <p>
+    Les matchs, paramètres et sauvegardes manuelles restent par principe sur votre appareil ou dans
+    le dossier de sauvegarde que vous avez choisi. En complément, Android Auto-Backup (une
+    fonctionnalité système de Google) peut sauvegarder automatiquement les données de l’application
+    dans votre compte Google&nbsp;; cela est soumis aux dispositions de Google en matière de
+    protection des données et peut être désactivé dans les paramètres système d’Android.
+  </p>
+
+  <h2>9. Intérêt pour une version iOS (site web)</h2>
+  <p>
+    Sur kortscore.com, vous pouvez laisser volontairement votre adresse e-mail afin d’être
+    informé(e) si une version pour iPhone et Apple Watch venait à paraître. Sont alors
+    exclusivement enregistrées&nbsp;: l’adresse e-mail que vous avez saisie, la date de
+    l’inscription ainsi que la version linguistique de la page. Aucune adresse IP n’est
+    enregistrée.
+  </p>
+  <p>
+    Ces informations sont conservées dans un tableau Google (Google Sheets) au sein de notre
+    compte Google et ne sont utilisées que pour cette seule notification. Il n’y a ni envoi de
+    newsletter, ni publicité, ni transmission à des tiers.
+  </p>
+  <p>
+    <strong>Base juridique&nbsp;:</strong> votre consentement (art. 6, par. 1, point a) du RGPD),
+    que vous accordez en cochant la case du formulaire. Vous pouvez le révoquer à tout moment et
+    sans formalité, par exemple par e-mail à l’adresse indiquée à la section «&nbsp;Contact&nbsp;»&nbsp;;
+    nous supprimerons alors votre inscription sans délai.
+  </p>
+  <p>
+    <strong>Durée de conservation&nbsp;:</strong> jusqu’à la révocation, mais au plus tard jusqu’à
+    la décision concernant une version iOS ou jusqu’à sa publication. La liste est ensuite
+    supprimée.
+  </p>
+
+  <h2>10. Aucune transmission de données à des fins publicitaires</h2>
+  <p>
+    Nous ne vendons aucune donnée. Au-delà des services Google mentionnés dans la présente
+    politique, aucune transmission à des tiers n’a lieu.
+  </p>
+
+  <h2>11. Destinataires et transferts vers des pays tiers</h2>
+  <table>
+    <thead><tr><th>Service</th><th>Fournisseur</th><th>Lieu de traitement</th></tr></thead>
+    <tbody>
+      <tr><td>Firebase Analytics</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
+      <tr><td>Firebase Crashlytics</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
+      <tr><td>Cloud Firestore / Anonymous Auth</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
+      <tr><td>Google Play Billing</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
+      <tr><td>Firebase Cloud Messaging</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
+      <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>selon les paramètres de votre compte Google</td></tr>
+      <tr><td>Google Sheets (intérêt iOS)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Dans la mesure où des données sont transmises vers les États-Unis, cela repose sur les clauses
+    contractuelles types de la Commission européenne conclues avec les entités Google concernées.
+  </p>
+
+  <h2>12. Vos droits</h2>
+  <p>Conformément au RGPD, vous disposez des droits suivants&nbsp;:</p>
+  <ul>
+    <li>Droit d’accès (art. 15 du RGPD)</li>
+    <li>Droit de rectification (art. 16 du RGPD)</li>
+    <li>Droit à l’effacement (art. 17 du RGPD)</li>
+    <li>Droit à la limitation du traitement (art. 18 du RGPD)</li>
+    <li>Droit d’opposition au traitement (art. 21 du RGPD)</li>
+    <li>Droit à la portabilité des données (art. 20 du RGPD)</li>
+    <li>Droit d’introduire une réclamation auprès d’une autorité de contrôle, en particulier
+      l’autorité autrichienne de protection des données (Datenschutzbehörde)&nbsp;:
+      <a href="https://www.dsb.gv.at" target="_blank" rel="noopener">dsb.gv.at</a></li>
+  </ul>
+  <p>
+    Pour exercer ces droits, veuillez vous adresser à l’adresse de contact indiquée à la section
+    « Responsable du traitement ».
+  </p>
+
+  <h2>13. Contact</h2>
+  <p>
+    Pour toute question relative à la protection des données, veuillez vous adresser à&nbsp;:
+    <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
+    (voir les <a href="https://kortscore.com/legal/impressum.html">Mentions légales</a>).
+  </p>
+
+  <hr class="split" id="es" />
+
+  <!-- ============================= ESPAÑOL ============================= -->
+  <p class="brand"><img class="brand-icon" src="/assets/icon.svg" alt="" width="26" height="26" /><span class="brand-name">Kortscore</span></p>
+
+  <p class="lang-toggle">
+    <a href="https://kortscore.com/legal/privacy.html">Deutsch</a><span class="sep">·</span><a href="#en">English</a><span class="sep">·</span><a href="#fr">Français</a><span class="sep">·</span><a class="current" href="#es">Español</a><span class="sep">·</span><a href="#it">Italiano</a>
+  </p>
+
+  <h1>Política de privacidad</h1>
+  <p><em>Esta traducción se ofrece únicamente a título informativo. La versión alemana es la única jurídicamente vinculante.</em></p>
+  <p class="updated">Última actualización: 8 de agosto de 2026</p>
+
+  <h2>1. Responsable del tratamiento</h2>
+  <div class="card">
+    <p>
+      Gursch Markus, BSc<br />
+      swordi.studios<br />
+      Gregorygasse 10A, 1230 Viena, Austria<br />
+      Correo electrónico: <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
+    </p>
+    <p>Datos completos: véase el <a href="https://kortscore.com/legal/impressum.html">Aviso legal</a>.</p>
+  </div>
+  <p>
+    Kortscore se desarrolla y distribuye bajo la marca «swordi.studios»
+    (paquete de Play Store <code>com.swordistudios.kortscore</code>). El responsable en el
+    sentido del Reglamento General de Protección de Datos (RGPD) es la persona/entidad arriba
+    indicada.
+  </p>
+
+  <h2>2. Resumen</h2>
+  <p>
+    Kortscore es una aplicación de conteo de tenis para Wear OS con aplicación complementaria
+    para smartphone. La aplicación funciona básicamente de forma local en el dispositivo. No
+    existen <strong>cuentas de usuario</strong>, <strong>SDK publicitarios</strong>,
+    <strong>datos de localización</strong> ni <strong>seguimiento entre otras aplicaciones o sitios
+    web</strong>. Los datos solo se tratan en los casos descritos a continuación.
+  </p>
+
+  <h2>3. Firebase Analytics</h2>
+  <p>
+    Utilizamos Firebase Analytics (Google LLC o Google Ireland Limited) para recopilar eventos
+    generales de uso del producto, entre ellos:
+  </p>
+  <ul>
+    <li>Partido archivado (solo: dobles sí/no, número de sets, categoría aproximada de duración)</li>
+    <li>Transmisión en directo abierta («Share opened»)</li>
+    <li>Copia de seguridad creada</li>
+    <li>Compra de Kortscore Plus</li>
+    <li>Visualizaciones de pantalla (Screen Views)</li>
+  </ul>
+  <p>
+    En este proceso <strong>no se transmiten nombres ni marcas de tiempo o duraciones
+    exactas</strong>, solo categorías generales relacionadas con el producto. Analytics está
+    completamente desactivado en las compilaciones de depuración (debug builds).
+  </p>
+  <p>
+    <strong>Base jurídica:</strong> art. 6, apdo. 1, letra f) del RGPD (interés legítimo en la
+    mejora y corrección de errores de la aplicación).<br />
+    <strong>Plazo de conservación:</strong> según los plazos de conservación estándar de Google
+    Analytics for Firebase (actualmente 14 meses de forma predeterminada para los datos de
+    eventos a nivel de usuario; véase la documentación de Google).<br />
+    <strong>Destinatarios:</strong> Google LLC / Google Ireland Limited como encargado del
+    tratamiento.
+  </p>
+
+  <h2>4. Firebase Crashlytics</h2>
+  <p>
+    Firebase Crashlytics (Google) recopila informes de fallos, errores no fatales, metadatos del
+    dispositivo (p. ej., modelo de dispositivo, versión del sistema operativo) y claves
+    personalizadas definidas por nosotros (p. ej., si hay un reloj conectado), con el fin de
+    detectar y corregir errores. Crashlytics está completamente desactivado en las compilaciones
+    de depuración.
+  </p>
+  <p>
+    <strong>Base jurídica:</strong> art. 6, apdo. 1, letra f) del RGPD (interés legítimo en un
+    software estable y sin errores).<br />
+    <strong>Plazo de conservación:</strong> según los plazos de conservación estándar de Firebase
+    Crashlytics (actualmente 90 días de forma predeterminada).<br />
+    <strong>Destinatarios:</strong> Google LLC / Google Ireland Limited como encargado del
+    tratamiento.
+  </p>
+
+  <h2>5. Compartir un partido en directo (Cloud Firestore)</h2>
+  <div class="warning">
+    <p>
+      <strong>Aviso importante:</strong> si comparte activamente un enlace de partido en
+      directo, el historial de puntos del partido, las marcas de tiempo y los nombres
+      visibles que haya introducido (su propio nombre y el de su rival) se suben a una base
+      de datos en la nube (Google Cloud Firestore). Estos datos son
+      <strong>de lectura pública para cualquier persona que conozca el enlace</strong>: el
+      enlace es el único control de acceso.
+    </p>
+    <p>
+      Puede revocar un enlace compartido en cualquier momento desde la aplicación. La
+      revocación es <strong>definitiva</strong>: el enlace deja de funcionar de forma
+      permanente.
+    </p>
+  </div>
+  <p>
+    Sin un acto activo de compartir, no se transmite ningún dato de partidos a la nube. Al
+    compartir por primera vez, Firebase Anonymous Authentication genera un identificador
+    anónimo a nivel de dispositivo que, por sí solo, no permite identificar a la persona.
+  </p>
+  <p>
+    <strong>Base jurídica:</strong> art. 6, apdo. 1, letra b) del RGPD (ejecución del
+    contrato/de la función «Compartir en directo» que ha activado voluntariamente).<br />
+    <strong>Plazo de conservación:</strong> hasta que revoque el enlace.<br />
+    <strong>Destinatarios:</strong> Google LLC / Google Ireland Limited (Cloud Firestore,
+    Anonymous Auth) como encargado del tratamiento; además, cualquier persona a la que
+    comuniques el enlace o que lo obtenga de otro modo.
+  </p>
+
+  <h2>6. Google Play Billing (Kortscore Plus)</h2>
+  <p>
+    La compra única dentro de la aplicación «Kortscore Plus» se gestiona íntegramente a través
+    de Google Play Billing. Los datos de pago (tarjeta de crédito, etc.) los trata
+    exclusivamente Google en el marco de su cuenta de Google; nosotros no recibimos ni
+    almacenamos <strong>ningún dato de pago</strong>. Tras una compra correcta, la aplicación
+    únicamente guarda de forma local un indicador de desbloqueo en el dispositivo.
+  </p>
+  <p>
+    <strong>Base jurídica:</strong> art. 6, apdo. 1, letra b) del RGPD (ejecución del contrato
+    de compra de la función adicional).<br />
+    <strong>Destinatarios:</strong> Google LLC / Google Ireland Limited como procesador de
+    pagos.
+  </p>
+
+  <h2>7. Notificaciones push (Firebase Cloud Messaging)</h2>
+  <p>
+    Utilizamos Firebase Cloud Messaging (FCM) para enviar anuncios generales del producto (p.
+    ej., avisos sobre nuevas funciones) a todas las instalaciones de la aplicación. Estos
+    anuncios se envían manualmente a través de la consola de Firebase; no operamos un servidor
+    propio que almacene tokens de FCM ni que se dirija a usuarios de forma individual.
+  </p>
+  <p>
+    El token de registro de FCM es un identificador vinculado al dispositivo y, por tanto, un
+    dato personal en el sentido del art. 4, apdo. 1, del RGPD.
+  </p>
+  <p>
+    <strong>Base jurídica:</strong> art. 6, apdo. 1, letra f) del RGPD (interés legítimo en
+    anuncios relacionados con el producto). Esta ponderación se apoya en: el permiso de
+    notificaciones a partir de Android 13 como opt-in explícito a nivel del sistema operativo,
+    la renuncia a la elaboración de perfiles (profiling) y la renuncia a la segmentación
+    (targeting) basada en datos de usuario.<br />
+    <strong>Oposición/desactivación:</strong> puede desactivar las notificaciones en cualquier
+    momento a través de los ajustes de notificaciones del sistema operativo (o de los canales
+    correspondientes) Y en los ajustes de la propia aplicación. Las «Notificaciones generales»
+    se pueden desactivar en cualquier momento en los ajustes de la aplicación; al hacerlo se
+    elimina el identificador del dispositivo (token).<br />
+    <strong>Plazo de conservación:</strong> el token existe hasta que se elimina (al
+    desactivarlo en la aplicación o al desinstalar la aplicación); el tratamiento posterior por
+    parte de Google se rige por las condiciones de uso de Firebase.<br />
+    <strong>Destinatarios:</strong> Google LLC / Google Ireland Limited como encargado del
+    tratamiento; las transferencias a EE. UU. se basan en las cláusulas contractuales tipo de
+    la UE.
+  </p>
+  <p>
+    La notificación local independiente de fin de partido se genera íntegramente en el
+    dispositivo y no implica ninguna transmisión de datos a terceros.
+  </p>
+
+  <h2>8. Datos locales y copias de seguridad</h2>
+  <p>
+    Los partidos, los ajustes y las copias de seguridad manuales permanecen, por norma
+    general, en su dispositivo o en la carpeta de copia de seguridad que haya elegido.
+    Además, Android Auto-Backup (una función del sistema de Google) puede guardar
+    automáticamente los datos de la aplicación en su cuenta de Google; esto se rige por las
+    condiciones de privacidad de Google y puede desactivarse en los ajustes del sistema
+    Android.
+  </p>
+
+  <h2>9. Interés en una versión para iOS (sitio web)</h2>
+  <p>
+    En kortscore.com puede dejar voluntariamente su dirección de correo electrónico para que le
+    avisemos si sale una versión para iPhone y Apple Watch. Solo se guardan la dirección de
+    correo electrónico que introduce, la fecha del registro y el idioma de la página. No se
+    guarda ninguna dirección IP.
+  </p>
+  <p>
+    Los datos se almacenan en una hoja de cálculo de Google (Google Sheets) dentro de nuestra
+    cuenta de Google y se usan exclusivamente para este aviso. No hay envío de newsletter, ni
+    publicidad, ni cesión a terceros.
+  </p>
+  <p>
+    <strong>Base jurídica:</strong> su consentimiento (art. 6, apdo. 1, letra a) del RGPD), que
+    otorga al marcar la casilla del formulario. Puede revocarlo en cualquier momento y sin
+    ninguna formalidad, por ejemplo escribiendo a la dirección indicada en «Contacto»;
+    eliminaremos su registro de inmediato.
+  </p>
+  <p>
+    <strong>Plazo de conservación:</strong> hasta la revocación, y como máximo hasta que se decida
+    sobre una versión para iOS o hasta su publicación. Después, la lista se elimina.
+  </p>
+
+  <h2>10. Sin cesión de datos con fines publicitarios</h2>
+  <p>
+    No vendemos datos. Más allá de los servicios de Google mencionados en esta política, no se
+    produce ninguna cesión a terceros.
+  </p>
+
+  <h2>11. Destinatarios y transferencias a terceros países</h2>
+  <table>
+    <thead><tr><th>Servicio</th><th>Proveedor</th><th>Lugar de tratamiento</th></tr></thead>
+    <tbody>
+      <tr><td>Firebase Analytics</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
+      <tr><td>Firebase Crashlytics</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
+      <tr><td>Cloud Firestore / Anonymous Auth</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
+      <tr><td>Google Play Billing</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
+      <tr><td>Firebase Cloud Messaging</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
+      <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>según los ajustes de su cuenta de Google</td></tr>
+      <tr><td>Google Sheets (interés en iOS)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
+    </tbody>
+  </table>
+  <p>
+    En la medida en que se transfieran datos a EE. UU., dicha transferencia se basa en las
+    cláusulas contractuales tipo de la Comisión Europea con las respectivas sociedades de
+    Google.
+  </p>
+
+  <h2>12. Sus derechos</h2>
+  <p>En virtud del RGPD, tiene los siguientes derechos:</p>
+  <ul>
+    <li>Acceso (art. 15 del RGPD)</li>
+    <li>Rectificación (art. 16 del RGPD)</li>
+    <li>Supresión (art. 17 del RGPD)</li>
+    <li>Limitación del tratamiento (art. 18 del RGPD)</li>
+    <li>Oposición al tratamiento (art. 21 del RGPD)</li>
+    <li>Portabilidad de los datos (art. 20 del RGPD)</li>
+    <li>Reclamación ante una autoridad de control, en particular ante la autoridad austriaca de
+      protección de datos: <a href="https://www.dsb.gv.at" target="_blank" rel="noopener">dsb.gv.at</a></li>
+  </ul>
+  <p>
+    Para ejercer estos derechos, ponte en contacto a través de la dirección indicada en el
+    apartado «Responsable del tratamiento».
+  </p>
+
+  <h2>13. Contacto</h2>
+  <p>
+    Si tiene preguntas sobre privacidad, escriba a:
+    <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
+    (véase el <a href="https://kortscore.com/legal/impressum.html">Aviso legal</a>).
+  </p>
+
+  <hr class="split" id="it" />
+
+  <!-- ============================= ITALIANO ============================= -->
+  <p class="brand"><img class="brand-icon" src="/assets/icon.svg" alt="" width="26" height="26" /><span class="brand-name">Kortscore</span></p>
+
+  <p class="lang-toggle">
+    <a href="https://kortscore.com/legal/privacy.html">Deutsch</a><span class="sep">·</span><a href="#en">English</a><span class="sep">·</span><a href="#fr">Français</a><span class="sep">·</span><a href="#es">Español</a><span class="sep">·</span><a class="current" href="#it">Italiano</a>
+  </p>
+
+  <h1>Informativa sulla privacy</h1>
+  <p><em>Questa traduzione è fornita a solo scopo informativo. Fa fede esclusivamente la versione tedesca.</em></p>
+  <p class="updated">Aggiornato al: 8 agosto 2026</p>
+
+  <h2>1. Titolare del trattamento</h2>
+  <div class="card">
+    <p>
+      Gursch Markus, BSc<br />
+      swordi.studios<br />
+      Gregorygasse 10A, 1230 Vienna, Austria<br />
+      E-mail: <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
+    </p>
+    <p>Per i dati completi, vedere le <a href="https://kortscore.com/legal/impressum.html">note legali</a>.</p>
+  </div>
+  <p>
+    Kortscore viene sviluppata e distribuita con il marchio «swordi.studios»
+    (pacchetto Play Store <code>com.swordistudios.kortscore</code>). Il titolare del trattamento
+    ai sensi del Regolamento generale sulla protezione dei dati (GDPR) è la persona/società sopra indicata.
+  </p>
+
+  <h2>2. Panoramica</h2>
+  <p>
+    Kortscore è un’app per il conteggio dei punti a tennis per Wear OS con app companion per
+    smartphone. L’app funziona in linea di principio localmente sul dispositivo. Non sono presenti
+    <strong>account utente</strong>, <strong>SDK pubblicitari</strong>, <strong>dati di
+    geolocalizzazione</strong> né <strong>tracciamento tra app o siti web diversi</strong>. I dati
+    vengono trattati solo nei casi descritti di seguito.
+  </p>
+
+  <h2>3. Firebase Analytics</h2>
+  <p>
+    Utilizziamo Firebase Analytics (Google LLC ovvero Google Ireland Limited) per rilevare eventi
+    generici sull’utilizzo del prodotto, tra cui:
+  </p>
+  <ul>
+    <li>Match archiviato (solo: doppio sì/no, numero di set, categoria approssimativa di durata)</li>
+    <li>Trasmissione live aperta ("Share opened")</li>
+    <li>Backup creato</li>
+    <li>Acquisto di Kortscore Plus</li>
+    <li>Visualizzazioni di schermata (Screen View)</li>
+  </ul>
+  <p>
+    Non vengono trasmessi <strong>né nomi né timestamp/durate esatte</strong> – solo categorie
+    generiche relative al prodotto. Analytics è completamente disattivato nelle build di debug.
+  </p>
+  <p>
+    <strong>Base giuridica:</strong> art. 6, par. 1, lett. f) del GDPR (interesse legittimo al
+    miglioramento e alla correzione degli errori dell’app).<br />
+    <strong>Durata di conservazione:</strong> secondo i periodi di conservazione standard di
+    Google Analytics for Firebase (attualmente 14 mesi per i dati di evento riferiti all’utente,
+    per impostazione predefinita; vedere la documentazione Google).<br />
+    <strong>Destinatari:</strong> Google LLC / Google Ireland Limited in qualità di responsabile
+    del trattamento.
+  </p>
+
+  <h2>4. Firebase Crashlytics</h2>
+  <p>
+    Firebase Crashlytics (Google) raccoglie report di arresto anomalo, errori non irreversibili,
+    metadati del dispositivo (ad es. modello del dispositivo, versione del sistema operativo)
+    nonché chiavi personalizzate da noi impostate (ad es. se è connesso un orologio), al fine di
+    individuare e correggere errori. Crashlytics è completamente disattivato nelle build di debug.
+  </p>
+  <p>
+    <strong>Base giuridica:</strong> art. 6, par. 1, lett. f) del GDPR (interesse legittimo a un
+    software stabile e privo di errori).<br />
+    <strong>Durata di conservazione:</strong> secondo i periodi di conservazione standard di
+    Firebase Crashlytics (attualmente 90 giorni per impostazione predefinita).<br />
+    <strong>Destinatari:</strong> Google LLC / Google Ireland Limited in qualità di responsabile
+    del trattamento.
+  </p>
+
+  <h2>5. Condivisione di un match live (Cloud Firestore)</h2>
+  <div class="warning">
+    <p>
+      <strong>Avvertenza importante:</strong> se condividete attivamente un link a un match live,
+      la cronologia dei punti del match, i timestamp nonché i nomi visualizzati da voi inseriti
+      (il proprio nome e il nome dell’avversario/dell’avversaria) vengono caricati su un database
+      cloud (Google Cloud Firestore). Questi dati sono <strong>leggibili pubblicamente da chiunque
+      conosca il link</strong> – il link è l’unico meccanismo di controllo dell’accesso.
+    </p>
+    <p>
+      Potete revocare un link condiviso in qualsiasi momento nell’app. La revoca è
+      <strong>definitiva</strong>: da quel momento il link non funziona più in modo permanente.
+    </p>
+  </div>
+  <p>
+    Senza condivisione attiva non viene trasmesso alla cloud alcun dato relativo ai match. Alla
+    prima condivisione, Firebase Anonymous Authentication genera un identificativo anonimo a
+    livello di dispositivo che, di per sé, non consente l’identificazione della persona.
+  </p>
+  <p>
+    <strong>Base giuridica:</strong> art. 6, par. 1, lett. b) del GDPR (esecuzione della
+    funzione/del contratto attivamente avviato da voi tramite la funzione «Condivisione live»).<br />
+    <strong>Durata di conservazione:</strong> fino alla revoca del link da parte vostra.<br />
+    <strong>Destinatari:</strong> Google LLC / Google Ireland Limited (Cloud Firestore, Anonymous
+    Auth) in qualità di responsabile del trattamento; inoltre chiunque riceva da voi il link o
+    ne venga altrimenti in possesso.
+  </p>
+
+  <h2>6. Google Play Billing (Kortscore Plus)</h2>
+  <p>
+    L’acquisto in-app una tantum «Kortscore Plus» viene gestito interamente tramite Google Play
+    Billing. I dati di pagamento (carta di credito, ecc.) sono trattati esclusivamente da Google
+    nell’ambito del vostro account Google; noi non riceviamo né conserviamo
+    <strong>alcun dato di pagamento</strong>. Dopo un acquisto andato a buon fine, l’app memorizza
+    unicamente un flag di sblocco locale sul dispositivo.
+  </p>
+  <p>
+    <strong>Base giuridica:</strong> art. 6, par. 1, lett. b) del GDPR (esecuzione del contratto
+    di acquisto della funzione aggiuntiva).<br />
+    <strong>Destinatari:</strong> Google LLC / Google Ireland Limited in qualità di gestore dei
+    pagamenti.
+  </p>
+
+  <h2>7. Notifiche push (Firebase Cloud Messaging)</h2>
+  <p>
+    Utilizziamo Firebase Cloud Messaging (FCM) per inviare annunci generali sul prodotto (ad es.
+    informazioni su nuove funzioni) a tutte le installazioni dell’app. Questi annunci vengono
+    inviati manualmente tramite la Firebase Console; non gestiamo un server proprio che memorizzi
+    i token FCM o che indirizzi in modo mirato singoli utenti.
+  </p>
+  <p>
+    Il token di registrazione FCM è un identificativo legato al dispositivo e costituisce quindi
+    un dato personale ai sensi dell’art. 4, punto 1 del GDPR.
+  </p>
+  <p>
+    <strong>Base giuridica:</strong> art. 6, par. 1, lett. f) del GDPR (interesse legittimo ad
+    annunci relativi al prodotto). Questa valutazione è sostenuta da: l’autorizzazione alle
+    notifiche a partire da Android 13 quale opt-in esplicito a livello di sistema operativo,
+    la rinuncia alla profilazione nonché la rinuncia al targeting basato sui dati degli utenti.<br />
+    <strong>Opposizione/disattivazione:</strong> potete disattivare le notifiche in qualsiasi
+    momento tramite le impostazioni di notifica del sistema operativo (o i relativi canali) E
+    nelle impostazioni dell’app stessa. Le «Notifiche generali» possono essere disattivate in
+    qualsiasi momento nelle impostazioni dell’app; in tal caso l’identificativo del dispositivo
+    (token) viene eliminato.<br />
+    <strong>Durata di conservazione:</strong> il token permane fino alla sua eliminazione
+    (mediante disattivazione nell’app o disinstallazione dell’app); l’ulteriore trattamento da
+    parte di Google è disciplinato dalle condizioni di utilizzo di Firebase.<br />
+    <strong>Destinatari:</strong> Google LLC / Google Ireland Limited in qualità di responsabile
+    del trattamento; le trasmissioni verso gli USA avvengono sulla base delle clausole
+    contrattuali standard dell’UE.
+  </p>
+  <p>
+    La notifica locale separata di fine match viene generata interamente sul dispositivo e non
+    comporta alcuna trasmissione di dati a terzi.
+  </p>
+
+  <h2>8. Dati locali e backup</h2>
+  <p>
+    I match, le impostazioni e i backup manuali rimangono in linea di principio sul vostro
+    dispositivo ovvero nella cartella di backup da voi scelta. Inoltre, Android Auto-Backup
+    (una funzione di sistema di Google) può salvare automaticamente i dati dell’app nel vostro
+    account Google; ciò è soggetto alle disposizioni sulla privacy di Google e può essere
+    disattivato nelle impostazioni di sistema di Android.
+  </p>
+
+  <h2>9. Interesse per una versione iOS (sito web)</h2>
+  <p>
+    Su kortscore.com potete lasciare volontariamente il vostro indirizzo e-mail per essere
+    avvisati qualora venisse pubblicata una versione per iPhone e Apple Watch. Vengono così
+    memorizzati esclusivamente l’indirizzo e-mail inserito, la data della registrazione e la
+    versione linguistica della pagina. Non viene memorizzato alcun indirizzo IP.
+  </p>
+  <p>
+    I dati vengono conservati in un foglio Google (Google Sheets) all’interno del nostro account
+    Google e utilizzati esclusivamente per questa singola notifica. Non viene inviata alcuna
+    newsletter, non viene fatta alcuna pubblicità e non avviene alcuna cessione a terzi.
+  </p>
+  <p>
+    <strong>Base giuridica:</strong> il vostro consenso (art. 6, par. 1, lett. a) del GDPR), che
+    fornite selezionando la casella nel modulo. Potete revocarlo in qualsiasi momento e senza
+    formalità, ad esempio scrivendo all’indirizzo indicato al punto «Contatto»; il vostro dato
+    verrà quindi cancellato tempestivamente.
+  </p>
+  <p>
+    <strong>Durata di conservazione:</strong> fino alla revoca, ma al più tardi fino alla
+    decisione su una versione iOS o fino alla sua pubblicazione. Successivamente l’elenco viene
+    cancellato.
+  </p>
+
+  <h2>10. Nessuna cessione di dati a fini pubblicitari</h2>
+  <p>
+    Non vendiamo alcun dato. Al di là dei servizi Google indicati nella presente informativa,
+    non avviene alcuna cessione a terzi.
+  </p>
+
+  <h2>11. Destinatari e trasferimento verso paesi terzi</h2>
+  <table>
+    <thead><tr><th>Servizio</th><th>Fornitore</th><th>Luogo di trattamento</th></tr></thead>
+    <tbody>
+      <tr><td>Firebase Analytics</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
+      <tr><td>Firebase Crashlytics</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
+      <tr><td>Cloud Firestore / Anonymous Auth</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
+      <tr><td>Google Play Billing</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
+      <tr><td>Firebase Cloud Messaging</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
+      <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>secondo le impostazioni del vostro account Google</td></tr>
+      <tr><td>Google Sheets (interesse iOS)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Nella misura in cui i dati vengono trasferiti negli USA, ciò si basa sulle clausole
+    contrattuali standard della Commissione UE con le rispettive società di Google.
+  </p>
+
+  <h2>12. I vostri diritti</h2>
+  <p>Ai sensi del GDPR vi spettano i seguenti diritti:</p>
+  <ul>
+    <li>Accesso (art. 15 GDPR)</li>
+    <li>Rettifica (art. 16 GDPR)</li>
+    <li>Cancellazione (art. 17 GDPR)</li>
+    <li>Limitazione del trattamento (art. 18 GDPR)</li>
+    <li>Opposizione al trattamento (art. 21 GDPR)</li>
+    <li>Portabilità dei dati (art. 20 GDPR)</li>
+    <li>Reclamo presso un’autorità di controllo, in particolare presso l’autorità austriaca
+      per la protezione dei dati: <a href="https://www.dsb.gv.at" target="_blank" rel="noopener">dsb.gv.at</a></li>
+  </ul>
+  <p>
+    Per esercitare tali diritti, vi preghiamo di contattare l’indirizzo indicato nella sezione
+    «Titolare del trattamento».
+  </p>
+
+  <h2>13. Contatto</h2>
+  <p>
+    Per domande in materia di privacy, contattateci all’indirizzo:
+    <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
+    (vedere le <a href="https://kortscore.com/legal/impressum.html">note legali</a>).
   </p>
 
   <div class="foot">
