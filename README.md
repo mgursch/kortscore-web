@@ -13,6 +13,10 @@ watches.html        Unterseite: drei empfohlene Uhren (Amazon-Affiliate)
 de/uhren.html       dieselbe Unterseite auf Deutsch
 compatible-watches.html  Unterseite: Kompatibilitätsliste aller Wear-OS-Uhren
 de/kompatible-uhren.html dieselbe Unterseite auf Deutsch
+how-tennis-scoring-works.html  Regelseite: Zählweise Tennis (Evergreen, verlinkt auf FAQ und App)
+de/tennis-zaehlweise.html      dieselbe Seite auf Deutsch
+how-padel-scoring-works.html   Regelseite: Zählweise Padel
+de/padel-zaehlweise.html       dieselbe Seite auf Deutsch
 styles.css          Design-System, Layout, @font-face, alles in einer Datei
 script.js           nur der Sprachhinweis, sonst nichts
 legal/              Impressum, Datenschutz, AGB (eigenständige Seiten)
@@ -53,6 +57,8 @@ Die Zuordnung:
 | `/` | `/de/` |
 | `/watches.html` | `/de/uhren.html` |
 | `/compatible-watches.html` | `/de/kompatible-uhren.html` |
+| `/how-tennis-scoring-works.html` | `/de/tennis-zaehlweise.html` |
+| `/how-padel-scoring-works.html` | `/de/padel-zaehlweise.html` |
 
 Jede Seite verlinkt ihr Gegenstück über `hreflang` im Kopf und über den
 Umschalter in der Navigation.

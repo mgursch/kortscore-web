@@ -48,4 +48,36 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://kortscore.com/de/kompatible-uhren.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kortscore.com/compatible-watches.html"/>
   </url>
+  <url>
+    <loc>https://kortscore.com/how-tennis-scoring-works.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kortscore.com/how-tennis-scoring-works.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kortscore.com/de/tennis-zaehlweise.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kortscore.com/how-tennis-scoring-works.html"/>
+  </url>
+  <url>
+    <loc>https://kortscore.com/de/tennis-zaehlweise.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kortscore.com/how-tennis-scoring-works.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kortscore.com/de/tennis-zaehlweise.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kortscore.com/how-tennis-scoring-works.html"/>
+  </url>
+  <url>
+    <loc>https://kortscore.com/how-padel-scoring-works.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kortscore.com/how-padel-scoring-works.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kortscore.com/de/padel-zaehlweise.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kortscore.com/how-padel-scoring-works.html"/>
+  </url>
+  <url>
+    <loc>https://kortscore.com/de/padel-zaehlweise.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kortscore.com/how-padel-scoring-works.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kortscore.com/de/padel-zaehlweise.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kortscore.com/how-padel-scoring-works.html"/>
+  </url>
 </urlset>

@@ -27,6 +27,10 @@ Android (8.0+) phones with Wear OS (3+) watches. Runs on every Wear OS 3 watch (
 - Compatible watches (full Wear OS model list): https://kortscore.com/compatible-watches.html
 - Kompatible Uhren: https://kortscore.com/de/kompatible-uhren.html
 - Empfohlene Uhren: https://kortscore.com/de/uhren.html
+- How tennis scoring works (rules explainer): https://kortscore.com/how-tennis-scoring-works.html
+- Wie zählt man beim Tennis: https://kortscore.com/de/tennis-zaehlweise.html
+- How padel scoring works (golden point, doubles serve order): https://kortscore.com/how-padel-scoring-works.html
+- Wie zählt man beim Padel: https://kortscore.com/de/padel-zaehlweise.html
 - Privacy policy: https://kortscore.com/legal/privacy.html
 - Legal notice / Impressum: https://kortscore.com/legal/impressum.html
 
