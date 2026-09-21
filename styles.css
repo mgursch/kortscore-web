@@ -1236,3 +1236,76 @@ a:hover { color: var(--accent); }
      würde auf Briefmarkengröße schrumpfen. */
   .phone--right { display: none; }
 }
+
+/* ── FAQ ────────────────────────────────────────────────────────────────────
+   Native <details>: aufklappen ohne JavaScript, der Browser kuemmert sich um
+   Tastatur und Screenreader. Das Plus/Minus ist ein ::after auf der Summary,
+   der Standardpfeil wird ausgeblendet. */
+.faq {
+  padding-block: 64px;
+  border-top: 1px solid var(--hairline);
+}
+.faq__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: flex-start;
+}
+.faq__head { flex: 0 1 280px; }
+.faq__lead { margin: 14px 0 0; }
+.faq__list {
+  flex: 1 1 520px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.faq__item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.faq__item[open] { box-shadow: var(--shadow-card); }
+.faq__q {
+  list-style: none;
+  cursor: pointer;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+}
+.faq__q::-webkit-details-marker { display: none; }
+.faq__q::after {
+  content: "+";
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--text-muted);
+}
+.faq__item[open] .faq__q::after { content: "\2013"; }
+.faq__q:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius);
+}
+.faq__a {
+  padding: 0 20px 18px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  text-wrap: pretty;
+}
+.faq__a p { margin: 0; }
+.faq__a a { color: var(--accent-text); }
+
+@media (max-width: 640px) {
+  .faq { padding-block: 48px; }
+  .faq__q { font-size: 18px; padding: 14px 16px; }
+  .faq__a { padding: 0 16px 16px; }
+}

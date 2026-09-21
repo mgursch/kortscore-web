@@ -7,7 +7,7 @@ Keine Build-Tools, kein Framework, reines HTML/CSS/JS.
 
 ```
 index.html          Startseite, Englisch (Hero, Warum, So funktioniert's,
-                    Vereine, Uhren-Teaser, CTA, Footer)
+                    Vereine, Uhren-Teaser, FAQ, CTA, Footer)
 de/index.html       Startseite, Deutsch, gleiche Struktur
 watches.html        Unterseite: drei empfohlene Uhren (Amazon-Affiliate)
 de/uhren.html       dieselbe Unterseite auf Deutsch

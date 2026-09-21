@@ -34,7 +34,7 @@
      body copy next to it. The rest arrive with the stylesheet. -->
 <link rel="preload" href="../assets/fonts/BarlowCondensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/IBMPlexSans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../styles.css?v=202609021200">
+<link rel="stylesheet" href="../styles.css?v=202609221000">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -179,6 +179,80 @@ gtag('event', 'conversion', {
       "inLanguage": "de",
       "publisher": {
         "@id": "https://kortscore.com/#organization"
+      }
+    }
+  ]
+}
+</script>
+<!-- FAQPage: the same questions and answers as the FAQ section further down. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "de",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Brauche ich das Handy am Platz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Die Uhr zählt komplett alleine, auch ohne Verbindung. Nur für den Live-Ticker muss das Handy in Bluetooth-Reichweite sein, denn es schickt den Score ins Netz. WLAN oder LTE auf der Uhr allein reichen dafür nicht."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Uhren funktionieren mit Kortscore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Jede Uhr mit Wear OS 3 oder neuer: Samsung Galaxy Watch ab der Watch 4, Google Pixel Watch und alle anderen Wear-OS-Uhren. Dazu ein Android-Handy ab Android 8. Drei Empfehlungen für den Platz findest du auf der Uhrenseite."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie zähle ich einen Punkt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Einmal auf die Uhr tippen: Punkt für dich. Zweimal: Punkt für den Gegner. Viermal: letzten Punkt zurücknehmen. Games, Sätze und Tiebreaks rechnet die Uhr selbst, du musst nicht aufs Display schauen. Wer es einmal in Ruhe durchgehen will: In der App gibt es am Handy und auf der Uhr eine Anleitung mit allen Tipps zum Nachtippen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Zählt Kortscore nach echten Regeln, auch mit Tiebreak und NoAd?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Vorteil oder NoAd, Sätze bis 6 oder bis 4, Tiebreak und Champions-Tiebreak, Best of 3 oder ein Satz. Beim Padel wählst du Golden Point einfach als NoAd, dann entscheidet der Punkt bei 40:40 das Game."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie funktioniert der Live-Ticker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Du teilst einen Link, mehr nicht. Wer ihn öffnet, sieht Punktestand, Satzverlauf und Aufschlag live im Browser, Punkt für Punkt. Zuschauer brauchen keine App und kein Konto, egal ob sie am Nebenplatz stehen oder zu Hause sitzen. Das Handy muss dafür in Bluetooth-Reichweite der Uhr sein."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet Kortscore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nichts. Zählen, Match-Historie und Live-Ticker sind gratis, ohne Werbung und ohne Konto. Kortscore Plus ist ein einmaliger Kauf und bringt erweiterte Statistiken, automatische Backups und den KI-Trainer, der deine Matches analysiert."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ich Kortscore auch für Padel verwenden?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, ohne Umwege. Padel zählt wie Tennis, und Doppel ist eines der Formate direkt am Startbildschirm. Einzel, Doppel, NoAd: einmal auswählen, dann zählt die Uhr mit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gibt es Kortscore für iPhone und Apple Watch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Noch nicht, aber bald: Die Version für iPhone und Apple Watch kommt in den nächsten Wochen. Trag dich in die Warteliste ein, dann sagen wir dir Bescheid, sobald sie im App Store ist."
       }
     }
   ]
@@ -512,6 +586,55 @@ gtag('event', 'conversion', {
       Kein Newsletter · keine Weitergabe ·
       <a href="../legal/privacy.html">Datenschutz</a>
     </p>
+  </div>
+</section>
+
+<!-- ── FAQ ──────────────────────────────────────────────────────────────────
+     The questions people actually type into search engines and AI assistants,
+     answered in two or three sentences each. Plain <details>, so it works
+     without JavaScript. The same Q&A sits as FAQPage JSON-LD in the head;
+     change both together. -->
+<section class="faq" id="faq">
+  <div class="shell faq__inner">
+    <div class="faq__head">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="section-title">Häufige Fragen</h2>
+      <p class="lead faq__lead">Kurze Antworten auf das, was vor dem ersten Match mit Kortscore gefragt wird.</p>
+    </div>
+    <div class="faq__list">
+      <details class="faq__item">
+        <summary class="faq__q">Brauche ich das Handy am Platz?</summary>
+        <div class="faq__a"><p>Nein. Die Uhr zählt komplett alleine, auch ohne Verbindung. Nur für den Live-Ticker muss das Handy in Bluetooth-Reichweite sein, denn es schickt den Score ins Netz. WLAN oder LTE auf der Uhr allein reichen dafür nicht.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">Welche Uhren funktionieren mit Kortscore?</summary>
+        <div class="faq__a"><p>Jede Uhr mit Wear OS 3 oder neuer: Samsung Galaxy Watch ab der Watch 4, Google Pixel Watch und alle anderen Wear-OS-Uhren. Dazu ein Android-Handy ab Android 8. Drei Empfehlungen für den Platz findest du auf der <a href="uhren.html">Uhrenseite</a>.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">Wie zähle ich einen Punkt?</summary>
+        <div class="faq__a"><p>Einmal auf die Uhr tippen: Punkt für dich. Zweimal: Punkt für den Gegner. Viermal: letzten Punkt zurücknehmen. Games, Sätze und Tiebreaks rechnet die Uhr selbst, du musst nicht aufs Display schauen. Wer es einmal in Ruhe durchgehen will: In der App gibt es am Handy und auf der Uhr eine Anleitung mit allen Tipps zum Nachtippen.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">Zählt Kortscore nach echten Regeln, auch mit Tiebreak und NoAd?</summary>
+        <div class="faq__a"><p>Ja. Vorteil oder NoAd, Sätze bis 6 oder bis 4, Tiebreak und Champions-Tiebreak, Best of 3 oder ein Satz. Beim Padel wählst du Golden Point einfach als NoAd, dann entscheidet der Punkt bei 40:40 das Game.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">Wie funktioniert der Live-Ticker?</summary>
+        <div class="faq__a"><p>Du teilst einen Link, mehr nicht. Wer ihn öffnet, sieht Punktestand, Satzverlauf und Aufschlag live im Browser, Punkt für Punkt. Zuschauer brauchen keine App und kein Konto, egal ob sie am Nebenplatz stehen oder zu Hause sitzen. Das Handy muss dafür in Bluetooth-Reichweite der Uhr sein.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">Was kostet Kortscore?</summary>
+        <div class="faq__a"><p>Nichts. Zählen, Match-Historie und Live-Ticker sind gratis, ohne Werbung und ohne Konto. Kortscore Plus ist ein einmaliger Kauf und bringt erweiterte Statistiken, automatische Backups und den KI-Trainer, der deine Matches analysiert.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">Kann ich Kortscore auch für Padel verwenden?</summary>
+        <div class="faq__a"><p>Ja, ohne Umwege. Padel zählt wie Tennis, und Doppel ist eines der Formate direkt am Startbildschirm. Einzel, Doppel, NoAd: einmal auswählen, dann zählt die Uhr mit.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">Gibt es Kortscore für iPhone und Apple Watch?</summary>
+        <div class="faq__a"><p>Noch nicht, aber bald: Die Version für iPhone und Apple Watch kommt in den nächsten Wochen. Trag dich in die <a href="#ios">Warteliste</a> ein, dann sagen wir dir Bescheid, sobald sie im App Store ist.</p></div>
+      </details>
+    </div>
   </div>
 </section>
 

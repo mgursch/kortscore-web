@@ -34,7 +34,7 @@
      body copy next to it. The rest arrive with the stylesheet. -->
 <link rel="preload" href="assets/fonts/BarlowCondensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/IBMPlexSans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=202609021200">
+<link rel="stylesheet" href="styles.css?v=202609221000">
 
 <!-- ── Statistik: Umami ──────────────────────────────────────────────────────
      Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
@@ -179,6 +179,80 @@ gtag('event', 'conversion', {
       "inLanguage": "en",
       "publisher": {
         "@id": "https://kortscore.com/#organization"
+      }
+    }
+  ]
+}
+</script>
+<!-- FAQPage: the same questions and answers as the FAQ section further down. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "en",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need my phone on court?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The watch keeps score entirely on its own, even without a connection. Only the live ticker needs the phone within Bluetooth range, because the phone is what sends the score online. Wi-Fi or LTE on the watch alone is not enough for that."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which watches work with Kortscore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Any watch running Wear OS 3 or newer: Samsung Galaxy Watch from the Watch 4 on, Google Pixel Watch and every other Wear OS watch. Plus an Android phone on Android 8 or newer. Three picks for the court are on the watches page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I score a point?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tap the watch once: point for you. Twice: point for your opponent. Four times: undo the last point. Games, sets and tiebreaks are worked out by the watch, you never need to look at the display. If you want to run through it once in peace: the app has a guide on both the phone and the watch where you can practise every tap."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Kortscore follow the real rules, including tiebreaks and NoAd?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Advantage or NoAd, sets to 6 or to 4, tiebreak and champions tiebreak, best of 3 or a single set. For padel, pick golden point as NoAd and the point at 40:40 decides the game."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the live ticker work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You share a link, that is all. Whoever opens it sees the score, the set history and who is serving, live in the browser, point by point. Spectators need no app and no account, whether they are on the next court or at home. Your phone has to be within Bluetooth range of the watch for this."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does Kortscore cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nothing. Scoring, match history and the live ticker are free, with no ads and no account. Kortscore Plus is a one-time purchase and adds advanced statistics, automatic backups and the AI coach that analyses your matches."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use Kortscore for padel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, with no detours. Padel is scored like tennis, and doubles is one of the formats right on the start screen. Singles, doubles, NoAd: pick once and the watch counts along."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a Kortscore for iPhone and Apple Watch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not yet, but soon: the version for iPhone and Apple Watch arrives in the coming weeks. Join the waitlist and we will tell you as soon as it is in the App Store."
       }
     }
   ]
@@ -510,6 +584,55 @@ gtag('event', 'conversion', {
       No newsletter · no forwarding ·
       <a href="legal/privacy.html">Privacy</a>
     </p>
+  </div>
+</section>
+
+<!-- ── FAQ ──────────────────────────────────────────────────────────────────
+     The questions people actually type into search engines and AI assistants,
+     answered in two or three sentences each. Plain <details>, so it works
+     without JavaScript. The same Q&A sits as FAQPage JSON-LD in the head;
+     change both together. -->
+<section class="faq" id="faq">
+  <div class="shell faq__inner">
+    <div class="faq__head">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="section-title">Common questions</h2>
+      <p class="lead faq__lead">Short answers to what people ask before their first match with Kortscore.</p>
+    </div>
+    <div class="faq__list">
+      <details class="faq__item">
+        <summary class="faq__q">Do I need my phone on court?</summary>
+        <div class="faq__a"><p>No. The watch keeps score entirely on its own, even without a connection. Only the live ticker needs the phone within Bluetooth range, because the phone is what sends the score online. Wi-Fi or LTE on the watch alone is not enough for that.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">Which watches work with Kortscore?</summary>
+        <div class="faq__a"><p>Any watch running Wear OS 3 or newer: Samsung Galaxy Watch from the Watch 4 on, Google Pixel Watch and every other Wear OS watch. Plus an Android phone on Android 8 or newer. Three picks for the court are on the <a href="watches.html">watches page</a>.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">How do I score a point?</summary>
+        <div class="faq__a"><p>Tap the watch once: point for you. Twice: point for your opponent. Four times: undo the last point. Games, sets and tiebreaks are worked out by the watch, you never need to look at the display. If you want to run through it once in peace: the app has a guide on both the phone and the watch where you can practise every tap.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">Does Kortscore follow the real rules, including tiebreaks and NoAd?</summary>
+        <div class="faq__a"><p>Yes. Advantage or NoAd, sets to 6 or to 4, tiebreak and champions tiebreak, best of 3 or a single set. For padel, pick golden point as NoAd and the point at 40:40 decides the game.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">How does the live ticker work?</summary>
+        <div class="faq__a"><p>You share a link, that is all. Whoever opens it sees the score, the set history and who is serving, live in the browser, point by point. Spectators need no app and no account, whether they are on the next court or at home. Your phone has to be within Bluetooth range of the watch for this.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">How much does Kortscore cost?</summary>
+        <div class="faq__a"><p>Nothing. Scoring, match history and the live ticker are free, with no ads and no account. Kortscore Plus is a one-time purchase and adds advanced statistics, automatic backups and the AI coach that analyses your matches.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">Can I use Kortscore for padel?</summary>
+        <div class="faq__a"><p>Yes, with no detours. Padel is scored like tennis, and doubles is one of the formats right on the start screen. Singles, doubles, NoAd: pick once and the watch counts along.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">Is there a Kortscore for iPhone and Apple Watch?</summary>
+        <div class="faq__a"><p>Not yet, but soon: the version for iPhone and Apple Watch arrives in the coming weeks. Join the <a href="#ios">waitlist</a> and we will tell you as soon as it is in the App Store.</p></div>
+      </details>
+    </div>
   </div>
 </section>
 
