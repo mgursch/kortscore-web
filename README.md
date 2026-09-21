@@ -14,6 +14,7 @@ de/uhren.html       dieselbe Unterseite auf Deutsch
 styles.css          Design-System, Layout, @font-face, alles in einer Datei
 script.js           nur der Sprachhinweis, sonst nichts
 legal/              Impressum, Datenschutz, AGB (eigenständige Seiten)
+favicon.ico         Kopie von assets/favicon.ico: Browser und Google fragen den Root-Pfad ab
 robots.txt          alles erlaubt, verweist auf die Sitemap
 sitemap.xml         die vier indexierbaren Seiten mit hreflang-Alternativen
 llms.txt            Kurzbriefing für KI-Crawler, dieselben Fakten wie das JSON-LD
