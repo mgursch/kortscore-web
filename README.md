@@ -21,7 +21,7 @@ rechtliches.html    dito
 de/rechtliches.html dito
 assets/
   icon.png/.svg     App-Icon
-  shot-*.png        Screenshots, je Sprache (-en für Englisch)
+  shot-*.webp       Screenshots, 540 px breit, je Sprache (-en für Englisch)
   watch-*.webp      Produktfotos der empfohlenen Uhren, 480 und 960 breit
   google-play-*.png offizielle Play-Badges, je Sprache
   og-*.png          Social-Preview 1200×630, je Sprache (og:image)
