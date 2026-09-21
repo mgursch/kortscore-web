@@ -16,6 +16,7 @@ script.js           nur der Sprachhinweis, sonst nichts
 legal/              Impressum, Datenschutz, AGB (eigenständige Seiten)
 robots.txt          alles erlaubt, verweist auf die Sitemap
 sitemap.xml         die vier indexierbaren Seiten mit hreflang-Alternativen
+llms.txt            Kurzbriefing für KI-Crawler, dieselben Fakten wie das JSON-LD
 legal.html          Weiterleitung auf legal/impressum.html (Altlink)
 rechtliches.html    dito
 de/rechtliches.html dito

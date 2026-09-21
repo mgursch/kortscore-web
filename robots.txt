@@ -4,3 +4,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://kortscore.com/sitemap.xml
+# Summary for AI assistants: https://kortscore.com/llms.txt

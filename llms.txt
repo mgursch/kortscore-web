@@ -1,0 +1,34 @@
+# Kortscore
+
+> Kortscore is a free scorekeeper app for tennis and padel that runs on the watch: one tap per point on the wrist, the phone stays in the bag. Spectators follow a live score ticker through a shareable link without installing anything. Made by swordi.studios, an independent studio in Vienna, Austria.
+
+## What it does
+
+- Scores tennis and padel matches, singles and doubles, with one tap per point on a smartwatch
+- Handles the rules: advantage and NoAd scoring, tiebreaks, sets to 4 or 6
+- Live score ticker: a link the player shares, spectators open it in any browser, no app or account needed
+- Match history with point-by-point log, statistics such as win rate and set record
+- Free, no ads, no account. Kortscore Plus is an optional one-time in-app purchase for deeper statistics
+- Interface in English and German
+
+## Platforms
+
+Android (8.0+) phones with Wear OS (3+) watches. Runs on every Wear OS 3 watch (Samsung Galaxy Watch 4 and newer, Google Pixel Watch, and others). An iOS and Apple Watch version is in development.
+
+## Get it
+
+- Google Play: https://play.google.com/store/apps/details?id=com.swordistudios.kortscore
+
+## Pages
+
+- Homepage (English): https://kortscore.com/
+- Startseite (Deutsch): https://kortscore.com/de/
+- Recommended watches: https://kortscore.com/watches.html
+- Empfohlene Uhren: https://kortscore.com/de/uhren.html
+- Privacy policy: https://kortscore.com/legal/privacy.html
+- Legal notice / Impressum: https://kortscore.com/legal/impressum.html
+
+## Maker
+
+- swordi.studios, Vienna, Austria: https://www.swordistudios.com/
+- Also spelled "swordistudios" on the app stores
