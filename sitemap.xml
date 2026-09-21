@@ -32,4 +32,20 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://kortscore.com/de/uhren.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kortscore.com/watches.html"/>
   </url>
+  <url>
+    <loc>https://kortscore.com/compatible-watches.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kortscore.com/compatible-watches.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kortscore.com/de/kompatible-uhren.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kortscore.com/compatible-watches.html"/>
+  </url>
+  <url>
+    <loc>https://kortscore.com/de/kompatible-uhren.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kortscore.com/compatible-watches.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kortscore.com/de/kompatible-uhren.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kortscore.com/compatible-watches.html"/>
+  </url>
 </urlset>

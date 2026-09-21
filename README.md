@@ -11,6 +11,8 @@ index.html          Startseite, Englisch (Hero, Warum, So funktioniert's,
 de/index.html       Startseite, Deutsch, gleiche Struktur
 watches.html        Unterseite: drei empfohlene Uhren (Amazon-Affiliate)
 de/uhren.html       dieselbe Unterseite auf Deutsch
+compatible-watches.html  Unterseite: Kompatibilitätsliste aller Wear-OS-Uhren
+de/kompatible-uhren.html dieselbe Unterseite auf Deutsch
 styles.css          Design-System, Layout, @font-face, alles in einer Datei
 script.js           nur der Sprachhinweis, sonst nichts
 legal/              Impressum, Datenschutz, AGB (eigenständige Seiten)
@@ -50,6 +52,7 @@ Die Zuordnung:
 |---|---|
 | `/` | `/de/` |
 | `/watches.html` | `/de/uhren.html` |
+| `/compatible-watches.html` | `/de/kompatible-uhren.html` |
 
 Jede Seite verlinkt ihr Gegenstück über `hreflang` im Kopf und über den
 Umschalter in der Navigation.

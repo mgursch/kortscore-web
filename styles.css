@@ -1309,3 +1309,82 @@ a:hover { color: var(--accent); }
   .faq__q { font-size: 18px; padding: 14px 16px; }
   .faq__a { padding: 0 16px 16px; }
 }
+
+/* ── Kompatibilität ─────────────────────────────────────────────────────────
+   Nachschlageseite: eine Regel, dann Tabellen je Hersteller. Schmale Spalte
+   wie der Lead im Subhead, damit Zeilen lesbar bleiben. */
+.compat {
+  max-width: 760px;
+  margin-inline: auto;
+  padding: 0 var(--gutter) 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.compat__section h2 {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+.compat__section p,
+.compat__list {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  text-wrap: pretty;
+}
+.compat__section a { color: var(--accent-text); }
+.compat__table {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+  font-size: 15px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.compat__table th,
+.compat__table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--hairline);
+}
+.compat__table th {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg-alt);
+}
+.compat__table tr:last-child td { border-bottom: 0; }
+.compat__table td:last-child { font-family: var(--font-mono); white-space: nowrap; }
+.compat__list {
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+}
+.compat__list strong { color: var(--text); font-weight: 600; }
+.compat__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px 56px;
+  align-items: flex-end;
+  padding-top: 8px;
+  border-top: 1px solid var(--hairline);
+}
+.compat__cta .eyebrow { margin: 16px 0 10px; }
+.compat__cta .back { display: inline-block; padding-bottom: 12px; }
+
+@media (max-width: 640px) {
+  .compat__table th:nth-child(2),
+  .compat__table td:nth-child(2) { display: none; } /* Jahr weglassen, Modell und Wear OS reichen */
+  .compat__table th, .compat__table td { padding: 9px 12px; }
+}
