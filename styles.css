@@ -729,6 +729,14 @@ a:hover { color: var(--accent); }
   flex-wrap: wrap;
 }
 
+.teaser__note-row {
+  margin: 18px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+.teaser__note-row a { color: var(--accent-text); }
+
 .teaser__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
