@@ -2,9 +2,8 @@
    Kortscore — Website
    ============================================================================
    Die Seite funktioniert vollstaendig ohne JavaScript. Dieses Skript ergaenzt
-   vier Dinge: die Sprachweiche, den Sprachhinweis als Rueckweg, die Messung
-   des Play-Store-Klicks samt Kampagnen-Referrer, und das Absenden des
-   iOS-Formulars ohne Seitenwechsel.
+   drei Dinge: die Sprachweiche, den Sprachhinweis als Rueckweg und die
+   Messung der Store-Klicks samt Kampagnen-Referrer.
    ========================================================================= */
 (function () {
   'use strict';
@@ -182,12 +181,16 @@
   var ref = referrer();
 
   Array.prototype.forEach.call(badges, function (a) {
-    var href = a.getAttribute('href') || '';
-    if (href.indexOf('play.google.com') === -1) { return; }
+    var href  = a.getAttribute('href') || '';
+    var play  = href.indexOf('play.google.com') !== -1;
+    var apple = href.indexOf('apps.apple.com')  !== -1;
+    if (!play && !apple) { return; }
 
-    /* Der Wert wird als Ganzes kodiert — Google Play erwartet den referrer
-       als eine einzige, prozentkodierte Zeichenkette. */
-    if (href.indexOf('&referrer=') === -1) {
+    /* Nur Google Play nimmt den Referrer in der URL entgegen. Der Wert wird
+       als Ganzes kodiert, Play erwartet ihn als eine einzige, prozentkodierte
+       Zeichenkette. Apple hat dafuer kein Gegenstueck: dort uebernimmt das
+       App-Store-Connect die Zuordnung ueber eigene Kampagnenlinks. */
+    if (play && href.indexOf('&referrer=') === -1) {
       a.setAttribute('href', href + '&referrer=' + encodeURIComponent(ref));
     }
 
@@ -199,105 +202,14 @@
           currency: 'EUR'
         });
       }
-      /* Eigene Statistik, unabhaengig von Google. */
+      /* Eigene Statistik, unabhaengig von Google. Die beiden Stores werden
+         getrennt gezaehlt, sonst laesst sich nicht sagen, welche Plattform
+         die Installationen bringt. */
       if (window.umami && typeof umami.track === 'function') {
-        try { umami.track('play-store-klick'); } catch (e) { /* egal */ }
+        try {
+          umami.track(play ? 'play-store-klick' : 'app-store-klick');
+        } catch (e) { /* egal */ }
       }
-    });
-  });
-})();
-
-/* ============================================================================
-   iOS-Warteliste: Adresse eintragen, ohne die Seite zu verlassen
-   ============================================================================
-   Das Formular funktioniert auch ohne dieses Skript, dann laedt der Browser
-   die JSON-Antwort des Apps Scripts als neue Seite. Hier wird daraus ein
-   Absenden im Hintergrund mit einer Rueckmeldung an Ort und Stelle.
-
-   Die Antwort des Skripts lesen wir bewusst nicht aus: Apps Script leitet auf
-   eine andere Domain um, deshalb laeuft die Anfrage als no-cors und kommt
-   undurchsichtig zurueck. Ob der Eintrag geklappt hat, steht damit nur im
-   Sheet. Das ist der Preis dafuer, ohne eigenen Server auszukommen, und fuer
-   eine Interessentenliste vertretbar: ein Fehlschlag kostet eine Adresse,
-   keine Bestellung.
-   ========================================================================= */
-(function () {
-  'use strict';
-
-  /* Solange hier der Platzhalter steht, wird nichts verschickt, sondern die
-     Sektion versteckt. Damit kann die Seite live gehen, bevor das Sheet
-     existiert, ohne ein Formular zu zeigen, das ins Leere laeuft. Dasselbe
-     Prinzip wie beim Umami-Guard weiter oben. */
-  var PLACEHOLDER = 'IOS_INTEREST_ENDPOINT';
-
-  var forms = document.querySelectorAll('[data-ios-form]');
-  if (!forms.length) { return; }
-
-  Array.prototype.forEach.call(forms, function (form) {
-    var endpoint = form.getAttribute('action') || '';
-    var section  = form.closest('.ios');
-
-    if (endpoint === PLACEHOLDER || !endpoint) {
-      if (section) { section.hidden = true; }
-      return;
-    }
-
-    var msg  = form.parentNode.querySelector('[data-ios-msg]');
-    var lang = (document.documentElement.lang || 'en').slice(0, 2);
-
-    var TEXT = lang === 'de' ? {
-      sending: 'Wird eingetragen …',
-      ok:      'Danke, du stehst auf der Warteliste.',
-      err:     'Das hat nicht geklappt. Bitte später noch einmal versuchen.'
-    } : {
-      sending: 'Signing you up …',
-      ok:      'Thanks, you are on the waitlist.',
-      err:     'That did not work. Please try again later.'
-    };
-
-    function say(text, kind) {
-      if (!msg) { return; }
-      msg.textContent = text;
-      msg.className = 'ios__msg' + (kind ? ' ios__msg--' + kind : '');
-    }
-
-    form.addEventListener('submit', function (event) {
-      /* Ungueltige Eingaben faengt der Browser selbst ab, dann kommt dieses
-         Ereignis gar nicht erst an. */
-      event.preventDefault();
-
-      var button = form.querySelector('button[type="submit"]');
-      if (button && button.disabled) { return; }
-      if (button) { button.disabled = true; }
-      say(TEXT.sending);
-
-      var data = new FormData(form);
-      data.append('lang', lang);
-      data.append('source', location.pathname);
-
-      /* URLSearchParams statt FormData als Koerper: FormData sendet
-         multipart, und darauf antwortet der Browser mit einem Preflight, den
-         Apps Script nicht beantwortet. Form-urlencoded gilt als einfache
-         Anfrage und geht direkt durch. */
-      fetch(endpoint, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: new URLSearchParams(data)
-      }).then(function () {
-        form.reset();
-        say(TEXT.ok, 'ok');
-        if (window.umami && typeof umami.track === 'function') {
-          try { umami.track('ios-interesse'); } catch (e) { /* egal */ }
-        }
-      }).catch(function () {
-        say(TEXT.err, 'err');
-      }).then(function () {
-        /* In beiden Faellen wieder freigeben: das Formular ist leer, und wer
-           eine zweite Adresse eintragen will, etwa fuer den Doppelpartner,
-           soll das koennen. Der Schutz gegen Doppelklicks bleibt, weil der
-           Button waehrend der laufenden Anfrage gesperrt ist. */
-        if (button) { button.disabled = false; }
-      });
     });
   });
 })();
