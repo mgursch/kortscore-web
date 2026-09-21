@@ -14,6 +14,8 @@ de/uhren.html       dieselbe Unterseite auf Deutsch
 styles.css          Design-System, Layout, @font-face, alles in einer Datei
 script.js           nur der Sprachhinweis, sonst nichts
 legal/              Impressum, Datenschutz, AGB (eigenständige Seiten)
+robots.txt          alles erlaubt, verweist auf die Sitemap
+sitemap.xml         die vier indexierbaren Seiten mit hreflang-Alternativen
 legal.html          Weiterleitung auf legal/impressum.html (Altlink)
 rechtliches.html    dito
 de/rechtliches.html dito
@@ -22,6 +24,7 @@ assets/
   shot-*.png        Screenshots, je Sprache (-en für Englisch)
   watch-*.webp      Produktfotos der empfohlenen Uhren, 480 und 960 breit
   google-play-*.png offizielle Play-Badges, je Sprache
+  og-*.png          Social-Preview 1200×630, je Sprache (og:image)
   fonts/            Barlow Condensed, IBM Plex Sans, IBM Plex Mono
 ```
 

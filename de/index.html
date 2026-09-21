@@ -3,16 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kortscore: Dein Match. Dein Score. Ein Tap.</title>
-<meta name="description" content="Kortscore zählt dein Tennis- oder Padelmatch am Handgelenk mit, Punkt für Punkt, ohne das Spiel zu unterbrechen. Und wer nicht auf dem Platz steht, schaut live zu.">
+<title>Kortscore – Tennis- &amp; Padel-Zähler für die Wear-OS-Uhr</title>
+<meta name="description" content="Tennis und Padel mit einem Tipp auf der Wear-OS-Uhr mitzählen. Gratis Android-App mit Live-Ticker für Zuschauer, Statistiken und Matchverlauf.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kortscore: Dein Match. Dein Score. Ein Tap.">
-<meta property="og:description" content="Kortscore zählt dein Tennis- oder Padelmatch am Handgelenk mit, Punkt für Punkt, ohne das Spiel zu unterbrechen. Und wer nicht auf dem Platz steht, schaut live zu.">
+<meta property="og:description" content="Tennis und Padel mit einem Tipp auf der Wear-OS-Uhr mitzählen. Gratis Android-App mit Live-Ticker für Zuschauer, Statistiken und Matchverlauf.">
 <!-- og:image needs an absolute URL, social previews load no image otherwise. -->
-<meta property="og:image" content="https://kortscore.com/assets/icon.png">
+<meta property="og:image" content="https://kortscore.com/assets/og-de.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="de_AT">
 <meta property="og:url" content="https://kortscore.com/de/">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kortscore.com/assets/og-de.png">
 <meta name="theme-color" content="#faf9f5">
 <link rel="canonical" href="https://kortscore.com/de/">
 
@@ -98,6 +102,88 @@ gtag('event', 'conversion', {
 });
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18314402307"></script>
+<!-- Structured data for search and AI engines: what Kortscore is, who makes it,
+     where to get it. Kept in sync with the copy above by hand. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://kortscore.com/#organization",
+      "name": "swordi.studios",
+      "alternateName": "swordistudios",
+      "url": "https://www.swordistudios.com/",
+      "logo": "https://kortscore.com/assets/icon.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Vienna",
+        "addressCountry": "AT"
+      },
+      "sameAs": [
+        "https://play.google.com/store/apps/details?id=com.swordistudios.kortscore"
+      ]
+    },
+    {
+      "@type": [
+        "SoftwareApplication",
+        "MobileApplication"
+      ],
+      "@id": "https://kortscore.com/#app",
+      "name": "Kortscore",
+      "alternateName": "Kortscore: Tennis & Padel",
+      "url": "https://kortscore.com/de/",
+      "image": "https://kortscore.com/assets/icon.png",
+      "description": "Kortscore zählt Tennis- und Padelmatches mit einem Tipp auf der Wear-OS-Uhr mit. Gratis Android-App mit Live-Ticker für Zuschauer, Statistiken und Matchverlauf.",
+      "applicationCategory": "SportsApplication",
+      "operatingSystem": "Android 8.0+, Wear OS 3+",
+      "inLanguage": [
+        "en",
+        "de"
+      ],
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR",
+        "category": "free"
+      },
+      "installUrl": [
+        "https://play.google.com/store/apps/details?id=com.swordistudios.kortscore"
+      ],
+      "screenshot": [
+        "https://kortscore.com/assets/shot-live.png",
+        "https://kortscore.com/assets/shot-stats.png",
+        "https://kortscore.com/assets/watch-render.png"
+      ],
+      "featureList": [
+        "Zählen mit einem Tipp auf der Uhr",
+        "Tennis und Padel, Einzel und Doppel",
+        "Vorteil und NoAd, Tiebreaks, Sätze bis 4 oder 6",
+        "Live-Ticker per Link, Zuschauer brauchen keine App",
+        "Statistiken und Punkt-für-Punkt-Verlauf",
+        "Keine Werbung, kein Konto"
+      ],
+      "author": {
+        "@id": "https://kortscore.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://kortscore.com/#organization"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://kortscore.com/#website",
+      "name": "Kortscore",
+      "url": "https://kortscore.com/",
+      "inLanguage": "de",
+      "publisher": {
+        "@id": "https://kortscore.com/#organization"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -129,7 +215,7 @@ gtag('event', 'conversion', {
 <section class="hero">
   <div class="hero__copy">
     <p class="eyebrow">Tennis &amp; Padel · Handy &amp; Uhr</p>
-    <h1 class="hero__title">Dein Match.<br>Dein Score.<br><em>Ein Tap.</em></h1>
+    <h1 class="hero__title">Dein Match. <br>Dein Score. <br><em>Ein Tap.</em></h1>
     <p class="hero__lede">
       Kortscore zählt dein Tennis- oder Padelmatch am Handgelenk mit, Punkt für
       Punkt, ohne das Spiel zu unterbrechen. Und wer nicht auf dem Platz steht,
@@ -291,7 +377,7 @@ gtag('event', 'conversion', {
   <div class="shell clubs__inner">
     <div class="clubs__copy">
       <p class="eyebrow">Für Vereine &amp; Meisterschaft</p>
-      <h2 class="clubs__title">Der ganze Verein<br>schaut mit</h2>
+      <h2 class="clubs__title">Der ganze Verein <br>schaut mit</h2>
       <p class="lead clubs__lead">
         Bei Meisterschaftsspielen laufen mehrere Matches gleichzeitig, und keiner
         kann überall sein. Mit dem Live-Ticker verfolgen Mannschaft, Kapitän und
