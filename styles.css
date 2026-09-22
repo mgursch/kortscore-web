@@ -1324,10 +1324,17 @@ a:hover { color: var(--accent); }
 .compat {
   max-width: 760px;
   margin-inline: auto;
-  padding: 0 var(--gutter) 72px;
+  padding: 48px var(--gutter) 72px;
   display: flex;
   flex-direction: column;
   gap: 40px;
+  /* Dezenter Grund ueber die volle Breite, ohne Wrapper im Markup: der
+     Schatten malt die Flaeche links und rechts neben der Spalte, clip-path
+     verhindert horizontales Scrollen. */
+  background: var(--bg-alt);
+  box-shadow: 0 0 0 100vmax var(--bg-alt);
+  clip-path: inset(0 -100vmax);
+  border-top: 1px solid var(--border);
 }
 .compat__section h2 {
   margin: 0 0 10px;
@@ -1370,7 +1377,7 @@ a:hover { color: var(--accent); }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
-  background: var(--bg-alt);
+  background: var(--hairline);
 }
 .compat__table tr:last-child td { border-bottom: 0; }
 .compat__table td:last-child { font-family: var(--font-mono); white-space: nowrap; }
@@ -1392,6 +1399,7 @@ a:hover { color: var(--accent); }
 .compat__cta .back { display: inline-block; padding-bottom: 12px; }
 
 @media (max-width: 640px) {
+  .compat { padding-top: 32px; padding-bottom: 56px; }
   .compat__table th:nth-child(2),
   .compat__table td:nth-child(2) { display: none; } /* Jahr weglassen, Modell und Wear OS reichen */
   .compat__table th, .compat__table td { padding: 9px 12px; }
