@@ -257,6 +257,10 @@ a:hover { color: var(--accent); }
   letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
+  /* Einzeilig faellt das nicht auf, aber sobald die Beschriftung umbricht,
+     etwa "Bei Amazon ansehen" in einer schmalen Uhrenkarte, stuenden die
+     Zeilen sonst linksbuendig im runden Knopf. */
+  text-align: center;
   cursor: pointer;
   transition: transform 0.18s ease, filter 0.18s ease;
 }
@@ -820,9 +824,6 @@ a:hover { color: var(--accent); }
 /* Der offizielle Play-Badge. Google verbietet Umfärben, Zuschneiden und
    zusätzlichen Text, deshalb liegt er unverändert im PNG mit eigener
    Schutzzone. Die Höhe steuert die Größe, das Seitenverhältnis bleibt. */
-.storebadge { display: inline-block; }
-.storebadge img { height: 60px; width: auto; }
-
 .cta__hint {
   font-family: var(--font-mono);
   font-size: 12px;
@@ -897,13 +898,22 @@ a:hover { color: var(--accent); }
 }
 .back:hover { color: var(--text); }
 
+/* Seit der Apple Watch sind es vier Karten. In die Inhaltsspalte (--shell)
+   passen sie ab 1000px nebeneinander, darunter bricht auto-fit sie auf zwei
+   und schliesslich auf eine Spalte um. Das quadratische Foto bestimmt die
+   Kartenhoehe, deshalb ist die Spalte nach oben begrenzt: ohne die Schranke
+   wuerden zwei Karten auf breiten Schirmen riesige Bilder bekommen. */
 .watchcards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 300px));
+  justify-content: center;
   gap: 20px;
   max-width: var(--shell);
   margin-inline: auto;
   padding-inline: var(--gutter);
+}
+@media (min-width: 1000px) {
+  .watchcards { grid-template-columns: repeat(4, 1fr); }
 }
 
 .watchcard {
@@ -1042,139 +1052,100 @@ a:hover { color: var(--accent); }
 }
 .padel__count span:last-child::after { content: none; }
 
-/* ── iOS-Interesse ────────────────────────────────────────────────────────
-   Steht zwischen Uhren-Teaser und CTA und darf dem Play-Store-Button keine
-   Aufmerksamkeit wegnehmen: heller Grund, keine Akzentflaeche, ein einzelnes
-   Feld. Die Karte ist schmaler als die Inhaltsspalte, damit sie als Einschub
-   und nicht als zweiter Hauptaufruf gelesen wird.
+/* ── iOS ──────────────────────────────────────────────────────────────────
+   Zwei Spalten wie bei Verein und Padel: links der Text mit drei Fakten,
+   rechts derselbe Screenshot-Faecher wie im Hero, nur mit der Apple Watch
+   statt der Wear-OS-Uhr. Heller Grund, damit die Sektion zwischen dem dunklen
+   Uhren-Teaser und dem gruenen Schlussaufruf Luft laesst.
    ───────────────────────────────────────────────────────────────────────── */
 .ios {
-  padding: 0 var(--gutter) 80px;
+  padding-block: 64px;
+  background: var(--bg-alt);
 }
 .ios__inner {
-  max-width: 720px;
-  margin-inline: auto;
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 40px var(--gutter);
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 48px;
 }
+.ios__copy { flex: 1 1 380px; min-width: 300px; }
+
 .ios__title {
   margin: 10px 0 0;
   font-family: var(--font-display);
-  font-size: 30px;
+  font-size: clamp(30px, 4vw, 40px);
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   line-height: 1.05;
 }
 .ios__lede {
-  margin-top: 12px;
-  margin-inline: auto;
+  margin-top: 14px;
   max-width: 52ch;
 }
 
-/* Das Formular. Feld und Button stehen nebeneinander, solange Platz ist, und
-   brechen darunter untereinander um: dafuer genuegt flex-wrap, eine
-   Medienabfrage braucht es nicht. */
-/* Der Button traegt bewusst nicht den gruenen Akzent: der gehoert dem
-   Play-Store-Aufruf direkt darunter. Zwei gleich laute Rufe nebeneinander
-   nehmen sich gegenseitig die Wirkung, deshalb hier die dunkle Grundform. */
-.ios__form {
-  margin-top: 24px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
+/* Drei Fakten als Definitionsliste, gleiche Machart wie die Padel-Fakten. */
+.ios__facts {
+  margin: 28px 0 0;
+  display: grid;
+  gap: 18px;
 }
-.ios__field {
-  flex: 1 1 260px;
-  max-width: 340px;
-  min-width: 0;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 14px 20px;
-  font-family: inherit;
+.ios__fact dt {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.ios__fact dd {
+  margin: 4px 0 0;
+  color: var(--text-muted);
   font-size: 15px;
-  color: var(--text);
-}
-.ios__field::placeholder { color: var(--text-muted); }
-.ios__field:focus-visible {
-  outline: 2px solid var(--accent-text);
-  outline-offset: 2px;
-  border-color: transparent;
+  line-height: 1.6;
 }
 
-/* Der Honeypot faengt Bots ab und darf deshalb weder sichtbar noch fuer
-   Screenreader oder die Tabulatortaste erreichbar sein. display:none waere
-   das Naheliegende, wird von manchen Bots aber erkannt und uebersprungen. */
-.ios__trap {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
-/* Das Label des E-Mail-Felds. Sichtbar braucht es niemand, der Platzhalter
-   sagt dasselbe, vorgelesen werden muss es trotzdem: ein Feld ohne Label ist
-   fuer einen Screenreader namenlos. Deshalb aus dem Bild geschoben statt
-   versteckt, anders als die Falle darueber. */
-.ios__label {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-/* Die Einwilligung. Klein gesetzt, aber nicht versteckt: sie ist die
-   Rechtsgrundlage fuer das Speichern und muss lesbar bleiben. */
-.ios__consent {
-  margin-top: 16px;
+/* Derselbe Faecher wie im Hero. Die Masse stehen dort schon an .phone, hier
+   braucht es nur die Buehne darum. */
+.ios__shots {
+  flex: 0 1 520px;
+  min-width: 340px;
+  position: relative;
+  height: 460px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: 10px;
-  text-align: left;
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--text-secondary);
-  max-width: 46ch;
-  margin-inline: auto;
-}
-.ios__consent input {
-  flex: none;
-  margin: 2px 0 0;
-  width: 16px;
-  height: 16px;
-  accent-color: var(--accent);
 }
 
-.ios__note {
-  margin-top: 16px;
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
+/* Die Apple Watch ist ein rechteckiger Screenshot mit eigenem Gehaeuse, kein
+   freigestellter Render wie die runde Uhr im Hero. Der Schatten liegt deshalb
+   am Bild und folgt den runden Ecken. */
+.watchshot--apple { height: 210px; }
+.watchshot--apple img {
+  filter: drop-shadow(0 18px 34px rgba(22, 21, 15, 0.34));
 }
 
-/* Rueckmeldung nach dem Absenden. Sie ersetzt das Formular nicht, sondern
-   tritt darunter, damit der Fokus im Dokument nicht ins Leere laeuft.
-   role="status" im HTML sorgt dafuer, dass Screenreader sie vorlesen. */
-.ios__msg {
-  margin-top: 16px;
-  font-size: 14px;
-  font-weight: 600;
+/* ── Store-Badges ─────────────────────────────────────────────────────────
+   Apple und Google nebeneinander, beide in Originalgestalt. Apples Badge ist
+   Inline-SVG und skaliert deshalb verlustfrei; Googles PNG bringt seinen
+   Freiraum selbst mit, deshalb die etwas groessere Hoehe, damit beide optisch
+   gleich gross wirken. */
+.storebadges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
-.ios__msg:empty { display: none; }
-.ios__msg--ok   { color: var(--accent-text); }
-.ios__msg--err  { color: #a4341f; }
+.storebadge { display: inline-block; line-height: 0; }
+.storebadge img { height: 60px; width: auto; }
+/* Googles PNG bringt rundum eigenen Freiraum mit: von den 60px Hoehe sind nur
+   gut 40 das Badge selbst. Apples SVG hat diesen Rand nicht, deshalb steht es
+   auf 40px und beide wirken gleich gross. */
+.storebadge__apple {
+  height: 40px;
+  width: auto;
+  display: block;
+}
 
 /* ── Responsive ─────────────────────────────────────────────────────────── */
 
@@ -1183,7 +1154,8 @@ a:hover { color: var(--accent); }
 @media (max-width: 900px) {
   .hero { padding-bottom: 56px; }
 
-  .hero__shots {
+  .hero__shots,
+  .ios__shots {
     flex: 1 1 100%;
     min-width: 0;
     /* Der Faecher braucht seine feste Hoehe nur fuer die Ueberlappung. Hier
@@ -1212,6 +1184,9 @@ a:hover { color: var(--accent); }
     width: auto;
     height: 190px;
   }
+  .watchshot--apple { height: 170px; }
+
+  .ios__inner { gap: 32px; }
 }
 
 @media (max-width: 640px) {
@@ -1231,12 +1206,12 @@ a:hover { color: var(--accent); }
   .clubs__inner { gap: 32px; }
 
   .cta__inner { padding: 40px 24px; }
-  .ios__inner { padding: 32px 24px; }
 
-  /* Nebeneinander bliebe das Feld auf schmalen Schirmen zu kurz zum Lesen der
-     eigenen Adresse, deshalb hier ausdruecklich untereinander. */
-  .ios__field { flex-basis: 100%; max-width: none; }
-  .ios__form .btn { width: 100%; }
+  .ios { padding-block: 48px; }
+
+  /* Untereinander haben beide Badges die volle Breite und bleiben gleich
+     gross; nebeneinander wuerden sie auf schmalen Schirmen schrumpfen. */
+  .storebadges { flex-direction: column; gap: 4px; }
 
   .footer__inner { justify-content: flex-start; }
 

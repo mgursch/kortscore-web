@@ -13,10 +13,11 @@
 
 ## Platforms
 
-Android (8.0+) phones with Wear OS (3+) watches. Runs on every Wear OS 3 watch (Samsung Galaxy Watch 4 and newer, every Google Pixel Watch, OnePlus Watch 2/3, TicWatch Pro 5, Xiaomi Watch 2, and others; full list at https://kortscore.com/compatible-watches.html). A three-set match uses about 15 to 25 percent of the watch battery. An iOS and Apple Watch version is in development.
+iPhone (iOS 17+) with Apple Watch (watchOS 10+), and Android (8.0+) with Wear OS (3+) watches. Runs on every Apple Watch from watchOS 10 (Series 4 and newer, SE, Ultra) and every Wear OS 3 watch (Samsung Galaxy Watch 4 and newer, every Google Pixel Watch, OnePlus Watch 2/3, TicWatch Pro 5, Xiaomi Watch 2, and others; full list at https://kortscore.com/compatible-watches.html). A three-set match uses about 15 to 25 percent of the watch battery.
 
 ## Get it
 
+- App Store: https://apps.apple.com/app/kortscore/id6809131189
 - Google Play: https://play.google.com/store/apps/details?id=com.swordistudios.kortscore
 
 ## Pages
@@ -24,7 +25,7 @@ Android (8.0+) phones with Wear OS (3+) watches. Runs on every Wear OS 3 watch (
 - Homepage (English): https://kortscore.com/
 - Startseite (Deutsch): https://kortscore.com/de/
 - Recommended watches: https://kortscore.com/watches.html
-- Compatible watches (full Wear OS model list): https://kortscore.com/compatible-watches.html
+- Compatible watches (full model list): https://kortscore.com/compatible-watches.html
 - Kompatible Uhren: https://kortscore.com/de/kompatible-uhren.html
 - Empfohlene Uhren: https://kortscore.com/de/uhren.html
 - How tennis scoring works (rules explainer): https://kortscore.com/how-tennis-scoring-works.html
