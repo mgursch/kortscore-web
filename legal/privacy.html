@@ -149,7 +149,7 @@
   </p>
 
   <h1>Datenschutzerklärung</h1>
-  <p class="updated">Stand: 8. August 2026</p>
+  <p class="updated">Stand: 13. Oktober 2026</p>
 
   <h2>1. Verantwortlicher</h2>
   <div class="card">
@@ -169,11 +169,11 @@
 
   <h2>2. Überblick</h2>
   <p>
-    Kortscore ist eine Tennis-Zählapp für Wear OS mit Smartphone-Begleit-App. Die App funktioniert
+    Kortscore ist eine Zählapp für Tennis und Padel für Apple Watch und Wear OS mit Begleit-App für iPhone bzw. Android-Smartphone. Die App funktioniert
     grundsätzlich lokal auf dem Gerät. Es gibt <strong>keine Nutzerkonten</strong>, <strong>keine
     Werbe-SDKs</strong>, <strong>keine standortbezogenen Daten</strong> und <strong>kein Tracking über
     andere Apps oder Websites hinweg</strong>. Daten werden nur in den unten beschriebenen Fällen
-    verarbeitet.
+    verarbeitet. Gesundheitsdaten (Herzfrequenz) verarbeitet die App nur auf der Uhr, siehe Abschnitt 8.
   </p>
 
   <h2>3. Firebase Analytics</h2>
@@ -291,7 +291,54 @@
     beinhaltet keine Datenübertragung an Dritte.
   </p>
 
-  <h2>8. Lokale Daten &amp; Backups</h2>
+  <h2>8. Gesundheitsdaten (Herzfrequenz &amp; Trainings)</h2>
+  <p>
+    Kortscore verarbeitet Gesundheitsdaten nur auf der Uhr, nur während eines laufenden Matches
+    und nur, wenn Sie die entsprechende Berechtigung erteilt haben. Ohne Berechtigung zählt die
+    App ganz normal, nur ohne Anzeige der Herzfrequenz.
+  </p>
+  <p>
+    <strong>Apple Watch (Apple Health / HealthKit):</strong> Mit Ihrer Zustimmung startet die App
+    für jedes Match ein Training vom Typ „Tennis“. Während des Trainings liest sie Ihre
+    Herzfrequenz und Ihren aktiven Energieverbrauch aus Apple Health. Die Herzfrequenz wird live auf
+    dem Spielstand-Bildschirm angezeigt, der Energieverbrauch wird nicht angezeigt. Am Ende des
+    Matches speichert die App das Training in Apple Health. Die Herzfrequenz- und Energiewerte, die
+    Ihre Uhr während des Trainings erfasst hat, legt Apple Health selbst zu diesem Training ab.
+  </p>
+  <p>
+    <strong>iPhone:</strong> Die iPhone-App fragt die Apple-Health-Berechtigung nur an, um Kortscore
+    auf Ihrer Apple Watch zu öffnen, wenn Sie ein Match am iPhone starten. Sie liest und schreibt
+    dabei keine Gesundheitsdaten.
+  </p>
+  <p>
+    <strong>Wear OS:</strong> Mit Ihrer Zustimmung (Berechtigung „Körpersensoren“ bzw. ab Wear OS 6
+    „Herzfrequenz“) liest die App über Health Services die Herzfrequenz der Uhr und zeigt sie
+    während des Matches live an. Kortscore verwendet kein Health Connect und schreibt keine
+    Gesundheitsdaten.
+  </p>
+  <p>
+    <strong>Keine Speicherung, keine Übermittlung:</strong> Kortscore speichert Ihre Herzfrequenz
+    nicht in der App und übernimmt sie weder in die Match-Historie noch in Backups, den Live-Ticker
+    oder die Auswertung des KI-Trainers. Gesundheitsdaten werden weder an Ihr Smartphone noch an
+    uns, Google (Firebase) oder sonstige Dritte übermittelt. Nur der jeweils letzte Messwert wird im
+    Arbeitsspeicher der Uhr gehalten und mit dem Ende des Matches verworfen. Gesundheitsdaten werden
+    nie für Werbung, Marketing oder Profilbildung verwendet, und Kortscore speichert sie nicht in
+    iCloud. In Apple Health gespeicherte Trainings verwaltet Apple Health, das sie nach Apples
+    eigenen Bedingungen mit Ihrem iPhone synchronisieren kann.
+  </p>
+  <p>
+    <strong>Widerruf:</strong> Sie können den Zugriff jederzeit entziehen: für Apple Health am
+    iPhone unter Einstellungen → Gesundheit → Datenzugriff &amp; Geräte → Kortscore, unter Wear OS
+    unter Einstellungen → Apps → Kortscore → Berechtigungen. Von Kortscore gespeicherte Trainings
+    können Sie in der Health-App jederzeit löschen.
+  </p>
+  <p>
+    <strong>Rechtsgrundlage:</strong> Ihre ausdrückliche Einwilligung (Art. 9 Abs. 2 lit. a i. V. m.
+    Art. 6 Abs. 1 lit. a DSGVO), die Sie über den Berechtigungsdialog des Betriebssystems erteilen.
+    Ein Widerruf berührt die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung nicht.
+  </p>
+
+  <h2>9. Lokale Daten &amp; Backups</h2>
   <p>
     Matches, Einstellungen und manuelle Backups verbleiben grundsätzlich auf Ihrem Gerät bzw. im
     von Ihnen gewählten Backup-Ordner. Zusätzlich kann Android Auto-Backup (eine
@@ -300,7 +347,7 @@
     Systemeinstellungen deaktivieren.
   </p>
 
-  <h2>9. Interesse an einer iOS-Version (Website)</h2>
+  <h2>10. Interesse an einer iOS-Version (Website)</h2>
   <p>
     Auf kortscore.com können Sie freiwillig Ihre E-Mail-Adresse hinterlassen, um informiert zu
     werden, falls eine Version für iPhone und Apple Watch erscheint. Gespeichert werden dabei
@@ -323,13 +370,13 @@
     eine iOS-Version bzw. bis zu deren Veröffentlichung. Danach wird die Liste gelöscht.
   </p>
 
-  <h2>10. Keine Datenweitergabe zu Werbezwecken</h2>
+  <h2>11. Keine Datenweitergabe zu Werbezwecken</h2>
   <p>
     Wir verkaufen keine Daten. Über die in dieser Erklärung genannten Google-Dienste hinaus
     findet keine Weitergabe an Dritte statt.
   </p>
 
-  <h2>11. Empfänger &amp; Übermittlung in Drittländer</h2>
+  <h2>12. Empfänger &amp; Übermittlung in Drittländer</h2>
   <table>
     <thead><tr><th>Dienst</th><th>Anbieter</th><th>Verarbeitungsort</th></tr></thead>
     <tbody>
@@ -347,7 +394,7 @@
     der EU-Kommission mit den jeweiligen Google-Gesellschaften.
   </p>
 
-  <h2>12. Ihre Rechte</h2>
+  <h2>13. Ihre Rechte</h2>
   <p>Sie haben nach der DSGVO folgende Rechte:</p>
   <ul>
     <li>Auskunft (Art. 15 DSGVO)</li>
@@ -364,7 +411,7 @@
     genannte Kontaktadresse.
   </p>
 
-  <h2>13. Kontakt</h2>
+  <h2>14. Kontakt</h2>
   <p>
     Fragen zum Datenschutz richten Sie bitte an:
     <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
@@ -381,7 +428,7 @@
   </p>
 
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: August 8, 2026</p>
+  <p class="updated">Last updated: October 13, 2026</p>
 
   <h2>1. Controller (Data Controller)</h2>
   <div class="card">
@@ -401,10 +448,10 @@
 
   <h2>2. Overview</h2>
   <p>
-    Kortscore is a tennis scoring app for Wear OS with a phone companion app. The app works
+    Kortscore is a tennis and padel scoring app for Apple Watch and Wear OS with a companion app for iPhone or Android phones. The app works
     primarily locally on your device. There are <strong>no user accounts</strong>, <strong>no
     advertising SDKs</strong>, <strong>no location data</strong>, and <strong>no cross-app/cross-
-    site tracking</strong>. Data is processed only in the cases described below.
+    site tracking</strong>. Data is processed only in the cases described below. Health data (heart rate) is processed only on the watch, see section 8.
   </p>
 
   <h2>3. Firebase Analytics</h2>
@@ -516,7 +563,52 @@
     data transfer to third parties.
   </p>
 
-  <h2>8. Local data &amp; backups</h2>
+  <h2>8. Health data (heart rate &amp; workouts)</h2>
+  <p>
+    Kortscore processes health data only on the watch, only while a match is running, and only if
+    you have granted the relevant permission. Without it the app scores as usual, just without the
+    heart rate display.
+  </p>
+  <p>
+    <strong>Apple Watch (Apple Health / HealthKit):</strong> With your permission, the app starts a
+    workout of the type “Tennis” for every match. During the workout it reads your heart rate and
+    your active energy from Apple Health. The heart rate is shown live on the score screen; active
+    energy is not shown. When the match ends, the app saves the workout to Apple Health. The heart
+    rate and energy readings your watch recorded during the workout are stored with it by Apple
+    Health itself.
+  </p>
+  <p>
+    <strong>iPhone:</strong> The iPhone app asks for Apple Health permission only so it can open
+    Kortscore on your Apple Watch when you start a match from your iPhone. It does not read or write
+    any health data.
+  </p>
+  <p>
+    <strong>Wear OS:</strong> With your permission (“Body sensors”, or “Heart rate” from Wear OS 6
+    on), the app reads the watch’s heart rate through Health Services and shows it live during the
+    match. Kortscore does not use Health Connect and does not write any health data.
+  </p>
+  <p>
+    <strong>No storage, no transfer:</strong> Kortscore does not store your heart rate in the app
+    and does not include it in the match history, backups, the live ticker or the AI coach’s
+    analysis. Health data is not sent to your phone, to us, to Google (Firebase) or to any other
+    third party. Only the latest reading is held in the watch’s memory, and it is discarded when the
+    match ends. Health data is never used for advertising, marketing or profiling, and Kortscore
+    does not store it in iCloud. Workouts saved in Apple Health are managed by Apple Health, which
+    may sync them to your iPhone under Apple’s own terms.
+  </p>
+  <p>
+    <strong>Withdrawing permission:</strong> You can revoke access at any time: for Apple Health on
+    your iPhone under Settings → Health → Data Access &amp; Devices → Kortscore, on Wear OS under
+    Settings → Apps → Kortscore → Permissions. You can delete workouts saved by Kortscore in the
+    Health app at any time.
+  </p>
+  <p>
+    <strong>Legal basis:</strong> your explicit consent (Art. 9(2)(a) in conjunction with
+    Art. 6(1)(a) GDPR), which you give through the operating system’s permission dialog. Revoking it
+    does not affect the lawfulness of processing carried out before the revocation.
+  </p>
+
+  <h2>9. Local data &amp; backups</h2>
   <p>
     Matches, settings, and manual backups generally stay on your device or in the backup folder
     you chose. In addition, Android Auto-Backup (a Google system feature) may back up app data
@@ -524,7 +616,7 @@
     be disabled in Android system settings.
   </p>
 
-  <h2>9. Interest in an iOS version (website)</h2>
+  <h2>10. Interest in an iOS version (website)</h2>
   <p>
     On kortscore.com you may voluntarily leave your email address to be notified if a version for
     iPhone and Apple Watch is released. We store only the email address you enter, the time of
@@ -545,13 +637,13 @@
     an iOS version or release it. The list is deleted afterwards.
   </p>
 
-  <h2>10. No sale or third-party sharing</h2>
+  <h2>11. No sale or third-party sharing</h2>
   <p>
     We do not sell any data. Beyond the Google services listed in this policy, we do not share
     data with third parties.
   </p>
 
-  <h2>11. Recipients &amp; international transfers</h2>
+  <h2>12. Recipients &amp; international transfers</h2>
   <table>
     <thead><tr><th>Service</th><th>Provider</th><th>Processing location</th></tr></thead>
     <tbody>
@@ -569,7 +661,7 @@
     Contractual Clauses with the respective Google entities.
   </p>
 
-  <h2>12. Your rights</h2>
+  <h2>13. Your rights</h2>
   <p>Under the GDPR you have the right to:</p>
   <ul>
     <li>Access (Art. 15 GDPR)</li>
@@ -586,7 +678,7 @@
     above.
   </p>
 
-  <h2>13. Contact</h2>
+  <h2>14. Contact</h2>
   <p>
     For privacy questions, please contact:
     <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
@@ -604,7 +696,7 @@
 
   <h1>Politique de confidentialité</h1>
   <p><em>Cette traduction est fournie à titre d’information. Seule la version allemande fait foi.</em></p>
-  <p class="updated">Mise à jour : 8 août 2026</p>
+  <p class="updated">Mise à jour : 13 octobre 2026</p>
 
   <h2>1. Responsable du traitement</h2>
   <div class="card">
@@ -624,12 +716,11 @@
 
   <h2>2. Aperçu</h2>
   <p>
-    Kortscore est une application de comptage de points de tennis pour Wear OS avec application
-    compagnon pour smartphone. L’application fonctionne par principe localement sur l’appareil. Il
+    Kortscore est une application de comptage de points de tennis et de padel pour Apple Watch et Wear OS, avec une application compagnon pour iPhone ou smartphone Android. L’application fonctionne par principe localement sur l’appareil. Il
     n’y a <strong>aucun compte utilisateur</strong>, <strong>aucun SDK publicitaire</strong>,
     <strong>aucune donnée de localisation</strong> et <strong>aucun suivi (tracking) au-delà
     d’autres applications ou sites web</strong>. Les données ne sont traitées que dans les cas
-    décrits ci-dessous.
+    décrits ci-dessous. Les données de santé (fréquence cardiaque) ne sont traitées que sur la montre, voir la section 8.
   </p>
 
   <h2>3. Firebase Analytics</h2>
@@ -755,7 +846,58 @@
     n’implique aucune transmission de données à des tiers.
   </p>
 
-  <h2>8. Données locales et sauvegardes</h2>
+  <h2>8. Données de santé (fréquence cardiaque et entraînements)</h2>
+  <p>
+    Kortscore ne traite des données de santé que sur la montre, uniquement pendant un match en
+    cours et uniquement si vous avez accordé l’autorisation correspondante. Sans cette
+    autorisation, l’application compte normalement, simplement sans afficher la fréquence
+    cardiaque.
+  </p>
+  <p>
+    <strong>Apple Watch (Apple Santé / HealthKit)&nbsp;:</strong> avec votre accord, l’application
+    démarre pour chaque match un entraînement de type «&nbsp;Tennis&nbsp;». Pendant l’entraînement,
+    elle lit votre fréquence cardiaque et votre énergie active dans Apple Santé. La fréquence
+    cardiaque est affichée en direct sur l’écran du score, l’énergie active n’est pas affichée. À la
+    fin du match, l’application enregistre l’entraînement dans Apple Santé. Les mesures de fréquence
+    cardiaque et d’énergie relevées par votre montre pendant l’entraînement y sont rattachées par
+    Apple Santé elle-même.
+  </p>
+  <p>
+    <strong>iPhone&nbsp;:</strong> l’application iPhone ne demande l’autorisation Apple Santé que
+    pour ouvrir Kortscore sur votre Apple Watch lorsque vous démarrez un match depuis l’iPhone. Elle
+    ne lit ni n’écrit aucune donnée de santé.
+  </p>
+  <p>
+    <strong>Wear OS&nbsp;:</strong> avec votre accord (autorisation «&nbsp;Capteurs corporels&nbsp;»
+    ou, à partir de Wear OS 6, «&nbsp;Fréquence cardiaque&nbsp;»), l’application lit la fréquence
+    cardiaque de la montre via Health Services et l’affiche en direct pendant le match. Kortscore
+    n’utilise pas Health Connect et n’écrit aucune donnée de santé.
+  </p>
+  <p>
+    <strong>Aucun stockage, aucune transmission&nbsp;:</strong> Kortscore n’enregistre pas votre
+    fréquence cardiaque dans l’application et ne l’intègre ni à l’historique des matchs, ni aux
+    sauvegardes, ni au live ticker, ni à l’analyse de l’entraîneur IA. Les données de santé ne sont
+    transmises ni à votre smartphone, ni à nous, ni à Google (Firebase), ni à aucun autre tiers.
+    Seule la dernière mesure est conservée dans la mémoire vive de la montre, et elle est supprimée
+    à la fin du match. Les données de santé ne sont jamais utilisées à des fins de publicité, de
+    marketing ou de profilage, et Kortscore ne les enregistre pas dans iCloud. Les entraînements
+    enregistrés dans Apple Santé sont gérés par Apple Santé, qui peut les synchroniser avec votre
+    iPhone selon les conditions propres à Apple.
+  </p>
+  <p>
+    <strong>Retrait de l’autorisation&nbsp;:</strong> vous pouvez retirer l’accès à tout moment&nbsp;:
+    pour Apple Santé sur l’iPhone sous Réglages → Santé → Accès aux données et appareils →
+    Kortscore, sous Wear OS sous Paramètres → Applications → Kortscore → Autorisations. Vous pouvez
+    supprimer à tout moment dans l’app Santé les entraînements enregistrés par Kortscore.
+  </p>
+  <p>
+    <strong>Base juridique&nbsp;:</strong> votre consentement explicite (art. 9, par. 2, point a), en
+    lien avec l’art. 6, par. 1, point a) du RGPD), que vous donnez via la boîte de dialogue
+    d’autorisation du système d’exploitation. Le retrait n’affecte pas la licéité du traitement
+    effectué avant celui-ci.
+  </p>
+
+  <h2>9. Données locales et sauvegardes</h2>
   <p>
     Les matchs, paramètres et sauvegardes manuelles restent par principe sur votre appareil ou dans
     le dossier de sauvegarde que vous avez choisi. En complément, Android Auto-Backup (une
@@ -764,7 +906,7 @@
     protection des données et peut être désactivé dans les paramètres système d’Android.
   </p>
 
-  <h2>9. Intérêt pour une version iOS (site web)</h2>
+  <h2>10. Intérêt pour une version iOS (site web)</h2>
   <p>
     Sur kortscore.com, vous pouvez laisser volontairement votre adresse e-mail afin d’être
     informé(e) si une version pour iPhone et Apple Watch venait à paraître. Sont alors
@@ -789,13 +931,13 @@
     supprimée.
   </p>
 
-  <h2>10. Aucune transmission de données à des fins publicitaires</h2>
+  <h2>11. Aucune transmission de données à des fins publicitaires</h2>
   <p>
     Nous ne vendons aucune donnée. Au-delà des services Google mentionnés dans la présente
     politique, aucune transmission à des tiers n’a lieu.
   </p>
 
-  <h2>11. Destinataires et transferts vers des pays tiers</h2>
+  <h2>12. Destinataires et transferts vers des pays tiers</h2>
   <table>
     <thead><tr><th>Service</th><th>Fournisseur</th><th>Lieu de traitement</th></tr></thead>
     <tbody>
@@ -813,7 +955,7 @@
     contractuelles types de la Commission européenne conclues avec les entités Google concernées.
   </p>
 
-  <h2>12. Vos droits</h2>
+  <h2>13. Vos droits</h2>
   <p>Conformément au RGPD, vous disposez des droits suivants&nbsp;:</p>
   <ul>
     <li>Droit d’accès (art. 15 du RGPD)</li>
@@ -831,7 +973,7 @@
     « Responsable du traitement ».
   </p>
 
-  <h2>13. Contact</h2>
+  <h2>14. Contact</h2>
   <p>
     Pour toute question relative à la protection des données, veuillez vous adresser à&nbsp;:
     <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
@@ -849,7 +991,7 @@
 
   <h1>Política de privacidad</h1>
   <p><em>Esta traducción se ofrece únicamente a título informativo. La versión alemana es la única jurídicamente vinculante.</em></p>
-  <p class="updated">Última actualización: 8 de agosto de 2026</p>
+  <p class="updated">Última actualización: 13 de octubre de 2026</p>
 
   <h2>1. Responsable del tratamiento</h2>
   <div class="card">
@@ -870,11 +1012,10 @@
 
   <h2>2. Resumen</h2>
   <p>
-    Kortscore es una aplicación de conteo de tenis para Wear OS con aplicación complementaria
-    para smartphone. La aplicación funciona básicamente de forma local en el dispositivo. No
+    Kortscore es una aplicación de conteo de tenis y pádel para Apple Watch y Wear OS con aplicación complementaria para iPhone o smartphone Android. La aplicación funciona básicamente de forma local en el dispositivo. No
     existen <strong>cuentas de usuario</strong>, <strong>SDK publicitarios</strong>,
     <strong>datos de localización</strong> ni <strong>seguimiento entre otras aplicaciones o sitios
-    web</strong>. Los datos solo se tratan en los casos descritos a continuación.
+    web</strong>. Los datos solo se tratan en los casos descritos a continuación. Los datos de salud (frecuencia cardíaca) solo se tratan en el reloj, véase la sección 8.
   </p>
 
   <h2>3. Firebase Analytics</h2>
@@ -1000,7 +1141,56 @@
     dispositivo y no implica ninguna transmisión de datos a terceros.
   </p>
 
-  <h2>8. Datos locales y copias de seguridad</h2>
+  <h2>8. Datos de salud (frecuencia cardíaca y entrenamientos)</h2>
+  <p>
+    Kortscore solo trata datos de salud en el reloj, solo durante un partido en curso y solo si
+    has concedido el permiso correspondiente. Sin ese permiso, la aplicación cuenta con normalidad,
+    simplemente sin mostrar la frecuencia cardíaca.
+  </p>
+  <p>
+    <strong>Apple Watch (Apple Salud / HealthKit):</strong> con tu consentimiento, la aplicación
+    inicia para cada partido un entrenamiento del tipo «Tenis». Durante el entrenamiento lee tu
+    frecuencia cardíaca y tu energía activa de Apple Salud. La frecuencia cardíaca se muestra en
+    directo en la pantalla del marcador; la energía activa no se muestra. Al terminar el partido, la
+    aplicación guarda el entrenamiento en Apple Salud. Los valores de frecuencia cardíaca y de
+    energía que tu reloj registró durante el entrenamiento los asocia la propia Apple Salud a ese
+    entrenamiento.
+  </p>
+  <p>
+    <strong>iPhone:</strong> la aplicación para iPhone solo solicita el permiso de Apple Salud para
+    abrir Kortscore en tu Apple Watch cuando inicias un partido desde el iPhone. No lee ni escribe
+    ningún dato de salud.
+  </p>
+  <p>
+    <strong>Wear OS:</strong> con tu consentimiento (permiso «Sensores corporales» o, a partir de
+    Wear OS 6, «Frecuencia cardíaca»), la aplicación lee la frecuencia cardíaca del reloj a través
+    de Health Services y la muestra en directo durante el partido. Kortscore no utiliza Health
+    Connect y no escribe ningún dato de salud.
+  </p>
+  <p>
+    <strong>Sin almacenamiento ni transmisión:</strong> Kortscore no guarda tu frecuencia cardíaca
+    en la aplicación ni la incluye en el historial de partidos, las copias de seguridad, el live
+    ticker o el análisis del entrenador IA. Los datos de salud no se envían ni a tu smartphone, ni a
+    nosotros, ni a Google (Firebase), ni a ningún otro tercero. Solo el último valor medido se
+    mantiene en la memoria del reloj y se descarta al terminar el partido. Los datos de salud nunca
+    se utilizan con fines de publicidad, marketing o elaboración de perfiles, y Kortscore no los
+    guarda en iCloud. Los entrenamientos guardados en Apple Salud los gestiona Apple Salud, que
+    puede sincronizarlos con tu iPhone según las condiciones propias de Apple.
+  </p>
+  <p>
+    <strong>Retirada del permiso:</strong> puedes retirar el acceso en cualquier momento: para Apple
+    Salud en el iPhone en Ajustes → Salud → Acceso a datos y dispositivos → Kortscore, en Wear OS en
+    Ajustes → Aplicaciones → Kortscore → Permisos. Puedes eliminar en cualquier momento en la app
+    Salud los entrenamientos guardados por Kortscore.
+  </p>
+  <p>
+    <strong>Base jurídica:</strong> tu consentimiento explícito (art. 9, apdo. 2, letra a), en
+    relación con el art. 6, apdo. 1, letra a) del RGPD), que otorgas a través del diálogo de
+    permisos del sistema operativo. La retirada no afecta a la licitud del tratamiento realizado
+    antes de ella.
+  </p>
+
+  <h2>9. Datos locales y copias de seguridad</h2>
   <p>
     Los partidos, los ajustes y las copias de seguridad manuales permanecen, por norma
     general, en su dispositivo o en la carpeta de copia de seguridad que haya elegido.
@@ -1010,7 +1200,7 @@
     Android.
   </p>
 
-  <h2>9. Interés en una versión para iOS (sitio web)</h2>
+  <h2>10. Interés en una versión para iOS (sitio web)</h2>
   <p>
     En kortscore.com puede dejar voluntariamente su dirección de correo electrónico para que le
     avisemos si sale una versión para iPhone y Apple Watch. Solo se guardan la dirección de
@@ -1033,13 +1223,13 @@
     sobre una versión para iOS o hasta su publicación. Después, la lista se elimina.
   </p>
 
-  <h2>10. Sin cesión de datos con fines publicitarios</h2>
+  <h2>11. Sin cesión de datos con fines publicitarios</h2>
   <p>
     No vendemos datos. Más allá de los servicios de Google mencionados en esta política, no se
     produce ninguna cesión a terceros.
   </p>
 
-  <h2>11. Destinatarios y transferencias a terceros países</h2>
+  <h2>12. Destinatarios y transferencias a terceros países</h2>
   <table>
     <thead><tr><th>Servicio</th><th>Proveedor</th><th>Lugar de tratamiento</th></tr></thead>
     <tbody>
@@ -1058,7 +1248,7 @@
     Google.
   </p>
 
-  <h2>12. Sus derechos</h2>
+  <h2>13. Sus derechos</h2>
   <p>En virtud del RGPD, tiene los siguientes derechos:</p>
   <ul>
     <li>Acceso (art. 15 del RGPD)</li>
@@ -1075,7 +1265,7 @@
     apartado «Responsable del tratamiento».
   </p>
 
-  <h2>13. Contacto</h2>
+  <h2>14. Contacto</h2>
   <p>
     Si tiene preguntas sobre privacidad, escriba a:
     <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
@@ -1093,7 +1283,7 @@
 
   <h1>Informativa sulla privacy</h1>
   <p><em>Questa traduzione è fornita a solo scopo informativo. Fa fede esclusivamente la versione tedesca.</em></p>
-  <p class="updated">Aggiornato al: 8 agosto 2026</p>
+  <p class="updated">Aggiornato al: 13 ottobre 2026</p>
 
   <h2>1. Titolare del trattamento</h2>
   <div class="card">
@@ -1113,11 +1303,10 @@
 
   <h2>2. Panoramica</h2>
   <p>
-    Kortscore è un’app per il conteggio dei punti a tennis per Wear OS con app companion per
-    smartphone. L’app funziona in linea di principio localmente sul dispositivo. Non sono presenti
+    Kortscore è un’app per il conteggio dei punti a tennis e padel per Apple Watch e Wear OS con app companion per iPhone o smartphone Android. L’app funziona in linea di principio localmente sul dispositivo. Non sono presenti
     <strong>account utente</strong>, <strong>SDK pubblicitari</strong>, <strong>dati di
     geolocalizzazione</strong> né <strong>tracciamento tra app o siti web diversi</strong>. I dati
-    vengono trattati solo nei casi descritti di seguito.
+    vengono trattati solo nei casi descritti di seguito. I dati sanitari (frequenza cardiaca) vengono trattati solo sull’orologio, vedi la sezione 8.
   </p>
 
   <h2>3. Firebase Analytics</h2>
@@ -1238,7 +1427,56 @@
     comporta alcuna trasmissione di dati a terzi.
   </p>
 
-  <h2>8. Dati locali e backup</h2>
+  <h2>8. Dati sanitari (frequenza cardiaca e allenamenti)</h2>
+  <p>
+    Kortscore tratta dati sanitari solo sull’orologio, solo durante una partita in corso e solo se
+    hai concesso l’autorizzazione corrispondente. Senza autorizzazione l’app conta normalmente,
+    semplicemente senza mostrare la frequenza cardiaca.
+  </p>
+  <p>
+    <strong>Apple Watch (Apple Salute / HealthKit):</strong> con il tuo consenso, l’app avvia per
+    ogni partita un allenamento di tipo “Tennis”. Durante l’allenamento legge la tua frequenza
+    cardiaca e la tua energia attiva da Apple Salute. La frequenza cardiaca viene mostrata in
+    diretta sulla schermata del punteggio, l’energia attiva non viene mostrata. Al termine della
+    partita, l’app salva l’allenamento in Apple Salute. I valori di frequenza cardiaca e di energia
+    che il tuo orologio ha rilevato durante l’allenamento vengono associati all’allenamento da
+    Apple Salute stessa.
+  </p>
+  <p>
+    <strong>iPhone:</strong> l’app per iPhone richiede l’autorizzazione di Apple Salute solo per
+    aprire Kortscore sul tuo Apple Watch quando avvii una partita dall’iPhone. Non legge né scrive
+    alcun dato sanitario.
+  </p>
+  <p>
+    <strong>Wear OS:</strong> con il tuo consenso (autorizzazione “Sensori del corpo” oppure, da
+    Wear OS 6, “Frequenza cardiaca”), l’app legge la frequenza cardiaca dell’orologio tramite Health
+    Services e la mostra in diretta durante la partita. Kortscore non utilizza Health Connect e non
+    scrive alcun dato sanitario.
+  </p>
+  <p>
+    <strong>Nessuna memorizzazione, nessuna trasmissione:</strong> Kortscore non salva la tua
+    frequenza cardiaca nell’app e non la inserisce né nello storico delle partite, né nei backup, né
+    nel live ticker, né nell’analisi dell’allenatore IA. I dati sanitari non vengono trasmessi né al
+    tuo smartphone, né a noi, né a Google (Firebase), né ad altri terzi. Solo l’ultimo valore
+    rilevato viene mantenuto nella memoria dell’orologio e viene eliminato al termine della partita.
+    I dati sanitari non vengono mai utilizzati per pubblicità, marketing o profilazione, e Kortscore
+    non li salva in iCloud. Gli allenamenti salvati in Apple Salute sono gestiti da Apple Salute, che
+    può sincronizzarli con il tuo iPhone secondo le condizioni proprie di Apple.
+  </p>
+  <p>
+    <strong>Revoca dell’autorizzazione:</strong> puoi revocare l’accesso in qualsiasi momento: per
+    Apple Salute sull’iPhone in Impostazioni → Salute → Accesso ai dati e dispositivi → Kortscore, su
+    Wear OS in Impostazioni → App → Kortscore → Autorizzazioni. Puoi eliminare in qualsiasi momento
+    nell’app Salute gli allenamenti salvati da Kortscore.
+  </p>
+  <p>
+    <strong>Base giuridica:</strong> il tuo consenso esplicito (art. 9, par. 2, lett. a), in
+    combinato disposto con l’art. 6, par. 1, lett. a) del GDPR), che fornisci tramite la finestra di
+    autorizzazione del sistema operativo. La revoca non pregiudica la liceità del trattamento
+    effettuato prima della stessa.
+  </p>
+
+  <h2>9. Dati locali e backup</h2>
   <p>
     I match, le impostazioni e i backup manuali rimangono in linea di principio sul vostro
     dispositivo ovvero nella cartella di backup da voi scelta. Inoltre, Android Auto-Backup
@@ -1247,7 +1485,7 @@
     disattivato nelle impostazioni di sistema di Android.
   </p>
 
-  <h2>9. Interesse per una versione iOS (sito web)</h2>
+  <h2>10. Interesse per una versione iOS (sito web)</h2>
   <p>
     Su kortscore.com potete lasciare volontariamente il vostro indirizzo e-mail per essere
     avvisati qualora venisse pubblicata una versione per iPhone e Apple Watch. Vengono così
@@ -1271,13 +1509,13 @@
     cancellato.
   </p>
 
-  <h2>10. Nessuna cessione di dati a fini pubblicitari</h2>
+  <h2>11. Nessuna cessione di dati a fini pubblicitari</h2>
   <p>
     Non vendiamo alcun dato. Al di là dei servizi Google indicati nella presente informativa,
     non avviene alcuna cessione a terzi.
   </p>
 
-  <h2>11. Destinatari e trasferimento verso paesi terzi</h2>
+  <h2>12. Destinatari e trasferimento verso paesi terzi</h2>
   <table>
     <thead><tr><th>Servizio</th><th>Fornitore</th><th>Luogo di trattamento</th></tr></thead>
     <tbody>
@@ -1295,7 +1533,7 @@
     contrattuali standard della Commissione UE con le rispettive società di Google.
   </p>
 
-  <h2>12. I vostri diritti</h2>
+  <h2>13. I vostri diritti</h2>
   <p>Ai sensi del GDPR vi spettano i seguenti diritti:</p>
   <ul>
     <li>Accesso (art. 15 GDPR)</li>
@@ -1312,7 +1550,7 @@
     «Titolare del trattamento».
   </p>
 
-  <h2>13. Contatto</h2>
+  <h2>14. Contatto</h2>
   <p>
     Per domande in materia di privacy, contattateci all’indirizzo:
     <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
