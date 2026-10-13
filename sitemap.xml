@@ -80,4 +80,20 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://kortscore.com/de/padel-zaehlweise.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kortscore.com/how-padel-scoring-works.html"/>
   </url>
+  <url>
+    <loc>https://kortscore.com/clubs.html</loc>
+    <lastmod>2026-10-12</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kortscore.com/clubs.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kortscore.com/de/vereine.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kortscore.com/clubs.html"/>
+  </url>
+  <url>
+    <loc>https://kortscore.com/de/vereine.html</loc>
+    <lastmod>2026-10-12</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kortscore.com/clubs.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kortscore.com/de/vereine.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kortscore.com/clubs.html"/>
+  </url>
 </urlset>

@@ -598,6 +598,19 @@ a:hover { color: var(--accent); }
 }
 .clubs__lead { max-width: 440px; }
 
+/* Verweis aufs Vereinsangebot: abgesetzt unter der Liste, eine Zeile mit
+   Link, damit er den Live-Ticker-Abschnitt nicht uebertoent. */
+.clubs__offer {
+  margin: 4px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  max-width: 440px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+.clubs__offer a { color: var(--accent-text); font-weight: 600; white-space: nowrap; }
+
 .dashlist {
   display: flex;
   flex-direction: column;
@@ -1362,6 +1375,7 @@ a:hover { color: var(--accent); }
   gap: 8px;
 }
 .compat__list strong { color: var(--text); font-weight: 600; }
+.compat__list + p { margin-top: 12px; }
 .compat__cta {
   display: flex;
   flex-wrap: wrap;
@@ -1372,6 +1386,65 @@ a:hover { color: var(--accent); }
 }
 .compat__cta .eyebrow { margin: 16px 0 10px; }
 .compat__cta .back { display: inline-block; padding-bottom: 12px; }
+
+/* ── Vereinsangebot ─────────────────────────────────────────────────────────
+   Nutzt die Kompatibilitaets-Spalte (.compat) und ergaenzt nur drei Teile:
+   die nummerierten Schritte, die Flyer-Vorschau neben ihrem Text und den
+   Mail-Aufruf am Ende. */
+.clubsteps {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 24px;
+}
+.clubsteps__item { display: flex; flex-direction: column; gap: 6px; }
+.clubsteps__item .step__num,
+.clubsteps__item .step__body { margin: 0; }
+
+/* Vorschau links, Text rechts; schmal untereinander. Das Bild ist zugleich
+   der Link aufs PDF, deshalb der Rahmen wie bei einem ausgedruckten Blatt. */
+.clubflyer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 32px;
+  align-items: flex-start;
+}
+.clubflyer > div { flex: 1 1 260px; display: grid; gap: 10px; }
+.clubflyer h2 { margin-bottom: 0; }
+.clubflyer__shot {
+  flex: 0 0 auto;
+  width: 240px;
+  line-height: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.18s ease;
+}
+.clubflyer__shot:hover { transform: translateY(-2px); }
+.clubflyer__shot img { width: 100%; height: auto; }
+.clubflyer__dl a { font-weight: 600; }
+.clubflyer__dl .mono {
+  margin-left: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.clubask .btn { margin-top: 2px; }
+.clubask__alt {
+  margin: 12px 0 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.clubask__alt a { color: var(--accent-text); }
+
+@media (max-width: 640px) {
+  .clubflyer__shot { width: min(70vw, 260px); }
+}
 
 @media (max-width: 640px) {
   .compat { padding-top: 32px; padding-bottom: 56px; }
