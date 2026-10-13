@@ -162,8 +162,8 @@
     <p>Vollständige Angaben siehe <a href="https://kortscore.com/legal/impressum.html">Impressum</a>.</p>
   </div>
   <p>
-    Kortscore wird unter der Marke „swordi.studios" entwickelt und vertrieben
-    (Play-Store-Paket <code>com.swordistudios.kortscore</code>). Verantwortlich im Sinne der
+    Kortscore wird unter der Marke „swordi.studios“ entwickelt und vertrieben (in Google Play und
+    im App Store unter <code>com.swordistudios.kortscore</code>). Verantwortlich im Sinne der
     Datenschutz-Grundverordnung (DSGVO) ist die oben genannte Person/Gesellschaft.
   </p>
 
@@ -173,7 +173,7 @@
     grundsätzlich lokal auf dem Gerät. Es gibt <strong>keine Nutzerkonten</strong>, <strong>keine
     Werbe-SDKs</strong>, <strong>keine standortbezogenen Daten</strong> und <strong>kein Tracking über
     andere Apps oder Websites hinweg</strong>. Daten werden nur in den unten beschriebenen Fällen
-    verarbeitet. Gesundheitsdaten (Herzfrequenz) verarbeitet die App nur auf der Uhr, siehe Abschnitt 8.
+    verarbeitet. Gesundheitsdaten (Herzfrequenz) verarbeitet die App nur auf der Uhr, siehe Abschnitt 8. Die Apple-Watch-App enthält kein Firebase und überträgt selbst keine Daten; beendete Matches gibt sie nur an Ihr iPhone weiter.
   </p>
 
   <h2>3. Firebase Analytics</h2>
@@ -245,20 +245,37 @@
     ihn erhält.
   </p>
 
-  <h2>6. Google Play Billing (Kortscore Plus)</h2>
   <p>
-    Der einmalige In-App-Kauf „Kortscore Plus" wird vollständig über Google Play Billing
-    abgewickelt. Zahlungsdaten (Kreditkarte etc.) verarbeitet ausschließlich Google im Rahmen
-    Ihres Google-Kontos; wir erhalten und speichern <strong>keine Zahlungsdaten</strong>. Die App
-    speichert nach einem erfolgreichen Kauf lediglich ein lokales Freischalt-Flag auf dem Gerät.
+    <strong>Schutz vor Missbrauch (Firebase App Check):</strong> Damit nur die echte Kortscore-App
+    die Datenbank und die KI-Analyse (Abschnitt 9) nutzen kann, bestätigt Firebase App Check bei
+    diesen Anfragen die Echtheit der App. Dafür nutzt die App auf dem iPhone App Attest von Apple
+    und auf Android Play Integrity von Google. Übermittelt werden dabei gerätebezogene Prüfsignale,
+    keine Match-Inhalte. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an
+    der Sicherheit des Dienstes).
+  </p>
+
+  <h2>6. In-App-Kauf Kortscore Plus (Google Play / App Store)</h2>
+  <p>
+    Der einmalige In-App-Kauf „Kortscore Plus“ wird auf Android vollständig über Google Play
+    Billing und auf dem iPhone vollständig über den App Store von Apple abgewickelt.
+    Zahlungsdaten (Kreditkarte etc.) verarbeiten ausschließlich Google bzw. Apple im Rahmen Ihres
+    Kontos; wir erhalten und speichern <strong>keine Zahlungsdaten</strong>. Die App prüft die
+    Freischaltung beim jeweiligen Store und speichert lokal lediglich, ob Kortscore Plus
+    freigeschaltet ist.
   </p>
   <p>
     <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Erfüllung des Kaufvertrags über
     die Zusatzfunktion).<br />
-    <strong>Empfänger:</strong> Google LLC / Google Ireland Limited als Zahlungsabwickler.
+    <strong>Empfänger:</strong> Google LLC / Google Ireland Limited bzw. Apple Inc. / Apple
+    Distribution International Ltd. als Zahlungsabwickler.
   </p>
 
-  <h2>7. Push-Benachrichtigungen (Firebase Cloud Messaging)</h2>
+  <h2>7. Push-Benachrichtigungen (Firebase Cloud Messaging, nur Android)</h2>
+  <p>
+    Dieser Abschnitt betrifft nur die Android-App. Die iPhone-App verwendet kein Firebase Cloud
+    Messaging und erhält von uns keine Push-Benachrichtigungen; sie zeigt nur lokale
+    Benachrichtigungen an, etwa zum Ende eines Matches, die auf dem Gerät selbst entstehen.
+  </p>
   <p>
     Wir nutzen Firebase Cloud Messaging (FCM), um allgemeine Produktankündigungen (z. B. Hinweise
     auf neue Funktionen) an alle Installationen der App zu senden. Diese Ankündigungen werden
@@ -338,63 +355,102 @@
     Ein Widerruf berührt die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung nicht.
   </p>
 
-  <h2>9. Lokale Daten &amp; Backups</h2>
+  <h2>9. KI-Analyse (KI-Trainer)</h2>
   <p>
-    Matches, Einstellungen und manuelle Backups verbleiben grundsätzlich auf Ihrem Gerät bzw. im
-    von Ihnen gewählten Backup-Ordner. Zusätzlich kann Android Auto-Backup (eine
-    Systemfunktion von Google) App-Daten automatisch in Ihrem Google-Konto sichern; dies
-    unterliegt den Datenschutzbestimmungen von Google und lässt sich in den Android-
-    Systemeinstellungen deaktivieren.
+    Auf Wunsch schreibt Kortscore zu einem Match oder zu Ihrer Bilanz eine kurze Analyse.
+    Grundlage sind ausschließlich zusammengefasste Match-Statistiken, also Zahlen wie gewonnene
+    Punkte, Breakbälle oder Aufschlagspiele, ohne Spielernamen.
+  </p>
+  <p>
+    <strong>Auf dem Gerät:</strong> Steht auf Ihrem Smartphone ein KI-Modell auf dem Gerät zur
+    Verfügung (Gemini Nano über Android AICore bzw. Apple Intelligence auf dem iPhone), entsteht die
+    Analyse vollständig lokal. Dabei verlassen keine Daten das Gerät.
+  </p>
+  <p>
+    <strong>In der Cloud:</strong> Steht kein solches Modell zur Verfügung, wird die Analyse nur nach
+    Ihrer ausdrücklichen Zustimmung in der Cloud erzeugt. Dann werden beim Start einer Analyse die
+    anonymen Match-Statistiken über Firebase AI Logic an das KI-Modell Gemini von Google gesendet,
+    und die Antwort kommt zurück in die App. Ihre Zustimmung können Sie jederzeit in den
+    Einstellungen der App unter „Cloud-Analyse erlauben“ widerrufen.
+  </p>
+  <p>
+    <strong>Rechtsgrundlage:</strong> für die Cloud-Analyse Ihre Einwilligung (Art. 6 Abs. 1 lit. a
+    DSGVO).<br />
+    <strong>Speicherdauer:</strong> Die fertige Analyse speichert die App nur lokal auf Ihrem Gerät.
+    Für die Verarbeitung der Anfrage bei Google gelten die Bedingungen der Gemini API und von
+    Firebase AI Logic.<br />
+    <strong>Empfänger:</strong> Google LLC / Google Ireland Limited als Auftragsverarbeiter.
   </p>
 
-  <h2>10. Interesse an einer iOS-Version (Website)</h2>
+  <h2>10. Lokale Daten &amp; Backups</h2>
   <p>
-    Auf kortscore.com können Sie freiwillig Ihre E-Mail-Adresse hinterlassen, um informiert zu
-    werden, falls eine Version für iPhone und Apple Watch erscheint. Gespeichert werden dabei
-    ausschließlich die von Ihnen eingegebene E-Mail-Adresse, der Zeitpunkt der Eintragung sowie
-    die Sprachfassung der Seite. Eine IP-Adresse wird nicht gespeichert.
+    Matches, Einstellungen und Backups verbleiben grundsätzlich auf Ihrem Gerät bzw. im von Ihnen
+    gewählten Backup-Ordner. Mit Kortscore Plus kann die App Backups zusätzlich automatisch in
+    diesen Ordner schreiben. Liegt der Ordner bei einem Cloud-Dienst (z. B. iCloud Drive oder
+    Google Drive), gelten dessen Bedingungen.
   </p>
   <p>
-    Die Angaben landen in einer Google-Tabelle (Google Sheets) innerhalb unseres Google-Kontos
-    und werden ausschließlich für diese eine Benachrichtigung verwendet. Es erfolgt kein
-    Newsletter-Versand, keine Werbung und keine Weitergabe an Dritte.
+    Unabhängig davon können die Betriebssysteme App-Daten sichern: unter Android über Android
+    Auto-Backup in Ihrem Google-Konto, auf dem iPhone über Ihr iCloud-Backup oder ein Backup am
+    Computer. Diese Systemfunktionen unterliegen den Datenschutzbestimmungen von Google bzw. Apple
+    und lassen sich in den Systemeinstellungen abschalten.
   </p>
   <p>
-    <strong>Rechtsgrundlage:</strong> Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die Sie mit
-    dem Setzen des Häkchens im Formular erteilen. Sie können sie jederzeit formlos widerrufen,
-    etwa per E-Mail an die unter „Kontakt“ genannte Adresse; wir löschen Ihren Eintrag dann
-    umgehend.
-  </p>
-  <p>
-    <strong>Speicherdauer:</strong> bis zum Widerruf, längstens jedoch bis zur Entscheidung über
-    eine iOS-Version bzw. bis zu deren Veröffentlichung. Danach wird die Liste gelöscht.
+    Die Apple-Watch-App hält ein laufendes oder gerade beendetes Match nur so lange, bis es an Ihr
+    iPhone übergeben ist.
   </p>
 
-  <h2>11. Keine Datenweitergabe zu Werbezwecken</h2>
+  <h2>11. Warteliste für die iOS-Version (Website)</h2>
   <p>
-    Wir verkaufen keine Daten. Über die in dieser Erklärung genannten Google-Dienste hinaus
-    findet keine Weitergabe an Dritte statt.
+    Bis zum Erscheinen der iOS-Version konnten Sie sich auf kortscore.com freiwillig mit Ihrer
+    E-Mail-Adresse in eine Warteliste eintragen. Das Formular ist inzwischen nicht mehr online.
+    Gespeichert wurden ausschließlich die eingegebene E-Mail-Adresse, der Zeitpunkt der Eintragung
+    und die Sprachfassung der Seite, ohne IP-Adresse, in einer Google-Tabelle (Google Sheets) in
+    unserem Google-Konto.
+  </p>
+  <p>
+    Die Adressen verwenden wir nur für die eine Benachrichtigung, dass Kortscore für iPhone und
+    Apple Watch erschienen ist, und löschen die Liste danach. Es gibt keinen Newsletter, keine
+    Werbung und keine Weitergabe an Dritte.
+  </p>
+  <p>
+    <strong>Rechtsgrundlage:</strong> Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Sie können sie
+    jederzeit formlos widerrufen, etwa per E-Mail an die unter „Kontakt“ genannte Adresse; wir
+    löschen Ihren Eintrag dann umgehend.
   </p>
 
-  <h2>12. Empfänger &amp; Übermittlung in Drittländer</h2>
+  <h2>12. Keine Datenweitergabe zu Werbezwecken</h2>
+  <p>
+    Wir verkaufen keine Daten und nutzen keine Werbe- oder Tracking-Dienste. Über die in dieser
+    Erklärung genannten Dienste von Google und Apple hinaus findet keine Weitergabe an Dritte statt.
+  </p>
+
+  <h2>13. Empfänger &amp; Übermittlung in Drittländer</h2>
   <table>
     <thead><tr><th>Dienst</th><th>Anbieter</th><th>Verarbeitungsort</th></tr></thead>
     <tbody>
       <tr><td>Firebase Analytics</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
       <tr><td>Firebase Crashlytics</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
       <tr><td>Cloud Firestore / Anonymous Auth</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
+      <tr><td>Firebase App Check</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
+      <tr><td>Firebase AI Logic (Gemini)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
+      <tr><td>App Attest</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>gemäß den Bedingungen von Apple</td></tr>
       <tr><td>Google Play Billing</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
-      <tr><td>Firebase Cloud Messaging</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
+      <tr><td>App Store (In-App-Kauf)</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>gemäß den Bedingungen von Apple</td></tr>
+      <tr><td>Firebase Cloud Messaging (nur Android)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
       <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>gemäß Google-Kontoeinstellungen</td></tr>
-      <tr><td>Google Sheets (iOS-Interesse)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
+      <tr><td>iCloud-Backup / iCloud Drive</td><td>Apple Inc.</td><td>gemäß Ihren iCloud-Einstellungen</td></tr>
+      <tr><td>Google Sheets (iOS-Warteliste)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
     </tbody>
   </table>
   <p>
-    Soweit Daten in die USA übermittelt werden, stützt sich dies auf die Standardvertragsklauseln
-    der EU-Kommission mit den jeweiligen Google-Gesellschaften.
+    Soweit Daten an Google in die USA übermittelt werden, stützt sich dies auf die
+    Standardvertragsklauseln der EU-Kommission mit den jeweiligen Google-Gesellschaften. Daten im
+    Zusammenhang mit App Store, App Attest und iCloud verarbeitet Apple nach den eigenen
+    Datenschutzbestimmungen von Apple.
   </p>
 
-  <h2>13. Ihre Rechte</h2>
+  <h2>14. Ihre Rechte</h2>
   <p>Sie haben nach der DSGVO folgende Rechte:</p>
   <ul>
     <li>Auskunft (Art. 15 DSGVO)</li>
@@ -411,7 +467,7 @@
     genannte Kontaktadresse.
   </p>
 
-  <h2>14. Kontakt</h2>
+  <h2>15. Kontakt</h2>
   <p>
     Fragen zum Datenschutz richten Sie bitte an:
     <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
@@ -441,9 +497,9 @@
     <p>Full details: see the <a href="https://kortscore.com/legal/impressum.html">Impressum</a> (legal notice).</p>
   </div>
   <p>
-    Kortscore is developed and published under the brand "swordi.studios" (Play Store package
-    <code>com.swordistudios.kortscore</code>). The person/entity named above is the controller
-    under the General Data Protection Regulation (GDPR).
+    Kortscore is developed and published under the brand “swordi.studios” (on Google Play and the
+    App Store as <code>com.swordistudios.kortscore</code>). The person/entity named above is the
+    controller under the General Data Protection Regulation (GDPR).
   </p>
 
   <h2>2. Overview</h2>
@@ -451,7 +507,7 @@
     Kortscore is a tennis and padel scoring app for Apple Watch and Wear OS with a companion app for iPhone or Android phones. The app works
     primarily locally on your device. There are <strong>no user accounts</strong>, <strong>no
     advertising SDKs</strong>, <strong>no location data</strong>, and <strong>no cross-app/cross-
-    site tracking</strong>. Data is processed only in the cases described below. Health data (heart rate) is processed only on the watch, see section 8.
+    site tracking</strong>. Data is processed only in the cases described below. Health data (heart rate) is processed only on the watch, see section 8. The Apple Watch app contains no Firebase and transmits no data on its own; it only hands finished matches to your iPhone.
   </p>
 
   <h2>3. Firebase Analytics</h2>
@@ -519,20 +575,36 @@
     Auth) as processor; additionally, anyone you share the link with or who otherwise obtains it.
   </p>
 
-  <h2>6. Google Play Billing (Kortscore Plus)</h2>
   <p>
-    The one-time in-app purchase "Kortscore Plus" is processed entirely through Google Play
-    Billing. Payment details (credit card, etc.) are handled solely by Google as part of your
-    Google account; we do not receive or store any payment data. After a successful purchase,
-    the app stores only a local entitlement flag on the device.
+    <strong>Abuse protection (Firebase App Check):</strong> So that only the genuine Kortscore app
+    can use the database and the AI analysis (section 9), Firebase App Check confirms the app’s
+    authenticity with these requests. For this the app uses Apple’s App Attest on iPhone and
+    Google’s Play Integrity on Android. Device-related verification signals are transmitted, no
+    match content. The legal basis is Art. 6(1)(f) GDPR (legitimate interest in the security of the
+    service).
+  </p>
+
+  <h2>6. In-app purchase Kortscore Plus (Google Play / App Store)</h2>
+  <p>
+    The one-time in-app purchase “Kortscore Plus” is processed entirely through Google Play Billing
+    on Android and entirely through Apple’s App Store on iPhone. Payment details (credit card,
+    etc.) are handled solely by Google or Apple as part of your account; we do not receive or store
+    any payment data. The app checks the unlock with the respective store and stores locally only
+    whether Kortscore Plus is unlocked.
   </p>
   <p>
     <strong>Legal basis:</strong> Art. 6(1)(b) GDPR (performing the purchase contract for the
     add-on feature).<br />
-    <strong>Recipients:</strong> Google LLC / Google Ireland Limited as payment processor.
+    <strong>Recipients:</strong> Google LLC / Google Ireland Limited or Apple Inc. / Apple
+    Distribution International Ltd. as payment processor.
   </p>
 
-  <h2>7. Push notifications (Firebase Cloud Messaging)</h2>
+  <h2>7. Push notifications (Firebase Cloud Messaging, Android only)</h2>
+  <p>
+    This section applies to the Android app only. The iPhone app does not use Firebase Cloud
+    Messaging and receives no push notifications from us; it only shows local notifications, such
+    as when a match ends, which are created on the device itself.
+  </p>
   <p>
     We use Firebase Cloud Messaging (FCM) to send general product announcements (e.g. notices
     about new features) to all installations of the app. These announcements are sent manually
@@ -608,60 +680,98 @@
     does not affect the lawfulness of processing carried out before the revocation.
   </p>
 
-  <h2>9. Local data &amp; backups</h2>
+  <h2>9. AI analysis (AI coach)</h2>
   <p>
-    Matches, settings, and manual backups generally stay on your device or in the backup folder
-    you chose. In addition, Android Auto-Backup (a Google system feature) may back up app data
-    to your Google account automatically; this is governed by Google's own privacy terms and can
-    be disabled in Android system settings.
+    On request, Kortscore writes a short analysis of a match or of your record. It is based solely
+    on aggregated match statistics, i.e. numbers such as points won, break points or service games,
+    without player names.
+  </p>
+  <p>
+    <strong>On the device:</strong> If an on-device AI model is available on your phone (Gemini Nano
+    via Android AICore, or Apple Intelligence on iPhone), the analysis is created entirely locally.
+    No data leaves the device.
+  </p>
+  <p>
+    <strong>In the cloud:</strong> If no such model is available, the analysis is generated in the
+    cloud only after your explicit consent. When you start an analysis, the anonymous match
+    statistics are then sent via Firebase AI Logic to Google’s Gemini AI model, and the answer comes
+    back to the app. You can withdraw your consent at any time in the app’s settings under “Allow
+    cloud analysis”.
+  </p>
+  <p>
+    <strong>Legal basis:</strong> for the cloud analysis, your consent (Art. 6(1)(a) GDPR).<br />
+    <strong>Retention:</strong> the app stores the finished analysis only locally on your device.
+    The processing of the request at Google is governed by the terms of the Gemini API and Firebase
+    AI Logic.<br />
+    <strong>Recipients:</strong> Google LLC / Google Ireland Limited as processor.
   </p>
 
-  <h2>10. Interest in an iOS version (website)</h2>
+  <h2>10. Local data &amp; backups</h2>
   <p>
-    On kortscore.com you may voluntarily leave your email address to be notified if a version for
-    iPhone and Apple Watch is released. We store only the email address you enter, the time of
-    the entry, and which language version of the page you used. No IP address is stored.
+    Matches, settings and backups generally stay on your device or in the backup folder you chose.
+    With Kortscore Plus the app can also write backups to that folder automatically. If the folder
+    is with a cloud service (e.g. iCloud Drive or Google Drive), that service’s terms apply.
   </p>
   <p>
-    The entries are kept in a Google Sheets spreadsheet inside our Google account and are used
-    for that single notification only. There is no newsletter, no advertising, and no sharing
-    with third parties.
+    Independently of this, the operating systems can back up app data: on Android via Android
+    Auto Backup in your Google account, on iPhone via your iCloud backup or a backup on a computer.
+    These system features are governed by Google’s or Apple’s privacy policies and can be switched
+    off in the system settings.
   </p>
   <p>
-    <strong>Legal basis:</strong> your consent (Art. 6(1)(a) GDPR), given by ticking the box in
-    the form. You may withdraw it at any time without any formality, for example by emailing the
-    address listed under "Contact"; we will delete your entry promptly.
-  </p>
-  <p>
-    <strong>Retention:</strong> until you withdraw consent, and at the latest until we decide on
-    an iOS version or release it. The list is deleted afterwards.
+    The Apple Watch app keeps a running or just-finished match only until it has been handed over to
+    your iPhone.
   </p>
 
-  <h2>11. No sale or third-party sharing</h2>
+  <h2>11. Waitlist for the iOS version (website)</h2>
   <p>
-    We do not sell any data. Beyond the Google services listed in this policy, we do not share
-    data with third parties.
+    Until the iOS version was released, you could voluntarily join a waitlist on kortscore.com with
+    your email address. The form is no longer online. Only the email address entered, the time of
+    sign-up and the language version of the page were stored, without an IP address, in a Google
+    spreadsheet (Google Sheets) in our Google account.
+  </p>
+  <p>
+    We use the addresses only for the one notification that Kortscore for iPhone and Apple Watch
+    has been released, and delete the list afterwards. There is no newsletter, no advertising and
+    no sharing with third parties.
+  </p>
+  <p>
+    <strong>Legal basis:</strong> your consent (Art. 6(1)(a) GDPR). You can withdraw it at any time
+    without giving reasons, e.g. by email to the address under “Contact”; we will then delete your
+    entry immediately.
   </p>
 
-  <h2>12. Recipients &amp; international transfers</h2>
+  <h2>12. No sale or third-party sharing</h2>
+  <p>
+    We do not sell data and use no advertising or tracking services. Beyond the Google and Apple
+    services named in this policy, no data is shared with third parties.
+  </p>
+
+  <h2>13. Recipients &amp; international transfers</h2>
   <table>
     <thead><tr><th>Service</th><th>Provider</th><th>Processing location</th></tr></thead>
     <tbody>
       <tr><td>Firebase Analytics</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
       <tr><td>Firebase Crashlytics</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
       <tr><td>Cloud Firestore / Anonymous Auth</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
+      <tr><td>Firebase App Check</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
+      <tr><td>Firebase AI Logic (Gemini)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
+      <tr><td>App Attest</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>per Apple’s terms</td></tr>
       <tr><td>Google Play Billing</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
-      <tr><td>Firebase Cloud Messaging</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
-      <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>per your Google account settings</td></tr>
-      <tr><td>Google Sheets (iOS interest)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
+      <tr><td>App Store (in-app purchase)</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>per Apple’s terms</td></tr>
+      <tr><td>Firebase Cloud Messaging (Android only)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
+      <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>per Google account settings</td></tr>
+      <tr><td>iCloud backup / iCloud Drive</td><td>Apple Inc.</td><td>per your iCloud settings</td></tr>
+      <tr><td>Google Sheets (iOS waitlist)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
     </tbody>
   </table>
   <p>
-    Where data is transferred to the US, this relies on the European Commission's Standard
-    Contractual Clauses with the respective Google entities.
+    Where data is transferred to Google in the US, this relies on the European Commission’s
+    Standard Contractual Clauses with the respective Google entities. Data relating to the App
+    Store, App Attest and iCloud is processed by Apple under Apple’s own privacy policy.
   </p>
 
-  <h2>13. Your rights</h2>
+  <h2>14. Your rights</h2>
   <p>Under the GDPR you have the right to:</p>
   <ul>
     <li>Access (Art. 15 GDPR)</li>
@@ -678,7 +788,7 @@
     above.
   </p>
 
-  <h2>14. Contact</h2>
+  <h2>15. Contact</h2>
   <p>
     For privacy questions, please contact:
     <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
@@ -709,9 +819,10 @@
     <p>Coordonnées complètes : voir les <a href="https://kortscore.com/legal/impressum.html">Mentions légales</a>.</p>
   </div>
   <p>
-    Kortscore est développée et distribuée sous la marque « swordi.studios » (paquet Play Store
-    <code>com.swordistudios.kortscore</code>). La personne/société mentionnée ci-dessus est le
-    responsable du traitement au sens du règlement général sur la protection des données (RGPD).
+    Kortscore est développée et distribuée sous la marque «&nbsp;swordi.studios&nbsp;» (sur Google
+    Play et l’App Store sous <code>com.swordistudios.kortscore</code>). La personne/société
+    mentionnée ci-dessus est le responsable du traitement au sens du règlement général sur la
+    protection des données (RGPD).
   </p>
 
   <h2>2. Aperçu</h2>
@@ -720,7 +831,7 @@
     n’y a <strong>aucun compte utilisateur</strong>, <strong>aucun SDK publicitaire</strong>,
     <strong>aucune donnée de localisation</strong> et <strong>aucun suivi (tracking) au-delà
     d’autres applications ou sites web</strong>. Les données ne sont traitées que dans les cas
-    décrits ci-dessous. Les données de santé (fréquence cardiaque) ne sont traitées que sur la montre, voir la section 8.
+    décrits ci-dessous. Les données de santé (fréquence cardiaque) ne sont traitées que sur la montre, voir la section 8. L’application Apple Watch ne contient pas Firebase et ne transmet elle-même aucune donnée&nbsp;; elle transmet uniquement les matchs terminés à votre iPhone.
   </p>
 
   <h2>3. Firebase Analytics</h2>
@@ -796,22 +907,39 @@
     communiquez le lien ou qui l’obtient d’une autre manière.
   </p>
 
-  <h2>6. Google Play Billing (Kortscore Plus)</h2>
   <p>
-    L’achat intégré unique « Kortscore Plus » est intégralement traité via Google Play Billing.
-    Les données de paiement (carte de crédit, etc.) sont traitées exclusivement par Google dans le
-    cadre de votre compte Google&nbsp;; nous ne recevons ni ne stockons <strong>aucune donnée de
-    paiement</strong>. Après un achat réussi, l’application enregistre uniquement un indicateur de
-    déblocage local sur l’appareil.
+    <strong>Protection contre les abus (Firebase App Check)&nbsp;:</strong> afin que seule
+    l’application Kortscore authentique puisse utiliser la base de données et l’analyse IA
+    (section 9), Firebase App Check confirme l’authenticité de l’application lors de ces requêtes.
+    Pour cela, l’application utilise App Attest d’Apple sur l’iPhone et Play Integrity de Google
+    sur Android. Des signaux de vérification liés à l’appareil sont transmis, aucun contenu de
+    match. La base juridique est l’art. 6, par. 1, point f) du RGPD (intérêt légitime à la sécurité
+    du service).
+  </p>
+
+  <h2>6. Achat intégré Kortscore Plus (Google Play / App Store)</h2>
+  <p>
+    L’achat intégré unique «&nbsp;Kortscore Plus&nbsp;» est traité entièrement via Google Play
+    Billing sur Android et entièrement via l’App Store d’Apple sur l’iPhone. Les données de paiement
+    (carte bancaire, etc.) sont traitées exclusivement par Google ou Apple dans le cadre de votre
+    compte&nbsp;; nous ne recevons ni ne stockons <strong>aucune donnée de paiement</strong>.
+    L’application vérifie le déblocage auprès de la boutique concernée et enregistre localement
+    uniquement si Kortscore Plus est débloqué.
   </p>
   <p>
     <strong>Base juridique&nbsp;:</strong> art. 6, par. 1, point b) du RGPD (exécution du contrat
-    d’achat portant sur la fonctionnalité complémentaire).<br />
-    <strong>Destinataires&nbsp;:</strong> Google LLC / Google Ireland Limited en tant que
-    prestataire de paiement.
+    d’achat de la fonction supplémentaire).<br />
+    <strong>Destinataires&nbsp;:</strong> Google LLC / Google Ireland Limited ou Apple Inc. / Apple
+    Distribution International Ltd. en tant que prestataires de paiement.
   </p>
 
-  <h2>7. Notifications push (Firebase Cloud Messaging)</h2>
+  <h2>7. Notifications push (Firebase Cloud Messaging, Android uniquement)</h2>
+  <p>
+    Cette section concerne uniquement l’application Android. L’application iPhone n’utilise pas
+    Firebase Cloud Messaging et ne reçoit de notre part aucune notification push&nbsp;; elle
+    affiche uniquement des notifications locales, par exemple à la fin d’un match, générées sur
+    l’appareil lui-même.
+  </p>
   <p>
     Nous utilisons Firebase Cloud Messaging (FCM) pour envoyer des annonces générales relatives au
     produit (par ex. des informations sur de nouvelles fonctionnalités) à toutes les installations
@@ -897,65 +1025,106 @@
     effectué avant celui-ci.
   </p>
 
-  <h2>9. Données locales et sauvegardes</h2>
+  <h2>9. Analyse IA (entraîneur IA)</h2>
   <p>
-    Les matchs, paramètres et sauvegardes manuelles restent par principe sur votre appareil ou dans
-    le dossier de sauvegarde que vous avez choisi. En complément, Android Auto-Backup (une
-    fonctionnalité système de Google) peut sauvegarder automatiquement les données de l’application
-    dans votre compte Google&nbsp;; cela est soumis aux dispositions de Google en matière de
-    protection des données et peut être désactivé dans les paramètres système d’Android.
+    Sur demande, Kortscore rédige une courte analyse d’un match ou de votre bilan. Elle repose
+    exclusivement sur des statistiques de match agrégées, c’est-à-dire des chiffres comme les points
+    gagnés, les balles de break ou les jeux de service, sans noms de joueurs.
+  </p>
+  <p>
+    <strong>Sur l’appareil&nbsp;:</strong> si un modèle d’IA embarqué est disponible sur votre
+    smartphone (Gemini Nano via Android AICore ou Apple Intelligence sur l’iPhone), l’analyse est
+    créée entièrement en local. Aucune donnée ne quitte l’appareil.
+  </p>
+  <p>
+    <strong>Dans le cloud&nbsp;:</strong> si aucun modèle de ce type n’est disponible, l’analyse
+    n’est générée dans le cloud qu’après votre consentement explicite. Au lancement d’une analyse,
+    les statistiques de match anonymes sont alors envoyées via Firebase AI Logic au modèle d’IA
+    Gemini de Google, et la réponse revient dans l’application. Vous pouvez retirer votre
+    consentement à tout moment dans les réglages de l’application sous «&nbsp;Autoriser l’analyse
+    dans le cloud&nbsp;».
+  </p>
+  <p>
+    <strong>Base juridique&nbsp;:</strong> pour l’analyse dans le cloud, votre consentement
+    (art. 6, par. 1, point a) du RGPD).<br />
+    <strong>Durée de conservation&nbsp;:</strong> l’application enregistre l’analyse terminée
+    uniquement en local sur votre appareil. Le traitement de la requête chez Google est régi par les
+    conditions de l’API Gemini et de Firebase AI Logic.<br />
+    <strong>Destinataires&nbsp;:</strong> Google LLC / Google Ireland Limited en tant que
+    sous-traitant.
   </p>
 
-  <h2>10. Intérêt pour une version iOS (site web)</h2>
+  <h2>10. Données locales et sauvegardes</h2>
   <p>
-    Sur kortscore.com, vous pouvez laisser volontairement votre adresse e-mail afin d’être
-    informé(e) si une version pour iPhone et Apple Watch venait à paraître. Sont alors
-    exclusivement enregistrées&nbsp;: l’adresse e-mail que vous avez saisie, la date de
-    l’inscription ainsi que la version linguistique de la page. Aucune adresse IP n’est
-    enregistrée.
+    Les matchs, les réglages et les sauvegardes restent en principe sur votre appareil ou dans le
+    dossier de sauvegarde que vous avez choisi. Avec Kortscore Plus, l’application peut en outre
+    écrire automatiquement des sauvegardes dans ce dossier. Si le dossier se trouve chez un service
+    cloud (p.&nbsp;ex. iCloud Drive ou Google Drive), les conditions de ce service s’appliquent.
   </p>
   <p>
-    Ces informations sont conservées dans un tableau Google (Google Sheets) au sein de notre
-    compte Google et ne sont utilisées que pour cette seule notification. Il n’y a ni envoi de
-    newsletter, ni publicité, ni transmission à des tiers.
+    Indépendamment de cela, les systèmes d’exploitation peuvent sauvegarder les données de
+    l’application&nbsp;: sur Android via la sauvegarde automatique Android dans votre compte Google,
+    sur l’iPhone via votre sauvegarde iCloud ou une sauvegarde sur ordinateur. Ces fonctions système
+    sont régies par les politiques de confidentialité de Google ou d’Apple et peuvent être
+    désactivées dans les réglages du système.
   </p>
   <p>
-    <strong>Base juridique&nbsp;:</strong> votre consentement (art. 6, par. 1, point a) du RGPD),
-    que vous accordez en cochant la case du formulaire. Vous pouvez le révoquer à tout moment et
-    sans formalité, par exemple par e-mail à l’adresse indiquée à la section «&nbsp;Contact&nbsp;»&nbsp;;
-    nous supprimerons alors votre inscription sans délai.
-  </p>
-  <p>
-    <strong>Durée de conservation&nbsp;:</strong> jusqu’à la révocation, mais au plus tard jusqu’à
-    la décision concernant une version iOS ou jusqu’à sa publication. La liste est ensuite
-    supprimée.
+    L’application Apple Watch ne conserve un match en cours ou tout juste terminé que jusqu’à ce
+    qu’il ait été transmis à votre iPhone.
   </p>
 
-  <h2>11. Aucune transmission de données à des fins publicitaires</h2>
+  <h2>11. Liste d’attente pour la version iOS (site web)</h2>
   <p>
-    Nous ne vendons aucune donnée. Au-delà des services Google mentionnés dans la présente
-    politique, aucune transmission à des tiers n’a lieu.
+    Jusqu’à la sortie de la version iOS, vous pouviez vous inscrire volontairement sur kortscore.com
+    à une liste d’attente avec votre adresse e-mail. Le formulaire n’est plus en ligne. Seuls
+    l’adresse e-mail saisie, la date d’inscription et la version linguistique de la page ont été
+    enregistrées, sans adresse IP, dans une feuille de calcul Google (Google Sheets) de notre compte
+    Google.
+  </p>
+  <p>
+    Nous utilisons ces adresses uniquement pour l’unique notification annonçant la sortie de
+    Kortscore pour iPhone et Apple Watch, puis nous supprimons la liste. Pas de newsletter, pas de
+    publicité, aucune transmission à des tiers.
+  </p>
+  <p>
+    <strong>Base juridique&nbsp;:</strong> votre consentement (art. 6, par. 1, point a) du RGPD).
+    Vous pouvez le retirer à tout moment sans formalité, par exemple par e-mail à l’adresse indiquée
+    sous «&nbsp;Contact&nbsp;»&nbsp;; nous supprimons alors immédiatement votre inscription.
   </p>
 
-  <h2>12. Destinataires et transferts vers des pays tiers</h2>
+  <h2>12. Aucune transmission de données à des fins publicitaires</h2>
+  <p>
+    Nous ne vendons aucune donnée et n’utilisons aucun service de publicité ou de suivi. Au-delà
+    des services de Google et d’Apple mentionnés dans la présente politique, aucune donnée n’est
+    transmise à des tiers.
+  </p>
+
+  <h2>13. Destinataires et transferts vers des pays tiers</h2>
   <table>
     <thead><tr><th>Service</th><th>Fournisseur</th><th>Lieu de traitement</th></tr></thead>
     <tbody>
       <tr><td>Firebase Analytics</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
       <tr><td>Firebase Crashlytics</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
       <tr><td>Cloud Firestore / Anonymous Auth</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
+      <tr><td>Firebase App Check</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
+      <tr><td>Firebase AI Logic (Gemini)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
+      <tr><td>App Attest</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>selon les conditions d’Apple</td></tr>
       <tr><td>Google Play Billing</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
-      <tr><td>Firebase Cloud Messaging</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
-      <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>selon les paramètres de votre compte Google</td></tr>
-      <tr><td>Google Sheets (intérêt iOS)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
+      <tr><td>App Store (achat intégré)</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>selon les conditions d’Apple</td></tr>
+      <tr><td>Firebase Cloud Messaging (Android uniquement)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
+      <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>selon les réglages du compte Google</td></tr>
+      <tr><td>Sauvegarde iCloud / iCloud Drive</td><td>Apple Inc.</td><td>selon vos réglages iCloud</td></tr>
+      <tr><td>Google Sheets (liste d’attente iOS)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
     </tbody>
   </table>
   <p>
-    Dans la mesure où des données sont transmises vers les États-Unis, cela repose sur les clauses
-    contractuelles types de la Commission européenne conclues avec les entités Google concernées.
+    Dans la mesure où des données sont transmises à Google aux États-Unis, cela repose sur les
+    clauses contractuelles types de la Commission européenne conclues avec les entités Google
+    concernées. Les données liées à l’App Store, à App Attest et à iCloud sont traitées par Apple
+    selon sa propre politique de confidentialité.
   </p>
 
-  <h2>13. Vos droits</h2>
+  <h2>14. Vos droits</h2>
   <p>Conformément au RGPD, vous disposez des droits suivants&nbsp;:</p>
   <ul>
     <li>Droit d’accès (art. 15 du RGPD)</li>
@@ -973,7 +1142,7 @@
     « Responsable du traitement ».
   </p>
 
-  <h2>14. Contact</h2>
+  <h2>15. Contact</h2>
   <p>
     Pour toute question relative à la protection des données, veuillez vous adresser à&nbsp;:
     <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
@@ -1004,10 +1173,9 @@
     <p>Datos completos: véase el <a href="https://kortscore.com/legal/impressum.html">Aviso legal</a>.</p>
   </div>
   <p>
-    Kortscore se desarrolla y distribuye bajo la marca «swordi.studios»
-    (paquete de Play Store <code>com.swordistudios.kortscore</code>). El responsable en el
-    sentido del Reglamento General de Protección de Datos (RGPD) es la persona/entidad arriba
-    indicada.
+    Kortscore se desarrolla y distribuye bajo la marca «swordi.studios» (en Google Play y en el
+    App Store como <code>com.swordistudios.kortscore</code>). El responsable en el sentido del
+    Reglamento General de Protección de Datos (RGPD) es la persona/entidad arriba indicada.
   </p>
 
   <h2>2. Resumen</h2>
@@ -1015,7 +1183,7 @@
     Kortscore es una aplicación de conteo de tenis y pádel para Apple Watch y Wear OS con aplicación complementaria para iPhone o smartphone Android. La aplicación funciona básicamente de forma local en el dispositivo. No
     existen <strong>cuentas de usuario</strong>, <strong>SDK publicitarios</strong>,
     <strong>datos de localización</strong> ni <strong>seguimiento entre otras aplicaciones o sitios
-    web</strong>. Los datos solo se tratan en los casos descritos a continuación. Los datos de salud (frecuencia cardíaca) solo se tratan en el reloj, véase la sección 8.
+    web</strong>. Los datos solo se tratan en los casos descritos a continuación. Los datos de salud (frecuencia cardíaca) solo se tratan en el reloj, véase la sección 8. La aplicación para Apple Watch no contiene Firebase y no transmite datos por sí misma; solo pasa los partidos terminados a su iPhone.
   </p>
 
   <h2>3. Firebase Analytics</h2>
@@ -1092,22 +1260,38 @@
     comuniques el enlace o que lo obtenga de otro modo.
   </p>
 
-  <h2>6. Google Play Billing (Kortscore Plus)</h2>
   <p>
-    La compra única dentro de la aplicación «Kortscore Plus» se gestiona íntegramente a través
-    de Google Play Billing. Los datos de pago (tarjeta de crédito, etc.) los trata
-    exclusivamente Google en el marco de su cuenta de Google; nosotros no recibimos ni
-    almacenamos <strong>ningún dato de pago</strong>. Tras una compra correcta, la aplicación
-    únicamente guarda de forma local un indicador de desbloqueo en el dispositivo.
-  </p>
-  <p>
-    <strong>Base jurídica:</strong> art. 6, apdo. 1, letra b) del RGPD (ejecución del contrato
-    de compra de la función adicional).<br />
-    <strong>Destinatarios:</strong> Google LLC / Google Ireland Limited como procesador de
-    pagos.
+    <strong>Protección contra abusos (Firebase App Check):</strong> para que solo la aplicación
+    Kortscore auténtica pueda usar la base de datos y el análisis de IA (sección 9), Firebase App
+    Check confirma la autenticidad de la aplicación en estas solicitudes. Para ello, la aplicación
+    utiliza App Attest de Apple en el iPhone y Play Integrity de Google en Android. Se transmiten
+    señales de verificación relacionadas con el dispositivo, ningún contenido de partidos. La base
+    jurídica es el art. 6, apdo. 1, letra f) del RGPD (interés legítimo en la seguridad del
+    servicio).
   </p>
 
-  <h2>7. Notificaciones push (Firebase Cloud Messaging)</h2>
+  <h2>6. Compra integrada Kortscore Plus (Google Play / App Store)</h2>
+  <p>
+    La compra integrada única «Kortscore Plus» se tramita íntegramente a través de Google Play
+    Billing en Android y a través del App Store de Apple en el iPhone. Los datos de pago (tarjeta de
+    crédito, etc.) los trata exclusivamente Google o Apple en el marco de su cuenta; no recibimos ni
+    almacenamos <strong>ningún dato de pago</strong>. La aplicación comprueba el desbloqueo con la
+    tienda correspondiente y guarda localmente únicamente si Kortscore Plus está desbloqueado.
+  </p>
+  <p>
+    <strong>Base jurídica:</strong> art. 6, apdo. 1, letra b) del RGPD (ejecución del contrato de
+    compra de la función adicional).<br />
+    <strong>Destinatarios:</strong> Google LLC / Google Ireland Limited o Apple Inc. / Apple
+    Distribution International Ltd. como proveedores de pago.
+  </p>
+
+  <h2>7. Notificaciones push (Firebase Cloud Messaging, solo Android)</h2>
+  <p>
+    Esta sección solo se aplica a la aplicación para Android. La aplicación para iPhone no utiliza
+    Firebase Cloud Messaging y no recibe notificaciones push de nuestra parte; solo muestra
+    notificaciones locales, por ejemplo al terminar un partido, que se generan en el propio
+    dispositivo.
+  </p>
   <p>
     Utilizamos Firebase Cloud Messaging (FCM) para enviar anuncios generales del producto (p.
     ej., avisos sobre nuevas funciones) a todas las instalaciones de la aplicación. Estos
@@ -1144,111 +1328,151 @@
   <h2>8. Datos de salud (frecuencia cardíaca y entrenamientos)</h2>
   <p>
     Kortscore solo trata datos de salud en el reloj, solo durante un partido en curso y solo si
-    has concedido el permiso correspondiente. Sin ese permiso, la aplicación cuenta con normalidad,
-    simplemente sin mostrar la frecuencia cardíaca.
+    usted ha concedido el permiso correspondiente. Sin ese permiso, la aplicación cuenta con
+    normalidad, simplemente sin mostrar la frecuencia cardíaca.
   </p>
   <p>
-    <strong>Apple Watch (Apple Salud / HealthKit):</strong> con tu consentimiento, la aplicación
-    inicia para cada partido un entrenamiento del tipo «Tenis». Durante el entrenamiento lee tu
-    frecuencia cardíaca y tu energía activa de Apple Salud. La frecuencia cardíaca se muestra en
+    <strong>Apple Watch (Apple Salud / HealthKit):</strong> con su consentimiento, la aplicación
+    inicia para cada partido un entrenamiento del tipo «Tenis». Durante el entrenamiento lee su
+    frecuencia cardíaca y su energía activa de Apple Salud. La frecuencia cardíaca se muestra en
     directo en la pantalla del marcador; la energía activa no se muestra. Al terminar el partido, la
     aplicación guarda el entrenamiento en Apple Salud. Los valores de frecuencia cardíaca y de
-    energía que tu reloj registró durante el entrenamiento los asocia la propia Apple Salud a ese
+    energía que su reloj registró durante el entrenamiento los asocia la propia Apple Salud a ese
     entrenamiento.
   </p>
   <p>
     <strong>iPhone:</strong> la aplicación para iPhone solo solicita el permiso de Apple Salud para
-    abrir Kortscore en tu Apple Watch cuando inicias un partido desde el iPhone. No lee ni escribe
-    ningún dato de salud.
+    abrir Kortscore en su Apple Watch cuando usted inicia un partido desde el iPhone. No lee ni
+    escribe ningún dato de salud.
   </p>
   <p>
-    <strong>Wear OS:</strong> con tu consentimiento (permiso «Sensores corporales» o, a partir de
+    <strong>Wear OS:</strong> con su consentimiento (permiso «Sensores corporales» o, a partir de
     Wear OS 6, «Frecuencia cardíaca»), la aplicación lee la frecuencia cardíaca del reloj a través
     de Health Services y la muestra en directo durante el partido. Kortscore no utiliza Health
     Connect y no escribe ningún dato de salud.
   </p>
   <p>
-    <strong>Sin almacenamiento ni transmisión:</strong> Kortscore no guarda tu frecuencia cardíaca
+    <strong>Sin almacenamiento ni transmisión:</strong> Kortscore no guarda su frecuencia cardíaca
     en la aplicación ni la incluye en el historial de partidos, las copias de seguridad, el live
-    ticker o el análisis del entrenador IA. Los datos de salud no se envían ni a tu smartphone, ni a
+    ticker o el análisis del entrenador IA. Los datos de salud no se envían ni a su smartphone, ni a
     nosotros, ni a Google (Firebase), ni a ningún otro tercero. Solo el último valor medido se
     mantiene en la memoria del reloj y se descarta al terminar el partido. Los datos de salud nunca
     se utilizan con fines de publicidad, marketing o elaboración de perfiles, y Kortscore no los
     guarda en iCloud. Los entrenamientos guardados en Apple Salud los gestiona Apple Salud, que
-    puede sincronizarlos con tu iPhone según las condiciones propias de Apple.
+    puede sincronizarlos con su iPhone según las condiciones propias de Apple.
   </p>
   <p>
-    <strong>Retirada del permiso:</strong> puedes retirar el acceso en cualquier momento: para Apple
+    <strong>Retirada del permiso:</strong> puede retirar el acceso en cualquier momento: para Apple
     Salud en el iPhone en Ajustes → Salud → Acceso a datos y dispositivos → Kortscore, en Wear OS en
-    Ajustes → Aplicaciones → Kortscore → Permisos. Puedes eliminar en cualquier momento en la app
+    Ajustes → Aplicaciones → Kortscore → Permisos. Puede eliminar en cualquier momento en la app
     Salud los entrenamientos guardados por Kortscore.
   </p>
   <p>
-    <strong>Base jurídica:</strong> tu consentimiento explícito (art. 9, apdo. 2, letra a), en
-    relación con el art. 6, apdo. 1, letra a) del RGPD), que otorgas a través del diálogo de
+    <strong>Base jurídica:</strong> su consentimiento explícito (art. 9, apdo. 2, letra a), en
+    relación con el art. 6, apdo. 1, letra a) del RGPD), que usted otorga a través del diálogo de
     permisos del sistema operativo. La retirada no afecta a la licitud del tratamiento realizado
     antes de ella.
   </p>
 
-  <h2>9. Datos locales y copias de seguridad</h2>
+  <h2>9. Análisis de IA (entrenador IA)</h2>
   <p>
-    Los partidos, los ajustes y las copias de seguridad manuales permanecen, por norma
-    general, en su dispositivo o en la carpeta de copia de seguridad que haya elegido.
-    Además, Android Auto-Backup (una función del sistema de Google) puede guardar
-    automáticamente los datos de la aplicación en su cuenta de Google; esto se rige por las
-    condiciones de privacidad de Google y puede desactivarse en los ajustes del sistema
-    Android.
+    Si usted lo solicita, Kortscore redacta un breve análisis de un partido o de su balance. Se basa
+    exclusivamente en estadísticas de partido agregadas, es decir, cifras como puntos ganados,
+    bolas de break o juegos de servicio, sin nombres de jugadores.
+  </p>
+  <p>
+    <strong>En el dispositivo:</strong> si en su smartphone hay disponible un modelo de IA en el
+    dispositivo (Gemini Nano mediante Android AICore o Apple Intelligence en el iPhone), el análisis
+    se genera de forma totalmente local. Ningún dato sale del dispositivo.
+  </p>
+  <p>
+    <strong>En la nube:</strong> si no hay disponible un modelo de este tipo, el análisis solo se
+    genera en la nube tras su consentimiento expreso. En ese caso, al iniciar un análisis, las
+    estadísticas anónimas del partido se envían a través de Firebase AI Logic al modelo de IA Gemini
+    de Google, y la respuesta vuelve a la aplicación. Puede retirar su consentimiento en cualquier
+    momento en los ajustes de la aplicación, en «Permitir análisis en la nube».
+  </p>
+  <p>
+    <strong>Base jurídica:</strong> para el análisis en la nube, su consentimiento (art. 6, apdo. 1,
+    letra a) del RGPD).<br />
+    <strong>Plazo de conservación:</strong> la aplicación guarda el análisis terminado solo
+    localmente en su dispositivo. El tratamiento de la solicitud en Google se rige por las
+    condiciones de la API de Gemini y de Firebase AI Logic.<br />
+    <strong>Destinatarios:</strong> Google LLC / Google Ireland Limited como encargado del
+    tratamiento.
   </p>
 
-  <h2>10. Interés en una versión para iOS (sitio web)</h2>
+  <h2>10. Datos locales y copias de seguridad</h2>
   <p>
-    En kortscore.com puede dejar voluntariamente su dirección de correo electrónico para que le
-    avisemos si sale una versión para iPhone y Apple Watch. Solo se guardan la dirección de
-    correo electrónico que introduce, la fecha del registro y el idioma de la página. No se
-    guarda ninguna dirección IP.
+    Los partidos, los ajustes y las copias de seguridad permanecen en principio en su dispositivo o
+    en la carpeta de copias de seguridad que usted haya elegido. Con Kortscore Plus, la aplicación
+    puede además escribir copias de seguridad automáticamente en esa carpeta. Si la carpeta está en
+    un servicio en la nube (p. ej., iCloud Drive o Google Drive), se aplican las condiciones de ese
+    servicio.
   </p>
   <p>
-    Los datos se almacenan en una hoja de cálculo de Google (Google Sheets) dentro de nuestra
-    cuenta de Google y se usan exclusivamente para este aviso. No hay envío de newsletter, ni
-    publicidad, ni cesión a terceros.
+    Con independencia de ello, los sistemas operativos pueden hacer copias de seguridad de los
+    datos de la aplicación: en Android mediante la copia de seguridad automática de Android en su
+    cuenta de Google, en el iPhone mediante su copia de seguridad de iCloud o una copia en un
+    ordenador. Estas funciones del sistema se rigen por las políticas de privacidad de Google o de
+    Apple y pueden desactivarse en los ajustes del sistema.
   </p>
   <p>
-    <strong>Base jurídica:</strong> su consentimiento (art. 6, apdo. 1, letra a) del RGPD), que
-    otorga al marcar la casilla del formulario. Puede revocarlo en cualquier momento y sin
-    ninguna formalidad, por ejemplo escribiendo a la dirección indicada en «Contacto»;
-    eliminaremos su registro de inmediato.
-  </p>
-  <p>
-    <strong>Plazo de conservación:</strong> hasta la revocación, y como máximo hasta que se decida
-    sobre una versión para iOS o hasta su publicación. Después, la lista se elimina.
+    La aplicación para Apple Watch solo conserva un partido en curso o recién terminado hasta que se
+    ha transferido a su iPhone.
   </p>
 
-  <h2>11. Sin cesión de datos con fines publicitarios</h2>
+  <h2>11. Lista de espera para la versión de iOS (sitio web)</h2>
   <p>
-    No vendemos datos. Más allá de los servicios de Google mencionados en esta política, no se
-    produce ninguna cesión a terceros.
+    Hasta la publicación de la versión de iOS, usted podía inscribirse voluntariamente en una lista
+    de espera en kortscore.com con su dirección de correo electrónico. El formulario ya no está en
+    línea. Solo se guardaron la dirección de correo electrónico introducida, la fecha de la
+    inscripción y la versión lingüística de la página, sin dirección IP, en una hoja de cálculo de
+    Google (Google Sheets) de nuestra cuenta de Google.
+  </p>
+  <p>
+    Utilizamos las direcciones únicamente para el aviso de que Kortscore para iPhone y Apple Watch
+    ya está disponible, y después eliminamos la lista. No hay boletín, ni publicidad, ni cesión a
+    terceros.
+  </p>
+  <p>
+    <strong>Base jurídica:</strong> su consentimiento (art. 6, apdo. 1, letra a) del RGPD). Puede
+    retirarlo en cualquier momento sin formalidades, por ejemplo por correo electrónico a la
+    dirección indicada en «Contacto»; en ese caso eliminaremos su inscripción de inmediato.
   </p>
 
-  <h2>12. Destinatarios y transferencias a terceros países</h2>
+  <h2>12. Sin cesión de datos con fines publicitarios</h2>
+  <p>
+    No vendemos datos ni utilizamos servicios de publicidad o seguimiento. Más allá de los servicios
+    de Google y Apple mencionados en esta política, no se ceden datos a terceros.
+  </p>
+
+  <h2>13. Destinatarios y transferencias a terceros países</h2>
   <table>
     <thead><tr><th>Servicio</th><th>Proveedor</th><th>Lugar de tratamiento</th></tr></thead>
     <tbody>
       <tr><td>Firebase Analytics</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
       <tr><td>Firebase Crashlytics</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
       <tr><td>Cloud Firestore / Anonymous Auth</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
+      <tr><td>Firebase App Check</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
+      <tr><td>Firebase AI Logic (Gemini)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
+      <tr><td>App Attest</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>según las condiciones de Apple</td></tr>
       <tr><td>Google Play Billing</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
-      <tr><td>Firebase Cloud Messaging</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
-      <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>según los ajustes de su cuenta de Google</td></tr>
-      <tr><td>Google Sheets (interés en iOS)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
+      <tr><td>App Store (compra integrada)</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>según las condiciones de Apple</td></tr>
+      <tr><td>Firebase Cloud Messaging (solo Android)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
+      <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>según los ajustes de la cuenta de Google</td></tr>
+      <tr><td>Copia de seguridad de iCloud / iCloud Drive</td><td>Apple Inc.</td><td>según sus ajustes de iCloud</td></tr>
+      <tr><td>Google Sheets (lista de espera de iOS)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
     </tbody>
   </table>
   <p>
-    En la medida en que se transfieran datos a EE. UU., dicha transferencia se basa en las
-    cláusulas contractuales tipo de la Comisión Europea con las respectivas sociedades de
-    Google.
+    En la medida en que se transfieran datos a Google en EE. UU., dicha transferencia se basa en las
+    cláusulas contractuales tipo de la Comisión Europea con las respectivas sociedades de Google.
+    Los datos relacionados con el App Store, App Attest e iCloud los trata Apple conforme a su
+    propia política de privacidad.
   </p>
 
-  <h2>13. Sus derechos</h2>
+  <h2>14. Sus derechos</h2>
   <p>En virtud del RGPD, tiene los siguientes derechos:</p>
   <ul>
     <li>Acceso (art. 15 del RGPD)</li>
@@ -1265,7 +1489,7 @@
     apartado «Responsable del tratamiento».
   </p>
 
-  <h2>14. Contacto</h2>
+  <h2>15. Contacto</h2>
   <p>
     Si tiene preguntas sobre privacidad, escriba a:
     <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
@@ -1296,9 +1520,10 @@
     <p>Per i dati completi, vedere le <a href="https://kortscore.com/legal/impressum.html">note legali</a>.</p>
   </div>
   <p>
-    Kortscore viene sviluppata e distribuita con il marchio «swordi.studios»
-    (pacchetto Play Store <code>com.swordistudios.kortscore</code>). Il titolare del trattamento
-    ai sensi del Regolamento generale sulla protezione dei dati (GDPR) è la persona/società sopra indicata.
+    Kortscore viene sviluppata e distribuita con il marchio «swordi.studios» (su Google Play e
+    nell’App Store come <code>com.swordistudios.kortscore</code>). Il titolare del trattamento ai
+    sensi del Regolamento generale sulla protezione dei dati (GDPR) è la persona/società sopra
+    indicata.
   </p>
 
   <h2>2. Panoramica</h2>
@@ -1306,7 +1531,7 @@
     Kortscore è un’app per il conteggio dei punti a tennis e padel per Apple Watch e Wear OS con app companion per iPhone o smartphone Android. L’app funziona in linea di principio localmente sul dispositivo. Non sono presenti
     <strong>account utente</strong>, <strong>SDK pubblicitari</strong>, <strong>dati di
     geolocalizzazione</strong> né <strong>tracciamento tra app o siti web diversi</strong>. I dati
-    vengono trattati solo nei casi descritti di seguito. I dati sanitari (frequenza cardiaca) vengono trattati solo sull’orologio, vedi la sezione 8.
+    vengono trattati solo nei casi descritti di seguito. I dati sanitari (frequenza cardiaca) vengono trattati solo sull’orologio, vedi la sezione 8. L’app per Apple Watch non contiene Firebase e non trasmette dati di propria iniziativa; passa solo le partite concluse al vostro iPhone.
   </p>
 
   <h2>3. Firebase Analytics</h2>
@@ -1379,22 +1604,37 @@
     ne venga altrimenti in possesso.
   </p>
 
-  <h2>6. Google Play Billing (Kortscore Plus)</h2>
   <p>
-    L’acquisto in-app una tantum «Kortscore Plus» viene gestito interamente tramite Google Play
-    Billing. I dati di pagamento (carta di credito, ecc.) sono trattati esclusivamente da Google
-    nell’ambito del vostro account Google; noi non riceviamo né conserviamo
-    <strong>alcun dato di pagamento</strong>. Dopo un acquisto andato a buon fine, l’app memorizza
-    unicamente un flag di sblocco locale sul dispositivo.
-  </p>
-  <p>
-    <strong>Base giuridica:</strong> art. 6, par. 1, lett. b) del GDPR (esecuzione del contratto
-    di acquisto della funzione aggiuntiva).<br />
-    <strong>Destinatari:</strong> Google LLC / Google Ireland Limited in qualità di gestore dei
-    pagamenti.
+    <strong>Protezione dagli abusi (Firebase App Check):</strong> affinché solo l’autentica app
+    Kortscore possa usare il database e l’analisi IA (sezione 9), Firebase App Check conferma
+    l’autenticità dell’app in queste richieste. A tal fine l’app usa App Attest di Apple su iPhone e
+    Play Integrity di Google su Android. Vengono trasmessi segnali di verifica legati al
+    dispositivo, nessun contenuto delle partite. La base giuridica è l’art. 6, par. 1, lett. f) del
+    GDPR (interesse legittimo alla sicurezza del servizio).
   </p>
 
-  <h2>7. Notifiche push (Firebase Cloud Messaging)</h2>
+  <h2>6. Acquisto in-app Kortscore Plus (Google Play / App Store)</h2>
+  <p>
+    L’acquisto in-app una tantum «Kortscore Plus» viene gestito interamente tramite Google Play
+    Billing su Android e interamente tramite l’App Store di Apple su iPhone. I dati di pagamento
+    (carta di credito, ecc.) sono trattati esclusivamente da Google o da Apple nell’ambito del
+    vostro account; non riceviamo né conserviamo <strong>alcun dato di pagamento</strong>. L’app
+    verifica lo sblocco presso il rispettivo store e salva localmente solo se Kortscore Plus è
+    sbloccato.
+  </p>
+  <p>
+    <strong>Base giuridica:</strong> art. 6, par. 1, lett. b) del GDPR (esecuzione del contratto di
+    acquisto della funzione aggiuntiva).<br />
+    <strong>Destinatari:</strong> Google LLC / Google Ireland Limited oppure Apple Inc. / Apple
+    Distribution International Ltd. in qualità di fornitori del servizio di pagamento.
+  </p>
+
+  <h2>7. Notifiche push (Firebase Cloud Messaging, solo Android)</h2>
+  <p>
+    Questa sezione riguarda solo l’app Android. L’app per iPhone non utilizza Firebase Cloud
+    Messaging e non riceve da noi notifiche push; mostra solo notifiche locali, ad esempio alla fine
+    di una partita, generate sul dispositivo stesso.
+  </p>
   <p>
     Utilizziamo Firebase Cloud Messaging (FCM) per inviare annunci generali sul prodotto (ad es.
     informazioni su nuove funzioni) a tutte le installazioni dell’app. Questi annunci vengono
@@ -1430,110 +1670,149 @@
   <h2>8. Dati sanitari (frequenza cardiaca e allenamenti)</h2>
   <p>
     Kortscore tratta dati sanitari solo sull’orologio, solo durante una partita in corso e solo se
-    hai concesso l’autorizzazione corrispondente. Senza autorizzazione l’app conta normalmente,
+    avete concesso l’autorizzazione corrispondente. Senza autorizzazione l’app conta normalmente,
     semplicemente senza mostrare la frequenza cardiaca.
   </p>
   <p>
-    <strong>Apple Watch (Apple Salute / HealthKit):</strong> con il tuo consenso, l’app avvia per
-    ogni partita un allenamento di tipo “Tennis”. Durante l’allenamento legge la tua frequenza
-    cardiaca e la tua energia attiva da Apple Salute. La frequenza cardiaca viene mostrata in
+    <strong>Apple Watch (Apple Salute / HealthKit):</strong> con il vostro consenso, l’app avvia per
+    ogni partita un allenamento di tipo “Tennis”. Durante l’allenamento legge la vostra frequenza
+    cardiaca e la vostra energia attiva da Apple Salute. La frequenza cardiaca viene mostrata in
     diretta sulla schermata del punteggio, l’energia attiva non viene mostrata. Al termine della
     partita, l’app salva l’allenamento in Apple Salute. I valori di frequenza cardiaca e di energia
-    che il tuo orologio ha rilevato durante l’allenamento vengono associati all’allenamento da
+    che il vostro orologio ha rilevato durante l’allenamento vengono associati all’allenamento da
     Apple Salute stessa.
   </p>
   <p>
     <strong>iPhone:</strong> l’app per iPhone richiede l’autorizzazione di Apple Salute solo per
-    aprire Kortscore sul tuo Apple Watch quando avvii una partita dall’iPhone. Non legge né scrive
-    alcun dato sanitario.
+    aprire Kortscore sul vostro Apple Watch quando avviate una partita dall’iPhone. Non legge né
+    scrive alcun dato sanitario.
   </p>
   <p>
-    <strong>Wear OS:</strong> con il tuo consenso (autorizzazione “Sensori del corpo” oppure, da
+    <strong>Wear OS:</strong> con il vostro consenso (autorizzazione “Sensori del corpo” oppure, da
     Wear OS 6, “Frequenza cardiaca”), l’app legge la frequenza cardiaca dell’orologio tramite Health
     Services e la mostra in diretta durante la partita. Kortscore non utilizza Health Connect e non
     scrive alcun dato sanitario.
   </p>
   <p>
-    <strong>Nessuna memorizzazione, nessuna trasmissione:</strong> Kortscore non salva la tua
+    <strong>Nessuna memorizzazione, nessuna trasmissione:</strong> Kortscore non salva la vostra
     frequenza cardiaca nell’app e non la inserisce né nello storico delle partite, né nei backup, né
     nel live ticker, né nell’analisi dell’allenatore IA. I dati sanitari non vengono trasmessi né al
-    tuo smartphone, né a noi, né a Google (Firebase), né ad altri terzi. Solo l’ultimo valore
+    vostro smartphone, né a noi, né a Google (Firebase), né ad altri terzi. Solo l’ultimo valore
     rilevato viene mantenuto nella memoria dell’orologio e viene eliminato al termine della partita.
     I dati sanitari non vengono mai utilizzati per pubblicità, marketing o profilazione, e Kortscore
     non li salva in iCloud. Gli allenamenti salvati in Apple Salute sono gestiti da Apple Salute, che
-    può sincronizzarli con il tuo iPhone secondo le condizioni proprie di Apple.
+    può sincronizzarli con il vostro iPhone secondo le condizioni proprie di Apple.
   </p>
   <p>
-    <strong>Revoca dell’autorizzazione:</strong> puoi revocare l’accesso in qualsiasi momento: per
+    <strong>Revoca dell’autorizzazione:</strong> potete revocare l’accesso in qualsiasi momento: per
     Apple Salute sull’iPhone in Impostazioni → Salute → Accesso ai dati e dispositivi → Kortscore, su
-    Wear OS in Impostazioni → App → Kortscore → Autorizzazioni. Puoi eliminare in qualsiasi momento
-    nell’app Salute gli allenamenti salvati da Kortscore.
+    Wear OS in Impostazioni → App → Kortscore → Autorizzazioni. Potete eliminare in qualsiasi
+    momento nell’app Salute gli allenamenti salvati da Kortscore.
   </p>
   <p>
-    <strong>Base giuridica:</strong> il tuo consenso esplicito (art. 9, par. 2, lett. a), in
-    combinato disposto con l’art. 6, par. 1, lett. a) del GDPR), che fornisci tramite la finestra di
+    <strong>Base giuridica:</strong> il vostro consenso esplicito (art. 9, par. 2, lett. a), in
+    combinato disposto con l’art. 6, par. 1, lett. a) del GDPR), che fornite tramite la finestra di
     autorizzazione del sistema operativo. La revoca non pregiudica la liceità del trattamento
     effettuato prima della stessa.
   </p>
 
-  <h2>9. Dati locali e backup</h2>
+  <h2>9. Analisi IA (allenatore IA)</h2>
   <p>
-    I match, le impostazioni e i backup manuali rimangono in linea di principio sul vostro
-    dispositivo ovvero nella cartella di backup da voi scelta. Inoltre, Android Auto-Backup
-    (una funzione di sistema di Google) può salvare automaticamente i dati dell’app nel vostro
-    account Google; ciò è soggetto alle disposizioni sulla privacy di Google e può essere
-    disattivato nelle impostazioni di sistema di Android.
+    Su vostra richiesta, Kortscore scrive una breve analisi di una partita o del vostro bilancio. Si
+    basa esclusivamente su statistiche aggregate delle partite, cioè numeri come punti vinti, palle
+    break o turni di servizio, senza nomi dei giocatori.
+  </p>
+  <p>
+    <strong>Sul dispositivo:</strong> se sul vostro smartphone è disponibile un modello di IA sul
+    dispositivo (Gemini Nano tramite Android AICore oppure Apple Intelligence su iPhone), l’analisi
+    viene creata interamente in locale. Nessun dato lascia il dispositivo.
+  </p>
+  <p>
+    <strong>Nel cloud:</strong> se non è disponibile un modello di questo tipo, l’analisi viene
+    generata nel cloud solo dopo il vostro consenso esplicito. All’avvio di un’analisi, le
+    statistiche anonime delle partite vengono allora inviate tramite Firebase AI Logic al modello di
+    IA Gemini di Google, e la risposta torna nell’app. Potete revocare il consenso in qualsiasi
+    momento nelle impostazioni dell’app, alla voce «Consenti analisi nel cloud».
+  </p>
+  <p>
+    <strong>Base giuridica:</strong> per l’analisi nel cloud, il vostro consenso (art. 6, par. 1,
+    lett. a) del GDPR).<br />
+    <strong>Durata di conservazione:</strong> l’app salva l’analisi completata solo in locale sul
+    vostro dispositivo. Il trattamento della richiesta presso Google è disciplinato dalle condizioni
+    dell’API Gemini e di Firebase AI Logic.<br />
+    <strong>Destinatari:</strong> Google LLC / Google Ireland Limited in qualità di responsabile del
+    trattamento.
   </p>
 
-  <h2>10. Interesse per una versione iOS (sito web)</h2>
+  <h2>10. Dati locali e backup</h2>
   <p>
-    Su kortscore.com potete lasciare volontariamente il vostro indirizzo e-mail per essere
-    avvisati qualora venisse pubblicata una versione per iPhone e Apple Watch. Vengono così
-    memorizzati esclusivamente l’indirizzo e-mail inserito, la data della registrazione e la
-    versione linguistica della pagina. Non viene memorizzato alcun indirizzo IP.
+    Partite, impostazioni e backup restano in linea di principio sul vostro dispositivo o nella
+    cartella di backup che avete scelto. Con Kortscore Plus l’app può inoltre scrivere
+    automaticamente i backup in questa cartella. Se la cartella si trova presso un servizio cloud
+    (ad es. iCloud Drive o Google Drive), si applicano le condizioni di tale servizio.
   </p>
   <p>
-    I dati vengono conservati in un foglio Google (Google Sheets) all’interno del nostro account
-    Google e utilizzati esclusivamente per questa singola notifica. Non viene inviata alcuna
-    newsletter, non viene fatta alcuna pubblicità e non avviene alcuna cessione a terzi.
+    Indipendentemente da ciò, i sistemi operativi possono eseguire il backup dei dati dell’app: su
+    Android tramite il backup automatico di Android nel vostro account Google, su iPhone tramite il
+    vostro backup iCloud o un backup su computer. Queste funzioni di sistema sono disciplinate dalle
+    informative sulla privacy di Google o di Apple e possono essere disattivate nelle impostazioni
+    di sistema.
   </p>
   <p>
-    <strong>Base giuridica:</strong> il vostro consenso (art. 6, par. 1, lett. a) del GDPR), che
-    fornite selezionando la casella nel modulo. Potete revocarlo in qualsiasi momento e senza
-    formalità, ad esempio scrivendo all’indirizzo indicato al punto «Contatto»; il vostro dato
-    verrà quindi cancellato tempestivamente.
-  </p>
-  <p>
-    <strong>Durata di conservazione:</strong> fino alla revoca, ma al più tardi fino alla
-    decisione su una versione iOS o fino alla sua pubblicazione. Successivamente l’elenco viene
-    cancellato.
+    L’app per Apple Watch conserva una partita in corso o appena conclusa solo finché non è stata
+    trasferita al vostro iPhone.
   </p>
 
-  <h2>11. Nessuna cessione di dati a fini pubblicitari</h2>
+  <h2>11. Lista d’attesa per la versione iOS (sito web)</h2>
   <p>
-    Non vendiamo alcun dato. Al di là dei servizi Google indicati nella presente informativa,
-    non avviene alcuna cessione a terzi.
+    Fino all’uscita della versione iOS potevate iscrivervi volontariamente a una lista d’attesa su
+    kortscore.com con il vostro indirizzo e-mail. Il modulo non è più online. Sono stati salvati
+    esclusivamente l’indirizzo e-mail inserito, la data dell’iscrizione e la versione linguistica
+    della pagina, senza indirizzo IP, in un foglio Google (Google Sheets) nel nostro account Google.
+  </p>
+  <p>
+    Utilizziamo gli indirizzi solo per l’unica notifica dell’uscita di Kortscore per iPhone e Apple
+    Watch e poi cancelliamo la lista. Nessuna newsletter, nessuna pubblicità e nessuna cessione a
+    terzi.
+  </p>
+  <p>
+    <strong>Base giuridica:</strong> il vostro consenso (art. 6, par. 1, lett. a) del GDPR). Potete
+    revocarlo in qualsiasi momento senza formalità, ad esempio via e-mail all’indirizzo indicato in
+    «Contatto»; cancelleremo quindi immediatamente la vostra iscrizione.
   </p>
 
-  <h2>12. Destinatari e trasferimento verso paesi terzi</h2>
+  <h2>12. Nessuna cessione di dati a fini pubblicitari</h2>
+  <p>
+    Non vendiamo dati e non utilizziamo servizi di pubblicità o di tracciamento. Oltre ai servizi di
+    Google e Apple indicati nella presente informativa, non avviene alcuna cessione a terzi.
+  </p>
+
+  <h2>13. Destinatari e trasferimento verso paesi terzi</h2>
   <table>
     <thead><tr><th>Servizio</th><th>Fornitore</th><th>Luogo di trattamento</th></tr></thead>
     <tbody>
       <tr><td>Firebase Analytics</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
       <tr><td>Firebase Crashlytics</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
       <tr><td>Cloud Firestore / Anonymous Auth</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
+      <tr><td>Firebase App Check</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
+      <tr><td>Firebase AI Logic (Gemini)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
+      <tr><td>App Attest</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>secondo le condizioni di Apple</td></tr>
       <tr><td>Google Play Billing</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
-      <tr><td>Firebase Cloud Messaging</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
-      <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>secondo le impostazioni del vostro account Google</td></tr>
-      <tr><td>Google Sheets (interesse iOS)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
+      <tr><td>App Store (acquisto in-app)</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>secondo le condizioni di Apple</td></tr>
+      <tr><td>Firebase Cloud Messaging (solo Android)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
+      <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>secondo le impostazioni dell’account Google</td></tr>
+      <tr><td>Backup iCloud / iCloud Drive</td><td>Apple Inc.</td><td>secondo le vostre impostazioni iCloud</td></tr>
+      <tr><td>Google Sheets (lista d’attesa iOS)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
     </tbody>
   </table>
   <p>
-    Nella misura in cui i dati vengono trasferiti negli USA, ciò si basa sulle clausole
-    contrattuali standard della Commissione UE con le rispettive società di Google.
+    Nella misura in cui i dati vengono trasferiti a Google negli USA, ciò si basa sulle clausole
+    contrattuali standard della Commissione UE con le rispettive società di Google. I dati relativi
+    ad App Store, App Attest e iCloud sono trattati da Apple secondo la propria informativa sulla
+    privacy.
   </p>
 
-  <h2>13. I vostri diritti</h2>
+  <h2>14. I vostri diritti</h2>
   <p>Ai sensi del GDPR vi spettano i seguenti diritti:</p>
   <ul>
     <li>Accesso (art. 15 GDPR)</li>
@@ -1550,7 +1829,7 @@
     «Titolare del trattamento».
   </p>
 
-  <h2>14. Contatto</h2>
+  <h2>15. Contatto</h2>
   <p>
     Per domande in materia di privacy, contattateci all’indirizzo:
     <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
