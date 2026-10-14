@@ -149,7 +149,7 @@
   </p>
 
   <h1>Datenschutzerklärung</h1>
-  <p class="updated">Stand: 13. Oktober 2026</p>
+  <p class="updated">Stand: 14. Oktober 2026</p>
 
   <h2>1. Verantwortlicher</h2>
   <div class="card">
@@ -254,7 +254,7 @@
     der Sicherheit des Dienstes).
   </p>
 
-  <h2>6. In-App-Kauf Kortscore Plus (Google Play / App Store)</h2>
+  <h2>6. In-App-Kauf Kortscore Plus (Google Play / App Store) &amp; Aktionscodes</h2>
   <p>
     Der einmalige In-App-Kauf „Kortscore Plus“ wird auf Android vollständig über Google Play
     Billing und auf dem iPhone vollständig über den App Store von Apple abgewickelt.
@@ -268,6 +268,30 @@
     die Zusatzfunktion).<br />
     <strong>Empfänger:</strong> Google LLC / Google Ireland Limited bzw. Apple Inc. / Apple
     Distribution International Ltd. als Zahlungsabwickler.
+  </p>
+  <p>
+    <strong>Aktionscodes (Firebase Remote Config):</strong> In der Kaufansicht können Sie über
+    „Code einlösen“ einen Vereins- oder Einladungscode eingeben oder einen Link bzw. QR-Code der
+    Form <code>https://share.kortscore.com/plus?code=…</code> öffnen. Ein gültiger Code bewirkt,
+    dass Ihnen ein anderes, günstigeres Kortscore-Plus-Produkt angeboten wird. Welche Codes gültig
+    sind, laden wir über Firebase Remote Config (Google) auf das Gerät: Die App ruft die
+    Konfiguration höchstens alle 12 Stunden sowie bei Eingabe eines Codes ab. Dafür verarbeitet
+    Google die Firebase-Installations-ID sowie grundlegende Geräte- und App-Informationen
+    (App-Version, Betriebssystem, Sprache, Land). Der eingegebene Code wird ausschließlich
+    <strong>lokal auf dem Gerät</strong> geprüft und dabei weder an uns noch an Google übermittelt.
+    Nur wenn ein Code gültig ist, protokolliert Firebase Analytics (nur in Release-Builds, siehe
+    Abschnitt 3) das Ereignis „promo_code_redeemed“ mit dem Code, dem Preismodell (Tier) und der
+    Quelle (manuell/Link); ungültige Eingaben werden nie übermittelt.
+  </p>
+  <p>
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der
+    Bereitstellung und Steuerung von Vereins- und Aktionspreisen ohne App-Update); soweit Sie
+    einen Code aktiv einlösen, zusätzlich Art. 6 Abs. 1 lit. b DSGVO (von Ihnen gewünschte
+    Funktion).<br />
+    <strong>Speicherdauer:</strong> gemäß den Standard-Aufbewahrungsfristen von Firebase Remote
+    Config bzw. Firebase Installations (siehe Google-Dokumentation); für das Analytics-Ereignis
+    gelten die Fristen aus Abschnitt 3.<br />
+    <strong>Empfänger:</strong> Google LLC / Google Ireland Limited als Auftragsverarbeiter.
   </p>
 
   <h2>7. Push-Benachrichtigungen (Firebase Cloud Messaging, nur Android)</h2>
@@ -437,6 +461,7 @@
       <tr><td>App Attest</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>gemäß den Bedingungen von Apple</td></tr>
       <tr><td>Google Play Billing</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
       <tr><td>App Store (In-App-Kauf)</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>gemäß den Bedingungen von Apple</td></tr>
+      <tr><td>Firebase Remote Config</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
       <tr><td>Firebase Cloud Messaging (nur Android)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
       <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>gemäß Google-Kontoeinstellungen</td></tr>
       <tr><td>iCloud-Backup / iCloud Drive</td><td>Apple Inc.</td><td>gemäß Ihren iCloud-Einstellungen</td></tr>
@@ -484,7 +509,7 @@
   </p>
 
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: October 13, 2026</p>
+  <p class="updated">Last updated: October 14, 2026</p>
 
   <h2>1. Controller (Data Controller)</h2>
   <div class="card">
@@ -584,7 +609,7 @@
     service).
   </p>
 
-  <h2>6. In-app purchase Kortscore Plus (Google Play / App Store)</h2>
+  <h2>6. In-app purchase Kortscore Plus (Google Play / App Store) &amp; promo codes</h2>
   <p>
     The one-time in-app purchase “Kortscore Plus” is processed entirely through Google Play Billing
     on Android and entirely through Apple’s App Store on iPhone. Payment details (credit card,
@@ -597,6 +622,28 @@
     add-on feature).<br />
     <strong>Recipients:</strong> Google LLC / Google Ireland Limited or Apple Inc. / Apple
     Distribution International Ltd. as payment processor.
+  </p>
+  <p>
+    <strong>Promo codes (Firebase Remote Config):</strong> On the paywall you can use “Redeem
+    code” to enter a club or invitation code, or open a link or QR code of the form
+    <code>https://share.kortscore.com/plus?code=…</code>. A valid code makes the paywall offer a
+    different, cheaper Kortscore Plus product. We download the list of valid codes to the device
+    via Firebase Remote Config (Google): the app fetches the configuration at most every 12 hours
+    and whenever you enter a code. To deliver it, Google processes the Firebase Installation ID
+    and basic device and app information (app version, operating system, language, country). The
+    code you enter is checked <strong>locally on the device only</strong> and is not sent to us or
+    to Google for this purpose. Only if a code is valid does Firebase Analytics (release builds
+    only, see section 3) log a “promo_code_redeemed” event with the code, the tier and the source
+    (manual/link); invalid entries are never transmitted.
+  </p>
+  <p>
+    <strong>Legal basis:</strong> Art. 6(1)(f) GDPR (legitimate interest in providing and
+    controlling club and promotional pricing without an app update); where you actively redeem a
+    code, additionally Art. 6(1)(b) GDPR (a feature you requested).<br />
+    <strong>Retention:</strong> per the standard retention settings of Firebase Remote Config and
+    Firebase Installations (see Google’s documentation); the Analytics event is subject to the
+    retention described in section 3.<br />
+    <strong>Recipients:</strong> Google LLC / Google Ireland Limited as processor.
   </p>
 
   <h2>7. Push notifications (Firebase Cloud Messaging, Android only)</h2>
@@ -759,6 +806,7 @@
       <tr><td>App Attest</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>per Apple’s terms</td></tr>
       <tr><td>Google Play Billing</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
       <tr><td>App Store (in-app purchase)</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>per Apple’s terms</td></tr>
+      <tr><td>Firebase Remote Config</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
       <tr><td>Firebase Cloud Messaging (Android only)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
       <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>per Google account settings</td></tr>
       <tr><td>iCloud backup / iCloud Drive</td><td>Apple Inc.</td><td>per your iCloud settings</td></tr>
@@ -806,7 +854,7 @@
 
   <h1>Politique de confidentialité</h1>
   <p><em>Cette traduction est fournie à titre d’information. Seule la version allemande fait foi.</em></p>
-  <p class="updated">Mise à jour : 13 octobre 2026</p>
+  <p class="updated">Mise à jour : 14 octobre 2026</p>
 
   <h2>1. Responsable du traitement</h2>
   <div class="card">
@@ -917,7 +965,7 @@
     du service).
   </p>
 
-  <h2>6. Achat intégré Kortscore Plus (Google Play / App Store)</h2>
+  <h2>6. Achat intégré Kortscore Plus (Google Play / App Store) et codes promotionnels</h2>
   <p>
     L’achat intégré unique «&nbsp;Kortscore Plus&nbsp;» est traité entièrement via Google Play
     Billing sur Android et entièrement via l’App Store d’Apple sur l’iPhone. Les données de paiement
@@ -931,6 +979,33 @@
     d’achat de la fonction supplémentaire).<br />
     <strong>Destinataires&nbsp;:</strong> Google LLC / Google Ireland Limited ou Apple Inc. / Apple
     Distribution International Ltd. en tant que prestataires de paiement.
+  </p>
+  <p>
+    <strong>Codes promotionnels (Firebase Remote Config)&nbsp;:</strong> sur l’écran d’achat, vous
+    pouvez saisir un code de club ou d’invitation via «&nbsp;Utiliser un code&nbsp;», ou ouvrir un
+    lien ou un code QR de la forme <code>https://share.kortscore.com/plus?code=…</code>. Un code
+    valide fait que l’écran d’achat vous propose un autre produit Kortscore Plus, moins cher. La
+    liste des codes valides est téléchargée sur l’appareil via Firebase Remote Config
+    (Google)&nbsp;: l’application récupère la configuration au plus toutes les 12 heures, ainsi
+    qu’à chaque saisie d’un code. Pour la fournir, Google traite l’identifiant d’installation
+    Firebase ainsi que des informations de base sur l’appareil et l’application (version de
+    l’application, système d’exploitation, langue, pays). Le code saisi est vérifié
+    <strong>uniquement en local sur l’appareil</strong> et n’est transmis à cette fin ni à nous ni
+    à Google. Ce n’est que si un code est valide que Firebase Analytics (uniquement dans les
+    versions de production, voir la section 3) enregistre l’événement
+    «&nbsp;promo_code_redeemed&nbsp;» avec le code, le palier tarifaire (tier) et la source
+    (manuelle/lien)&nbsp;; les saisies invalides ne sont jamais transmises.
+  </p>
+  <p>
+    <strong>Base juridique&nbsp;:</strong> art. 6, par. 1, point f) du RGPD (intérêt légitime à
+    proposer et à piloter des tarifs de club et promotionnels sans mise à jour de
+    l’application)&nbsp;; lorsque vous utilisez activement un code, en outre art. 6, par. 1,
+    point b) du RGPD (fonctionnalité demandée par vos soins).<br />
+    <strong>Durée de conservation&nbsp;:</strong> selon les délais de conservation standard de
+    Firebase Remote Config et de Firebase Installations (voir la documentation de Google)&nbsp;;
+    l’événement Analytics est soumis aux délais décrits à la section 3.<br />
+    <strong>Destinataires&nbsp;:</strong> Google LLC / Google Ireland Limited en tant que
+    sous-traitant.
   </p>
 
   <h2>7. Notifications push (Firebase Cloud Messaging, Android uniquement)</h2>
@@ -1111,6 +1186,7 @@
       <tr><td>App Attest</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>selon les conditions d’Apple</td></tr>
       <tr><td>Google Play Billing</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
       <tr><td>App Store (achat intégré)</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>selon les conditions d’Apple</td></tr>
+      <tr><td>Firebase Remote Config</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
       <tr><td>Firebase Cloud Messaging (Android uniquement)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
       <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>selon les réglages du compte Google</td></tr>
       <tr><td>Sauvegarde iCloud / iCloud Drive</td><td>Apple Inc.</td><td>selon vos réglages iCloud</td></tr>
@@ -1160,7 +1236,7 @@
 
   <h1>Política de privacidad</h1>
   <p><em>Esta traducción se ofrece únicamente a título informativo. La versión alemana es la única jurídicamente vinculante.</em></p>
-  <p class="updated">Última actualización: 13 de octubre de 2026</p>
+  <p class="updated">Última actualización: 14 de octubre de 2026</p>
 
   <h2>1. Responsable del tratamiento</h2>
   <div class="card">
@@ -1270,7 +1346,7 @@
     servicio).
   </p>
 
-  <h2>6. Compra integrada Kortscore Plus (Google Play / App Store)</h2>
+  <h2>6. Compra integrada Kortscore Plus (Google Play / App Store) y códigos promocionales</h2>
   <p>
     La compra integrada única «Kortscore Plus» se tramita íntegramente a través de Google Play
     Billing en Android y a través del App Store de Apple en el iPhone. Los datos de pago (tarjeta de
@@ -1283,6 +1359,33 @@
     compra de la función adicional).<br />
     <strong>Destinatarios:</strong> Google LLC / Google Ireland Limited o Apple Inc. / Apple
     Distribution International Ltd. como proveedores de pago.
+  </p>
+  <p>
+    <strong>Códigos promocionales (Firebase Remote Config):</strong> en la pantalla de compra
+    puede introducir, mediante «Canjear código», un código de club o de invitación, o abrir un
+    enlace o código QR con la forma <code>https://share.kortscore.com/plus?code=…</code>. Un
+    código válido hace que la pantalla de compra le ofrezca otro producto Kortscore Plus, más
+    económico. La lista de códigos válidos se descarga en el dispositivo a través de Firebase
+    Remote Config (Google): la aplicación obtiene la configuración como máximo cada 12 horas y
+    cada vez que se introduce un código. Para ello, Google trata el identificador de instalación
+    de Firebase y datos básicos del dispositivo y de la aplicación (versión de la aplicación,
+    sistema operativo, idioma, país). El código introducido se comprueba <strong>únicamente de
+    forma local en el dispositivo</strong> y, a tal efecto, no se envía ni a nosotros ni a Google.
+    Solo si un código es válido, Firebase Analytics (únicamente en las compilaciones de
+    producción, véase la sección 3) registra el evento «promo_code_redeemed» con el código, el
+    nivel de precio (tier) y el origen (manual/enlace); las entradas no válidas nunca se
+    transmiten.
+  </p>
+  <p>
+    <strong>Base jurídica:</strong> art. 6, apdo. 1, letra f) del RGPD (interés legítimo en
+    ofrecer y gestionar precios de club y promocionales sin actualizar la aplicación); cuando
+    usted canjea activamente un código, además art. 6, apdo. 1, letra b) del RGPD (función
+    solicitada por usted).<br />
+    <strong>Plazo de conservación:</strong> según los plazos de conservación estándar de
+    Firebase Remote Config y Firebase Installations (véase la documentación de Google); el evento
+    de Analytics está sujeto a los plazos descritos en la sección 3.<br />
+    <strong>Destinatarios:</strong> Google LLC / Google Ireland Limited como encargado del
+    tratamiento.
   </p>
 
   <h2>7. Notificaciones push (Firebase Cloud Messaging, solo Android)</h2>
@@ -1459,6 +1562,7 @@
       <tr><td>App Attest</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>según las condiciones de Apple</td></tr>
       <tr><td>Google Play Billing</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
       <tr><td>App Store (compra integrada)</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>según las condiciones de Apple</td></tr>
+      <tr><td>Firebase Remote Config</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
       <tr><td>Firebase Cloud Messaging (solo Android)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
       <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>según los ajustes de la cuenta de Google</td></tr>
       <tr><td>Copia de seguridad de iCloud / iCloud Drive</td><td>Apple Inc.</td><td>según sus ajustes de iCloud</td></tr>
@@ -1507,7 +1611,7 @@
 
   <h1>Informativa sulla privacy</h1>
   <p><em>Questa traduzione è fornita a solo scopo informativo. Fa fede esclusivamente la versione tedesca.</em></p>
-  <p class="updated">Aggiornato al: 13 ottobre 2026</p>
+  <p class="updated">Aggiornato al: 14 ottobre 2026</p>
 
   <h2>1. Titolare del trattamento</h2>
   <div class="card">
@@ -1613,7 +1717,7 @@
     GDPR (interesse legittimo alla sicurezza del servizio).
   </p>
 
-  <h2>6. Acquisto in-app Kortscore Plus (Google Play / App Store)</h2>
+  <h2>6. Acquisto in-app Kortscore Plus (Google Play / App Store) e codici promozionali</h2>
   <p>
     L’acquisto in-app una tantum «Kortscore Plus» viene gestito interamente tramite Google Play
     Billing su Android e interamente tramite l’App Store di Apple su iPhone. I dati di pagamento
@@ -1627,6 +1731,32 @@
     acquisto della funzione aggiuntiva).<br />
     <strong>Destinatari:</strong> Google LLC / Google Ireland Limited oppure Apple Inc. / Apple
     Distribution International Ltd. in qualità di fornitori del servizio di pagamento.
+  </p>
+  <p>
+    <strong>Codici promozionali (Firebase Remote Config):</strong> nella schermata di acquisto
+    potete inserire, tramite «Riscatta codice», un codice del circolo o di invito, oppure aprire
+    un link o un codice QR della forma <code>https://share.kortscore.com/plus?code=…</code>. Un
+    codice valido fa sì che la schermata di acquisto vi proponga un altro prodotto Kortscore
+    Plus, più economico. L’elenco dei codici validi viene scaricato sul dispositivo tramite
+    Firebase Remote Config (Google): l’app recupera la configurazione al massimo ogni 12 ore e
+    ogni volta che viene inserito un codice. A tal fine Google tratta l’ID di installazione
+    Firebase e informazioni di base sul dispositivo e sull’app (versione dell’app, sistema
+    operativo, lingua, paese). Il codice inserito viene verificato <strong>esclusivamente in
+    locale sul dispositivo</strong> e, a tale scopo, non viene trasmesso né a noi né a Google.
+    Solo se un codice è valido, Firebase Analytics (soltanto nelle build di rilascio, vedere la
+    sezione 3) registra l’evento «promo_code_redeemed» con il codice, il livello di prezzo (tier)
+    e l’origine (manuale/link); gli inserimenti non validi non vengono mai trasmessi.
+  </p>
+  <p>
+    <strong>Base giuridica:</strong> art. 6, par. 1, lett. f) del GDPR (interesse legittimo a
+    offrire e gestire prezzi per i circoli e promozionali senza aggiornare l’app); se riscattate
+    attivamente un codice, inoltre art. 6, par. 1, lett. b) del GDPR (funzione da voi
+    richiesta).<br />
+    <strong>Durata di conservazione:</strong> secondo i periodi di conservazione standard di
+    Firebase Remote Config e Firebase Installations (vedere la documentazione di Google);
+    l’evento di Analytics è soggetto ai periodi descritti alla sezione 3.<br />
+    <strong>Destinatari:</strong> Google LLC / Google Ireland Limited in qualità di responsabile
+    del trattamento.
   </p>
 
   <h2>7. Notifiche push (Firebase Cloud Messaging, solo Android)</h2>
@@ -1799,6 +1929,7 @@
       <tr><td>App Attest</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>secondo le condizioni di Apple</td></tr>
       <tr><td>Google Play Billing</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
       <tr><td>App Store (acquisto in-app)</td><td>Apple Distribution International Ltd. / Apple Inc.</td><td>secondo le condizioni di Apple</td></tr>
+      <tr><td>Firebase Remote Config</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
       <tr><td>Firebase Cloud Messaging (solo Android)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
       <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>secondo le impostazioni dell’account Google</td></tr>
       <tr><td>Backup iCloud / iCloud Drive</td><td>Apple Inc.</td><td>secondo le vostre impostazioni iCloud</td></tr>
