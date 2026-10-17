@@ -1,0 +1,251 @@
+# Startseite. Links auf andere Seiten als {url:<seiten-id>}, siehe site.yaml.
+
+meta:
+  title: "Kortscore: marcador de tenis y pádel para Apple Watch y Wear OS"
+  description: Lleva la cuenta de tus partidos de tenis y pádel con un toque en tu Apple Watch o reloj Wear OS. Gratis, con marcador en directo para espectadores, estadísticas e historial de partidos.
+  og_title: "Kortscore: tu partido, tu marcador, un toque."
+
+# Zeile in llms.txt.
+llms: Página de inicio (español)
+
+hero:
+  eyebrow: Tenis y pádel · iPhone, Android y reloj
+  title: Tu partido. <br>Tu marcador. <br><em>Un toque.</em>
+  lede: >-
+    Kortscore lleva la cuenta de tu partido de tenis o pádel en la muñeca,
+    punto por punto, sin interrumpir el juego. Y quien no está en la pista lo
+    sigue en directo.
+  cta: Gratis para iPhone y Android
+  platforms: iOS y Apple Watch · Android y Wear OS
+  alt:
+    play: Pantalla de inicio de Kortscore con los formatos de partido
+    live: Un partido en curso en Kortscore con el marcador en directo
+    stats: Estadísticas de Kortscore con la tasa de victorias y el balance de sets
+    watch: Kortscore en un reloj inteligente con el marcador actual
+
+benefits:
+  title: Por qué Kortscore
+  tap:
+    title: El manejo más sencillo
+    body: >-
+      Un toque en el reloj y el punto queda contado. Dos para tu rival,
+      cuatro para deshacer. Sin mirar la pantalla, sin interrumpir el juego.
+  stats:
+    title: Estadísticas que cuentan
+    body: >-
+      Tasa de victorias, balance de sets, el registro de puntos de cada
+      partido: todo tu historial, analizado automáticamente.
+  live:
+    label: En directo
+    title: Marcador en directo para espectadores
+    body: >-
+      Familia, amigos y compañeros de club siguen tu partido en tiempo real
+      en el móvil, punto por punto, desde cualquier lugar.
+  free:
+    title: Gratis
+    body: >-
+      Contar los puntos, el historial y el marcador en directo no cuestan
+      nada. Si quieres analizar más a fondo, tienes Kortscore Plus.
+
+steps:
+  title: Cómo funciona
+  list:
+    - title: Inicia el partido
+      body: >-
+        Elige un formato o toca sin más la última combinación. Individual,
+        dobles, NoAd, al mejor de tres, un solo set: todo vale.
+    - title: Juega y toca
+      body: >-
+        El reloj cuenta puntos, juegos y sets según las reglas reales del tenis
+        y del pádel, con tie-break y súper tie-break incluidos.
+    - title: Analiza y comparte
+      body: >-
+        El partido llega solo a tu historial en el móvil, con el resultado en
+        notación televisiva, la duración y el registro de puntos.
+
+padel:
+  eyebrow: También para pádel
+  title: ¿Pádel? Se cuenta igual.
+  lead: >-
+    El pádel se cuenta como el tenis: 15, 30, 40, juego, set. Por eso Kortscore
+    no necesita nada especial: el reloj simplemente lleva la cuenta. Un toque
+    por punto, en la pista, sin interrumpir el juego.
+  count: ["15", "30", "40", Juego, Set]
+  facts:
+    - term: Punto de oro
+      text: >-
+        Integrado en la app como NoAd. Elígelo una vez y, con 40:40, el
+        siguiente punto decide el juego, tal y como se juega en tu liga.
+    - term: Dobles
+      text: >-
+        El pádel casi siempre se juega por parejas, y en Kortscore los dobles
+        no son un caso especial, sino uno de los formatos de la pantalla de
+        inicio.
+    - term: En directo para espectadores
+      text: >-
+        Comparte el enlace y quien esté fuera de la pista sigue cada punto,
+        desde la pista de al lado o desde casa.
+
+clubs:
+  eyebrow: Para clubes y ligas
+  title: Todo el club <br>lo sigue en directo
+  lead: >-
+    En una jornada de liga se juegan varios partidos a la vez, y nadie puede
+    estar en todas partes. Con el marcador en directo, el equipo, el capitán y
+    la afición siguen cada partido en tiempo real: desde la pista de al lado,
+    desde la cafetería del club o desde casa.
+  points:
+    - "Basta con compartir el enlace: los espectadores no necesitan app ni registrarse."
+    - Marcador, historial de sets y saque en directo, punto por punto.
+  offer: >-
+    Colgad nuestro folleto en vuestro club y vuestros socios tendrán Kortscore
+    Plus más barato. <a href="{url:clubs}">Cómo funciona →</a>
+  ticker:
+    label: Liga · Jornada 4
+    live: En directo
+    second: Dobles 1 · Pista 3
+
+teaser:
+  eyebrow: Qué reloj
+  title: Relojes recomendados
+  all: Los cuatro relojes →
+  notes:
+    apple: Para iPhone
+    galaxy: Wear OS 6
+    ultra: Batería duradera
+    pixel: Compacto
+  footnote: >-
+    ¿Ya tienes reloj? Kortscore funciona en cualquier Apple Watch con watchOS 26
+    o posterior y en cualquier reloj Wear OS desde la versión 3.
+    <a href="{url:compatible}">Consulta todos los modelos en la lista de
+    compatibilidad</a>.
+
+ios:
+  eyebrow: iPhone y Apple Watch
+  title: Ya en iOS
+  lede: >-
+    El mismo Kortscore, hecho para iPhone y Apple Watch: un toque en la muñeca
+    por punto, el marcador en directo para todo el que mire y todo tu historial
+    de partidos en el móvil. Los partidos que jugaste en Android vienen
+    contigo, y la cuenta funciona igual en las dos plataformas.
+  facts:
+    - term: Apple Watch
+      text: >-
+        Cuenta en la muñeca sin mirar la pantalla, igual que en Wear OS. El
+        móvil puede quedarse en la bolsa.
+    - term: Marcador en directo
+      text: >-
+        Comparte el enlace y los espectadores lo siguen, usen lo que usen. Sin
+        app ni registro por su parte.
+    - term: Gratis
+      text: >-
+        Contar los puntos, el historial y el marcador en directo tampoco
+        cuestan nada aquí. Kortscore Plus sigue siendo una compra única.
+    - term: iPad y Mac
+      text: >-
+        La app funciona también en el iPad y en los Mac con chip de Apple,
+        para que tus partidos y estadísticas luzcan en pantalla grande.
+  alt:
+    play: Kortscore en el iPhone con los formatos de partido guardados
+    live: La vista de espectador de Kortscore en el iPhone con tres partidos en directo
+    stats: Estadísticas de Kortscore en el iPhone con la tasa de victorias y los puntos totales
+    watch: Kortscore en un Apple Watch con el marcador actual
+
+# Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
+faq:
+  eyebrow: FAQ
+  title: Preguntas frecuentes
+  lead: Respuestas breves a lo que se pregunta antes del primer partido con Kortscore.
+  questions:
+    - q: ¿Necesito el móvil en la pista?
+      a: >-
+        No. El reloj lleva la cuenta completamente solo, incluso sin conexión.
+        Solo el marcador en directo necesita el móvil dentro del alcance
+        Bluetooth, porque es el móvil el que envía el marcador a Internet. Con
+        el wifi o el LTE del reloj no basta.
+    - q: ¿Qué relojes funcionan con Kortscore?
+      a: >-
+        Cualquier Apple Watch con watchOS 26 o posterior, es decir, Series 6,
+        SE a partir de la segunda generación, Ultra y modelos más recientes,
+        enlazado con un iPhone. Y cualquier reloj con Wear OS 3 o posterior, es
+        decir, Samsung Galaxy Watch a partir del Watch 4, Google Pixel Watch y
+        otros, enlazado con un móvil con Android 8 o posterior. Tienes cuatro
+        recomendaciones para la pista en la <a href="{url:watches}">página de
+        relojes</a> y la lista completa de modelos en la
+        <a href="{url:compatible}">página de compatibilidad</a>.
+    - q: ¿Cómo cuento un punto?
+      a: >-
+        Toca el reloj una vez: punto para ti. Dos veces: punto para tu rival.
+        Cuatro veces: deshaces el último punto. Los juegos, sets y tie-breaks
+        los calcula el reloj, sin que tengas que mirar la pantalla. Si quieres
+        probarlo antes con calma, la app tiene una guía en el móvil y en el
+        reloj para practicar todos los toques.
+    - q: ¿Sigue Kortscore las reglas reales, con tie-break y NoAd?
+      a: >-
+        Sí. Ventaja o NoAd, sets a 6 o a 4 juegos, tie-break y súper tie-break,
+        al mejor de tres sets o un solo set. En pádel, elige el punto de oro
+        como NoAd y el punto con 40:40 decide el juego. Las reglas en detalle:
+        <a href="{url:tennis}">puntuación en tenis</a>,
+        <a href="{url:padel}">puntuación en pádel</a>.
+    - q: ¿Cómo funciona el marcador en directo?
+      a: >-
+        Compartes un enlace, nada más. Quien lo abre ve el marcador, el
+        historial de sets y quién saca, en directo en el navegador, punto por
+        punto. Los espectadores no necesitan app ni registrarse, estén en la pista
+        de al lado o en casa. Para ello, tu móvil tiene que estar dentro del
+        alcance Bluetooth del reloj.
+    - q: ¿Cuánto cuesta Kortscore?
+      a: >-
+        Nada. La cuenta de puntos, el historial de partidos y el marcador en
+        directo son gratis, sin anuncios y sin registro, igual en iPhone que en
+        Android. Kortscore Plus es una compra única y añade estadísticas
+        detalladas, copias de seguridad automáticas y el Kortscore Trainer
+        (IA), que analiza tus partidos.
+    - q: ¿Puedo usar Kortscore para pádel?
+      a: >-
+        Sí, sin rodeos. El pádel se cuenta como el tenis, y los dobles son uno
+        de los formatos que tienes directamente en la pantalla de inicio.
+        Individual, dobles, NoAd: lo eliges una vez y el reloj lleva la cuenta.
+    - q: ¿Hay Kortscore para iPhone y Apple Watch?
+      a: >-
+        Sí. El mismo Kortscore, hecho para iPhone y Apple Watch: un toque por
+        punto en la muñeca, el marcador en directo y tu historial de partidos
+        en el móvil. Gratis en el App Store, donde Kortscore Plus también es
+        una compra única.
+    - q: ¿Funciona Kortscore en iPad y Mac?
+      a: >-
+        Sí. La app Kortscore del App Store también funciona en el iPad con
+        iPadOS 18 o posterior y en los Mac con chip de Apple y macOS 15 o
+        posterior, en una ventana de tamaño ajustable. El historial de partidos,
+        las estadísticas y el marcador en directo tienen ahí una pantalla más
+        grande. Para contar en la muñeca sigue haciendo falta el iPhone, porque
+        Apple solo enlaza el Apple Watch con un iPhone.
+    - q: ¿La versión para Apple Watch funciona igual que en Wear OS?
+      a: >-
+        Sí, la cuenta es idéntica en ambos: un toque por punto, los mismos
+        formatos, el mismo marcador en directo. Una diferencia: en el Apple
+        Watch, el partido se registra como entrenamiento. Así la pantalla
+        permanece encendida durante todo el partido.
+    - q: ¿Puedo pasarme de Android a iPhone y llevarme mis partidos?
+      a: >-
+        Sí, con la copia de seguridad de la app: crea una copia de seguridad en
+        el dispositivo antiguo, cárgala en el nuevo y listo. Funciona en ambos
+        sentidos. Por ahora no hay una cuenta de Kortscore que sincronice los
+        datos a través de la nube.
+
+cta:
+  title: ¿Próximo partido? Cuéntalo.
+  lede: Gratis para iPhone y Android. Listo en dos minutos.
+  hint: iOS y iPadOS 18+ · macOS 15+ (chip de Apple) · watchOS 26+ · Android 8.0+ · Wear OS 3+ · sin anuncios, sin registro
+
+# JSON-LD SoftwareApplication (nur im Quelltext, nicht sichtbar).
+app:
+  alternate_name: "Kortscore: Tenis y pádel"
+  description: Kortscore lleva la cuenta en tenis y pádel con un toque en tu Apple Watch o reloj Wear OS. Gratis, con marcador en directo para espectadores, estadísticas e historial de partidos en iPhone y Android.
+  features:
+    - Cuenta los puntos con un toque en el reloj
+    - Tenis y pádel, individual y dobles
+    - Ventaja y NoAd, tie-breaks, sets a 4 o 6 juegos
+    - Marcador en directo con un enlace para compartir, sin app para los espectadores
+    - Estadísticas del partido e historial punto por punto
+    - Sin anuncios, sin registro

@@ -1,0 +1,98 @@
+# Vereinsangebot: Flyer aufhängen, Mitglieder bekommen Kortscore Plus günstiger.
+
+meta:
+  title: "Kortscore para clubes: colgad el folleto y vuestros socios tendrán descuento en Kortscore Plus"
+  description: Vuestro club cuelga el folleto de Kortscore en la cafetería o junto a las pistas, y vuestros socios reciben un código de descuento para Kortscore Plus. Basta con pedirlo por correo.
+  og_title: Kortscore para clubes
+
+breadcrumb: Para clubes
+llms: Para clubes (folleto en el club, descuento en Kortscore Plus para los socios)
+
+eyebrow: Para clubes
+title: Colgad el folleto. <br>Los socios ahorran.
+lead: >-
+  Vuestro club cuelga el folleto de Kortscore en la cafetería o junto a las
+  pistas, y a cambio vuestros socios reciben un código de descuento para
+  Kortscore Plus. Escribidnos sin más; el resto lo resolvemos por correo.
+
+steps:
+  title: Cómo funciona
+  list:
+    - title: Escribidnos
+      body: >-
+        Enviadnos un correo breve con el nombre del club, la localidad y una
+        persona de contacto. El botón de abajo os lo deja preparado.
+    - title: Colgad el folleto
+      body: >-
+        Imprimid el folleto en A4 y colgadlo donde se vea: en la cafetería del
+        club, en el tablón de anuncios o en la entrada a las pistas.
+    - title: Pasad el código
+      body: >-
+        Recibís un código propio para Kortscore Plus y se lo pasáis a vuestros
+        socios: en el tablón de anuncios, en el boletín o en el grupo del club.
+        Con él, Plus sale más barato en la app.
+
+redeem:
+  title: Cómo canjean el código vuestros socios
+  list:
+    - >-
+      Abrir Kortscore e ir a la pantalla de compra de Kortscore Plus, por
+      ejemplo en Configuración, en <strong>Desbloquear Kortscore Plus</strong>.
+    - Tocar <strong>Canjear código</strong> e introducir el código del club.
+    - >-
+      El precio rebajado aparece directamente en la pantalla de compra. La
+      compra se hace como siempre a través del App Store o de Google Play.
+  note: Funciona igual en iPhone y en Android.
+
+plus:
+  title: ¿Qué es Kortscore Plus?
+  text: >-
+    Kortscore en sí es gratis: contar los puntos en la muñeca, el historial de
+    partidos y el marcador en directo, sin anuncios y sin registro. Kortscore
+    Plus es una compra única, no una suscripción, y añade estadísticas
+    detalladas, copias de seguridad automáticas y el Kortscore Trainer (IA),
+    que analiza los partidos. Con vuestro código, vuestros socios consiguen
+    Plus más barato.
+
+# Der Flyer selbst ist bisher nur auf Deutsch, das sagt der Text dazu.
+flyer:
+  title: El folleto
+  alt: >-
+    El folleto de Kortscore en formato A4, en alemán, con un código QR, enlaces
+    al App Store y a Google Play y una nota sobre el código de descuento para
+    los socios del club
+  text: >-
+    A4, una página, con un código QR para descargar la app. De momento, el
+    folleto solo está en alemán. Si podéis, imprimidlo en color: las pantallas
+    y el reloj lucen mucho más.
+  download: Descargar el folleto
+
+# Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
+faq:
+  title: Preguntas
+  questions:
+    - q: ¿Le cuesta algo al club?
+      a: >-
+        No. Vosotros colgáis el folleto y nosotros os enviamos el código de
+        descuento. Kortscore en sí ya es gratis para vuestros socios.
+    - q: ¿De cuánto es el descuento?
+      a: >-
+        Lo acordamos con cada club por separado. Decidnos más o menos cuántos
+        socios tenéis y os haremos una oferta.
+    - q: ¿El código funciona en iPhone y en Android?
+      a: >-
+        Sí. El código se canjea en la app Kortscore, en la pantalla de compra
+        de Kortscore Plus, igual en las dos plataformas.
+    - q: ¿Caduca el código?
+      a: >-
+        Puede caducar. Un código puede tener un periodo de validez, y os lo
+        indicaremos junto con el código.
+
+# Die Anfrage ist eine vorausgefüllte Mail. Betreff und Text als reiner Text
+# (\n = Zeilenumbruch), der Build kodiert sie für den mailto-Link.
+ask:
+  eyebrow: ¿Os apuntáis?
+  button: Solicitud por correo
+  alt: o escribid directamente a
+  mail_subject: Kortscore Plus para nuestro club
+  mail_body: "Hola:\n\nNuestro club quiere colgar el folleto de Kortscore y recibir un código de descuento de Kortscore Plus para nuestros socios.\n\nClub: \nLocalidad: \nPersona de contacto: \nNúmero aproximado de socios: \nDónde se colgará el folleto (cafetería del club, pistas, ...): \n\nGracias y un saludo\n"

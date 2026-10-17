@@ -1,0 +1,96 @@
+# Regelseite Padel. Gerüst in templates/partials/rules.html.
+# meta.title und meta.description stehen auch im Article-JSON-LD.
+
+meta:
+  title: How Does Padel Scoring Work? Points, Golden Point, Sets and Tiebreaks Explained
+  description: "Padel scoring made simple: 15, 30, 40 like tennis, golden point instead of advantage, doubles serve order, sets, tiebreak and the usual match formats."
+  og_title: How does padel scoring work?
+
+breadcrumb: Padel scoring
+llms: How padel scoring works (golden point, doubles serve order)
+# Article-JSON-LD "about".
+about: Padel
+
+eyebrow: Rules
+title: How does padel <br>scoring work?
+lead: >-
+  Padel scores like tennis: 15, 30, 40, game, set. The one difference you will
+  notice is the deciding point at 40-40, the golden point, which many matches
+  play instead of advantage. Add the doubles serve order and the underarm
+  serve, and that is the whole system, short and complete.
+
+sections:
+  - title: Points like tennis
+    text: >-
+      A game starts at 0-0, then 15, 30, 40. Whoever wins the next point at 40
+      takes the game, unless the opponent is also at 40. The server's score is
+      called first. If you can score tennis, you can score padel.
+  - title: Golden point instead of advantage
+    text: >-
+      At 40-40 the FIP rules allow three methods: advantage, golden point or
+      star point. The pro tours have played the star point since 2026: if the game goes back to deuce a third time, one deciding point settles it. With golden point
+      the next point at 40-40 decides the game, and the receiving team chooses
+      who receives. In tennis the same rule is called NoAd. Many clubs and
+      leagues play golden point, so settle the format before the match.
+      Kortscore counts advantage and golden point (as NoAd), not the star
+      point.
+  - title: Doubles and serve order
+    text: >-
+      Padel is almost always played as doubles. Serve alternates between the
+      teams after every game, and within a team the partners take turns:
+      whoever served the first game serves the fifth again. Receiving sides
+      (deuce side and advantage side) stay fixed for a whole set and may only
+      be swapped for the next set.
+  - title: The serve
+    text: >-
+      The ball is bounced once behind the service line and struck at or below
+      waist height, diagonally into the opponents' service box. Two attempts,
+      as in tennis. If the ball touches the wire fence after bouncing in the
+      box it is a fault; if it hits the glass wall it stays in play.
+  - title: Games, sets, tiebreak
+    text: >-
+      A set goes to 6 games with a two-game margin; at 6-6 a tiebreak to 7
+      points with a two-point margin follows. Serve changes after the first
+      point and then every two points; ends change every six points. A match is
+      normally best of three; many tournaments replace the third set with a
+      match tiebreak to 10.
+  - title: Common formats
+    text: >-
+      League: two sets to win, golden point. Tournament group stage: often one
+      set or a short set to 4 games (Kortscore plays its tiebreak at 3-3).
+      Americano and Mexicano: a fixed number of points per round, usually 16,
+      24 or 32, no games. Kortscore counts singles and doubles, advantage and
+      NoAd, sets to 4 or 6, best of three or a single set.
+  - title: Changing ends
+    text: >-
+      As in tennis: after the first game, then whenever the game total is odd.
+      In the tiebreak every six points.
+
+# Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
+faq:
+  title: Common questions
+  questions:
+    - q: Are golden point and NoAd the same thing?
+      a: >-
+        Yes. Both mean the next point at 40-40 decides the game. Padel says
+        golden point, tennis says NoAd. In Kortscore you pick NoAd and the watch
+        counts golden point.
+    - q: Is padel always doubles?
+      a: >-
+        Almost always. Singles padel exists on narrower courts (six metres wide
+        instead of ten) but is rare. That is why doubles sits right on
+        Kortscore's start screen; singles works just the same.
+    - q: Who receives the golden point?
+      a: >-
+        The receiving team decides which partner receives, but has to keep its
+        normal side split: each player receives from their own side.
+    - q: Does Kortscore score Americano tournaments?
+      a: >-
+        Not as a format of its own. Americano counts plain points without games,
+        which classic tennis scoring is not built for. Kortscore is for league
+        and tournament matches with sets.
+
+cta:
+  eyebrow: Let the watch count
+  more: Read on
+  next: How tennis scoring works, with advantage and tiebreak →

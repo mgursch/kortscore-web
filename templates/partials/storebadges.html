@@ -1,0 +1,18 @@
+<!-- Both official badges, unaltered: Google's and Apple's guidelines alike
+     forbid recolouring, adding text or cropping the artwork. Only the
+     transparent margin of Google's PNGs is trimmed, so both badges sit at
+     the same 40px height; the clear space comes from the flex gap.
+     Apple's badge is inline SVG
+     (templates/badges/appstore-<lang>.svg) so it stays sharp at any size.
+     The links themselves are the labels, hence alt text and titles
+     instead of captions. -->
+<div class="storebadges">
+  <a class="storebadge" href="{{ site.stores.app_store }}" target="_blank" rel="noopener">
+{% filter indent(8, first=True) %}{% include "badges/appstore-" ~ lang ~ ".svg" %}{% endfilter %}
+  </a>
+
+  <a class="storebadge" href="{{ site.stores.google_play }}" target="_blank" rel="noopener">
+    <img src="{{ asset(lasset('google-play')) }}" width="323" height="96"
+         alt="{{ c.google_play_alt|inattr }}">
+  </a>
+</div>

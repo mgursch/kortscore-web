@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{% for e in entries %}
+{% for l in languages %}
+  <url>
+    <loc>{{ e.urls[l.code] }}</loc>
+    <lastmod>{{ e.page.lastmod }}</lastmod>
+    <priority>{{ e.page.priority }}</priority>
+{% for alt in languages %}
+    <xhtml:link rel="alternate" hreflang="{{ alt.code }}" href="{{ e.urls[alt.code] }}"/>
+{% endfor %}
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ e.urls[site.x_default] }}"/>
+  </url>
+{% endfor %}
+{% endfor %}
+</urlset>

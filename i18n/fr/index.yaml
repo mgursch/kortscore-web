@@ -1,0 +1,254 @@
+# Startseite. Links auf andere Seiten als {url:<seiten-id>}, siehe site.yaml.
+
+meta:
+  title: "Kortscore : le compte-points tennis &amp; padel pour Apple Watch &amp; Wear OS"
+  description: Compte les points au tennis et au padel d’un simple tap sur ton Apple Watch ou ta montre Wear OS. Gratuit, avec score en direct pour les spectateurs, statistiques et historique des matchs.
+  og_title: "Kortscore : ton match. Ton score. Un tap."
+
+# Zeile in llms.txt.
+llms: Page d’accueil (français)
+
+hero:
+  eyebrow: Tennis &amp; padel · iPhone, Android &amp; montre
+  title: Ton match. <br>Ton score. <br><em>Un tap.</em>
+  lede: >-
+    Kortscore compte ton match de tennis ou de padel au poignet, point par
+    point, sans interrompre le jeu. Et ceux qui ne sont pas sur le court
+    suivent en direct.
+  cta: Gratuit pour iPhone &amp; Android
+  platforms: iOS &amp; Apple Watch · Android &amp; Wear OS
+  alt:
+    play: Écran d’accueil de Kortscore avec les formats de match
+    live: Un match en cours dans Kortscore avec le score en direct
+    stats: Statistiques Kortscore avec taux de victoire et bilan des sets
+    watch: Kortscore sur une montre connectée affichant le score en cours
+
+benefits:
+  title: Pourquoi Kortscore
+  tap:
+    title: Simple comme un tap
+    body: >-
+      Un tap sur la montre, et le point est compté. Deux pour ton adversaire,
+      quatre pour annuler. Pas besoin de regarder l’écran, pas de jeu
+      interrompu.
+  stats:
+    title: Des stats qui comptent
+    body: >-
+      Taux de victoire, bilan des sets, historique des points de chaque match :
+      tout ton historique de matchs, analysé automatiquement.
+  live:
+    label: En direct
+    title: Le score en direct pour le public
+    body: >-
+      La famille, les amis et les partenaires de club suivent ton match en
+      temps réel sur leur téléphone, point par point, où qu’ils soient.
+  free:
+    title: Gratuit
+    body: >-
+      Le comptage, l’historique et le score en direct ne coûtent rien. Pour
+      aller plus loin dans l’analyse, il y a Kortscore Plus.
+
+steps:
+  title: Comment ça marche
+  list:
+    - title: Démarre le match
+      body: >-
+        Choisis un format, ou tape simplement sur ta dernière combinaison.
+        Simple, double, NoAd, au meilleur des trois, un seul set : tout est
+        possible.
+    - title: Joue et tape
+      body: >-
+        La montre compte les points, les jeux et les sets selon les vraies
+        règles du tennis et du padel, tie-break et super tie-break compris.
+    - title: Analyse et partage
+      body: >-
+        Le match arrive automatiquement dans ton historique sur le téléphone,
+        avec le score en notation télé, la durée et l’historique des points.
+
+padel:
+  eyebrow: Aussi pour le padel
+  title: Le padel ? Ça compte pareil.
+  lead: >-
+    Au padel, on compte comme au tennis : 15, 30, 40, jeu, set. Kortscore n’a
+    donc besoin d’aucun traitement spécial, la montre compte tout simplement.
+    Un tap par point, sur le court, sans interrompre le jeu.
+  count: ["15", "30", "40", Jeu, Set]
+  facts:
+    - term: Point en or
+      text: >-
+        Intégré à l’app sous le nom NoAd. Choisis-le une fois, et le point
+        décisif à 40:40 tranche le jeu, exactement comme dans ton championnat.
+    - term: Double
+      text: >-
+        Le padel se joue presque toujours en double. Dans Kortscore, le double
+        n’a rien d’un cas particulier : c’est l’un des formats de l’écran
+        d’accueil.
+    - term: En direct pour le public
+      text: >-
+        Partage le lien, et ceux qui ne sont pas sur le court suivent chaque
+        point, depuis le court d’à côté ou depuis chez eux.
+
+clubs:
+  eyebrow: Clubs &amp; championnats par équipes
+  title: Tout le club <br>suit en direct
+  lead: >-
+    Lors d’une journée de championnat, plusieurs matchs se jouent en même
+    temps, et personne ne peut être partout. Avec le score en direct,
+    l’équipe, le capitaine et les supporters suivent chaque match en temps
+    réel : depuis le court d’à côté, depuis le club-house ou depuis chez eux.
+  points:
+    - "Il suffit de partager le lien : les spectateurs n’ont besoin ni d’app ni de compte."
+    - Score, déroulé des sets et service en direct, point par point.
+  offer: >-
+    Affichez notre flyer dans votre club, et vos adhérents profitent de
+    Kortscore Plus à prix réduit. <a href="{url:clubs}">Comment ça marche →</a>
+  ticker:
+    label: Championnat · Journée 4
+    live: En direct
+    second: Double 1 · Court 3
+
+teaser:
+  eyebrow: Quelle montre
+  title: Montres recommandées
+  all: Les quatre montres →
+  notes:
+    apple: Pour iPhone
+    galaxy: Wear OS 6
+    ultra: Grande autonomie
+    pixel: Compacte
+  footnote: >-
+    Déjà une montre ? Kortscore fonctionne sur toute Apple Watch à partir de
+    watchOS 26 et sur toute montre Wear OS à partir de la version 3 :
+    <a href="{url:compatible}">tous les modèles dans la liste de
+    compatibilité</a>.
+
+ios:
+  eyebrow: iPhone &amp; Apple Watch
+  title: Désormais sur iOS
+  lede: >-
+    Le même Kortscore, conçu pour iPhone et Apple Watch : un tap au poignet
+    par point, le score en direct pour tous ceux qui regardent, et tout ton
+    historique de matchs sur le téléphone. Tes matchs joués sur Android te
+    suivent, et le comptage est identique sur les deux plateformes.
+  facts:
+    - term: Apple Watch
+      text: >-
+        Compte au poignet sans regarder l’écran, exactement comme sur Wear OS.
+        Le téléphone peut rester dans ton sac.
+    - term: Score en direct
+      text: >-
+        Partage le lien, et les spectateurs suivent le match, quel que soit
+        leur appareil. Sans app et sans compte de leur côté.
+    - term: Gratuit
+      text: >-
+        Le comptage, l’historique et le score en direct sont gratuits ici aussi.
+        Kortscore Plus reste un achat unique.
+    - term: iPad &amp; Mac
+      text: >-
+        L’app fonctionne aussi sur iPad et sur les Mac avec puce Apple : tes
+        matchs et tes statistiques profitent eux aussi du grand écran.
+  alt:
+    play: Kortscore sur iPhone avec les formats de match enregistrés
+    live: L’onglet « Regarder » sur iPhone, avec trois matchs en cours suivis en direct
+    stats: Statistiques Kortscore sur iPhone avec taux de victoire et total des points
+    watch: Kortscore sur une Apple Watch affichant le score en cours
+
+# Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
+faq:
+  eyebrow: FAQ
+  title: Questions fréquentes
+  lead: Des réponses courtes aux questions qu’on se pose avant son premier match avec Kortscore.
+  questions:
+    - q: Ai-je besoin de mon téléphone sur le court ?
+      a: >-
+        Non. La montre compte entièrement seule, même sans connexion. Seul le
+        score en direct a besoin du téléphone à portée Bluetooth, car c’est lui
+        qui envoie le score en ligne. Le Wi-Fi ou la 4G (LTE) de la montre ne
+        suffisent pas à eux seuls.
+    - q: Quelles montres fonctionnent avec Kortscore ?
+      a: >-
+        Toute Apple Watch sous watchOS 26 ou plus récent, donc Series 6, SE à
+        partir de la deuxième génération, Ultra et modèles plus récents,
+        jumelée à un iPhone. Et toute montre sous Wear OS 3 ou plus récent,
+        donc Samsung Galaxy Watch à partir de la Watch 4, Google Pixel Watch et
+        d’autres, associée à un téléphone Android sous Android 8 ou plus récent.
+        Quatre suggestions pour le court t’attendent sur la
+        <a href="{url:watches}">page des montres</a>, la liste complète des
+        modèles sur la <a href="{url:compatible}">page de compatibilité</a>.
+    - q: Comment compter un point ?
+      a: >-
+        Tape une fois sur la montre : point pour toi. Deux fois : point pour ton
+        adversaire. Quatre fois : le dernier point est annulé. Les jeux, les
+        sets et les tie-breaks, c’est la montre qui les calcule, tu n’as jamais
+        besoin de regarder l’écran. Si tu veux t’y exercer au calme : l’app
+        propose un guide sur le téléphone et sur la montre, où tu peux essayer
+        chaque geste.
+    - q: Kortscore suit-il les vraies règles, tie-break et NoAd compris ?
+      a: >-
+        Oui. Avantage ou NoAd, sets en 6 ou en 4 jeux, tie-break et super
+        tie-break, au meilleur des trois sets ou en un seul set. Au padel,
+        choisis le point en or via NoAd, et le point à 40:40 décide du jeu.
+        Les règles en détail : <a href="{url:tennis}">compter au tennis</a>,
+        <a href="{url:padel}">compter au padel</a>.
+    - q: Comment fonctionne le score en direct ?
+      a: >-
+        Tu partages un lien, c’est tout. Il suffit de l’ouvrir pour voir le score, le
+        déroulé des sets et qui est au service, en direct dans le navigateur,
+        point par point. Les spectateurs n’ont besoin ni d’app ni de compte,
+        qu’ils soient sur le court d’à côté ou chez eux. Pour cela, ton
+        téléphone doit être à portée Bluetooth de la montre.
+    - q: Combien coûte Kortscore ?
+      a: >-
+        Rien. Le comptage, l’historique des matchs et le score en direct sont
+        gratuits, sans publicité et sans compte, sur iPhone comme sur Android.
+        Kortscore Plus est un achat unique et ajoute des statistiques
+        détaillées, des sauvegardes automatiques et le Kortscore Trainer (IA),
+        qui analyse tes matchs.
+    - q: Puis-je utiliser Kortscore pour le padel ?
+      a: >-
+        Oui, sans détour. Le padel se compte comme le tennis, et le double fait
+        partie des formats proposés directement sur l’écran d’accueil. Simple,
+        double, NoAd : tu choisis une fois, et la montre compte.
+    - q: Existe-t-il un Kortscore pour iPhone et Apple Watch ?
+      a: >-
+        Oui. Le même Kortscore, conçu pour iPhone et Apple Watch : un tap par
+        point au poignet, le score en direct, ton historique de matchs sur le
+        téléphone. Gratuit sur l’App Store, où Kortscore Plus est aussi un
+        achat unique.
+    - q: Kortscore fonctionne-t-il sur iPad et Mac ?
+      a: >-
+        Oui. L’app Kortscore de l’App Store fonctionne aussi sur iPad avec
+        iPadOS 18 ou plus récent et sur les Mac avec puce Apple sous macOS 15 ou
+        plus récent, dans une fenêtre librement redimensionnable. L’historique
+        des matchs, les statistiques et le score en direct y profitent d’un
+        plus grand écran. Pour compter au poignet, il faut toujours passer par
+        l’iPhone, car Apple ne jumelle l’Apple Watch qu’avec un iPhone.
+    - q: La version Apple Watch fonctionne-t-elle comme sur Wear OS ?
+      a: >-
+        Oui, le comptage est identique sur les deux : un tap par point, les
+        mêmes formats, le même score en direct. Une seule différence : sur
+        l’Apple Watch, un match est lancé comme un entraînement. C’est ce qui
+        garde l’écran allumé pendant tout le match.
+    - q: Puis-je passer d’Android à l’iPhone en gardant mes matchs ?
+      a: >-
+        Oui, grâce à la sauvegarde dans l’app : crée une sauvegarde sur l’ancien
+        appareil, charge-la sur le nouveau, et c’est fait. Ça marche dans les
+        deux sens. Pour l’instant, il n’existe pas de compte Kortscore qui
+        synchronise les données via le cloud.
+
+cta:
+  title: Prochain match ? Compte-le.
+  lede: Gratuit pour iPhone et Android. Prêt en deux minutes.
+  hint: iOS &amp; iPadOS 18+ · macOS 15+ (puce Apple) · watchOS 26+ · Android 8.0+ · Wear OS 3+ · sans publicité, sans compte
+
+# JSON-LD SoftwareApplication (nur im Quelltext, nicht sichtbar).
+app:
+  alternate_name: "Kortscore: Tennis &amp; Padel"
+  description: Kortscore compte les points au tennis et au padel d’un simple tap sur ton Apple Watch ou ta montre Wear OS. Gratuit, avec score en direct pour les spectateurs, statistiques et historique des matchs sur iPhone et Android.
+  features:
+    - Comptage d’un simple tap sur la montre
+    - Tennis et padel, simple et double
+    - Avantage et NoAd, tie-breaks, sets en 4 ou 6 jeux
+    - Score en direct via un lien à partager, sans app pour les spectateurs
+    - Statistiques de match et historique point par point
+    - Sans publicité, sans compte

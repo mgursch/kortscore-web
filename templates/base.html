@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ t.meta.title }}</title>
+<meta name="description" content="{{ t.meta.description|inattr }}">
+
+<meta property="og:type" content="{{ P.og_type }}">
+<meta property="og:title" content="{{ t.meta.og_title|inattr }}">
+<meta property="og:description" content="{{ t.meta.description|inattr }}">
+<!-- og:image needs an absolute URL, social previews load no image otherwise. -->
+<meta property="og:image" content="{{ abs_asset(lasset('og')) }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="{{ L.og_locale }}">
+{% for o in other_languages %}
+<meta property="og:locale:alternate" content="{{ o.og_locale }}">
+{% endfor %}
+<meta property="og:url" content="{{ abs_url(page) }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ abs_asset(lasset('og')) }}">
+<meta name="theme-color" content="#faf9f5">
+<link rel="canonical" href="{{ abs_url(page) }}">
+
+<!-- Every language points at all the others so search engines serve the right
+     one; x-default points at the default language. script.js reads the same
+     links to offer or pick a language. -->
+{% for l in languages %}
+<link rel="alternate" hreflang="{{ l.code }}" href="{{ abs_url(page, l.code) }}">
+{% endfor %}
+<link rel="alternate" hreflang="x-default" href="{{ abs_url(page, site.x_default) }}">
+
+<link rel="icon" href="{{ asset('favicon.ico') }}" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="{{ asset('icon.svg') }}">
+<link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
+
+<!-- Only the two faces above the fold are preloaded: the hero headline and the
+     body copy next to it. The rest arrive with the stylesheet. -->
+<link rel="preload" href="{{ asset('fonts/BarlowCondensed-700-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ asset('fonts/IBMPlexSans-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ static('styles.css') }}">
+
+<!-- ── Statistik: Umami ──────────────────────────────────────────────────────
+     Cookiefrei und ohne personenbezogene Daten, daher kein Consent-Banner
+     nötig (Google Analytics wäre in Österreich einwilligungspflichtig, weil
+     Daten in die USA übertragen werden).
+
+     Die Website-ID stammt aus dem Umami-Cloud-Dashboard. Der Guard unten lädt
+     das Skript nur bei gültigem UUID-Format, ein Platzhalter oder Tippfehler
+     erzeugt so keine fehlschlagenden Requests.
+     ────────────────────────────────────────────────────────────────────── -->
+<script>
+(function () {
+  var UMAMI_ID  = '5d4bc72b-d15a-49f0-9083-bc763e4ce7b1';
+  var UMAMI_SRC = 'https://cloud.umami.is/script.js';
+
+  // Nur mit echter ID laden (Platzhalter enthält Bindestrich-Wörter, keine UUID).
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(UMAMI_ID)) return;
+
+  var s = document.createElement('script');
+  s.defer = true;
+  s.src = UMAMI_SRC;
+  s.setAttribute('data-website-id', UMAMI_ID);
+  document.head.appendChild(s);
+})();
+</script>
+{% if P.google_ads %}
+
+<!-- ── Google Ads: Conversion ohne Cookies ──────────────────────────────────
+     Misst, ob eine Anzeige zum Play-Store-Klick geführt hat. Der Consent Mode
+     steht auf denied, bevor gtag.js überhaupt lädt: Google setzt dann keine
+     Werbe-Cookies und speichert nichts auf dem Gerät, sondern liefert nur
+     modellierte, aggregierte Conversions. Deshalb bleibt die Seite ohne
+     Consent-Banner, wie schon bei Umami.
+
+     url_passthrough und ads_data_redaction gehören dazu: Ersteres hängt die
+     Klick-Kennung an die URL statt ins Cookie, Letzteres kürzt die Daten, die
+     ohne Einwilligung überhaupt an Google gehen.
+
+     Wer später doch volle Messung will, braucht ein echtes Einwilligungs-
+     Banner und darf erst nach dem Klick auf granted schalten.
+
+     Nur auf den Seiten mit google_ads: true in site.yaml.
+     ────────────────────────────────────────────────────────────────────── -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+// Vor dem Laden setzen, sonst greift die Voreinstellung zu spät.
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: 'denied'
+});
+gtag('set', 'url_passthrough', true);
+gtag('set', 'ads_data_redaction', true);
+
+gtag('js', new Date());
+gtag('config', 'AW-18314402307');
+
+// Conversion "Seitenaufruf": feuert bei jedem Aufruf dieser Seite, also auch
+// bei Besuchern, die sofort wieder weggehen. Der Wert ist eine Rechengröße für
+// die Gebotsstrategie, kein tatsächlicher Umsatz.
+gtag('event', 'conversion', {
+  send_to: 'AW-18314402307/rVvTCNqX_OkcEIO0_pxE',
+  value: 1.0,
+  currency: 'EUR'
+});
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18314402307"></script>
+{% endif %}
+
+{% block jsonld %}{% endblock %}
+</head>
+<body>
+
+<!-- ── Language hint ────────────────────────────────────────────────────────
+     One bar per other language, each written in the language it offers. All
+     start hidden; script.js shows the one matching the browser's preferred
+     language, once, and only until a language has been chosen. Without
+     JavaScript they stay hidden. -->
+{% for o in other_languages %}
+<div class="langbar" data-langbar data-langbar-lang="{{ o.code }}" hidden>
+  <span lang="{{ o.code }}">{{ o.strings.langbar.text }}</span>
+  <a class="langbar__go" href="{{ url(page, o.code) }}" hreflang="{{ o.code }}" lang="{{ o.code }}" data-langbar-go>{{ o.strings.langbar.go }}</a>
+  <button class="langbar__close" type="button" data-langbar-close lang="{{ o.code }}">{{ o.strings.langbar.close }}</button>
+</div>
+{% endfor %}
+
+<!-- ── Nav ──────────────────────────────────────────────────────────────── -->
+<header class="nav">
+  <a class="nav__brand" href="{{ '#top' if page == 'index' else url('index') }}">
+    <img src="{{ asset('icon.png') }}" alt="" width="30" height="30">
+    <span>Kortscore</span>
+  </a>
+  <div class="nav__right">
+    <!-- Language switcher: a plain <details>, so it opens without JavaScript.
+         Every language links to this same page in that language. -->
+    <details class="nav__lang" data-lang-menu>
+      <summary aria-label="{{ c.lang_menu }}: {{ L.name }}">{{ lang|upper }}</summary>
+      <ul class="nav__lang-list">
+      {% for l in languages %}
+        <li><a href="{{ url(page, l.code) }}" hreflang="{{ l.code }}" lang="{{ l.code }}"{% if l.code == lang %} aria-current="page"{% endif %} data-lang-switch>{{ l.name }}</a></li>
+      {% endfor %}
+      </ul>
+    </details>
+    <a class="btn btn--small nav__cta" href="{{ home('get') }}">{{ c.nav_cta }}</a>
+  </div>
+</header>
+
+{% block main %}{% endblock %}
+
+<!-- ── Footer ───────────────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer__inner">
+    <p class="footer__claim">{{ c.footer.claim }}</p>
+    <p class="footer__links">
+{% if page != 'index' %}
+      <a href="{{ url('index') }}">{{ c.footer.home }}</a>
+{% endif %}
+      <a href="{{ url('compatible') }}">{{ c.footer.compatible }}</a>
+      <a href="{{ url('tennis') }}">{{ c.footer.tennis }}</a>
+      <a href="{{ url('padel') }}">{{ c.footer.padel }}</a>
+      <a href="{{ url('clubs') }}">{{ c.footer.clubs }}</a>
+      <a href="{{ legal('impressum') }}">{{ c.footer.impressum }}</a>
+      <a href="{{ legal('privacy') }}">{{ c.footer.privacy }}</a>
+      <a href="{{ legal('terms') }}">{{ c.footer.terms }}</a>
+      <a href="https://www.swordistudios.com" target="_blank" rel="noopener">swordi.studios</a>
+    </p>
+  </div>
+</footer>
+
+<script src="{{ static('script.js') }}"></script>
+</body>
+</html>

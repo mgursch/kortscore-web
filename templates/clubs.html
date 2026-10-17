@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% from "partials/faq.html" import faq_list %}
+
+{% block jsonld %}
+<!-- Breadcrumbs for search, FAQPage for the questions at the end. -->
+{{ jsonld({"@graph": [breadcrumbs(), faq_page(t.faq.questions)]}) }}
+{% endblock %}
+
+{% block main %}
+<main>
+<div class="subhead">
+  <a class="back" href="{{ url('index') }}">{{ c.back_home }}</a>
+  <p class="eyebrow">{{ t.eyebrow }}</p>
+  <h1 class="subhead__title">{{ t.title }}</h1>
+  <p class="lead">{{ t.lead }}</p>
+</div>
+
+<!-- ── Club offer ───────────────────────────────────────────────────────────
+     Three steps, the flyer to look at and download, then the request. The
+     request is a prefilled email rather than a form: no backend, and the
+     club sees exactly what goes out before sending. The discount is never
+     named on purpose, it is agreed per club. -->
+<div class="compat">
+  <section class="compat__section">
+    <h2>{{ t.steps.title }}</h2>
+    <ol class="clubsteps">
+    {% for step in t.steps.list %}
+      <li class="clubsteps__item">
+        <p class="step__num mono">{{ "%02d"|format(loop.index) }}</p>
+        <h3 class="step__title">{{ step.title }}</h3>
+        <p class="step__body">{{ step.body }}</p>
+      </li>
+    {% endfor %}
+    </ol>
+  </section>
+
+  <section class="compat__section">
+    <h2>{{ t.redeem.title }}</h2>
+    <ol class="compat__list">
+    {% for line in t.redeem.list %}
+      <li>{{ line }}</li>
+    {% endfor %}
+    </ol>
+    <p>{{ t.redeem.note }}</p>
+  </section>
+
+  <section class="compat__section">
+    <h2>{{ t.plus.title }}</h2>
+    <p>{{ t.plus.text }}</p>
+  </section>
+
+  <!-- The flyer exists in German only for now, every language links the
+       same file. -->
+  <section class="compat__section clubflyer">
+    <a class="clubflyer__shot" href="{{ asset('kortscore-flyer-a4.pdf') }}" target="_blank" rel="noopener">
+      <img src="{{ asset('flyer-vorschau.webp') }}"
+           srcset="{{ asset('flyer-vorschau.webp') }} 480w, {{ asset('flyer-vorschau@2x.webp') }} 960w"
+           sizes="(max-width: 640px) 70vw, 240px"
+           width="480" height="678" loading="lazy" decoding="async"
+           alt="{{ t.flyer.alt|inattr }}">
+    </a>
+    <div>
+      <h2>{{ t.flyer.title }}</h2>
+      <p>{{ t.flyer.text }}</p>
+      <p class="clubflyer__dl"><a href="{{ asset('kortscore-flyer-a4.pdf') }}" download data-umami-event="flyer-download">{{ t.flyer.download }}</a> <span class="mono">PDF · 620 KB</span></p>
+    </div>
+  </section>
+
+  <section class="compat__section">
+    <h2>{{ t.faq.title }}</h2>
+    {{ faq_list(t.faq.questions)|indent(4) }}
+  </section>
+
+  <div class="compat__cta clubask">
+    <div>
+      <p class="eyebrow">{{ t.ask.eyebrow }}</p>
+      <a class="btn btn--accent" href="mailto:{{ site.contact_email }}?subject={{ t.ask.mail_subject|mailenc }}&amp;body={{ t.ask.mail_body|mailenc }}" data-umami-event="verein-anfrage">{{ t.ask.button }}</a>
+      <p class="clubask__alt">{{ t.ask.alt }} <a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a></p>
+    </div>
+  </div>
+</div>
+</main>
+{% endblock %}

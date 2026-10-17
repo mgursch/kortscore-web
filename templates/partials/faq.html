@@ -1,0 +1,12 @@
+{# Sichtbare Fragen und Antworten. Dieselbe Liste geht über faq_page() ins
+   FAQPage-JSON-LD, Antworten dort ohne HTML. #}
+{% macro faq_list(questions) %}
+<div class="faq__list">
+{% for item in questions %}
+  <details class="faq__item">
+    <summary class="faq__q">{{ item.q }}</summary>
+    <div class="faq__a"><p>{{ item.a }}</p></div>
+  </details>
+{% endfor %}
+</div>
+{%- endmacro %}

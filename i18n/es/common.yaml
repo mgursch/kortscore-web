@@ -1,0 +1,28 @@
+# Texte, die auf jeder Seite stehen: Navigation, Footer, Sprachhinweis.
+# Inline-HTML ist erlaubt (Werte landen unverändert im HTML, & also als &amp;).
+
+nav_cta: Descarga la app
+# alt-Text des offiziellen Google-Play-Badges (Text wie auf dem Badge).
+google_play_alt: Disponible en Google Play
+back_home: ← Volver al inicio
+
+# aria-label des Sprachumschalters, gefolgt vom Namen der aktuellen Sprache.
+lang_menu: Idioma
+
+# Der Hinweisbalken für Besucher, deren Browser diese Sprache bevorzugt. Er
+# erscheint auf den Seiten der ANDEREN Sprachen, steht aber in dieser.
+langbar:
+  text: Esta página también está disponible en español.
+  go: Ver la versión en español
+  close: No, gracias
+
+footer:
+  claim: Kortscore · El marcador de tenis y pádel en tu muñeca
+  home: Inicio
+  compatible: Relojes compatibles
+  tennis: Puntuación en tenis
+  padel: Puntuación en pádel
+  clubs: Para clubes
+  impressum: Aviso legal
+  privacy: Privacidad
+  terms: Condiciones

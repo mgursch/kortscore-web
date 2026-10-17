@@ -1,0 +1,110 @@
+# Regelseite Tennis. Gerüst in templates/partials/rules.html.
+# meta.title und meta.description stehen auch im Article-JSON-LD.
+
+meta:
+  title: ¿Cómo se cuenta en el tenis? Puntos, juegos, sets y tie-break explicados
+  description: "La puntuación del tenis, explicada de forma sencilla: 15, 30, 40, iguales y ventaja, NoAd, juegos y sets, tie-break y súper tie-break, orden de saque y cambios de lado."
+  og_title: ¿Cómo se cuenta en el tenis?
+
+breadcrumb: Puntuación en tenis
+llms: Cómo se cuenta en el tenis (reglas explicadas)
+# Article-JSON-LD "about".
+about: Tenis
+
+eyebrow: Reglas
+title: ¿Cómo se cuenta <br>en el tenis?
+lead: >-
+  El tenis se cuenta como ningún otro deporte: los puntos se llaman 15, 30 y
+  40, un juego exige dos puntos de diferencia, un set, seis juegos, y con 6:6
+  llega el tie-break. Aquí tienes todo el sistema en una sola página, tal y
+  como se aplica en la pista.
+
+sections:
+  - title: "Puntos: 0, 15, 30, 40"
+    text: >-
+      Cada juego empieza con 0:0 (en inglés, «love all»). El primer punto vale 15,
+      el segundo 30, el tercero 40. Quien está en 40 y gana el siguiente punto se
+      lleva el juego, salvo que el rival también esté en 40. El tanteo del que
+      saca se canta siempre primero: 30:15 significa que va ganando el sacador.
+  - title: Iguales y ventaja
+    text: >-
+      Con 40:40, el marcador está en iguales. A partir de ahí hacen falta dos
+      puntos seguidos: el siguiente punto da la ventaja y el que viene después,
+      el juego. Si quien tiene la ventaja pierde el punto, se vuelve a iguales.
+      En teoría, un juego puede durar eternamente.
+  - title: "NoAd: decide el punto en iguales"
+    text: >-
+      Muchas ligas, torneos de club y los dobles profesionales juegan NoAd,
+      abreviatura de «no advantage» (sin ventaja): con 40:40, el siguiente
+      punto decide el juego, y el restador elige desde qué lado resta. Así los
+      partidos son más cortos y previsibles. En pádel, la misma regla se llama
+      punto de oro. En Kortscore eliges NoAd una vez al empezar y el reloj
+      cuenta en consecuencia.
+  - title: Juegos y sets
+    text: >-
+      Un set lo gana quien llega primero a seis juegos con al menos dos de
+      diferencia: con 6:4 se gana el set, con 6:5 no. Con 6:5 se sigue jugando,
+      y con 7:5 se gana. Con 6:6 llega el tie-break. Los sets cortos se juegan
+      a 4 juegos. La regla de la ITF fija el tie-break con 4:4 y admite 3:3
+      como alternativa. Kortscore lo juega con 3:3, como en FAST4: así, un set
+      corto termina 4:0, 4:1, 4:2 o, tras un tie-break a 7, 4:3. Un partido
+      suele jugarse al mejor de tres sets; los Grand Slams masculinos, al mejor
+      de cinco.
+  - title: El tie-break
+    text: >-
+      En el tie-break, también llamado muerte súbita, los puntos se cuentan de
+      uno en uno: 1, 2, 3, etc. Quien llega primero a siete puntos, con dos de
+      diferencia, gana el tie-break y el set, que se anota como 7:6. El saque
+      cambia tras el primer punto y después cada dos puntos; los jugadores
+      cambian de lado cada seis puntos. Quien sacó primero en el tie-break
+      resta en el primer juego del set siguiente.
+  - title: Súper tie-break en lugar del tercer set
+    text: >-
+      Muchos torneos de dobles y de club sustituyen el tercer set por un
+      súper tie-break a 10 puntos, también con dos de diferencia. El resultado
+      queda entonces, por ejemplo, 6-3 4-6 [10-7]. Kortscore conoce los dos:
+      tie-break a 7 y súper tie-break a 10.
+  - title: Saque y cambio de lado
+    text: >-
+      El saque se alterna después de cada juego. Los jugadores cambian de lado
+      tras el primer, el tercer y el quinto juego, es decir, siempre que la
+      suma de juegos es impar; y tras un set con un número par de juegos, solo
+      después del primer juego del set siguiente. En individual, quien sacó en
+      el primer juego vuelve a sacar en el tercero. En dobles, los compañeros
+      se turnan, así que el primer sacador vuelve a sacar en el quinto juego.
+  - title: Cómo se anota el resultado
+    text: >-
+      Un resultado se lee set a set desde el punto de vista del ganador: 6-4
+      3-6 7-6(4) significa tres sets, y el tercero se decidió en un tie-break
+      ganado 7-4. Kortscore anota el resultado en tu historial exactamente así,
+      con la duración y el registro punto por punto.
+
+# Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
+faq:
+  title: Preguntas frecuentes
+  questions:
+    - q: ¿Por qué los puntos se llaman 15, 30 y 40?
+      a: >-
+        Nadie lo sabe con certeza. La explicación más extendida es una esfera
+        de reloj marcada en los cuartos, 15, 30 y 45, en la que el 45 se acortó
+        a 40 porque se canta más rápido. Lo único que importa es el orden.
+    - q: ¿Qué significa «love»?
+      a: >-
+        Cero, en inglés. Probablemente viene del francés «l'œuf», el huevo, por
+        la forma del cero. En español se dice «nada» (quince nada), y un juego
+        en el que el perdedor no gana ni un punto es un juego en blanco.
+    - q: ¿Quién saca después del tie-break?
+      a: >-
+        Quien sacó el primer punto del tie-break resta en el primer juego del
+        set siguiente. La rotación sigue sin más, como si el tie-break hubiera
+        sido un juego.
+    - q: ¿Tengo que llevar la cuenta de todo esto?
+      a: >-
+        No, de eso se encarga el reloj. En Kortscore tocas una vez por punto;
+        todo lo demás (iguales, ventaja, rotación del saque en el tie-break) lo
+        calcula la app siguiendo exactamente estas reglas.
+
+cta:
+  eyebrow: Deja que cuente el reloj
+  more: Sigue leyendo
+  next: El pádel se cuenta casi igual, con una excepción →

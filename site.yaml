@@ -1,0 +1,173 @@
+# Kortscore Website: Sprachen und Seitenregister
+#
+# build.py liest diese Datei und baut daraus jede Seite in jeder aktiven
+# Sprache. Eine neue Sprache braucht:
+#   1. einen Eintrag unter languages (enabled: true),
+#   2. je Seite einen Slug unter pages.<id>.slugs,
+#   3. den Ordner i18n/<code>/ mit common.yaml und einer Datei pro Seite,
+#   4. ihre Assets unter localized_assets und die Badge-Datei
+#      templates/badges/appstore-<code>.svg.
+# Fehlt davon etwas, bricht der Build mit einer Meldung ab.
+
+base_url: https://kortscore.com/
+
+# Die Sprache für x-default in hreflang und Sitemap. Ihre Seiten leiten
+# Besucher mit anderer Browsersprache einmalig um (siehe script.js).
+x_default: en
+
+# Reihenfolge = Reihenfolge im Sprachumschalter und in der Sitemap.
+# prefix ist der Ordner der Sprache relativ zum Root, mit Schrägstrich am Ende.
+languages:
+  - code: en
+    name: English
+    og_locale: en_US
+    prefix: ""
+    enabled: true
+  - code: de
+    name: Deutsch
+    og_locale: de_AT
+    prefix: de/
+    enabled: true
+  - code: fr
+    name: Français
+    og_locale: fr_FR
+    prefix: fr/
+    enabled: true
+  - code: it
+    name: Italiano
+    og_locale: it_IT
+    prefix: it/
+    enabled: true
+  - code: es
+    name: Español
+    og_locale: es_ES
+    prefix: es/
+    enabled: true
+
+# Die Rechtstexte unter legal/ stehen in einer Datei pro Dokument, diese
+# Sprache zuerst und ohne Anker. Alle anderen springen per #<code> in ihren
+# Abschnitt.
+legal_first_language: de
+
+# Sprachen der App selbst (JSON-LD inLanguage der SoftwareApplication).
+app_languages: [en, de, fr, it, es]
+
+stores:
+  app_store: https://apps.apple.com/app/kortscore/id6809131189
+  google_play: https://play.google.com/store/apps/details?id=com.swordistudios.kortscore
+
+contact_email: swordistudios@gmail.com
+
+# Seitenregister: ID -> Vorlage templates/<id>.html, Texte i18n/<code>/<id>.yaml.
+# Ein Slug index.html ergibt die Ordner-URL (/ bzw. /de/).
+# lastmod und priority landen unverändert in der Sitemap.
+# google_ads: nur diese Seiten laden gtag.js (Conversion "Seitenaufruf").
+pages:
+  index:
+    slugs: {en: index.html, de: index.html, fr: index.html, it: index.html, es: index.html}
+    og_type: website
+    google_ads: true
+    lastmod: 2026-09-21
+    priority: "1.0"
+  watches:
+    slugs: {en: watches.html, de: uhren.html, fr: montres.html, it: orologi.html, es: relojes.html}
+    og_type: website
+    google_ads: true
+    lastmod: 2026-09-21
+    priority: "0.7"
+  compatible:
+    slugs:
+      en: compatible-watches.html
+      de: kompatible-uhren.html
+      fr: montres-compatibles.html
+      it: orologi-compatibili.html
+      es: relojes-compatibles.html
+    og_type: website
+    google_ads: false
+    lastmod: 2026-09-21
+    priority: "0.8"
+  tennis:
+    slugs:
+      en: how-tennis-scoring-works.html
+      de: tennis-zaehlweise.html
+      fr: compter-points-tennis.html
+      it: punteggio-tennis.html
+      es: puntuacion-tenis.html
+    og_type: article
+    google_ads: false
+    lastmod: 2026-09-22
+    priority: "0.6"
+    article: {published: 2026-09-22, modified: 2026-09-22}
+  padel:
+    slugs:
+      en: how-padel-scoring-works.html
+      de: padel-zaehlweise.html
+      fr: compter-points-padel.html
+      it: punteggio-padel.html
+      es: puntuacion-padel.html
+    og_type: article
+    google_ads: false
+    lastmod: 2026-09-22
+    priority: "0.6"
+    article: {published: 2026-09-22, modified: 2026-09-22}
+  clubs:
+    slugs: {en: clubs.html, de: vereine.html, fr: clubs.html, it: circoli.html, es: clubes.html}
+    og_type: website
+    google_ads: false
+    lastmod: 2026-10-12
+    priority: "0.6"
+
+# Bilder mit Text oder App-Oberfläche gibt es je Sprache. Die Vorlagen fragen
+# nur den Basisnamen ab (lasset('shot-live')), die Datei steht hier.
+# Benennung: englischer Basisname plus Sprachcode, in jeder Sprache gleich:
+# <basis>-<code>.<ext>, z. B. shot-play-de.webp. Der Build bricht ab, wenn
+# einer aktiven Sprache ein Eintrag oder die Datei in static/assets/ fehlt.
+localized_assets:
+  og:
+    en: og-en.png
+    de: og-de.png
+    fr: og-fr.png
+    it: og-it.png
+    es: og-es.png
+  google-play:
+    en: google-play-en.png
+    de: google-play-de.png
+    fr: google-play-fr.png
+    it: google-play-it.png
+    es: google-play-es.png
+  shot-play:
+    en: shot-play-en.webp
+    de: shot-play-de.webp
+    fr: shot-play-fr.webp
+    it: shot-play-it.webp
+    es: shot-play-es.webp
+  shot-live:
+    en: shot-live-en.webp
+    de: shot-live-de.webp
+    fr: shot-live-fr.webp
+    it: shot-live-it.webp
+    es: shot-live-es.webp
+  shot-stats:
+    en: shot-stats-en.webp
+    de: shot-stats-de.webp
+    fr: shot-stats-fr.webp
+    it: shot-stats-it.webp
+    es: shot-stats-es.webp
+  shot-ios-play:
+    en: shot-ios-play-en.webp
+    de: shot-ios-play-de.webp
+    fr: shot-ios-play-fr.webp
+    it: shot-ios-play-it.webp
+    es: shot-ios-play-es.webp
+  shot-ios-live:
+    en: shot-ios-live-en.webp
+    de: shot-ios-live-de.webp
+    fr: shot-ios-live-fr.webp
+    it: shot-ios-live-it.webp
+    es: shot-ios-live-es.webp
+  shot-ios-stats:
+    en: shot-ios-stats-en.webp
+    de: shot-ios-stats-de.webp
+    fr: shot-ios-stats-fr.webp
+    it: shot-ios-stats-it.webp
+    es: shot-ios-stats-es.webp

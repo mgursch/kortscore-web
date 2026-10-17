@@ -1,0 +1,28 @@
+# Texte, die auf jeder Seite stehen: Navigation, Footer, Sprachhinweis.
+# Inline-HTML ist erlaubt (Werte landen unverändert im HTML, & also als &amp;).
+
+nav_cta: Get the app
+# alt-Text des offiziellen Google-Play-Badges (Text wie auf dem Badge).
+google_play_alt: Get it on Google Play
+back_home: ← Back to the start
+
+# aria-label des Sprachumschalters, gefolgt vom Namen der aktuellen Sprache.
+lang_menu: Language
+
+# Der Hinweisbalken für Besucher, deren Browser diese Sprache bevorzugt. Er
+# erscheint auf den Seiten der ANDEREN Sprachen, steht aber in dieser.
+langbar:
+  text: This page is also available in English.
+  go: Switch to English
+  close: No thanks
+
+footer:
+  claim: Kortscore · Tennis &amp; padel scoring on your wrist
+  home: Home
+  compatible: Compatible watches
+  tennis: Tennis scoring
+  padel: Padel scoring
+  clubs: For clubs
+  impressum: Legal notice
+  privacy: Privacy
+  terms: Terms

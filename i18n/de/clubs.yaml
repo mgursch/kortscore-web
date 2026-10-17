@@ -1,0 +1,96 @@
+# Vereinsangebot: Flyer aufhängen, Mitglieder bekommen Kortscore Plus günstiger.
+
+meta:
+  title: "Kortscore für Vereine: Flyer aufhängen, Rabatt auf Kortscore Plus für eure Mitglieder"
+  description: Euer Verein hängt den Kortscore-Flyer im Vereinshaus oder am Platz auf, eure Mitglieder bekommen einen Rabattcode für Kortscore Plus. Einfach per Mail anfragen.
+  og_title: Kortscore für Vereine
+
+breadcrumb: Für Vereine
+llms: Für Vereine
+
+eyebrow: Für Vereine
+title: Flyer aufhängen. <br>Mitglieder sparen.
+lead: >-
+  Euer Verein hängt den Kortscore-Flyer im Vereinshaus oder am Platz auf, und
+  eure Mitglieder bekommen dafür einen Rabattcode für Kortscore Plus. Schreibt
+  uns einfach, den Rest klären wir per Mail.
+
+steps:
+  title: So geht's
+  list:
+    - title: Anfragen
+      body: >-
+        Schreibt uns eine kurze Mail mit Vereinsname, Ort und Ansprechperson.
+        Der Button unten füllt sie schon vor.
+    - title: Flyer aufhängen
+      body: >-
+        Druckt den Flyer auf A4 aus und hängt ihn gut sichtbar auf: im
+        Vereinshaus, an der Pinnwand oder am Eingang zu den Plätzen.
+    - title: Code weitergeben
+      body: >-
+        Ihr bekommt einen eigenen Code für Kortscore Plus und gebt ihn an eure
+        Mitglieder weiter, per Aushang, Newsletter oder Vereinsgruppe. Damit
+        wird Plus in der App günstiger.
+
+redeem:
+  title: So lösen eure Mitglieder den Code ein
+  list:
+    - >-
+      Kortscore öffnen und den Kaufscreen von Kortscore Plus aufrufen, zum
+      Beispiel in den Einstellungen unter <strong>Kortscore Plus freischalten</strong>.
+    - Auf <strong>Code einlösen</strong> tippen und den Code eures Vereins eingeben.
+    - >-
+      Der günstigere Preis erscheint direkt am Kaufscreen. Gekauft wird wie
+      gewohnt über den App Store oder Google Play.
+  note: Das funktioniert auf dem iPhone und auf Android gleich.
+
+plus:
+  title: Was ist Kortscore Plus?
+  text: >-
+    Kortscore selbst ist gratis: zählen am Handgelenk, Match-Historie und
+    Live-Ticker, ohne Werbung und ohne Konto. Kortscore Plus ist ein einmaliger
+    Kauf, kein Abo, und bringt erweiterte Statistiken, automatische Backups und
+    den KI-Trainer, der die Matches analysiert. Mit eurem Code bekommen eure
+    Mitglieder Plus günstiger.
+
+# Der Flyer selbst ist bisher nur auf Deutsch, das sagt der Text dazu.
+flyer:
+  title: Der Flyer
+  alt: >-
+    Der Kortscore-Flyer im A4-Format: Du spielst, die Uhr zählt, mit QR-Code,
+    den Links zu App Store und Google Play und dem Hinweis auf den Rabattcode
+    für Vereinsmitglieder
+  text: >-
+    A4, eine Seite, mit QR-Code zum Download der App. Am besten in Farbe
+    drucken, dann kommen Screens und Uhr gut rüber.
+  download: Flyer herunterladen
+
+# Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
+faq:
+  title: Häufige Fragen
+  questions:
+    - q: Kostet das den Verein etwas?
+      a: >-
+        Nein. Ihr hängt den Flyer auf, wir schicken den Rabattcode. Kortscore
+        selbst ist für eure Mitglieder ohnehin gratis.
+    - q: Wie hoch ist der Rabatt?
+      a: >-
+        Das legen wir mit jedem Verein einzeln fest. Schreibt uns, wie viele
+        Mitglieder ihr ungefähr habt, dann machen wir euch ein Angebot.
+    - q: Funktioniert der Code auf iPhone und Android?
+      a: >-
+        Ja. Der Code wird in der Kortscore-App am Kaufscreen von Kortscore Plus
+        eingelöst, auf beiden Plattformen gleich.
+    - q: Ist der Code unbegrenzt gültig?
+      a: >-
+        Nicht unbedingt. Ein Code kann einen Gültigkeitszeitraum haben, den
+        nennen wir euch zusammen mit dem Code.
+
+# Die Anfrage ist eine vorausgefüllte Mail. Betreff und Text als reiner Text
+# (\n = Zeilenumbruch), der Build kodiert sie für den mailto-Link.
+ask:
+  eyebrow: Mitmachen?
+  button: Anfrage per Mail
+  alt: oder direkt an
+  mail_subject: Kortscore Plus für unseren Verein
+  mail_body: "Hallo,\n\nunser Verein möchte den Kortscore-Flyer aufhängen und einen Rabattcode für Kortscore Plus für unsere Mitglieder bekommen.\n\nVerein: \nOrt: \nAnsprechperson: \nUngefähre Mitgliederzahl: \nWo der Flyer hängen wird (Vereinshaus, Platz, ...): \n\nDanke und liebe Grüße\n"

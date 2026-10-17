@@ -1,0 +1,344 @@
+{% extends "base.html" %}
+{% from "partials/faq.html" import faq_list %}
+
+{% block jsonld %}
+<!-- FAQPage: generated from the same list as the FAQ section further down. -->
+{{ jsonld(faq_page(t.faq.questions)) }}
+<!-- Structured data for search and AI engines: what Kortscore is, who makes it,
+     where to get it. Texts come from i18n/<lang>/index.yaml (app). -->
+{{ jsonld({"@graph": [
+  {
+    "@type": "Organization",
+    "@id": site.base_url ~ "#organization",
+    "name": "swordi.studios",
+    "alternateName": "swordistudios",
+    "url": "https://www.swordistudios.com/",
+    "logo": abs_asset("icon.png"),
+    "address": {"@type": "PostalAddress", "addressLocality": "Vienna", "addressCountry": "AT"},
+    "sameAs": [site.stores.app_store, site.stores.google_play]
+  },
+  {
+    "@type": ["SoftwareApplication", "MobileApplication"],
+    "@id": site.base_url ~ "#app",
+    "name": "Kortscore",
+    "alternateName": t.app.alternate_name|plain,
+    "url": abs_url("index"),
+    "image": abs_asset("icon.png"),
+    "description": t.app.description|plain,
+    "applicationCategory": "SportsApplication",
+    "operatingSystem": "iOS 18+, iPadOS 18+, macOS 15+ (Apple silicon), watchOS 26+, Android 8.0+, Wear OS 3+",
+    "inLanguage": site.app_languages,
+    "isAccessibleForFree": true,
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR", "category": "free"},
+    "installUrl": [site.stores.app_store, site.stores.google_play],
+    "screenshot": [abs_asset(lasset("shot-live")), abs_asset(lasset("shot-stats")), abs_asset("watch-render.png")],
+    "featureList": t.app.features|map("plain")|list,
+    "author": {"@id": site.base_url ~ "#organization"},
+    "publisher": {"@id": site.base_url ~ "#organization"}
+  },
+  {
+    "@type": "WebSite",
+    "@id": site.base_url ~ "#website",
+    "name": "Kortscore",
+    "url": site.base_url,
+    "inLanguage": lang,
+    "publisher": {"@id": site.base_url ~ "#organization"}
+  }
+]}) }}
+{% endblock %}
+
+{% block main %}
+<!-- ── Hero ─────────────────────────────────────────────────────────────── -->
+<main id="top">
+<section class="hero">
+  <div class="hero__copy">
+    <p class="eyebrow">{{ t.hero.eyebrow }}</p>
+    <h1 class="hero__title">{{ t.hero.title }}</h1>
+    <p class="hero__lede">
+      {{ t.hero.lede }}
+    </p>
+    <div class="hero__actions">
+      <a class="btn btn--accent" href="#get">{{ t.hero.cta }}</a>
+      <span class="hero__meta">{{ t.hero.platforms }}</span>
+    </div>
+  </div>
+
+  <!-- The three phones and the watch are the app itself, so they carry real
+       screenshots rather than a device mock. Widths and heights are set so the
+       row keeps its place while the images arrive. -->
+  <div class="hero__shots">
+    <div class="phone phone--back phone--left">
+      <img src="{{ asset(lasset('shot-play')) }}" width="168" height="356"
+           loading="eager" decoding="async"
+           alt="{{ t.hero.alt.play|inattr }}">
+    </div>
+    <div class="phone phone--front">
+      <img src="{{ asset(lasset('shot-live')) }}" width="180" height="382"
+           loading="eager" decoding="async"
+           alt="{{ t.hero.alt.live|inattr }}">
+    </div>
+    <div class="phone phone--back phone--right">
+      <img src="{{ asset(lasset('shot-stats')) }}" width="168" height="356"
+           loading="lazy" decoding="async"
+           alt="{{ t.hero.alt.stats|inattr }}">
+    </div>
+    <div class="watchshot">
+      <img src="{{ asset('watch-render.png') }}" width="292" height="338"
+           loading="eager" decoding="async"
+           alt="{{ t.hero.alt.watch|inattr }}">
+    </div>
+  </div>
+</section>
+
+<!-- ── Benefits ─────────────────────────────────────────────────────────── -->
+<section class="benefits" id="warum">
+  <div class="shell">
+    <h2 class="section-title">{{ t.benefits.title }}</h2>
+    <div class="benefits__grid">
+      <article class="stat">
+        <p class="stat__num">1×</p>
+        <h3 class="stat__title">{{ t.benefits.tap.title }}</h3>
+        <p class="stat__body">
+          {{ t.benefits.tap.body }}
+        </p>
+      </article>
+      <article class="stat">
+        <p class="stat__num">67%</p>
+        <h3 class="stat__title">{{ t.benefits.stats.title }}</h3>
+        <p class="stat__body">
+          {{ t.benefits.stats.body }}
+        </p>
+      </article>
+      <article class="stat">
+        <p class="stat__live"><span class="livedot"></span>{{ t.benefits.live.label }}</p>
+        <h3 class="stat__title">{{ t.benefits.live.title }}</h3>
+        <p class="stat__body">
+          {{ t.benefits.live.body }}
+        </p>
+      </article>
+      <article class="stat">
+        <p class="stat__num">0&nbsp;€</p>
+        <h3 class="stat__title">{{ t.benefits.free.title }}</h3>
+        <p class="stat__body">
+          {{ t.benefits.free.body }}
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── Steps ────────────────────────────────────────────────────────────── -->
+<section class="steps shell" id="so-gehts">
+  <h2 class="section-title">{{ t.steps.title }}</h2>
+  <div class="steps__grid">
+  {% for step in t.steps.list %}
+    <div class="step">
+      <p class="step__num mono">{{ "%02d"|format(loop.index) }}</p>
+      <h3 class="step__title">{{ step.title }}</h3>
+      <p class="step__body">
+        {{ step.body }}
+      </p>
+    </div>
+  {% endfor %}
+  </div>
+</section>
+
+<!-- ── Padel ────────────────────────────────────────────────────────────────
+     A padel player's first question about a tennis app is whether it counts
+     correctly. It does, because the scoring is the same, so this section says
+     so plainly and backs it with the two things that actually differ in
+     padel: NoAd and doubles. Both were already there. -->
+<section class="padel" id="padel">
+  <div class="shell padel__inner">
+    <div class="padel__copy">
+      <p class="eyebrow">{{ t.padel.eyebrow }}</p>
+      <h2 class="padel__title">{{ t.padel.title }}</h2>
+      <p class="lead padel__lead">
+        {{ t.padel.lead }}
+      </p>
+      <div class="padel__count" aria-hidden="true">
+        <span>{{ t.padel.count|join('</span><span>') }}</span>
+      </div>
+    </div>
+
+    <dl class="padel__facts">
+    {% for fact in t.padel.facts %}
+      <div class="padel__fact">
+        <dt>{{ fact.term }}</dt>
+        <dd>
+          {{ fact.text }}
+        </dd>
+      </div>
+    {% endfor %}
+    </dl>
+  </div>
+</section>
+
+<!-- ── Clubs ────────────────────────────────────────────────────────────── -->
+<section class="clubs" id="verein">
+  <div class="shell clubs__inner">
+    <div class="clubs__copy">
+      <p class="eyebrow">{{ t.clubs.eyebrow }}</p>
+      <h2 class="clubs__title">{{ t.clubs.title }}</h2>
+      <p class="lead clubs__lead">
+        {{ t.clubs.lead }}
+      </p>
+      <ul class="dashlist">
+      {% for point in t.clubs.points %}
+        <li>{{ point }}</li>
+      {% endfor %}
+      </ul>
+      <p class="clubs__offer">
+        {{ t.clubs.offer }}
+      </p>
+    </div>
+
+    <!-- A mock of the spectator view, not live data: the scores are an
+         example. aria-hidden keeps the illustration out of the reading order,
+         the paragraph above already says what it shows. -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__card">
+        <div class="ticker__head">
+          <span class="ticker__label">{{ t.clubs.ticker.label }}</span>
+          <span class="ticker__live"><span class="livedot"></span>{{ t.clubs.ticker.live }}</span>
+        </div>
+        <div class="ticker__rows">
+          <div class="ticker__row ticker__row--home">
+            <span class="ticker__name">M. Berger</span>
+            <span class="ticker__set">6</span>
+            <span class="ticker__set">5</span>
+            <span class="ticker__points">40</span>
+          </div>
+          <div class="ticker__rule"></div>
+          <div class="ticker__row ticker__row--away">
+            <span class="ticker__name">T. Wallner</span>
+            <span class="ticker__set">4</span>
+            <span class="ticker__set">5</span>
+            <span class="ticker__points">15</span>
+          </div>
+        </div>
+      </div>
+      <div class="ticker__second">
+        <span class="ticker__name">{{ t.clubs.ticker.second }}</span>
+        <span class="ticker__score"><span class="livedot"></span>7:6⁴  2:3</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Watch teaser ─────────────────────────────────────────────────────────
+     Only a pointer: the recommendations with their affiliate links live on
+     their own page, so the landing page does not carry that section. -->
+<section class="teaser shell">
+  <div class="teaser__head">
+    <div>
+      <p class="eyebrow">{{ t.teaser.eyebrow }}</p>
+      <h2 class="section-title">{{ t.teaser.title }}</h2>
+    </div>
+    <a class="back" href="{{ url('watches') }}">{{ t.teaser.all }}</a>
+  </div>
+  <div class="teaser__grid">
+  {% for img, name, note in [
+       ("watch-apple-watch-11.webp", "Apple Watch Series 11", t.teaser.notes.apple),
+       ("watch-galaxy-watch-8.webp", "Samsung Galaxy Watch 8", t.teaser.notes.galaxy),
+       ("watch-galaxy-watch-ultra.webp", "Galaxy Watch Ultra", t.teaser.notes.ultra),
+       ("watch-pixel-watch-5.webp", "Google Pixel Watch 5", t.teaser.notes.pixel),
+     ] %}
+    <a class="teaser__card" href="{{ url('watches') }}">
+      <img src="{{ asset(img) }}" width="56" height="56"
+           loading="lazy" decoding="async" alt="">
+      <span>
+        <span class="teaser__name">{{ name }}</span>
+        <span class="teaser__note">{{ note }}</span>
+      </span>
+    </a>
+  {% endfor %}
+  </div>
+  <p class="teaser__note-row">{{ t.teaser.footnote }}</p>
+</section>
+
+<!-- ── iOS ─────────────────────────────────────────────────────────────────
+     Kortscore is the same app on both platforms, so this section shows it
+     rather than arguing for it: the three iPhone screens next to the Apple
+     Watch, and short facts underneath. It replaced the old waitlist form
+     once the iOS version shipped; the Apps Script behind that form is still
+     in tools/ios-interest-setup.md if it is ever needed again. -->
+<section class="ios" id="ios">
+  <div class="shell ios__inner">
+    <div class="ios__copy">
+      <p class="eyebrow">{{ t.ios.eyebrow }}</p>
+      <h2 class="ios__title">{{ t.ios.title }}</h2>
+      <p class="lead ios__lede">
+        {{ t.ios.lede }}
+      </p>
+
+      <dl class="ios__facts">
+      {% for fact in t.ios.facts %}
+        <div class="ios__fact">
+          <dt>{{ fact.term }}</dt>
+          <dd>
+            {{ fact.text }}
+          </dd>
+        </div>
+      {% endfor %}
+      </dl>
+    </div>
+
+    <!-- Real screenshots again, same as in the hero: three iPhone screens with
+         the Apple Watch overlapping at the bottom. -->
+    <div class="ios__shots">
+      <div class="phone phone--back phone--left">
+        <img src="{{ asset(lasset('shot-ios-play')) }}" width="168" height="356"
+             loading="lazy" decoding="async"
+             alt="{{ t.ios.alt.play|inattr }}">
+      </div>
+      <div class="phone phone--front">
+        <img src="{{ asset(lasset('shot-ios-live')) }}" width="180" height="382"
+             loading="lazy" decoding="async"
+             alt="{{ t.ios.alt.live|inattr }}">
+      </div>
+      <div class="phone phone--back phone--right">
+        <img src="{{ asset(lasset('shot-ios-stats')) }}" width="168" height="356"
+             loading="lazy" decoding="async"
+             alt="{{ t.ios.alt.stats|inattr }}">
+      </div>
+      <div class="watchshot watchshot--apple">
+        <img src="{{ asset('watch-apple.png') }}" width="292" height="348"
+             loading="lazy" decoding="async"
+             alt="{{ t.ios.alt.watch|inattr }}">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ──────────────────────────────────────────────────────────────────
+     The questions people actually type into search engines and AI assistants,
+     answered in two or three sentences each. Plain <details>, so it works
+     without JavaScript. The FAQPage JSON-LD in the head is generated from the
+     same list (faq.questions in i18n/<lang>/index.yaml). -->
+<section class="faq" id="faq">
+  <div class="shell faq__inner">
+    <div class="faq__head">
+      <p class="eyebrow">{{ t.faq.eyebrow }}</p>
+      <h2 class="section-title">{{ t.faq.title }}</h2>
+      <p class="lead faq__lead">{{ t.faq.lead }}</p>
+    </div>
+    {{ faq_list(t.faq.questions)|indent(4) }}
+  </div>
+</section>
+
+<!-- ── CTA ──────────────────────────────────────────────────────────────── -->
+<section class="cta" id="get">
+  <div class="cta__inner">
+    <h2 class="cta__title">{{ t.cta.title }}</h2>
+    <p class="cta__lede">{{ t.cta.lede }}</p>
+
+{% filter indent(4, first=True) %}{% include "partials/storebadges.html" %}{% endfilter %}
+
+    <p class="cta__hint">
+      {{ t.cta.hint }}
+    </p>
+  </div>
+</section>
+</main>
+{% endblock %}

@@ -1,0 +1,105 @@
+# Regelseite Padel. Gerüst in templates/partials/rules.html.
+# meta.title und meta.description stehen auch im Article-JSON-LD.
+
+meta:
+  title: "Comment compter les points au padel ? Points, point en or, sets et tie-breaks expliqués"
+  description: "Le comptage au padel en clair : 15, 30, 40 comme au tennis, point en or au lieu de l’avantage, ordre de service en double, sets, tie-break et formats de match courants."
+  og_title: Comment compter les points au padel ?
+
+breadcrumb: Compter au padel
+llms: Comment compter les points au padel (point en or, ordre de service en double)
+# Article-JSON-LD "about".
+about: Padel
+
+eyebrow: Règles
+title: Comment compter <br>au padel ?
+lead: >-
+  Au padel, on compte comme au tennis : 15, 30, 40, jeu, set. La seule
+  différence que tu remarqueras, c’est le point en or : beaucoup de matchs
+  jouent un point décisif à 40-40 au lieu de l’avantage. Ajoute l’ordre de
+  service en double et le service par en dessous, et tu as tout le système, en
+  bref et au complet.
+
+sections:
+  - title: Des points comme au tennis
+    text: >-
+      Un jeu commence à 0-0, puis 15, 30, 40. Celui qui gagne le point suivant
+      à 40 remporte le jeu, sauf si l’adversaire est lui aussi à 40. Le score
+      du serveur s’annonce en premier. Si tu sais compter au tennis, tu sais
+      compter au padel.
+  - title: Le point en or au lieu de l’avantage
+    text: >-
+      À 40-40, les règles de la FIP autorisent trois méthodes : l’avantage, le
+      point en or ou le star point. Les circuits professionnels jouent le star
+      point depuis 2026 : à la troisième égalité, un seul point décisif tranche le jeu. Avec le point en or, le point suivant à 40-40 décide du jeu, et
+      l’équipe en relance choisit qui reçoit. Au tennis, la même règle
+      s’appelle NoAd. Beaucoup de clubs et de championnats jouent le point en
+      or, mieux vaut donc fixer le format avant le match. Kortscore compte
+      l’avantage et le point en or (sous NoAd), mais pas le star point.
+  - title: Double et ordre de service
+    text: >-
+      Le padel se joue presque toujours en double. Le service alterne entre
+      les équipes après chaque jeu, et au sein d’une équipe, les partenaires
+      servent à tour de rôle : celui qui a servi le premier jeu sert de
+      nouveau au cinquième. Les côtés de relance (côté droit et côté gauche)
+      restent fixes pendant tout un set et ne peuvent être échangés qu’au set
+      suivant.
+  - title: Le service
+    text: >-
+      La balle rebondit une fois derrière la ligne de service et se frappe à
+      hauteur de la taille ou plus bas, en diagonale dans le carré de service
+      adverse. Deux essais, comme au tennis. Si la balle touche le grillage
+      après avoir rebondi dans le carré, c’est une faute ; si elle touche la
+      vitre, elle reste en jeu.
+  - title: Jeux, sets, tie-break
+    text: >-
+      Un set se joue en 6 jeux avec deux jeux d’écart ; à 6-6, on joue un
+      tie-break en 7 points, avec deux points d’écart. Le service change après le
+      premier point, puis tous les deux points ; on change de côté tous les
+      six points. Un match se joue normalement au meilleur des trois sets ;
+      beaucoup de tournois remplacent le troisième set par un super tie-break
+      en 10 points.
+  - title: Formats courants
+    text: >-
+      Championnat : deux sets gagnants, point en or. Phase de poules en
+      tournoi : souvent un seul set ou un set court en 4 jeux (Kortscore joue
+      le tie-break à 3-3). Americano et Mexicano : un nombre fixe de points par
+      tour, généralement 16, 24 ou 32, sans jeux. Kortscore compte le simple et
+      le double, avec avantage ou NoAd, des sets en 4 ou 6 jeux, au meilleur
+      des trois ou en un seul set.
+  - title: Changements de côté
+    text: >-
+      Comme au tennis : après le premier jeu, puis chaque fois que le total des
+      jeux est impair. Dans le tie-break, tous les six points.
+
+# Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
+faq:
+  title: Questions fréquentes
+  questions:
+    - q: Point en or et NoAd, c’est la même chose ?
+      a: >-
+        Oui. Dans les deux cas, le point suivant à 40-40 décide du jeu. Au
+        padel, on dit point en or ; au tennis, NoAd. Dans Kortscore, tu choisis
+        NoAd, et la montre compte le point en or.
+    - q: Le padel se joue-t-il toujours en double ?
+      a: >-
+        Presque toujours. Le padel en simple existe sur des courts plus étroits
+        (six mètres de large au lieu de dix), mais il reste rare. C’est pourquoi
+        le double figure directement sur l’écran d’accueil de Kortscore ; le
+        simple fonctionne tout aussi bien.
+    - q: Qui relance le point en or ?
+      a: >-
+        L’équipe en relance choisit lequel des deux partenaires reçoit, mais
+        elle doit garder sa répartition habituelle des côtés : chaque joueur
+        relance depuis son propre côté.
+    - q: Kortscore compte-t-il les tournois Americano ?
+      a: >-
+        Pas comme format à part. L’Americano compte des points simples, sans
+        jeux, et le comptage classique du tennis n’est pas fait pour ça.
+        Kortscore est conçu pour les matchs de championnat et de tournoi en
+        sets.
+
+cta:
+  eyebrow: Laisse la montre compter
+  more: À lire aussi
+  next: Comment compter au tennis, avec avantage et tie-break →

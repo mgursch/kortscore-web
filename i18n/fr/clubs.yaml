@@ -1,0 +1,97 @@
+# Vereinsangebot: Flyer aufhängen, Mitglieder bekommen Kortscore Plus günstiger.
+
+meta:
+  title: "Kortscore pour les clubs : affichez le flyer, vos adhérents ont Kortscore Plus moins cher"
+  description: Votre club affiche le flyer Kortscore au club-house ou près des courts, vos adhérents reçoivent un code de réduction pour Kortscore Plus. Il suffit de nous écrire par e-mail.
+  og_title: Kortscore pour les clubs
+
+breadcrumb: Pour les clubs
+llms: Pour les clubs (flyer au club-house, Kortscore Plus moins cher pour les adhérents)
+
+eyebrow: Pour les clubs
+title: Affichez le flyer. <br>Vos adhérents économisent.
+lead: >-
+  Votre club affiche le flyer Kortscore au club-house ou près des courts, et
+  vos adhérents reçoivent en échange un code de réduction pour Kortscore Plus.
+  Écrivez-nous, tout simplement, on règle le reste par e-mail.
+
+steps:
+  title: Comment ça marche
+  list:
+    - title: Prenez contact
+      body: >-
+        Envoyez-nous un court e-mail avec le nom du club, la ville et une
+        personne à contacter. Le bouton ci-dessous le prépare pour vous.
+    - title: Affichez le flyer
+      body: >-
+        Imprimez le flyer en A4 et affichez-le bien en vue : au club-house, sur
+        le panneau d’affichage ou à l’entrée des courts.
+    - title: Transmettez le code
+      body: >-
+        Vous recevez votre propre code pour Kortscore Plus et le transmettez à
+        vos adhérents, par affichage, dans la newsletter ou dans le groupe du
+        club. Avec ce code, Plus coûte moins cher dans l’app.
+
+redeem:
+  title: Comment vos adhérents utilisent le code
+  list:
+    - >-
+      Ouvrir Kortscore et aller sur l’écran d’achat de Kortscore Plus, par
+      exemple dans les paramètres sous <strong>Débloquer Kortscore Plus</strong>.
+    - Toucher <strong>Utiliser un code</strong> et saisir le code de votre club.
+    - >-
+      Le prix réduit s’affiche directement sur l’écran d’achat. L’achat passe
+      comme d’habitude par l’App Store ou Google Play.
+  note: Ça marche de la même façon sur iPhone et sur Android.
+
+plus:
+  title: Qu’est-ce que Kortscore Plus ?
+  text: >-
+    Kortscore lui-même est gratuit : le comptage au poignet, l’historique des
+    matchs et le score en direct, sans publicité et sans compte. Kortscore Plus
+    est un achat unique, pas un abonnement, et ajoute des statistiques
+    détaillées, des sauvegardes automatiques et le Kortscore Trainer (IA), qui
+    analyse les matchs. Avec votre code, vos adhérents ont Plus à prix réduit.
+
+# Der Flyer selbst ist bisher nur auf Deutsch, das sagt der Text dazu.
+flyer:
+  title: Le flyer
+  alt: >-
+    Le flyer Kortscore au format A4, en allemand, avec un code QR, des liens
+    vers l’App Store et Google Play et une mention du code de réduction pour
+    les adhérents du club
+  text: >-
+    A4, une page, avec un code QR pour télécharger l’app. Pour l’instant, le
+    flyer n’existe qu’en allemand. Imprimez-le en couleur si possible : les
+    écrans et la montre ressortent bien mieux.
+  download: Télécharger le flyer
+
+# Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
+faq:
+  title: Questions
+  questions:
+    - q: Est-ce que ça coûte quelque chose au club ?
+      a: >-
+        Non. Vous affichez le flyer, nous envoyons le code de réduction.
+        Kortscore lui-même est de toute façon gratuit pour vos adhérents.
+    - q: Quel est le montant de la réduction ?
+      a: >-
+        Nous le fixons avec chaque club individuellement. Indiquez-nous à peu
+        près combien d’adhérents vous avez, et nous vous ferons une offre.
+    - q: Le code fonctionne-t-il sur iPhone et Android ?
+      a: >-
+        Oui. Le code s’utilise dans l’app Kortscore, sur l’écran d’achat de
+        Kortscore Plus, de la même façon sur les deux plateformes.
+    - q: Le code expire-t-il ?
+      a: >-
+        C’est possible. Un code peut avoir une durée de validité, que nous vous
+        indiquerons avec le code.
+
+# Die Anfrage ist eine vorausgefüllte Mail. Betreff und Text als reiner Text
+# (\n = Zeilenumbruch), der Build kodiert sie für den mailto-Link.
+ask:
+  eyebrow: Partants ?
+  button: Demande par e-mail
+  alt: ou écrivez directement à
+  mail_subject: Kortscore Plus pour notre club
+  mail_body: "Bonjour,\n\nNotre club souhaite afficher le flyer Kortscore et obtenir un code de réduction Kortscore Plus pour ses adhérents.\n\nClub : \nVille : \nPersonne à contacter : \nNombre approximatif d’adhérents : \nOù le flyer sera affiché (club-house, courts, …) : \n\nMerci et à bientôt\n"

@@ -1,0 +1,38 @@
+# Kortscore
+
+> Kortscore is a free scorekeeper app for tennis and padel that runs on the watch: one tap per point on the wrist, the phone stays in the bag. Spectators follow a live score ticker through a shareable link without installing anything. Made by swordi.studios, an independent studio in Vienna, Austria.
+
+## What it does
+
+- Scores tennis and padel matches, singles and doubles, with one tap per point on a smartwatch
+- Handles the rules: advantage and NoAd scoring, tiebreaks, sets to 4 or 6
+- Live score ticker: a link the player shares, spectators open it in any browser, no app or account needed
+- Match history with point-by-point log, statistics such as win rate and set record
+- Free, no ads, no account. Kortscore Plus is an optional one-time in-app purchase for deeper statistics
+- Interface in English and German
+
+## Platforms
+
+iPhone (iOS 18+) with Apple Watch (watchOS 26+), and Android (8.0+) with Wear OS (3+) watches. The iOS app also runs on iPad (iPadOS 18+) and on Macs with Apple silicon (macOS 15+); the Apple Watch pairs only with an iPhone. Runs on every Apple Watch from watchOS 26 (Series 6 and newer, SE 2nd generation and newer, every Ultra) and every Wear OS 3 watch (Samsung Galaxy Watch 4 and newer, every Google Pixel Watch, OnePlus Watch 2/3, TicWatch Pro 5, Xiaomi Watch 2, and others; full list at {{ abs_url('compatible', site.x_default) }}). A three-set match uses about 15 to 25 percent of the watch battery.
+
+## Get it
+
+- App Store: {{ site.stores.app_store }}
+- Google Play: {{ site.stores.google_play }}
+
+## Pages
+
+{# Generiert aus site.yaml: jede Seite in jeder aktiven Sprache, Bezeichnung
+   aus llms in i18n/<lang>/<seite>.yaml. #}
+{% for e in entries %}
+{% for l in languages %}
+- {{ e.labels[l.code] }}: {{ e.urls[l.code] }}
+{% endfor %}
+{% endfor %}
+- Privacy policy: {{ site.base_url }}legal/privacy.html
+- Legal notice / Impressum: {{ site.base_url }}legal/impressum.html
+
+## Maker
+
+- swordi.studios, Vienna, Austria: https://www.swordistudios.com/
+- Also spelled "swordistudios" on the app stores

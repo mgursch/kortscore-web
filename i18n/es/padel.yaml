@@ -1,0 +1,101 @@
+# Regelseite Padel. Gerüst in templates/partials/rules.html.
+# meta.title und meta.description stehen auch im Article-JSON-LD.
+
+meta:
+  title: ¿Cómo se cuenta en el pádel? Puntos, punto de oro, sets y tie-break explicados
+  description: "La puntuación del pádel, explicada de forma sencilla: 15, 30, 40 como en el tenis, punto de oro en lugar de ventaja, orden de saque en dobles, sets, tie-break y los formatos de partido habituales."
+  og_title: ¿Cómo se cuenta en el pádel?
+
+breadcrumb: Puntuación en pádel
+llms: Cómo se cuenta en el pádel (punto de oro, orden de saque en dobles)
+# Article-JSON-LD "about".
+about: Pádel
+
+eyebrow: Reglas
+title: ¿Cómo se cuenta <br>en el pádel?
+lead: >-
+  El pádel se cuenta como el tenis: 15, 30, 40, juego, set. La única diferencia
+  que notarás es el punto de oro: con 40:40, muchos partidos juegan un punto
+  decisivo en lugar de la ventaja. Súmale el orden de saque en dobles y el
+  saque por debajo, y ya tienes todo el sistema, breve y completo.
+
+sections:
+  - title: Puntos como en el tenis
+    text: >-
+      Un juego empieza con 0:0 y sigue con 15, 30, 40. Quien está en 40 y gana el
+      siguiente punto se lleva el juego, salvo que el rival también esté en 40. El
+      tanteo del que saca se canta primero. Si sabes contar en tenis, sabes
+      contar en pádel.
+  - title: Punto de oro en lugar de ventaja
+    text: >-
+      Con 40:40, el reglamento de la FIP admite tres métodos: ventaja, punto de
+      oro o Star Point. Los circuitos profesionales juegan el Star Point desde
+      2026: si se llega a iguales por tercera vez, un único punto decisivo cierra el juego. Con
+      punto de oro, el siguiente punto con 40:40 decide el juego, y la pareja
+      restadora elige quién resta. En tenis, la misma regla se llama NoAd.
+      Muchos clubes y ligas juegan con punto de oro, así que deja claro el
+      formato antes del partido. Kortscore cuenta la ventaja y el punto de oro
+      (como NoAd), pero no el Star Point.
+  - title: Dobles y orden de saque
+    text: >-
+      El pádel se juega casi siempre por parejas. El saque pasa de una pareja
+      a la otra después de cada juego, y dentro de cada pareja los compañeros
+      se turnan: quien sacó en el primer juego vuelve a sacar en el quinto. Los
+      lados de resto (derecha y revés) se mantienen durante todo el set y solo
+      pueden cambiarse para el set siguiente.
+  - title: El saque
+    text: >-
+      La bola se bota una vez detrás de la línea de saque y se golpea a la
+      altura de la cintura o por debajo, en diagonal hacia el cuadro de saque
+      contrario. Dos intentos, como en el tenis. Si la bola toca la malla
+      metálica después de botar en el cuadro, es falta; si toca el cristal,
+      sigue en juego.
+  - title: Juegos, sets, tie-break
+    text: >-
+      Un set se juega a 6 juegos con dos de diferencia; con 6:6 llega un
+      tie-break a 7 puntos con dos de diferencia. El saque cambia tras el
+      primer punto y después cada dos puntos; se cambia de lado cada seis
+      puntos. Un partido se juega normalmente al mejor de tres sets; muchos
+      torneos sustituyen el tercer set por un súper tie-break a 10.
+  - title: Formatos habituales
+    text: >-
+      Liga: a dos sets ganados, con punto de oro. Fase de grupos de un torneo:
+      a menudo un solo set o un set corto a 4 juegos (Kortscore juega el
+      tie-break con 3:3). Americano y Mexicano: un número fijo de puntos por
+      ronda, normalmente 16, 24 o 32, sin juegos. Kortscore cuenta individual y
+      dobles, ventaja y NoAd, sets a 4 o 6 juegos, al mejor de tres sets o un
+      solo set.
+  - title: Cambio de lado
+    text: >-
+      Como en el tenis: tras el primer juego y después cada vez que la suma de
+      juegos es impar. En el tie-break, cada seis puntos.
+
+# Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
+faq:
+  title: Preguntas frecuentes
+  questions:
+    - q: ¿Punto de oro y NoAd son lo mismo?
+      a: >-
+        Sí. Los dos significan que, con 40:40, el siguiente punto decide el
+        juego. En pádel se dice punto de oro; en tenis, NoAd. En Kortscore
+        eliges NoAd y el reloj cuenta con punto de oro.
+    - q: ¿El pádel es siempre de dobles?
+      a: >-
+        Casi siempre. Existe el pádel individual en pistas más estrechas (seis
+        metros de ancho en lugar de diez), pero es poco habitual. Por eso los
+        dobles están directamente en la pantalla de inicio de Kortscore; el
+        individual funciona exactamente igual.
+    - q: ¿Quién resta el punto de oro?
+      a: >-
+        La pareja restadora decide qué jugador resta, pero tiene que mantener
+        su reparto de lados habitual: cada jugador resta desde su propio lado.
+    - q: ¿Sirve Kortscore para torneos americanos?
+      a: >-
+        No como formato propio. El Americano cuenta puntos sueltos sin juegos,
+        y la puntuación clásica del tenis no está pensada para eso. Kortscore
+        es para partidos de liga y de torneo con sets.
+
+cta:
+  eyebrow: Deja que cuente el reloj
+  more: Sigue leyendo
+  next: Cómo se cuenta en el tenis, con ventaja y tie-break →

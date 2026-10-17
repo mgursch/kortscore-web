@@ -1,0 +1,97 @@
+# Vereinsangebot: Flyer aufhängen, Mitglieder bekommen Kortscore Plus günstiger.
+
+meta:
+  title: "Kortscore per i circoli: appendete il volantino, i vostri soci risparmiano su Kortscore Plus"
+  description: Il vostro circolo appende il volantino di Kortscore nella club house o vicino ai campi, i vostri soci ricevono un codice sconto per Kortscore Plus. Basta una richiesta via email.
+  og_title: Kortscore per i circoli
+
+breadcrumb: Per i circoli
+llms: Per i circoli (volantino nella club house, sconto su Kortscore Plus per i soci)
+
+eyebrow: Per i circoli
+title: Appendete il volantino. <br>I soci risparmiano.
+lead: >-
+  Il vostro circolo appende il volantino di Kortscore nella club house o vicino
+  ai campi, e in cambio i vostri soci ricevono un codice sconto per Kortscore
+  Plus. Scriveteci, al resto pensiamo noi via email.
+
+steps:
+  title: Come funziona
+  list:
+    - title: Contattateci
+      body: >-
+        Mandateci una breve email con il nome del circolo, la città e un
+        referente. Il pulsante qui sotto la precompila per voi.
+    - title: Appendete il volantino
+      body: >-
+        Stampate il volantino in A4 e appendetelo dove si vede bene: nella club
+        house, in bacheca o all’ingresso dei campi.
+    - title: Girate il codice
+      body: >-
+        Ricevete un codice tutto vostro per Kortscore Plus e lo girate ai vostri
+        soci, in bacheca, nella newsletter o nel gruppo del circolo. Con il
+        codice, Plus costa meno nell’app.
+
+redeem:
+  title: Come i vostri soci riscattano il codice
+  list:
+    - >-
+      Aprire Kortscore e andare alla schermata di acquisto di Kortscore Plus,
+      per esempio nelle Impostazioni alla voce <strong>Sblocca Kortscore Plus</strong>.
+    - Toccare <strong>Riscatta codice</strong> e inserire il codice del vostro circolo.
+    - >-
+      Il prezzo ridotto compare subito nella schermata di acquisto. L’acquisto
+      avviene come sempre tramite App Store o Google Play.
+  note: Funziona allo stesso modo su iPhone e su Android.
+
+plus:
+  title: Cos’è Kortscore Plus?
+  text: >-
+    Kortscore di per sé è gratis: il conteggio al polso, la cronologia partite e
+    il punteggio live, senza pubblicità e senza account. Kortscore Plus è un
+    acquisto unico, non un abbonamento, e aggiunge statistiche dettagliate,
+    backup automatici e il Kortscore Trainer (IA), che analizza le partite. Con
+    il vostro codice, i vostri soci hanno Plus a un prezzo più conveniente.
+
+# Der Flyer selbst ist bisher nur auf Deutsch, das sagt der Text dazu.
+flyer:
+  title: Il volantino
+  alt: >-
+    Il volantino di Kortscore in formato A4, in tedesco, con codice QR, link ad
+    App Store e Google Play e un’indicazione sul codice sconto per i soci del
+    circolo
+  text: >-
+    A4, una pagina, con un codice QR per scaricare l’app. Per ora il volantino è
+    solo in tedesco. Se potete, stampatelo a colori: le schermate e l’orologio
+    rendono molto meglio.
+  download: Scarica il volantino
+
+# Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
+faq:
+  title: Domande
+  questions:
+    - q: Costa qualcosa al circolo?
+      a: >-
+        No. Voi appendete il volantino, noi vi mandiamo il codice sconto.
+        Kortscore in sé è comunque gratis per i vostri soci.
+    - q: Quanto è lo sconto?
+      a: >-
+        Lo concordiamo con ogni circolo singolarmente. Diteci più o meno quanti
+        soci avete e vi faremo un’offerta.
+    - q: Il codice funziona su iPhone e Android?
+      a: >-
+        Sì. Il codice si riscatta nell’app Kortscore, nella schermata di
+        acquisto di Kortscore Plus, allo stesso modo su entrambe le piattaforme.
+    - q: Il codice scade?
+      a: >-
+        Può succedere. Un codice può avere un periodo di validità: ve lo
+        comunichiamo insieme al codice.
+
+# Die Anfrage ist eine vorausgefüllte Mail. Betreff und Text als reiner Text
+# (\n = Zeilenumbruch), der Build kodiert sie für den mailto-Link.
+ask:
+  eyebrow: Ci state?
+  button: Richiesta via email
+  alt: oppure scrivete direttamente a
+  mail_subject: Kortscore Plus per il nostro circolo
+  mail_body: "Buongiorno,\n\nil nostro circolo vorrebbe appendere il volantino di Kortscore e ricevere un codice sconto per Kortscore Plus per i nostri soci.\n\nCircolo: \nCittà: \nReferente: \nNumero approssimativo di soci: \nDove verrà appeso il volantino (club house, campi, ...): \n\nGrazie e cordiali saluti\n"

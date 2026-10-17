@@ -1,0 +1,65 @@
+{# Gemeinsames Gerüst der beiden Regelseiten (tennis, padel). Die Seiten
+   selbst erweitern diese Vorlage nur, alle Texte kommen aus ihrer YAML-Datei. #}
+{% extends "base.html" %}
+{% from "partials/faq.html" import faq_list %}
+
+{% block jsonld %}
+<!-- Breadcrumbs, the article itself and FAQPage for the questions at the end. -->
+{{ jsonld({"@graph": [
+  breadcrumbs(),
+  {
+    "@type": "Article",
+    "headline": t.meta.title|plain,
+    "description": t.meta.description|plain,
+    "inLanguage": lang,
+    "url": abs_url(page),
+    "image": abs_asset(lasset("og")),
+    "datePublished": P.article.published,
+    "dateModified": P.article.modified,
+    "author": {"@id": site.base_url ~ "#organization"},
+    "publisher": {"@id": site.base_url ~ "#organization"},
+    "about": {"@type": "Thing", "name": t.about|plain}
+  },
+  faq_page(t.faq.questions)
+]}) }}
+{% endblock %}
+
+{% block main %}
+<main>
+<div class="subhead">
+  <a class="back" href="{{ url('index') }}">{{ c.back_home }}</a>
+  <p class="eyebrow">{{ t.eyebrow }}</p>
+  <h1 class="subhead__title">{{ t.title }}</h1>
+  <p class="lead">{{ t.lead }}</p>
+</div>
+
+<!-- ── Rules explainer ─────────────────────────────────────────────────────
+     Evergreen reference page. Same narrow-column layout as the compatibility
+     page (.compat), one short section per rule, Kortscore mentioned only where
+     it actually does something with the rule. -->
+<div class="compat">
+{% for section in t.sections %}
+  <section class="compat__section">
+    <h2>{{ section.title }}</h2>
+    <p>{{ section.text }}</p>
+  </section>
+
+{% endfor %}
+  <section class="compat__section">
+    <h2>{{ t.faq.title }}</h2>
+    {{ faq_list(t.faq.questions)|indent(4) }}
+  </section>
+
+  <div class="compat__cta">
+    <div>
+      <p class="eyebrow">{{ t.cta.eyebrow }}</p>
+{% filter indent(6, first=True) %}{% include "partials/storebadges.html" %}{% endfilter %}
+    </div>
+    <div>
+      <p class="eyebrow">{{ t.cta.more }}</p>
+      <a class="back" href="{{ url('padel' if page == 'tennis' else 'tennis') }}">{{ t.cta.next }}</a>
+    </div>
+  </div>
+</div>
+</main>
+{% endblock %}

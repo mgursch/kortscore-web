@@ -1,0 +1,245 @@
+# Startseite. Links auf andere Seiten als {url:<seiten-id>}, siehe site.yaml.
+
+meta:
+  title: "Kortscore: Tennis &amp; Padel Scorekeeper for Apple Watch &amp; Wear OS"
+  description: Score tennis and padel matches with one tap on your Apple Watch or Wear OS watch. Free, with a live score ticker for spectators, stats and match history.
+  og_title: "Kortscore: Your match. Your score. One tap."
+
+# Zeile in llms.txt.
+llms: Homepage (English)
+
+hero:
+  eyebrow: Tennis &amp; padel · iPhone, Android &amp; watch
+  title: Your match. <br>Your score. <br><em>One tap.</em>
+  lede: >-
+    Kortscore counts your tennis or padel match on your wrist, point by point,
+    without interrupting play. And whoever is not on court watches live.
+  cta: Free for iPhone &amp; Android
+  platforms: iOS &amp; Apple Watch · Android &amp; Wear OS
+  alt:
+    play: Kortscore start screen with the match formats
+    live: A running match in Kortscore with the live score
+    stats: Kortscore statistics with win rate and set record
+    watch: Kortscore on a smartwatch showing the current score
+
+benefits:
+  title: Why Kortscore
+  tap:
+    title: The simplest controls
+    body: >-
+      One tap on the watch and the point is counted. Twice for your
+      opponent, four times to undo. No need to look at the display, no
+      interrupted play.
+  stats:
+    title: Statistics that count
+    body: >-
+      Win rate, set record, the point history of every match: your whole
+      match history, evaluated automatically.
+  live:
+    label: Live
+    title: Live ticker for spectators
+    body: >-
+      Family, friends and club mates follow your match in real time on their
+      phone, point by point, from anywhere.
+  free:
+    title: Free
+    body: >-
+      Scoring, history and the live ticker cost nothing. Anyone who wants to
+      dig deeper picks up Kortscore Plus.
+
+steps:
+  title: How it works
+  list:
+    - title: Start the match
+      body: >-
+        Pick a format, or just tap the last combination. Singles, doubles, NoAd,
+        best of 3, a single set: it all works.
+    - title: Play and tap
+      body: >-
+        The watch counts points, games and sets by real tennis and padel rules,
+        tiebreak and champions tiebreak included.
+    - title: Review and share
+      body: >-
+        The match lands in your history on the phone automatically, with the
+        score in broadcast notation, duration and point history.
+
+padel:
+  eyebrow: Also for padel
+  title: Padel? Counts the same.
+  lead: >-
+    Padel scores like tennis: 15, 30, 40, game, set. So Kortscore needs no
+    special treatment for it, the watch simply counts along. One tap per
+    point, on court, without interrupting play.
+  count: ["15", "30", "40", Game, Set]
+  facts:
+    - term: Golden Point
+      text: >-
+        Built into the app as NoAd. Pick it once and the deciding point at
+        40-40 settles the game, exactly as your league plays it.
+    - term: Doubles
+      text: >-
+        Padel is nearly always doubles, and so is Kortscore's doubles mode:
+        not a special case, just one of the formats on the start screen.
+    - term: Live for spectators
+      text: >-
+        Share the link and whoever is off court follows every point, from the
+        next court or from home.
+
+clubs:
+  eyebrow: For clubs &amp; league play
+  title: The whole club <br>watches along
+  lead: >-
+    On a league day several matches run at once, and nobody can be
+    everywhere. With the live ticker the team, the captain and the fans
+    follow every match in real time: from the next court, from the
+    clubhouse or from home.
+  points:
+    - Sharing the link is enough, spectators need no app and no account.
+    - Score, set history and serve live, point by point.
+  offer: >-
+    Put up our flyer at your club and your members get Kortscore Plus for
+    less. <a href="{url:clubs}">How it works →</a>
+  ticker:
+    label: League · Round 4
+    live: Live
+    second: Doubles 1 · Court 3
+
+teaser:
+  eyebrow: Which watch
+  title: Recommended watches
+  all: All four watches →
+  notes:
+    apple: For iPhone
+    galaxy: Wear OS 6
+    ultra: Long battery
+    pixel: Compact
+  footnote: >-
+    Already have a watch? Kortscore runs on any Apple Watch from watchOS 26 and
+    any Wear OS watch from version 3, <a href="{url:compatible}">see every model
+    in the compatibility list</a>.
+
+ios:
+  eyebrow: iPhone &amp; Apple Watch
+  title: Now on iOS
+  lede: >-
+    The same Kortscore, built for iPhone and Apple Watch: one tap on the
+    wrist per point, the live ticker for everyone watching, and your whole
+    match history on the phone. Matches you played on Android come along,
+    the score works the same on either platform.
+  facts:
+    - term: Apple Watch
+      text: >-
+        Count on the wrist without looking at the display, exactly as on
+        Wear OS. The phone can stay in your bag.
+    - term: Live ticker
+      text: >-
+        Share the link and spectators follow along, whatever they use.
+        No app and no account on their side.
+    - term: Free
+      text: >-
+        Scoring, history and the live ticker cost nothing here either.
+        Kortscore Plus stays a one-time purchase.
+    - term: iPad &amp; Mac
+      text: >-
+        The app also runs on iPad and on Macs with Apple silicon, so your
+        matches and statistics get the big screen too.
+  alt:
+    play: Kortscore on iPhone with the saved match formats
+    live: A running match on iPhone with the live score and the point buttons
+    stats: Kortscore statistics on iPhone with win rate and total points
+    watch: Kortscore on an Apple Watch showing the current score
+
+# Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
+faq:
+  eyebrow: FAQ
+  title: Common questions
+  lead: Short answers to what people ask before their first match with Kortscore.
+  questions:
+    - q: Do I need my phone on court?
+      a: >-
+        No. The watch keeps score entirely on its own, even without a
+        connection. Only the live ticker needs the phone within Bluetooth range,
+        because the phone is what sends the score online. Wi-Fi or LTE on the
+        watch alone is not enough for that.
+    - q: Which watches work with Kortscore?
+      a: >-
+        Any Apple Watch on watchOS 26 or newer, so Series 6, SE from the second
+        generation, Ultra and later, paired with an iPhone. And any watch running
+        Wear OS 3 or newer, so Samsung Galaxy Watch from the Watch 4 on, Google
+        Pixel Watch and others, paired with an Android phone on Android 8 or
+        newer. Four picks for the court are on the <a href="{url:watches}">watches
+        page</a>, the full model list on the <a href="{url:compatible}">compatibility
+        page</a>.
+    - q: How do I score a point?
+      a: >-
+        Tap the watch once: point for you. Twice: point for your opponent. Four
+        times: undo the last point. Games, sets and tiebreaks are worked out by
+        the watch, you never need to look at the display. If you want to run
+        through it once in peace: the app has a guide on both the phone and the
+        watch where you can practise every tap.
+    - q: Does Kortscore follow the real rules, including tiebreaks and NoAd?
+      a: >-
+        Yes. Advantage or NoAd, sets to 6 or to 4, tiebreak and champions
+        tiebreak, best of 3 or a single set. For padel, pick golden point as NoAd
+        and the point at 40:40 decides the game. The rules in detail:
+        <a href="{url:tennis}">tennis scoring</a>, <a href="{url:padel}">padel
+        scoring</a>.
+    - q: How does the live ticker work?
+      a: >-
+        You share a link, that is all. Whoever opens it sees the score, the set
+        history and who is serving, live in the browser, point by point.
+        Spectators need no app and no account, whether they are on the next
+        court or at home. Your phone has to be within Bluetooth range of the
+        watch for this.
+    - q: How much does Kortscore cost?
+      a: >-
+        Nothing. Scoring, match history and the live ticker are free, with no
+        ads and no account, the same on iPhone and Android. Kortscore Plus is a
+        one-time purchase and adds advanced statistics, automatic backups and
+        the AI coach that analyses your matches.
+    - q: Can I use Kortscore for padel?
+      a: >-
+        Yes, with no detours. Padel is scored like tennis, and doubles is one of
+        the formats right on the start screen. Singles, doubles, NoAd: pick once
+        and the watch counts along.
+    - q: Is there a Kortscore for iPhone and Apple Watch?
+      a: >-
+        Yes. The same Kortscore, built for iPhone and Apple Watch: one tap per
+        point on the wrist, the live ticker, your match history on the phone.
+        Free in the App Store, and Kortscore Plus is a one-time purchase there
+        as well.
+    - q: Does Kortscore run on iPad and Mac?
+      a: >-
+        Yes. The Kortscore app from the App Store also runs on iPad with iPadOS
+        18 or newer and on Macs with Apple silicon and macOS 15 or newer, in a
+        freely resizable window. Match history, statistics and the live ticker
+        get a bigger screen there. Scoring on the wrist still goes through the
+        iPhone, because Apple pairs the Apple Watch only with an iPhone.
+    - q: Does the Apple Watch version work the same as on Wear OS?
+      a: >-
+        Yes, scoring is identical on both: one tap per point, the same formats,
+        the same live ticker. One difference: on the Apple Watch a match runs as
+        a workout. That is what keeps the display on for the whole match.
+    - q: Can I switch from Android to iPhone and bring my matches along?
+      a: >-
+        Yes, through backup and restore in the app: create a backup on the old
+        device, restore it on the new one, done. It works in both directions.
+        There is currently no Kortscore account that syncs data through the
+        cloud.
+
+cta:
+  title: Next match? Count it.
+  lede: Free for iPhone and Android. Ready in two minutes.
+  hint: iOS &amp; iPadOS 18+ · macOS 15+ (Apple silicon) · watchOS 26+ · Android 8.0+ · Wear OS 3+ · no ads, no account
+
+# JSON-LD SoftwareApplication (nur im Quelltext, nicht sichtbar).
+app:
+  alternate_name: "Kortscore: Tennis &amp; Padel"
+  description: Kortscore keeps score in tennis and padel with one tap on your Apple Watch or Wear OS watch. Free, with a live score ticker for spectators, match statistics and history on iPhone and Android.
+  features:
+    - One-tap scoring on the watch
+    - Tennis and padel, singles and doubles
+    - Advantage and NoAd, tiebreaks, sets to 4 or 6
+    - Live score ticker via shareable link, no app needed for spectators
+    - Match statistics and point-by-point history
+    - No ads, no account

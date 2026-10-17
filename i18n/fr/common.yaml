@@ -1,0 +1,28 @@
+# Texte, die auf jeder Seite stehen: Navigation, Footer, Sprachhinweis.
+# Inline-HTML ist erlaubt (Werte landen unverändert im HTML, & also als &amp;).
+
+nav_cta: Télécharger l’app
+# alt-Text des offiziellen Google-Play-Badges (Text wie auf dem Badge).
+google_play_alt: Disponible sur Google Play
+back_home: ← Retour à l’accueil
+
+# aria-label des Sprachumschalters, gefolgt vom Namen der aktuellen Sprache.
+lang_menu: Langue
+
+# Der Hinweisbalken für Besucher, deren Browser diese Sprache bevorzugt. Er
+# erscheint auf den Seiten der ANDEREN Sprachen, steht aber in dieser.
+langbar:
+  text: Cette page existe aussi en français.
+  go: Voir la version française
+  close: Non merci
+
+footer:
+  claim: Kortscore · Le score du tennis &amp; du padel au poignet
+  home: Accueil
+  compatible: Montres compatibles
+  tennis: Compter au tennis
+  padel: Compter au padel
+  clubs: Pour les clubs
+  impressum: Mentions légales
+  privacy: Confidentialité
+  terms: Conditions d’utilisation

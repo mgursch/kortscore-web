@@ -1,0 +1,110 @@
+# Kompatibilitätsliste. Die Tabellen (Modelle, Jahre, Versionen) stehen in
+# templates/compatible.html, hier nur die Texte und Spaltenköpfe.
+
+meta:
+  title: "Montres compatibles : Kortscore fonctionne-t-il sur mon Apple Watch ou ma montre Wear OS ?"
+  description: Kortscore fonctionne sur toute Apple Watch sous watchOS 26 et sur toute montre sous Wear OS 3 ou plus récent. Tous les modèles Apple Watch, Galaxy Watch, Pixel Watch, OnePlus et TicWatch en un coup d’œil.
+  og_title: Kortscore fonctionne-t-il sur ma montre ?
+
+breadcrumb: Montres compatibles
+llms: Montres compatibles (liste complète des modèles)
+
+eyebrow: Compatibilité
+title: Ma montre est-elle <br>compatible ?
+lead: >-
+  La réponse courte : oui, sur toute Apple Watch sous watchOS 26 ou plus
+  récent jumelée à un iPhone, et sur toute montre sous Wear OS 3 ou plus récent
+  associée à un téléphone Android sous Android 8 ou plus récent. Cela couvre
+  toutes les Apple Watch depuis la Series 6, la SE à partir de la deuxième
+  génération et toutes les Ultra, toutes les Samsung Galaxy Watch depuis 2021,
+  toutes les Google Pixel Watch et les montres actuelles de OnePlus, Mobvoi et
+  Xiaomi. La réponse détaillée suit.
+
+# Spaltenköpfe und Generationsangaben in den Tabellen.
+col:
+  model: Modèle
+  year: Année
+generation:
+  first: 1re gén.
+  second: 2e gén.
+  third: 3e gén.
+
+version:
+  title: Comment trouver la version du système
+  body: >-
+    <p>Sur une montre Wear OS, dans <em>Paramètres → À propos → Version du
+    logiciel</em>, sur Samsung dans <em>Paramètres → À propos de la montre →
+    Informations sur le logiciel</em>. Si elle affiche Wear OS 3, 4, 5, 6 ou 7,
+    Kortscore fonctionne.</p><p><strong>Sur l’Apple Watch :</strong>
+    <em>Réglages → Général → Informations → Version</em>. Si elle affiche watchOS 26
+    ou plus, Kortscore fonctionne. Version plus ancienne sur un modèle de la
+    liste ci-dessous ? Fais d’abord la mise à jour dans <em>Réglages → Général →
+    Mise à jour logicielle</em>.</p>
+
+apple:
+  text: >-
+    Kortscore fonctionne sur toute Apple Watch sous watchOS 26 ou plus récent,
+    donc à partir de la Series 6 de 2020, la SE à partir de la deuxième
+    génération et toutes les Ultra, jumelée à un iPhone équipé de l’app
+    Kortscore de l’App Store. Sur l’Apple Watch, un match est lancé comme un
+    entraînement, pour que l’écran reste allumé tout du long.
+samsung:
+  text: >-
+    Toutes les Galaxy Watch à partir de la Watch 4 tournent sous Wear OS. La
+    Watch 4 est la plus ancienne montre sur laquelle Kortscore fonctionne. Les
+    Galaxy Watch 3, Active 2 et plus anciennes tournent sous Tizen et ne sont
+    pas compatibles.
+pixel:
+  text: Toutes les Pixel Watch tournent sous Wear OS et reçoivent leurs mises à jour directement de Google, généralement en premier.
+others:
+  title: Autres marques
+  text: >-
+    Nous n’avons pas eu toutes ces montres au poignet. Mais Wear OS reste Wear
+    OS : si la montre est sous la version 3 ou plus récente, Kortscore
+    fonctionne. Si quelque chose ne marche pas chez toi, écris à
+    <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>.
+
+unsupported:
+  title: Ce qui ne fonctionne pas
+  list:
+    - "<strong>Galaxy Watch 3, Active 2, Active, Gear :</strong> Tizen au lieu de Wear OS."
+    - "<strong>Garmin, Fitbit, Polar, Suunto, Coros, Huawei, Amazfit, Xiaomi Smart Band :</strong> systèmes propriétaires, pas de Wear OS."
+    - "<strong>Wear OS 2 :</strong> Fossil Gen 5 et plus anciennes, Moto 360, TicWatch Pro 3 sans la mise à jour : trop anciennes."
+    - "<strong>Apple Watch Series 5, SE (1re génération) et plus anciennes :</strong> s’arrêtent à watchOS 10 ou avant, Kortscore nécessite watchOS 26."
+
+phone:
+  title: Et le téléphone ?
+  text: >-
+    L’app Kortscore pour iPhone nécessite iOS 18 ou plus récent ; avec une
+    Apple Watch sous watchOS 26, Apple exige iOS 26 sur l’iPhone. Une montre
+    Wear OS s’associe à un téléphone Android sous Android 8 ou plus récent.
+    Dans les deux cas, l’app Kortscore vient de l’App Store ou de Google Play.
+    La montre compte seule ; le téléphone garde l’historique et les
+    statistiques et envoie le score en direct en ligne. Les combinaisons
+    mixtes ne fonctionnent pas : une Apple Watch a besoin d’un iPhone, une
+    montre Wear OS d’un téléphone Android.
+
+# Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
+faq:
+  title: Questions fréquentes
+  questions:
+    - q: Ma montre n’est pas dans la liste.
+      a: >-
+        Pas de souci. Seule la version du système compte : watchOS 26 ou
+        Wear OS 3, ou plus récent, et Kortscore fonctionne. Tu trouveras plus haut
+        comment la vérifier.
+    - q: Une montre 4G suffit-elle sans le téléphone ?
+      a: >-
+        Pour compter, oui, la montre n’a besoin d’aucune connexion pour ça. Pour
+        le score en direct, le téléphone doit être à portée Bluetooth, car
+        c’est lui qui envoie le score en ligne.
+    - q: Combien de batterie consomme un match ?
+      a: >-
+        Un match en trois sets consomme 15 à 25 % de batterie, selon la montre.
+        Une montre chargée à fond tient toute une journée de championnat.
+
+cta:
+  fits: Ta montre est compatible ?
+  download: Télécharger gratuitement
+  no_watch: Pas encore de montre ?
+  picks: Quatre suggestions pour le court →

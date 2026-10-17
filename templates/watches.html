@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block jsonld %}
+<!-- Breadcrumbs for search. -->
+{{ jsonld({"@graph": [breadcrumbs()]}) }}
+{% endblock %}
+
+{% block main %}
+<main>
+<div class="subhead">
+  <a class="back" href="{{ url('index') }}">{{ c.back_home }}</a>
+  <p class="eyebrow">{{ t.eyebrow }}</p>
+  <h1 class="subhead__title">{{ t.title }}</h1>
+  <p class="lead">
+    {{ t.lead }}
+  </p>
+  <a class="back" href="{{ url('compatible') }}">{{ t.compat_link }}</a>
+</div>
+
+<!-- All four photos are our own shots, as WebP in 480 and 960 wide (srcset),
+     cropped square on the watch: Amazon's own product images may not be hosted
+     by us. The fixed width and height stop the row from shifting while the
+     images arrive. Product data lives here, the copy in watches.yaml. -->
+<ul class="watchcards">
+{% for key, img, name, link in [
+     ("apple", "watch-apple-watch-11", "Apple Watch Series 11", "https://amzlink.to/az0YXetZ8Lujv"),
+     ("galaxy", "watch-galaxy-watch-8", "Samsung Galaxy Watch 8", "https://amzlink.to/az0Q86fDm7t5p"),
+     ("ultra", "watch-galaxy-watch-ultra", "Samsung Galaxy Watch Ultra (2025)", "https://amzlink.to/az0f04miu49Xg"),
+     ("pixel", "watch-pixel-watch-5", "Google Pixel Watch 5", "https://amzlink.to/az0o6BdeJ1gGu"),
+   ] %}
+{% set v = "?v=2" if key == "pixel" else "" %}
+      <li class="watchcard">
+        <div class="watchcard__shot">
+          <img src="{{ asset(img ~ '.webp' ~ v) }}"
+               srcset="{{ asset(img ~ '.webp' ~ v) }} 480w,
+                       {{ asset(img ~ '@2x.webp' ~ v) }} 960w"
+               sizes="(max-width: 900px) 88vw, 30vw"
+               width="480" height="480" loading="lazy" decoding="async"
+               alt="{{ t.watches[key].alt|inattr }}">
+        </div>
+        <h2>{{ name }}</h2>
+        <p>{{ t.watches[key].text }}</p>
+        <a class="btn watchcard__btn" href="{{ link }}"
+           target="_blank" rel="nofollow sponsored noopener">{{ t.amazon_button }}</a>
+      </li>
+{% endfor %}
+</ul>
+
+<!-- Amazon requires this disclosure to be clear and conspicuous. It sits at the
+     end, after the cards it applies to, small but in readable body colour. -->
+<p class="disclosure">
+  {{ t.disclosure }}
+</p>
+</main>
+{% endblock %}

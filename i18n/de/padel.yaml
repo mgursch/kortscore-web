@@ -1,0 +1,100 @@
+# Regelseite Padel. Gerüst in templates/partials/rules.html.
+# meta.title und meta.description stehen auch im Article-JSON-LD.
+
+meta:
+  title: Wie zählt man beim Padel? Punkte, Golden Point, Sätze und Tiebreak erklärt
+  description: "Padel-Zählweise einfach erklärt: 15, 30, 40 wie im Tennis, Golden Point statt Vorteil, Doppel-Aufschlagreihenfolge, Sätze, Tiebreak und die üblichen Matchformate."
+  og_title: Wie zählt man beim Padel?
+
+breadcrumb: Padel-Zählweise
+llms: Wie zählt man beim Padel
+# Article-JSON-LD "about".
+about: Padel
+
+eyebrow: Regeln
+title: Wie zählt man <br>beim Padel?
+lead: >-
+  Padel zählt wie Tennis: 15, 30, 40, Game, Satz. Der eine Unterschied, den du
+  merkst, ist der Golden Point: Viele Matches spielen bei 40:40 einen
+  entscheidenden Punkt statt Vorteil. Dazu kommen Doppel-Aufschlagreihenfolge
+  und Aufschlag von unten. Hier die ganze Zählweise, kurz und vollständig.
+
+sections:
+  - title: Punkte wie im Tennis
+    text: >-
+      Ein Game startet bei 0:0, dann 15, 30, 40. Wer bei 40 den nächsten Punkt
+      gewinnt, holt das Game, außer der Gegner steht auch bei 40. Der
+      Aufschläger wird zuerst genannt. Wer Tennis zählen kann, kann Padel
+      zählen.
+  - title: Golden Point statt Vorteil
+    text: >-
+      Bei 40:40 erlaubt das FIP-Regelwerk drei Varianten: Vorteil, Golden Point
+      oder Star Point. Den Star Point spielen die Profitouren seit 2026: Steht es zum dritten Mal Einstand, entscheidet ein einziger Punkt das Game. Beim Golden Point
+      entscheidet bei 40:40 direkt der nächste Punkt, das rückschlagende Team
+      wählt, wer den Aufschlag annimmt. Im Tennis heißt dieselbe Regel NoAd.
+      Viele Vereine und Ligen spielen Golden Point, kläre das Format also vor
+      dem Match. Kortscore zählt Vorteil und Golden Point (als NoAd), aber
+      keinen Star Point.
+  - title: Doppel und Aufschlagreihenfolge
+    text: >-
+      Padel wird fast immer im Doppel gespielt. Der Aufschlag wechselt nach
+      jedem Game zwischen den Teams, und innerhalb eines Teams schlagen die
+      Partner abwechselnd auf: Wer im ersten Game aufgeschlagen hat, ist im
+      fünften wieder dran. Die Rückschlagseiten (Einstand- und Vorteilseite)
+      bleiben für einen Satz fest und dürfen erst zum nächsten Satz getauscht
+      werden.
+  - title: Der Aufschlag
+    text: >-
+      Der Ball wird hinter der Aufschlaglinie einmal aufgeprallt und auf
+      Taillenhöhe oder darunter diagonal ins gegnerische Aufschlagfeld
+      geschlagen. Zwei Versuche wie im Tennis. Berührt der Ball nach dem
+      Aufprall im Feld das Gitter, ist es ein Fehler; trifft er die Glaswand,
+      bleibt er im Spiel.
+  - title: Games, Sätze, Tiebreak
+    text: >-
+      Ein Satz geht bis 6 Games mit zwei Games Vorsprung, bei 6:6 folgt der
+      Tiebreak bis 7 Punkte mit zwei Punkten Vorsprung. Aufschlagwechsel nach
+      dem ersten Punkt und dann alle zwei Punkte, Seitenwechsel alle sechs
+      Punkte. Ein Match ist normalerweise Best of 3; viele Turniere ersetzen
+      den dritten Satz durch einen Match-Tiebreak bis 10.
+  - title: Übliche Formate
+    text: >-
+      Liga: zwei Gewinnsätze mit Golden Point. Turnier-Gruppenphase: oft ein
+      Satz oder ein Kurzsatz bis 4 Games (Kortscore spielt den Tiebreak bei
+      3:3). Americano und Mexicano: feste Punktzahl pro Runde, meist 16, 24
+      oder 32 Punkte, ohne Games. Kortscore zählt Einzel und Doppel, Vorteil
+      und NoAd, Sätze bis 4 oder 6, Best of 3 oder einen Satz.
+  - title: Seitenwechsel
+    text: >-
+      Wie im Tennis: nach dem ersten Game, dann bei jeder ungeraden Gamesumme.
+      Im Tiebreak alle sechs Punkte.
+
+# Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
+faq:
+  title: Häufige Fragen
+  questions:
+    - q: Ist Golden Point und NoAd dasselbe?
+      a: >-
+        Ja. Beides bedeutet: Bei 40:40 entscheidet der nächste Punkt das Game.
+        Padel sagt Golden Point, Tennis sagt NoAd. In Kortscore wählst du NoAd,
+        und die Uhr zählt Golden Point.
+    - q: Spielt man Padel immer im Doppel?
+      a: >-
+        Fast immer. Einzel-Padel gibt es auf schmaleren Plätzen (sechs statt
+        zehn Meter breit), ist aber selten. Kortscore hat Doppel deshalb direkt
+        auf dem Startbildschirm, Einzel geht genauso.
+    - q: Wer nimmt beim Golden Point den Aufschlag an?
+      a: >-
+        Das rückschlagende Team entscheidet, welcher Partner annimmt, muss aber
+        die normale Seitenaufteilung beibehalten: Jeder nimmt von seiner eigenen
+        Seite an.
+    - q: Zählt Kortscore Americano-Turniere?
+      a: >-
+        Nicht als eigenes Format. Americano zählt reine Punkte ohne Games; dafür
+        ist die klassische Tennis-Zählweise nicht gemacht. Für Liga- und
+        Turniermatches mit Sätzen ist Kortscore da.
+
+cta:
+  eyebrow: Zählen lassen statt zählen
+  more: Mehr lesen
+  next: So zählt man beim Tennis, mit Vorteil und Tiebreak →

@@ -1,0 +1,35 @@
+# Uhren-Empfehlungen. Modelle, Fotos und Amazon-Links stehen in
+# templates/watches.html, hier nur die Texte dazu.
+
+meta:
+  title: Welche Uhr für Kortscore? Apple Watch &amp; Wear OS für Tennis und Padel
+  description: Kortscore läuft auf jeder Apple Watch ab watchOS 26 und jeder Wear-OS-3-Uhr. Vier Modelle, die auf dem Tennis- und Padelplatz überzeugen.
+  og_title: Vier Uhren für Kortscore
+
+# Name im Breadcrumb-JSON-LD und Zeile in llms.txt.
+breadcrumb: Uhren
+llms: Empfohlene Uhren
+
+eyebrow: Welche Uhr
+title: Vier Uhren, <br>die passen
+lead: >-
+  Kortscore läuft auf jeder Wear-OS-3-Uhr und auf der Apple Watch. Wer noch
+  keine hat, fährt mit diesen vier am Platz gut.
+compat_link: Schon eine Uhr? Zur vollständigen Kompatibilitätsliste, Apple Watch und Wear OS →
+
+watches:
+  apple:
+    alt: Apple Watch Series 11, graphitfarbenes Gehäuse mit dunkelblauem Armband
+    text: Die für iPhone-Leute. Helles Display, und der Spielstand liegt einen Tap entfernt am Handgelenk.
+  galaxy:
+    alt: Samsung Galaxy Watch 8, silbernes Gehäuse mit dunklem Armband
+    text: Wear OS 6, in praller Sonne ablesbar, Akku für ein langes Matchprogramm.
+  ultra:
+    alt: Samsung Galaxy Watch Ultra (2025), Titangehäuse mit blauem Armband
+    text: Robustes Gehäuse, größter Akku hier, für lange Turniertage im Freien.
+  pixel:
+    alt: Google Pixel Watch 5, schwarzes Gehäuse mit schwarzem Armband
+    text: Wear OS direkt von Google, bekommt Updates zuerst. Kompakt am Handgelenk.
+
+amazon_button: Bei Amazon ansehen
+disclosure: Als Amazon-Partner verdienen wir an qualifizierten Käufen.

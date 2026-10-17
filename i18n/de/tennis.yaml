@@ -1,0 +1,110 @@
+# Regelseite Tennis. Gerüst in templates/partials/rules.html.
+# meta.title und meta.description stehen auch im Article-JSON-LD.
+
+meta:
+  title: Wie zählt man beim Tennis? Punkte, Games, Sätze und Tiebreak erklärt
+  description: "Tennis-Zählweise einfach erklärt: 15, 30, 40, Einstand und Vorteil, NoAd, Game und Satz, Tiebreak und Champions-Tiebreak, Aufschlag- und Seitenwechsel."
+  og_title: Wie zählt man beim Tennis?
+
+breadcrumb: Tennis-Zählweise
+llms: Wie zählt man beim Tennis
+# Article-JSON-LD "about".
+about: Tennis
+
+eyebrow: Regeln
+title: Wie zählt man <br>beim Tennis?
+lead: >-
+  Tennis zählt anders als jeder andere Sport: Punkte heißen 15, 30 und 40, ein
+  Game braucht zwei Punkte Vorsprung, ein Satz sechs Games, und bei 6:6 kommt
+  der Tiebreak. Hier ist die ganze Zählweise auf einer Seite, so wie sie auf
+  dem Platz gilt.
+
+sections:
+  - title: "Punkte: 0, 15, 30, 40"
+    text: >-
+      Jedes Game beginnt bei 0:0, im Englischen „Love“. Der erste Punkt bringt
+      15, der zweite 30, der dritte 40. Wer bei 40 den nächsten Punkt macht,
+      gewinnt das Game, sofern der Gegner nicht auch bei 40 steht. Der
+      Aufschläger wird immer zuerst genannt: 30:15 heißt, der Aufschläger
+      führt.
+  - title: Einstand und Vorteil
+    text: >-
+      Steht es 40:40, heißt das Einstand („Deuce“). Ab jetzt braucht es zwei
+      Punkte hintereinander: Der nächste Punkt bringt den Vorteil, der
+      übernächste das Game. Verliert der Spieler mit Vorteil den Punkt, geht es
+      zurück auf Einstand. Ein Game kann so theoretisch endlos dauern.
+  - title: "NoAd: der Punkt bei 40:40 entscheidet"
+    text: >-
+      Viele Ligen, Vereinsturniere und Doppel auf der Profitour spielen NoAd
+      („No Advantage“): Bei 40:40 entscheidet der nächste Punkt das Game, der
+      Rückschläger wählt die Aufschlagseite. Das hält Matches kürzer und
+      planbarer. Im Padel heißt dieselbe Regel Golden Point. In Kortscore
+      wählst du NoAd beim Start einmal aus, danach zählt die Uhr entsprechend.
+  - title: Games und Sätze
+    text: >-
+      Ein Satz geht an den, der zuerst sechs Games hat, mit mindestens zwei
+      Games Vorsprung: 6:4 ist ein Satz, 6:5 nicht. Bei 6:5 wird
+      weitergespielt, 7:5 gewinnt. Bei 6:6 folgt der Tiebreak. Kurzsätze gehen
+      bis 4 Games. Nach ITF-Regel kommt der Tiebreak bei 4:4, erlaubt ist auch
+      3:3. Kortscore spielt ihn wie FAST4 bei 3:3, ein Kurzsatz endet also 4:0,
+      4:1, 4:2 oder nach Tiebreak bis 7 mit 4:3. Ein Match ist meist Best of 3,
+      also zwei Gewinnsätze; Grand Slams der Herren spielen Best of 5.
+  - title: Der Tiebreak
+    text: >-
+      Im Tiebreak werden einzelne Punkte gezählt: 1, 2, 3 und so weiter. Wer
+      zuerst sieben Punkte hat, mit zwei Punkten Vorsprung, gewinnt Satz und
+      Tiebreak, der als 7:6 in die Wertung geht. Der Aufschlag wechselt nach
+      dem ersten Punkt und danach alle zwei Punkte, die Seiten werden alle
+      sechs Punkte gewechselt. Wer den Tiebreak begonnen hat, ist im nächsten
+      Satz Rückschläger.
+  - title: Champions-Tiebreak statt dritter Satz
+    text: >-
+      Viele Doppel und Hobbyturniere ersetzen den dritten Satz durch einen
+      Match-Tiebreak bis 10 Punkte, ebenfalls mit zwei Punkten Vorsprung. In
+      der Notation steht dann zum Beispiel 6:3 4:6 [10:7]. Kortscore kennt
+      beide Varianten, Tiebreak bis 7 und Champions-Tiebreak bis 10.
+  - title: Aufschlag und Seitenwechsel
+    text: >-
+      Der Aufschlag wechselt nach jedem Game. Die Seiten werden nach dem
+      ersten, dritten, fünften Game gewechselt, also immer wenn die Summe der
+      Games ungerade ist, und nach jedem Satz mit gerader Gamezahl erst nach
+      dem ersten Game des nächsten Satzes. Im Einzel schlägt im dritten Game
+      wieder auf, wer das erste aufgeschlagen hat. Im Doppel wechseln sich die
+      Partner ab, der erste Aufschläger ist also erst im fünften Game wieder
+      dran.
+  - title: Ergebnis notieren
+    text: >-
+      Ein Ergebnis liest sich Satz für Satz aus Sicht des Siegers: 6:4 3:6
+      7:6(4) heißt drei Sätze, der dritte im Tiebreak mit 7:4 Punkten.
+      Kortscore schreibt das Ergebnis genau so in deine Historie, mit Dauer und
+      Punkteverlauf.
+
+# Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
+faq:
+  title: Häufige Fragen
+  questions:
+    - q: Warum heißen die Punkte 15, 30 und 40?
+      a: >-
+        Sicher weiß es niemand. Die gängigste Erklärung ist eine Uhr, auf der
+        die Viertel 15, 30 und 45 markiert wurden; 45 wurde irgendwann zu 40
+        verkürzt, weil es sich schneller ruft. Wichtig ist nur die Reihenfolge.
+    - q: Was heißt „Love“?
+      a: >-
+        Null. Vermutlich vom französischen „l'œuf“, das Ei, wegen der Form der
+        Null. „Love game“ ist ein Game, in dem der Verlierer keinen Punkt
+        gemacht hat.
+    - q: Wer schlägt nach dem Tiebreak auf?
+      a: >-
+        Wer den Tiebreak mit dem ersten Punkt begonnen hat, wird im ersten Game
+        des nächsten Satzes Rückschläger. Die Reihenfolge läuft also einfach
+        weiter, als wäre der Tiebreak ein Game gewesen.
+    - q: Muss ich das alles mitzählen?
+      a: >-
+        Nein, das erledigt die Uhr. In Kortscore tippst du pro Punkt einmal,
+        alles darüber, Einstand, Vorteil, Tiebreak-Aufschlagwechsel, rechnet
+        die App nach genau diesen Regeln mit.
+
+cta:
+  eyebrow: Zählen lassen statt zählen
+  more: Mehr lesen
+  next: Padel zählt fast gleich, mit einer Ausnahme →

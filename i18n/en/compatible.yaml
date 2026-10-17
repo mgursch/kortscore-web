@@ -1,0 +1,103 @@
+# Kompatibilitätsliste. Die Tabellen (Modelle, Jahre, Versionen) stehen in
+# templates/compatible.html, hier nur die Texte und Spaltenköpfe.
+
+meta:
+  title: "Compatible Watches: Does Kortscore Run on My Apple Watch or Wear OS Watch?"
+  description: Kortscore runs on every Apple Watch with watchOS 26 and any watch with Wear OS 3 or newer. Every Apple Watch, Galaxy Watch, Pixel Watch, OnePlus and TicWatch model at a glance.
+  og_title: Does Kortscore run on my watch?
+
+breadcrumb: Compatible watches
+llms: Compatible watches (full model list)
+
+eyebrow: Compatibility
+title: Does Kortscore run <br>on my watch?
+lead: >-
+  The short answer: yes, on every Apple Watch on watchOS 26 or newer paired
+  with an iPhone, and on every watch running Wear OS 3 or newer paired with an
+  Android phone on Android 8 or newer. That covers every Apple Watch since the
+  Series 6, the SE from the second generation and every Ultra, every Samsung
+  Galaxy Watch since 2021, every Google Pixel Watch and the current watches from
+  OnePlus, Mobvoi and Xiaomi. The long answer is below.
+
+# Spaltenköpfe und Generationsangaben in den Tabellen.
+col:
+  model: Model
+  year: Year
+generation:
+  first: 1st gen
+  second: 2nd gen
+  third: 3rd gen
+
+version:
+  title: How to find your system version
+  body: >-
+    <p>On the Wear OS watch under <em>Settings → About → Software version</em>,
+    on Samsung under <em>Settings → About watch → Software information</em>. If
+    it says Wear OS 3, 4, 5, 6 or 7, Kortscore runs.</p><p><strong>On the Apple
+    Watch:</strong> <em>Settings → General → About → Version</em>. If it says
+    watchOS 26 or higher, Kortscore runs. Older version on a model from the list
+    below? Update it first under <em>Settings → General → Software Update</em>.</p>
+
+apple:
+  text: >-
+    Kortscore runs on every Apple Watch with watchOS 26 or newer, so from the
+    2020 Series 6 on, the SE from the second generation and every Ultra, paired
+    with an iPhone running the Kortscore app from the App Store. On the Apple
+    Watch a match runs as a workout so the display stays on the whole time.
+samsung:
+  text: >-
+    Every Galaxy Watch from the Watch 4 on runs Wear OS. The Watch 4 is the
+    oldest watch Kortscore runs on. Galaxy Watch 3, Active 2 and older run Tizen
+    and are not compatible.
+pixel:
+  text: Every Pixel Watch runs Wear OS and gets its updates straight from Google, usually first.
+others:
+  title: Other brands
+  text: >-
+    We have not had all of these on our own wrists. But Wear OS is Wear OS: if
+    it runs version 3 or newer, it runs Kortscore. If something does not work
+    for you, write to <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>.
+
+unsupported:
+  title: What does not work
+  list:
+    - "<strong>Galaxy Watch 3, Active 2, Active, Gear:</strong> Tizen instead of Wear OS."
+    - "<strong>Garmin, Fitbit, Polar, Suunto, Coros, Huawei, Amazfit, Xiaomi Smart Band:</strong> their own systems, no Wear OS."
+    - "<strong>Wear OS 2:</strong> Fossil Gen 5 and older, Moto 360, TicWatch Pro 3 without the update: too old."
+    - "<strong>Apple Watch Series 5, SE (1st gen) and older:</strong> end at watchOS 10 or earlier, Kortscore needs watchOS 26."
+
+phone:
+  title: And the phone?
+  text: >-
+    The Kortscore iPhone app needs iOS 18 or newer; paired with an Apple Watch
+    on watchOS 26, Apple requires the iPhone to be on iOS 26. A Wear OS watch
+    pairs with an Android phone on Android 8 or newer. Either way the Kortscore
+    app comes from the App Store or Play Store. The watch keeps score on its
+    own; the phone holds history and statistics and sends the live ticker
+    online. Mixed pairs do not work: an Apple Watch needs an iPhone, a Wear OS
+    watch needs an Android phone.
+
+# Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
+faq:
+  title: Common questions
+  questions:
+    - q: My watch is not in the list.
+      a: >-
+        No problem. All that matters is the system version: watchOS 26 or Wear
+        OS 3, or newer in each case, and Kortscore runs. How to find it is
+        explained above.
+    - q: Is an LTE watch enough without the phone?
+      a: >-
+        For scoring, yes, the watch needs no connection for that. For the live
+        ticker the phone has to be within Bluetooth range, because the phone is
+        what sends the score online.
+    - q: How much battery does a match use?
+      a: >-
+        A three-set match costs 15 to 25 percent of battery, depending on the
+        watch. A fully charged watch gets you through a whole league day.
+
+cta:
+  fits: Watch fits?
+  download: Get it free
+  no_watch: No watch yet?
+  picks: Four picks for the court →

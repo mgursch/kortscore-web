@@ -1,0 +1,106 @@
+# Regelseite Tennis. Gerüst in templates/partials/rules.html.
+# meta.title und meta.description stehen auch im Article-JSON-LD.
+
+meta:
+  title: How Does Tennis Scoring Work? Points, Games, Sets and Tiebreaks Explained
+  description: "Tennis scoring made simple: 15, 30, 40, deuce and advantage, NoAd, games and sets, tiebreak and champions tiebreak, serve rotation and changing ends."
+  og_title: How does tennis scoring work?
+
+breadcrumb: Tennis scoring
+llms: How tennis scoring works (rules explainer)
+# Article-JSON-LD "about".
+about: Tennis
+
+eyebrow: Rules
+title: How does tennis <br>scoring work?
+lead: >-
+  Tennis counts like no other sport: points are called 15, 30 and 40, a game
+  needs a two-point margin, a set needs six games, and at 6-6 there is a
+  tiebreak. Here is the whole system on one page, the way it applies on court.
+
+sections:
+  - title: "Points: love, 15, 30, 40"
+    text: >-
+      Every game starts at love-all, that is 0-0. The first point is worth 15,
+      the second 30, the third 40. Whoever wins the next point at 40 wins the
+      game, unless the opponent is also at 40. The server's score is always
+      called first: 30-15 means the server leads.
+  - title: Deuce and advantage
+    text: >-
+      At 40-40 the score is deuce. From here a player needs two points in a
+      row: the next point gives the advantage, the one after that the game. If
+      the player with the advantage loses the point, it is back to deuce. In
+      theory a game can go on forever.
+  - title: "NoAd: the point at deuce decides"
+    text: >-
+      Many leagues, club tournaments and pro doubles play NoAd, short for no
+      advantage: at 40-40 the next point decides the game, and the receiver
+      chooses which side to receive on. It keeps matches shorter and more
+      predictable. In padel the same rule is called golden point. In Kortscore
+      you pick NoAd once at the start and the watch counts accordingly.
+  - title: Games and sets
+    text: >-
+      A set goes to the first player with six games and a margin of at least
+      two: 6-4 wins a set, 6-5 does not. At 6-5 play continues, 7-5 wins. At
+      6-6 a tiebreak follows. Short sets go to 4 games. The ITF rule plays the
+      tiebreak at 4-4 and allows 3-3 as an alternative. Kortscore plays it at
+      3-3, as in FAST4, so a short set ends 4-0, 4-1, 4-2 or, after a tiebreak
+      to 7, 4-3. A match is usually best of three sets; men's Grand Slams play
+      best of five.
+  - title: The tiebreak
+    text: >-
+      In a tiebreak points are counted one by one: 1, 2, 3 and so on. The
+      first to seven points, with a two-point margin, wins the tiebreak and the
+      set, recorded as 7-6. Serve changes after the first point and then every
+      two points; players change ends every six points. Whoever served first
+      in the tiebreak receives in the first game of the next set.
+  - title: Champions tiebreak instead of a third set
+    text: >-
+      Many doubles and club events replace the third set with a match tiebreak
+      to 10 points, again with a two-point margin. The score then reads, for
+      instance, 6-3 4-6 [10-7]. Kortscore knows both: tiebreak to 7 and
+      champions tiebreak to 10.
+  - title: Serve and changing ends
+    text: >-
+      Serve alternates after every game. Players change ends after the first,
+      third, fifth game, so whenever the total number of games is odd, and
+      after a set with an even number of games only after the first game of the
+      next set. In singles, whoever served the first game serves the third
+      again. In doubles the partners take turns, so the first server serves
+      again in the fifth game.
+  - title: Writing down the score
+    text: >-
+      A result reads set by set from the winner's point of view: 6-4 3-6
+      7-6(4) means three sets, the third decided in a tiebreak won 7-4.
+      Kortscore writes the result into your history exactly like that, with
+      duration and the point-by-point log.
+
+# Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
+faq:
+  title: Common questions
+  questions:
+    - q: Why are the points called 15, 30 and 40?
+      a: >-
+        Nobody knows for sure. The most common explanation is a clock face
+        marked at the quarters, 15, 30 and 45, with 45 shortened to 40 because
+        it is quicker to call. Only the order matters.
+    - q: What does love mean?
+      a: >-
+        Zero. Probably from the French l'œuf, the egg, for the shape of the
+        zero. A love game is a game in which the loser did not win a single
+        point.
+    - q: Who serves after the tiebreak?
+      a: >-
+        Whoever served the first point of the tiebreak receives in the first
+        game of the next set. The rotation simply carries on as if the tiebreak
+        had been one game.
+    - q: Do I have to keep track of all this?
+      a: >-
+        No, the watch does. In Kortscore you tap once per point; everything
+        above that, deuce, advantage, tiebreak serve rotation, the app works
+        out by exactly these rules.
+
+cta:
+  eyebrow: Let the watch count
+  more: Read on
+  next: Padel scores almost the same, with one exception →

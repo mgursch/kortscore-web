@@ -1,0 +1,96 @@
+# Vereinsangebot: Flyer aufhängen, Mitglieder bekommen Kortscore Plus günstiger.
+
+meta:
+  title: "Kortscore for Clubs: Put Up the Flyer, Your Members Get a Kortscore Plus Discount"
+  description: Your club puts up the Kortscore flyer in the clubhouse or at the courts, your members get a discount code for Kortscore Plus. Just ask by email.
+  og_title: Kortscore for clubs
+
+breadcrumb: For clubs
+llms: For clubs (flyer in the clubhouse, Kortscore Plus discount for members)
+
+eyebrow: For clubs
+title: Put up the flyer. <br>Members save.
+lead: >-
+  Your club puts up the Kortscore flyer in the clubhouse or at the courts, and
+  your members get a discount code for Kortscore Plus in return. Just drop us a
+  line, we sort out the rest by email.
+
+steps:
+  title: How it works
+  list:
+    - title: Get in touch
+      body: >-
+        Send us a short email with your club name, town and a contact person.
+        The button below fills it in for you.
+    - title: Put up the flyer
+      body: >-
+        Print the flyer on A4 and put it up where people see it: in the
+        clubhouse, on the notice board or at the entrance to the courts.
+    - title: Pass on the code
+      body: >-
+        You get your own code for Kortscore Plus and pass it on to your members,
+        on the notice board, in the newsletter or the club group chat. It makes
+        Plus cheaper in the app.
+
+redeem:
+  title: How your members redeem the code
+  list:
+    - >-
+      Open Kortscore and go to the Kortscore Plus purchase screen, for example
+      in the settings under <strong>Unlock Kortscore Plus</strong>.
+    - Tap <strong>Redeem code</strong> and enter your club’s code.
+    - >-
+      The lower price appears right on the purchase screen. The purchase goes
+      through the App Store or Google Play as usual.
+  note: It works the same on iPhone and Android.
+
+plus:
+  title: What is Kortscore Plus?
+  text: >-
+    Kortscore itself is free: scoring on the wrist, match history and the live
+    ticker, with no ads and no account. Kortscore Plus is a one-time purchase,
+    not a subscription, and adds advanced statistics, automatic backups and the
+    AI coach that analyses matches. With your code, your members get Plus for
+    less.
+
+# Der Flyer selbst ist bisher nur auf Deutsch, das sagt der Text dazu.
+flyer:
+  title: The flyer
+  alt: >-
+    The Kortscore flyer in A4 format, in German, with a QR code, links to the
+    App Store and Google Play and a note on the discount code for club members
+  text: >-
+    A4, one page, with a QR code to download the app. The flyer is in German
+    for now. Print it in colour if you can, the screens and the watch come
+    across much better.
+  download: Download the flyer
+
+# Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
+faq:
+  title: Questions
+  questions:
+    - q: Does it cost the club anything?
+      a: >-
+        No. You put up the flyer, we send the discount code. Kortscore itself
+        is free for your members anyway.
+    - q: How big is the discount?
+      a: >-
+        We agree on that with each club individually. Tell us roughly how many
+        members you have and we will make you an offer.
+    - q: Does the code work on iPhone and Android?
+      a: >-
+        Yes. The code is redeemed in the Kortscore app on the Kortscore Plus
+        purchase screen, the same way on both platforms.
+    - q: Does the code expire?
+      a: >-
+        It can. A code may have a validity period, and we will tell you along
+        with the code.
+
+# Die Anfrage ist eine vorausgefüllte Mail. Betreff und Text als reiner Text
+# (\n = Zeilenumbruch), der Build kodiert sie für den mailto-Link.
+ask:
+  eyebrow: Want in?
+  button: Request by email
+  alt: or write directly to
+  mail_subject: Kortscore Plus for our club
+  mail_body: "Hello,\n\nour club would like to put up the Kortscore flyer and get a Kortscore Plus discount code for our members.\n\nClub: \nTown: \nContact person: \nApproximate number of members: \nWhere the flyer will hang (clubhouse, courts, ...): \n\nThanks and best regards\n"
