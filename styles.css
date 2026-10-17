@@ -1097,7 +1097,7 @@ a:hover { color: var(--accent); }
   max-width: 52ch;
 }
 
-/* Drei Fakten als Definitionsliste, gleiche Machart wie die Padel-Fakten. */
+/* Vier Fakten als Definitionsliste, gleiche Machart wie die Padel-Fakten. */
 .ios__facts {
   margin: 28px 0 0;
   display: grid;

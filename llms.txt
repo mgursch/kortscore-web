@@ -13,7 +13,7 @@
 
 ## Platforms
 
-iPhone (iOS 18+) with Apple Watch (watchOS 26+), and Android (8.0+) with Wear OS (3+) watches. Runs on every Apple Watch from watchOS 26 (Series 6 and newer, SE 2nd generation and newer, every Ultra) and every Wear OS 3 watch (Samsung Galaxy Watch 4 and newer, every Google Pixel Watch, OnePlus Watch 2/3, TicWatch Pro 5, Xiaomi Watch 2, and others; full list at https://kortscore.com/compatible-watches.html). A three-set match uses about 15 to 25 percent of the watch battery.
+iPhone (iOS 18+) with Apple Watch (watchOS 26+), and Android (8.0+) with Wear OS (3+) watches. The iOS app also runs on iPad (iPadOS 18+) and on Macs with Apple silicon (macOS 15+); the Apple Watch pairs only with an iPhone. Runs on every Apple Watch from watchOS 26 (Series 6 and newer, SE 2nd generation and newer, every Ultra) and every Wear OS 3 watch (Samsung Galaxy Watch 4 and newer, every Google Pixel Watch, OnePlus Watch 2/3, TicWatch Pro 5, Xiaomi Watch 2, and others; full list at https://kortscore.com/compatible-watches.html). A three-set match uses about 15 to 25 percent of the watch battery.
 
 ## Get it
 
