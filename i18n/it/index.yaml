@@ -33,8 +33,9 @@ benefits:
   stats:
     title: Statistiche che contano
     body: >-
-      Percentuale di vittorie, bilancio dei set, il registro dei punti di ogni
-      partita: tutta la tua cronologia partite, analizzata in automatico.
+      Percentuale di vittorie, bilancio dei set e forma su tutte le partite,
+      analizzate in automatico. Kortscore Plus aggiunge la cronologia completa
+      con il registro punto per punto.
   live:
     label: Live
     title: Punteggio live per chi guarda

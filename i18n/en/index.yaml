@@ -33,8 +33,9 @@ benefits:
   stats:
     title: Statistics that count
     body: >-
-      Win rate, set record, the point history of every match: your whole
-      match history, evaluated automatically.
+      Win rate, set record and form across all your matches, evaluated
+      automatically. Kortscore Plus adds the complete history with the
+      point-by-point log.
   live:
     label: Live
     title: Live ticker for spectators

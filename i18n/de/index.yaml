@@ -33,8 +33,9 @@ benefits:
   stats:
     title: Statistiken, die zählen
     body: >-
-      Siegquote, Satzbilanz, Punkteverlauf jedes Matches: deine gesamte
-      Match-Historie, automatisch ausgewertet.
+      Siegquote, Satzbilanz und Form über alle deine Matches, automatisch
+      ausgewertet. Mit Kortscore Plus kommt die komplette Historie samt
+      Punkteverlauf dazu.
   live:
     label: Live
     title: Live-Ticker für Zuschauer

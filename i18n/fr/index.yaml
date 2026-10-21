@@ -34,8 +34,9 @@ benefits:
   stats:
     title: Des stats qui comptent
     body: >-
-      Taux de victoire, bilan des sets, historique des points de chaque match :
-      tout ton historique de matchs, analysé automatiquement.
+      Taux de victoire, bilan des sets et forme sur tous tes matchs, analysés
+      automatiquement. Kortscore Plus ajoute l’historique complet avec le
+      déroulé point par point.
   live:
     label: En direct
     title: Le score en direct pour le public

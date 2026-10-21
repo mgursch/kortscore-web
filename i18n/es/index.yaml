@@ -33,8 +33,9 @@ benefits:
   stats:
     title: Estadísticas que cuentan
     body: >-
-      Tasa de victorias, balance de sets, el registro de puntos de cada
-      partido: todo tu historial, analizado automáticamente.
+      Tasa de victorias, balance de sets y forma en todos tus partidos,
+      analizados automáticamente. Kortscore Plus añade el historial completo
+      con el registro punto a punto.
   live:
     label: En directo
     title: Marcador en directo para espectadores
