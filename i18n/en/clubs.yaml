@@ -47,11 +47,12 @@ redeem:
 plus:
   title: What is Kortscore Plus?
   text: >-
-    Kortscore itself is free: scoring on the wrist, match history and the live
-    ticker, with no ads and no account. Kortscore Plus is a one-time purchase,
-    not a subscription, and adds advanced statistics, automatic backups and the
-    AI coach that analyses matches. With your code, your members get Plus for
-    less.
+    Kortscore itself is free: scoring on the wrist, the live ticker and the
+    newest 10 matches in the history, with no ads and no account. Kortscore Plus
+    is a one-time purchase, not a subscription, and adds the complete match
+    history with the point-by-point log, advanced statistics, automatic backups
+    and the AI coach that analyses matches. With your code, your members get
+    Plus for less.
 
 # Der Flyer selbst ist bisher nur auf Deutsch, das sagt der Text dazu.
 flyer:

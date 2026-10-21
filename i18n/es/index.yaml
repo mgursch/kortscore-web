@@ -44,8 +44,9 @@ benefits:
   free:
     title: Gratis
     body: >-
-      Contar los puntos, el historial y el marcador en directo no cuestan
-      nada. Si quieres analizar más a fondo, tienes Kortscore Plus.
+      Contar los puntos, el marcador en directo y tus 10 partidos más
+      recientes no cuestan nada. El historial completo y el análisis más a
+      fondo los tienes con Kortscore Plus.
 
 steps:
   title: Cómo funciona
@@ -139,8 +140,9 @@ ios:
         app ni registro por su parte.
     - term: Gratis
       text: >-
-        Contar los puntos, el historial y el marcador en directo tampoco
-        cuestan nada aquí. Kortscore Plus sigue siendo una compra única.
+        Contar los puntos, el marcador en directo y los 10 partidos más
+        recientes tampoco cuestan nada aquí. Kortscore Plus sigue siendo una
+        compra única y desbloquea el historial completo.
     - term: iPad y Mac
       text: >-
         La app funciona también en el iPad y en los Mac con chip de Apple,
@@ -196,9 +198,10 @@ faq:
         alcance Bluetooth del reloj.
     - q: ¿Cuánto cuesta Kortscore?
       a: >-
-        Nada. La cuenta de puntos, el historial de partidos y el marcador en
-        directo son gratis, sin anuncios y sin registro, igual en iPhone que en
-        Android. Kortscore Plus es una compra única y añade estadísticas
+        Nada. La cuenta de puntos, el marcador en directo y tus 10 partidos más
+        recientes son gratis, sin anuncios y sin registro, igual en iPhone que
+        en Android. Kortscore Plus es una compra única y añade el historial
+        completo de partidos con el registro punto a punto, estadísticas
         detalladas, copias de seguridad automáticas y el Kortscore Trainer
         (IA), que analiza tus partidos.
     - q: ¿Puedo usar Kortscore para pádel?

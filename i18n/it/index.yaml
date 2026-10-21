@@ -44,8 +44,9 @@ benefits:
   free:
     title: Gratis
     body: >-
-      Conteggio, cronologia e punteggio live non costano nulla. Chi vuole
-      andare più a fondo passa a Kortscore Plus.
+      Conteggio, punteggio live e le tue 10 partite più recenti non costano
+      nulla. La cronologia completa e l’analisi più approfondita sono con
+      Kortscore Plus.
 
 steps:
   title: Come funziona
@@ -141,8 +142,9 @@ ios:
         dispositivo usino. Senza app e senza account da parte loro.
     - term: Gratis
       text: >-
-        Anche qui conteggio, cronologia e punteggio live non costano nulla.
-        Kortscore Plus resta un acquisto unico.
+        Anche qui conteggio, punteggio live e le 10 partite più recenti non
+        costano nulla. Kortscore Plus resta un acquisto unico e sblocca la
+        cronologia completa.
     - term: iPad e Mac
       text: >-
         L’app funziona anche su iPad e sui Mac con chip Apple, così partite e
@@ -198,10 +200,12 @@ faq:
         dell’orologio.
     - q: Quanto costa Kortscore?
       a: >-
-        Niente. Conteggio, cronologia partite e punteggio live sono gratis,
-        senza pubblicità e senza account, su iPhone come su Android. Kortscore
-        Plus è un acquisto unico e aggiunge statistiche dettagliate, backup
-        automatici e il Kortscore Trainer (IA), che analizza le tue partite.
+        Niente. Conteggio, punteggio live e le tue 10 partite più recenti sono
+        gratis, senza pubblicità e senza account, su iPhone come su Android.
+        Kortscore Plus è un acquisto unico e aggiunge la cronologia completa
+        delle partite con il registro punto per punto, statistiche dettagliate,
+        backup automatici e il Kortscore Trainer (IA), che analizza le tue
+        partite.
     - q: Posso usare Kortscore per il padel?
       a: >-
         Sì, senza complicazioni. Il padel si conta come il tennis, e il doppio è

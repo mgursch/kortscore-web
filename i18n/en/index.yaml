@@ -44,8 +44,8 @@ benefits:
   free:
     title: Free
     body: >-
-      Scoring, history and the live ticker cost nothing. Anyone who wants to
-      dig deeper picks up Kortscore Plus.
+      Scoring, the live ticker and your newest 10 matches cost nothing. The
+      complete history and deeper analysis come with Kortscore Plus.
 
 steps:
   title: How it works
@@ -137,8 +137,9 @@ ios:
         No app and no account on their side.
     - term: Free
       text: >-
-        Scoring, history and the live ticker cost nothing here either.
-        Kortscore Plus stays a one-time purchase.
+        Scoring, the live ticker and your newest 10 matches cost nothing here
+        either. Kortscore Plus stays a one-time purchase and unlocks the
+        complete history.
     - term: iPad &amp; Mac
       text: >-
         The app also runs on iPad and on Macs with Apple silicon, so your
@@ -193,10 +194,11 @@ faq:
         watch for this.
     - q: How much does Kortscore cost?
       a: >-
-        Nothing. Scoring, match history and the live ticker are free, with no
-        ads and no account, the same on iPhone and Android. Kortscore Plus is a
-        one-time purchase and adds advanced statistics, automatic backups and
-        the AI coach that analyses your matches.
+        Nothing. Scoring, the live ticker and your newest 10 matches are free,
+        with no ads and no account, the same on iPhone and Android. Kortscore
+        Plus is a one-time purchase and adds the complete match history with the
+        point-by-point log, advanced statistics, automatic backups and the AI
+        coach that analyses your matches.
     - q: Can I use Kortscore for padel?
       a: >-
         Yes, with no detours. Padel is scored like tennis, and doubles is one of
