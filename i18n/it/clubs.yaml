@@ -47,11 +47,13 @@ redeem:
 plus:
   title: Cos’è Kortscore Plus?
   text: >-
-    Kortscore di per sé è gratis: il conteggio al polso, la cronologia partite e
-    il punteggio live, senza pubblicità e senza account. Kortscore Plus è un
-    acquisto unico, non un abbonamento, e aggiunge statistiche dettagliate,
-    backup automatici e il Kortscore Trainer (IA), che analizza le partite. Con
-    il vostro codice, i vostri soci hanno Plus a un prezzo più conveniente.
+    Kortscore di per sé è gratis: il conteggio al polso, il punteggio live e le
+    10 partite più recenti della cronologia, senza pubblicità e senza account.
+    Kortscore Plus è un acquisto unico, non un abbonamento, e aggiunge la
+    cronologia completa delle partite con il registro punto per punto,
+    statistiche dettagliate, backup automatici e il Kortscore Trainer (IA), che
+    analizza le partite. Con il vostro codice, i vostri soci hanno Plus a un
+    prezzo più conveniente.
 
 # Der Flyer selbst ist bisher nur auf Deutsch, das sagt der Text dazu.
 flyer:

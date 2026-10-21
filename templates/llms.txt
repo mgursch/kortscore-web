@@ -7,8 +7,8 @@
 - Scores tennis and padel matches, singles and doubles, with one tap per point on a smartwatch
 - Handles the rules: advantage and NoAd scoring, tiebreaks, sets to 4 or 6
 - Live score ticker: a link the player shares, spectators open it in any browser, no app or account needed
-- Match history with point-by-point log, statistics such as win rate and set record
-- Free, no ads, no account. Kortscore Plus is an optional one-time in-app purchase for deeper statistics
+- Match history (the newest 10 matches are free; the complete history with point-by-point log is part of Kortscore Plus), statistics such as win rate and set record
+- Free, no ads, no account. Kortscore Plus is an optional one-time in-app purchase (no subscription) for the complete match history, deeper statistics, the AI coach and automatic backups
 - Interface in English and German
 
 ## Platforms

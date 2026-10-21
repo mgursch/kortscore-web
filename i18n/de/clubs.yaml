@@ -47,11 +47,12 @@ redeem:
 plus:
   title: Was ist Kortscore Plus?
   text: >-
-    Kortscore selbst ist gratis: zählen am Handgelenk, Match-Historie und
-    Live-Ticker, ohne Werbung und ohne Konto. Kortscore Plus ist ein einmaliger
-    Kauf, kein Abo, und bringt erweiterte Statistiken, automatische Backups und
-    den KI-Trainer, der die Matches analysiert. Mit eurem Code bekommen eure
-    Mitglieder Plus günstiger.
+    Kortscore selbst ist gratis: zählen am Handgelenk, Live-Ticker und die
+    neuesten 10 Matches der Historie, ohne Werbung und ohne Konto. Kortscore
+    Plus ist ein einmaliger Kauf, kein Abo, und bringt die komplette
+    Match-Historie mit Punkteverlauf, erweiterte Statistiken, automatische
+    Backups und den KI-Trainer, der die Matches analysiert. Mit eurem Code
+    bekommen eure Mitglieder Plus günstiger.
 
 # Der Flyer selbst ist bisher nur auf Deutsch, das sagt der Text dazu.
 flyer:

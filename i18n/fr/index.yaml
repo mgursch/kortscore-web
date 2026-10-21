@@ -34,8 +34,9 @@ benefits:
   stats:
     title: Des stats qui comptent
     body: >-
-      Taux de victoire, bilan des sets, historique des points de chaque match :
-      tout ton historique de matchs, analysé automatiquement.
+      Taux de victoire, bilan des sets et forme sur tous tes matchs, analysés
+      automatiquement. Kortscore Plus ajoute l’historique complet avec le
+      déroulé point par point.
   live:
     label: En direct
     title: Le score en direct pour le public
@@ -45,8 +46,9 @@ benefits:
   free:
     title: Gratuit
     body: >-
-      Le comptage, l’historique et le score en direct ne coûtent rien. Pour
-      aller plus loin dans l’analyse, il y a Kortscore Plus.
+      Le comptage, le score en direct et tes 10 derniers matchs ne coûtent
+      rien. L’historique complet et l’analyse approfondie, c’est Kortscore
+      Plus.
 
 steps:
   title: Comment ça marche
@@ -141,8 +143,9 @@ ios:
         leur appareil. Sans app et sans compte de leur côté.
     - term: Gratuit
       text: >-
-        Le comptage, l’historique et le score en direct sont gratuits ici aussi.
-        Kortscore Plus reste un achat unique.
+        Le comptage, le score en direct et les 10 derniers matchs sont
+        gratuits ici aussi. Kortscore Plus reste un achat unique et débloque
+        l’historique complet.
     - term: iPad &amp; Mac
       text: >-
         L’app fonctionne aussi sur iPad et sur les Mac avec puce Apple : tes
@@ -199,11 +202,12 @@ faq:
         téléphone doit être à portée Bluetooth de la montre.
     - q: Combien coûte Kortscore ?
       a: >-
-        Rien. Le comptage, l’historique des matchs et le score en direct sont
+        Rien. Le comptage, le score en direct et tes 10 derniers matchs sont
         gratuits, sans publicité et sans compte, sur iPhone comme sur Android.
-        Kortscore Plus est un achat unique et ajoute des statistiques
-        détaillées, des sauvegardes automatiques et le Kortscore Trainer (IA),
-        qui analyse tes matchs.
+        Kortscore Plus est un achat unique et ajoute l’historique complet des
+        matchs avec le déroulé point par point, des statistiques détaillées, des
+        sauvegardes automatiques et le Kortscore Trainer (IA), qui analyse tes
+        matchs.
     - q: Puis-je utiliser Kortscore pour le padel ?
       a: >-
         Oui, sans détour. Le padel se compte comme le tennis, et le double fait
