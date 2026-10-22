@@ -1,0 +1,154 @@
+# ITN-Rechner für Österreich, nur auf Deutsch (site.yaml: languages: [de]).
+# Gerüst in templates/itn.html, Verhalten in static/itn-rechner.js, die
+# Rechenregeln im generierten static/assets/js/itn-core.mjs (Kotlin-Modul
+# :itn-core der App). Hier stehen nur Texte und das vorgerenderte Beispiel.
+# Gendern mit Genderstern wie in der App: Partner*in, Gegner*in.
+
+meta:
+  title: "ITN-Rechner (ÖTV): Was bringt dir das nächste Match? | Kortscore"
+  description: "ITN-Rechner für Österreich: Gib deinen ITN und den deines Gegenübers ein und sieh, wo du nach Sieg oder Niederlage stehst. Nach ÖTV-Formel, Einzel und Doppel."
+  og_title: "ITN-Rechner (ÖTV): Was bringt dir das nächste Match?"
+
+# Name im Breadcrumb- und WebApplication-JSON-LD.
+breadcrumb: ITN-Rechner
+llms: ITN-Rechner für Österreich (ÖTV), ITN nach Sieg oder Niederlage, nur Deutsch
+
+# Link im deutschen Footer (templates/base.html).
+footer_label: ITN-Rechner
+
+# Hinweis auf der deutschen Tennis-Zählweise-Seite (templates/partials/rules.html).
+teaser:
+  eyebrow: ITN-Rechner
+  text: >-
+    Du spielst Meisterschaft in Österreich? Der ITN-Rechner zeigt dir vor dem
+    Match, wo dein ITN nach einem Sieg oder einer Niederlage steht, im Einzel
+    und im Doppel.
+  link: Zum ITN-Rechner →
+
+hero:
+  eyebrow: Tennis · ÖTV ITN-Rechner
+  title: Was bringt dir <em>das nächste Match?</em>
+  lead: >-
+    Gib deinen ITN und den deines Gegenübers ein. Du siehst sofort, wo du nach
+    einem Sieg oder einer Niederlage stehst.
+
+calc:
+  label: Rechner
+  mode:
+    label: Spielart
+    singles: Einzel
+    doubles: Doppel
+  format:
+    label: Matchformat
+    long: 2 Sätze bis 6
+    short: Kurzformat · 50 %
+  fields:
+    own: Dein ITN
+    opponent: ITN Gegenüber
+    partner: ITN Partner*in
+    opponent1: ITN Gegner*in 1
+    opponent2: ITN Gegner*in 2
+  safety:
+    own: Ich habe in den letzten 12 Monaten mind. 3 Einzel gespielt
+    opponent: Mein Gegenüber auch
+  results:
+    label: Ergebnis
+    win: Bei Sieg
+    loss: Bei Niederlage
+    # Doppel: Teamschnitte über dem Ergebnis, Partner*in unter jedem Wert.
+    own_team: Dein Team
+    opponent_team: Gegenseite
+    partner: Partner*in
+    # {pct} ersetzt itn-rechner.js durch die Gewichtung aus itn-core.mjs.
+    weight_singles: "Gewichtung für dich: {pct} %."
+    weight_doubles: "Gewichtung je Person: {pct} %."
+    lower_better: Niedriger ist besser.
+    invalid_singles: Gib zwei ITN-Werte zwischen 1,0 und 10,0 ein, z. B. 7,512.
+    invalid_doubles: Gib vier ITN-Werte zwischen 1,0 und 10,0 ein, z. B. 7,512.
+    noscript: Für eigene Werte braucht der Rechner JavaScript. Oben steht das Beispiel 7,512 gegen 7,180.
+  # Vorbelegung der Felder und das vorgerenderte Ergebnis (Einzel, 2 Sätze bis
+  # 6, beide sicher). So steht ohne JavaScript und für Suchmaschinen ein
+  # echtes Ergebnis auf der Seite. tools/check_itn.mjs prüft die Werte gegen
+  # itn-core.mjs, nach einer Änderung der Formel schlägt also das CI an.
+  example:
+    own: "7,512"
+    opponent: "7,180"
+    partner: "7,840"
+    opponent1: "7,180"
+    opponent2: "7,900"
+    win: "7,374"
+    win_change: "−0,138"
+    loss: "7,539"
+    loss_change: "+0,027"
+    weight: "100"
+  disclaimer: >-
+    Inoffizieller Rechner. Maßgeblich ist die ITN-Liste des ÖTV, die jede Nacht
+    neu berechnet wird.
+
+rules:
+  title: So rechnet der ÖTV
+  text: >-
+    Jedes gewertete Match verschiebt den ITN beider Spieler*innen. Wie stark,
+    hängt nur vom Abstand vor dem Match ab: Ein Sieg gegen Bessere bringt viel,
+    ein Pflichtsieg fast nichts.
+  formula: Δ = 0,250 / (1 + 2,595 · e<sup>3,5 · x</sup>)
+  formula_x: x = ITN Verlierer − ITN Sieger
+  table:
+    caption: Beispiele für die Änderung Δ bei 2 Sätzen bis 6, beide sicher
+    situation: Situation
+    change: Änderung
+    # winner und loser: ITN vor dem Match, mit Punkt. tools/check_itn.mjs
+    # rechnet change daraus nach.
+    rows:
+      - label: Gleich stark, Sieg
+        winner: "7.0"
+        loser: "7.0"
+        change: "0,070"
+      - label: Du 6,0 schlägst 5,0 (Überraschung)
+        winner: "6.0"
+        loser: "5.0"
+        change: "0,232"
+      - label: Du 5,0 schlägst 6,0 (Pflichtsieg)
+        winner: "5.0"
+        loser: "6.0"
+        change: "0,003"
+  bullets:
+    - Kurzformate (Sätze bis 4, Tiebreaks, 1 Satz) zählen 50 %.
+    - Im Doppel zählt der Teamschnitt, jede*r Partner*in bekommt 25 %.
+    - Wer kaum gespielt hat, gilt als unsicher und bewegt sich doppelt so stark, das Gegenüber nur halb.
+    - Niederlagen kannst du innerhalb von 7 Tagen streichen lassen.
+
+# Warteliste. Nur sichtbar, wenn in site.yaml itn_waitlist_endpoint gesetzt ist.
+app:
+  eyebrow: Bald als App
+  title: Dein ITN-Verlauf, jeden Morgen aktuell
+  text: >-
+    Profil einmal verknüpfen, dann siehst du jede Veränderung als Kurve und
+    rechnest Gegner*innen per Namenssuche durch. Für Android und iPhone.
+  email_label: E-Mail
+  placeholder: du@beispiel.at
+  button: Benachrichtige mich
+  # Unsichtbares Feld gegen Bots (Honeypot), nur für Screenreader-Nutzer als
+  # Hinweis lesbar, falls es doch jemand erreicht.
+  trap: Dieses Feld bitte leer lassen
+  # {privacy} wird zum Link auf die Datenschutzerklärung.
+  note: >-
+    Wir schreiben dir einmal, wenn die App erscheint. Kein Newsletter, keine
+    Weitergabe. Mit dem Absenden willigst du ein, dass wir deine Adresse dafür
+    speichern. {privacy}
+  privacy: Datenschutz
+  sending: Wird eingetragen …
+  ok: Danke, du stehst auf der Liste.
+  err: Das hat nicht geklappt. Bitte später noch einmal versuchen.
+
+band:
+  title: Das Match selbst<br><em>zählt Kortscore.</em>
+  text: >-
+    Ein Tap pro Punkt auf Apple Watch oder Wear OS, mit Statistik und
+    Live-Spielstand für alle, die nicht am Platz stehen.
+  button: Gratis für iPhone &amp; Android
+
+legal: >-
+  Kein offizielles Angebot des Österreichischen Tennisverbands. Berechnung nach
+  der im ITN Austria Rulebook veröffentlichten Formel (gültig ab 1.1.2025). ITN
+  ist eine Marke der International Tennis Federation.

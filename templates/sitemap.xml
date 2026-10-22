@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{# Jede Seite in jeder ihrer Sprachen. Alternates nur bei Seiten mit mehr als
+   einer Sprache, x-default nur, wenn es die Seite in der x-default-Sprache
+   gibt. #}
 {% for e in entries %}
-{% for l in languages %}
+{% for code, loc in e.urls.items() %}
   <url>
-    <loc>{{ e.urls[l.code] }}</loc>
+    <loc>{{ loc }}</loc>
     <lastmod>{{ e.page.lastmod }}</lastmod>
     <priority>{{ e.page.priority }}</priority>
-{% for alt in languages %}
-    <xhtml:link rel="alternate" hreflang="{{ alt.code }}" href="{{ e.urls[alt.code] }}"/>
+{% if e.alternates %}
+{% for alt, href in e.urls.items() %}
+    <xhtml:link rel="alternate" hreflang="{{ alt }}" href="{{ href }}"/>
 {% endfor %}
-    <xhtml:link rel="alternate" hreflang="x-default" href="{{ e.urls[site.x_default] }}"/>
+{% if e.x_default %}
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ e.urls[e.x_default] }}"/>
+{% endif %}
+{% endif %}
   </url>
 {% endfor %}
 {% endfor %}

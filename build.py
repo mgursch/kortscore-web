@@ -9,8 +9,8 @@ Quelle:
   i18n/<code>/       Texte je Sprache: common.yaml und <seite>.yaml
   static/            wird 1:1 kopiert (Assets, Rechtstexte, CSS, JS, ...)
 
-Ergebnis in _site/: jede Seite in jeder aktiven Sprache, sitemap.xml und
-llms.txt. Fehlt ein Text, eine Seite oder ein Asset, bricht der Build mit
+Ergebnis in _site/: jede Seite in jeder ihrer aktiven Sprachen (meist alle,
+pages.<id>.languages in site.yaml schränkt ein), sitemap.xml und llms.txt. Fehlt ein Text, eine Seite oder ein Asset, bricht der Build mit
 einer Meldung ab, statt still eine Lücke auszuliefern.
 """
 
@@ -102,17 +102,33 @@ def load_site():
     site = load_yaml(ROOT / "site.yaml")
     langs = [l for l in site["languages"] if l.get("enabled")]
     codes = [l["code"] for l in langs]
+    known = [l["code"] for l in site["languages"]]
     if site["x_default"] not in codes:
         raise BuildError(f"x_default {site['x_default']!r} ist keine aktive Sprache")
     seen = {}
     for pid, page in site["pages"].items():
-        for code in codes:
+        # Sprachen der Seite: ohne "languages" alle aktiven, sonst nur die
+        # genannten, soweit sie aktiv sind. Das Ergebnis steht in page["langs"],
+        # in der Reihenfolge von site.yaml.
+        wanted = page.get("languages", codes)
+        unknown = [c for c in wanted if c not in known]
+        if unknown:
+            raise BuildError(f"Seite {pid!r}: unbekannte Sprache {unknown}")
+        page["langs"] = [c for c in codes if c in wanted]
+        if not page["langs"]:
+            raise BuildError(f"Seite {pid!r}: keine ihrer Sprachen {wanted} ist aktiv")
+        for code in page["langs"]:
             if code not in page["slugs"]:
                 raise BuildError(f"Seite {pid!r}: kein Slug für {code!r}")
-            key = (code, page["slugs"][code])
+            # Eindeutig muss die Datei sein, nicht der Slug: eine Seite mit
+            # root: true teilt sich den Ordner mit keiner Sprache.
+            prefix = "" if page.get("root") else next(l["prefix"] for l in langs if l["code"] == code)
+            key = prefix + page["slugs"][code]
             if key in seen:
-                raise BuildError(f"Seiten {seen[key]!r} und {pid!r}: gleicher Slug {key[1]!r} für {code!r}")
+                raise BuildError(f"Seiten {seen[key]!r} und {pid!r}: gleiche Datei {key!r}")
             seen[key] = pid
+        if page.get("og_image") and not (STATIC / "assets" / page["og_image"]).is_file():
+            raise BuildError(f"Seite {pid!r}: og_image static/assets/{page['og_image']} fehlt")
         if not (ROOT / "templates" / f"{pid}.html").is_file():
             raise BuildError(f"Seite {pid!r}: templates/{pid}.html fehlt")
     for base, files in site["localized_assets"].items():
@@ -128,15 +144,24 @@ def load_site():
 
 
 def load_strings(site, langs):
-    names = ["common"] + list(site["pages"])
-    strings = {l["code"]: {n: load_yaml(ROOT / "i18n" / l["code"] / f"{n}.yaml") for n in names}
-               for l in langs}
-    ref = strings[site["x_default"]]
-    for code, tree in strings.items():
+    """Texte je Sprache: common.yaml und eine Datei je Seite, die es in der
+    Sprache gibt. Verglichen wird jede Datei mit der Fassung der x-default-
+    Sprache, bei Seiten ohne x-default mit ihrer ersten Sprache. Eine Seite
+    mit nur einer Sprache hat also nichts zum Vergleichen."""
+    strings = {}
+    for l in langs:
+        code = l["code"]
+        names = ["common"] + [pid for pid, p in site["pages"].items() if code in p["langs"]]
+        strings[code] = {n: load_yaml(ROOT / "i18n" / code / f"{n}.yaml") for n in names}
         for n in names:
-            check_keys(tree[n], f"i18n/{code}/{n}.yaml")
-            if code != site["x_default"]:
-                same_shape(ref[n], tree[n], f"i18n/{code}/{n}.yaml")
+            check_keys(strings[code][n], f"i18n/{code}/{n}.yaml")
+    groups = {"common": [l["code"] for l in langs]}
+    groups.update({pid: p["langs"] for pid, p in site["pages"].items()})
+    for n, group in groups.items():
+        ref = site["x_default"] if site["x_default"] in group else group[0]
+        for code in group:
+            if code != ref:
+                same_shape(strings[ref][n], strings[code][n], f"i18n/{code}/{n}.yaml")
     return strings
 
 
@@ -147,13 +172,23 @@ class Paths:
         self.site = site
         self.langs = {l["code"]: l for l in langs}
 
+    def exists(self, pid, code):
+        """Gibt es die Seite in dieser Sprache?"""
+        page = self.site["pages"].get(pid)
+        return page is not None and code in page["langs"]
+
     def out_path(self, pid, code):
-        """Datei in _site/, z. B. de/uhren.html oder index.html."""
+        """Datei in _site/, z. B. de/uhren.html, index.html oder (root: true)
+        itn-rechner/index.html."""
         if pid not in self.site["pages"]:
             raise BuildError(f"Unbekannte Seiten-ID {pid!r}")
         if code not in self.langs:
             raise BuildError(f"Unbekannte oder inaktive Sprache {code!r}")
-        return self.langs[code]["prefix"] + self.site["pages"][pid]["slugs"][code]
+        page = self.site["pages"][pid]
+        if code not in page["langs"]:
+            raise BuildError(f"Seite {pid!r} gibt es nicht auf {code!r}, Link oder Vorlage prüfen")
+        prefix = "" if page.get("root") else self.langs[code]["prefix"]
+        return prefix + page["slugs"][code]
 
     def public_path(self, pid, code):
         """Pfad in der URL: index.html fällt weg, damit / und /de/ bleiben."""
@@ -228,6 +263,9 @@ def page_context(site, langs, strings, paths, versions, pid, code):
     out = paths.out_path(pid, code)
     lang = paths.langs[code]
     page = site["pages"][pid]
+    # Nur die Sprachen, in denen es diese Seite gibt: daraus entstehen
+    # hreflang, og:locale:alternate, Sprachumschalter und Sprachhinweis.
+    page_langs = [l for l in langs if l["code"] in page["langs"]]
 
     def url(target, lang_code=None):
         return paths.relative(paths.public_path(target, lang_code or code), out)
@@ -253,7 +291,26 @@ def page_context(site, langs, strings, paths, versions, pid, code):
         return f"{site['base_url']}assets/{name}"
 
     def static(name):
+        """Datei aus static/ mit ?v=<Hash des Inhalts>, damit Caches nach einer
+        Änderung die neue Fassung holen. Der Hash wird je Datei einmal
+        berechnet."""
+        if name not in versions:
+            if not (STATIC / name).is_file():
+                raise BuildError(f"static/{name} fehlt")
+            versions[name] = file_hash(STATIC / name)
         return f"{paths.relative(name, out)}?v={versions[name]}"
+
+    def has(target):
+        """Gibt es die Seite in der Sprache dieser Seite? Für Links, die nur
+        dort stehen dürfen (Footer, Hinweise)."""
+        return paths.exists(target, code)
+
+    def page_text(target):
+        """Texte einer anderen Seite in dieser Sprache, mit aufgelösten Links,
+        z. B. der Footer-Link auf den ITN-Rechner aus i18n/de/itn.yaml."""
+        if not has(target):
+            raise BuildError(f"Seite {target!r} gibt es nicht auf {code!r}")
+        return resolve_urls(strings[code][target], url)
 
     def legal(doc):
         anchor = "" if code == site["legal_first_language"] else f"#{code}"
@@ -274,12 +331,15 @@ def page_context(site, langs, strings, paths, versions, pid, code):
 
     t = resolve_urls(strings[code][pid], url)
     c = resolve_urls(strings[code]["common"], url)
-    others = [dict(l, strings=strings[l["code"]]["common"]) for l in langs if l["code"] != code]
+    others = [dict(l, strings=strings[l["code"]]["common"]) for l in page_langs if l["code"] != code]
+    x_default = site["x_default"] if site["x_default"] in page["langs"] else None
+    og_image = page.get("og_image") or lasset("og")
     return dict(
-        site=site, page=pid, P=page, lang=code, L=lang, languages=langs,
-        other_languages=others, t=t, c=c, url=url, abs_url=abs_url, home=home,
+        site=site, page=pid, P=page, lang=code, L=lang, languages=page_langs,
+        other_languages=others, x_default=x_default, og_image=og_image,
+        t=t, c=c, url=url, abs_url=abs_url, home=home,
         asset=asset, lasset=lasset, abs_asset=abs_asset, static=static, legal=legal,
-        breadcrumbs=breadcrumbs, faq_page=faq_page,
+        breadcrumbs=breadcrumbs, faq_page=faq_page, has=has, page_text=page_text,
     )
 
 
@@ -290,7 +350,7 @@ def build():
     strings = load_strings(site, langs)
     paths = Paths(site, langs)
     env = make_env()
-    versions = {name: file_hash(STATIC / name) for name in ("styles.css", "script.js")}
+    versions = {}  # Cache für static(): Dateiname -> Hash
 
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -304,17 +364,20 @@ def build():
         target.write_text(text, encoding="utf-8")
 
     pages = []
-    for pid in site["pages"]:
-        for lang in langs:
-            ctx = page_context(site, langs, strings, paths, versions, pid, lang["code"])
-            write(paths.out_path(pid, lang["code"]), env.get_template(f"{pid}.html").render(ctx))
-            pages.append(paths.out_path(pid, lang["code"]))
+    for pid, page in site["pages"].items():
+        for code in page["langs"]:
+            ctx = page_context(site, langs, strings, paths, versions, pid, code)
+            write(paths.out_path(pid, code), env.get_template(f"{pid}.html").render(ctx))
+            pages.append(paths.out_path(pid, code))
 
-    # Sitemap und llms.txt sehen alle Seiten in allen Sprachen.
+    # Sitemap und llms.txt sehen alle Seiten in allen ihren Sprachen. Eine
+    # Seite mit nur einer Sprache bekommt in der Sitemap keine Alternates.
     entries = [
         {"id": pid, "page": page,
-         "urls": {l["code"]: paths.abs_url(pid, l["code"]) for l in langs},
-         "labels": {l["code"]: strings[l["code"]][pid]["llms"] for l in langs}}
+         "urls": {c: paths.abs_url(pid, c) for c in page["langs"]},
+         "labels": {c: strings[c][pid]["llms"] for c in page["langs"]},
+         "alternates": len(page["langs"]) > 1,
+         "x_default": site["x_default"] if site["x_default"] in page["langs"] else None}
         for pid, page in site["pages"].items()
     ]
     shared = dict(site=site, languages=langs, entries=entries, abs_url=paths.abs_url)

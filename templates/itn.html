@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+{# ITN-Rechner für Österreich, nur auf Deutsch, unter /itn-rechner/. Nach dem
+   Design Web.dc.html aus dem App-Repo (itn-rechner/design/screens/). Texte in
+   i18n/de/itn.yaml, Gestaltung in static/itn-rechner.css, Verhalten in
+   static/itn-rechner.js. Gerechnet wird ausschließlich in
+   static/assets/js/itn-core.mjs, dem nach JavaScript übersetzten Kotlin-Modul
+   :itn-core der App. Ohne JavaScript steht das vorgerenderte Beispiel da. #}
+{% block head %}
+<link rel="stylesheet" href="{{ static('itn-rechner.css') }}">
+<!-- The import map adds the cache-busting hash to the calculator core, which
+     itn-rechner.js imports by its plain relative path. Browsers without
+     import maps simply load the unversioned file. -->
+<script type="importmap">
+{"imports": {"{{ asset('js/itn-core.mjs') }}": "{{ static('assets/js/itn-core.mjs') }}"}}
+</script>
+<script type="module" src="{{ static('itn-rechner.js') }}"></script>
+{% endblock %}
+
+{% block jsonld %}
+<!-- Breadcrumbs (Kortscore DE home > ITN-Rechner) and the calculator itself as
+     a free web application. -->
+{{ jsonld({"@graph": [
+  breadcrumbs(),
+  {
+    "@type": "WebApplication",
+    "@id": abs_url(page) ~ "#app",
+    "name": t.breadcrumb|plain,
+    "url": abs_url(page),
+    "description": t.meta.description|plain,
+    "image": abs_asset(og_image),
+    "applicationCategory": "SportsApplication",
+    "operatingSystem": "Web",
+    "browserRequirements": "JavaScript",
+    "inLanguage": lang,
+    "isAccessibleForFree": true,
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"},
+    "publisher": {"@id": site.base_url ~ "#organization"}
+  }
+]}) }}
+{% endblock %}
+
+{% block main %}
+{% set ex = t.calc.example %}
+{% set r = t.calc.results %}
+<main class="itn">
+<div class="itn__shell">
+
+<!-- ── Hero ─────────────────────────────────────────────────────────────── -->
+  <p class="itn__eyebrow">{{ t.hero.eyebrow }}</p>
+  <h1 class="itn__title">{{ t.hero.title }}</h1>
+  <p class="itn__lead">{{ t.hero.lead }}</p>
+
+<!-- ── Calculator ───────────────────────────────────────────────────────────
+     Left the inputs, right the dark results panel. The panel is pre-rendered
+     with the example below, itn-rechner.js recomputes it on every input. All
+     text the script writes comes from the data attributes, so the copy stays
+     in i18n/de/itn.yaml. Mode-specific parts carry data-itn-only. -->
+  <section class="calc" aria-label="{{ t.calc.label|inattr }}" data-itn-calc>
+    <div class="calc__in">
+      <fieldset class="seg">
+        <legend class="vh">{{ t.calc.mode.label }}</legend>
+        <label class="seg__opt"><input type="radio" name="itn-mode" value="singles" checked data-itn-mode><span>{{ t.calc.mode.singles }}</span></label>
+        <label class="seg__opt"><input type="radio" name="itn-mode" value="doubles" data-itn-mode><span>{{ t.calc.mode.doubles }}</span></label>
+      </fieldset>
+
+      <div class="calc__fields">
+        <label class="field">
+          <span>{{ t.calc.fields.own }}</span>
+          <input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="{{ ex.own }}" data-itn-field="own">
+        </label>
+        <label class="field" data-itn-only="singles">
+          <span>{{ t.calc.fields.opponent }}</span>
+          <input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="{{ ex.opponent }}" data-itn-field="opponent">
+        </label>
+        <label class="field" data-itn-only="doubles" hidden>
+          <span>{{ t.calc.fields.partner }}</span>
+          <input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="{{ ex.partner }}" data-itn-field="partner">
+        </label>
+        <label class="field" data-itn-only="doubles" hidden>
+          <span>{{ t.calc.fields.opponent1 }}</span>
+          <input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="{{ ex.opponent1 }}" data-itn-field="opponent1">
+        </label>
+        <label class="field" data-itn-only="doubles" hidden>
+          <span>{{ t.calc.fields.opponent2 }}</span>
+          <input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="{{ ex.opponent2 }}" data-itn-field="opponent2">
+        </label>
+      </div>
+
+      <fieldset class="seg">
+        <legend class="vh">{{ t.calc.format.label }}</legend>
+        <label class="seg__opt"><input type="radio" name="itn-format" value="long" checked data-itn-format><span>{{ t.calc.format.long }}</span></label>
+        <label class="seg__opt"><input type="radio" name="itn-format" value="short" data-itn-format><span>{{ t.calc.format.short }}</span></label>
+      </fieldset>
+
+      <div class="calc__safety" data-itn-only="singles">
+        <label class="check"><input type="checkbox" checked data-itn-safe="own"><span>{{ t.calc.safety.own }}</span></label>
+        <label class="check"><input type="checkbox" checked data-itn-safe="opponent"><span>{{ t.calc.safety.opponent }}</span></label>
+      </div>
+    </div>
+
+    <div class="calc__out" role="region" aria-label="{{ r.label|inattr }}" aria-live="polite"
+         data-itn-out
+         data-weight-singles="{{ r.weight_singles|inattr }}"
+         data-weight-doubles="{{ r.weight_doubles|inattr }}"
+         data-invalid-singles="{{ r.invalid_singles|inattr }}"
+         data-invalid-doubles="{{ r.invalid_doubles|inattr }}">
+      <div class="calc__valid" data-itn-valid>
+        <p class="calc__teams" data-itn-only="doubles" hidden>
+          <span>{{ r.own_team }} <span class="mono">Ø <span data-itn-own-avg></span></span></span>
+          <span>{{ r.opponent_team }} <span class="mono">Ø <span data-itn-opponent-avg></span></span></span>
+        </p>
+        <div class="calc__case calc__case--win">
+          <p class="calc__label">{{ r.win }}</p>
+          <p class="calc__row">
+            <span class="calc__value mono" data-itn-win>{{ ex.win }}</span>
+            <span class="calc__delta calc__delta--down"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12l7 7 7-7"/></svg><span data-itn-win-change>{{ ex.win_change }}</span></span>
+          </p>
+          <p class="calc__partner" data-itn-only="doubles" hidden>{{ r.partner }} <span class="mono" data-itn-partner-win></span></p>
+        </div>
+        <div class="calc__case calc__case--loss">
+          <p class="calc__label">{{ r.loss }}</p>
+          <p class="calc__row">
+            <span class="calc__value mono" data-itn-loss>{{ ex.loss }}</span>
+            <span class="calc__delta calc__delta--up"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg><span data-itn-loss-change>{{ ex.loss_change }}</span></span>
+          </p>
+          <p class="calc__partner" data-itn-only="doubles" hidden>{{ r.partner }} <span class="mono" data-itn-partner-loss></span></p>
+        </div>
+        <p class="calc__weight"><span data-itn-weight>{{ r.weight_singles|replace('{pct}', ex.weight) }}</span> {{ r.lower_better }}</p>
+      </div>
+      <p class="calc__invalid" data-itn-invalid hidden></p>
+      <noscript><p class="calc__noscript">{{ r.noscript }}</p></noscript>
+    </div>
+  </section>
+  <p class="itn__disclaimer">{{ t.calc.disclaimer }}</p>
+
+<!-- ── How the ÖTV calculates ───────────────────────────────────────────────
+     The example values are static text; tools/check_itn.mjs recomputes each
+     row from data-winner and data-loser with itn-core.mjs. -->
+  <section class="rules">
+    <div class="rules__copy">
+      <h2 class="itn__h2">{{ t.rules.title }}</h2>
+      <p class="rules__text">{{ t.rules.text }}</p>
+      <p class="rules__formula mono">{{ t.rules.formula }}<br><span>{{ t.rules.formula_x }}</span></p>
+    </div>
+    <div class="rules__side">
+      <table class="rules__table">
+        <caption class="vh">{{ t.rules.table.caption }}</caption>
+        <thead>
+          <tr><th scope="col">{{ t.rules.table.situation }}</th><th scope="col">{{ t.rules.table.change }}</th></tr>
+        </thead>
+        <tbody>
+{% for row in t.rules.table.rows %}
+          <tr data-itn-example data-winner="{{ row.winner }}" data-loser="{{ row.loser }}"><td>{{ row.label }}</td><td class="mono" data-itn-example-change>{{ row.change }}</td></tr>
+{% endfor %}
+        </tbody>
+      </table>
+      <ul class="rules__list">
+{% for b in t.rules.bullets %}
+        <li>{{ b }}</li>
+{% endfor %}
+      </ul>
+    </div>
+  </section>
+{% if site.itn_waitlist_endpoint != "ITN_WAITLIST_ENDPOINT" %}
+
+<!-- ── Coming as an app: waitlist ───────────────────────────────────────────
+     Only built once site.yaml has the real endpoint (Google Apps Script, list
+     itn-app). itn-rechner.js sends it in the background as form-encoded
+     no-cors POST; without JavaScript the browser posts it and lands on the
+     script's JSON reply. "website" is a honeypot for bots. -->
+  <section class="app" id="app">
+    <div class="app__copy">
+      <p class="itn__eyebrow">{{ t.app.eyebrow }}</p>
+      <h2 class="itn__h2 app__title">{{ t.app.title }}</h2>
+      <p class="app__text">{{ t.app.text }}</p>
+    </div>
+    <form class="app__form" action="{{ site.itn_waitlist_endpoint }}" method="post" data-itn-waitlist
+          data-msg-sending="{{ t.app.sending|inattr }}"
+          data-msg-ok="{{ t.app.ok|inattr }}"
+          data-msg-err="{{ t.app.err|inattr }}">
+      <input type="hidden" name="list" value="itn-app">
+      <input type="hidden" name="lang" value="{{ lang }}">
+      <label class="app__trap" aria-hidden="true">
+        {{ t.app.trap }}
+        <input type="text" name="website" tabindex="-1" autocomplete="off">
+      </label>
+      <label class="app__field">
+        <span>{{ t.app.email_label }}</span>
+        <input type="email" name="email" required autocomplete="email" placeholder="{{ t.app.placeholder|inattr }}">
+      </label>
+      <button class="app__button" type="submit">{{ t.app.button }}</button>
+      <p class="app__note">{{ t.app.note|replace('{privacy}', '<a href="' ~ legal('privacy') ~ '">' ~ t.app.privacy ~ '</a>') }}</p>
+      <p class="app__msg" role="status" aria-live="polite" data-itn-waitlist-msg></p>
+    </form>
+  </section>
+{% endif %}
+</div>
+
+<!-- ── Kortscore band ───────────────────────────────────────────────────── -->
+<section class="band">
+  <div class="band__inner">
+    <div class="band__copy">
+      <h2 class="band__title">{{ t.band.title }}</h2>
+      <p class="band__text">{{ t.band.text }}</p>
+    </div>
+    <div class="band__actions">
+      <a class="band__button" href="{{ url('index') }}">{{ t.band.button }}</a>
+{% filter indent(6, first=True) %}{% include "partials/storebadges.html" %}{% endfilter %}
+    </div>
+  </div>
+</section>
+
+<p class="itn__legal">{{ t.legal }}</p>
+</main>
+{% endblock %}

@@ -41,6 +41,14 @@ jobs:
       # als eines mit toten Links.
       - run: python tools/check_site.py
 
+      # ITN-Rechner: das Bundle itn-core.mjs gegen die Testwerte der App und
+      # das vorgerenderte Ergebnis im gebauten HTML gegen das Bundle.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
+      - run: node tools/check_itn.mjs
+
       # Hochgeladen wird nur _site/, Quelle, tools/ und Doku bleiben im Repo.
       # include-hidden-files ist Pflicht, seit v5 Punkt-Dateien standardmaessig
       # ausschliesst: .nojekyll schaltet die Jekyll-Verarbeitung ab, und

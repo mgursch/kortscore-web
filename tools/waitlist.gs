@@ -1,13 +1,20 @@
 /**
  * ============================================================================
- * Kortscore — Interesse an einer iOS-Version einsammeln
+ * Kortscore: Wartelisten von kortscore.com
  * ============================================================================
- * Nimmt die Anmeldungen des Formulars auf kortscore.com entgegen, haengt sie
+ * Nimmt die Anmeldungen der Formulare auf kortscore.com entgegen, haengt sie
  * an ein Google Sheet an und schickt eine kurze Notiz an NOTIFY. An den
  * Interessenten selbst geht nichts: keine Bestaetigungsmail, keine
- * Weitergabe. Angeschrieben wird spaeter von Hand.
+ * Weitergabe. Angeschrieben wird spaeter von Hand, einmal, wenn es soweit ist.
  *
- * Einrichtung steht in tools/ios-interest-setup.md.
+ * Welche Liste gemeint ist, sagt der Parameter `list`. Derzeit gibt es eine:
+ *   itn-app  "Bald als App" auf kortscore.com/itn-rechner/: Benachrichtigung,
+ *            sobald es den ITN-Rechner als App gibt.
+ * Eine weitere Liste braucht nur einen Eintrag in LISTS und ein Formular,
+ * das ihren Namen schickt. Alle Listen landen im selben Tabellenblatt, die
+ * Spalte "Liste" trennt sie.
+ *
+ * Einrichtung steht in tools/waitlist-setup.md.
  * ========================================================================= */
 
 /* Tabellenblatt, in das geschrieben wird. Der Name muss mit dem Reiter unten
@@ -17,26 +24,33 @@ var SHEET_NAME = 'Anmeldungen';
 /* Kennung des Codestands. Sie erscheint in der GET-Antwort und macht damit
    von aussen pruefbar, ob eine Bereitstellung wirklich den neuen Code
    ausliefert: Apps Script laesst die alte Version sonst still weiterlaufen. */
-var VERSION = 'v2-mailstatus';
+var VERSION = 'v1';
 
 /* Adresse, die bei jedem neuen Eintrag eine kurze Notiz bekommt. Leer lassen
    schaltet die Benachrichtigung ab, die Tabelle wird trotzdem gefuellt. */
 var NOTIFY = 'swordistudios@gmail.com';
 
-/* Nur Anfragen von diesen Seiten werden angenommen. Ein fremdes Formular, das
-   auf dieselbe URL postet, laeuft damit ins Leere. Das ist kein Schutz gegen
-   einen entschlossenen Angreifer (die URL ist oeffentlich), aber es haelt
-   versehentliche und billige Fremdnutzung heraus. */
-var ALLOWED_ORIGINS = [
-  'https://kortscore.com',
-  'https://www.kortscore.com'
-];
+/* Listen, die angenommen werden. Ein unbekannter oder fehlender Wert wird
+   abgewiesen statt in eine falsche Liste einsortiert: lieber ein verlorener
+   Eintrag als eine Adresse, die spaeter zur falschen Ankuendigung
+   angeschrieben wird. Der Klartext dahinter steht nur in der Benachrichtigung. */
+var LISTS = {
+  'itn-app': 'ITN-App'
+};
+
+/* Kopfzeile des Tabellenblatts. Legt das Skript beim ersten Eintrag selbst an. */
+var HEADER = ['Zeitpunkt', 'E-Mail', 'Liste', 'Sprache', 'Quelle', 'Mail'];
 
 /* ── Eintrag annehmen ───────────────────────────────────────────────────────
    Das Formular schickt einen POST als form-urlencoded. Bewusst nicht als
    JSON: fuer JSON verlangt der Browser einen Preflight, und Apps Script
    beantwortet den nicht. So bleibt die Anfrage "einfach" im Sinne von CORS
-   und geht ohne Umweg durch.
+   und geht ohne Umweg durch. Die Antwort kann die Seite wegen mode: no-cors
+   nicht lesen, sie dient nur dem Test mit curl.
+
+   Woher eine Anfrage kommt, laesst sich hier nicht pruefen: Apps Script
+   reicht den Origin-Header nicht an doPost weiter. Die URL ist oeffentlich,
+   Schutz gegen Bots geben nur Honeypot, Adresspruefung und Liste.
    ───────────────────────────────────────────────────────────────────────── */
 function doPost(e) {
   try {
@@ -53,6 +67,11 @@ function doPost(e) {
       return json({ ok: false, error: 'invalid-email' });
     }
 
+    var list = String(params.list || '').trim().toLowerCase();
+    if (!LISTS.hasOwnProperty(list)) {
+      return json({ ok: false, error: 'invalid-list' });
+    }
+
     /* Sperre, damit zwei gleichzeitige Anmeldungen nicht in dieselbe Zeile
        schreiben. Wer laenger als zehn Sekunden warten muesste, bekommt einen
        Fehler und kann es erneut versuchen. */
@@ -66,12 +85,14 @@ function doPost(e) {
 
       /* Doppelte Adressen sollen die Liste nicht aufblaehen. Fuer den Nutzer
          sieht ein zweiter Versuch trotzdem wie ein Erfolg aus, sonst wuerde
-         das Formular verraten, wer schon eingetragen ist. */
-      if (!hasEmail(sheet, email)) {
-        var mailStatus = notify(email);
+         das Formular verraten, wer schon eingetragen ist. Gezaehlt wird je
+         Liste. */
+      if (!hasEmail(sheet, email, list)) {
+        var mailStatus = notify(email, list);
         sheet.appendRow([
           new Date(),
           email,
+          list,
           String(params.lang || '').slice(0, 5),
           String(params.source || '').slice(0, 60),
           mailStatus
@@ -93,10 +114,10 @@ function doPost(e) {
 function doGet() {
   return json({
     ok: true,
-    service: 'kortscore-ios-interest',
+    service: 'kortscore-waitlist',
     version: VERSION,
-    /* Zeigt, ob die laufende Bereitstellung das Recht zum Mailversand hat.
-       Wirft der Aufruf, fehlt die Autorisierung. */
+    lists: Object.keys(LISTS),
+    /* Zeigt, ob die laufende Bereitstellung das Recht zum Mailversand hat. */
     mailQuota: mailQuota()
   });
 }
@@ -110,23 +131,18 @@ function mailQuota() {
 }
 
 /* ── Benachrichtigung ───────────────────────────────────────────────────────
-   Eine kurze Notiz pro neuer Adresse. Sie steht ausdruecklich in einem
-   eigenen try/catch: ein Fehler beim Versand darf den Eintrag nicht
-   umstossen, der steht zu diesem Zeitpunkt schon in der Tabelle. Lieber eine
-   verpasste Mail als eine verlorene Adresse.
+   Eine kurze Notiz pro neuer Adresse, in einem eigenen try/catch: ein Fehler
+   beim Versand darf den Eintrag nicht umstossen. Lieber eine verpasste Mail
+   als eine verlorene Adresse.
 
    Das Kontingent von Apps Script liegt bei rund 100 Mails pro Tag fuer
    Gratis-Konten. Wird es ueberschritten, wirft send() und wir landen im
    catch, ohne dass der Nutzer davon etwas merkt.
    ───────────────────────────────────────────────────────────────────────── */
-function notify(email) {
+function notify(email, list) {
   if (!NOTIFY) { return 'aus'; }
   try {
-    MailApp.sendEmail({
-      to: NOTIFY,
-      subject: 'Neuer Kortscore iOS Interessent',
-      body: email + ' hat sich in die Interessenten Liste eingetragen'
-    });
+    MailApp.sendEmail(mail(email, list));
     return 'gesendet';
   } catch (err) {
     /* Der Grund gehoert ins Log und in die Tabelle: ohne ihn sieht man nur,
@@ -138,26 +154,34 @@ function notify(email) {
 
 /* ── Selbsttest ─────────────────────────────────────────────────────────────
    Im Editor oben auswaehlen und auf "Ausfuehren" klicken. Beim ersten Mal
-   fragt Google nach der Berechtigung zum Mailversand: genau die fehlt, wenn
-   Eintraege ankommen, aber keine Benachrichtigung.
+   fragt Google nach der Berechtigung fuer Tabelle und Mailversand.
 
    Das Ergebnis steht im Ausfuehrungsprotokoll. Anders als notify() faengt
-   diese Funktion nichts ab, ein Fehler soll hier sichtbar werden.
+   diese Funktion nichts ab, ein Fehler soll hier sichtbar werden. In die
+   Tabelle schreibt sie nichts.
    ───────────────────────────────────────────────────────────────────────── */
 function testeBenachrichtigung() {
   console.log('Empfaenger: ' + NOTIFY);
   console.log('Verbleibendes Tageskontingent: ' + MailApp.getRemainingDailyQuota());
+  console.log('Tabellenblatt: ' + getSheet().getName());
 
-  MailApp.sendEmail({
-    to: NOTIFY,
-    subject: 'Neuer Kortscore iOS Interessent',
-    body: 'selbsttest@example.com hat sich in die Interessenten Liste eingetragen'
-  });
+  MailApp.sendEmail(mail('selbsttest@example.com', 'itn-app'));
 
   console.log('Versand ausgeloest, ohne Fehler.');
 }
 
 /* ── Helfer ─────────────────────────────────────────────────────────────── */
+
+/* Die Notiz an NOTIFY. Betreff und Text nennen die Liste, damit man im
+   Posteingang ohne Blick ins Sheet sieht, wofuer sich jemand eingetragen hat. */
+function mail(email, list) {
+  return {
+    to: NOTIFY,
+    subject: 'Kortscore Warteliste ' + LISTS[list] + ': neuer Eintrag',
+    body: email + ' hat sich in die Warteliste "' + LISTS[list] + '" (' + list +
+      ') eingetragen.'
+  };
+}
 
 function getSheet() {
   var doc = SpreadsheetApp.getActiveSpreadsheet();
@@ -168,20 +192,22 @@ function getSheet() {
     sheet = doc.insertSheet(SHEET_NAME);
   }
   if (sheet.getLastRow() === 0) {
-    sheet.appendRow(['Zeitpunkt', 'E-Mail', 'Sprache', 'Quelle', 'Mail']);
+    sheet.appendRow(HEADER);
     sheet.setFrozenRows(1);
   }
   return sheet;
 }
 
-function hasEmail(sheet, email) {
+/* Spalte B ist die Adresse, Spalte C die Liste. */
+function hasEmail(sheet, email, list) {
   var last = sheet.getLastRow();
   if (last < 2) { return false; }
 
-  var values = sheet.getRange(2, 2, last - 1, 1).getValues();
+  var values = sheet.getRange(2, 2, last - 1, 2).getValues();
   var needle = email.toLowerCase();
   for (var i = 0; i < values.length; i++) {
-    if (String(values[i][0]).trim().toLowerCase() === needle) { return true; }
+    if (String(values[i][1]).trim() === list &&
+        String(values[i][0]).trim().toLowerCase() === needle) { return true; }
   }
   return false;
 }

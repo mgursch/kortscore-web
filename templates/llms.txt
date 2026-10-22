@@ -22,11 +22,11 @@ iPhone (iOS 18+) with Apple Watch (watchOS 26+), and Android (8.0+) with Wear OS
 
 ## Pages
 
-{# Generiert aus site.yaml: jede Seite in jeder aktiven Sprache, Bezeichnung
+{# Generiert aus site.yaml: jede Seite in jeder ihrer Sprachen, Bezeichnung
    aus llms in i18n/<lang>/<seite>.yaml. #}
 {% for e in entries %}
-{% for l in languages %}
-- {{ e.labels[l.code] }}: {{ e.urls[l.code] }}
+{% for code, loc in e.urls.items() %}
+- {{ e.labels[code] }}: {{ loc }}
 {% endfor %}
 {% endfor %}
 - Privacy policy: {{ site.base_url }}legal/privacy.html

@@ -8,8 +8,13 @@ Geprüft wird:
     meta refresh, eigene absolute URLs) zeigt auf eine vorhandene Datei,
     Anker (#...) auf eine vorhandene id
   - hreflang ist wechselseitig: jede Fassung einer Seite nennt dieselben
-    Sprachen mit denselben Adressen, sich selbst eingeschlossen, plus x-default
-  - Sitemap und Seiten stimmen überein, in beide Richtungen, samt Alternates
+    Sprachen mit denselben Adressen, sich selbst eingeschlossen, plus x-default.
+    Eine Seite in nur einer Sprache (site.yaml: languages) nennt nur sich
+    selbst, ohne x-default
+  - Sitemap und Seiten stimmen überein, in beide Richtungen, samt Alternates;
+    eine Seite in nur einer Sprache steht dort ohne Alternates
+  - eine Seite in nur einer Sprache wird nur aus Seiten derselben Sprache
+    verlinkt (der ITN-Rechner also nicht aus EN, FR, IT oder ES)
   - jedes JSON-LD ist gültiges JSON
 
 Liegt in tools/, damit es nicht mit veröffentlicht wird. Exit-Code 1 bei
@@ -121,6 +126,10 @@ def main():
     def rel(f):
         return f.relative_to(SITE.resolve()) if f.is_absolute() else f
 
+    def single(p):
+        """Seite in nur einer Sprache: hreflang nennt nur sie selbst."""
+        return len(p.alternates) == 1 and p.lang in p.alternates
+
     # 1. Links, Assets, Anker
     for f, p in pages.items():
         for kind, ref in p.refs:
@@ -129,14 +138,19 @@ def main():
                 continue
             if not target.is_file():
                 errors.append(f"{rel(f)}: {kind} {ref!r} zeigt ins Leere")
-            elif anchor and target.suffix == ".html":
-                if anchor not in pages[target.resolve()].ids:
-                    errors.append(f"{rel(f)}: {kind} {ref!r}, Anker #{anchor} fehlt")
+                continue
+            other = pages.get(target.resolve())
+            if anchor and other is not None and anchor not in other.ids:
+                errors.append(f"{rel(f)}: {kind} {ref!r}, Anker #{anchor} fehlt")
+            if (kind == "a[href]" and other is not None and single(other)
+                    and p.lang != other.lang and target.resolve() != f):
+                errors.append(f"{rel(f)}: verlinkt {ref!r}, die es nur auf {other.lang} gibt "
+                              f"(Seite ist {p.lang})")
 
     # 2. hreflang wechselseitig
     with_alts = {f: p for f, p in pages.items() if p.alternates}
     for f, p in with_alts.items():
-        if "x-default" not in p.alternates:
+        if "x-default" not in p.alternates and not single(p):
             errors.append(f"{rel(f)}: hreflang x-default fehlt")
         own = p.alternates.get(p.lang)
         if own != p.canonical:
@@ -164,7 +178,8 @@ def main():
             continue
         in_sitemap.add(target.resolve())
         alts = {l.get("hreflang"): l.get("href") for l in u.findall("x:link", ns)}
-        if alts != pages[target.resolve()].alternates:
+        page = pages[target.resolve()]
+        if alts != ({} if single(page) else page.alternates):
             errors.append(f"sitemap.xml: Alternates von {loc} weichen von der Seite ab")
     for f, p in with_alts.items():
         if f not in in_sitemap and not p.noindex:
@@ -180,8 +195,10 @@ def main():
 
     refs = sum(len(p.refs) for p in pages.values())
     blocks = sum(len(p.jsonld) for p in pages.values())
-    print(f"{len(pages)} HTML-Dateien, {refs} Verweise, {len(with_alts)} Seiten mit hreflang, "
-          f"{len(in_sitemap)} Sitemap-Einträge, {blocks} JSON-LD-Blöcke geprüft")
+    singles = sum(1 for p in with_alts.values() if single(p))
+    print(f"{len(pages)} HTML-Dateien, {refs} Verweise, {len(with_alts)} Seiten mit hreflang "
+          f"(davon {singles} in nur einer Sprache), {len(in_sitemap)} Sitemap-Einträge, "
+          f"{blocks} JSON-LD-Blöcke geprüft")
     for e in errors:
         print("FEHLER", e)
     print("OK" if not errors else f"{len(errors)} Fehler")

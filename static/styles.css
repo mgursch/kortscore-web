@@ -387,6 +387,18 @@ a:hover { color: var(--accent); }
 }
 .nav__lang[open] > summary::after { transform: translateY(1px) rotate(-135deg); }
 
+/* Seiten mit nur einer Sprache zeigen statt des Umschalters nur das Kürzel,
+   gleich gesetzt wie die geschlossene Summary, aber ohne Winkel. */
+.nav__lang-single {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 6px 4px;
+}
+
 .nav__lang-list {
   position: absolute;
   top: calc(100% + 6px);
@@ -1430,6 +1442,29 @@ a:hover { color: var(--accent); }
 }
 .compat__list strong { color: var(--text); font-weight: 600; }
 .compat__list + p { margin-top: 12px; }
+/* Hinweis auf eine verwandte Seite mitten im Text, etwa auf der deutschen
+   Tennis-Seite der ITN-Rechner. Weiße Karte auf dem abgesetzten Grund, damit
+   er als Einschub und nicht als weiterer Abschnitt gelesen wird. */
+.pagetip {
+  display: grid;
+  gap: 8px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.pagetip__text {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  text-wrap: pretty;
+}
+.pagetip__link {
+  justify-self: start;
+  font-weight: 600;
+  color: var(--accent-text);
+}
+
 .compat__cta {
   display: flex;
   flex-wrap: wrap;

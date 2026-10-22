@@ -45,6 +45,17 @@
   </section>
 
 {% endfor %}
+{% if page == 'tennis' and has('itn') %}
+  <!-- Pointer to the ITN calculator. Only where that page exists in this
+       language (today German only); the copy lives in i18n/<lang>/itn.yaml. -->
+{% set itn = page_text('itn') %}
+  <aside class="pagetip">
+    <p class="eyebrow">{{ itn.teaser.eyebrow }}</p>
+    <p class="pagetip__text">{{ itn.teaser.text }}</p>
+    <a class="pagetip__link" href="{{ url('itn') }}">{{ itn.teaser.link }}</a>
+  </aside>
+
+{% endif %}
   <section class="compat__section">
     <h2>{{ t.faq.title }}</h2>
     {{ faq_list(t.faq.questions)|indent(4) }}

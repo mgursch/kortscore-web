@@ -62,6 +62,20 @@ contact_email: swordistudios@gmail.com
 # Ein Slug index.html ergibt die Ordner-URL (/ bzw. /de/).
 # lastmod und priority landen unverändert in der Sitemap.
 # google_ads: nur diese Seiten laden gtag.js (Conversion "Seitenaufruf").
+#
+# Seiten, die es nicht in jeder Sprache gibt (Beispiel itn unten):
+#   languages: [de]  nur diese aktiven Sprachen bauen. Ohne den Schlüssel
+#                    gibt es die Seite in jeder aktiven Sprache. Slugs und
+#                    i18n/<code>/<id>.yaml braucht es nur für diese Sprachen.
+#                    Gibt es nur eine Sprache, entfallen Sprachumschalter,
+#                    Sprachhinweis, x-default und die Sitemap-Alternates.
+#                    Links auf die Seite ({url:itn}, url('itn')) gehen nur aus
+#                    diesen Sprachen, sonst bricht der Build ab. Im Footer
+#                    steht sie nur dort, wo es sie gibt.
+#   root: true       der Slug gilt ab dem Root, ohne den Sprachordner:
+#                    itn-rechner/index.html statt de/itn-rechner/index.html.
+#   og_image         eigenes OG-Bild (Datei in static/assets/) statt des
+#                    sprachabhängigen og-<code>.png.
 pages:
   index:
     slugs: {en: index.html, de: index.html, fr: index.html, it: index.html, es: index.html}
@@ -116,6 +130,22 @@ pages:
     google_ads: false
     lastmod: 2026-10-12
     priority: "0.6"
+  # ITN-Rechner für Österreich: nur Deutsch, unter kortscore.com/itn-rechner/.
+  itn:
+    languages: [de]
+    root: true
+    slugs: {de: itn-rechner/index.html}
+    og_type: website
+    og_image: og-itn.png
+    google_ads: false
+    lastmod: 2026-10-21
+    priority: "0.7"
+
+# Endpunkt der Warteliste für die ITN-App (Google Apps Script, siehe
+# tools/waitlist-setup.md, Liste itn-app). Solange hier der Platzhalter
+# ITN_WAITLIST_ENDPOINT steht, baut der Build den Block "Bald als App" gar
+# nicht erst ein: kein Formular, das ins Leere läuft.
+itn_waitlist_endpoint: 'https://script.google.com/macros/s/AKfycbyzek-ItlIcUJlNqKSrOBpI5yJqJVdtqaPBS_t0b7kl-tqJ6Wwg_lsdS6vwrLDmRcTh/exec'
 
 # Bilder mit Text oder App-Oberfläche gibt es je Sprache. Die Vorlagen fragen
 # nur den Basisnamen ab (lasset('shot-live')), die Datei steht hier.

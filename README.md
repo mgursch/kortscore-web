@@ -19,6 +19,7 @@ templates/
   tennis.html       Regelseite Tennis  } beide auf Basis von
   padel.html        Regelseite Padel   } partials/rules.html
   clubs.html        Angebot für Vereine (Flyer, Rabattcode)
+  itn.html          ITN-Rechner für Österreich (nur Deutsch, /itn-rechner/)
   partials/         FAQ-Liste, Gerüst der Regelseiten
   badges/           App-Store-Badge als Inline-SVG, je Sprache eine Datei
   sitemap.xml       Vorlage der Sitemap
@@ -29,6 +30,8 @@ i18n/
 static/             wird 1:1 nach _site/ kopiert
   styles.css        Design-System, Layout, @font-face, alles in einer Datei
   script.js         Sprachweiche, Sprachhinweis, Umschalter, Store-Klicks
+  itn-rechner.css   nur auf dem ITN-Rechner geladen
+  itn-rechner.js    ES-Modul des ITN-Rechners, rechnet über assets/js/itn-core.mjs
   legal/            Impressum, Datenschutz, AGB (eigenständig, 5 Sprachen)
   assets/           Icons, Screenshots, Badges, OG-Bilder, Flyer, Fonts
   favicon.ico       Kopie von assets/favicon.ico: Browser und Google fragen den Root-Pfad ab
@@ -37,8 +40,8 @@ static/             wird 1:1 nach _site/ kopiert
   rechtliches.html  dito
   de/rechtliches.html dito
   CNAME, .nojekyll, .well-known/assetlinks.json
-tools/              nicht veröffentlicht: check_site.py, Apps Script der alten
-                    iOS-Warteliste
+tools/              nicht veröffentlicht: check_site.py, check_itn.mjs,
+                    sync_itn_core.sh, Apps Script der Wartelisten
 ```
 
 Die Seiten und ihre Adressen:
@@ -51,6 +54,7 @@ Die Seiten und ihre Adressen:
 | `tennis` | `/how-tennis-scoring-works.html` | `/de/tennis-zaehlweise.html` |
 | `padel` | `/how-padel-scoring-works.html` | `/de/padel-zaehlweise.html` |
 | `clubs` | `/clubs.html` | `/de/vereine.html` |
+| `itn` | (keine) | `/itn-rechner/` |
 
 ## Sprachen & Build
 
@@ -84,6 +88,22 @@ Der Build bricht ab, statt Lücken auszuliefern: wenn einer Sprache ein
 Schlüssel fehlt, den die englische Datei hat (oder umgekehrt), wenn eine
 Vorlage einen Text abfragt, den es nicht gibt, oder bei einer unbekannten
 Seiten-ID in `{url:...}`.
+
+**Seiten in nur einer Sprache:** Normalerweise gibt es jede Seite in jeder
+aktiven Sprache. Eine Seite mit `languages: [de]` in `site.yaml` wird nur in
+diesen Sprachen gebaut und braucht nur dort Slug und Textdatei; der Vergleich
+der Schlüssel gilt nur zwischen ihren Sprachen. `root: true` legt sie ab dem
+Root statt in den Sprachordner (`itn-rechner/index.html` statt
+`de/itn-rechner/index.html`), `og_image` gibt ihr ein eigenes OG-Bild. Hat
+eine Seite nur eine Sprache, nennt hreflang nur sie selbst, ohne x-default,
+Sprachumschalter und Sprachhinweise entfallen (im Kopf steht nur das Kürzel),
+die Sitemap führt sie ohne Alternates, `llms.txt` mit ihrer einen Adresse.
+`script.js` leitet dort nie um, weil die Seite nicht x-default ist. Links auf
+so eine Seite gibt es nur aus ihren Sprachen: `url('itn')` aus einer anderen
+Sprache bricht den Build ab, der Footer fragt `has('itn')`, und die Beschriftung
+kommt aus der Textdatei der Seite (`page_text('itn').footer_label`), damit
+`common.yaml` überall dieselben Schlüssel behält. `tools/check_site.py` prüft
+zusätzlich, dass keine Seite einer anderen Sprache darauf verlinkt.
 
 **Sprachabhängige Bilder** (Screenshots, Play-Badge, OG-Bild) heißen in jeder
 Sprache gleich: englischer Basisname plus Sprachcode, `<basis>-<code>.<ext>`,
@@ -158,9 +178,47 @@ gh run watch        # Fortschritt verfolgen
 `_`-Präfix ignoriert). Einmalig muss in den Repo-Settings unter *Pages* als
 Source **GitHub Actions** gewählt sein.
 
-Den `?v=`-Parameter an `styles.css` und `script.js` setzt der Build selbst,
-aus einem Hash des Dateiinhalts. Ändert sich eine Datei, ändert sich der Link,
-und Caches holen die neue Fassung.
+Den `?v=`-Parameter an `styles.css`, `script.js` und allen anderen über
+`static('<datei>')` eingebundenen Dateien (etwa `itn-rechner.css`,
+`itn-rechner.js`) setzt der Build selbst, aus einem Hash des Dateiinhalts.
+Ändert sich eine Datei, ändert sich der Link, und Caches holen die neue
+Fassung. `itn-core.mjs` bekommt den Hash über eine Import-Map im Kopf der
+Rechner-Seite, weil `itn-rechner.js` es mit festem Pfad importiert.
+
+Nach `check_site.py` läuft im Deployment `node tools/check_itn.mjs` (siehe
+unten, ITN-Rechner).
+
+## ITN-Rechner (`/itn-rechner/`)
+
+Ein Rechner für den ÖTV-ITN: Was bringt der nächste Sieg, was kostet die
+nächste Niederlage, im Einzel (mit Sicherheitskoeffizient) und im Doppel (vier
+Felder, Teamschnitte, Werte der Partner\*in), lang oder Kurzformat. Nur auf
+Deutsch, verlinkt nur aus dem deutschen Footer und von der deutschen
+Tennis-Seite (`teaser` in `i18n/de/itn.yaml`). Design aus dem App-Repo
+(`design/screens/Web.dc.html`).
+
+- **Rechenlogik:** keine Zeile davon in dieser Website.
+  `static/assets/js/itn-core.mjs` ist das nach JavaScript übersetzte
+  Kotlin-Modul `:itn-core` der App, also dieselben Regeln und Tests. Die Datei
+  ist generiert und committet (das öffentliche CI hat keinen Zugriff auf das
+  private App-Repo) und wird nie von Hand bearbeitet, sondern mit
+  `tools/sync_itn_core.sh [pfad-zum-app-repo]` neu gebaut und kopiert; im
+  Dateikopf stehen Quelle und Commit.
+- **Bedienung:** `static/itn-rechner.js` liest die Felder, gibt sie an
+  `itnParse`, `itnSingles` und `itnDoubles` weiter und schreibt das Ergebnis.
+  Alle Texte, die es schreibt, stehen als `data-`-Attribute im HTML.
+- **Ohne JavaScript** und für Suchmaschinen steht das Beispiel 7,512 gegen
+  7,180 vorgerendert im HTML (`calc.example` in `i18n/de/itn.yaml`), ebenso die
+  Beispieltabelle mit 0,070, 0,232 und 0,003.
+- **Prüfung:** `node tools/check_itn.mjs` (nach `build.py`) prüft das Bundle
+  gegen die Testwerte der App und die vorgerenderten Zahlen der gebauten Seite
+  gegen das Bundle. Ändert sich die Formel, schlägt das Deployment an, bis
+  `calc.example` und die Tabelle angepasst sind.
+- **Warteliste „Bald als App“:** schickt `email`, `list=itn-app`, `lang` und
+  `source` an das Apps Script aus `tools/waitlist.gs` (Einrichtung:
+  `tools/waitlist-setup.md`). Der Endpunkt steht in
+  `site.yaml` unter `itn_waitlist_endpoint`; solange dort der Platzhalter
+  `ITN_WAITLIST_ENDPOINT` steht, baut der Build den Block nicht ein.
 
 ## Statistik (Umami)
 
