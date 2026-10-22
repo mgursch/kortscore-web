@@ -195,7 +195,17 @@
 }
 .field input[aria-invalid="true"] { border-color: var(--itn-error); }
 
-.calc__safety { display: flex; flex-direction: column; gap: 4px; }
+/* Checkbox-Gruppen: Kurzformat, Sicherheit, Jugendregel. Die Jugend-Gruppe
+   ist ein fieldset, deshalb Rahmen und Abstände zurücksetzen. */
+.calc__checks {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 
 .check {
   display: flex;
@@ -214,6 +224,16 @@
   margin: 0;
   accent-color: var(--accent);
 }
+/* Checkbox mit Erklärung darunter (Kurzformat), wie Titel und Untertitel
+   der Schalter in der App. */
+.check__text { display: flex; flex-direction: column; gap: 2px; }
+.check__hint,
+.calc__hint {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+.calc__hint { padding-left: 34px; }
 
 /* Das Ergebnis: dunkle Fläche, große Mono-Werte. Ein sinkender ITN ist eine
    Verbesserung, deshalb grün mit Pfeil nach unten, ein steigender rötlich mit
@@ -297,6 +317,15 @@
 .calc__invalid {
   font-size: 16px;
   color: var(--text-on-dark-muted);
+}
+
+/* Hinweis bei aktiver Jugendregel, mit grüner Kante vom Rest abgesetzt. */
+.calc__note {
+  padding-left: 12px;
+  border-left: 2px solid var(--accent);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text-on-dark);
 }
 
 .itn__disclaimer {

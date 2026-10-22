@@ -33,9 +33,14 @@ function initCalculator(root) {
     opponent1: field('opponent1'),
     opponent2: field('opponent2'),
   };
+  const shortFormat = root.querySelector('[data-itn-short]');
   const safe = {
     own: root.querySelector('[data-itn-safe="own"]'),
     opponent: root.querySelector('[data-itn-safe="opponent"]'),
+  };
+  const youth = {
+    own: root.querySelector('[data-itn-youth="own"]'),
+    opponent: root.querySelector('[data-itn-youth="opponent"]'),
   };
   const el = (attr) => out.querySelector(`[${attr}]`);
   const view = {
@@ -50,6 +55,7 @@ function initCalculator(root) {
     partnerWin: el('data-itn-partner-win'),
     partnerLoss: el('data-itn-partner-loss'),
     weight: el('data-itn-weight'),
+    youthNote: el('data-itn-youth-note'),
   };
 
   const checked = (name) => {
@@ -73,7 +79,7 @@ function initCalculator(root) {
 
   function update() {
     const doubles = checked('itn-mode') === 'doubles';
-    const short = checked('itn-format') === 'short';
+    const short = shortFormat.checked;
     const mode = doubles ? 'doubles' : 'singles';
 
     root.querySelectorAll('[data-itn-only]').forEach((node) => {
@@ -106,18 +112,27 @@ function initCalculator(root) {
       view.opponentAvg.textContent = itnFormat(res.opponentTeamAvg);
       view.partnerWin.textContent = res.partnerWinAfterText;
       view.partnerLoss.textContent = res.partnerLossAfterText;
-      weightText = out.getAttribute('data-weight-doubles');
+      weightText = out.getAttribute('data-weight-doubles').replace('{pct}', percent(res.weightPercent));
+      view.youthNote.hidden = true;
     } else {
       const [own, opponent] = values;
-      res = itnSingles(own, opponent, short, safe.own.checked, safe.opponent.checked);
-      weightText = out.getAttribute('data-weight-singles');
+      res = itnSingles(own, opponent, short, safe.own.checked, safe.opponent.checked,
+        youth.own.checked, youth.opponent.checked);
+      /* Zählen Sieg und Niederlage verschieden (Jugendregel), beide nennen,
+         sonst ein Wert wie bisher. */
+      weightText = res.winWeightPercent === res.lossWeightPercent
+        ? out.getAttribute('data-weight-singles').replace('{pct}', percent(res.winWeightPercent))
+        : out.getAttribute('data-weight-singles-split')
+          .replace('{win}', percent(res.winWeightPercent))
+          .replace('{loss}', percent(res.lossWeightPercent));
+      view.youthNote.hidden = !res.youthRuleActive;
     }
 
     view.win.textContent = res.winAfterText;
     view.winChange.textContent = res.winChangeText;
     view.loss.textContent = res.lossAfterText;
     view.lossChange.textContent = res.lossChangeText;
-    view.weight.textContent = weightText.replace('{pct}', percent(res.weightPercent));
+    view.weight.textContent = weightText;
   }
 
   root.addEventListener('input', update);

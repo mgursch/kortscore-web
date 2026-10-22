@@ -38,10 +38,10 @@ calc:
     label: Spielart
     singles: Einzel
     doubles: Doppel
+  # Eine Checkbox, aus = 2 Sätze bis 6 (100 %).
   format:
-    label: Matchformat
-    long: 2 Sätze bis 6
-    short: Kurzformat · 50 %
+    short: Kurzformat
+    short_hint: "Sätze bis 4, Tiebreaks, 1 Satz, Spiel auf Zeit: zählen 50 %"
   fields:
     own: Dein ITN
     opponent: ITN Gegenüber
@@ -51,6 +51,15 @@ calc:
   safety:
     own: Ich habe in den letzten 12 Monaten mind. 3 Einzel gespielt
     opponent: Mein Gegenüber auch
+  # Jugendregel, nur im Einzel (wie manual_youth_title und
+  # rechner_opponent_youth_title in der App).
+  youth:
+    label: Alter
+    own: Ich bin 11 bis 16 Jahre alt
+    opponent: Gegenüber ist 11 bis 16 Jahre
+    hint: >-
+      Jugendregel im Einzel: Gewinnen Jugendliche gegen Erwachsene (ab 21),
+      zählt das für sie 200 %, für die Erwachsenen 50 %.
   results:
     label: Ergebnis
     win: Bei Sieg
@@ -59,15 +68,23 @@ calc:
     own_team: Dein Team
     opponent_team: Gegenseite
     partner: Partner*in
-    # {pct} ersetzt itn-rechner.js durch die Gewichtung aus itn-core.mjs.
+    # {pct}, {win} und {loss} ersetzt itn-rechner.js durch die Gewichtung aus
+    # itn-core.mjs. Die geteilte Zeile nur, wenn Sieg und Niederlage
+    # verschieden zählen (Jugendregel).
     weight_singles: "Gewichtung für dich: {pct} %."
+    weight_singles_split: "Gewichtung für dich: Sieg {win} %, Niederlage {loss} %."
     weight_doubles: "Gewichtung je Person: {pct} %."
     lower_better: Niedriger ist besser.
+    # Nach rechner_youth_note der App, sichtbar wenn youthRuleActive.
+    youth_note: >-
+      Jugendregel aktiv: Gewinnt die jugendliche Person, zählt das für sie
+      200 % und für die erwachsene Person 50 %, ohne Sicherheitskoeffizient.
+      Verliert sie, gilt die normale Regel.
     invalid_singles: Gib zwei ITN-Werte zwischen 1,0 und 10,0 ein, z. B. 7,512.
     invalid_doubles: Gib vier ITN-Werte zwischen 1,0 und 10,0 ein, z. B. 7,512.
     noscript: Für eigene Werte braucht der Rechner JavaScript. Oben steht das Beispiel 7,512 gegen 7,180.
-  # Vorbelegung der Felder und das vorgerenderte Ergebnis (Einzel, 2 Sätze bis
-  # 6, beide sicher). So steht ohne JavaScript und für Suchmaschinen ein
+  # Vorbelegung der Felder und das vorgerenderte Ergebnis (Einzel, ohne
+  # Kurzformat, beide sicher, keine Jugendlichen). So steht ohne JavaScript und für Suchmaschinen ein
   # echtes Ergebnis auf der Seite. tools/check_itn.mjs prüft die Werte gegen
   # itn-core.mjs, nach einer Änderung der Formel schlägt also das CI an.
   example:
@@ -113,9 +130,10 @@ rules:
         loser: "6.0"
         change: "0,003"
   bullets:
-    - Kurzformate (Sätze bis 4, Tiebreaks, 1 Satz) zählen 50 %.
+    - Kurzformate (Sätze bis 4, Tiebreaks, 1 Satz, Spiel auf Zeit) zählen 50 %.
     - Im Doppel zählt der Teamschnitt, jede*r Partner*in bekommt 25 %.
     - Wer kaum gespielt hat, gilt als unsicher und bewegt sich doppelt so stark, das Gegenüber nur halb.
+    - "Nur im Einzel: Gewinnen Jugendliche (11 bis 16) gegen Erwachsene (ab 21), zählt das für sie 200 % und für die Erwachsenen 50 %, egal wer als unsicher gilt. Verlieren sie, gilt die normale Regel."
     - Niederlagen kannst du innerhalb von 7 Tagen streichen lassen.
 
 # Warteliste. Nur sichtbar, wenn in site.yaml itn_waitlist_endpoint gesetzt ist.

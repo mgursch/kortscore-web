@@ -191,8 +191,10 @@ unten, ITN-Rechner).
 ## ITN-Rechner (`/itn-rechner/`)
 
 Ein Rechner für den ÖTV-ITN: Was bringt der nächste Sieg, was kostet die
-nächste Niederlage, im Einzel (mit Sicherheitskoeffizient) und im Doppel (vier
-Felder, Teamschnitte, Werte der Partner\*in), lang oder Kurzformat. Nur auf
+nächste Niederlage, im Einzel (mit Sicherheitskoeffizient und Jugendregel:
+zwei Häkchen für „11 bis 16 Jahre“, je für dich und dein Gegenüber) und im
+Doppel (vier Felder, Teamschnitte, Werte der Partner\*in, ohne Sicherheit und
+Jugendregel), lang oder mit der Checkbox Kurzformat. Nur auf
 Deutsch, verlinkt nur aus dem deutschen Footer und von der deutschen
 Tennis-Seite (`teaser` in `i18n/de/itn.yaml`). Design aus dem App-Repo
 (`design/screens/Web.dc.html`).
@@ -206,7 +208,10 @@ Tennis-Seite (`teaser` in `i18n/de/itn.yaml`). Design aus dem App-Repo
   Dateikopf stehen Quelle und Commit.
 - **Bedienung:** `static/itn-rechner.js` liest die Felder, gibt sie an
   `itnParse`, `itnSingles` und `itnDoubles` weiter und schreibt das Ergebnis.
-  Alle Texte, die es schreibt, stehen als `data-`-Attribute im HTML.
+  Alle Texte, die es schreibt, stehen als `data-`-Attribute im HTML. Die
+  Gewichtung zeigt einen Wert oder, wenn Sieg und Niederlage verschieden
+  zählen (`winWeightPercent`, `lossWeightPercent`), beide; bei
+  `youthRuleActive` erscheint der Hinweis zur Jugendregel.
 - **Ohne JavaScript** und für Suchmaschinen steht das Beispiel 7,512 gegen
   7,180 vorgerendert im HTML (`calc.example` in `i18n/de/itn.yaml`), ebenso die
   Beispieltabelle mit 0,070, 0,232 und 0,003.

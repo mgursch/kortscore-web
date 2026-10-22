@@ -86,21 +86,31 @@
         </label>
       </div>
 
-      <fieldset class="seg">
-        <legend class="vh">{{ t.calc.format.label }}</legend>
-        <label class="seg__opt"><input type="radio" name="itn-format" value="long" checked data-itn-format><span>{{ t.calc.format.long }}</span></label>
-        <label class="seg__opt"><input type="radio" name="itn-format" value="short" data-itn-format><span>{{ t.calc.format.short }}</span></label>
-      </fieldset>
+      <!-- Matchformat als eine Checkbox wie in der App: aus = 2 Sätze bis 6
+           (100 %), an = Kurzformat (50 %). -->
+      <div class="calc__checks">
+        <label class="check"><input type="checkbox" data-itn-short><span class="check__text">{{ t.calc.format.short }}<span class="check__hint">{{ t.calc.format.short_hint }}</span></span></label>
+      </div>
 
-      <div class="calc__safety" data-itn-only="singles">
+      <div class="calc__checks" data-itn-only="singles">
         <label class="check"><input type="checkbox" checked data-itn-safe="own"><span>{{ t.calc.safety.own }}</span></label>
         <label class="check"><input type="checkbox" checked data-itn-safe="opponent"><span>{{ t.calc.safety.opponent }}</span></label>
       </div>
+
+      <!-- Jugendregel, nur im Einzel wie in der App. Ob sie greift, entscheidet
+           itn-core.mjs (youthRuleActive), hier werden nur die Häkchen gelesen. -->
+      <fieldset class="calc__checks calc__youth" data-itn-only="singles">
+        <legend class="vh">{{ t.calc.youth.label }}</legend>
+        <label class="check"><input type="checkbox" data-itn-youth="own"><span>{{ t.calc.youth.own }}</span></label>
+        <label class="check"><input type="checkbox" data-itn-youth="opponent"><span>{{ t.calc.youth.opponent }}</span></label>
+        <p class="calc__hint">{{ t.calc.youth.hint }}</p>
+      </fieldset>
     </div>
 
     <div class="calc__out" role="region" aria-label="{{ r.label|inattr }}" aria-live="polite"
          data-itn-out
          data-weight-singles="{{ r.weight_singles|inattr }}"
+         data-weight-singles-split="{{ r.weight_singles_split|inattr }}"
          data-weight-doubles="{{ r.weight_doubles|inattr }}"
          data-invalid-singles="{{ r.invalid_singles|inattr }}"
          data-invalid-doubles="{{ r.invalid_doubles|inattr }}">
@@ -126,6 +136,7 @@
           <p class="calc__partner" data-itn-only="doubles" hidden>{{ r.partner }} <span class="mono" data-itn-partner-loss></span></p>
         </div>
         <p class="calc__weight"><span data-itn-weight>{{ r.weight_singles|replace('{pct}', ex.weight) }}</span> {{ r.lower_better }}</p>
+        <p class="calc__note" data-itn-youth-note hidden>{{ r.youth_note }}</p>
       </div>
       <p class="calc__invalid" data-itn-invalid hidden></p>
       <noscript><p class="calc__noscript">{{ r.noscript }}</p></noscript>

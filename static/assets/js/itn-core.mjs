@@ -1,4 +1,4 @@
-// GENERIERT, nicht bearbeiten. Quelle: kortform-kmp, Modul :itn-core, Commit 625cc5e.
+// GENERIERT, nicht bearbeiten. Quelle: kortform-kmp, Modul :itn-core, Commit a954f48.
 // Neu erzeugen mit tools/sync_itn_core.sh.
 //region block: polyfills
 if (typeof Math.imul === 'undefined') {
@@ -62,6 +62,7 @@ initMetadataForClass(DoublesInput, 'DoublesInput');
 initMetadataForClass(Projection, 'Projection');
 initMetadataForClass(WinKind, 'WinKind', VOID, Enum);
 initMetadataForClass(SinglesResult, 'SinglesResult');
+initMetadataForClass(SinglesFactors, 'SinglesFactors');
 initMetadataForClass(DoublesResult, 'DoublesResult');
 initMetadataForObject(ItnCalculator, 'ItnCalculator');
 initMetadataForObject(ItnFormat, 'ItnFormat');
@@ -2173,6 +2174,13 @@ function SinglesResult(win, loss, winKind) {
 protoOf(SinglesResult).toString = function () {
   return 'SinglesResult(win=' + this.win_1.toString() + ', loss=' + this.loss_1.toString() + ', winKind=' + this.winKind_1.toString() + ')';
 };
+function SinglesFactors(win, loss) {
+  this.win_1 = win;
+  this.loss_1 = loss;
+}
+protoOf(SinglesFactors).toString = function () {
+  return 'SinglesFactors(win=' + this.win_1 + ', loss=' + this.loss_1 + ')';
+};
 function DoublesResult(ownTeamAvg, opponentTeamAvg, win, loss, partnerWin, partnerLoss) {
   this.ownTeamAvg_1 = ownTeamAvg;
   this.opponentTeamAvg_1 = opponentTeamAvg;
@@ -2219,16 +2227,18 @@ protoOf(ItnCalculator).singlesFactor_3m96rz_k$ = function (format, own, other) {
 protoOf(ItnCalculator).doublesFactor_gvva08_k$ = function (format) {
   return format.factor_1 * 0.25;
 };
-protoOf(ItnCalculator).singles_qc3seg_k$ = function (input) {
+protoOf(ItnCalculator).singlesFactors_59zwrq_k$ = function (input) {
   var normalFactor = this.singlesFactor_3m96rz_k$(input.format_1, input.ownSafety_1, input.opponentSafety_1);
   var ownYouthVsAdult = input.ownAge_1.equals(AgeGroup_YOUTH_getInstance()) && input.opponentAge_1.equals(AgeGroup_ADULT_getInstance());
   var ownAdultVsYouth = input.ownAge_1.equals(AgeGroup_ADULT_getInstance()) && input.opponentAge_1.equals(AgeGroup_YOUTH_getInstance());
-  var winFactor = ownYouthVsAdult ? input.format_1.factor_1 * 2.0 : normalFactor;
-  var lossFactor = ownAdultVsYouth ? input.format_1.factor_1 * 0.5 : normalFactor;
+  return new SinglesFactors(ownYouthVsAdult ? input.format_1.factor_1 * 2.0 : normalFactor, ownAdultVsYouth ? input.format_1.factor_1 * 0.5 : normalFactor);
+};
+protoOf(ItnCalculator).singles_qc3seg_k$ = function (input) {
+  var factors = this.singlesFactors_59zwrq_k$(input);
   var winDelta = this.roundItn_46ns0f_k$(this.rawDelta_l7id68_k$(input.own_1, input.opponent_1));
   var lossDelta = this.roundItn_46ns0f_k$(this.rawDelta_l7id68_k$(input.opponent_1, input.own_1));
   var winKind = compare(toMilli(input.opponent_1), toMilli(input.own_1)) < 0 ? WinKind_UPSET_getInstance() : compare(toMilli(input.opponent_1), toMilli(input.own_1)) > 0 ? WinKind_EXPECTED_getInstance() : WinKind_EVEN_getInstance();
-  return new SinglesResult(project(this, input.own_1, -changeOf(this, winDelta, winFactor)), project(this, input.own_1, +changeOf(this, lossDelta, lossFactor)), winKind);
+  return new SinglesResult(project(this, input.own_1, -changeOf(this, winDelta, factors.win_1)), project(this, input.own_1, +changeOf(this, lossDelta, factors.loss_1)), winKind);
 };
 protoOf(ItnCalculator).doubles_t8wm92_k$ = function (input) {
   var ownAvg = (input.own_1 + input.partner_1) / 2.0;
@@ -2477,7 +2487,7 @@ function itnRawDelta(winner, loser) {
 function itnRound(v) {
   return ItnCalculator_instance.roundItn_46ns0f_k$(v);
 }
-function ItnSinglesView(winAfter, winChange, lossAfter, lossChange, winAfterText, winChangeText, lossAfterText, lossChangeText, weightPercent, winKind) {
+function ItnSinglesView(winAfter, winChange, lossAfter, lossChange, winAfterText, winChangeText, lossAfterText, lossChangeText, winWeightPercent, lossWeightPercent, youthRuleActive, winKind) {
   this.winAfter = winAfter;
   this.winChange = winChange;
   this.lossAfter = lossAfter;
@@ -2486,7 +2496,9 @@ function ItnSinglesView(winAfter, winChange, lossAfter, lossChange, winAfterText
   this.winChangeText = winChangeText;
   this.lossAfterText = lossAfterText;
   this.lossChangeText = lossChangeText;
-  this.weightPercent = weightPercent;
+  this.winWeightPercent = winWeightPercent;
+  this.lossWeightPercent = lossWeightPercent;
+  this.youthRuleActive = youthRuleActive;
   this.winKind = winKind;
 }
 protoOf(ItnSinglesView).get_winAfter_k8p9ux_k$ = function () {
@@ -2513,18 +2525,25 @@ protoOf(ItnSinglesView).get_lossAfterText_j3p4wt_k$ = function () {
 protoOf(ItnSinglesView).get_lossChangeText_ydk615_k$ = function () {
   return this.lossChangeText;
 };
-protoOf(ItnSinglesView).get_weightPercent_fnubuk_k$ = function () {
-  return this.weightPercent;
+protoOf(ItnSinglesView).get_winWeightPercent_6510je_k$ = function () {
+  return this.winWeightPercent;
+};
+protoOf(ItnSinglesView).get_lossWeightPercent_h18ae9_k$ = function () {
+  return this.lossWeightPercent;
+};
+protoOf(ItnSinglesView).get_youthRuleActive_7nhe98_k$ = function () {
+  return this.youthRuleActive;
 };
 protoOf(ItnSinglesView).get_winKind_nkk6g7_k$ = function () {
   return this.winKind;
 };
-function itnSingles(own, opponent, short, ownSafe, opponentSafe) {
-  var format_0 = format(short);
-  var ownSafety = safety(ownSafe);
-  var opponentSafety = safety(opponentSafe);
-  var result = ItnCalculator_instance.singles_qc3seg_k$(new SinglesInput(own, opponent, format_0, ownSafety, opponentSafety));
-  return new ItnSinglesView(result.win_1.after_1, result.win_1.get_change_bw3k55_k$(), result.loss_1.after_1, result.loss_1.get_change_bw3k55_k$(), ItnFormat_instance.value_pfghfv_k$(result.win_1.after_1), ItnFormat_instance.delta_8qadam_k$(result.win_1.get_change_bw3k55_k$()), ItnFormat_instance.value_pfghfv_k$(result.loss_1.after_1), ItnFormat_instance.delta_8qadam_k$(result.loss_1.get_change_bw3k55_k$()), percent(ItnCalculator_instance.singlesFactor_3m96rz_k$(format_0, ownSafety, opponentSafety)), result.winKind_1.name_1);
+function itnSingles(own, opponent, short, ownSafe, opponentSafe, ownYouth, opponentYouth) {
+  var ownAge = ageGroup(ownYouth);
+  var opponentAge = ageGroup(opponentYouth);
+  var input = new SinglesInput(own, opponent, format(short), safety(ownSafe), safety(opponentSafe), ownAge, opponentAge);
+  var result = ItnCalculator_instance.singles_qc3seg_k$(input);
+  var factors = ItnCalculator_instance.singlesFactors_59zwrq_k$(input);
+  return new ItnSinglesView(result.win_1.after_1, result.win_1.get_change_bw3k55_k$(), result.loss_1.after_1, result.loss_1.get_change_bw3k55_k$(), ItnFormat_instance.value_pfghfv_k$(result.win_1.after_1), ItnFormat_instance.delta_8qadam_k$(result.win_1.get_change_bw3k55_k$()), ItnFormat_instance.value_pfghfv_k$(result.loss_1.after_1), ItnFormat_instance.delta_8qadam_k$(result.loss_1.get_change_bw3k55_k$()), percent(factors.win_1), percent(factors.loss_1), ownAge.equals(AgeGroup_YOUTH_getInstance()) && opponentAge.equals(AgeGroup_ADULT_getInstance()) || (ownAge.equals(AgeGroup_ADULT_getInstance()) && opponentAge.equals(AgeGroup_YOUTH_getInstance())), result.winKind_1.name_1);
 }
 function ItnDoublesView(ownTeamAvg, opponentTeamAvg, ownTeamAvgText, opponentTeamAvgText, winAfter, winChange, lossAfter, lossChange, winAfterText, winChangeText, lossAfterText, lossChangeText, partnerWinAfter, partnerWinChange, partnerLossAfter, partnerLossChange, partnerWinAfterText, partnerWinChangeText, partnerLossAfterText, partnerLossChangeText, weightPercent) {
   this.ownTeamAvg = ownTeamAvg;
@@ -2623,8 +2642,11 @@ function format(short) {
 function safety(safe) {
   return safe ? SafetyStatus_SAFE_getInstance() : SafetyStatus_UNSAFE_getInstance();
 }
+function ageGroup(youth) {
+  return youth ? AgeGroup_YOUTH_getInstance() : AgeGroup_ADULT_getInstance();
+}
 function percent(factor) {
-  return roundToInt(factor * 100.0);
+  return roundToInt(factor * 1000.0) / 10.0;
 }
 //region block: init
 Companion_instance = new Companion();
