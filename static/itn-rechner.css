@@ -195,8 +195,21 @@
 }
 .field input[aria-invalid="true"] { border-color: var(--itn-error); }
 
-/* Checkbox-Gruppen: Kurzformat, Sicherheit, Jugendregel. Die Jugend-Gruppe
-   ist ein fieldset, deshalb Rahmen und Abstände zurücksetzen. */
+/* Eine Person im Einzel: ITN-Feld, darunter ihr Jugend-Häkchen. */
+.calc__person {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.check--field {
+  min-height: 40px;
+  gap: 10px;
+  font-size: 14px;
+}
+.check--field input { width: 20px; height: 20px; }
+
+/* Checkbox-Gruppen: Kurzformat und Sicherheit. */
 .calc__checks {
   margin: 0;
   padding: 0;
@@ -233,7 +246,8 @@
   line-height: 1.4;
   color: var(--text-muted);
 }
-.calc__hint { padding-left: 34px; }
+.calc__hint { margin: 0; }
+.calc__hint--fields { margin-top: -6px; }
 
 /* Das Ergebnis: dunkle Fläche, große Mono-Werte. Ein sinkender ITN ist eine
    Verbesserung, deshalb grün mit Pfeil nach unten, ein steigender rötlich mit

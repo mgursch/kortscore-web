@@ -54,12 +54,16 @@ calc:
   # Jugendregel, nur im Einzel (wie manual_youth_title und
   # rechner_opponent_youth_title in der App).
   youth:
-    label: Alter
-    own: Ich bin 11 bis 16 Jahre alt
-    opponent: Gegenüber ist 11 bis 16 Jahre
+    # Stehen direkt unter dem jeweiligen ITN-Feld, der Hinweis darunter erklärt
+    # die Jugendregel. Kurz, damit sie auch am Handy in eine Zeile passen.
+    own: 11 bis 16 Jahre
+    opponent: 11 bis 16 Jahre
+    # Vollständige Bezeichnung für Screenreader, die sichtbare ist zweimal gleich.
+    own_aria: Ich bin 11 bis 16 Jahre alt
+    opponent_aria: Gegenüber ist 11 bis 16 Jahre alt
     hint: >-
       Jugendregel im Einzel: Gewinnen Jugendliche gegen Erwachsene (ab 21),
-      zählt das für sie 200 %, für die Erwachsenen 50 %.
+      zählt das für sie 200&nbsp;%, für die Erwachsenen 50&nbsp;%.
   results:
     label: Ergebnis
     win: Bei Sieg

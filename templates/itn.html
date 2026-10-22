@@ -64,14 +64,23 @@
       </fieldset>
 
       <div class="calc__fields">
-        <label class="field">
-          <span>{{ t.calc.fields.own }}</span>
-          <input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="{{ ex.own }}" data-itn-field="own">
-        </label>
-        <label class="field" data-itn-only="singles">
-          <span>{{ t.calc.fields.opponent }}</span>
-          <input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="{{ ex.opponent }}" data-itn-field="opponent">
-        </label>
+        <!-- Die Jugend-Häkchen stehen direkt unter dem ITN der Person, um die
+             es geht, wie in der App bei der Direkteingabe. Nur im Einzel:
+             ob die Regel greift, entscheidet itn-core.mjs (youthRuleActive). -->
+        <div class="calc__person">
+          <label class="field">
+            <span>{{ t.calc.fields.own }}</span>
+            <input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="{{ ex.own }}" data-itn-field="own">
+          </label>
+          <label class="check check--field" data-itn-only="singles"><input type="checkbox" data-itn-youth="own" aria-label="{{ t.calc.youth.own_aria|inattr }}"><span>{{ t.calc.youth.own }}</span></label>
+        </div>
+        <div class="calc__person" data-itn-only="singles">
+          <label class="field">
+            <span>{{ t.calc.fields.opponent }}</span>
+            <input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="{{ ex.opponent }}" data-itn-field="opponent">
+          </label>
+          <label class="check check--field"><input type="checkbox" data-itn-youth="opponent" aria-label="{{ t.calc.youth.opponent_aria|inattr }}"><span>{{ t.calc.youth.opponent }}</span></label>
+        </div>
         <label class="field" data-itn-only="doubles" hidden>
           <span>{{ t.calc.fields.partner }}</span>
           <input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="{{ ex.partner }}" data-itn-field="partner">
@@ -85,6 +94,7 @@
           <input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="{{ ex.opponent2 }}" data-itn-field="opponent2">
         </label>
       </div>
+      <p class="calc__hint calc__hint--fields" data-itn-only="singles">{{ t.calc.youth.hint }}</p>
 
       <!-- Matchformat als eine Checkbox wie in der App: aus = 2 Sätze bis 6
            (100 %), an = Kurzformat (50 %). -->
@@ -97,14 +107,6 @@
         <label class="check"><input type="checkbox" checked data-itn-safe="opponent"><span>{{ t.calc.safety.opponent }}</span></label>
       </div>
 
-      <!-- Jugendregel, nur im Einzel wie in der App. Ob sie greift, entscheidet
-           itn-core.mjs (youthRuleActive), hier werden nur die Häkchen gelesen. -->
-      <fieldset class="calc__checks calc__youth" data-itn-only="singles">
-        <legend class="vh">{{ t.calc.youth.label }}</legend>
-        <label class="check"><input type="checkbox" data-itn-youth="own"><span>{{ t.calc.youth.own }}</span></label>
-        <label class="check"><input type="checkbox" data-itn-youth="opponent"><span>{{ t.calc.youth.opponent }}</span></label>
-        <p class="calc__hint">{{ t.calc.youth.hint }}</p>
-      </fieldset>
     </div>
 
     <div class="calc__out" role="region" aria-label="{{ r.label|inattr }}" aria-live="polite"
