@@ -39,6 +39,13 @@
    muss gegen die display-Werte unten gewinnen. */
 .sb [hidden] { display: none !important; }
 
+/* Mit JavaScript (die Klasse js setzt ein Skript im Kopf, vor dem ersten
+   Bild) halten Tippfläche und Knöpfe ihren Platz schon, solange das Modul
+   noch lädt: unsichtbar, aber mit voller Höhe, sonst springt beim Einblenden
+   alles darunter. Die display-Werte sind die der Klassen unten. */
+.js .sb .sb__pad[data-sb-js][hidden] { display: grid !important; visibility: hidden; }
+.js .sb .sb__controls[data-sb-js][hidden] { display: flex !important; visibility: hidden; }
+
 .sb__vh {
   position: absolute;
   width: 1px;
@@ -53,6 +60,15 @@
   display: grid;
   grid-template-areas: "board" "side" "controls";
   gap: 24px;
+}
+
+/* Ohne Tippfläche (die Demotafeln der Regelseiten) gibt es keine Zeile für
+   sie: eine leere Rasterzeile hätte zwei Abstände übereinander gestapelt und
+   unter der Statuszeile einen breiten leeren Streifen gelassen. Die Zeile für
+   zwei Statuszeilen bleibt reserviert, nur der Abstand wird kleiner. */
+.sb__grid:not(:has(> .sb__side)) {
+  grid-template-areas: "board" "controls";
+  gap: 16px;
 }
 
 /* ── Tafel ─────────────────────────────────────────────────────────────── */
@@ -305,6 +321,11 @@
     align-items: start;
   }
   .sb__controls { align-self: end; }
+  .sb__grid:not(:has(> .sb__side)) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "board" "controls";
+    grid-template-rows: auto;
+  }
 }
 
 /* Schmal bricht die Statuszeile um (z. B. "Golden Point: der nächste Punkt

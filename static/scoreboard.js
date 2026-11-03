@@ -169,8 +169,10 @@ export const canUndo = (s) => s.history.length > 0;
     ein laufender Vorteil bleibt dabei bestehen (siehe scorePoint). */
 export const setGolden = (s, on) => ({ ...s, golden: Boolean(on) });
 
-/** Alles auf 0, der Schalter bleibt. */
-export const resetScore = (s) => newScore({ golden: s.golden });
+/** Zurück an den Start: ohne start auf 0:0, sonst auf den vorgegebenen
+    Stand (z. B. Einstand oder Tiebreak 5:4 auf den Regelseiten). Der
+    Schalter bleibt, wie ihn der Besucher gestellt hat. */
+export const resetScore = (s, start = {}) => newScore({ ...start, golden: s.golden });
 
 /** Was die Anzeige zeigt. phase ist 'points', 'deuce', 'advantage' oder
     'tiebreak'; lead ist bei Vorteil die führende Seite. */
@@ -247,7 +249,12 @@ export function initScoreboard(root) {
 
   const T = JSON.parse(root.dataset.sbText || '{}');
   const sport = root.dataset.sport === 'padel' ? 'padel' : 'tennis';
-  let state = newScore(JSON.parse(root.dataset.sbState || '{}'));
+  const start = JSON.parse(root.dataset.sbState || '{}');
+  let state = newScore(start);
+  /* "Neu starten" führt zurück an den vorgegebenen Stand, damit Hinweise wie
+     "Zähl von Einstand aus" wieder passen. data-sb-reset="zero" (der Hero)
+     beginnt stattdessen ein frisches Spiel bei 0:0. */
+  const resetTo = root.dataset.sbReset === 'zero' ? {} : start;
 
   const el = (name) => root.querySelector(`[data-sb="${name}"]`);
   const live = el('live');
@@ -352,7 +359,7 @@ export function initScoreboard(root) {
       state = action === 'undo' ? undoPoint(state) : flipPoint(state);
       prefix = action === 'undo' ? T.undone : T.flipped;
     } else if (action === 'reset') {
-      state = resetScore(state);
+      state = resetScore(state, resetTo);
       prefix = T.new_game;
     } else {
       return;

@@ -63,7 +63,12 @@
 <!-- ── Hero ─────────────────────────────────────────────────────────────────
      The scoreboard is the picture: visitors count a real game with the same
      tap code the watch uses. Without JavaScript it shows a fixed score and
-     the legend. The watch render sits under the action on wide screens.
+     the legend. The watch render sits under the action on wide screens; the
+     <picture> hands narrower screens a 1px placeholder, so phones never
+     download the render they would not show. The board starts at 40:15,
+     0:0, the score on the render; "Neu starten" begins a fresh game at 0:0
+     instead (reset="zero"). On phones the platform line moves below
+     the board, so the tap pad fits the first screen.
      data-ui marks the board as a working interface with its own type. -->
 <section class="hero shell">
   <h1 class="hero__title">{{ t.hero.title }}</h1>
@@ -71,11 +76,14 @@
     <p class="hero__lede">{{ t.hero.lede }}</p>
     <a class="btn btn--accent hero__cta" href="#get">{{ t.hero.cta }}</a>
     <p class="hero__meta">{{ t.hero.platforms }}</p>
-    <img class="hero__watch" src="{{ asset('watch-render.png') }}" width="292" height="338"
-         loading="eager" decoding="async" alt="{{ t.hero.watch_alt|inattr }}">
+    <picture class="hero__pic">
+      <source media="(min-width: 1180px)" srcset="{{ asset('watch-render.png') }}">
+      <img class="hero__watch" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" width="292" height="338"
+           decoding="async" alt="{{ t.hero.watch_alt|inattr }}">
+    </picture>
   </div>
   <div class="hero__board" data-ui>
-{{ scoreboard(sb, sport="tennis", id="hero")|indent(4, first=True) }}
+{{ scoreboard(sb, sport="tennis", points=[3, 1], games=[0, 0], id="hero", reset="zero")|indent(4, first=True) }}
   </div>
 </section>
 
@@ -88,8 +96,7 @@
     <h2 class="h2">{{ t.tap.title }}</h2>
     <p class="tap__lede">{{ t.tap.lede }}</p>
     <img class="tap__watch" src="{{ asset('watch-apple.png') }}" width="584" height="696"
-         sizes="(max-width: 640px) 60vw, 300px" loading="lazy" decoding="async"
-         alt="{{ t.tap.watch_alt|inattr }}">
+         loading="lazy" decoding="async" alt="{{ t.tap.watch_alt|inattr }}">
   </div>
   <dl class="tap__codes">
 {% for text in t.tap.codes %}
@@ -104,8 +111,11 @@
 
 <!-- ── Clubs ────────────────────────────────────────────────────────────────
      The one dark field of the page. On the right an example of the spectator
-     view in the browser: sample names and scores, not live data, hence
-     aria-hidden; the paragraph says what it shows. data-ui marks it as an
+     view in the browser: placeholder names (Player A, B, ...) and invented
+     scores, labelled as an example, not live data, hence aria-hidden; the
+     paragraph says what it shows. Once it scrolls into view the doubles
+     advances by one point (script.js, data-ticker-to), as the real ticker
+     does; with reduced motion or without JavaScript it stays put. data-ui marks it as an
      interface fragment with its own surfaces. -->
 <section class="clubs" id="verein">
   <div class="shell clubs__inner" data-reveal>
@@ -126,9 +136,9 @@
         <span class="ticker__team">{{ tk.home }} <b>2 : 1</b> {{ tk.away }}</span>
       </div>
 {% for m in [
-     {"players": ["M. Berger", "T. Wallner"], "sets": [[6, 5], [4, 5]], "points": ["40", "15"], "serve": 0, "winner": none},
-     {"players": ["L. Huber", "P. Kern"], "sets": [[6, 6], [3, 4]], "points": none, "serve": none, "winner": 0},
-     {"players": ["Steiner / Moser", "Fuchs / Lang"], "sets": [[7, 2], [6, 3]], "points": ["30", "30"], "serve": 1, "winner": none},
+     {"players": [tk.player ~ " A", tk.player ~ " B"], "sets": [[6, 5], [4, 5]], "points": ["40", "15"], "serve": 0, "winner": none, "next": none},
+     {"players": [tk.player ~ " C", tk.player ~ " D"], "sets": [[6, 6], [3, 4]], "points": none, "serve": none, "winner": 0, "next": none},
+     {"players": [tk.player ~ " E / F", tk.player ~ " G / H"], "sets": [[7, 2], [6, 3]], "points": ["30", "30"], "serve": 1, "winner": none, "next": 1},
    ] %}
       <div class="ticker__match{{ ' ticker__match--done' if not m.points }}">
         <p class="ticker__meta"><span>{{ tk.matches[loop.index0] }}</span><span>{{ tk.live if m.points else tk.done }}</span></p>
@@ -139,7 +149,7 @@
 {% for s in m.sets[i] %}
           <span class="ticker__set">{{ s }}</span>
 {% endfor %}
-          <span class="ticker__pts">{{ m.points[i] if m.points else "" }}</span>
+          <span class="ticker__pts"{% if m.next == i %} data-ticker-to="40"{% endif %}>{{ m.points[i] if m.points else "" }}</span>
         </div>
 {% endfor %}
       </div>
@@ -164,17 +174,17 @@
 </section>
 
 <!-- ── Padel ────────────────────────────────────────────────────────────────
-     One line, and a second scoreboard that starts at 40:40 with the golden
-     point switched on: the next point decides, try it. No tap pad here, the
-     hero already has one. -->
-<section class="padel shell" id="padel" data-reveal>
-  <div class="padel__copy">
-    <h2 class="h2">{{ t.padel.title }}</h2>
-    <p class="padel__lead">{{ t.padel.lead }}</p>
-    <a class="textlink" href="{{ url('padel') }}">{{ t.padel.link }}</a>
-  </div>
-  <div class="padel__board" data-ui>
-{{ scoreboard(sb, sport="padel", points=[3, 3], games=[4, 4], golden=true, controls=["buttons", "golden"], id="padel-sb")|indent(4, first=True) }}
+     A statement band instead of a second board: the score where golden point
+     decides, in display type across the width, then one sentence. The number
+     is a picture of the moment, so it stays out of the reading order. -->
+<section class="padel" id="padel">
+  <div class="shell padel__inner" data-reveal>
+    <p class="padel__score" aria-hidden="true">40:40</p>
+    <h2 class="h2 padel__title">{{ t.padel.title }}</h2>
+    <div class="padel__copy">
+      <p class="padel__lead">{{ t.padel.lead }}</p>
+      <a class="textlink" href="{{ url('padel') }}">{{ t.padel.link }}</a>
+    </div>
   </div>
 </section>
 

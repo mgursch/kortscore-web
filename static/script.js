@@ -276,7 +276,7 @@
   var MAX_STEPS = 6;  /* danach kommen die restlichen Teile gemeinsam */
 
   /* Listen treten Zeile fuer Zeile ein, alles andere als Ganzes. */
-  var LISTS = '.tap__codes, .watches__list, .faq__list, .clubs__copy';
+  var LISTS = '.tap__codes, .watches__list, .faq__list, .clubs__copy, .clubsteps';
 
   function partsOf(section) {
     var parts = [];
@@ -308,4 +308,40 @@
     });
     observer.observe(section);
   });
+})();
+
+/* ============================================================================
+   Live-Ticker zaehlt einen Punkt weiter
+   ============================================================================
+   Das Beispiel im dunklen Feld der Startseite tut einmal, was der echte
+   Ticker staendig tut: Sobald es gut im Bild ist, geht im Doppel ein Punkt an
+   die aufschlagende Seite (data-ticker-to traegt den neuen Stand). Einmal,
+   keine Schleife; mit reduzierter Bewegung oder ohne Skript bleibt der
+   gerenderte Stand stehen. Gestaltung in styles.css unter .ticker__pts.is-new.
+   ========================================================================= */
+(function () {
+  'use strict';
+
+  var pts = document.querySelector('[data-ticker-to]');
+  if (!pts || !('IntersectionObserver' in window)) { return; }
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
+
+  var match = pts.closest('.ticker__match');
+  var row = pts.closest('.ticker__row');
+  if (!match || !row) { return; }
+
+  var observer = new IntersectionObserver(function (entries) {
+    if (!entries.some(function (e) { return e.isIntersecting; })) { return; }
+    observer.disconnect();
+    /* Kurz warten, bis der Eintritt der Sektion vorbei ist und man hinsieht. */
+    setTimeout(function () {
+      pts.textContent = pts.getAttribute('data-ticker-to');
+      pts.classList.add('is-new');
+      Array.prototype.forEach.call(match.querySelectorAll('.ticker__row'), function (r) {
+        r.classList.toggle('is-lead', r === row);
+      });
+    }, 1100);
+  }, { threshold: 0.8 });
+
+  observer.observe(match);
 })();

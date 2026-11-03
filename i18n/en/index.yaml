@@ -29,12 +29,12 @@ tap:
   codes:
     - Point for you
     - Point for your opponent
-    - Give the last point to the other side
+    - "Switch point: the last point goes to the other side"
     - Undo the last point
   after: >-
     Singles or doubles, advantage or NoAd, best of 3 or one set: you choose
     before the first point. After match point, the match sits in the history
-    on your phone with its duration and point-by-point log.
+    on your phone with its duration, point-by-point log and statistics.
   watch_alt: Kortscore on an Apple Watch at 40-15
 
 clubs:
@@ -53,7 +53,8 @@ clubs:
   offer_link: The club offer
   # Beispiel einer Ticker-Ansicht, keine echten Daten.
   ticker:
-    label: League, round 4
+    label: "Example: league, round 4"
+    player: Player
     home: Home
     away: Away
     live: Live
@@ -67,8 +68,8 @@ clubs:
 padel:
   title: Padel with golden point
   lead: >-
-    Padel scores like tennis: 15, 30, 40, game, set. In Kortscore the golden
-    point is a switch: turn it on, and at 40-40 the next point decides.
+    Padel scores like tennis: 15, 30, 40, game, set. In Kortscore you choose
+    golden point as NoAd: at 40-40 the next point decides.
   link: How padel scoring works
 
 watches:

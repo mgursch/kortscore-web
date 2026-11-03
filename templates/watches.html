@@ -5,15 +5,23 @@
 {{ jsonld({"@graph": [breadcrumbs()]}) }}
 {% endblock %}
 
+{% block footer_class %}footer--column{% endblock %}
+
 {% block main %}
 <main>
+<!-- Head of the page: title, sentence, then the page's main action and the
+     way back as a plain link below them (not a small label above the title).
+     The parts arrive once on load (styles.css, .js .subhead). -->
 <div class="subhead">
-  <a class="back" href="{{ url('index') }}">{{ c.back_home }}</a>
   <h1 class="subhead__title">{{ t.title }}</h1>
   <p class="lead">
     {{ t.lead }}
   </p>
-  <a class="textlink" href="{{ url('compatible') }}">{{ t.compat_link }}</a>
+  <div class="subhead__actions">
+    <a class="btn btn--accent" href="{{ home('get') }}">{{ c.nav_cta }}</a>
+    <a class="textlink" href="{{ url('compatible') }}">{{ t.compat_link }}</a>
+    <a class="textlink subhead__home" href="{{ url('index') }}">{{ c.back_home }}</a>
+  </div>
 </div>
 
 <!-- All four photos are our own shots, as WebP in 480 and 960 wide (srcset),

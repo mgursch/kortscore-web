@@ -199,6 +199,10 @@ s = play(newScore({ games: [6, 6] }), '1111112');
 eq(shown(undoPoint(scorePoint(s, 0))), '6:1', 'Rückgängig nach Satzgewinn');
 eq(undoPoint(scorePoint(s, 0)).games, [6, 6], 'Rückgängig stellt 6:6 wieder her');
 eq(resetScore(setGolden(s, true)), { ...newScore(), golden: true }, 'Neu starten behält Schalter');
+eq(shown(resetScore(play(newScore({ points: [3, 3] }), '1112'), { points: [3, 3] })), '40:40', 'Neu starten zurück auf Einstand');
+eq(resetScore(play(newScore({ points: [5, 4], games: [6, 6] }), '11'), { points: [5, 4], games: [6, 6] }).games, [6, 6], 'Neu starten zurück in den Tiebreak');
+eq(shown(resetScore(play(newScore({ points: [5, 4], games: [6, 6] }), '1'), { points: [5, 4], games: [6, 6] })), '5:4', 'Neu starten zurück auf Tiebreak 5:4');
+eq(resetScore(setGolden(newScore({ points: [3, 3], golden: true }), false), { points: [3, 3], golden: true }).golden, false, 'Neu starten an den Start behält den Schalter');
 
 // ── Tippgruppen ──────────────────────────────────────────────────────────
 eq(TAP_WINDOW_MS, 600, 'Zeitfenster wie die Uhr (MULTI_TAP_WINDOW_MS)');

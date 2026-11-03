@@ -40,12 +40,15 @@
      controls  was zu sehen ist: "pad" (Tippfläche samt Legende), "buttons"
                (Punkt für mich, Punkt Gegner, Zurück), "reset", "golden"
      id        Präfix für die IDs, bei mehreren Scoreboards je Seite eindeutig
+     reset     wohin "Neu starten" führt: "start" (Vorgabe) zurück an den
+               Stand oben, "zero" auf ein frisches Spiel bei 0:0; der
+               Schalter bleibt jeweils, wie er gestellt ist
 
    Ohne JavaScript steht der hier gerenderte Stand da (Vorgabe 40:30, Spiele
    2:1), Tippfläche und Knöpfe bleiben versteckt, die Legende erklärt den
    Tippcode trotzdem. Die Anzeige unten rechnet wie scoreView() im Skript;
    ändert sich dort etwas, muss es hier mit. #}
-{% macro scoreboard(s, sport="tennis", points=[3, 2], games=[2, 1], sets=[0, 0], golden=false, controls=["pad", "buttons", "reset", "golden"], id="sb") %}
+{% macro scoreboard(s, sport="tennis", points=[3, 2], games=[2, 1], sets=[0, 0], golden=false, controls=["pad", "buttons", "reset", "golden"], id="sb", reset="start") %}
 {% set pa = points[0] %}
 {% set pb = points[1] %}
 {% set v = namespace(a=pa ~ "", b=pb ~ "", status="", phase="points", lead="") %}
@@ -74,7 +77,7 @@
   {% set v.a = labels[[pa, 3]|min] %}
   {% set v.b = labels[[pb, 3]|min] %}
 {% endif %}
-<section class="sb sb--{{ sport }}" id="{{ id }}" data-scoreboard data-sport="{{ sport }}" data-phase="{{ v.phase }}" data-lead="{{ v.lead }}"
+<section class="sb sb--{{ sport }}" id="{{ id }}" data-scoreboard data-sport="{{ sport }}" data-phase="{{ v.phase }}" data-lead="{{ v.lead }}"{% if reset == "zero" %} data-sb-reset="zero"{% endif %}
          data-sb-state='{{ {"points": points, "games": games, "sets": sets, "golden": golden}|tojson }}'
          data-sb-text='{{ s|tojson }}'
          aria-label="{{ s.label|inattr }}">

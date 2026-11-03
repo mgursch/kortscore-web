@@ -27,13 +27,13 @@ tap:
   codes:
     - Point pour toi
     - Point pour l’adversaire
-    - Donner le dernier point à l’autre camp
+    - "Inverser le point : le dernier point passe à l’autre camp"
     - Annuler le dernier point
   after: >-
     Simple ou double, avantage ou NoAd, au meilleur des trois sets ou en un
     set : tu choisis avant le premier point. Après la balle de match, le match
-    est dans l’historique sur ton téléphone, avec sa durée et le déroulé point
-    par point.
+    est dans l’historique sur ton téléphone, avec sa durée, le déroulé point
+    par point et les statistiques.
   watch_alt: Kortscore sur une Apple Watch à 40-15
 
 clubs:
@@ -52,7 +52,8 @@ clubs:
   offer_link: L’offre pour les clubs
   # Beispiel einer Ticker-Ansicht, keine echten Daten.
   ticker:
-    label: Championnat, journée 4
+    label: "Exemple : championnat, journée 4"
+    player: Joueur
     home: Domicile
     away: Extérieur
     live: En direct
@@ -67,8 +68,8 @@ padel:
   title: Le padel avec point en or
   lead: >-
     Au padel, on compte comme au tennis : 15, 30, 40, jeu, set. Dans
-    Kortscore, le point en or est un interrupteur : activé, le point suivant
-    décide à 40-40.
+    Kortscore, le point en or se choisit avec NoAd : à 40-40, le point suivant
+    décide.
   link: Comment compter au padel
 
 watches:

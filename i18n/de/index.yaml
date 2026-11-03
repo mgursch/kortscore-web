@@ -24,17 +24,17 @@ hero:
 tap:
   title: Der Tap-Code
   lede: >-
-    Getippt wird irgendwo aufs Display, ohne hinzusehen. Spiele, Sätze und
+    Getippt wird irgendwo aufs Display, ohne hinzusehen. Games, Sätze und
     Tiebreaks rechnet die Uhr selbst.
   codes:
     - Punkt für dich
     - Punkt für den Gegner
-    - Letzten Punkt dem anderen geben
+    - "Punkt drehen: der letzte Punkt geht an den anderen"
     - Letzten Punkt zurücknehmen
   after: >-
     Einzel oder Doppel, Vorteil oder NoAd, Best of 3 oder ein Satz wählst du
-    vor dem ersten Punkt. Nach dem Matchball liegt das Match mit Dauer und
-    Punkteverlauf in der Historie am Handy.
+    vor dem ersten Punkt. Nach dem Matchball liegt das Match mit Dauer,
+    Punkteverlauf und Statistiken in der Historie am Handy.
   watch_alt: Kortscore auf einer Apple Watch beim Stand 40:15
 
 clubs:
@@ -53,7 +53,9 @@ clubs:
   offer_link: Das Vereinsangebot
   # Beispiel einer Ticker-Ansicht, keine echten Daten.
   ticker:
-    label: Meisterschaft, Runde 4
+    label: "Beispiel: Meisterschaft, Runde 4"
+    # Erfundene Namen, damit niemand echte Ligadaten vermutet.
+    player: Spieler
     home: Heim
     away: Gast
     live: Live
@@ -67,8 +69,8 @@ clubs:
 padel:
   title: Padel mit Golden Point
   lead: >-
-    Padel zählt wie Tennis: 15, 30, 40, Spiel, Satz. Golden Point ist in
-    Kortscore ein Schalter: an, und bei 40:40 entscheidet der nächste Punkt.
+    Padel zählt wie Tennis: 15, 30, 40, Game, Satz. Golden Point wählst du in
+    Kortscore als NoAd: bei 40:40 entscheidet der nächste Punkt.
   link: So zählt man beim Padel
 
 watches:

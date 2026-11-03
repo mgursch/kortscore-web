@@ -27,12 +27,13 @@ tap:
   codes:
     - Punto para ti
     - Punto para tu rival
-    - Dar el último punto al otro lado
+    - "Invertir punto: el último punto pasa al otro lado"
     - Deshacer el último punto
   after: >-
     Individual o dobles, ventaja o NoAd, al mejor de tres sets o un set: lo
     eliges antes del primer punto. Tras el punto de partido, el partido queda
-    en el historial del móvil, con su duración y el registro punto a punto.
+    en el historial del móvil, con su duración, el registro punto a punto y
+    las estadísticas.
   watch_alt: Kortscore en un Apple Watch con 40-15
 
 clubs:
@@ -51,7 +52,8 @@ clubs:
   offer_link: La oferta para clubes
   # Beispiel einer Ticker-Ansicht, keine echten Daten.
   ticker:
-    label: Liga, jornada 4
+    label: "Ejemplo: liga, jornada 4"
+    player: Jugador
     home: Local
     away: Visitante
     live: En directo
@@ -66,8 +68,7 @@ padel:
   title: Pádel con punto de oro
   lead: >-
     El pádel se cuenta como el tenis: 15, 30, 40, juego, set. En Kortscore el
-    punto de oro es un interruptor: activado, con 40-40 decide el siguiente
-    punto.
+    punto de oro se elige como NoAd: con 40-40 decide el siguiente punto.
   link: Cómo se cuenta en pádel
 
 watches:

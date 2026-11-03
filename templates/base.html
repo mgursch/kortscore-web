@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Marks a page with JavaScript before the first paint. The scoreboard keeps
+     the room for its tap pad and buttons with it (scoreboard.css), so nothing
+     moves when the module script reveals them; the load entrances of the
+     subpages hang on it too. Without JavaScript the class never appears. -->
+<script>document.documentElement.classList.add('js')</script>
 <title>{{ t.meta.title }}</title>
 <meta name="description" content="{{ t.meta.description|inattr }}">
 
@@ -167,7 +172,9 @@ gtag('event', 'conversion', {
      700 sets KORTSCORE 1001 units wide (measured in Chrome), so the viewBox
      is that wide and the word fills the column at any width. textLength only
      corrects the spacing should a fallback face show. -->
-<footer class="footer">
+{# Seiten mit einer Lesespalte setzen footer_class auf footer--column: Links
+   und Satz stehen dann an derselben linken Kante wie der Text darüber. #}
+<footer class="footer {% block footer_class %}{% endblock %}">
   <div class="footer__inner">
     <nav class="footer__links" aria-label="{{ c.footer.nav }}">
 {% if page != 'index' %}

@@ -131,7 +131,7 @@
   --step-4: clamp(64px, 10vw, 160px);        /* Display: Hero-H1, Tap-Code      */
 
   --shell:   1440px;                         /* Inhalt samt Rändern, höchstens  */
-  --column:  760px;                          /* Lesespalte der Unterseiten      */
+  --column:  700px;                          /* Lesespalte der Unterseiten, so breit wie 65ch Fließtext, damit Text und Spalte an derselben Kante enden */
   --gutter:  clamp(20px, 4vw, 56px);         /* der eine Außenrand              */
   --gap:     clamp(20px, 2.4vw, 40px);       /* Spaltenabstand im Raster        */
   --section: clamp(88px, 11vw, 168px);       /* Abstand zwischen Sektionen      */
@@ -182,6 +182,10 @@ a:hover { color: var(--accent-text); }
   outline-offset: 3px;
   border-radius: 4px;
 }
+/* Auf den dunklen Flächen hätte das dunkle Grün nur gut 2:1, dort trägt das
+   helle (das Scoreboard regelt das in scoreboard.css selbst). */
+.clubs :focus-visible,
+.langbar :focus-visible { outline-color: var(--accent); }
 
 /* Wer Bewegung abbestellt hat, bekommt alles sofort und ohne Übergang. */
 @media (prefers-reduced-motion: reduce) {
@@ -387,6 +391,9 @@ a:hover { color: var(--accent-text); }
 }
 
 /* Das Menü hebt sich über die Tonstufe ab, ohne Schatten. */
+/* Zu ist zu: die Liste hat dann auch keine Box, die mitgemessen würde. */
+.nav__lang:not([open]) > .nav__lang-list { display: none; }
+
 .nav__lang-list {
   position: absolute;
   top: calc(100% + 4px);
@@ -423,7 +430,9 @@ a:hover { color: var(--accent-text); }
    ───────────────────────────────────────────────────────────────────────── */
 
 /* Hero. Die Überschrift läuft über die ganze Breite, darunter links Satz,
-   Aktion und Uhr, rechts die Tafel zum Selbstzählen. */
+   Aktion und Uhr, rechts die Tafel zum Selbstzählen. Unter 640px rückt die
+   Plattformzeile unter die Tafel und die Tafel wird kompakter (siehe unten),
+   damit die Tippfläche im ersten Bildschirm liegt. */
 .hero {
   display: grid;
   gap: 16px;
@@ -458,8 +467,31 @@ a:hover { color: var(--accent-text); }
 /* Der Render bringt Gehäuse und Armband mit und steht frei auf
    transparentem Grund: kein Rahmen, keine Maske. Auf dem Telefon fehlt der
    Platz, die Tafel darunter zeigt dasselbe. */
+.hero__pic { display: contents; }
 .hero__watch { display: none; }
 .hero__board { min-width: 0; }
+
+/* Telefon: Überschrift, Satz, Aktion und die ganze Tippfläche in den ersten
+   844px. Der Kopfblock löst sich ins Raster des Hero auf, damit die
+   Plattformzeile hinter die Tafel rücken kann. Die Legende fällt im Hero weg:
+   Die Knöpfe sind beschriftet, und der Tap-Code folgt gleich darunter. Zeilen
+   und Ziffern werden kleiner, die Ziele bleiben 44px und mehr. */
+@media (max-width: 639px) {
+  .hero__copy { display: contents; }
+  .hero__cta { justify-self: start; }
+  .hero__meta { order: 1; }
+  .hero .sb { padding: 14px; }
+  .hero .sb__grid { gap: 16px; }
+  .hero .sb__hints { display: none; }
+  .hero .sb__table { border-spacing: 0 5px; }
+  .hero .sb__table tbody th,
+  .hero .sb__table td { padding-block: 12px; line-height: 1; }
+  .hero .sb__table td { font-size: 30px; }
+  .hero .sb__table td.sb__pts { font-size: 40px; }
+  .hero .sb__status { min-height: 1.4em; margin-top: 4px; font-size: 20px; }
+  .hero .sb__pad { width: min(100%, 180px); padding: 12px; gap: 6px; }
+  .hero .sb__pad-count { font-size: 32px; }
+}
 
 /* Tap-Code: die vier Zahlen in Displayschrift, daneben was passiert. */
 .tap {
@@ -610,16 +642,30 @@ a:hover { color: var(--accent-text); }
 }
 .ticker__match--done .ticker__pts { background: none; }
 
-/* Padel: ein Satz und die kleine Tafel, die bei 40:40 mit Golden Point
-   steht. Die Tafel bleibt unter 640px breit und damit einspaltig. */
-.padel {
-  display: grid;
-  gap: 32px;
-  padding-top: var(--section);
+/* Der eine Punkt, den der Ticker weiterzählt (script.js): die neue Zahl
+   steigt von unten ein, die Zeile wechselt dabei in die helle Schrift. */
+.ticker__row { transition: color 0.3s ease; }
+.ticker__pts.is-new { animation: ticker-in 0.42s var(--ease-out); }
+@keyframes ticker-in {
+  from { opacity: 0; transform: translateY(45%); }
 }
-.padel__copy { display: grid; gap: 16px; align-content: center; justify-items: start; }
-.padel__lead { max-width: 44ch; }
-.padel__board { min-width: 0; max-width: 560px; }
+
+/* Padel: kein zweites Split und keine zweite Tafel, sondern ein Band mit
+   einer Aussage: der Stand, bei dem Golden Point entscheidet, in
+   Displayschrift über die Breite, darunter Überschrift und ein Satz. */
+.padel { padding-top: var(--section); }
+.padel__inner { display: grid; gap: 20px; }
+.padel__score {
+  font-family: var(--font-display);
+  font-size: clamp(132px, 34vw, 480px);
+  font-weight: 700;
+  line-height: 0.78;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 12px;
+}
+.padel__copy { display: grid; gap: 12px; justify-items: start; }
+.padel__lead { max-width: 52ch; }
 
 /* Uhren: eigene Fotos, quadratisch und groß, als schlichte Liste. */
 .watches { padding-top: var(--section); }
@@ -744,6 +790,15 @@ a:hover { color: var(--accent-text); }
 }
 .footer__links a:hover { color: var(--text); text-decoration-color: currentColor; }
 .footer__claim { font-size: var(--step-0); color: var(--text-secondary); }
+/* Unterseiten mit Lesespalte: Links und Satz in derselben Spalte wie der
+   Inhalt, die Wortmarke bleibt über die volle Breite. So hat die Seite eine
+   linke Kante und links wie rechts denselben Rand. */
+.footer--column .footer__links,
+.footer--column .footer__claim {
+  width: 100%;
+  max-width: var(--column);
+  margin-inline: auto;
+}
 .footer__mark {
   width: 100%;
   height: auto;
@@ -769,7 +824,7 @@ a:hover { color: var(--accent-text); }
 .subhead__title {
   max-width: 18ch;
   font-family: var(--font-display);
-  font-size: var(--step-3);
+  font-size: clamp(40px, 6.5vw, 96px);
   font-weight: 700;
   line-height: 0.95;
   letter-spacing: 0.01em;
@@ -777,6 +832,40 @@ a:hover { color: var(--accent-text); }
   text-wrap: balance;
 }
 .subhead .lead { font-size: var(--step-2); line-height: 1.45; }
+
+/* Unter dem Satz die Hauptaktion der Seite und der Weg zurück als normaler
+   Link, auf dem Telefon noch im ersten Bildschirm. */
+.subhead__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 28px;
+  margin-top: 8px;
+}
+.subhead__home { font-weight: 400; color: var(--text-secondary); }
+
+/* Einmal beim Laden: Titel, Satz und Aktionen steigen nacheinander auf, auf
+   der Uhrenseite danach die Karten. Nur mit JavaScript (die Klasse js aus
+   dem Kopf), nur Transform und Opacity, nach gut einer Sekunde vorbei. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .subhead > *,
+  .js .subhead__actions > *,
+  .js .watchcard {
+    animation: load-rise 0.5s var(--ease-out) both;
+  }
+  .js .subhead > :nth-child(2) { animation-delay: 0.08s; }
+  .js .subhead__actions { animation: none; }
+  .js .subhead__actions > :nth-child(1) { animation-delay: 0.16s; }
+  .js .subhead__actions > :nth-child(2) { animation-delay: 0.22s; }
+  .js .subhead__actions > :nth-child(3) { animation-delay: 0.28s; }
+  .js .watchcard:nth-child(1) { animation-delay: 0.3s; }
+  .js .watchcard:nth-child(2) { animation-delay: 0.38s; }
+  .js .watchcard:nth-child(3) { animation-delay: 0.46s; }
+  .js .watchcard:nth-child(4) { animation-delay: 0.54s; }
+}
+@keyframes load-rise {
+  from { opacity: 0; transform: translateY(16px); }
+}
 
 /* Zurück zur Startseite: unterstrichen, damit er ohne Pfeil als Link lesbar
    ist, und 44px hoch für den Daumen. */
@@ -841,7 +930,7 @@ a:hover { color: var(--accent-text); }
   color: var(--text-secondary);
 }
 
-/* Lesespalte für Kompatibilität, Vereine und die Regelseiten: eine Regel,
+/* Lesespalte für Kompatibilität und Vereine: eine Regel,
    dann Abschnitte. Der abgesetzte Grund läuft über die volle Breite, ohne
    Wrapper im Markup: der Umriss malt die Fläche links und rechts neben der
    Spalte, clip-path schneidet ihn oben und unten ab. */
@@ -906,23 +995,6 @@ a:hover { color: var(--accent-text); }
 .compat__list + p { margin-top: 12px; }
 .compat__section .faq__q { font-size: var(--step-1); }
 
-/* Hinweis auf eine verwandte Seite mitten im Text, etwa auf der deutschen
-   Tennis-Seite der ITN-Rechner. Helle Fläche auf dem abgesetzten Grund. */
-.pagetip {
-  display: grid;
-  gap: 8px;
-  padding: 20px 22px;
-  background: var(--surface);
-  border-radius: var(--radius);
-}
-.pagetip__text {
-  max-width: 65ch;
-  font-size: var(--step-1);
-  line-height: 1.6;
-  text-wrap: pretty;
-}
-.pagetip__link { justify-self: start; font-weight: 600; }
-
 .compat__cta {
   display: flex;
   flex-wrap: wrap;
@@ -968,6 +1040,90 @@ a:hover { color: var(--accent-text); }
 .clubask .btn { margin-top: 2px; }
 .clubask__alt { margin: 12px 0 0; font-size: var(--step-0); color: var(--text-secondary); }
 
+/* ═══ Regelseiten (Tennis, Padel) ═══════════════════════════════════════════
+   Eine Lesespalte für Kopf, Abschnitte, Fragen und Schluss: eine linke Kante,
+   Text höchstens 60ch breit, links und rechts derselbe Rand. Das Scoreboard
+   füllt die Spalte; es richtet sich nach seiner eigenen Breite (Container
+   Query in scoreboard.css), auf dem Telefon steht alles untereinander.
+   Vorlage: templates/partials/rules.html. Nichts hier gilt für andere Seiten.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.rulebook {
+  max-width: calc(60ch + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: 0 var(--gutter) clamp(72px, 9vw, 120px);
+  font-size: var(--step-1);
+}
+
+.rulebook__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: clamp(40px, 6vw, 64px);
+}
+.rulebook__title {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.rulebook__body {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(48px, 7vw, 72px);
+}
+.rulebook__sec {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+.rulebook__sec > p {
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+.rulebook__h {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+/* Tafel zum Ausprobieren: Hinweis, darunter die Tafel in voller Spaltenbreite. */
+.rulebook__demo {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+.rulebook__note {
+  color: var(--text-secondary);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* Fragen: der Abstand trennt die Paare, wie überall (.faq__list). */
+.rulebook .faq__list { align-self: stretch; margin-top: 6px; }
+
+/* Schluss: Store-Badges linksbündig an der Kante der Spalte. */
+.rulebook__cta .storebadges {
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-block: 6px;
+}
+
+@media (min-width: 640px) {
+  .rulebook__head .lead { font-size: var(--step-2); line-height: 1.45; }
+}
+
 /* ── Eintritt beim Scrollen ────────────────────────────────────────────────
    Nur wenn script.js läuft: Es setzt .rv an die Teile jeder Sektion, die noch
    unter dem Rand liegen, und .rv-in, sobald die Sektion ins Bild kommt. Ohne
@@ -994,36 +1150,29 @@ a:hover { color: var(--accent-text); }
   .clubs__offer { grid-template-columns: 160px minmax(0, 1fr); }
 }
 
-@media (min-width: 640px) and (max-width: 999px) {
-  /* Tablet: Satz links, Aktion rechts daneben, die Tafel darunter. */
+/* Tablet und kleine Laptops bis 1179px: Satz links, Aktion rechts daneben,
+   die Tafel darunter über die volle Breite. Erst ab 1180px ist neben dem
+   Satz genug Platz, dass die Tafel breiter als 640px bleibt und Tafel und
+   Tippfläche nebeneinander im ersten Bildschirm stehen. */
+@media (min-width: 640px) and (max-width: 1179px) {
   .hero__copy {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     column-gap: var(--gap);
     align-items: start;
   }
   .hero__lede { grid-row: span 2; }
+  .hero__board { grid-column: 1 / -1; }
+  .hero__watch { display: none; }
+}
+
+@media (min-width: 640px) and (max-width: 999px) {
   .tap__intro { grid-template-columns: minmax(0, 1fr) 180px; column-gap: var(--gap); }
   .tap__intro .h2, .tap__lede { grid-column: 1; }
   .tap__watch { display: block; grid-column: 2; grid-row: 1 / span 2; width: 180px; height: auto; }
 }
 
 @media (min-width: 1000px) {
-  .hero {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: var(--gap);
-    row-gap: 40px;
-    padding-top: 24px;
-  }
-  .hero__title { grid-column: 1 / -1; }
-  .hero__copy { grid-column: 1 / span 4; gap: 24px; }
-  .hero__lede { font-size: var(--step-2); line-height: 1.45; }
-  .hero__watch {
-    display: block;
-    width: auto;
-    height: clamp(180px, 16vw, 240px);
-    margin-top: 16px;
-  }
-  .hero__board { grid-column: 5 / -1; margin-top: 0; }
+  .hero { padding-top: 24px; }
 
   .tap {
     grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -1047,18 +1196,36 @@ a:hover { color: var(--accent-text); }
   .ticker__match { padding: 16px 18px; }
   .ticker__row { grid-template-columns: minmax(0, 1fr) 1.6em 1.6em 2.6em; }
 
-  .padel {
+  .padel__inner {
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-areas: "board board board board board board . copy copy copy copy copy";
     column-gap: var(--gap);
-    align-items: center;
+    align-items: start;
   }
-  .padel__copy { grid-area: copy; }
-  .padel__board { grid-area: board; }
+  .padel__score { grid-column: 1 / -1; }
+  .padel__title { grid-column: 1 / span 5; }
+  .padel__copy { grid-column: 7 / -1; }
 
   .watches__list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
   .faq__q { font-size: var(--step-2); }
   .faq .faq__list { display: block; columns: 2; column-gap: calc(var(--gap) * 2); }
   .faq .faq__item { margin-bottom: 40px; }
+}
+
+@media (min-width: 1180px) {
+  .hero {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap);
+    row-gap: 40px;
+  }
+  .hero__title { grid-column: 1 / -1; }
+  .hero__copy { grid-column: 1 / span 4; gap: 24px; }
+  .hero__lede { font-size: var(--step-2); line-height: 1.45; }
+  .hero__watch {
+    display: block;
+    width: auto;
+    height: clamp(180px, 16vw, 240px);
+    margin-top: 16px;
+  }
+  .hero__board { grid-column: 5 / -1; margin-top: 0; }
 }

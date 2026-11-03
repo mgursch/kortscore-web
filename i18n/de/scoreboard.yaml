@@ -10,7 +10,7 @@ player: Spieler
 me: Ich
 opponent: Gegner
 col_sets: Sätze
-col_games: Spiele
+col_games: Games
 col_points: Punkte
 
 # Tippfläche: Ruhetext und Unterzeile, solange niemand tippt
@@ -38,12 +38,12 @@ adv_opp: Vorteil Gegner
 # Kurzzeichen für Vorteil in der Punktespalte, wie auf der Uhr
 adv_short: A
 tiebreak: Tiebreak
-game_me: Spiel für mich
-game_opp: Spiel Gegner
+game_me: Game für mich
+game_opp: Game Gegner
 set_me: "Satz für mich, {games}"
 set_opp: "Satz Gegner, {games}"
 score_say: "{me} zu {opp}"
-games_say: "Spiele {me} zu {opp}"
+games_say: "Games {me} zu {opp}"
 undone: Zurückgenommen
 flipped: Punkt gedreht
 nothing: Nichts zum Zurücknehmen
