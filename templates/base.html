@@ -161,11 +161,15 @@ gtag('event', 'conversion', {
 
 {% block main %}{% endblock %}
 
-<!-- ── Footer ───────────────────────────────────────────────────────────── -->
+<!-- ── Footer ───────────────────────────────────────────────────────────────
+     Links and the claim, then the name across the full width as the close of
+     every page. The wordmark is SVG text: at font-size 240 Barlow Condensed
+     700 sets KORTSCORE 1001 units wide (measured in Chrome), so the viewBox
+     is that wide and the word fills the column at any width. textLength only
+     corrects the spacing should a fallback face show. -->
 <footer class="footer">
   <div class="footer__inner">
-    <p class="footer__claim">{{ c.footer.claim }}</p>
-    <p class="footer__links">
+    <nav class="footer__links" aria-label="{{ c.footer.nav }}">
 {% if page != 'index' %}
       <a href="{{ url('index') }}">{{ c.footer.home }}</a>
 {% endif %}
@@ -183,7 +187,11 @@ gtag('event', 'conversion', {
       <a href="{{ legal('privacy') }}">{{ c.footer.privacy }}</a>
       <a href="{{ legal('terms') }}">{{ c.footer.terms }}</a>
       <a href="https://www.swordistudios.com" target="_blank" rel="noopener">swordi.studios</a>
-    </p>
+    </nav>
+    <p class="footer__claim">{{ c.footer.claim }}</p>
+    <svg class="footer__mark" viewBox="0 0 1001 172" role="img" aria-label="Kortscore">
+      <text x="0" y="169" font-size="240" textLength="1001" lengthAdjust="spacing">KORTSCORE</text>
+    </svg>
   </div>
 </footer>
 

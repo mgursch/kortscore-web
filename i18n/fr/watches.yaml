@@ -10,12 +10,11 @@ meta:
 breadcrumb: Montres
 llms: Montres recommandées
 
-eyebrow: Quelle montre
 title: Quatre montres <br>qui font le job
 lead: >-
   Kortscore fonctionne sur toute montre Wear OS 3 et sur l’Apple Watch. Si tu
   n’as pas encore choisi, ces quatre-là font l’affaire sur le court.
-compat_link: Déjà une montre ? Consulte la liste de compatibilité complète, Apple Watch et Wear OS →
+compat_link: Déjà une montre ? Consulte la liste de compatibilité complète, Apple Watch et Wear OS
 
 watches:
   apple:

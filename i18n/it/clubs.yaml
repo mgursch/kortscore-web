@@ -8,7 +8,6 @@ meta:
 breadcrumb: Per i circoli
 llms: Per i circoli (volantino nella club house, sconto su Kortscore Plus per i soci)
 
-eyebrow: Per i circoli
 title: Appendete il volantino. <br>I soci risparmiano.
 lead: >-
   Il vostro circolo appende il volantino di Kortscore nella club house o vicino
@@ -92,7 +91,6 @@ faq:
 # Die Anfrage ist eine vorausgefüllte Mail. Betreff und Text als reiner Text
 # (\n = Zeilenumbruch), der Build kodiert sie für den mailto-Link.
 ask:
-  eyebrow: Ci state?
   button: Richiesta via email
   alt: oppure scrivete direttamente a
   mail_subject: Kortscore Plus per il nostro circolo

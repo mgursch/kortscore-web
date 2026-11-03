@@ -22,7 +22,6 @@
 <main>
 <div class="subhead">
   <a class="back" href="{{ url('index') }}">{{ c.back_home }}</a>
-  <p class="eyebrow">{{ t.eyebrow }}</p>
   <h1 class="subhead__title">{{ t.title }}</h1>
   <p class="lead">{{ t.lead }}</p>
 </div>
@@ -111,12 +110,12 @@
 
   <div class="compat__cta">
     <div>
-      <p class="eyebrow">{{ t.cta.fits }}</p>
+      <h2>{{ t.cta.fits }}</h2>
       <a class="btn btn--accent" href="{{ home('get') }}">{{ t.cta.download }}</a>
     </div>
     <div>
-      <p class="eyebrow">{{ t.cta.no_watch }}</p>
-      <a class="back" href="{{ url('watches') }}">{{ t.cta.picks }}</a>
+      <h2>{{ t.cta.no_watch }}</h2>
+      <a class="textlink" href="{{ url('watches') }}">{{ t.cta.picks }}</a>
     </div>
   </div>
 </div>

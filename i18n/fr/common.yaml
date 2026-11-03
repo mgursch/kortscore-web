@@ -17,7 +17,9 @@ langbar:
   close: Non merci
 
 footer:
-  claim: Kortscore · Le score du tennis &amp; du padel au poignet
+  # aria-label der Linkleiste im Footer
+  nav: Autres pages
+  claim: "Kortscore : le score du tennis et du padel au poignet"
   home: Accueil
   compatible: Montres compatibles
   tennis: Compter au tennis

@@ -10,12 +10,11 @@ meta:
 breadcrumb: Orologi
 llms: Orologi consigliati
 
-eyebrow: Quale orologio
 title: Quattro orologi <br>su misura
 lead: >-
   Kortscore funziona su ogni orologio Wear OS 3 e sull’Apple Watch. Se devi
   ancora sceglierne uno, in campo questi quattro fanno il loro lavoro.
-compat_link: Hai già un orologio? Consulta l’elenco completo di compatibilità, Apple Watch e Wear OS →
+compat_link: Hai già un orologio? Consulta l’elenco completo di compatibilità, Apple Watch e Wear OS
 
 watches:
   apple:

@@ -9,7 +9,6 @@ meta:
 breadcrumb: Relojes compatibles
 llms: Relojes compatibles (lista completa de modelos)
 
-eyebrow: Compatibilidad
 title: ¿Funciona Kortscore <br>en mi reloj?
 lead: >-
   La respuesta corta: sí, en cualquier Apple Watch con watchOS 26 o posterior
@@ -105,4 +104,4 @@ cta:
   fits: ¿Tu reloj es compatible?
   download: Descárgala gratis
   no_watch: ¿Aún sin reloj?
-  picks: Cuatro recomendaciones para la pista →
+  picks: Cuatro recomendaciones para la pista

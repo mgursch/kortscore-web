@@ -10,12 +10,11 @@ meta:
 breadcrumb: Relojes
 llms: Relojes recomendados
 
-eyebrow: Qué reloj
 title: Cuatro relojes <br>que encajan
 lead: >-
   Kortscore funciona en cualquier reloj Wear OS 3 y en el Apple Watch. Si aún
   estás eligiendo, estos cuatro cumplen de sobra en la pista.
-compat_link: ¿Ya tienes reloj? Consulta la lista completa de compatibilidad, Apple Watch y Wear OS →
+compat_link: ¿Ya tienes reloj? Consulta la lista completa de compatibilidad, Apple Watch y Wear OS
 
 watches:
   apple:

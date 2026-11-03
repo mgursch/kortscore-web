@@ -8,7 +8,6 @@ meta:
 breadcrumb: Para clubes
 llms: Para clubes (folleto en el club, descuento en Kortscore Plus para los socios)
 
-eyebrow: Para clubes
 title: Colgad el folleto. <br>Los socios ahorran.
 lead: >-
   Vuestro club cuelga el folleto de Kortscore en la cafetería o junto a las
@@ -92,7 +91,6 @@ faq:
 # Die Anfrage ist eine vorausgefüllte Mail. Betreff und Text als reiner Text
 # (\n = Zeilenumbruch), der Build kodiert sie für den mailto-Link.
 ask:
-  eyebrow: ¿Os apuntáis?
   button: Solicitud por correo
   alt: o escribid directamente a
   mail_subject: Kortscore Plus para nuestro club

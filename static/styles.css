@@ -1,12 +1,11 @@
 /* ============================================================================
-   Kortscore — Website
+   Kortscore, Website
    ============================================================================
-   Neu aufgebaut nach dem Design "Kortscore Website.dc.html" aus dem Claude-
-   Design-Handoff. Die Tokens stammen aus der README desselben Bundles, damit
-   Website und App dieselbe Sprache sprechen.
-
-   Aufbau: Tokens, Reset, Typo-Primitive, Layout, dann die Sektionen in der
-   Reihenfolge, in der sie auf der Seite stehen.
+   Tokens, Reset, Primitive, Navigation, dann die Startseite in der
+   Reihenfolge ihrer Sektionen, danach Fragen, Store-Badges, Footer und die
+   Unterseiten. Gebaut für das Telefon zuerst; die Media Queries am Ende
+   ordnen für breitere Schirme um. Das Scoreboard hat sein eigenes
+   Stylesheet (scoreboard.css), der ITN-Rechner ebenso (itn-rechner.css).
    ========================================================================= */
 
 /* ── Fonts ────────────────────────────────────────────────────────────────
@@ -82,37 +81,40 @@
 }
 
 
+
 /* ── Tokens ───────────────────────────────────────────────────────────────
    Grund ist ein kühles, fast farbloses Steingrau (Sättigung unter 8 Prozent),
-   keine Cremetöne. Karten und Flächen trennen sich über Tonstufen statt über
-   Linien: --bg, darunter --bg-alt, darunter --bg-deep, dazu das reine Weiß
-   --surface als hellste Stufe.
+   keine Cremetöne. Flächen trennen sich über Tonstufen statt über Linien:
+   --bg, darunter --bg-alt, darunter --bg-deep, dazu das reine Weiß --surface
+   als hellste Stufe. Die dunkle Stufe ist ebenso kühl, ein Graphit statt des
+   früheren Olivschwarz.
 
    Zwei Grüntöne, und der Unterschied ist wichtig: --accent (#3ea56b) ist eine
    Flächenfarbe, --accent-text (#1f5c34) eine Textfarbe. Das helle Grün auf dem
    hellen Grund erreicht nur rund 2,3:1 und ist damit als Text unlesbar, als
    Fläche mit dunkler Schrift darauf aber genau richtig. Das Grün gehört der
-   Hauptaktion (Buttons, Schluss-Aufruf), nicht der Dekoration; grüner Text
-   bleibt auf Fokus, Hover und die aktuelle Sprache beschränkt.
+   Hauptaktion, nicht der Dekoration.
 
    Fünf Schriftgrößen, mehr gibt es nicht. Sie liegen weit auseinander, damit
    die Hierarchie ohne Fettdruck lesbar bleibt.
+
+   Raster: ein Paar Außenränder (--gutter) für jede Breite, Inhalt bis
+   höchstens --shell, Sektionen --section auseinander.
    ───────────────────────────────────────────────────────────────────────── */
 :root {
   --bg:            #f4f5f5;
-  --bg-alt:        #e8ebeb;  /* abgesetzte Sektion, Karten auf --bg           */
-  --bg-deep:       #dce0e0;  /* noch eine Stufe: Schalterbahn, Hover          */
-  --bg-dark:       #16150f;  /* dunkle Sektion (Warum Kortscore)            */
-  --surface:       #ffffff;  /* Karten auf --bg-alt, Eingabefelder            */
-  --surface-dark:  #26251d;  /* Karten auf dunklem Grund                    */
-  --border:        #d3d8d8;  /* nur noch Formularfelder und Hover-Stufe       */
-  --hairline:      #e2e6e6;
+  --bg-alt:        #e8ebeb;  /* abgesetzte Fläche: Footer, Tabellenkopf       */
+  --bg-deep:       #dce0e0;  /* noch eine Stufe: Sprachmenü, Hover            */
+  --bg-dark:       #141617;  /* das eine dunkle Feld (Live-Ticker), Scoreboard */
+  --surface:       #ffffff;  /* Tabellen auf --bg-alt, Eingabefelder          */
+  --surface-dark:  #232627;  /* Flächen auf dunklem Grund                     */
+  --border:        #d3d8d8;  /* nur Formularfelder                            */
 
-  --text:          #16150f;
-  --text-secondary:#454848;
-  --text-muted:    #5a5e5e;
-  --text-on-dark:  #f2f3f0;
-  --text-on-dark-muted: #a19d93;
+  --text:          #141617;
+  --text-secondary:#3f4444;
+  --text-muted:    #575c5c;  /* 6,1:1 auf --bg, nur für Nebensätze            */
+  --text-on-dark:  #f2f3f3;
+  --text-on-dark-muted: #9ea3a3;  /* 7:1 auf --bg-dark, 5,9:1 auf --surface-dark */
 
   --accent:        #3ea56b;  /* nur Flächen der Hauptaktion                 */
   --accent-text:   #1f5c34;  /* nur Text auf hellem Grund, wo nötig         */
@@ -126,11 +128,15 @@
   --step-1: 18px;                            /* Fließtext                       */
   --step-2: 22px;                            /* Lead, Unterüberschrift          */
   --step-3: clamp(40px, 5vw, 64px);          /* Sektionsüberschrift             */
-  --step-4: clamp(72px, 10vw, 160px);        /* Display, Hero-H1                */
+  --step-4: clamp(64px, 10vw, 160px);        /* Display: Hero-H1, Tap-Code      */
 
-  --shell:   1060px;  /* Inhaltsbreite aus dem Design                       */
-  --gutter:  32px;
+  --shell:   1440px;                         /* Inhalt samt Rändern, höchstens  */
+  --column:  760px;                          /* Lesespalte der Unterseiten      */
+  --gutter:  clamp(20px, 4vw, 56px);         /* der eine Außenrand              */
+  --gap:     clamp(20px, 2.4vw, 40px);       /* Spaltenabstand im Raster        */
+  --section: clamp(88px, 11vw, 168px);       /* Abstand zwischen Sektionen      */
   --radius:  16px;    /* die einzige Ecke für Flächen; Buttons bleiben Pille  */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* ── Reset ──────────────────────────────────────────────────────────────── */
@@ -146,23 +152,27 @@ body {
   font-size: var(--step-1);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
 img, svg { display: block; max-width: 100%; }
 ul { margin: 0; padding: 0; list-style: none; }
 p  { margin: 0; }
+h1, h2, h3 { margin: 0; }
 
-/* Zahlen stehen überall tabellarisch: Scores und Kennzahlen sollen beim
-   Wechsel nicht springen und in Spalten exakt untereinander stehen. Gesetzt
-   werden sie in der Display-Schrift, nicht in einer Monospace. */
-:where(.mono, .stat__num, .ticker) {
+/* Zahlen in der Display-Schrift, tabellarisch, damit sie in Spalten exakt
+   untereinander stehen. Der ITN-Rechner setzt seine Werte mit .mono; eine
+   Monospace-Schrift gibt es trotz des Namens nicht. */
+.mono {
   font-family: var(--font-display);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
 
+/* Links im Fließtext sind unterstrichen, in Tinte. */
 a {
   color: var(--text);
+  text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
 }
 a:hover { color: var(--accent-text); }
@@ -185,8 +195,8 @@ a:hover { color: var(--accent-text); }
 
 /* ── Primitive ──────────────────────────────────────────────────────────── */
 
-/* Zentrierte Inhaltsspalte. Jede Sektion, die volle Breite braucht (farbiger
-   Grund), bekommt den Grund außen und diesen Container innen. */
+/* Inhalt bis --shell, mit dem einen Paar Außenränder. Sektionen mit eigenem
+   Grund tragen den Grund außen und diesen Container innen. */
 .shell {
   width: 100%;
   max-width: var(--shell);
@@ -194,67 +204,68 @@ a:hover { color: var(--accent-text); }
   padding-inline: var(--gutter);
 }
 
-/* Früher ein Mono-Label in Versalien mit Sperrung. Bis das Markup entfällt,
-   steht es als normaler Satz im Fließtext-Ton. */
-.eyebrow {
-  font-size: var(--step-0);
-  color: var(--text-muted);
-}
-
-.section-title {
-  margin: 0;
+/* Sektionsüberschrift der Startseite. */
+.h2 {
   font-family: var(--font-display);
   font-size: var(--step-3);
   font-weight: 700;
-  letter-spacing: 0.02em;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
-  line-height: 1;
+  text-wrap: balance;
 }
 
 .lead {
   max-width: 65ch;
   font-size: var(--step-1);
   line-height: 1.55;
-  color: var(--text-secondary);
+  color: var(--text);
   text-wrap: pretty;
 }
 
-/* Buttons. Die Pillenform und die Condensed-Versalien kommen aus dem Design;
-   --btn-bg und --btn-fg machen die Varianten zu einer Frage von zwei Zeilen. */
+/* Textlink mit eigener Zeile: unterstrichen, halbfett, und mit 44px Höhe
+   auch mit dem Daumen gut zu treffen. */
+.textlink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: var(--step-1);
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+.textlink:hover { color: var(--accent-text); text-decoration-thickness: 2px; }
+
+/* Buttons. Pillenform, Condensed-Versalien; --btn-bg und --btn-fg machen die
+   Varianten zu einer Frage von zwei Zeilen. */
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
   background: var(--btn-bg, var(--text));
   color: var(--btn-fg, var(--on-dark));
   border: 0;
   border-radius: 999px;
-  padding: 15px 30px;
+  padding: 12px 30px;
   font-family: var(--font-display);
   font-size: var(--step-2);
   font-weight: 700;
+  line-height: 1.1;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
-  /* Einzeilig fällt das nicht auf, aber sobald die Beschriftung umbricht,
-     etwa "Bei Amazon ansehen" in einer schmalen Uhrenkarte, stünden die
-     Zeilen sonst linksbündig im runden Knopf. */
   text-align: center;
   cursor: pointer;
-  transition: transform 0.18s ease, filter 0.18s ease;
+  transition: transform 0.18s var(--ease-out), filter 0.18s ease;
 }
 .btn:hover  { filter: brightness(1.06); color: var(--btn-fg, var(--on-dark)); }
-.btn:active { transform: translateY(1px); }
+.btn:active { transform: scale(0.97); }
 
 .btn--accent { --btn-bg: var(--accent); --btn-fg: var(--on-accent); }
-.btn--small  { padding: 10px 20px; font-size: var(--step-1); }
-
-/* Der Live-Punkt. Sitzt im Ticker und in der Benefit-Karte, steht still und
-   übernimmt die Farbe seiner Zeile. */
-.livedot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: currentColor;
-}
+.btn--small  { min-height: 44px; padding: 8px 20px; font-size: var(--step-1); }
 
 /* ── Sprachhinweis ────────────────────────────────────────────────────────
    Je eine Leiste pro anderer Sprache, alle starten hidden. script.js blendet
@@ -265,36 +276,40 @@ a:hover { color: var(--accent-text); }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 4px 14px;
   flex-wrap: wrap;
   background: var(--bg-dark);
   color: var(--on-dark);
-  padding: 10px 20px;
+  padding: 4px 20px;
   font-size: var(--step-0);
 }
 .langbar[hidden] { display: none; }
 
-.langbar__go {
+.langbar__go,
+.langbar__close {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--on-dark);
-  font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+.langbar__go { font-weight: 600; }
 .langbar__go:hover { color: var(--accent); }
 
 .langbar__close {
   background: none;
   border: 0;
-  padding: 4px 6px;
+  padding: 0 6px;
   color: var(--text-on-dark-muted);
   font: inherit;
   font-size: var(--step-0);
   cursor: pointer;
-  text-decoration: underline;
 }
 .langbar__close:hover { color: var(--on-dark); }
 
-/* ── Nav ────────────────────────────────────────────────────────────────── */
+/* ── Nav ──────────────────────────────────────────────────────────────────
+   Wortmarke links, rechts Sprache und die Aktion. Kein Balken, kein Grund. */
 .nav {
   display: flex;
   align-items: center;
@@ -302,13 +317,17 @@ a:hover { color: var(--accent-text); }
   gap: 16px;
   max-width: var(--shell);
   margin-inline: auto;
-  padding: 26px var(--gutter);
+  padding: 8px var(--gutter);
 }
+/* Auf dem Telefon steht die Aktion gleich im Hero, der Kopf trägt nur
+   Wortmarke und Sprache. */
+.nav__cta { display: none; }
 
 .nav__brand {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-height: 44px;
   color: var(--text);
   text-decoration: none;
 }
@@ -321,22 +340,24 @@ a:hover { color: var(--accent-text); }
   text-transform: uppercase;
 }
 
-.nav__right { display: flex; align-items: center; gap: 14px; }
+.nav__right { display: flex; align-items: center; gap: 8px; }
 
-/* Sprachumschalter: ein <details>, damit er ohne JavaScript aufgeht. Zu
-   sehen ist nur das Kürzel der aktuellen Sprache, klein, damit es neben dem
-   CTA nicht mitspielt. Die Liste klappt rechtsbündig darunter auf, so ragt
-   sie auch bei 375px Breite nicht aus dem Bild. */
+/* Sprachumschalter: ein <details>, damit er ohne JavaScript aufgeht. Die
+   Summary ist 44px hoch, damit sie sich auch mit dem Daumen trifft. Die
+   Liste klappt rechtsbündig darunter auf, so ragt sie auch bei 375px Breite
+   nicht aus dem Bild. */
 .nav__lang { position: relative; }
 
 .nav__lang > summary {
   display: flex;
   align-items: center;
   gap: 6px;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 10px;
   font-size: var(--step-0);
   font-weight: 600;
   color: var(--text-muted);
-  padding: 6px 4px;
   cursor: pointer;
   list-style: none;
   user-select: none;
@@ -357,554 +378,395 @@ a:hover { color: var(--accent-text); }
 }
 .nav__lang[open] > summary::after { transform: translateY(1px) rotate(-135deg); }
 
-/* Seiten mit nur einer Sprache zeigen statt des Umschalters nur das Kürzel,
-   gleich gesetzt wie die geschlossene Summary, aber ohne Winkel. */
+/* Seiten mit nur einer Sprache zeigen statt des Umschalters nur das Kürzel. */
 .nav__lang-single {
   font-size: var(--step-0);
   font-weight: 600;
   color: var(--text-muted);
-  padding: 6px 4px;
+  padding: 6px 10px;
 }
 
-/* Das einzige Overlay der Seite und damit der einzige Schatten: ohne ihn
-   ginge die Liste auf --bg unter. */
+/* Das Menü hebt sich über die Tonstufe ab, ohne Schatten. */
 .nav__lang-list {
   position: absolute;
-  top: calc(100% + 6px);
+  top: calc(100% + 4px);
   right: 0;
   z-index: 20;
-  min-width: 150px;
+  min-width: 160px;
   margin: 0;
   padding: 6px;
   list-style: none;
-  background: var(--surface);
+  background: var(--bg-deep);
   border-radius: var(--radius);
-  box-shadow: 0 8px 24px rgba(22, 21, 15, 0.12); /* taste-skill-ignore */
 }
 
 .nav__lang-list a {
-  display: block;
-  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
   border-radius: calc(var(--radius) - 6px);
   color: var(--text);
-  font-size: var(--step-0);
+  font-size: var(--step-1);
   text-decoration: none;
   white-space: nowrap;
 }
 .nav__lang-list a:hover { background: var(--bg-alt); color: var(--text); }
-.nav__lang-list a[aria-current] {
-  color: var(--accent-text);
-  font-weight: 600;
-}
+.nav__lang-list a[aria-current] { color: var(--accent-text); font-weight: 600; }
 
-/* ── Hero ───────────────────────────────────────────────────────────────────
-   Die Überschrift ist die größte Schrift der Seite und braucht deshalb die
-   volle Breite. Damit sie nicht in der schmalen Textspalte erstickt, steht
-   der Hero auf einem Raster: Überschrift über beide Spalten, darunter links
-   Lede und Aktion, rechts die Screenshots. display: contents hebt dafür die
-   Textspalte auf, ihre Kinder werden Rasterzellen des Hero.
+/* ── Startseite ───────────────────────────────────────────────────────────
+   Sieben Sektionen, jede mit eigener Anordnung: Hero mit Tafel, Tap-Code als
+   Liste in Displayschrift, das dunkle Feld mit dem Live-Ticker, Padel mit der
+   kleinen Tafel links, die Uhren als Bildreihe, die Fragen als Lesetext und
+   der zentrierte Schluss. Zuerst für das Telefon gebaut, die Breakpoints
+   weiter unten ordnen auf breiten Schirmen um.
    ───────────────────────────────────────────────────────────────────────── */
+
+/* Hero. Die Überschrift läuft über die ganze Breite, darunter links Satz,
+   Aktion und Uhr, rechts die Tafel zum Selbstzählen. */
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(340px, 520px);
-  align-items: start;
-  gap: 22px 48px;
-  max-width: var(--shell);
-  margin-inline: auto;
-  padding: 44px var(--gutter) 72px;
+  gap: 16px;
+  padding-top: 4px;
 }
-
-.hero__copy { display: contents; }
-.hero__copy > * { grid-column: 1; }
-
 .hero__title {
-  grid-column: 1 / -1;
-  margin: 0;
-  max-width: 16ch;
   font-family: var(--font-display);
   font-size: var(--step-4);
   font-weight: 700;
-  line-height: 0.92;
+  line-height: 0.9;
   letter-spacing: 0.005em;
   text-transform: uppercase;
   text-wrap: balance;
 }
-/* Die letzte Zeile trug früher den Akzent; die Farbe ist der Hauptaktion
-   vorbehalten, die Zeile steht jetzt in Tinte. */
-.hero__title em { font-style: normal; }
-
+.hero__copy {
+  display: grid;
+  justify-items: start;
+  align-content: start;
+  gap: 14px;
+}
 .hero__lede {
   max-width: 34ch;
-  font-size: var(--step-2);
-  line-height: 1.45;
-  color: var(--text-secondary);
+  font-size: var(--step-1);
+  line-height: 1.5;
   text-wrap: pretty;
-}
-
-.hero__actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
 }
 .hero__meta {
+  max-width: 40ch;
   font-size: var(--step-0);
-  color: var(--text-muted);
-}
-
-/* Screenshot-Reihe: zwei Telefone hinten, eines vorn in der Mitte, die Uhr
-   überlappt unten. Alles steht gerade, ohne Drehung und ohne Schatten.
-   Absolut positioniert, weil die Überlappung genau so gemeint ist; unter
-   900px fällt das Ganze auf eine schlichte Reihe zurück. */
-.hero__shots {
-  grid-column: 2;
-  grid-row: 3 / span 3;
-  align-self: center;
-  min-width: 340px;
-  position: relative;
-  height: 460px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.phone {
-  background: #1c1d1f;
-  border-radius: var(--radius);
-  padding: 6px;
-}
-.phone img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: calc(var(--radius) - 6px);
-}
-
-.phone--back {
-  position: absolute;
-  top: 34px;
-  width: 168px;
-  height: 356px;
-  z-index: 1;
-}
-.phone--left  { left: 8px; }
-.phone--right { right: 8px; }
-
-.phone--front {
-  position: relative;
-  width: 180px;
-  height: 382px;
-  z-index: 2;
-}
-
-/* Der Render bringt Gehäuse und Armband schon mit und liegt frei auf
-   transparentem Grund. Deshalb keine nachgebaute Hülle: kein runder Rahmen,
-   keine Maske, kein Hintergrund. Ein border-radius würde hier das Armband
-   abschneiden.
-
-   Das Bild ist hochformatig (292x338), die Höhe steuert die Größe und die
-   Breite folgt dem Seitenverhältnis. */
-.watchshot {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: auto;
-  height: 230px;
-  z-index: 3;
-}
-.watchshot img {
-  width: auto;
-  height: 100%;
-}
-
-/* ── Benefits ───────────────────────────────────────────────────────────── */
-.benefits {
-  background: var(--bg-dark);
-  color: var(--on-dark);
-  padding-block: 64px;
-}
-.benefits .section-title { color: var(--on-dark); }
-
-.benefits__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 14px;
-  margin-top: 40px;
-}
-
-.stat {
-  background: var(--surface-dark);
-  border-radius: var(--radius);
-  padding: 24px 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.stat__num {
-  font-family: var(--font-display);
-  font-size: var(--step-3);
-  font-weight: 700;
-  line-height: 1;
-  color: var(--on-dark);
-}
-/* Die Live-Karte trägt statt einer Zahl den Punkt; die feste Höhe hält ihren
-   Kopf auf einer Linie mit den Zahlen der Nachbarkarten. */
-.stat__live {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 30px;
-  font-family: var(--font-display);
-  font-size: var(--step-2);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--on-dark);
-}
-.stat__title {
-  font-size: var(--step-1);
-  font-weight: 600;
-  color: var(--text-on-dark);
-}
-.stat__body {
-  font-size: var(--step-1);
-  line-height: 1.5;
-  color: var(--text-on-dark-muted);
-  text-wrap: pretty;
-}
-
-/* ── Steps ──────────────────────────────────────────────────────────────── */
-.steps { padding-block: 72px; }
-
-.steps__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 32px;
-  margin-top: 36px;
-}
-
-.step { display: flex; flex-direction: column; gap: 8px; }
-.step__num {
-  font-size: var(--step-0);
-  color: var(--text-muted);
-}
-.step__title { margin: 0; font-size: var(--step-2); font-weight: 600; line-height: 1.25; }
-.step__body {
-  font-size: var(--step-1);
-  line-height: 1.55;
   color: var(--text-secondary);
-  text-wrap: pretty;
 }
+/* Der Render bringt Gehäuse und Armband mit und steht frei auf
+   transparentem Grund: kein Rahmen, keine Maske. Auf dem Telefon fehlt der
+   Platz, die Tafel darunter zeigt dasselbe. */
+.hero__watch { display: none; }
+.hero__board { min-width: 0; }
 
-/* ── Clubs ──────────────────────────────────────────────────────────────── */
-.clubs {
-  background: var(--bg-alt);
-  padding-block: 64px;
+/* Tap-Code: die vier Zahlen in Displayschrift, daneben was passiert. */
+.tap {
+  display: grid;
+  gap: 32px;
+  padding-top: var(--section);
 }
-.clubs__inner {
-  display: flex;
-  flex-wrap: wrap;
+.tap__intro { display: grid; gap: 16px; align-content: start; }
+.tap__lede { max-width: 40ch; }
+.tap__watch { display: none; }
+
+.tap__codes { margin: 0; display: grid; gap: 14px; }
+.tap__row {
+  display: grid;
+  grid-template-columns: 1.3em minmax(0, 1fr);
   align-items: center;
-  gap: 48px;
+  column-gap: 0.15em;
+  font-size: var(--step-4);
 }
-.clubs__copy {
-  flex: 1 1 380px;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.clubs__title {
-  margin: 0;
+.tap__count {
   font-family: var(--font-display);
-  font-size: var(--step-3);
   font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+.tap__what {
+  margin: 0;
+  font-size: var(--step-2);
+  font-weight: 600;
+  line-height: 1.25;
   text-wrap: balance;
 }
-.clubs__lead { max-width: 440px; }
+.tap__after { max-width: 52ch; color: var(--text-secondary); }
 
-/* Verweis aufs Vereinsangebot: abgesetzt unter der Liste, eine Zeile mit
-   Link, damit er den Live-Ticker-Abschnitt nicht übertönt. */
+/* Vereine: das eine dunkle Feld der Seite, über die volle Breite. */
+.clubs {
+  margin-top: var(--section);
+  padding-block: var(--section);
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+.clubs .h2 { color: var(--text-on-dark); }
+.clubs__inner { display: grid; gap: 40px; }
+.clubs__copy { display: grid; gap: 20px; align-content: start; }
+.clubs__lead { max-width: 52ch; }
+.clubs__points {
+  display: grid;
+  gap: 8px;
+  max-width: 52ch;
+  padding-left: 1.1em;
+  list-style: disc;
+}
+.clubs__points li::marker { color: var(--text-on-dark-muted); }
+.clubs a { color: var(--text-on-dark); }
+.clubs a:hover { color: var(--accent); }
+
 .clubs__offer {
-  margin: 12px 0 0;
-  max-width: 440px;
-  font-size: var(--step-1);
-  line-height: 1.55;
-  color: var(--text-secondary);
+  display: grid;
+  grid-template-columns: minmax(96px, 36%) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
 }
-.clubs__offer a { font-weight: 600; white-space: nowrap; }
+.clubs__offer p { color: var(--text-on-dark-muted); }
+.clubs__flyer { display: block; line-height: 0; transition: opacity 0.18s ease; }
+.clubs__flyer:hover { opacity: 0.88; }
+.clubs__flyer img { width: 100%; height: auto; }
 
-.dashlist {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding-top: 4px;
-}
-.dashlist li {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  font-size: var(--step-1);
-  line-height: 1.5;
-  color: var(--text-secondary);
-}
-/* Kleines Quadrat statt Gedankenstrich: Dekoration, wird nicht vorgelesen. */
-.dashlist li::before {
-  content: "";
-  flex: none;
-  width: 6px;
-  height: 6px;
-  margin-top: 0.62em;
-  background: var(--text-muted);
-}
-
-/* Ticker-Attrappe: zeigt, was Zuschauer sehen, ohne echte Daten zu behaupten.
-   Sie steht auf --bg-alt, die Karten sind deshalb die hellste Tonstufe. */
+/* Ticker-Ansicht im Browser, als Beispiel mit erfundenen Namen. Eigene
+   Flächen wie in der echten Ansicht; Führung in heller Schrift, der Rest
+   gedämpft, der Aufschlag als grüner Punkt wie im echten Ticker. */
 .ticker {
-  flex: 0 1 400px;
-  min-width: 280px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.ticker__card {
-  background: var(--surface);
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  padding: 8px;
+  background: var(--surface-dark);
   border-radius: var(--radius);
-  padding: 20px 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  font-variant-numeric: tabular-nums;
 }
 .ticker__head {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: baseline;
   gap: 12px;
-}
-.ticker__label {
-  font-family: var(--font-body);
+  padding: 12px 12px 8px;
   font-size: var(--step-0);
-  color: var(--text-muted);
+  color: var(--text-on-dark-muted);
 }
-.ticker__live {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-display);
-  font-size: var(--step-0);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text);
-}
-.ticker__live .livedot { width: 6px; height: 6px; }
-
-.ticker__rows { display: flex; flex-direction: column; gap: 10px; }
-.ticker__row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.ticker__name {
-  flex: 1;
-  font-family: var(--font-body);
-  font-size: var(--step-1);
-  font-weight: 600;
-}
-.ticker__set {
-  font-size: var(--step-0);
-  color: var(--text-secondary);
-}
-.ticker__points {
-  width: 44px;
-  text-align: center;
+.ticker__team { white-space: nowrap; }
+.ticker__team b {
   font-family: var(--font-display);
   font-size: var(--step-2);
   font-weight: 700;
+  color: var(--text-on-dark);
 }
-/* Die zweite Zeile ist der Gegner: gedimmt, damit die Führung ablesbar ist. */
-.ticker__row--away .ticker__name,
-.ticker__row--away .ticker__set { color: var(--text-muted); }
-.ticker__row--home .ticker__points { color: var(--text); }
-.ticker__row--away .ticker__points { color: var(--text-muted); }
-
-/* Trennung über Abstand statt Linie. */
-.ticker__rule { height: 0; }
-
-.ticker__second {
-  background: var(--surface);
-  border-radius: var(--radius);
-  padding: 16px 22px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  opacity: 0.75;
-}
-.ticker__second .ticker__name { color: var(--text-muted); font-size: var(--step-0); }
-.ticker__score {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: var(--step-0);
-  color: var(--text-secondary);
-}
-.ticker__score .livedot { width: 6px; height: 6px; }
-
-/* ── Uhren-Teaser ─────────────────────────────────────────────────────────
-   Nur ein Anreißer, die drei Empfehlungen stehen auf der Unterseite. Drei
-   kleine Karten, damit die Namen schon hier stehen, ohne dass die Startseite
-   die Affiliate-Sektion trägt.
-   ───────────────────────────────────────────────────────────────────────── */
-.teaser { padding-block: 72px; }
-
-.teaser__head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
-.teaser__note-row {
-  margin: 18px 0 0;
-  max-width: 65ch;
-  font-size: var(--step-0);
-  line-height: 1.55;
-  color: var(--text-secondary);
-}
-
-.teaser__grid {
+.ticker__match {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 14px;
-  margin-top: 32px;
-}
-
-.teaser__card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: var(--bg-alt);
-  border-radius: var(--radius);
-  padding: 14px 16px;
-  color: inherit;
-  text-decoration: none;
-  transition: background-color 0.18s ease;
-}
-.teaser__card:hover {
-  background: var(--bg-deep);
-  color: inherit;
-}
-.teaser__card img {
-  width: 56px;
-  height: 56px;
+  gap: 2px;
+  padding: 12px;
+  background: var(--bg-dark);
   border-radius: calc(var(--radius) - 6px);
-  object-fit: cover;
-  flex: none;
 }
-/* Name und Label sind spans: ohne block laufen sie in eine Zeile. */
-.teaser__card > span { min-width: 0; }
-.teaser__name {
-  display: block;
+.ticker__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+  font-size: var(--step-0);
+  color: var(--text-on-dark-muted);
+}
+.ticker__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1.4em 1.4em 2.4em;
+  align-items: center;
+  column-gap: 6px;
+  color: var(--text-on-dark-muted);
+}
+.ticker__row.is-lead { color: var(--text-on-dark); }
+.ticker__name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 600;
+}
+.ticker__serve {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-left: 6px;
+  vertical-align: 0.15em;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.ticker__set,
+.ticker__pts {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.5;
+}
+.ticker__pts {
+  border-radius: 8px;
+  background: var(--surface-dark);
+}
+.ticker__match--done .ticker__pts { background: none; }
+
+/* Padel: ein Satz und die kleine Tafel, die bei 40:40 mit Golden Point
+   steht. Die Tafel bleibt unter 640px breit und damit einspaltig. */
+.padel {
+  display: grid;
+  gap: 32px;
+  padding-top: var(--section);
+}
+.padel__copy { display: grid; gap: 16px; align-content: center; justify-items: start; }
+.padel__lead { max-width: 44ch; }
+.padel__board { min-width: 0; max-width: 560px; }
+
+/* Uhren: eigene Fotos, quadratisch und groß, als schlichte Liste. */
+.watches { padding-top: var(--section); }
+.watches__head {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.watches__lede { max-width: 44ch; margin-top: 16px; }
+.watches__links { display: flex; flex-wrap: wrap; column-gap: 28px; }
+.watches__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px var(--gap);
+}
+.watches__item {
+  display: grid;
+  gap: 4px;
+  color: var(--text);
+  text-decoration: none;
+}
+.watches__item img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  margin-bottom: 10px;
+  background: var(--bg-alt);
+  transition: opacity 0.18s ease;
+}
+.watches__item:hover img { opacity: 0.9; }
+.watches__name {
   font-size: var(--step-1);
   font-weight: 600;
   line-height: 1.3;
 }
-.teaser__note {
-  display: block;
-  font-size: var(--step-0);
-  color: var(--text-muted);
-  margin-top: 3px;
-}
+.watches__item:hover .watches__name { text-decoration: underline; text-underline-offset: 0.2em; }
+.watches__note { font-size: var(--step-0); color: var(--text-secondary); }
 
-/* ── CTA ────────────────────────────────────────────────────────────────── */
-.cta { padding: 0 var(--gutter) 80px; }
-.cta__inner {
-  max-width: calc(var(--shell) - var(--gutter) * 2);
-  margin-inline: auto;
-  background: var(--accent);
-  border-radius: var(--radius);
-  padding: 52px var(--gutter);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
+/* Fragen: Lesetext, auf breiten Schirmen in zwei Spalten. */
+.faq { padding-top: var(--section); }
+.faq > .h2 { margin-bottom: 40px; }
+
+/* Schluss: der eine zentrierte Moment der Seite. */
+.close {
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  padding-top: var(--section);
+  padding-bottom: clamp(72px, 7vw, 112px);
   text-align: center;
 }
-.cta__title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: var(--step-3);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: var(--on-accent);
-}
-.cta__lede {
-  font-size: var(--step-1);
-  color: var(--on-accent);
-  max-width: 400px;
+.close__lede { font-size: var(--step-2); line-height: 1.4; max-width: 30ch; }
+.close .storebadges { margin-top: 8px; }
+.close__hint {
+  max-width: 65ch;
+  font-size: var(--step-0);
+  color: var(--text-secondary);
   text-wrap: pretty;
 }
 
-/* Der offizielle Play-Badge. Google verbietet Umfärben, Zuschneiden und
-   zusätzlichen Text, deshalb liegt er unverändert im PNG mit eigener
-   Schutzzone. Die Höhe steuert die Größe, das Seitenverhältnis bleibt. */
-.cta__hint {
-  font-size: var(--step-0);
-  color: var(--on-accent);
+/* ── Fragen und Antworten (alle Seiten) ────────────────────────────────────
+   Frage als h3, Antwort als Absatz in voller Tinte. Keine Kästen, kein
+   Aufklappen: der Abstand trennt die Paare. */
+.faq__list { display: grid; gap: 32px; }
+.faq__item { break-inside: avoid; }
+.faq__q {
+  font-size: var(--step-1);
+  font-weight: 600;
+  line-height: 1.3;
+  text-wrap: balance;
 }
-.cta__hint a { color: var(--on-accent); }
+.faq__a {
+  max-width: 65ch;
+  margin-top: 8px;
+  font-size: var(--step-1);
+  line-height: 1.6;
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+/* ── Store-Badges ─────────────────────────────────────────────────────────
+   Apple und Google in Originalgestalt, beide 48px hoch, damit sie auch als
+   Touch-Ziel reichen. Untereinander auf dem Telefon, sonst nebeneinander. */
+.storebadges {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.storebadge { display: inline-block; line-height: 0; }
+.storebadge img { height: 48px; width: auto; }
+.storebadge__apple { height: 48px; width: auto; display: block; }
 
 /* ── Footer ───────────────────────────────────────────────────────────────
-   Abgesetzt über die Tonstufe, nicht über eine Linie. */
-.footer {
-  background: var(--bg-alt);
-}
+   Abgesetzt über die Tonstufe. Oben die Links, unten der Name über die ganze
+   Breite als Schluss jeder Seite. */
+.footer { background: var(--bg-alt); }
 .footer__inner {
   max-width: var(--shell);
   margin-inline: auto;
-  padding: 24px var(--gutter);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.footer__claim {
-  font-size: var(--step-0);
-  color: var(--text-muted);
+  padding: 40px var(--gutter) var(--gutter);
+  display: grid;
+  gap: 16px;
 }
 .footer__links {
   display: flex;
-  gap: 20px;
   flex-wrap: wrap;
+  column-gap: 22px;
   font-size: var(--step-0);
 }
 .footer__links a {
-  color: var(--text-muted);
-  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, currentColor 40%, transparent);
+  text-underline-offset: 0.22em;
 }
-.footer__links a:hover { color: var(--text); text-decoration: underline; }
+.footer__links a:hover { color: var(--text); text-decoration-color: currentColor; }
+.footer__claim { font-size: var(--step-0); color: var(--text-secondary); }
+.footer__mark {
+  width: 100%;
+  height: auto;
+  margin-top: clamp(24px, 4vw, 56px);
+  fill: var(--text);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
 
-/* ── Unterseite: Uhren ────────────────────────────────────────────────────
-   Eigene Seite, deshalb ein eigener Kopf statt der Hero-Sektion.
+/* ── Unterseiten ──────────────────────────────────────────────────────────
+   Kopf und Lesespalte stehen gemeinsam zentriert in --column, damit Titel,
+   Absätze und Tabellen eine linke Kante teilen.
    ───────────────────────────────────────────────────────────────────────── */
 .subhead {
-  padding: 48px var(--gutter) 40px;
-  max-width: var(--shell);
+  max-width: calc(var(--column) + 2 * var(--gutter));
   margin-inline: auto;
+  padding: 32px var(--gutter) 40px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 16px;
 }
 .subhead__title {
-  margin: 0;
   max-width: 18ch;
   font-family: var(--font-display);
   font-size: var(--step-3);
@@ -916,18 +778,22 @@ a:hover { color: var(--accent-text); }
 }
 .subhead .lead { font-size: var(--step-2); line-height: 1.45; }
 
+/* Zurück zur Startseite: unterstrichen, damit er ohne Pfeil als Link lesbar
+   ist, und 44px hoch für den Daumen. */
 .back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-size: var(--step-0);
-  color: var(--text-muted);
-  text-decoration: none;
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
 }
 .back:hover { color: var(--text); }
 
-/* Seit der Apple Watch sind es vier Karten. In die Inhaltsspalte (--shell)
-   passen sie ab 1000px nebeneinander, darunter bricht auto-fit sie auf zwei
-   und schließlich auf eine Spalte um. Das quadratische Foto bestimmt die
-   Kartenhöhe, deshalb ist die Spalte nach oben begrenzt: ohne die Schranke
-   würden zwei Karten auf breiten Schirmen riesige Bilder bekommen. */
+/* Uhrenseite: vier Karten. In die Inhaltsspalte passen sie ab 1000px
+   nebeneinander, darunter bricht auto-fit sie auf zwei und eine Spalte um.
+   Die Spalte ist nach oben begrenzt, sonst würden die Fotos riesig. */
 .watchcards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 300px));
@@ -938,9 +804,8 @@ a:hover { color: var(--accent-text); }
   padding-inline: var(--gutter);
 }
 @media (min-width: 1000px) {
-  .watchcards { grid-template-columns: repeat(4, 1fr); }
+  .watchcards { grid-template-columns: repeat(4, minmax(0, 300px)); }
 }
-
 .watchcard {
   display: flex;
   flex-direction: column;
@@ -949,386 +814,50 @@ a:hover { color: var(--accent-text); }
   border-radius: var(--radius);
   padding: 20px;
 }
-/* Feste Maße, damit die Reihe beim Nachladen der Bilder nicht springt. */
 .watchcard__shot {
   aspect-ratio: 1;
   border-radius: calc(var(--radius) - 4px);
   overflow: hidden;
   background: var(--surface);
 }
-.watchcard__shot img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.watchcard h2 {
-  margin: 0;
-  font-size: var(--step-2);
-  font-weight: 600;
-  line-height: 1.25;
-}
+.watchcard__shot img { width: 100%; height: 100%; object-fit: cover; }
+.watchcard h2 { font-size: var(--step-2); font-weight: 600; line-height: 1.25; }
 .watchcard p {
   font-size: var(--step-1);
   line-height: 1.55;
-  color: var(--text-secondary);
+  color: var(--text);
   text-wrap: pretty;
   flex: 1;
 }
-.watchcard .btn {
-  align-self: flex-start;
-  font-size: var(--step-1);
-  padding: 11px 22px;
-}
+.watchcard .btn { align-self: flex-start; font-size: var(--step-1); padding: 10px 22px; }
 
 /* Amazon verlangt einen deutlich sichtbaren Hinweis. Er steht nach den Karten,
    auf die er sich bezieht, klein, aber in lesbarer Textfarbe. */
 .disclosure {
-  max-width: var(--shell);
+  max-width: calc(65ch + 2 * var(--gutter));
   margin: 32px auto 0;
   padding: 0 var(--gutter) 72px;
   font-size: var(--step-0);
-  color: var(--text-muted);
-}
-
-/* ── Padel ────────────────────────────────────────────────────────────────
-   Beantwortet die eine Frage, die ein Padel-Spieler an eine Tennis-App
-   stellt: zählt die überhaupt richtig? Deshalb steht die Sektion direkt
-   hinter den Spielregeln und vor den Vereinen.
-
-   Sie liegt zwischen zwei Nachbarn: die Schritte darüber sind hell, die
-   Vereine darunter abgesetzt. Statt einer dritten Flächenfarbe oder einer
-   Linie trennt der Abstand, und die Karten tragen die Tonstufe.
-   ───────────────────────────────────────────────────────────────────────── */
-.padel {
-  padding-block: 64px;
-}
-.padel__inner {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  align-items: center;
-}
-.padel__copy {
-  flex: 1 1 340px;
-  min-width: 0;
-}
-.padel__title {
-  margin: 10px 0 0;
-  font-family: var(--font-display);
-  font-size: var(--step-3);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  line-height: 1;
-}
-.padel__lead { margin-top: 14px; }
-
-/* Die drei Belege. Keine Liste mit Punkten, sondern Karten: jede trägt eine
-   eigene Aussage und soll einzeln lesbar sein. */
-.padel__facts {
-  flex: 1 1 300px;
-  min-width: 0;
-  display: grid;
-  gap: 12px;
-}
-.padel__fact {
-  background: var(--bg-alt);
-  border-radius: var(--radius);
-  padding: 16px 20px;
-}
-.padel__fact dt {
-  font-size: var(--step-0);
-  font-weight: 600;
-  color: var(--text-muted);
-}
-.padel__fact dd {
-  margin: 6px 0 0;
-  font-size: var(--step-1);
-  line-height: 1.5;
   color: var(--text-secondary);
-  text-wrap: pretty;
 }
 
-/* Die Zählweise als Beleg: dieselben Werte wie im Tennis, deshalb tabellarisch
-   gesetzt, damit sie wie eine Anzeige gelesen wird. */
-.padel__count {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 8px;
-  font-family: var(--font-display);
-  font-variant-numeric: tabular-nums;
-  font-size: var(--step-1);
-  font-weight: 600;
-  color: var(--text);
-}
-.padel__count span::after {
-  content: "·";
-  margin-left: 8px;
-  color: var(--text-muted);
-  font-weight: 400;
-}
-.padel__count span:last-child::after { content: none; }
-
-/* ── iOS ──────────────────────────────────────────────────────────────────
-   Zwei Spalten wie bei Verein und Padel: links der Text mit drei Fakten,
-   rechts dieselbe Screenshot-Reihe wie im Hero, nur mit der Apple Watch
-   statt der Wear-OS-Uhr. Abgesetzter Grund, damit die Sektion zwischen dem
-   dunklen Uhren-Teaser und dem grünen Schlussaufruf Luft lässt.
-   ───────────────────────────────────────────────────────────────────────── */
-.ios {
-  padding-block: 64px;
-  background: var(--bg-alt);
-}
-.ios__inner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 48px;
-}
-.ios__copy { flex: 1 1 380px; min-width: 300px; }
-
-.ios__title {
-  margin: 10px 0 0;
-  font-family: var(--font-display);
-  font-size: var(--step-3);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  line-height: 1;
-}
-.ios__lede {
-  margin-top: 14px;
-  max-width: 52ch;
-}
-
-/* Vier Fakten als Definitionsliste, gleiche Machart wie die Padel-Fakten. */
-.ios__facts {
-  margin: 28px 0 0;
-  display: grid;
-  gap: 18px;
-}
-.ios__fact dt {
-  font-family: var(--font-display);
-  font-size: var(--step-2);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-.ios__fact dd {
-  margin: 4px 0 0;
-  max-width: 65ch;
-  color: var(--text-muted);
-  font-size: var(--step-1);
-  line-height: 1.6;
-}
-
-/* Dieselbe Reihe wie im Hero. Die Maße stehen dort schon an .phone, hier
-   braucht es nur die Bühne darum. */
-.ios__shots {
-  flex: 0 1 520px;
-  min-width: 340px;
-  position: relative;
-  height: 460px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-/* Die Apple Watch ist ein rechteckiger Screenshot mit eigenem Gehäuse, kein
-   freigestellter Render wie die runde Uhr im Hero. */
-.watchshot--apple { height: 210px; }
-
-/* ── Store-Badges ─────────────────────────────────────────────────────────
-   Apple und Google nebeneinander, beide in Originalgestalt. Apples Badge ist
-   Inline-SVG und skaliert deshalb verlustfrei; Googles PNG bringt seinen
-   Freiraum selbst mit, deshalb die etwas größere Höhe, damit beide optisch
-   gleich groß wirken. */
-.storebadges {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-.storebadge { display: inline-block; line-height: 0; }
-/* Beide offiziellen Badges stehen auf 40px. Den transparenten Rand der
-   Google-PNGs haben wir abgeschnitten (er war je Sprache verschieden groß),
-   den Freiraum zwischen den Badges gibt jetzt gap. */
-.storebadge img { height: 40px; width: auto; }
-.storebadge__apple {
-  height: 40px;
-  width: auto;
-  display: block;
-}
-
-/* ── Responsive ─────────────────────────────────────────────────────────── */
-
-/* Unter 900px hat die Reihe keinen Platz mehr: die Telefone stellen sich
-   gerade nebeneinander, die Uhr rückt aus der Überlappung in die Reihe, der
-   Hero wird einspaltig. */
-@media (max-width: 900px) {
-  .hero {
-    grid-template-columns: minmax(0, 1fr);
-    padding-bottom: 56px;
-  }
-  .hero__shots {
-    grid-column: 1;
-    grid-row: auto;
-    margin-top: 26px;
-  }
-
-  .hero__shots,
-  .ios__shots {
-    flex: 1 1 100%;
-    min-width: 0;
-    /* Die Reihe braucht ihre feste Höhe nur für die Überlappung. Hier
-       stehen die Geräte in einer normalen Reihe, deshalb bestimmt der Inhalt
-       die Höhe: auto allein genügt nicht, solange die Basisregel 460px
-       vorgibt, also wird sie ausdrücklich zurückgesetzt. */
-    height: auto;
-    min-height: 0;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    align-content: flex-start;
-    justify-content: center;
-    gap: 12px;
-  }
-  .phone--back,
-  .phone--front {
-    position: static;
-    transform: none;
-    width: 150px;
-    height: 318px;
-  }
-  .watchshot {
-    position: static;
-    transform: none;
-    width: auto;
-    height: 190px;
-  }
-  .watchshot--apple { height: 170px; }
-
-  .ios__inner { gap: 32px; }
-}
-
-@media (max-width: 640px) {
-  :root { --gutter: 20px; }
-
-  .nav { padding-block: 18px; }
-  /* Der CTA im Kopf weicht dem Logo, der Download steht ohnehin im Hero. */
-  .nav__cta { display: none; }
-
-  .hero { padding-top: 24px; gap: 22px; }
-
-  .benefits, .clubs { padding-block: 48px; }
-  .steps, .teaser    { padding-block: 48px; }
-
-  .clubs__inner { gap: 32px; }
-
-  .cta__inner { padding: 40px 24px; }
-
-  .ios { padding-block: 48px; }
-
-  /* Untereinander haben beide Badges die volle Breite und bleiben gleich
-     groß; nebeneinander würden sie auf schmalen Schirmen schrumpfen. */
-  .storebadges { flex-direction: column; gap: 10px; }
-
-  .footer__inner { justify-content: flex-start; }
-
-  /* Auf schmalen Schirmen passen zwei Telefone nebeneinander, das dritte
-     würde auf Briefmarkengröße schrumpfen. */
-  .phone--right { display: none; }
-}
-
-/* ── FAQ ────────────────────────────────────────────────────────────────────
-   Native <details>: aufklappen ohne JavaScript, der Browser kümmert sich um
-   Tastatur und Screenreader. Das Plus/Minus ist ein ::after auf der Summary,
-   der Standardpfeil wird ausgeblendet. Die Einträge sind Tonflächen, keine
-   Rahmen. */
-.faq {
-  padding-block: 64px;
-}
-.faq__inner {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  align-items: flex-start;
-}
-.faq__head { flex: 0 1 280px; }
-.faq__lead { margin: 14px 0 0; }
-.faq__list {
-  flex: 1 1 520px;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.faq__item {
-  background: var(--bg-alt);
-  border-radius: var(--radius);
-}
-.faq__q {
-  list-style: none;
-  cursor: pointer;
-  padding: 16px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-  font-family: var(--font-display);
-  font-size: var(--step-2);
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  line-height: 1.15;
-}
-.faq__q::-webkit-details-marker { display: none; }
-.faq__q::after {
-  content: "+";
-  flex: none;
-  font-size: var(--step-1);
-  color: var(--text-muted);
-}
-.faq__item[open] .faq__q::after { content: "\2013"; }
-.faq__q:focus-visible {
-  outline: 2px solid var(--accent-text);
-  outline-offset: 2px;
-  border-radius: var(--radius);
-}
-.faq__a {
-  max-width: 65ch;
-  padding: 0 20px 18px;
-  font-size: var(--step-1);
-  line-height: 1.6;
-  color: var(--text-secondary);
-  text-wrap: pretty;
-}
-.faq__a p { margin: 0; }
-
-@media (max-width: 640px) {
-  .faq { padding-block: 48px; }
-  .faq__q { padding: 14px 16px; }
-  .faq__a { padding: 0 16px 16px; }
-}
-
-/* ── Kompatibilität ─────────────────────────────────────────────────────────
-   Nachschlageseite: eine Regel, dann Tabellen je Hersteller. Schmale Spalte
-   wie der Lead im Subhead, damit Zeilen lesbar bleiben. */
+/* Lesespalte für Kompatibilität, Vereine und die Regelseiten: eine Regel,
+   dann Abschnitte. Der abgesetzte Grund läuft über die volle Breite, ohne
+   Wrapper im Markup: der Umriss malt die Fläche links und rechts neben der
+   Spalte, clip-path schneidet ihn oben und unten ab. */
 .compat {
-  max-width: 760px;
+  max-width: calc(var(--column) + 2 * var(--gutter));
   margin-inline: auto;
   padding: 48px var(--gutter) 72px;
   display: flex;
   flex-direction: column;
   gap: 40px;
-  /* Abgesetzter Grund über die volle Breite, ohne Wrapper im Markup: der
-     Umriss malt die Fläche links und rechts neben der Spalte, clip-path
-     schneidet ihn oben und unten ab und verhindert horizontales Scrollen. */
   background: var(--bg-alt);
   outline: 100vmax solid var(--bg-alt);
   clip-path: inset(0 -100vmax);
 }
-.compat__section h2 {
+.compat__section h2,
+.compat__cta h2 {
   margin: 0 0 10px;
   font-family: var(--font-display);
   font-size: var(--step-2);
@@ -1343,7 +872,7 @@ a:hover { color: var(--accent-text); }
   max-width: 65ch;
   font-size: var(--step-1);
   line-height: 1.6;
-  color: var(--text-secondary);
+  color: var(--text);
   text-wrap: pretty;
 }
 /* Tabelle: Streifen statt Linien. Die Kopfzeile ist die dunklere Stufe, jede
@@ -1358,28 +887,27 @@ a:hover { color: var(--accent-text); }
   overflow: hidden;
 }
 .compat__table th,
-.compat__table td {
-  padding: 10px 14px;
-  text-align: left;
-}
+.compat__table td { padding: 10px 14px; text-align: left; }
 .compat__table th {
   font-size: var(--step-0);
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   background: var(--bg-deep);
 }
 .compat__table tbody tr:nth-child(even) td { background: var(--bg); }
-.compat__table td:last-child { font-family: var(--font-display); font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.compat__list {
-  padding-left: 20px;
-  display: grid;
-  gap: 8px;
+.compat__table td:last-child {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
+.compat__list { padding-left: 20px; display: grid; gap: 8px; list-style: disc; }
 .compat__list strong { color: var(--text); font-weight: 600; }
 .compat__list + p { margin-top: 12px; }
+.compat__section .faq__q { font-size: var(--step-1); }
+
 /* Hinweis auf eine verwandte Seite mitten im Text, etwa auf der deutschen
-   Tennis-Seite der ITN-Rechner. Helle Karte auf dem abgesetzten Grund, damit
-   er als Einschub und nicht als weiterer Abschnitt gelesen wird. */
+   Tennis-Seite der ITN-Rechner. Helle Fläche auf dem abgesetzten Grund. */
 .pagetip {
   display: grid;
   gap: 8px;
@@ -1391,13 +919,9 @@ a:hover { color: var(--accent-text); }
   max-width: 65ch;
   font-size: var(--step-1);
   line-height: 1.6;
-  color: var(--text-secondary);
   text-wrap: pretty;
 }
-.pagetip__link {
-  justify-self: start;
-  font-weight: 600;
-}
+.pagetip__link { justify-self: start; font-weight: 600; }
 
 .compat__cta {
   display: flex;
@@ -1406,29 +930,22 @@ a:hover { color: var(--accent-text); }
   align-items: flex-end;
   padding-top: 24px;
 }
-.compat__cta .eyebrow { margin: 16px 0 10px; }
-.compat__cta .back { display: inline-block; padding-bottom: 12px; }
-/* Auf den Regelseiten stehen die Store-Badges linksbündig unter dem Eyebrow. */
-.compat__cta .storebadges { justify-content: flex-start; padding-bottom: 8px; }
+.compat__cta .storebadges { align-items: flex-start; padding-bottom: 8px; }
 
-/* ── Vereinsangebot ─────────────────────────────────────────────────────────
-   Nutzt die Kompatibilitäts-Spalte (.compat) und ergänzt nur drei Teile:
-   die nummerierten Schritte, die Flyer-Vorschau neben ihrem Text und den
-   Mail-Aufruf am Ende. */
+/* Vereinsangebot: drei Schritte in Reihenfolge, die Flyer-Vorschau neben
+   ihrem Text und die Anfrage am Ende. */
 .clubsteps {
-  list-style: none;
   margin: 16px 0 0;
   padding: 0;
+  list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 24px;
 }
 .clubsteps__item { display: flex; flex-direction: column; gap: 6px; }
-.clubsteps__item .step__num,
-.clubsteps__item .step__body { margin: 0; }
+.step__title { font-size: var(--step-2); font-weight: 600; line-height: 1.25; }
+.step__body { font-size: var(--step-1); line-height: 1.55; text-wrap: pretty; }
 
-/* Vorschau links, Text rechts; schmal untereinander. Das Bild ist zugleich
-   der Link aufs PDF; es steht ohne Rahmen und Schatten auf dem Grund. */
 .clubflyer {
   display: flex;
   flex-wrap: wrap;
@@ -1439,35 +956,109 @@ a:hover { color: var(--accent-text); }
 .clubflyer h2 { margin-bottom: 0; }
 .clubflyer__shot {
   flex: 0 0 auto;
-  width: 240px;
+  width: min(70vw, 240px);
   line-height: 0;
-  border-radius: var(--radius);
-  overflow: hidden;
   transition: opacity 0.18s ease;
 }
 .clubflyer__shot:hover { opacity: 0.9; }
 .clubflyer__shot img { width: 100%; height: auto; }
 .clubflyer__dl a { font-weight: 600; }
-.clubflyer__dl .mono {
-  margin-left: 8px;
-  font-size: var(--step-0);
-  color: var(--text-muted);
-}
+.clubflyer__size { margin-left: 6px; font-size: var(--step-0); color: var(--text-secondary); }
 
 .clubask .btn { margin-top: 2px; }
-.clubask__alt {
-  margin: 12px 0 0;
-  font-size: var(--step-0);
-  color: var(--text-muted);
+.clubask__alt { margin: 12px 0 0; font-size: var(--step-0); color: var(--text-secondary); }
+
+/* ── Eintritt beim Scrollen ────────────────────────────────────────────────
+   Nur wenn script.js läuft: Es setzt .rv an die Teile jeder Sektion, die noch
+   unter dem Rand liegen, und .rv-in, sobald die Sektion ins Bild kommt. Ohne
+   Skript bleibt alles sichtbar; wer weniger Bewegung will, bekommt keine
+   Klassen. Nur Transform und Opacity, einmal, unter 400ms. */
+.rv {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.rv.rv-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.36s ease-out, transform 0.36s var(--ease-out);
+  transition-delay: var(--rv-delay, 0ms);
 }
 
-@media (max-width: 640px) {
-  .clubflyer__shot { width: min(70vw, 260px); }
+/* ── Breitere Schirme ───────────────────────────────────────────────────── */
+@media (min-width: 640px) {
+  .nav { padding-block: 14px; }
+  .nav__cta { display: inline-flex; }
+  .storebadges { flex-direction: row; justify-content: center; }
+  .watches__head { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
+  .watches__links { flex-direction: column; align-items: flex-end; }
+  .clubs__offer { grid-template-columns: 160px minmax(0, 1fr); }
 }
 
-@media (max-width: 640px) {
-  .compat { padding-top: 32px; padding-bottom: 56px; }
-  .compat__table th:nth-child(2),
-  .compat__table td:nth-child(2) { display: none; } /* Jahr weglassen, Modell und Wear OS reichen */
-  .compat__table th, .compat__table td { padding: 9px 12px; }
+@media (min-width: 640px) and (max-width: 999px) {
+  /* Tablet: Satz links, Aktion rechts daneben, die Tafel darunter. */
+  .hero__copy {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: var(--gap);
+    align-items: start;
+  }
+  .hero__lede { grid-row: span 2; }
+  .tap__intro { grid-template-columns: minmax(0, 1fr) 180px; column-gap: var(--gap); }
+  .tap__intro .h2, .tap__lede { grid-column: 1; }
+  .tap__watch { display: block; grid-column: 2; grid-row: 1 / span 2; width: 180px; height: auto; }
+}
+
+@media (min-width: 1000px) {
+  .hero {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap);
+    row-gap: 40px;
+    padding-top: 24px;
+  }
+  .hero__title { grid-column: 1 / -1; }
+  .hero__copy { grid-column: 1 / span 4; gap: 24px; }
+  .hero__lede { font-size: var(--step-2); line-height: 1.45; }
+  .hero__watch {
+    display: block;
+    width: auto;
+    height: clamp(180px, 16vw, 240px);
+    margin-top: 16px;
+  }
+  .hero__board { grid-column: 5 / -1; margin-top: 0; }
+
+  .tap {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap);
+    row-gap: 40px;
+  }
+  .tap__intro { grid-column: 1 / span 4; grid-row: 1 / span 2; }
+  .tap__watch { display: block; width: min(100%, 300px); height: auto; margin-top: 24px; }
+  .tap__codes { grid-column: 6 / -1; gap: 18px; }
+  .tap__after { grid-column: 6 / -1; }
+  .tap__what { font-size: var(--step-2); }
+
+  .clubs__inner {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap);
+    row-gap: 48px;
+  }
+  .clubs__copy { grid-column: 1 / span 5; }
+  .clubs__offer { grid-column: 1 / span 5; grid-template-columns: 180px minmax(0, 1fr); }
+  .ticker { grid-column: 7 / -1; grid-row: 1 / span 2; align-self: start; padding: 10px; }
+  .ticker__match { padding: 16px 18px; }
+  .ticker__row { grid-template-columns: minmax(0, 1fr) 1.6em 1.6em 2.6em; }
+
+  .padel {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-areas: "board board board board board board . copy copy copy copy copy";
+    column-gap: var(--gap);
+    align-items: center;
+  }
+  .padel__copy { grid-area: copy; }
+  .padel__board { grid-area: board; }
+
+  .watches__list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+  .faq__q { font-size: var(--step-2); }
+  .faq .faq__list { display: block; columns: 2; column-gap: calc(var(--gap) * 2); }
+  .faq .faq__item { margin-bottom: 40px; }
 }

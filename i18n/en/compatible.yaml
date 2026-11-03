@@ -9,7 +9,6 @@ meta:
 breadcrumb: Compatible watches
 llms: Compatible watches (full model list)
 
-eyebrow: Apple Watch and Wear OS
 title: Compatible watches
 lead: >-
   Kortscore runs on every Apple Watch on watchOS 26 or newer paired with an
@@ -97,7 +96,7 @@ faq:
         watch. A fully charged watch gets you through a whole league day.
 
 cta:
-  fits: Watch compatible
+  fits: Is your watch on the list?
   download: Get the app
   no_watch: No watch yet?
   picks: Four watches for the court

@@ -17,6 +17,8 @@ langbar:
   close: No thanks
 
 footer:
+  # aria-label der Linkleiste im Footer
+  nav: More pages
   claim: "Kortscore: tennis and padel scoring on your wrist"
   home: Home
   compatible: Compatible watches

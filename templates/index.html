@@ -1,8 +1,14 @@
 {% extends "base.html" %}
 {% from "partials/faq.html" import faq_list %}
+{% from "partials/scoreboard.html" import scoreboard %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ static('scoreboard.css') }}">
+<script type="module" src="{{ static('scoreboard.js') }}"></script>
+{% endblock %}
 
 {% block jsonld %}
-<!-- FAQPage: generated from the same list as the FAQ section further down. -->
+<!-- FAQPage: generated from the same list as the questions further down. -->
 {{ jsonld(faq_page(t.faq.questions)) }}
 <!-- Structured data for search and AI engines: what Kortscore is, who makes it,
      where to get it. Texts come from i18n/<lang>/index.yaml (app). -->
@@ -48,296 +54,181 @@
 {% endblock %}
 
 {% block main %}
-<!-- ── Hero ─────────────────────────────────────────────────────────────── -->
 <main id="top">
-<section class="hero">
+{# Die Seite ist ein Argument in sieben Schritten: was es ist (Hero mit der
+   Tafel zum Selbstzählen), wie man zählt (Tap-Code), was der Verein davon
+   hat (Live-Ticker), dass Padel genauso geht, auf welcher Uhr, die offenen
+   Fragen, und wo man die App bekommt. #}
+
+<!-- ── Hero ─────────────────────────────────────────────────────────────────
+     The scoreboard is the picture: visitors count a real game with the same
+     tap code the watch uses. Without JavaScript it shows a fixed score and
+     the legend. The watch render sits under the action on wide screens.
+     data-ui marks the board as a working interface with its own type. -->
+<section class="hero shell">
+  <h1 class="hero__title">{{ t.hero.title }}</h1>
   <div class="hero__copy">
-    <p class="eyebrow">{{ t.hero.eyebrow }}</p>
-    <h1 class="hero__title">{{ t.hero.title }}</h1>
-    <p class="hero__lede">
-      {{ t.hero.lede }}
-    </p>
-    <div class="hero__actions">
-      <a class="btn btn--accent" href="#get">{{ t.hero.cta }}</a>
-      <span class="hero__meta">{{ t.hero.platforms }}</span>
-    </div>
+    <p class="hero__lede">{{ t.hero.lede }}</p>
+    <a class="btn btn--accent hero__cta" href="#get">{{ t.hero.cta }}</a>
+    <p class="hero__meta">{{ t.hero.platforms }}</p>
+    <img class="hero__watch" src="{{ asset('watch-render.png') }}" width="292" height="338"
+         loading="eager" decoding="async" alt="{{ t.hero.watch_alt|inattr }}">
   </div>
-
-  <!-- The three phones and the watch are the app itself, so they carry real
-       screenshots rather than a device mock. Widths and heights are set so the
-       row keeps its place while the images arrive. -->
-  <div class="hero__shots">
-    <div class="phone phone--back phone--left">
-      <img src="{{ asset(lasset('shot-play')) }}" width="168" height="356"
-           loading="eager" decoding="async"
-           alt="{{ t.hero.alt.play|inattr }}">
-    </div>
-    <div class="phone phone--front">
-      <img src="{{ asset(lasset('shot-live')) }}" width="180" height="382"
-           loading="eager" decoding="async"
-           alt="{{ t.hero.alt.live|inattr }}">
-    </div>
-    <div class="phone phone--back phone--right">
-      <img src="{{ asset(lasset('shot-stats')) }}" width="168" height="356"
-           loading="lazy" decoding="async"
-           alt="{{ t.hero.alt.stats|inattr }}">
-    </div>
-    <div class="watchshot">
-      <img src="{{ asset('watch-render.png') }}" width="292" height="338"
-           loading="eager" decoding="async"
-           alt="{{ t.hero.alt.watch|inattr }}">
-    </div>
+  <div class="hero__board" data-ui>
+{{ scoreboard(sb, sport="tennis", id="hero")|indent(4, first=True) }}
   </div>
 </section>
 
-<!-- ── Benefits ─────────────────────────────────────────────────────────── -->
-<section class="benefits" id="warum">
-  <div class="shell">
-    <h2 class="section-title">{{ t.benefits.title }}</h2>
-    <div class="benefits__grid">
-      <article class="stat">
-        <p class="stat__num">1×</p>
-        <h3 class="stat__title">{{ t.benefits.tap.title }}</h3>
-        <p class="stat__body">
-          {{ t.benefits.tap.body }}
-        </p>
-      </article>
-      <article class="stat">
-        <p class="stat__num">67%</p>
-        <h3 class="stat__title">{{ t.benefits.stats.title }}</h3>
-        <p class="stat__body">
-          {{ t.benefits.stats.body }}
-        </p>
-      </article>
-      <article class="stat">
-        <p class="stat__live"><span class="livedot"></span>{{ t.benefits.live.label }}</p>
-        <h3 class="stat__title">{{ t.benefits.live.title }}</h3>
-        <p class="stat__body">
-          {{ t.benefits.live.body }}
-        </p>
-      </article>
-      <article class="stat">
-        <p class="stat__num">0&nbsp;€</p>
-        <h3 class="stat__title">{{ t.benefits.free.title }}</h3>
-        <p class="stat__body">
-          {{ t.benefits.free.body }}
-        </p>
-      </article>
-    </div>
+<!-- ── Tap code ─────────────────────────────────────────────────────────────
+     The four tap counts as one list in display type, the Apple Watch beside
+     the intro. A definition list: the count is the term, the action its
+     meaning. -->
+<section class="tap shell" id="tap-code" data-reveal>
+  <div class="tap__intro">
+    <h2 class="h2">{{ t.tap.title }}</h2>
+    <p class="tap__lede">{{ t.tap.lede }}</p>
+    <img class="tap__watch" src="{{ asset('watch-apple.png') }}" width="584" height="696"
+         sizes="(max-width: 640px) 60vw, 300px" loading="lazy" decoding="async"
+         alt="{{ t.tap.watch_alt|inattr }}">
   </div>
+  <dl class="tap__codes">
+{% for text in t.tap.codes %}
+    <div class="tap__row">
+      <dt class="tap__count">{{ loop.index }}×</dt>
+      <dd class="tap__what">{{ text }}</dd>
+    </div>
+{% endfor %}
+  </dl>
+  <p class="tap__after">{{ t.tap.after }}</p>
 </section>
 
-<!-- ── Steps ────────────────────────────────────────────────────────────── -->
-<section class="steps shell" id="so-gehts">
-  <h2 class="section-title">{{ t.steps.title }}</h2>
-  <div class="steps__grid">
-  {% for step in t.steps.list %}
-    <div class="step">
-      <p class="step__num mono">{{ "%02d"|format(loop.index) }}</p>
-      <h3 class="step__title">{{ step.title }}</h3>
-      <p class="step__body">
-        {{ step.body }}
-      </p>
+<!-- ── Clubs ────────────────────────────────────────────────────────────────
+     The one dark field of the page. On the right an example of the spectator
+     view in the browser: sample names and scores, not live data, hence
+     aria-hidden; the paragraph says what it shows. data-ui marks it as an
+     interface fragment with its own surfaces. -->
+<section class="clubs" id="verein">
+  <div class="shell clubs__inner" data-reveal>
+    <div class="clubs__copy">
+      <h2 class="h2">{{ t.clubs.title }}</h2>
+      <p class="clubs__lead">{{ t.clubs.lead }}</p>
+      <ul class="clubs__points">
+{% for point in t.clubs.points %}
+        <li>{{ point }}</li>
+{% endfor %}
+      </ul>
     </div>
-  {% endfor %}
+
+{% set tk = t.clubs.ticker %}
+    <div class="ticker" data-ui aria-hidden="true">
+      <div class="ticker__head">
+        <span>{{ tk.label }}</span>
+        <span class="ticker__team">{{ tk.home }} <b>2 : 1</b> {{ tk.away }}</span>
+      </div>
+{% for m in [
+     {"players": ["M. Berger", "T. Wallner"], "sets": [[6, 5], [4, 5]], "points": ["40", "15"], "serve": 0, "winner": none},
+     {"players": ["L. Huber", "P. Kern"], "sets": [[6, 6], [3, 4]], "points": none, "serve": none, "winner": 0},
+     {"players": ["Steiner / Moser", "Fuchs / Lang"], "sets": [[7, 2], [6, 3]], "points": ["30", "30"], "serve": 1, "winner": none},
+   ] %}
+      <div class="ticker__match{{ ' ticker__match--done' if not m.points }}">
+        <p class="ticker__meta"><span>{{ tk.matches[loop.index0] }}</span><span>{{ tk.live if m.points else tk.done }}</span></p>
+{% for name in m.players %}
+{% set i = loop.index0 %}
+        <div class="ticker__row{{ ' is-lead' if (m.points and m.points[i] > m.points[1 - i]) or m.winner == i }}">
+          <span class="ticker__name">{{ name }}{% if m.serve == i and m.points %} <span class="ticker__serve" title="{{ tk.serve }}"></span>{% endif %}</span>
+{% for s in m.sets[i] %}
+          <span class="ticker__set">{{ s }}</span>
+{% endfor %}
+          <span class="ticker__pts">{{ m.points[i] if m.points else "" }}</span>
+        </div>
+{% endfor %}
+      </div>
+{% endfor %}
+    </div>
+
+    <!-- The flyer is German for now; every language shows the same file. -->
+    <div class="clubs__offer">
+      <a class="clubs__flyer" href="{{ url('clubs') }}" tabindex="-1" aria-hidden="true">
+        <img src="{{ asset('flyer-vorschau.webp') }}"
+             srcset="{{ asset('flyer-vorschau.webp') }} 480w, {{ asset('flyer-vorschau@2x.webp') }} 960w"
+             sizes="(max-width: 640px) 36vw, 200px"
+             width="480" height="678" loading="lazy" decoding="async"
+             alt="">
+      </a>
+      <div>
+        <p>{{ t.clubs.offer }}</p>
+        <a class="textlink" href="{{ url('clubs') }}">{{ t.clubs.offer_link }}</a>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ── Padel ────────────────────────────────────────────────────────────────
-     A padel player's first question about a tennis app is whether it counts
-     correctly. It does, because the scoring is the same, so this section says
-     so plainly and backs it with the two things that actually differ in
-     padel: NoAd and doubles. Both were already there. -->
-<section class="padel" id="padel">
-  <div class="shell padel__inner">
-    <div class="padel__copy">
-      <p class="eyebrow">{{ t.padel.eyebrow }}</p>
-      <h2 class="padel__title">{{ t.padel.title }}</h2>
-      <p class="lead padel__lead">
-        {{ t.padel.lead }}
-      </p>
-      <div class="padel__count" aria-hidden="true">
-        <span>{{ t.padel.count|join('</span><span>') }}</span>
-      </div>
-    </div>
-
-    <dl class="padel__facts">
-    {% for fact in t.padel.facts %}
-      <div class="padel__fact">
-        <dt>{{ fact.term }}</dt>
-        <dd>
-          {{ fact.text }}
-        </dd>
-      </div>
-    {% endfor %}
-    </dl>
+     One line, and a second scoreboard that starts at 40:40 with the golden
+     point switched on: the next point decides, try it. No tap pad here, the
+     hero already has one. -->
+<section class="padel shell" id="padel" data-reveal>
+  <div class="padel__copy">
+    <h2 class="h2">{{ t.padel.title }}</h2>
+    <p class="padel__lead">{{ t.padel.lead }}</p>
+    <a class="textlink" href="{{ url('padel') }}">{{ t.padel.link }}</a>
+  </div>
+  <div class="padel__board" data-ui>
+{{ scoreboard(sb, sport="padel", points=[3, 3], games=[4, 4], golden=true, controls=["buttons", "golden"], id="padel-sb")|indent(4, first=True) }}
   </div>
 </section>
 
-<!-- ── Clubs ────────────────────────────────────────────────────────────── -->
-<section class="clubs" id="verein">
-  <div class="shell clubs__inner">
-    <div class="clubs__copy">
-      <p class="eyebrow">{{ t.clubs.eyebrow }}</p>
-      <h2 class="clubs__title">{{ t.clubs.title }}</h2>
-      <p class="lead clubs__lead">
-        {{ t.clubs.lead }}
-      </p>
-      <ul class="dashlist">
-      {% for point in t.clubs.points %}
-        <li>{{ point }}</li>
-      {% endfor %}
-      </ul>
-      <p class="clubs__offer">
-        {{ t.clubs.offer }}
-      </p>
-    </div>
-
-    <!-- A mock of the spectator view, not live data: the scores are an
-         example. aria-hidden keeps the illustration out of the reading order,
-         the paragraph above already says what it shows. -->
-    <div class="ticker" aria-hidden="true">
-      <div class="ticker__card">
-        <div class="ticker__head">
-          <span class="ticker__label">{{ t.clubs.ticker.label }}</span>
-          <span class="ticker__live"><span class="livedot"></span>{{ t.clubs.ticker.live }}</span>
-        </div>
-        <div class="ticker__rows">
-          <div class="ticker__row ticker__row--home">
-            <span class="ticker__name">M. Berger</span>
-            <span class="ticker__set">6</span>
-            <span class="ticker__set">5</span>
-            <span class="ticker__points">40</span>
-          </div>
-          <div class="ticker__rule"></div>
-          <div class="ticker__row ticker__row--away">
-            <span class="ticker__name">T. Wallner</span>
-            <span class="ticker__set">4</span>
-            <span class="ticker__set">5</span>
-            <span class="ticker__points">15</span>
-          </div>
-        </div>
-      </div>
-      <div class="ticker__second">
-        <span class="ticker__name">{{ t.clubs.ticker.second }}</span>
-        <span class="ticker__score"><span class="livedot"></span>7:6⁴  2:3</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Watch teaser ─────────────────────────────────────────────────────────
-     Only a pointer: the recommendations with their affiliate links live on
-     their own page, so the landing page does not carry that section. -->
-<section class="teaser shell">
-  <div class="teaser__head">
+<!-- ── Watches ──────────────────────────────────────────────────────────────
+     Our own photos, large and square, as a plain list. The recommendations
+     with their affiliate links live on their own page. -->
+<section class="watches shell" id="uhren" data-reveal>
+  <div class="watches__head">
     <div>
-      <p class="eyebrow">{{ t.teaser.eyebrow }}</p>
-      <h2 class="section-title">{{ t.teaser.title }}</h2>
+      <h2 class="h2">{{ t.watches.title }}</h2>
+      <p class="watches__lede">{{ t.watches.lede }}</p>
     </div>
-    <a class="back" href="{{ url('watches') }}">{{ t.teaser.all }}</a>
-  </div>
-  <div class="teaser__grid">
-  {% for img, name, note in [
-       ("watch-apple-watch-11.webp", "Apple Watch Series 11", t.teaser.notes.apple),
-       ("watch-galaxy-watch-8.webp", "Samsung Galaxy Watch 8", t.teaser.notes.galaxy),
-       ("watch-galaxy-watch-ultra.webp", "Galaxy Watch Ultra", t.teaser.notes.ultra),
-       ("watch-pixel-watch-5.webp", "Google Pixel Watch 5", t.teaser.notes.pixel),
-     ] %}
-    <a class="teaser__card" href="{{ url('watches') }}">
-      <img src="{{ asset(img) }}" width="56" height="56"
-           loading="lazy" decoding="async" alt="">
-      <span>
-        <span class="teaser__name">{{ name }}</span>
-        <span class="teaser__note">{{ note }}</span>
-      </span>
-    </a>
-  {% endfor %}
-  </div>
-  <p class="teaser__note-row">{{ t.teaser.footnote }}</p>
-</section>
-
-<!-- ── iOS ─────────────────────────────────────────────────────────────────
-     Kortscore is the same app on both platforms, so this section shows it
-     rather than arguing for it: the three iPhone screens next to the Apple
-     Watch, and short facts underneath. It replaced the old waitlist form
-     once the iOS version shipped. -->
-<section class="ios" id="ios">
-  <div class="shell ios__inner">
-    <div class="ios__copy">
-      <p class="eyebrow">{{ t.ios.eyebrow }}</p>
-      <h2 class="ios__title">{{ t.ios.title }}</h2>
-      <p class="lead ios__lede">
-        {{ t.ios.lede }}
-      </p>
-
-      <dl class="ios__facts">
-      {% for fact in t.ios.facts %}
-        <div class="ios__fact">
-          <dt>{{ fact.term }}</dt>
-          <dd>
-            {{ fact.text }}
-          </dd>
-        </div>
-      {% endfor %}
-      </dl>
-    </div>
-
-    <!-- Real screenshots again, same as in the hero: three iPhone screens with
-         the Apple Watch overlapping at the bottom. -->
-    <div class="ios__shots">
-      <div class="phone phone--back phone--left">
-        <img src="{{ asset(lasset('shot-ios-play')) }}" width="168" height="356"
-             loading="lazy" decoding="async"
-             alt="{{ t.ios.alt.play|inattr }}">
-      </div>
-      <div class="phone phone--front">
-        <img src="{{ asset(lasset('shot-ios-live')) }}" width="180" height="382"
-             loading="lazy" decoding="async"
-             alt="{{ t.ios.alt.live|inattr }}">
-      </div>
-      <div class="phone phone--back phone--right">
-        <img src="{{ asset(lasset('shot-ios-stats')) }}" width="168" height="356"
-             loading="lazy" decoding="async"
-             alt="{{ t.ios.alt.stats|inattr }}">
-      </div>
-      <div class="watchshot watchshot--apple">
-        <img src="{{ asset('watch-apple.png') }}" width="292" height="348"
-             loading="lazy" decoding="async"
-             alt="{{ t.ios.alt.watch|inattr }}">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── FAQ ──────────────────────────────────────────────────────────────────
-     The questions people actually type into search engines and AI assistants,
-     answered in two or three sentences each. Plain <details>, so it works
-     without JavaScript. The FAQPage JSON-LD in the head is generated from the
-     same list (faq.questions in i18n/<lang>/index.yaml). -->
-<section class="faq" id="faq">
-  <div class="shell faq__inner">
-    <div class="faq__head">
-      <p class="eyebrow">{{ t.faq.eyebrow }}</p>
-      <h2 class="section-title">{{ t.faq.title }}</h2>
-      <p class="lead faq__lead">{{ t.faq.lead }}</p>
-    </div>
-    {{ faq_list(t.faq.questions)|indent(4) }}
-  </div>
-</section>
-
-<!-- ── CTA ──────────────────────────────────────────────────────────────── -->
-<section class="cta" id="get">
-  <div class="cta__inner">
-    <h2 class="cta__title">{{ t.cta.title }}</h2>
-    <p class="cta__lede">{{ t.cta.lede }}</p>
-
-{% filter indent(4, first=True) %}{% include "partials/storebadges.html" %}{% endfilter %}
-
-    <p class="cta__hint">
-      {{ t.cta.hint }}
+    <p class="watches__links">
+      <a class="textlink" href="{{ url('watches') }}">{{ t.watches.all }}</a>
+      <a class="textlink" href="{{ url('compatible') }}">{{ t.watches.compatible }}</a>
     </p>
   </div>
+  <ul class="watches__list">
+{% for img, name, note in [
+     ("watch-apple-watch-11", "Apple Watch Series 11", t.watches.notes.apple),
+     ("watch-galaxy-watch-8", "Samsung Galaxy Watch 8", t.watches.notes.galaxy),
+     ("watch-galaxy-watch-ultra", "Galaxy Watch Ultra", t.watches.notes.ultra),
+     ("watch-pixel-watch-5", "Google Pixel Watch 5", t.watches.notes.pixel),
+   ] %}
+{% set v = "?v=2" if img == "watch-pixel-watch-5" else "" %}
+    <li>
+      <a class="watches__item" href="{{ url('watches') }}">
+        <img src="{{ asset(img ~ '.webp' ~ v) }}"
+             srcset="{{ asset(img ~ '.webp' ~ v) }} 480w, {{ asset(img ~ '@2x.webp' ~ v) }} 960w"
+             sizes="(max-width: 640px) 44vw, (max-width: 1100px) 46vw, 330px"
+             width="480" height="480" loading="lazy" decoding="async" alt="">
+        <span class="watches__name">{{ name }}</span>
+        <span class="watches__note">{{ note }}</span>
+      </a>
+    </li>
+{% endfor %}
+  </ul>
+</section>
+
+<!-- ── Questions ────────────────────────────────────────────────────────────
+     Plain reading text, two columns on wide screens. The FAQPage JSON-LD in
+     the head comes from the same list (faq.questions). -->
+<section class="faq shell" id="faq" data-reveal>
+  <h2 class="h2">{{ t.faq.title }}</h2>
+{{ faq_list(t.faq.questions)|indent(2, first=True) }}
+</section>
+
+<!-- ── Close ────────────────────────────────────────────────────────────────
+     The one centred moment of the page: where to get the app. -->
+<section class="close shell" id="get" data-reveal>
+  <h2 class="h2">{{ t.cta.title }}</h2>
+  <p class="close__lede">{{ t.cta.lede }}</p>
+{% filter indent(2, first=True) %}{% include "partials/storebadges.html" %}{% endfilter %}
+  <p class="close__hint">{{ t.cta.hint }}</p>
 </section>
 </main>
 {% endblock %}

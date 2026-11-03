@@ -17,7 +17,9 @@ langbar:
   close: No, grazie
 
 footer:
-  claim: Kortscore · Il punteggio di tennis e padel al polso
+  # aria-label der Linkleiste im Footer
+  nav: Altre pagine
+  claim: "Kortscore: il punteggio di tennis e padel al polso"
   home: Home
   compatible: Orologi compatibili
   tennis: Punteggio nel tennis

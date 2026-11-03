@@ -8,8 +8,7 @@ meta:
 breadcrumb: For clubs
 llms: For clubs (flyer in the clubhouse, Kortscore Plus discount for members)
 
-eyebrow: For clubs
-title: Kortscore Plus for less for club members
+title: Discount for club members
 lead: >-
   Your club puts up the Kortscore flyer in the clubhouse or at the courts, your
   members get a discount code for Kortscore Plus in return. Write to us, we
@@ -87,7 +86,6 @@ faq:
 # Die Anfrage ist eine vorausgefüllte Mail. Betreff und Text als reiner Text
 # (\n = Zeilenumbruch), der Build kodiert sie für den mailto-Link.
 ask:
-  eyebrow: Request
   button: Request by email
   alt: or write directly to
   mail_subject: Kortscore Plus for our club

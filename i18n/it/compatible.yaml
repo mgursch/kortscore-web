@@ -9,7 +9,6 @@ meta:
 breadcrumb: Orologi compatibili
 llms: Orologi compatibili (elenco completo dei modelli)
 
-eyebrow: Compatibilità
 title: Kortscore funziona <br>sul mio orologio?
 lead: >-
   La risposta breve: sì, su ogni Apple Watch con watchOS 26 o successivo
@@ -35,7 +34,7 @@ version:
     <p>Sull’orologio Wear OS in <em>Impostazioni → Info → Versione software</em>,
     sui Samsung in <em>Impostazioni → Info sull’orologio → Informazioni
     software</em>. Se c’è scritto Wear OS 3, 4, 5, 6 o 7, Kortscore
-    funziona.</p><p><strong>Sull’Apple Watch:</strong> <em>Impostazioni →
+    funziona.</p><p><strong>Sull’Apple Watch:</strong> <em>Impostazioni
     Generali → Info → Versione</em>. Se c’è scritto watchOS 26 o successivo,
     Kortscore funziona. Versione più vecchia su un modello dell’elenco qui
     sotto? Aggiornalo prima in <em>Impostazioni → Generali → Aggiornamento
@@ -105,4 +104,4 @@ cta:
   fits: L’orologio va bene?
   download: Scarica gratis
   no_watch: Non hai ancora un orologio?
-  picks: Quattro proposte per il campo →
+  picks: Quattro proposte per il campo

@@ -10,13 +10,13 @@
 <main>
 <div class="subhead">
   <a class="back" href="{{ url('index') }}">{{ c.back_home }}</a>
-  <p class="eyebrow">{{ t.eyebrow }}</p>
   <h1 class="subhead__title">{{ t.title }}</h1>
   <p class="lead">{{ t.lead }}</p>
 </div>
 
 <!-- ── Club offer ───────────────────────────────────────────────────────────
-     Three steps, the flyer to look at and download, then the request. The
+     Three steps in order (a real <ol>, no numbers drawn), the flyer to look
+     at and download, then the request. The
      request is a prefilled email rather than a form: no backend, and the
      club sees exactly what goes out before sending. The discount is never
      named on purpose, it is agreed per club. -->
@@ -26,7 +26,6 @@
     <ol class="clubsteps">
     {% for step in t.steps.list %}
       <li class="clubsteps__item">
-        <p class="step__num mono">{{ "%02d"|format(loop.index) }}</p>
         <h3 class="step__title">{{ step.title }}</h3>
         <p class="step__body">{{ step.body }}</p>
       </li>
@@ -62,7 +61,7 @@
     <div>
       <h2>{{ t.flyer.title }}</h2>
       <p>{{ t.flyer.text }}</p>
-      <p class="clubflyer__dl"><a href="{{ asset('kortscore-flyer-a4.pdf') }}" download data-umami-event="flyer-download">{{ t.flyer.download }}</a> <span class="mono">PDF · 620 KB</span></p>
+      <p class="clubflyer__dl"><a href="{{ asset('kortscore-flyer-a4.pdf') }}" download data-umami-event="flyer-download">{{ t.flyer.download }}</a> <span class="clubflyer__size">(PDF, 620 KB)</span></p>
     </div>
   </section>
 
@@ -73,7 +72,6 @@
 
   <div class="compat__cta clubask">
     <div>
-      <p class="eyebrow">{{ t.ask.eyebrow }}</p>
       <a class="btn btn--accent" href="mailto:{{ site.contact_email }}?subject={{ t.ask.mail_subject|mailenc }}&amp;body={{ t.ask.mail_body|mailenc }}" data-umami-event="verein-anfrage">{{ t.ask.button }}</a>
       <p class="clubask__alt">{{ t.ask.alt }} <a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a></p>
     </div>

@@ -17,6 +17,8 @@ langbar:
   close: Nein danke
 
 footer:
+  # aria-label der Linkleiste im Footer
+  nav: Weitere Seiten
   claim: "Kortscore: Tennis und Padel am Handgelenk zählen"
   home: Startseite
   compatible: Kompatible Uhren

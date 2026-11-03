@@ -8,7 +8,6 @@ meta:
 breadcrumb: Pour les clubs
 llms: Pour les clubs (flyer au club-house, Kortscore Plus moins cher pour les adhérents)
 
-eyebrow: Pour les clubs
 title: Affichez le flyer. <br>Vos adhérents économisent.
 lead: >-
   Votre club affiche le flyer Kortscore au club-house ou près des courts, et
@@ -91,7 +90,6 @@ faq:
 # Die Anfrage ist eine vorausgefüllte Mail. Betreff und Text als reiner Text
 # (\n = Zeilenumbruch), der Build kodiert sie für den mailto-Link.
 ask:
-  eyebrow: Partants ?
   button: Demande par e-mail
   alt: ou écrivez directement à
   mail_subject: Kortscore Plus pour notre club

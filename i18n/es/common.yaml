@@ -17,7 +17,9 @@ langbar:
   close: No, gracias
 
 footer:
-  claim: Kortscore · El marcador de tenis y pádel en tu muñeca
+  # aria-label der Linkleiste im Footer
+  nav: Más páginas
+  claim: "Kortscore: el marcador de tenis y pádel en tu muñeca"
   home: Inicio
   compatible: Relojes compatibles
   tennis: Puntuación en tenis

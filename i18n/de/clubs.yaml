@@ -8,8 +8,7 @@ meta:
 breadcrumb: Für Vereine
 llms: Für Vereine
 
-eyebrow: Für Vereine
-title: Kortscore Plus günstiger für Vereinsmitglieder
+title: Rabatt für Vereinsmitglieder
 lead: >-
   Euer Verein hängt den Kortscore-Flyer im Vereinshaus oder am Platz auf, eure
   Mitglieder bekommen dafür einen Rabattcode für Kortscore Plus. Schreibt uns,
@@ -87,7 +86,6 @@ faq:
 # Die Anfrage ist eine vorausgefüllte Mail. Betreff und Text als reiner Text
 # (\n = Zeilenumbruch), der Build kodiert sie für den mailto-Link.
 ask:
-  eyebrow: Anfrage
   button: Anfrage per Mail
   alt: oder direkt an
   mail_subject: Kortscore Plus für unseren Verein

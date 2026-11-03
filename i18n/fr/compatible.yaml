@@ -9,7 +9,6 @@ meta:
 breadcrumb: Montres compatibles
 llms: Montres compatibles (liste complète des modèles)
 
-eyebrow: Compatibilité
 title: Ma montre est-elle <br>compatible ?
 lead: >-
   La réponse courte : oui, sur toute Apple Watch sous watchOS 26 ou plus
@@ -33,12 +32,12 @@ version:
   title: Comment trouver la version du système
   body: >-
     <p>Sur une montre Wear OS, dans <em>Paramètres → À propos → Version du
-    logiciel</em>, sur Samsung dans <em>Paramètres → À propos de la montre →
+    logiciel</em>, sur Samsung dans <em>Paramètres → À propos de la montre
     Informations sur le logiciel</em>. Si elle affiche Wear OS 3, 4, 5, 6 ou 7,
     Kortscore fonctionne.</p><p><strong>Sur l’Apple Watch :</strong>
     <em>Réglages → Général → Informations → Version</em>. Si elle affiche watchOS 26
     ou plus, Kortscore fonctionne. Version plus ancienne sur un modèle de la
-    liste ci-dessous ? Fais d’abord la mise à jour dans <em>Réglages → Général →
+    liste ci-dessous ? Fais d’abord la mise à jour dans <em>Réglages → Général
     Mise à jour logicielle</em>.</p>
 
 apple:
@@ -107,4 +106,4 @@ cta:
   fits: Ta montre est compatible ?
   download: Télécharger gratuitement
   no_watch: Pas encore de montre ?
-  picks: Quatre suggestions pour le court →
+  picks: Quatre suggestions pour le court
