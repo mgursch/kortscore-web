@@ -12,12 +12,12 @@ llms: Wie zählt man beim Padel
 about: Padel
 
 eyebrow: Regeln
-title: Wie zählt man <br>beim Padel?
+title: Zählweise im Padel
 lead: >-
   Padel zählt wie Tennis: 15, 30, 40, Game, Satz. Der eine Unterschied, den du
   merkst, ist der Golden Point: Viele Matches spielen bei 40:40 einen
   entscheidenden Punkt statt Vorteil. Dazu kommen Doppel-Aufschlagreihenfolge
-  und Aufschlag von unten. Hier die ganze Zählweise, kurz und vollständig.
+  und Aufschlag von unten. Hier steht die ganze Zählweise.
 
 sections:
   - title: Punkte wie im Tennis
@@ -71,7 +71,7 @@ sections:
 
 # Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
 faq:
-  title: Häufige Fragen
+  title: Fragen
   questions:
     - q: Ist Golden Point und NoAd dasselbe?
       a: >-
@@ -95,6 +95,6 @@ faq:
         Turniermatches mit Sätzen ist Kortscore da.
 
 cta:
-  eyebrow: Zählen lassen statt zählen
-  more: Mehr lesen
-  next: So zählt man beim Tennis, mit Vorteil und Tiebreak →
+  eyebrow: App laden
+  more: Weiter mit Tennis
+  next: Zählweise im Tennis, mit Vorteil und Tiebreak

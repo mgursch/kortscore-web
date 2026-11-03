@@ -12,12 +12,12 @@ llms: How padel scoring works (golden point, doubles serve order)
 about: Padel
 
 eyebrow: Rules
-title: How does padel <br>scoring work?
+title: Padel scoring
 lead: >-
   Padel scores like tennis: 15, 30, 40, game, set. The one difference you will
   notice is the deciding point at 40-40, the golden point, which many matches
   play instead of advantage. Add the doubles serve order and the underarm
-  serve, and that is the whole system, short and complete.
+  serve, and that is the whole system.
 
 sections:
   - title: Points like tennis
@@ -68,7 +68,7 @@ sections:
 
 # Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
 faq:
-  title: Common questions
+  title: Questions
   questions:
     - q: Are golden point and NoAd the same thing?
       a: >-
@@ -91,6 +91,6 @@ faq:
         and tournament matches with sets.
 
 cta:
-  eyebrow: Let the watch count
-  more: Read on
-  next: How tennis scoring works, with advantage and tiebreak →
+  eyebrow: Get the app
+  more: On to tennis
+  next: Tennis scoring, with advantage and tiebreak

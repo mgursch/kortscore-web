@@ -9,14 +9,14 @@ breadcrumb: For clubs
 llms: For clubs (flyer in the clubhouse, Kortscore Plus discount for members)
 
 eyebrow: For clubs
-title: Put up the flyer. <br>Members save.
+title: Kortscore Plus for less for club members
 lead: >-
-  Your club puts up the Kortscore flyer in the clubhouse or at the courts, and
-  your members get a discount code for Kortscore Plus in return. Just drop us a
-  line, we sort out the rest by email.
+  Your club puts up the Kortscore flyer in the clubhouse or at the courts, your
+  members get a discount code for Kortscore Plus in return. Write to us, we
+  sort out the rest by email.
 
 steps:
-  title: How it works
+  title: Steps
   list:
     - title: Get in touch
       body: >-
@@ -33,7 +33,7 @@ steps:
         Plus cheaper in the app.
 
 redeem:
-  title: How your members redeem the code
+  title: Redeeming the code
   list:
     - >-
       Open Kortscore and go to the Kortscore Plus purchase screen, for example
@@ -45,14 +45,11 @@ redeem:
   note: It works the same on iPhone and Android.
 
 plus:
-  title: What is Kortscore Plus?
+  title: Kortscore Plus
   text: >-
-    Kortscore itself is free: scoring on the wrist, the live ticker and the
-    newest 10 matches in the history, with no ads and no account. Kortscore Plus
-    is a one-time purchase, not a subscription, and adds the complete match
-    history with the point-by-point log, advanced statistics, automatic backups
-    and the AI coach that analyses matches. With your code, your members get
-    Plus for less.
+    Kortscore Plus is a one-time purchase, not a subscription. It adds the
+    complete match history with the point-by-point log, advanced statistics,
+    automatic backups and the AI coach that analyses matches.
 
 # Der Flyer selbst ist bisher nur auf Deutsch, das sagt der Text dazu.
 flyer:
@@ -90,7 +87,7 @@ faq:
 # Die Anfrage ist eine vorausgefüllte Mail. Betreff und Text als reiner Text
 # (\n = Zeilenumbruch), der Build kodiert sie für den mailto-Link.
 ask:
-  eyebrow: Want in?
+  eyebrow: Request
   button: Request by email
   alt: or write directly to
   mail_subject: Kortscore Plus for our club

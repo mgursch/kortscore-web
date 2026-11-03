@@ -9,14 +9,14 @@ breadcrumb: Für Vereine
 llms: Für Vereine
 
 eyebrow: Für Vereine
-title: Flyer aufhängen. <br>Mitglieder sparen.
+title: Kortscore Plus günstiger für Vereinsmitglieder
 lead: >-
-  Euer Verein hängt den Kortscore-Flyer im Vereinshaus oder am Platz auf, und
-  eure Mitglieder bekommen dafür einen Rabattcode für Kortscore Plus. Schreibt
-  uns einfach, den Rest klären wir per Mail.
+  Euer Verein hängt den Kortscore-Flyer im Vereinshaus oder am Platz auf, eure
+  Mitglieder bekommen dafür einen Rabattcode für Kortscore Plus. Schreibt uns,
+  den Rest klären wir per Mail.
 
 steps:
-  title: So geht's
+  title: Ablauf
   list:
     - title: Anfragen
       body: >-
@@ -33,7 +33,7 @@ steps:
         wird Plus in der App günstiger.
 
 redeem:
-  title: So lösen eure Mitglieder den Code ein
+  title: Code einlösen
   list:
     - >-
       Kortscore öffnen und den Kaufscreen von Kortscore Plus aufrufen, zum
@@ -45,14 +45,11 @@ redeem:
   note: Das funktioniert auf dem iPhone und auf Android gleich.
 
 plus:
-  title: Was ist Kortscore Plus?
+  title: Kortscore Plus
   text: >-
-    Kortscore selbst ist gratis: zählen am Handgelenk, Live-Ticker und die
-    neuesten 10 Matches der Historie, ohne Werbung und ohne Konto. Kortscore
-    Plus ist ein einmaliger Kauf, kein Abo, und bringt die komplette
+    Kortscore Plus ist ein einmaliger Kauf, kein Abo. Es bringt die komplette
     Match-Historie mit Punkteverlauf, erweiterte Statistiken, automatische
-    Backups und den KI-Trainer, der die Matches analysiert. Mit eurem Code
-    bekommen eure Mitglieder Plus günstiger.
+    Backups und den KI-Trainer, der die Matches analysiert.
 
 # Der Flyer selbst ist bisher nur auf Deutsch, das sagt der Text dazu.
 flyer:
@@ -68,7 +65,7 @@ flyer:
 
 # Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
 faq:
-  title: Häufige Fragen
+  title: Fragen
   questions:
     - q: Kostet das den Verein etwas?
       a: >-
@@ -90,7 +87,7 @@ faq:
 # Die Anfrage ist eine vorausgefüllte Mail. Betreff und Text als reiner Text
 # (\n = Zeilenumbruch), der Build kodiert sie für den mailto-Link.
 ask:
-  eyebrow: Mitmachen?
+  eyebrow: Anfrage
   button: Anfrage per Mail
   alt: oder direkt an
   mail_subject: Kortscore Plus für unseren Verein

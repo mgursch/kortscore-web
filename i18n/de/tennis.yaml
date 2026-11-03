@@ -12,12 +12,11 @@ llms: Wie zählt man beim Tennis
 about: Tennis
 
 eyebrow: Regeln
-title: Wie zählt man <br>beim Tennis?
+title: Zählweise im Tennis
 lead: >-
-  Tennis zählt anders als jeder andere Sport: Punkte heißen 15, 30 und 40, ein
-  Game braucht zwei Punkte Vorsprung, ein Satz sechs Games, und bei 6:6 kommt
-  der Tiebreak. Hier ist die ganze Zählweise auf einer Seite, so wie sie auf
-  dem Platz gilt.
+  Die Punkte heißen 15, 30 und 40, ein Game braucht zwei Punkte Vorsprung, ein
+  Satz sechs Games, und bei 6:6 kommt der Tiebreak. Hier steht die ganze
+  Zählweise auf einer Seite, so wie sie auf dem Platz gilt.
 
 sections:
   - title: "Punkte: 0, 15, 30, 40"
@@ -81,7 +80,7 @@ sections:
 
 # Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
 faq:
-  title: Häufige Fragen
+  title: Fragen
   questions:
     - q: Warum heißen die Punkte 15, 30 und 40?
       a: >-
@@ -105,6 +104,6 @@ faq:
         die App nach genau diesen Regeln mit.
 
 cta:
-  eyebrow: Zählen lassen statt zählen
-  more: Mehr lesen
-  next: Padel zählt fast gleich, mit einer Ausnahme →
+  eyebrow: App laden
+  more: Weiter mit Padel
+  next: Padel zählt fast gleich, mit einer Ausnahme
