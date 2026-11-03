@@ -72,8 +72,8 @@ phone:
   title: El móvil
   text: >-
     La app Kortscore para iPhone necesita iOS 18 o posterior; para enlazarlo
-    con un Apple Watch con watchOS 26, Apple exige que el iPhone tenga iOS 26.
-    Un reloj Wear OS se enlaza con un móvil con Android 8 o posterior. En ambos
+    con un Apple Watch con watchOS 26, Apple exige que el iPhone tenga iOS 26, y iOS 27
+    con watchOS 27. Un reloj Wear OS se enlaza con un móvil con Android 8 o posterior. En ambos
     casos, la app Kortscore se descarga del App Store o de Google Play. El
     reloj lleva la cuenta por sí solo; el móvil guarda el historial y las
     estadísticas y envía el marcador en directo a Internet. Las combinaciones

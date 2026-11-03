@@ -48,7 +48,8 @@
         <h2>{{ name }}</h2>
         <p>{{ t.watches[key].text }}</p>
         <a class="btn watchcard__btn" href="{{ link }}"
-           target="_blank" rel="nofollow sponsored noopener">{{ t.amazon_button }}</a>
+           target="_blank" rel="nofollow sponsored noopener"
+           data-umami-event="amazon-klick" data-umami-event-model="{{ name|inattr }}">{{ t.amazon_button }}</a>
       </li>
 {% endfor %}
 </ul>

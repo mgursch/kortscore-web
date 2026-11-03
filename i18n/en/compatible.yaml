@@ -69,7 +69,8 @@ phone:
   title: The phone
   text: >-
     The Kortscore iPhone app needs iOS 18 or newer; paired with an Apple Watch
-    on watchOS 26, Apple requires the iPhone to be on iOS 26. A Wear OS watch
+    on watchOS 26, Apple requires the iPhone to be on iOS 26, and on watchOS 27
+    it requires iOS 27. A Wear OS watch
     pairs with an Android phone on Android 8 or newer. Either way the Kortscore
     app comes from the App Store or Play Store. The watch keeps score on its
     own; the phone holds history and statistics and sends the live ticker

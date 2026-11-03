@@ -6,12 +6,17 @@
 {{ jsonld({"@graph": [breadcrumbs(), faq_page(t.faq.questions)]}) }}
 {% endblock %}
 
+{# Amazon links: a row one cell longer than the head carries the link as its
+   last element and gets a buy link in the model cell. No link, no change. #}
+{% set affiliate = namespace(used=false) %}
 {% macro table(head, rows) %}
 <table class="compat__table">
 <thead><tr>{% for h in head %}<th>{{ h }}</th>{% endfor %}</tr></thead>
 <tbody>
 {% for row in rows %}
-<tr>{% for cell in row %}<td>{{ cell }}</td>{% endfor %}</tr>
+{% set link = row[-1] if row|length > head|length else "" %}
+{% set cells = row[:head|length] %}
+<tr>{% for cell in cells %}{% if loop.first and link %}{% set affiliate.used = true %}<td><a class="compat__buy" href="{{ link }}" target="_blank" rel="nofollow sponsored noopener" data-umami-event="amazon-klick" data-umami-event-model="{{ cell|inattr }}">{{ cell }}<span aria-hidden="true">&nbsp;↗</span><span class="visually-hidden"> ({{ page_text('watches').amazon_button }})</span></a></td>{% else %}<td>{{ cell }}</td>{% endif %}{% endfor %}</tr>
 {% endfor %}
 </tbody>
 </table>
@@ -47,16 +52,19 @@
     <h2>Apple Watch</h2>
     <p>{{ t.apple.text }}</p>
 {{ table([t.col.model, t.col.year, "watchOS"], [
-  ["Apple Watch Series 11", "2025", "watchOS 26"],
-  ["Apple Watch Ultra 3", "2025", "watchOS 26"],
-  ["Apple Watch SE (" ~ gen.third ~ ")", "2025", "watchOS 26"],
-  ["Apple Watch Series 10", "2024", "watchOS 11 → 26"],
-  ["Apple Watch Ultra 2", "2023", "watchOS 10 → 26"],
-  ["Apple Watch Series 9", "2023", "watchOS 10 → 26"],
+  ["Apple Watch Series 12", "2026", "watchOS 27", "https://link.amazon/B0eNw9Psa"],
+  ["Apple Watch Ultra 4", "2026", "watchOS 27", "https://link.amazon/B0cMHnLf3"],
+  ["Apple Watch Series 11", "2025", "watchOS 26 → 27", "https://link.amazon/B02cbvVWB"],
+  ["Apple Watch Ultra 3", "2025", "watchOS 26 → 27", "https://link.amazon/B01f8Ydmu"],
+  ["Apple Watch SE (" ~ gen.third ~ ")", "2025", "watchOS 26 → 27", "https://link.amazon/B06IMBx7F"],
+  ["Apple Watch Series 10", "2024", "watchOS 11 → 27", "https://link.amazon/B06mYCoRO"],
+  ["Apple Watch Ultra 2", "2023", "watchOS 10 → 27"],
+  ["Apple Watch Series 9", "2023", "watchOS 10 → 27"],
   ["Apple Watch Ultra", "2022", "watchOS 9 → 26"],
-  ["Apple Watch Series 8 / SE (" ~ gen.second ~ ")", "2022", "watchOS 9 → 26"],
+  ["Apple Watch Series 8", "2022", "watchOS 9 → 26"],
+  ["Apple Watch SE (" ~ gen.second ~ ")", "2022", "watchOS 9 → 26", "https://link.amazon/B0a15iy3a"],
   ["Apple Watch Series 7", "2021", "watchOS 8 → 26"],
-  ["Apple Watch Series 6", "2020", "watchOS 7 → 26"],
+  ["Apple Watch Series 6", "2020", "watchOS 7 → 26", "https://link.amazon/B0acZXAPJ"],
 ]) }}
   </section>
 
@@ -64,13 +72,20 @@
     <h2>Samsung Galaxy Watch</h2>
     <p>{{ t.samsung.text }}</p>
 {{ table([t.col.model, t.col.year, "Wear OS"], [
-  ["Galaxy Watch 8 / 8 Classic", "2025", "6"],
-  ["Galaxy Watch Ultra (2024, 2025)", "2024/25", "5 → 6"],
-  ["Galaxy Watch 7", "2024", "5 → 6"],
-  ["Galaxy Watch FE", "2024", "4 → 6"],
-  ["Galaxy Watch 6 / 6 Classic", "2023", "4 → 6"],
-  ["Galaxy Watch 5 / 5 Pro", "2022", "3 → 6"],
-  ["Galaxy Watch 4 / 4 Classic", "2021", "3 → 6"],
+  ["Galaxy Watch 9", "2026", "7", "https://link.amazon/B00v016BJ"],
+  ["Galaxy Watch Ultra 2", "2026", "7", "https://link.amazon/B0gVFcJH2"],
+  ["Galaxy Watch 8", "2025", "6", "https://link.amazon/B09khBCUd"],
+  ["Galaxy Watch 8 Classic", "2025", "6", "https://link.amazon/B00EuHNIY"],
+  ["Galaxy Watch Ultra (2025)", "2025", "6", "https://link.amazon/B0hvLqzYA"],
+  ["Galaxy Watch Ultra (2024)", "2024", "5 → 6", "https://link.amazon/B07ld3ye4"],
+  ["Galaxy Watch 7", "2024", "5 → 6", "https://link.amazon/B0awULGgG"],
+  ["Galaxy Watch FE", "2024", "4 → 6", "https://link.amazon/B0gyUvZ7X"],
+  ["Galaxy Watch 6", "2023", "4 → 6", "https://link.amazon/B0cHZZ5Rg"],
+  ["Galaxy Watch 6 Classic", "2023", "4 → 6", "https://link.amazon/B04qEVOhd"],
+  ["Galaxy Watch 5", "2022", "3 → 6", "https://link.amazon/B0cEQvk7s"],
+  ["Galaxy Watch 5 Pro", "2022", "3 → 6", "https://link.amazon/B0fdCmTf8"],
+  ["Galaxy Watch 4", "2021", "3 → 6", "https://link.amazon/B03rMDGqa"],
+  ["Galaxy Watch 4 Classic", "2021", "3 → 6", "https://link.amazon/B0iluC2QZ"],
 ]) }}
   </section>
 
@@ -78,11 +93,11 @@
     <h2>Google Pixel Watch</h2>
     <p>{{ t.pixel.text }}</p>
 {{ table([t.col.model, t.col.year, "Wear OS"], [
-  ["Pixel Watch 5", "2026", "7"],
-  ["Pixel Watch 4", "2025", "6 → 7"],
-  ["Pixel Watch 3", "2024", "5 → 7"],
-  ["Pixel Watch 2", "2023", "4 → 7"],
-  ["Pixel Watch (" ~ gen.first ~ ")", "2022", "3.5 → 6"],
+  ["Pixel Watch 5", "2026", "7", "https://link.amazon/B0gccdJfj"],
+  ["Pixel Watch 4", "2025", "6 → 7", "https://link.amazon/B0fawpoVX"],
+  ["Pixel Watch 3", "2024", "5 → 7", "https://link.amazon/B0ilUCwgN"],
+  ["Pixel Watch 2", "2023", "4 → 7", "https://link.amazon/B06fhjtwp"],
+  ["Pixel Watch (" ~ gen.first ~ ")", "2022", "3.5 → 5.1", "https://link.amazon/B09VSN6zR"],
 ]) }}
   </section>
 
@@ -90,12 +105,26 @@
     <h2>{{ t.others.title }}</h2>
     <p>{{ t.others.text }}</p>
 {{ table([t.col.model, "Wear OS"], [
-  ["OnePlus Watch 3 / 2 / 2R", "4 → 6"],
-  ["Mobvoi TicWatch Pro 5 / 5 Enduro / Atlas", "3 → 6"],
-  ["Xiaomi Watch 2 / 2 Pro", "3 → 5"],
-  ["Oppo Watch X", "4"],
+  ["OnePlus Watch 4", "6", "https://link.amazon/B0hDjdjeD"],
+  ["OnePlus Watch 3", "5", "https://link.amazon/B0hBghtgK"],
+  ["OnePlus Watch 2", "4", "https://link.amazon/B0hlMu3ko"],
+  ["OnePlus Watch 2R", "4", "https://link.amazon/B03BxM9vb"],
+  ["Mobvoi TicWatch Pro 5", "3.5 → 4", "https://link.amazon/B034DPW7h"],
+  ["Mobvoi TicWatch Pro 5 Enduro", "3.5 → 4", "https://link.amazon/B07oNzWPC"],
+  ["Mobvoi TicWatch Atlas", "4", "https://link.amazon/B02xdJArD"],
+  ["Xiaomi Watch 5", "6"],
+  ["Xiaomi Watch 2", "3 → 5", "https://link.amazon/B04MpRi2J"],
+  ["Xiaomi Watch 2 Pro", "3.5 → 5", "https://link.amazon/B0cB5eq3Y"],
+  ["Oppo Watch X3", "6", "https://link.amazon/B026k7xGZ"],
+  ["Oppo Watch X", "4", "https://link.amazon/B0eH3jTQd"],
 ]) }}
   </section>
+
+{% if affiliate.used %}
+<!-- Amazon requires the disclosure wherever its links appear. Only rendered
+     once at least one row above carries a link. -->
+<p class="disclosure compat__disclosure">{{ page_text('watches').disclosure }}</p>
+{% endif %}
 
   <section class="compat__section" data-reveal>
     <h2>{{ t.unsupported.title }}</h2>

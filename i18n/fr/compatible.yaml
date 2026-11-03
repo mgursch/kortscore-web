@@ -75,7 +75,8 @@ phone:
   title: Le téléphone
   text: >-
     L’app Kortscore pour iPhone nécessite iOS 18 ou plus récent ; avec une
-    Apple Watch sous watchOS 26, Apple exige iOS 26 sur l’iPhone. Une montre
+    Apple Watch sous watchOS 26, Apple exige iOS 26 sur l’iPhone, et iOS 27 avec
+    watchOS 27. Une montre
     Wear OS s’associe à un téléphone Android sous Android 8 ou plus récent.
     Dans les deux cas, l’app Kortscore vient de l’App Store ou de Google Play.
     La montre compte seule ; le téléphone garde l’historique et les

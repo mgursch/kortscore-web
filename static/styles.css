@@ -930,6 +930,19 @@ a:hover { color: var(--accent-text); }
   color: var(--text-secondary);
 }
 
+/* Nur für Screenreader: Zusatztext, der sichtbar nichts verändert. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Lesespalte für Kompatibilität und Vereine: eine Regel,
    dann Abschnitte. Der abgesetzte Grund läuft über die volle Breite, ohne
    Wrapper im Markup: der Umriss malt die Fläche links und rechts neben der
@@ -990,6 +1003,20 @@ a:hover { color: var(--accent-text); }
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+/* Modellname als Amazon-Link: erbt die Schrift der Zelle, Unterstreichung wie
+   .textlink. Das Polster vergrößert nur die Trefferfläche (inline, die
+   Zeilenhöhe bleibt), der Pfeil hängt per nbsp am letzten Wort. */
+.compat__buy {
+  padding-block: 8px;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+.compat__buy:hover { color: var(--accent-text); text-decoration-thickness: 2px; }
+/* Der Hinweis steht in der Lesespalte, nicht am Seitenende: Breite und
+   Seitenabstand kommen von .compat, rückt näher an die Tabelle darüber. */
+.compat__disclosure { max-width: none; margin: -16px 0 0; padding: 0; }
 .compat__list { padding-left: 20px; display: grid; gap: 8px; list-style: disc; }
 .compat__list strong { color: var(--text); font-weight: 600; }
 .compat__list + p { margin-top: 12px; }
