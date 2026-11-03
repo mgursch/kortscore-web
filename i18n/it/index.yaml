@@ -4,16 +4,16 @@
 meta:
   title: "Kortscore: il contapunti per tennis e padel su Apple Watch e Wear OS"
   description: Conta i punti di tennis e padel con un tocco sull’Apple Watch o sull’orologio Wear OS. Gratis, con punteggio live per gli spettatori, statistiche e cronologia delle partite.
-  og_title: "Kortscore: la tua partita. I tuoi punti. Un tocco."
+  og_title: "Kortscore: un tocco per punto"
 
 # Zeile in llms.txt.
 llms: Pagina iniziale (italiano)
 
 hero:
-  title: La tua partita. <br>I tuoi punti. <br><em>Un tocco.</em>
+  title: Un tocco per punto
   lede: >-
     Kortscore conta la tua partita di tennis o padel al polso, punto per punto,
-    senza interrompere il gioco. E chi non è in campo la segue live.
+    senza che tu debba guardare il display.
   cta: Scarica l’app →
   platforms: Gratis per Apple Watch e Wear OS, con iPhone o telefono Android.
   watch_alt: Kortscore su un orologio Wear OS con il punteggio attuale
@@ -36,7 +36,7 @@ tap:
   watch_alt: Kortscore su un Apple Watch sul 40-15
 
 clubs:
-  title: Tutto il circolo <br>segue live
+  title: Punteggio live per il circolo
   lead: >-
     In una giornata di campionato si giocano più partite in contemporanea, e
     nessuno può essere ovunque. Con il punteggio live squadra, capitano e tifosi
@@ -83,7 +83,7 @@ watches:
 
 # Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
 faq:
-  title: Domande frequenti
+  title: Domande
   questions:
     - q: Mi serve il telefono in campo?
       a: >-

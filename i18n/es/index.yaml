@@ -4,17 +4,16 @@
 meta:
   title: "Kortscore: marcador de tenis y pádel para Apple Watch y Wear OS"
   description: Lleva la cuenta de tus partidos de tenis y pádel con un toque en tu Apple Watch o reloj Wear OS. Gratis, con marcador en directo para espectadores, estadísticas e historial de partidos.
-  og_title: "Kortscore: tu partido, tu marcador, un toque."
+  og_title: "Kortscore: un toque por punto"
 
 # Zeile in llms.txt.
 llms: Página de inicio (español)
 
 hero:
-  title: Tu partido. <br>Tu marcador. <br><em>Un toque.</em>
+  title: Un toque por punto
   lede: >-
     Kortscore lleva la cuenta de tu partido de tenis o pádel en la muñeca,
-    punto por punto, sin interrumpir el juego. Y quien no está en la pista lo
-    sigue en directo.
+    punto por punto, sin que tengas que mirar la pantalla.
   cta: Descargar la app →
   platforms: Gratis para Apple Watch y Wear OS, con iPhone o móvil Android.
   watch_alt: Kortscore en un reloj Wear OS con el marcador actual
@@ -37,7 +36,7 @@ tap:
   watch_alt: Kortscore en un Apple Watch con 40-15
 
 clubs:
-  title: Todo el club <br>lo sigue en directo
+  title: Marcador en directo para el club
   lead: >-
     En una jornada de liga se juegan varios partidos a la vez, y nadie puede
     estar en todas partes. Con el marcador en directo, el equipo, el capitán y
@@ -84,7 +83,7 @@ watches:
 
 # Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
 faq:
-  title: Preguntas frecuentes
+  title: Preguntas
   questions:
     - q: ¿Necesito el móvil en la pista?
       a: >-

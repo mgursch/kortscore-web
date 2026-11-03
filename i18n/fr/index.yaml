@@ -2,19 +2,18 @@
 # Aufbau wie i18n/en/index.yaml; dort steht, welche Aussage wo steht.
 
 meta:
-  title: "Kortscore : le compte-points tennis &amp; padel pour Apple Watch &amp; Wear OS"
+  title: "Kortscore : le compte-points tennis &amp; padel pour Apple Watch &amp; Wear OS"
   description: Compte les points au tennis et au padel d’un simple tap sur ton Apple Watch ou ta montre Wear OS. Gratuit, avec score en direct pour les spectateurs, statistiques et historique des matchs.
-  og_title: "Kortscore : ton match. Ton score. Un tap."
+  og_title: "Kortscore : un tap par point"
 
 # Zeile in llms.txt.
 llms: Page d’accueil (français)
 
 hero:
-  title: Ton match. <br>Ton score. <br><em>Un tap.</em>
+  title: Un tap par point
   lede: >-
     Kortscore compte ton match de tennis ou de padel au poignet, point par
-    point, sans interrompre le jeu. Et ceux qui ne sont pas sur le court
-    suivent en direct.
+    point, sans que tu aies à regarder l’écran.
   cta: Télécharger l’app →
   platforms: Gratuit pour Apple Watch et Wear OS, avec un iPhone ou un téléphone Android.
   watch_alt: Kortscore sur une montre Wear OS affichant le score en cours
@@ -32,20 +31,20 @@ tap:
     - Annuler le dernier point
   after: >-
     Simple ou double, avantage ou NoAd, au meilleur des trois sets ou en un
-    set : tu choisis avant le premier point. Après la balle de match, le match
+    set : tu choisis avant le premier point. Après la balle de match, le match
     est dans l’historique sur ton téléphone, avec sa durée et le déroulé point
     par point.
   watch_alt: Kortscore sur une Apple Watch à 40-15
 
 clubs:
-  title: Tout le club <br>suit en direct
+  title: Score en direct pour le club
   lead: >-
     Lors d’une journée de championnat, plusieurs matchs se jouent en même
     temps, et personne ne peut être partout. Avec le score en direct,
     l’équipe, le capitaine et les supporters suivent chaque match en temps
-    réel : depuis le court d’à côté, depuis le club-house ou depuis chez eux.
+    réel : depuis le court d’à côté, depuis le club-house ou depuis chez eux.
   points:
-    - "Il suffit de partager le lien : les spectateurs n’ont besoin ni d’app ni de compte."
+    - "Il suffit de partager le lien : les spectateurs n’ont besoin ni d’app ni de compte."
     - Score, déroulé des sets et service en direct, point par point.
   offer: >-
     Affichez notre flyer dans votre club, et vos adhérents profitent de
@@ -67,14 +66,14 @@ clubs:
 padel:
   title: Le padel avec point en or
   lead: >-
-    Au padel, on compte comme au tennis : 15, 30, 40, jeu, set. Dans
-    Kortscore, le point en or est un interrupteur : activé, le point suivant
+    Au padel, on compte comme au tennis : 15, 30, 40, jeu, set. Dans
+    Kortscore, le point en or est un interrupteur : activé, le point suivant
     décide à 40-40.
   link: Comment compter au padel
 
 watches:
   title: Montres pour le court
-  lede: Pas encore de montre ? Ces quatre tiennent un long match et restent lisibles au soleil.
+  lede: Pas encore de montre ? Ces quatre tiennent un long match et restent lisibles au soleil.
   all: Les quatre montres en détail
   compatible: Tous les modèles compatibles
   notes:
@@ -85,15 +84,15 @@ watches:
 
 # Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
 faq:
-  title: Questions fréquentes
+  title: Questions
   questions:
-    - q: Ai-je besoin de mon téléphone sur le court ?
+    - q: Ai-je besoin de mon téléphone sur le court ?
       a: >-
         Non. La montre compte entièrement seule, même sans connexion. Seul le
         score en direct a besoin du téléphone à portée Bluetooth, car c’est lui
         qui envoie le score en ligne. Le Wi-Fi ou la 4G (LTE) de la montre ne
         suffisent pas à eux seuls.
-    - q: Quelles montres fonctionnent avec Kortscore ?
+    - q: Quelles montres fonctionnent avec Kortscore ?
       a: >-
         Toute Apple Watch sous watchOS 26 ou plus récent, donc Series 6, SE à
         partir de la deuxième génération, Ultra et modèles plus récents,
@@ -102,18 +101,18 @@ faq:
         d’autres, associée à un téléphone Android sous Android 8 ou plus récent.
         La liste complète des modèles est sur la
         <a href="{url:compatible}">page de compatibilité</a>.
-    - q: Kortscore suit-il les vraies règles, tie-break et NoAd compris ?
+    - q: Kortscore suit-il les vraies règles, tie-break et NoAd compris ?
       a: >-
         Oui. Avantage ou NoAd, sets en 6 ou en 4 jeux, tie-break et super
         tie-break, au meilleur des trois sets ou en un seul set. Les règles en
-        détail : <a href="{url:tennis}">compter au tennis</a>,
+        détail : <a href="{url:tennis}">compter au tennis</a>,
         <a href="{url:padel}">compter au padel</a>.
-    - q: Comment fonctionne le score en direct ?
+    - q: Comment fonctionne le score en direct ?
       a: >-
         Tu partages un lien depuis l’app. Qui l’ouvre voit le score, le déroulé
         des sets et qui est au service dans le navigateur. Pour cela, ton
         téléphone doit être à portée Bluetooth de la montre.
-    - q: Combien coûte Kortscore ?
+    - q: Combien coûte Kortscore ?
       a: >-
         Rien. Le comptage, le score en direct et tes 10 derniers matchs sont
         gratuits, sans publicité et sans compte, sur iPhone comme sur Android.
@@ -121,13 +120,13 @@ faq:
         matchs avec le déroulé point par point, des statistiques détaillées, des
         sauvegardes automatiques et le Kortscore Trainer (IA), qui analyse tes
         matchs.
-    - q: Existe-t-il un Kortscore pour iPhone et Apple Watch ?
+    - q: Existe-t-il un Kortscore pour iPhone et Apple Watch ?
       a: >-
         Oui. L’app vient de l’App Store et a une app Apple Watch pour compter,
         avec les mêmes formats et le même code des taps que sur Wear OS. Une
-        différence : sur l’Apple Watch, un match est lancé comme un
+        différence : sur l’Apple Watch, un match est lancé comme un
         entraînement, c’est ce qui garde l’écran allumé pendant le jeu.
-    - q: Kortscore fonctionne-t-il sur iPad et Mac ?
+    - q: Kortscore fonctionne-t-il sur iPad et Mac ?
       a: >-
         Oui. L’app Kortscore de l’App Store fonctionne aussi sur iPad avec
         iPadOS 18 ou plus récent et sur les Mac avec puce Apple sous macOS 15 ou
@@ -135,9 +134,9 @@ faq:
         des matchs, les statistiques et le score en direct y profitent d’un
         plus grand écran. Pour compter au poignet, il faut toujours passer par
         l’iPhone, car Apple ne jumelle l’Apple Watch qu’avec un iPhone.
-    - q: Puis-je passer d’Android à l’iPhone en gardant mes matchs ?
+    - q: Puis-je passer d’Android à l’iPhone en gardant mes matchs ?
       a: >-
-        Oui, grâce à la sauvegarde dans l’app : crée une sauvegarde sur l’ancien
+        Oui, grâce à la sauvegarde dans l’app : crée une sauvegarde sur l’ancien
         appareil, charge-la sur le nouveau, et c’est fait. Ça marche dans les
         deux sens. Pour l’instant, il n’existe pas de compte Kortscore qui
         synchronise les données via le cloud.
@@ -145,7 +144,7 @@ faq:
 cta:
   title: Pour iPhone et Android
   lede: La montre compte, le téléphone garde l’historique.
-  hint: "Configuration requise : iOS et iPadOS 18 ou plus, macOS 15 ou plus (puce Apple), watchOS 26 ou plus, Android 8.0 ou plus, Wear OS 3 ou plus."
+  hint: "Configuration requise : iOS et iPadOS 18 ou plus, macOS 15 ou plus (puce Apple), watchOS 26 ou plus, Android 8.0 ou plus, Wear OS 3 ou plus."
 
 # JSON-LD SoftwareApplication (nur im Quelltext, nicht sichtbar).
 app:

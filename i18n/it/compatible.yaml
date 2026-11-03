@@ -9,15 +9,15 @@ meta:
 breadcrumb: Orologi compatibili
 llms: Orologi compatibili (elenco completo dei modelli)
 
-title: Kortscore funziona <br>sul mio orologio?
+title: Orologi compatibili
 lead: >-
-  La risposta breve: sì, su ogni Apple Watch con watchOS 26 o successivo
-  abbinato a un iPhone, e su ogni orologio con Wear OS 3 o successivo abbinato a
-  un telefono Android con Android 8 o successivo. Quindi su ogni Apple Watch
-  a partire da Series 6, sull’Apple Watch SE dalla seconda generazione e su ogni
+  Kortscore funziona su ogni Apple Watch con watchOS 26 o successivo abbinato a
+  un iPhone, e su ogni orologio con Wear OS 3 o successivo abbinato a un
+  telefono Android con Android 8 o successivo. Quindi su ogni Apple Watch a
+  partire da Series 6, sull’Apple Watch SE dalla seconda generazione e su ogni
   Apple Watch Ultra, su ogni Samsung Galaxy Watch dal 2021, su ogni Google Pixel
-  Watch e sugli attuali orologi di OnePlus, Mobvoi e Xiaomi. La risposta lunga è
-  qui sotto.
+  Watch e sugli attuali orologi di OnePlus, Mobvoi e Xiaomi. I dettagli sono qui
+  sotto.
 
 # Spaltenköpfe und Generationsangaben in den Tabellen.
 col:
@@ -31,13 +31,13 @@ generation:
 version:
   title: Come trovare la versione del sistema
   body: >-
-    <p>Sull’orologio Wear OS in <em>Impostazioni → Info → Versione software</em>,
-    sui Samsung in <em>Impostazioni → Info sull’orologio → Informazioni
+    <p>Sull’orologio Wear OS in <em>Impostazioni &gt; Info &gt; Versione software</em>,
+    sui Samsung in <em>Impostazioni &gt; Info sull’orologio &gt; Informazioni
     software</em>. Se c’è scritto Wear OS 3, 4, 5, 6 o 7, Kortscore
-    funziona.</p><p><strong>Sull’Apple Watch:</strong> <em>Impostazioni
-    Generali → Info → Versione</em>. Se c’è scritto watchOS 26 o successivo,
+    funziona.</p><p><strong>Sull’Apple Watch:</strong> <em>Impostazioni &gt;
+    Generali &gt; Info &gt; Versione</em>. Se c’è scritto watchOS 26 o successivo,
     Kortscore funziona. Versione più vecchia su un modello dell’elenco qui
-    sotto? Aggiornalo prima in <em>Impostazioni → Generali → Aggiornamento
+    sotto? Aggiornalo prima in <em>Impostazioni &gt; Generali &gt; Aggiornamento
     software</em>.</p>
 
 apple:
@@ -57,9 +57,8 @@ pixel:
 others:
   title: Altre marche
   text: >-
-    Non li abbiamo provati tutti al polso. Ma Wear OS è Wear OS: se l’orologio
-    ha la versione 3 o successiva, Kortscore funziona. Se qualcosa non va,
-    scrivici a <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>.
+    Non li abbiamo provati tutti al polso. Conta la versione: con Wear OS 3 o
+    successivo, Kortscore funziona. Se qualcosa non va, scrivici a <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>.
 
 unsupported:
   title: Cosa non funziona
@@ -70,7 +69,7 @@ unsupported:
     - "<strong>Apple Watch Series 5, SE (1ª gen.) e precedenti:</strong> si fermano a watchOS 10 o prima, Kortscore richiede watchOS 26."
 
 phone:
-  title: E il telefono?
+  title: Il telefono
   text: >-
     L’app Kortscore per iPhone richiede iOS 18 o successivo; con un Apple Watch
     su watchOS 26, Apple richiede che l’iPhone abbia iOS 26. Un orologio Wear OS
@@ -82,13 +81,12 @@ phone:
 
 # Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
 faq:
-  title: Domande frequenti
+  title: Domande
   questions:
     - q: Il mio orologio non è nell’elenco.
       a: >-
-        Nessun problema. Conta solo la versione del sistema: watchOS 26 o Wear
-        OS 3, o successive, e Kortscore funziona. Come trovarla è spiegato qui
-        sopra.
+        Conta solo la versione del sistema: watchOS 26 o Wear OS 3, o
+        successive, e Kortscore funziona. Come trovarla è spiegato qui sopra.
     - q: Basta un orologio LTE senza telefono?
       a: >-
         Per contare i punti sì, l’orologio non ha bisogno di alcuna connessione.
@@ -101,7 +99,7 @@ faq:
         un’intera giornata di campionato.
 
 cta:
-  fits: L’orologio va bene?
-  download: Scarica gratis
+  fits: Il tuo orologio è nell’elenco?
+  download: Scarica l’app
   no_watch: Non hai ancora un orologio?
-  picks: Quattro proposte per il campo
+  picks: Quattro orologi per il campo

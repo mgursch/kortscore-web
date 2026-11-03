@@ -8,14 +8,14 @@ meta:
 breadcrumb: Per i circoli
 llms: Per i circoli (volantino nella club house, sconto su Kortscore Plus per i soci)
 
-title: Appendete il volantino. <br>I soci risparmiano.
+title: Sconto per i soci del circolo
 lead: >-
   Il vostro circolo appende il volantino di Kortscore nella club house o vicino
   ai campi, e in cambio i vostri soci ricevono un codice sconto per Kortscore
   Plus. Scriveteci, al resto pensiamo noi via email.
 
 steps:
-  title: Come funziona
+  title: I passaggi
   list:
     - title: Contattateci
       body: >-
@@ -32,7 +32,7 @@ steps:
         codice, Plus costa meno nell’app.
 
 redeem:
-  title: Come i vostri soci riscattano il codice
+  title: Riscattare il codice
   list:
     - >-
       Aprire Kortscore e andare alla schermata di acquisto di Kortscore Plus,
@@ -44,15 +44,12 @@ redeem:
   note: Funziona allo stesso modo su iPhone e su Android.
 
 plus:
-  title: Cos’è Kortscore Plus?
+  title: Kortscore Plus
   text: >-
-    Kortscore di per sé è gratis: il conteggio al polso, il punteggio live e le
-    10 partite più recenti della cronologia, senza pubblicità e senza account.
-    Kortscore Plus è un acquisto unico, non un abbonamento, e aggiunge la
+    Kortscore Plus è un acquisto unico, non un abbonamento. Aggiunge la
     cronologia completa delle partite con il registro punto per punto,
     statistiche dettagliate, backup automatici e il Kortscore Trainer (IA), che
-    analizza le partite. Con il vostro codice, i vostri soci hanno Plus a un
-    prezzo più conveniente.
+    analizza le partite.
 
 # Der Flyer selbst ist bisher nur auf Deutsch, das sagt der Text dazu.
 flyer:

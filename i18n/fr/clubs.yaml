@@ -8,14 +8,14 @@ meta:
 breadcrumb: Pour les clubs
 llms: Pour les clubs (flyer au club-house, Kortscore Plus moins cher pour les adhérents)
 
-title: Affichez le flyer. <br>Vos adhérents économisent.
+title: Réduction pour les adhérents
 lead: >-
   Votre club affiche le flyer Kortscore au club-house ou près des courts, et
   vos adhérents reçoivent en échange un code de réduction pour Kortscore Plus.
-  Écrivez-nous, tout simplement, on règle le reste par e-mail.
+  Écrivez-nous, on règle le reste par e-mail.
 
 steps:
-  title: Comment ça marche
+  title: Les étapes
   list:
     - title: Prenez contact
       body: >-
@@ -32,7 +32,7 @@ steps:
         club. Avec ce code, Plus coûte moins cher dans l’app.
 
 redeem:
-  title: Comment vos adhérents utilisent le code
+  title: Utiliser le code
   list:
     - >-
       Ouvrir Kortscore et aller sur l’écran d’achat de Kortscore Plus, par
@@ -44,14 +44,12 @@ redeem:
   note: Ça marche de la même façon sur iPhone et sur Android.
 
 plus:
-  title: Qu’est-ce que Kortscore Plus ?
+  title: Kortscore Plus
   text: >-
-    Kortscore lui-même est gratuit : le comptage au poignet, le score en direct
-    et les 10 derniers matchs de l’historique, sans publicité et sans compte.
-    Kortscore Plus est un achat unique, pas un abonnement, et ajoute l’historique
-    complet des matchs avec le déroulé point par point, des statistiques
-    détaillées, des sauvegardes automatiques et le Kortscore Trainer (IA), qui
-    analyse les matchs. Avec votre code, vos adhérents ont Plus à prix réduit.
+    Kortscore Plus est un achat unique, pas un abonnement. Il ajoute
+    l’historique complet des matchs avec le déroulé point par point, des
+    statistiques détaillées, des sauvegardes automatiques et le Kortscore
+    Trainer (IA), qui analyse les matchs.
 
 # Der Flyer selbst ist bisher nur auf Deutsch, das sagt der Text dazu.
 flyer:
@@ -70,19 +68,19 @@ flyer:
 faq:
   title: Questions
   questions:
-    - q: Est-ce que ça coûte quelque chose au club ?
+    - q: Est-ce que ça coûte quelque chose au club ?
       a: >-
         Non. Vous affichez le flyer, nous envoyons le code de réduction.
         Kortscore lui-même est de toute façon gratuit pour vos adhérents.
-    - q: Quel est le montant de la réduction ?
+    - q: Quel est le montant de la réduction ?
       a: >-
         Nous le fixons avec chaque club individuellement. Indiquez-nous à peu
         près combien d’adhérents vous avez, et nous vous ferons une offre.
-    - q: Le code fonctionne-t-il sur iPhone et Android ?
+    - q: Le code fonctionne-t-il sur iPhone et Android ?
       a: >-
         Oui. Le code s’utilise dans l’app Kortscore, sur l’écran d’achat de
         Kortscore Plus, de la même façon sur les deux plateformes.
-    - q: Le code expire-t-il ?
+    - q: Le code expire-t-il ?
       a: >-
         C’est possible. Un code peut avoir une durée de validité, que nous vous
         indiquerons avec le code.

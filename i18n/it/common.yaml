@@ -4,7 +4,7 @@
 nav_cta: Scarica l’app
 # alt-Text des offiziellen Google-Play-Badges (Text wie auf dem Badge).
 google_play_alt: Disponibile su Google Play
-back_home: ← Torna alla home
+back_home: Torna alla home
 
 # aria-label des Sprachumschalters, gefolgt vom Namen der aktuellen Sprache.
 lang_menu: Lingua
