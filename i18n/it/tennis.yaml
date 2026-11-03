@@ -84,7 +84,7 @@ sections:
         risultato si scrive allora, per esempio, 6-3 4-6 [10-7].
       - >-
         Kortscore li conosce entrambi: tie-break a 7 e super tie-break a 10.
-  - title: "Il servizio cambia a ogni game, il campo dopo una somma dispari di game"
+  - title: "Servizio a ogni game, cambio campo sulle somme dispari"
     text:
       - >-
         Il servizio passa all’avversario dopo ogni game. Nel singolare chi ha
@@ -129,4 +129,4 @@ cta:
   title: Contare con Kortscore
   text: >-
     Tocchi una volta per punto; parità, vantaggio e turni di servizio nel
-    tie-break li calcola l’app secondo esattamente queste regole.
+    tie-break li gestisce l’app secondo queste regole.

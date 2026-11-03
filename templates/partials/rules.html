@@ -45,10 +45,10 @@
   "tiebreak": {"sport": "tennis", "points": [5, 4], "games": [6, 6], "golden": false, "controls": ["buttons", "reset"]},
   "golden":   {"sport": "padel",  "points": [3, 3], "games": [3, 2], "golden": true,  "controls": ["buttons", "reset", "golden"]}
 } %}
-<main class="rules">
-  <header class="rules__head">
+<main class="rulebook">
+  <header class="rulebook__head">
     <a class="back" href="{{ url('index') }}">{{ c.back_home }}</a>
-    <h1 class="rules__title">{{ t.title }}</h1>
+    <h1 class="rulebook__title">{{ t.title }}</h1>
     <p class="lead">{{ t.lead }}</p>
   </header>
 
@@ -56,18 +56,18 @@
        Evergreen reference page: one column, one section per rule. The heading
        states the rule, the paragraphs say it once, and where trying it helps
        the section carries a working scoreboard (data-ui, own type). -->
-  <div class="rules__body">
+  <div class="rulebook__body">
 {% for section in t.sections %}
-    <section class="rules__sec" data-reveal>
-      <h2 class="rules__h">{{ section.title }}</h2>
+    <section class="rulebook__sec" data-reveal>
+      <h2 class="rulebook__h">{{ section.title }}</h2>
 {% for paragraph in section.text %}
       <p>{{ paragraph }}</p>
 {% endfor %}
 {% if section.demo is defined %}
 {% set d = demos[section.demo] %}
-      <div class="rules__demo">
-        <p class="rules__note">{{ section.note }}</p>
-        <div class="rules__board" data-ui>
+      <div class="rulebook__demo">
+        <p class="rulebook__note">{{ section.note }}</p>
+        <div class="rulebook__board" data-ui>
 {{ scoreboard(sb, sport=d.sport, points=d.points, games=d.games, golden=d.golden, controls=d.controls, id="demo-" ~ section.demo)|indent(10, first=True) }}
         </div>
       </div>
@@ -79,20 +79,20 @@
     <!-- Pointer to the ITN calculator. Only where that page exists in this
          language (today German only); the copy lives in i18n/<lang>/itn.yaml. -->
 {% set itn = page_text('itn') %}
-    <section class="rules__sec" data-reveal>
-      <h2 class="rules__h">{{ itn.teaser.title }}</h2>
+    <section class="rulebook__sec" data-reveal>
+      <h2 class="rulebook__h">{{ itn.teaser.title }}</h2>
       <p>{{ itn.teaser.text }}</p>
       <a class="textlink" href="{{ url('itn') }}">{{ itn.teaser.link }}</a>
     </section>
 
 {% endif %}
-    <section class="rules__sec" data-reveal>
-      <h2 class="rules__h">{{ t.faq.title }}</h2>
+    <section class="rulebook__sec" data-reveal>
+      <h2 class="rulebook__h">{{ t.faq.title }}</h2>
       {{ faq_list(t.faq.questions)|indent(6) }}
     </section>
 
-    <section class="rules__sec rules__cta" data-reveal>
-      <h2 class="rules__h">{{ t.cta.title }}</h2>
+    <section class="rulebook__sec rulebook__cta" data-reveal>
+      <h2 class="rulebook__h">{{ t.cta.title }}</h2>
       <p>{{ t.cta.text }}</p>
 {% filter indent(6, first=True) %}{% include "partials/storebadges.html" %}{% endfilter %}
       <a class="textlink" href="{{ url('padel' if page == 'tennis' else 'tennis') }}">{{ page_text('padel' if page == 'tennis' else 'tennis').title }}</a>
