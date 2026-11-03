@@ -141,10 +141,10 @@
   <h2>2. Überblick</h2>
   <p>
     Kortscore ist eine Zählapp für Tennis und Padel für Apple Watch und Wear OS mit Begleit-App für iPhone bzw. Android-Smartphone. Die App funktioniert
-    grundsätzlich lokal auf dem Gerät. Es gibt <strong>keine Nutzerkonten</strong>, <strong>keine
-    Werbe-SDKs</strong>, <strong>keine standortbezogenen Daten</strong> und <strong>kein Tracking über
+    grundsätzlich lokal auf dem Gerät. Es gibt <strong>keine Nutzerkonten</strong>, und die App enthält <strong>keine
+    Werbe-SDKs</strong>, erfasst <strong>keine standortbezogenen Daten</strong> und betreibt <strong>kein Tracking über
     andere Apps oder Websites hinweg</strong>. Daten werden nur in den unten beschriebenen Fällen
-    verarbeitet. Gesundheitsdaten (Herzfrequenz) verarbeitet die App nur auf der Uhr, siehe Abschnitt 8. Die Apple-Watch-App enthält kein Firebase und überträgt selbst keine Daten; beendete Matches gibt sie nur an Ihr iPhone weiter.
+    verarbeitet. Auf der Website messen wir Seitenaufrufe und Klicks mit Umami und die Wirkung unserer Google-Anzeigen mit Google Ads (Abschnitte 12 und 13). Gesundheitsdaten (Herzfrequenz) verarbeitet die App nur auf der Uhr, siehe Abschnitt 8. Die Apple-Watch-App enthält kein Firebase und überträgt selbst keine Daten; beendete Matches gibt sie nur an Ihr iPhone weiter.
   </p>
 
   <h2>3. Firebase Analytics</h2>
@@ -407,7 +407,7 @@
     <strong>ITN-App:</strong> Das Formular auf
     <a href="https://kortscore.com/itn-rechner/">kortscore.com/itn-rechner</a> ist nicht mehr
     online. Bestehende Einträge verwenden wir nur noch für die eine Benachrichtigung, dass die App
-    (Kortform, <a href="https://kortform.at">kortform.at</a>) verfügbar ist, und löschen sie danach.
+    (Kortform, <a href="https://kortform.at" target="_blank" rel="noopener">kortform.at</a>) verfügbar ist, und löschen sie danach.
   </p>
   <p>
     Es gibt keinen Newsletter, keine Werbung und keine Weitergabe an Dritte.
@@ -422,13 +422,147 @@
     Auftragsverarbeiter.
   </p>
 
-  <h2>12. Keine Datenweitergabe zu Werbezwecken</h2>
+  <h2>12. Website-Statistik (Umami)</h2>
   <p>
-    Wir verkaufen keine Daten und nutzen keine Werbe- oder Tracking-Dienste. Über die in dieser
-    Erklärung genannten Dienste von Google und Apple hinaus findet keine Weitergabe an Dritte statt.
+    Auf kortscore.com messen wir mit dem Statistikdienst Umami Cloud, wie oft Seiten aufgerufen
+    werden und wie oft bestimmte Links angeklickt werden, etwa die Store-Buttons (Google Play,
+    App Store), Partnerlinks (Abschnitt 14) oder der Link zur Kortform-App. Das hilft uns
+    einzuschätzen, welche Seiten gelesen werden und was gut funktioniert. Die Messung läuft nur
+    auf der Website, nicht in der App.
+  </p>
+  <p>
+    Anbieter ist Umami Software, Inc., 28 Geary St, Suite 650 #243, San Francisco, Kalifornien,
+    USA. Dafür lädt Ihr Browser ein Skript von cloud.umami.is und sendet die unten genannten Daten
+    an Umami. Die Analysedaten werden in der EU-Region von Umami Cloud gespeichert. Netzwerk-, Sicherheits- und Betriebsdienste von Umami können auch außerhalb der EU liegen (unter anderem in den USA).
+  </p>
+  <p>Bei jedem Seitenaufruf und bei jedem gezählten Klick erhält Umami:</p>
+  <ul>
+    <li>die aufgerufene Seite (Adresse und Titel) und die Seite, von der Sie kamen (Referrer)</li>
+    <li>Browser, Betriebssystem, Gerätetyp, Bildschirmgröße und Browsersprache</li>
+    <li>einen ungefähren Standort, der aus Ihrer IP-Adresse abgeleitet wird</li>
+    <li>bei Klicks den Namen des Ereignisses, etwa „play-store-klick“, bei Partnerlinks zusätzlich
+      das angeklickte Produkt</li>
+  </ul>
+  <p>
+    Umami setzt keine Cookies und legt keine Daten auf Ihrem Gerät ab. Ihre IP-Adresse wird nur
+    kurz verarbeitet, um den Standort abzuleiten und eine Besucherkennung zu berechnen, und nach
+    Angaben von Umami nicht im Analysedatensatz gespeichert; in Betriebs- und Sicherheitsprotokollen
+    von Umami und seinen Dienstleistern kann sie dennoch vorkommen. Die Besucherkennung ist ein
+    Hashwert aus Website, IP-Adresse, Browserkennung (User-Agent) und einem regelmäßig wechselnden
+    Zufallswert (laut Umami standardmäßig monatlich). Innerhalb dieses Zeitraums kann ein
+    wiederkehrender Besuch desselben Browsers erkannt werden, danach nicht mehr; ein Profil über
+    mehrere Websites hinweg entsteht nicht.
+  </p>
+  <p>
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer
+    einfachen, datensparsamen Reichweitenmessung und an der Verbesserung der Website).<br />
+    <strong>Widerspruch:</strong> Sie können dieser Verarbeitung jederzeit nach Art. 21 DSGVO
+    widersprechen (siehe Abschnitt 17). Da wir einzelne Besucher nicht identifizieren, können wir
+    Sie nicht aus den Statistiken herauslösen; die Messung verhindern Sie am einfachsten mit einem
+    Inhaltsblocker in Ihrem Browser, der das Umami-Skript nicht lädt.<br />
+    <strong>Speicherdauer:</strong> 6 Monate.<br />
+    <strong>Empfänger:</strong> Umami Software, Inc. als Auftragsverarbeiter; mit Umami besteht ein
+    Auftragsverarbeitungsvertrag einschließlich der EU-Standardvertragsklauseln. Mehr dazu in der
+    <a href="https://umami.is/privacy" target="_blank" rel="noopener">Datenschutzerklärung von Umami</a>.
   </p>
 
-  <h2>13. Empfänger &amp; Übermittlung in Drittländer</h2>
+  <h2>13. Messung von Google-Ads-Kampagnen</h2>
+  <p>
+    Wir schalten Anzeigen bei Google (Google Ads). Auf der Startseite und auf der Seite mit den
+    Uhrenempfehlungen von kortscore.com, in allen Sprachfassungen, messen wir deshalb, ob eine
+    Anzeige zu einem Seitenaufruf oder zu einem Klick auf den Google-Play-Button geführt hat. Das
+    hilft uns einzuschätzen, ob sich die Anzeigen lohnen. Auf den übrigen Seiten und in der App
+    findet diese Messung nicht statt.
+  </p>
+  <p>
+    Anbieter ist für Nutzer im Europäischen Wirtschaftsraum Google Ireland Limited, Gordon House,
+    Barrow Street, Dublin 4, Irland. Dafür lädt Ihr Browser das Skript gtag.js von
+    www.googletagmanager.com. Bevor es lädt, stellen wir den Consent Mode von Google auf
+    „abgelehnt“ (Werbespeicher, Nutzerdaten für Werbung, Personalisierung von Werbung und
+    Analysespeicher). Ein Einwilligungsbanner gibt es dafür nicht, die Voreinstellung bleibt also
+    bei jedem Besuch bestehen. Nach Angaben von Google setzt das Skript dann keine neuen
+    Werbe-Cookies und legt keine Werbekennungen auf Ihrem Gerät ab; vorhandene Werbe-Cookies liest
+    es nicht aus. Zusätzlich haben wir zwei Schutzeinstellungen von Google aktiviert:
+    „ads_data_redaction“ entfernt die Klick-Kennung einer Anzeige (gclid) aus den Anfragen an
+    Google, und „url_passthrough“ kann diese Kennung statt in einem Cookie an Links innerhalb von
+    kortscore.com anhängen.
+  </p>
+  <p>Trotzdem erhält Google Daten. Bei jedem Aufruf dieser Seiten und beim Klick auf den
+    Google-Play-Button sendet Ihr Browser eine Anfrage an Google. Nach den Angaben von Google
+    enthält sie bei abgelehnter Einwilligung:</p>
+  <ul>
+    <li>den Zeitpunkt, die Browserkennung (User-Agent) und die Seite, von der Sie kamen (Referrer)</li>
+    <li>die Adresse der aufgerufenen Seite, ohne Klick-Kennung (die entfernt „ads_data_redaction“)</li>
+    <li>den Einwilligungsstatus „abgelehnt“, einen Hinweis, ob die Adresse eine Klick-Kennung einer
+      Anzeige enthielt (nicht deren Wert), und eine bei jedem Seitenaufruf neu erzeugte Zufallszahl</li>
+    <li>beim Klick auf den Google-Play-Button den Hinweis, dass dieser Klick stattgefunden hat</li>
+  </ul>
+  <p>
+    Ihre IP-Adresse ist technisch Teil jeder Anfrage an Google; nach Angaben von Google werden
+    IP-Adressen bei Werbeprodukten bei der Erhebung gekürzt. Google nutzt diese Daten, um
+    Conversions statistisch zu schätzen. Wir erhalten in Google Ads Auswertungen zu Anzeigen und
+    Conversions, keine Angaben zu einzelnen Besuchern. Soweit Google Daten zu eigenen Zwecken
+    verarbeitet, geschieht das in eigener Verantwortung von Google.
+  </p>
+  <p>
+    <strong>Kampagnenangaben in Ihrem Browser:</strong> Kommt Ihr Besuch aus einer Anzeige oder
+    einem Link mit Kampagnenangaben, stehen in der Adresse Parameter wie gclid oder utm_source,
+    utm_medium, utm_campaign, utm_content und utm_term. Unser Skript merkt sich diese Werte im
+    Sitzungsspeicher (sessionStorage) Ihres Browsers unter dem Schlüssel „ks-campaign“, auf jeder
+    Seite von kortscore.com und unabhängig von der Messung durch Google. Der Eintrag gilt nur für
+    den aktuellen Browser-Tab und verschwindet, wenn Sie ihn schließen; er selbst wird weder an uns noch
+    an Google gesendet; seine Werte gelangen nur über den unten beschriebenen Google-Play-Link zu Google Play. Er sorgt dafür, dass die Angaben noch vorliegen, wenn Sie erst auf einer
+    anderen Seite auf den Google-Play-Button klicken. An den Google-Play-Link hängt unser Skript
+    einen Parameter „referrer“ an. Er enthält die Herkunft „kortscore.com“ und „website“; kommt der
+    Besuch aus einer Anzeige, stattdessen „google“ und „cpc“ samt Klick-Kennung (gclid). Enthielt
+    die Adresse Kampagnenangaben (utm_…), übernimmt er diese, und sie gehen den genannten Werten vor. Mit Ihrem Klick auf den Link gelangt dieser Wert zu Google Play, und
+    Google Play kann ihn nach einer Installation an die App weitergeben, damit wir erkennen, welche
+    Kampagne zu einer Installation geführt hat.
+  </p>
+  <p>
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der
+    Erfolgskontrolle unserer Werbung und an einem wirtschaftlichen Einsatz unseres Werbebudgets).
+    Die Kampagnenangaben im Sitzungsspeicher legen wir ohne Einwilligungsabfrage ab; sie bleiben
+    auf Ihren Browser-Tab beschränkt und dienen nur der Messung.<br />
+    <strong>Widerspruch:</strong> Sie können dieser Verarbeitung jederzeit nach Art. 21 DSGVO
+    widersprechen (siehe Abschnitt 17). Am einfachsten verhindern Sie die Messung mit einem
+    Inhaltsblocker in Ihrem Browser, der www.googletagmanager.com nicht lädt; den Sitzungsspeicher
+    leert das Schließen des Tabs. Die Anzeigenpersonalisierung von Google steuern Sie zusätzlich
+    unter <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>.
+    Ihre Rechte können Sie auch direkt gegenüber Google geltend machen.<br />
+    <strong>Speicherdauer:</strong> Sitzungsspeicher: bis zum Schließen des Browser-Tabs. Bei Google
+    richtet sich die Speicherdauer nach den Angaben von Google.<br />
+    <strong>Empfänger:</strong> Google Ireland Limited. Die Übermittlung in die USA stützt sich auf
+    das EU-US Data Privacy Framework, dem Google LLC nach eigenen Angaben beigetreten ist (siehe
+    Abschnitt 16). Mehr dazu in der
+    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung von Google</a>.
+  </p>
+
+  <h2>14. Affiliate-Links (Amazon-Partnerprogramm)</h2>
+  <p>
+    Als Teilnehmer des Amazon-Partnerprogramms verdienen wir an qualifizierten Verkäufen: Einige
+    Links auf kortscore.com zu Produkten bei Amazon (etwa zu Smartwatches) sind Partnerlinks, und
+    wenn Sie nach einem Klick dort etwas kaufen, erhalten wir eine Provision. Für Sie ändert sich
+    der Preis dadurch nicht. Auf kortscore.com selbst werden dabei keine Daten an Amazon übertragen
+    und keine Amazon-Cookies gesetzt. Erst nach Ihrem Klick leitet Sie ein Weiterleitungsdienst
+    (link.amazon bzw. amzlink.to) zu Amazon weiter; ab dann gilt die
+    <a href="https://www.amazon.at/gp/help/customer/display.html?nodeId=201909010" target="_blank" rel="noopener">Datenschutzerklärung von Amazon</a>, und Amazon kann Cookies
+    setzen, um den Kauf unserer Empfehlung zuzuordnen. Die Klicks auf diese Links zählen wir
+    mit Umami, ohne Cookies und ohne Angaben zu Ihrer Person (Abschnitt 12).
+  </p>
+
+  <h2>15. Keine Datenweitergabe zu Werbezwecken</h2>
+  <p>
+    Wir verkaufen keine Daten, zeigen in der App keine Werbung und nutzen dort keine Werbe- oder
+    Tracking-Dienste. Daten von Website-Besuchern verwenden wir weder für Remarketing noch für
+    personalisierte Anzeigen. Auf kortscore.com messen wir lediglich, ob unsere Google-Anzeigen zu
+    Aufrufen und Klicks führen; das ist in Abschnitt 13 beschrieben. Über die in dieser Erklärung
+    genannten Dienste von Google (einschließlich Google Ads), Apple und Umami hinaus findet keine
+    Weitergabe von Daten an Dritte statt. Die Weiterleitung zu Amazon über Partnerlinks erfolgt erst
+    nach Ihrem Klick und ist in Abschnitt 14 beschrieben.
+  </p>
+
+  <h2>16. Empfänger &amp; Übermittlung in Drittländer</h2>
   <table>
     <thead><tr><th>Dienst</th><th>Anbieter</th><th>Verarbeitungsort</th></tr></thead>
     <tbody>
@@ -445,6 +579,8 @@
       <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>gemäß Google-Kontoeinstellungen</td></tr>
       <tr><td>iCloud-Backup / iCloud Drive</td><td>Apple Inc.</td><td>gemäß Ihren iCloud-Einstellungen</td></tr>
       <tr><td>Google Sheets (Wartelisten)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
+      <tr><td>Umami Cloud (Website-Statistik)</td><td>Umami Software, Inc. (USA)</td><td>EU (Analysedaten); Betriebsdienste teils USA (EU-Standardvertragsklauseln)</td></tr>
+      <tr><td>Google Ads (Kampagnenmessung, Website)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-US Data Privacy Framework)</td></tr>
     </tbody>
   </table>
   <p>
@@ -452,9 +588,10 @@
     Standardvertragsklauseln der EU-Kommission mit den jeweiligen Google-Gesellschaften. Daten im
     Zusammenhang mit App Store, App Attest und iCloud verarbeitet Apple nach den eigenen
     Datenschutzbestimmungen von Apple.
+    Bei Umami liegen die Analysedaten in der EU; soweit Betriebsdienste von Umami in den USA Daten verarbeiten, stützt sich dies auf die EU-Standardvertragsklauseln im Auftragsverarbeitungsvertrag von Umami. Für Google Ads (Abschnitt 13) stützt sich die Übermittlung in die USA auf das EU-US Data Privacy Framework, dem Google LLC nach eigenen Angaben beigetreten ist.
   </p>
 
-  <h2>14. Ihre Rechte</h2>
+  <h2>17. Ihre Rechte</h2>
   <p>Sie haben nach der DSGVO folgende Rechte:</p>
   <ul>
     <li>Auskunft (Art. 15 DSGVO)</li>
@@ -471,7 +608,7 @@
     genannte Kontaktadresse.
   </p>
 
-  <h2>15. Kontakt</h2>
+  <h2>18. Kontakt</h2>
   <p>
     Fragen zum Datenschutz richten Sie bitte an:
     <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
@@ -509,9 +646,9 @@
   <h2>2. Overview</h2>
   <p>
     Kortscore is a tennis and padel scoring app for Apple Watch and Wear OS with a companion app for iPhone or Android phones. The app works
-    primarily locally on your device. There are <strong>no user accounts</strong>, <strong>no
-    advertising SDKs</strong>, <strong>no location data</strong>, and <strong>no cross-app/cross-
-    site tracking</strong>. Data is processed only in the cases described below. Health data (heart rate) is processed only on the watch, see section 8. The Apple Watch app contains no Firebase and transmits no data on its own; it only hands finished matches to your iPhone.
+    primarily locally on your device. There are <strong>no user accounts</strong>, and the app contains <strong>no
+    advertising SDKs</strong>, collects <strong>no location data</strong> and does <strong>no
+    cross-app/cross-site tracking</strong>. Data is processed only in the cases described below. On the website we measure page views and clicks with Umami and the effect of our Google ads with Google Ads (sections 12 and 13). Health data (heart rate) is processed only on the watch, see section 8. The Apple Watch app contains no Firebase and transmits no data on its own; it only hands finished matches to your iPhone.
   </p>
 
   <h2>3. Firebase Analytics</h2>
@@ -760,7 +897,7 @@
     <strong>ITN app:</strong> The form on
     <a href="https://kortscore.com/itn-rechner/">kortscore.com/itn-rechner</a> (in German) is no
     longer online. We use existing entries only for the one notification that the app (Kortform,
-    <a href="https://kortform.at">kortform.at</a>) is available, and delete them afterwards.
+    <a href="https://kortform.at" target="_blank" rel="noopener">kortform.at</a>) is available, and delete them afterwards.
   </p>
   <p>
     There is no newsletter, no advertising and no sharing with third parties.
@@ -774,13 +911,140 @@
     <strong>Recipients:</strong> Google LLC / Google Ireland Limited (Google Sheets) as processor.
   </p>
 
-  <h2>12. No sale or third-party sharing</h2>
+  <h2>12. Website statistics (Umami)</h2>
   <p>
-    We do not sell data and use no advertising or tracking services. Beyond the Google and Apple
-    services named in this policy, no data is shared with third parties.
+    On kortscore.com we use the analytics service Umami Cloud to measure how often pages are viewed
+    and how often certain links are clicked, such as the store buttons (Google Play, App Store),
+    affiliate links (section 14) or the link to the Kortform app. This helps us see which pages
+    are read and what works well. The measurement runs on the website only, not in the app.
+  </p>
+  <p>
+    The provider is Umami Software, Inc., 28 Geary St, Suite 650 #243, San Francisco, California,
+    USA. For this, your browser loads a script from cloud.umami.is and sends the data listed below
+    to Umami. The analytics data is stored in the EU region of Umami Cloud. Umami’s network, security and operations services may also be located outside the EU (including in the US).
+  </p>
+  <p>With every page view and every counted click, Umami receives:</p>
+  <ul>
+    <li>the page viewed (address and title) and the page you came from (referrer)</li>
+    <li>browser, operating system, device type, screen size and browser language</li>
+    <li>an approximate location derived from your IP address</li>
+    <li>for clicks, the name of the event, such as “play-store-klick”, and for affiliate links also
+      the product clicked</li>
+  </ul>
+  <p>
+    Umami sets no cookies and stores no data on your device. Your IP address is processed only
+    briefly to derive the location and to calculate a visitor identifier, and according to Umami it
+    is not stored in the analytics record; it may still appear in operational and security logs of
+    Umami and its service providers. The visitor identifier is a hash of the website, IP address,
+    browser identifier (user agent) and a regularly changing random value (by default monthly,
+    according to Umami). Within that period, a returning visit from the same browser can be
+    recognised, afterwards it cannot; no profile across several websites is created.
+  </p>
+  <p>
+    <strong>Legal basis:</strong> Art. 6(1)(f) GDPR (legitimate interest in simple, data-minimising
+    audience measurement and in improving the website).<br />
+    <strong>Objection:</strong> You can object to this processing at any time under Art. 21 GDPR
+    (see section 17). Since we do not identify individual visitors, we cannot remove you from the
+    statistics; the easiest way to prevent the measurement is a content blocker in your browser that
+    does not load the Umami script.<br />
+    <strong>Retention:</strong> 6 months.<br />
+    <strong>Recipients:</strong> Umami Software, Inc. as processor; a data processing agreement
+    including the EU Standard Contractual Clauses is in place with Umami. More in
+    <a href="https://umami.is/privacy" target="_blank" rel="noopener">Umami’s privacy policy</a>.
   </p>
 
-  <h2>13. Recipients &amp; international transfers</h2>
+  <h2>13. Measuring Google Ads campaigns</h2>
+  <p>
+    We run ads with Google (Google Ads). On the home page and on the page with the watch
+    recommendations of kortscore.com, in all language versions, we therefore measure whether an ad
+    led to a page view or to a click on the Google Play button. This helps us judge whether the ads
+    are worthwhile. This measurement does not take place on the other pages or in the app.
+  </p>
+  <p>
+    For users in the European Economic Area, the provider is Google Ireland Limited, Gordon House,
+    Barrow Street, Dublin 4, Ireland. For this, your browser loads the script gtag.js from
+    www.googletagmanager.com. Before it loads, we set Google’s consent mode to “denied”
+    (advertising storage, user data for advertising, ad personalisation and analytics storage).
+    There is no consent banner for this, so the default stays in place on every visit. According
+    to Google, the script then sets no new advertising cookies and stores no advertising
+    identifiers on your device; it does not read existing advertising cookies. We have also enabled
+    two protective settings from Google: “ads_data_redaction” removes the click identifier of an ad
+    (gclid) from requests to Google, and “url_passthrough” may append that identifier to links
+    within kortscore.com instead of storing it in a cookie.
+  </p>
+  <p>Google still receives data. On every visit to these pages and when you click the Google Play
+    button, your browser sends a request to Google. According to Google, when consent is denied it
+    contains:</p>
+  <ul>
+    <li>the time, the browser identifier (user agent) and the page you came from (referrer)</li>
+    <li>the address of the page viewed, without click identifier (which “ads_data_redaction” removes)</li>
+    <li>the consent status “denied”, an indication of whether the address contained an ad click
+      identifier (not its value), and a random number generated anew on every page view</li>
+    <li>when you click the Google Play button, the indication that this click took place</li>
+  </ul>
+  <p>
+    Your IP address is technically part of every request to Google; according to Google, IP
+    addresses are truncated at collection in advertising products. Google uses this data to
+    estimate conversions statistically. In Google Ads we receive reports on ads and conversions, not
+    details about individual visitors. Where Google processes data for its own purposes, it does so
+    under its own responsibility.
+  </p>
+  <p>
+    <strong>Campaign details in your browser:</strong> If your visit comes from an ad or from a
+    link with campaign details, the address contains parameters such as gclid or utm_source,
+    utm_medium, utm_campaign, utm_content and utm_term. Our script remembers these values in your
+    browser’s session storage (sessionStorage) under the key “ks-campaign”, on every page of
+    kortscore.com and independently of Google’s measurement. The entry applies only to the current
+    browser tab and disappears when you close it; the entry itself is sent neither to us nor to Google; its values reach Google Play only through the Google Play link described below. It makes
+    sure the details are still available if you only click the Google Play button on another page.
+    Our script appends a “referrer” parameter to the Google Play link. It contains the origin
+    “kortscore.com” and “website”; if the visit comes from an ad, instead “google” and “cpc”
+    together with the click identifier (gclid). If the address contained campaign details (utm_…),
+    it adopts them, and they take precedence over these values. When you click the
+    link, this value reaches Google Play, and Google Play can pass it on to the app after an
+    installation so that we can tell which campaign led to an installation.
+  </p>
+  <p>
+    <strong>Legal basis:</strong> Art. 6(1)(f) GDPR (legitimate interest in checking the success of
+    our advertising and in using our advertising budget economically). We store the campaign
+    details in session storage without asking for consent; they stay limited to your browser tab
+    and serve only the measurement.<br />
+    <strong>Objection:</strong> You can object to this processing at any time under Art. 21 GDPR
+    (see section 17). The easiest way to prevent the measurement is a content blocker in your
+    browser that does not load www.googletagmanager.com; closing the tab clears the session
+    storage. You can also control Google’s ad personalisation at
+    <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>.
+    You can also exercise your rights directly against Google.<br />
+    <strong>Retention:</strong> Session storage: until the browser tab is closed. At Google,
+    retention follows Google’s own information.<br />
+    <strong>Recipients:</strong> Google Ireland Limited. The transfer to the US relies on the EU-US
+    Data Privacy Framework, to which Google LLC states it has adhered (see section 16). More in
+    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google’s privacy policy</a>.
+  </p>
+
+  <h2>14. Affiliate links (Amazon Associates program)</h2>
+  <p>
+    As a participant in the Amazon Associates program, we earn from qualifying purchases: some
+    links on kortscore.com to products on Amazon (for example smartwatches) are affiliate links, and
+    if you buy something there after clicking, we receive a commission. The price does not change
+    for you. On kortscore.com itself, no data is transmitted to Amazon and no Amazon cookies are
+    set. Only after your click does a redirect service (link.amazon or amzlink.to) forward you to
+    Amazon; from then on <a href="https://www.amazon.at/gp/help/customer/display.html?nodeId=201909010" target="_blank" rel="noopener">Amazon’s privacy notice</a> applies, and
+    Amazon may set cookies to attribute the purchase to our recommendation. We count clicks on
+    these links with Umami, without cookies and without any details about you (section 12).
+  </p>
+
+  <h2>15. No sale or third-party sharing</h2>
+  <p>
+    We do not sell data, show no advertising in the app and use no advertising or tracking
+    services there. We use website visitors’ data neither for remarketing nor for personalised ads.
+    On kortscore.com we only measure whether our Google ads lead to visits and clicks; this is
+    described in section 13. Beyond the Google services (including Google Ads), Apple and Umami
+    named in this policy, no data is shared with third parties. The redirect to Amazon via
+    affiliate links happens only after your click and is described in section 14.
+  </p>
+
+  <h2>16. Recipients &amp; international transfers</h2>
   <table>
     <thead><tr><th>Service</th><th>Provider</th><th>Processing location</th></tr></thead>
     <tbody>
@@ -797,15 +1061,18 @@
       <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>per Google account settings</td></tr>
       <tr><td>iCloud backup / iCloud Drive</td><td>Apple Inc.</td><td>per your iCloud settings</td></tr>
       <tr><td>Google Sheets (waitlists)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
+      <tr><td>Umami Cloud (website statistics)</td><td>Umami Software, Inc. (US)</td><td>EU (analytics data); operations services partly US (EU Standard Contractual Clauses)</td></tr>
+      <tr><td>Google Ads (campaign measurement, website)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU-US Data Privacy Framework)</td></tr>
     </tbody>
   </table>
   <p>
     Where data is transferred to Google in the US, this relies on the European Commission’s
     Standard Contractual Clauses with the respective Google entities. Data relating to the App
     Store, App Attest and iCloud is processed by Apple under Apple’s own privacy policy.
+    At Umami, the analytics data is held in the EU; where Umami’s operations services process data in the US, this relies on the EU Standard Contractual Clauses in Umami’s data processing agreement. For Google Ads (section 13), the transfer to the US relies on the EU-US Data Privacy Framework, to which Google LLC states it has adhered.
   </p>
 
-  <h2>14. Your rights</h2>
+  <h2>17. Your rights</h2>
   <p>Under the GDPR you have the right to:</p>
   <ul>
     <li>Access (Art. 15 GDPR)</li>
@@ -822,7 +1089,7 @@
     above.
   </p>
 
-  <h2>15. Contact</h2>
+  <h2>18. Contact</h2>
   <p>
     For privacy questions, please contact:
     <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
@@ -862,10 +1129,10 @@
   <h2>2. Aperçu</h2>
   <p>
     Kortscore est une application de comptage de points de tennis et de padel pour Apple Watch et Wear OS, avec une application compagnon pour iPhone ou smartphone Android. L’application fonctionne par principe localement sur l’appareil. Il
-    n’y a <strong>aucun compte utilisateur</strong>, <strong>aucun SDK publicitaire</strong>,
-    <strong>aucune donnée de localisation</strong> et <strong>aucun suivi (tracking) au-delà
+    n’y a <strong>aucun compte utilisateur</strong>, et l’application ne contient <strong>aucun SDK publicitaire</strong>,
+    ne collecte <strong>aucune donnée de localisation</strong> et ne pratique <strong>aucun suivi (tracking) au-delà
     d’autres applications ou sites web</strong>. Les données ne sont traitées que dans les cas
-    décrits ci-dessous. Les données de santé (fréquence cardiaque) ne sont traitées que sur la montre, voir la section 8. L’application Apple Watch ne contient pas Firebase et ne transmet elle-même aucune donnée&nbsp;; elle transmet uniquement les matchs terminés à votre iPhone.
+    décrits ci-dessous. Sur le site web, nous mesurons les consultations de pages et les clics avec Umami, et l’effet de nos annonces Google avec Google Ads (sections 12 et 13). Les données de santé (fréquence cardiaque) ne sont traitées que sur la montre, voir la section 8. L’application Apple Watch ne contient pas Firebase et ne transmet elle-même aucune donnée&nbsp;; elle transmet uniquement les matchs terminés à votre iPhone.
   </p>
 
   <h2>3. Firebase Analytics</h2>
@@ -1146,7 +1413,7 @@
     <strong>Application ITN&nbsp;:</strong> le formulaire de
     <a href="https://kortscore.com/itn-rechner/">kortscore.com/itn-rechner</a> (en allemand) n’est
     plus en ligne. Nous utilisons les inscriptions existantes uniquement pour la notification
-    unique indiquant que l’application (Kortform, <a href="https://kortform.at">kortform.at</a>)
+    unique indiquant que l’application (Kortform, <a href="https://kortform.at" target="_blank" rel="noopener">kortform.at</a>)
     est disponible, puis nous les supprimons.
   </p>
   <p>
@@ -1163,14 +1430,159 @@
     tant que sous-traitant.
   </p>
 
-  <h2>12. Aucune transmission de données à des fins publicitaires</h2>
+  <h2>12. Statistiques du site web (Umami)</h2>
   <p>
-    Nous ne vendons aucune donnée et n’utilisons aucun service de publicité ou de suivi. Au-delà
-    des services de Google et d’Apple mentionnés dans la présente politique, aucune donnée n’est
-    transmise à des tiers.
+    Sur kortscore.com, nous utilisons le service de statistiques Umami Cloud pour mesurer la
+    fréquence de consultation des pages et la fréquence de clic sur certains liens, par exemple les
+    boutons des boutiques d’applications (Google Play, App Store), les liens affiliés (section 14)
+    ou le lien vers l’application Kortform. Cela nous aide à voir quelles pages sont lues et ce qui
+    fonctionne bien. La mesure ne s’applique qu’au site web, pas à l’application.
+  </p>
+  <p>
+    Le fournisseur est Umami Software, Inc., 28 Geary St, Suite 650 #243, San Francisco,
+    Californie, États-Unis. Pour cela, votre navigateur charge un script depuis cloud.umami.is et
+    envoie à Umami les données énumérées ci-dessous. Les données d’analyse sont stockées dans la région UE d’Umami Cloud. Les services de réseau, de sécurité et d’exploitation d’Umami peuvent aussi se situer en dehors de l’UE (notamment aux États-Unis).
+  </p>
+  <p>À chaque consultation de page et à chaque clic comptabilisé, Umami reçoit&nbsp;:</p>
+  <ul>
+    <li>la page consultée (adresse et titre) et la page d’où vous venez (référent)</li>
+    <li>le navigateur, le système d’exploitation, le type d’appareil, la taille d’écran et la langue du navigateur</li>
+    <li>une localisation approximative déduite de votre adresse IP</li>
+    <li>pour les clics, le nom de l’événement, par exemple «&nbsp;play-store-klick&nbsp;», et pour les
+      liens affiliés en outre le produit cliqué</li>
+  </ul>
+  <p>
+    Umami ne dépose aucun cookie et n’enregistre aucune donnée sur votre appareil. Votre adresse IP
+    n’est traitée que brièvement pour déduire la localisation et calculer un identifiant de
+    visiteur, et selon Umami elle n’est pas enregistrée dans l’enregistrement d’analyse&nbsp;; elle
+    peut néanmoins figurer dans les journaux d’exploitation et de sécurité d’Umami et de ses
+    prestataires. L’identifiant de visiteur est une valeur de hachage calculée à partir du site web,
+    de l’adresse IP, de l’identifiant du navigateur (user agent) et d’une valeur aléatoire changeant
+    régulièrement (par défaut chaque mois, selon Umami). Pendant cette période, une nouvelle visite
+    du même navigateur peut être reconnue, ensuite non&nbsp;; aucun profil n’est créé sur plusieurs
+    sites web.
+  </p>
+  <p>
+    <strong>Base juridique&nbsp;:</strong> art. 6, par. 1, point f) du RGPD (intérêt légitime à une
+    mesure d’audience simple et économe en données et à l’amélioration du site web).<br />
+    <strong>Opposition&nbsp;:</strong> vous pouvez vous opposer à ce traitement à tout moment au titre
+    de l’art. 21 du RGPD (voir la section 17). Comme nous n’identifions pas les visiteurs
+    individuellement, nous ne pouvons pas vous retirer des statistiques&nbsp;; le moyen le plus simple
+    d’empêcher la mesure est un bloqueur de contenu dans votre navigateur qui ne charge pas le script
+    d’Umami.<br />
+    <strong>Durée de conservation&nbsp;:</strong> 6 mois.<br />
+    <strong>Destinataires&nbsp;:</strong> Umami Software, Inc. en tant que sous-traitant&nbsp;; un contrat
+    de sous-traitance incluant les clauses contractuelles types de l’UE est conclu avec Umami. Plus
+    d’informations dans la
+    <a href="https://umami.is/privacy" target="_blank" rel="noopener">politique de confidentialité d’Umami</a>.
   </p>
 
-  <h2>13. Destinataires et transferts vers des pays tiers</h2>
+  <h2>13. Mesure des campagnes Google Ads</h2>
+  <p>
+    Nous diffusons des annonces avec Google (Google Ads). Sur la page d’accueil et sur la page des
+    recommandations de montres de kortscore.com, dans toutes les versions linguistiques, nous
+    mesurons donc si une annonce a conduit à une consultation de page ou à un clic sur le bouton
+    Google Play. Cela nous aide à évaluer si les annonces en valent la peine. Cette mesure n’a pas
+    lieu sur les autres pages ni dans l’application.
+  </p>
+  <p>
+    Pour les utilisateurs de l’Espace économique européen, le fournisseur est Google Ireland
+    Limited, Gordon House, Barrow Street, Dublin 4, Irlande. Pour cela, votre navigateur charge le
+    script gtag.js depuis www.googletagmanager.com. Avant son chargement, nous réglons le mode de
+    consentement (Consent Mode) de Google sur «&nbsp;refusé&nbsp;» (stockage publicitaire, données
+    d’utilisateur pour la publicité, personnalisation des annonces et stockage analytique). Il n’y
+    a pas de bandeau de consentement pour cela, le réglage par défaut reste donc en place à chaque
+    visite. Selon Google, le script ne dépose alors aucun nouveau cookie publicitaire et
+    n’enregistre aucun identifiant publicitaire sur votre appareil&nbsp;; il ne lit pas les cookies
+    publicitaires existants. Nous avons en outre activé deux réglages de protection de Google&nbsp;:
+    «&nbsp;ads_data_redaction&nbsp;» supprime des requêtes envoyées à Google l’identifiant de clic
+    d’une annonce (gclid), et «&nbsp;url_passthrough&nbsp;» peut ajouter cet identifiant aux liens à
+    l’intérieur de kortscore.com au lieu de le stocker dans un cookie.
+  </p>
+  <p>Google reçoit néanmoins des données. À chaque consultation de ces pages et lors du clic sur le
+    bouton Google Play, votre navigateur envoie une requête à Google. Selon Google, elle contient,
+    lorsque le consentement est refusé&nbsp;:</p>
+  <ul>
+    <li>l’heure, l’identifiant du navigateur (user agent) et la page d’où vous venez (référent)</li>
+    <li>l’adresse de la page consultée, sans identifiant de clic (que «&nbsp;ads_data_redaction&nbsp;» supprime)</li>
+    <li>l’état du consentement «&nbsp;refusé&nbsp;», une indication précisant si l’adresse contenait un
+      identifiant de clic d’une annonce (pas sa valeur) et un nombre aléatoire généré à nouveau à
+      chaque consultation de page</li>
+    <li>lors du clic sur le bouton Google Play, l’indication que ce clic a eu lieu</li>
+  </ul>
+  <p>
+    Votre adresse IP fait techniquement partie de chaque requête envoyée à Google&nbsp;; selon
+    Google, les adresses IP sont tronquées lors de la collecte dans les produits publicitaires.
+    Google utilise ces données pour estimer statistiquement les conversions. Dans Google Ads, nous
+    recevons des analyses sur les annonces et les conversions, pas d’informations sur des visiteurs
+    individuels. Lorsque Google traite des données à ses propres fins, il le fait sous sa propre
+    responsabilité.
+  </p>
+  <p>
+    <strong>Données de campagne dans votre navigateur&nbsp;:</strong> Si votre visite provient d’une
+    annonce ou d’un lien comportant des données de campagne, l’adresse contient des paramètres tels
+    que gclid ou utm_source, utm_medium, utm_campaign, utm_content et utm_term. Notre script
+    conserve ces valeurs dans le stockage de session (sessionStorage) de votre navigateur, sous la
+    clé «&nbsp;ks-campaign&nbsp;», sur chaque page de kortscore.com et indépendamment de la mesure de
+    Google. L’entrée ne vaut que pour l’onglet actuel du navigateur et disparaît quand vous le
+    fermez&nbsp;; l’entrée elle-même n’est envoyée ni à nous ni à Google, et ses valeurs ne parviennent à Google Play que par le lien Google Play décrit ci-dessous. Elle permet de disposer encore de ces
+    données si vous ne cliquez sur le bouton Google Play que sur une autre page. Notre script ajoute
+    un paramètre «&nbsp;referrer&nbsp;» au lien Google Play. Il contient l’origine «&nbsp;kortscore.com&nbsp;»
+    et «&nbsp;website&nbsp;»&nbsp;; si la visite provient d’une annonce, à la place «&nbsp;google&nbsp;» et
+    «&nbsp;cpc&nbsp;» ainsi que l’identifiant de clic (gclid). Si l’adresse contenait des données de
+    campagne (utm_…), il les reprend, et elles priment sur ces valeurs. Lorsque
+    vous cliquez sur le lien, cette valeur parvient à Google Play, et Google Play peut la
+    transmettre à l’application après une installation afin que nous sachions quelle campagne a
+    conduit à une installation.
+  </p>
+  <p>
+    <strong>Base juridique&nbsp;:</strong> art. 6, par. 1, point f) du RGPD (intérêt légitime à
+    contrôler l’efficacité de notre publicité et à utiliser notre budget publicitaire de manière
+    économique). Nous enregistrons les données de campagne dans le stockage de session sans
+    demander de consentement&nbsp;; elles restent limitées à votre onglet de navigateur et ne servent
+    qu’à la mesure.<br />
+    <strong>Opposition&nbsp;:</strong> vous pouvez vous opposer à ce traitement à tout moment au titre
+    de l’art. 21 du RGPD (voir la section 17). Le moyen le plus simple d’empêcher la mesure est un
+    bloqueur de contenu dans votre navigateur qui ne charge pas www.googletagmanager.com&nbsp;; la
+    fermeture de l’onglet vide le stockage de session. Vous pouvez en outre gérer la personnalisation
+    des annonces de Google sur
+    <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>.
+    Vous pouvez aussi exercer vos droits directement auprès de Google.<br />
+    <strong>Durée de conservation&nbsp;:</strong> stockage de session&nbsp;: jusqu’à la fermeture de
+    l’onglet du navigateur. Chez Google, la durée de conservation suit les indications de Google.<br />
+    <strong>Destinataires&nbsp;:</strong> Google Ireland Limited. Le transfert vers les États-Unis
+    repose sur le EU-US Data Privacy Framework, auquel Google LLC déclare avoir adhéré (voir la
+    section 16). Plus d’informations dans la
+    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">politique de confidentialité de Google</a>.
+  </p>
+
+  <h2>14. Liens affiliés (Programme Partenaires d’Amazon)</h2>
+  <p>
+    En tant que participant au Programme Partenaires d’Amazon, nous réalisons un bénéfice sur les
+    achats éligibles&nbsp;: certains liens sur kortscore.com vers des produits d’Amazon (par exemple
+    des montres connectées) sont des liens affiliés, et si vous y achetez quelque chose après un
+    clic, nous recevons une commission. Le prix ne change pas pour vous. Sur kortscore.com
+    lui-même, aucune donnée n’est transmise à Amazon et aucun cookie Amazon n’est déposé. Ce n’est
+    qu’après votre clic qu’un service de redirection (link.amazon ou amzlink.to) vous renvoie vers
+    Amazon&nbsp;; la <a href="https://www.amazon.at/gp/help/customer/display.html?nodeId=201909010" target="_blank" rel="noopener">politique de confidentialité d’Amazon</a>
+    s’applique alors, et Amazon peut déposer des cookies afin d’attribuer l’achat à notre
+    recommandation. Nous comptons les clics sur ces liens avec Umami, sans cookies et
+    sans informations sur votre personne (section 12).
+  </p>
+
+  <h2>15. Aucune transmission de données à des fins publicitaires</h2>
+  <p>
+    Nous ne vendons aucune donnée, n’affichons aucune publicité dans l’application et n’y utilisons
+    aucun service de publicité ou de suivi. Nous n’utilisons les données des visiteurs du site web
+    ni pour le remarketing ni pour des annonces personnalisées. Sur kortscore.com, nous mesurons
+    seulement si nos annonces Google conduisent à des visites et à des clics&nbsp;; cela est décrit
+    à la section 13. Au-delà des services de Google (y compris Google Ads), d’Apple et d’Umami
+    mentionnés dans la présente politique, aucune donnée n’est transmise à des tiers. La redirection
+    vers Amazon via des liens affiliés n’intervient qu’après votre clic et est décrite à la
+    section 14.
+  </p>
+
+  <h2>16. Destinataires et transferts vers des pays tiers</h2>
   <table>
     <thead><tr><th>Service</th><th>Fournisseur</th><th>Lieu de traitement</th></tr></thead>
     <tbody>
@@ -1187,6 +1599,8 @@
       <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>selon les réglages du compte Google</td></tr>
       <tr><td>Sauvegarde iCloud / iCloud Drive</td><td>Apple Inc.</td><td>selon vos réglages iCloud</td></tr>
       <tr><td>Google Sheets (listes d’attente)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
+      <tr><td>Umami Cloud (statistiques du site web)</td><td>Umami Software, Inc. (États-Unis)</td><td>UE (données d’analyse)&nbsp;; services d’exploitation en partie aux États-Unis (clauses contractuelles types de l’UE)</td></tr>
+      <tr><td>Google Ads (mesure des campagnes, site web)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (EU-US Data Privacy Framework)</td></tr>
     </tbody>
   </table>
   <p>
@@ -1194,9 +1608,10 @@
     clauses contractuelles types de la Commission européenne conclues avec les entités Google
     concernées. Les données liées à l’App Store, à App Attest et à iCloud sont traitées par Apple
     selon sa propre politique de confidentialité.
+    Chez Umami, les données d’analyse sont hébergées dans l’UE&nbsp;; lorsque des services d’exploitation d’Umami traitent des données aux États-Unis, cela repose sur les clauses contractuelles types de l’UE figurant dans le contrat de sous-traitance d’Umami. Pour Google Ads (section 13), le transfert vers les États-Unis repose sur le EU-US Data Privacy Framework, auquel Google LLC déclare avoir adhéré.
   </p>
 
-  <h2>14. Vos droits</h2>
+  <h2>17. Vos droits</h2>
   <p>Conformément au RGPD, vous disposez des droits suivants&nbsp;:</p>
   <ul>
     <li>Droit d’accès (art. 15 du RGPD)</li>
@@ -1214,7 +1629,7 @@
     « Responsable du traitement ».
   </p>
 
-  <h2>15. Contact</h2>
+  <h2>18. Contact</h2>
   <p>
     Pour toute question relative à la protection des données, veuillez vous adresser à&nbsp;:
     <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
@@ -1253,9 +1668,9 @@
   <h2>2. Resumen</h2>
   <p>
     Kortscore es una aplicación de conteo de tenis y pádel para Apple Watch y Wear OS con aplicación complementaria para iPhone o smartphone Android. La aplicación funciona básicamente de forma local en el dispositivo. No
-    existen <strong>cuentas de usuario</strong>, <strong>SDK publicitarios</strong>,
-    <strong>datos de localización</strong> ni <strong>seguimiento entre otras aplicaciones o sitios
-    web</strong>. Los datos solo se tratan en los casos descritos a continuación. Los datos de salud (frecuencia cardíaca) solo se tratan en el reloj, véase la sección 8. La aplicación para Apple Watch no contiene Firebase y no transmite datos por sí misma; solo pasa los partidos terminados a su iPhone.
+    existen <strong>cuentas de usuario</strong>, y la aplicación no contiene <strong>SDK publicitarios</strong>,
+    no recoge <strong>datos de localización</strong> ni realiza <strong>seguimiento entre otras aplicaciones o sitios
+    web</strong>. Los datos solo se tratan en los casos descritos a continuación. En el sitio web medimos las visitas de páginas y los clics con Umami, y el efecto de nuestros anuncios de Google con Google Ads (secciones 12 y 13). Los datos de salud (frecuencia cardíaca) solo se tratan en el reloj, véase la sección 8. La aplicación para Apple Watch no contiene Firebase y no transmite datos por sí misma; solo pasa los partidos terminados a su iPhone.
   </p>
 
   <h2>3. Firebase Analytics</h2>
@@ -1533,7 +1948,7 @@
     <strong>Aplicación ITN:</strong> el formulario de
     <a href="https://kortscore.com/itn-rechner/">kortscore.com/itn-rechner</a> (en alemán) ya no
     está en línea. Utilizamos las inscripciones existentes únicamente para el aviso único de que la
-    aplicación (Kortform, <a href="https://kortform.at">kortform.at</a>) ya está disponible, y las
+    aplicación (Kortform, <a href="https://kortform.at" target="_blank" rel="noopener">kortform.at</a>) ya está disponible, y las
     eliminamos después.
   </p>
   <p>
@@ -1550,13 +1965,152 @@
     encargado del tratamiento.
   </p>
 
-  <h2>12. Sin cesión de datos con fines publicitarios</h2>
+  <h2>12. Estadísticas del sitio web (Umami)</h2>
   <p>
-    No vendemos datos ni utilizamos servicios de publicidad o seguimiento. Más allá de los servicios
-    de Google y Apple mencionados en esta política, no se ceden datos a terceros.
+    En kortscore.com utilizamos el servicio de estadísticas Umami Cloud para medir con qué
+    frecuencia se visitan las páginas y con qué frecuencia se hace clic en determinados enlaces,
+    por ejemplo los botones de las tiendas (Google Play, App Store), los enlaces de afiliado
+    (sección 14) o el enlace a la aplicación Kortform. Esto nos ayuda a ver qué páginas se leen y
+    qué funciona bien. La medición se realiza solo en el sitio web, no en la aplicación.
+  </p>
+  <p>
+    El proveedor es Umami Software, Inc., 28 Geary St, Suite 650 #243, San Francisco, California,
+    EE. UU. Para ello, su navegador carga un script desde cloud.umami.is y envía a Umami los datos
+    indicados a continuación. Los datos de análisis se almacenan en la región de la UE de Umami Cloud. Los servicios de red, seguridad y operación de Umami también pueden estar fuera de la UE (entre otros, en EE. UU.).
+  </p>
+  <p>En cada visita a una página y en cada clic contabilizado, Umami recibe:</p>
+  <ul>
+    <li>la página visitada (dirección y título) y la página de la que usted procede (referente)</li>
+    <li>navegador, sistema operativo, tipo de dispositivo, tamaño de pantalla e idioma del navegador</li>
+    <li>una ubicación aproximada, deducida de su dirección IP</li>
+    <li>en los clics, el nombre del evento, por ejemplo «play-store-klick», y en los enlaces de
+      afiliado además el producto en el que se hizo clic</li>
+  </ul>
+  <p>
+    Umami no instala cookies ni almacena datos en su dispositivo. Su dirección IP se trata solo
+    brevemente para deducir la ubicación y calcular un identificador de visitante y, según Umami, no
+    se guarda en el registro de análisis; aun así, puede aparecer en los registros operativos y de
+    seguridad de Umami y de sus proveedores. El identificador de visitante es un valor hash
+    calculado a partir del sitio web, la dirección IP, el identificador del navegador (user agent)
+    y un valor aleatorio que cambia periódicamente (por defecto cada mes, según Umami). Dentro de
+    ese periodo se puede reconocer una nueva visita del mismo navegador, después ya no; no se crea
+    ningún perfil entre varios sitios web.
+  </p>
+  <p>
+    <strong>Base jurídica:</strong> art. 6, apdo. 1, letra f) del RGPD (interés legítimo en una
+    medición de audiencia sencilla y respetuosa con los datos y en la mejora del sitio web).<br />
+    <strong>Oposición:</strong> usted puede oponerse a este tratamiento en cualquier momento conforme
+    al art. 21 del RGPD (véase la sección 17). Como no identificamos a los visitantes
+    individualmente, no podemos excluirle de las estadísticas; la forma más sencilla de impedir la
+    medición es un bloqueador de contenido en su navegador que no cargue el script de Umami.<br />
+    <strong>Plazo de conservación:</strong> 6 meses.<br />
+    <strong>Destinatarios:</strong> Umami Software, Inc. como encargado del tratamiento; con Umami
+    existe un contrato de encargo del tratamiento que incluye las cláusulas contractuales tipo de la
+    UE. Más información en la
+    <a href="https://umami.is/privacy" target="_blank" rel="noopener">política de privacidad de Umami</a>.
   </p>
 
-  <h2>13. Destinatarios y transferencias a terceros países</h2>
+  <h2>13. Medición de campañas de Google Ads</h2>
+  <p>
+    Publicamos anuncios con Google (Google Ads). En la página de inicio y en la página con las
+    recomendaciones de relojes de kortscore.com, en todas las versiones de idioma, medimos por ello
+    si un anuncio ha llevado a una visita de página o a un clic en el botón de Google Play. Esto
+    nos ayuda a valorar si los anuncios merecen la pena. Esta medición no se realiza en las demás
+    páginas ni en la aplicación.
+  </p>
+  <p>
+    Para los usuarios del Espacio Económico Europeo, el proveedor es Google Ireland Limited, Gordon
+    House, Barrow Street, Dublín 4, Irlanda. Para ello, su navegador carga el script gtag.js desde
+    www.googletagmanager.com. Antes de que se cargue, ajustamos el modo de consentimiento (Consent
+    Mode) de Google en «denegado» (almacenamiento publicitario, datos de usuario para publicidad,
+    personalización de anuncios y almacenamiento analítico). Para ello no hay banner de
+    consentimiento, de modo que el ajuste predeterminado se mantiene en cada visita. Según Google,
+    el script no instala entonces nuevas cookies publicitarias ni guarda identificadores
+    publicitarios en su dispositivo; no lee las cookies publicitarias existentes. Además hemos
+    activado dos ajustes de protección de Google: «ads_data_redaction» elimina de las solicitudes a
+    Google el identificador de clic de un anuncio (gclid), y «url_passthrough» puede añadir ese
+    identificador a los enlaces dentro de kortscore.com en lugar de guardarlo en una cookie.
+  </p>
+  <p>Aun así, Google recibe datos. En cada visita a estas páginas y al hacer clic en el botón de
+    Google Play, su navegador envía una solicitud a Google. Según Google, cuando se deniega el
+    consentimiento contiene:</p>
+  <ul>
+    <li>la hora, el identificador del navegador (user agent) y la página de la que usted procede (referente)</li>
+    <li>la dirección de la página visitada, sin identificador de clic (que «ads_data_redaction» elimina)</li>
+    <li>el estado de consentimiento «denegado», una indicación de si la dirección contenía un
+      identificador de clic de un anuncio (no su valor) y un número aleatorio generado de nuevo en
+      cada visita de página</li>
+    <li>al hacer clic en el botón de Google Play, la indicación de que ese clic se ha producido</li>
+  </ul>
+  <p>
+    Su dirección IP forma técnicamente parte de cada solicitud a Google; según Google, las
+    direcciones IP se acortan en la recogida en los productos publicitarios. Google utiliza estos
+    datos para estimar estadísticamente las conversiones. En Google Ads recibimos informes sobre
+    anuncios y conversiones, no datos de visitantes individuales. Cuando Google trata datos para
+    sus propios fines, lo hace bajo su propia responsabilidad.
+  </p>
+  <p>
+    <strong>Datos de campaña en su navegador:</strong> Si su visita procede de un anuncio o de un
+    enlace con datos de campaña, la dirección contiene parámetros como gclid o utm_source,
+    utm_medium, utm_campaign, utm_content y utm_term. Nuestro script guarda estos valores en el
+    almacenamiento de sesión (sessionStorage) de su navegador con la clave «ks-campaign», en cada
+    página de kortscore.com e independientemente de la medición de Google. La entrada solo vale
+    para la pestaña actual del navegador y desaparece al cerrarla; la entrada en sí no se envía ni a nosotros ni a
+    Google, y sus valores solo llegan a Google Play a través del enlace de Google Play descrito más abajo. Sirve para que los datos sigan disponibles si solo hace clic en el botón de Google Play
+    en otra página. Nuestro script añade un parámetro «referrer» al enlace de Google Play. Contiene
+    el origen «kortscore.com» y «website»; si la visita procede de un anuncio, en su lugar «google»
+    y «cpc», junto con el identificador de clic (gclid). Si la dirección contenía datos de campaña
+    (utm_…), los adopta, y estos prevalecen sobre dichos valores. Al hacer clic
+    en el enlace, este valor llega a Google Play, y Google Play puede transmitirlo a la aplicación
+    tras una instalación para que sepamos qué campaña ha llevado a una instalación.
+  </p>
+  <p>
+    <strong>Base jurídica:</strong> art. 6, apdo. 1, letra f) del RGPD (interés legítimo en
+    comprobar el éxito de nuestra publicidad y en usar nuestro presupuesto publicitario de forma
+    económica). Guardamos los datos de campaña en el almacenamiento de sesión sin pedir
+    consentimiento; permanecen limitados a su pestaña del navegador y sirven solo para la
+    medición.<br />
+    <strong>Oposición:</strong> usted puede oponerse a este tratamiento en cualquier momento
+    conforme al art. 21 del RGPD (véase la sección 17). La forma más sencilla de impedir la medición
+    es un bloqueador de contenido en su navegador que no cargue www.googletagmanager.com; al
+    cerrar la pestaña se vacía el almacenamiento de sesión. Además, puede gestionar la
+    personalización de anuncios de Google en
+    <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>.
+    También puede ejercer sus derechos directamente frente a Google.<br />
+    <strong>Plazo de conservación:</strong> almacenamiento de sesión: hasta que se cierre la
+    pestaña del navegador. En Google, el plazo de conservación se rige por las indicaciones de
+    Google.<br />
+    <strong>Destinatarios:</strong> Google Ireland Limited. La transferencia a EE. UU. se basa en
+    el EU-US Data Privacy Framework, al que Google LLC declara haberse adherido (véase la sección
+    16). Más información en la
+    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política de privacidad de Google</a>.
+  </p>
+
+  <h2>14. Enlaces de afiliado (Programa de Afiliados de Amazon)</h2>
+  <p>
+    Como participante en el Programa de Afiliados de Amazon, obtenemos ingresos por las compras
+    que cumplen los requisitos: algunos enlaces de kortscore.com a productos de Amazon (por ejemplo,
+    relojes inteligentes) son enlaces de afiliado, y si usted compra allí algo tras hacer clic,
+    recibimos una comisión. El precio no cambia para usted. En la propia kortscore.com no se
+    transmiten datos a Amazon ni se instalan cookies de Amazon. Solo después de su clic, un
+    servicio de redirección (link.amazon o amzlink.to) lo lleva a Amazon; a partir de ese momento se
+    aplica el <a href="https://www.amazon.at/gp/help/customer/display.html?nodeId=201909010" target="_blank" rel="noopener">aviso de privacidad de Amazon</a>, y Amazon puede
+    instalar cookies para atribuir la compra a nuestra recomendación. Contamos los clics en estos
+    enlaces con Umami, sin cookies y sin datos sobre su persona (sección 12).
+  </p>
+
+  <h2>15. Sin cesión de datos con fines publicitarios</h2>
+  <p>
+    No vendemos datos, no mostramos publicidad en la aplicación y no utilizamos allí servicios de
+    publicidad o seguimiento. No usamos los datos de los visitantes del sitio web ni para
+    remarketing ni para anuncios personalizados. En kortscore.com solo medimos si nuestros anuncios
+    de Google llevan a visitas y clics; esto se describe en la sección 13. Más allá de los
+    servicios de Google (incluido Google Ads), Apple y Umami mencionados en esta política, no se
+    ceden datos a terceros. La redirección a Amazon mediante enlaces de afiliado solo se produce
+    después de su clic y se describe en la sección 14.
+  </p>
+
+  <h2>16. Destinatarios y transferencias a terceros países</h2>
   <table>
     <thead><tr><th>Servicio</th><th>Proveedor</th><th>Lugar de tratamiento</th></tr></thead>
     <tbody>
@@ -1573,6 +2127,8 @@
       <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>según los ajustes de la cuenta de Google</td></tr>
       <tr><td>Copia de seguridad de iCloud / iCloud Drive</td><td>Apple Inc.</td><td>según sus ajustes de iCloud</td></tr>
       <tr><td>Google Sheets (listas de espera)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
+      <tr><td>Umami Cloud (estadísticas del sitio web)</td><td>Umami Software, Inc. (EE. UU.)</td><td>UE (datos de análisis); servicios de operación en parte en EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
+      <tr><td>Google Ads (medición de campañas, sitio web)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (EU-US Data Privacy Framework)</td></tr>
     </tbody>
   </table>
   <p>
@@ -1580,9 +2136,10 @@
     cláusulas contractuales tipo de la Comisión Europea con las respectivas sociedades de Google.
     Los datos relacionados con el App Store, App Attest e iCloud los trata Apple conforme a su
     propia política de privacidad.
+    En el caso de Umami, los datos de análisis se alojan en la UE; cuando servicios de operación de Umami tratan datos en EE. UU., ello se basa en las cláusulas contractuales tipo de la UE del contrato de encargo del tratamiento de Umami. Para Google Ads (sección 13), la transferencia a EE. UU. se basa en el EU-US Data Privacy Framework, al que Google LLC declara haberse adherido.
   </p>
 
-  <h2>14. Sus derechos</h2>
+  <h2>17. Sus derechos</h2>
   <p>En virtud del RGPD, tiene los siguientes derechos:</p>
   <ul>
     <li>Acceso (art. 15 del RGPD)</li>
@@ -1599,7 +2156,7 @@
     apartado «Responsable del tratamiento».
   </p>
 
-  <h2>15. Contacto</h2>
+  <h2>18. Contacto</h2>
   <p>
     Si tiene preguntas sobre privacidad, escriba a:
     <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>
@@ -1639,9 +2196,9 @@
   <h2>2. Panoramica</h2>
   <p>
     Kortscore è un’app per il conteggio dei punti a tennis e padel per Apple Watch e Wear OS con app companion per iPhone o smartphone Android. L’app funziona in linea di principio localmente sul dispositivo. Non sono presenti
-    <strong>account utente</strong>, <strong>SDK pubblicitari</strong>, <strong>dati di
-    geolocalizzazione</strong> né <strong>tracciamento tra app o siti web diversi</strong>. I dati
-    vengono trattati solo nei casi descritti di seguito. I dati sanitari (frequenza cardiaca) vengono trattati solo sull’orologio, vedi la sezione 8. L’app per Apple Watch non contiene Firebase e non trasmette dati di propria iniziativa; passa solo le partite concluse al vostro iPhone.
+    <strong>account utente</strong>; l’app non contiene <strong>SDK pubblicitari</strong>, non raccoglie <strong>dati di
+    geolocalizzazione</strong> né effettua <strong>tracciamento tra app o siti web diversi</strong>. I dati
+    vengono trattati solo nei casi descritti di seguito. Sul sito web misuriamo le visualizzazioni di pagina e i clic con Umami e l’effetto dei nostri annunci Google con Google Ads (sezioni 12 e 13). I dati sanitari (frequenza cardiaca) vengono trattati solo sull’orologio, vedi la sezione 8. L’app per Apple Watch non contiene Firebase e non trasmette dati di propria iniziativa; passa solo le partite concluse al vostro iPhone.
   </p>
 
   <h2>3. Firebase Analytics</h2>
@@ -1911,7 +2468,7 @@
     <strong>App ITN:</strong> il modulo su
     <a href="https://kortscore.com/itn-rechner/">kortscore.com/itn-rechner</a> (in tedesco) non è
     più online. Utilizziamo le iscrizioni esistenti solo per l’unica notifica che l’app (Kortform,
-    <a href="https://kortform.at">kortform.at</a>) è disponibile e poi le cancelliamo.
+    <a href="https://kortform.at" target="_blank" rel="noopener">kortform.at</a>) è disponibile e poi le cancelliamo.
   </p>
   <p>
     Nessuna newsletter, nessuna pubblicità e nessuna cessione a terzi.
@@ -1927,13 +2484,148 @@
     responsabile del trattamento.
   </p>
 
-  <h2>12. Nessuna cessione di dati a fini pubblicitari</h2>
+  <h2>12. Statistiche del sito web (Umami)</h2>
   <p>
-    Non vendiamo dati e non utilizziamo servizi di pubblicità o di tracciamento. Oltre ai servizi di
-    Google e Apple indicati nella presente informativa, non avviene alcuna cessione a terzi.
+    Su kortscore.com utilizziamo il servizio di statistica Umami Cloud per misurare quanto spesso
+    vengono visualizzate le pagine e quanto spesso si fa clic su determinati link, ad esempio i
+    pulsanti degli store (Google Play, App Store), i link di affiliazione (sezione 14) o il link
+    all’app Kortform. Questo ci aiuta a capire quali pagine vengono lette e che cosa funziona bene.
+    La misurazione avviene solo sul sito web, non nell’app.
+  </p>
+  <p>
+    Il fornitore è Umami Software, Inc., 28 Geary St, Suite 650 #243, San Francisco, California,
+    USA. A tal fine il vostro browser carica uno script da cloud.umami.is e invia a Umami i dati
+    elencati di seguito. I dati di analisi vengono memorizzati nella regione UE di Umami Cloud. I servizi di rete, di sicurezza e di esercizio di Umami possono trovarsi anche al di fuori dell’UE (tra l’altro negli USA).
+  </p>
+  <p>A ogni visualizzazione di pagina e a ogni clic conteggiato, Umami riceve:</p>
+  <ul>
+    <li>la pagina visualizzata (indirizzo e titolo) e la pagina da cui provenite (referrer)</li>
+    <li>browser, sistema operativo, tipo di dispositivo, dimensione dello schermo e lingua del browser</li>
+    <li>una posizione approssimativa, ricavata dal vostro indirizzo IP</li>
+    <li>per i clic, il nome dell’evento, ad esempio «play-store-klick», e per i link di
+      affiliazione anche il prodotto cliccato</li>
+  </ul>
+  <p>
+    Umami non imposta cookie e non memorizza dati sul vostro dispositivo. Il vostro indirizzo IP
+    viene trattato solo brevemente per ricavare la posizione e calcolare un identificativo del
+    visitatore e, secondo Umami, non viene salvato nel record di analisi; può comunque comparire nei
+    log operativi e di sicurezza di Umami e dei suoi fornitori. L’identificativo del visitatore è
+    un valore hash calcolato a partire dal sito web, dall’indirizzo IP, dall’identificativo del
+    browser (user agent) e da un valore casuale che cambia regolarmente (per impostazione
+    predefinita ogni mese, secondo Umami). In tale periodo una nuova visita dello stesso browser può
+    essere riconosciuta, in seguito no; non viene creato alcun profilo su più siti web.
+  </p>
+  <p>
+    <strong>Base giuridica:</strong> art. 6, par. 1, lett. f) del GDPR (interesse legittimo a una
+    misurazione dell’audience semplice e rispettosa dei dati e al miglioramento del sito
+    web).<br />
+    <strong>Opposizione:</strong> potete opporvi a questo trattamento in qualsiasi momento ai sensi
+    dell’art. 21 del GDPR (vedi sezione 17). Poiché non identifichiamo i singoli visitatori, non
+    possiamo escludervi dalle statistiche; il modo più semplice per impedire la misurazione è un
+    blocco dei contenuti nel vostro browser che non carichi lo script di Umami.<br />
+    <strong>Periodo di conservazione:</strong> 6 mesi.<br />
+    <strong>Destinatari:</strong> Umami Software, Inc. in qualità di responsabile del trattamento;
+    con Umami è in vigore un contratto di trattamento dei dati comprensivo delle clausole
+    contrattuali standard UE. Maggiori informazioni nell’<a href="https://umami.is/privacy" target="_blank" rel="noopener">informativa sulla privacy di Umami</a>.
   </p>
 
-  <h2>13. Destinatari e trasferimento verso paesi terzi</h2>
+  <h2>13. Misurazione delle campagne Google Ads</h2>
+  <p>
+    Pubblichiamo annunci con Google (Google Ads). Sulla pagina iniziale e sulla pagina con i
+    consigli sugli orologi di kortscore.com, in tutte le versioni linguistiche, misuriamo quindi se
+    un annuncio ha portato a una visualizzazione di pagina o a un clic sul pulsante di Google Play.
+    Questo ci aiuta a valutare se gli annunci valgono la pena. Questa misurazione non avviene sulle
+    altre pagine né nell’app.
+  </p>
+  <p>
+    Per gli utenti dello Spazio economico europeo il fornitore è Google Ireland Limited, Gordon
+    House, Barrow Street, Dublino 4, Irlanda. A tal fine il vostro browser carica lo script gtag.js
+    da www.googletagmanager.com. Prima del caricamento impostiamo il Consent Mode di Google su
+    «negato» (archiviazione pubblicitaria, dati utente per la pubblicità, personalizzazione degli
+    annunci e archiviazione analitica). Per questo non c’è alcun banner di consenso, quindi
+    l’impostazione predefinita resta valida a ogni visita. Secondo Google, lo script non imposta
+    allora nuovi cookie pubblicitari e non memorizza identificatori pubblicitari sul vostro
+    dispositivo; non legge i cookie pubblicitari esistenti. Abbiamo inoltre attivato due
+    impostazioni di protezione di Google: «ads_data_redaction» rimuove dalle richieste a Google
+    l’identificatore di clic di un annuncio (gclid), e «url_passthrough» può aggiungere tale
+    identificatore ai link all’interno di kortscore.com invece di salvarlo in un cookie.
+  </p>
+  <p>Google riceve comunque dei dati. A ogni visita di queste pagine e al clic sul pulsante di
+    Google Play, il vostro browser invia una richiesta a Google. Secondo Google, quando il
+    consenso è negato essa contiene:</p>
+  <ul>
+    <li>l’orario, l’identificativo del browser (user agent) e la pagina da cui provenite (referrer)</li>
+    <li>l’indirizzo della pagina visualizzata, senza identificatore di clic (che «ads_data_redaction» rimuove)</li>
+    <li>lo stato del consenso «negato», un’indicazione se l’indirizzo conteneva un identificatore di
+      clic di un annuncio (non il suo valore) e un numero casuale generato di nuovo a ogni
+      visualizzazione di pagina</li>
+    <li>al clic sul pulsante di Google Play, l’indicazione che tale clic è avvenuto</li>
+  </ul>
+  <p>
+    Il vostro indirizzo IP fa tecnicamente parte di ogni richiesta a Google; secondo Google, nei
+    prodotti pubblicitari gli indirizzi IP vengono abbreviati al momento della raccolta. Google
+    utilizza questi dati per stimare statisticamente le conversioni. In Google Ads riceviamo
+    analisi su annunci e conversioni, non dati su singoli visitatori. Quando Google tratta dati per
+    scopi propri, lo fa sotto la propria responsabilità.
+  </p>
+  <p>
+    <strong>Dati di campagna nel vostro browser:</strong> Se la vostra visita proviene da un
+    annuncio o da un link con dati di campagna, l’indirizzo contiene parametri come gclid oppure
+    utm_source, utm_medium, utm_campaign, utm_content e utm_term. Il nostro script memorizza questi
+    valori nella memoria di sessione (sessionStorage) del vostro browser con la chiave
+    «ks-campaign», su ogni pagina di kortscore.com e indipendentemente dalla misurazione di Google.
+    La voce vale solo per la scheda attuale del browser e scompare quando la chiudete; la voce in sé non viene
+    inviata né a noi né a Google, e i suoi valori arrivano a Google Play solo tramite il link di Google Play descritto di seguito. Serve a far sì che i dati siano ancora disponibili se cliccate sul
+    pulsante di Google Play solo su un’altra pagina. Al link di Google Play il nostro script
+    aggiunge un parametro «referrer». Contiene l’origine «kortscore.com» e «website»; se la visita
+    proviene da un annuncio, invece «google» e «cpc» insieme all’identificatore di clic (gclid). Se
+    l’indirizzo conteneva dati di campagna (utm_…), li riprende, e questi prevalgono su tali valori. Con il vostro clic sul link questo valore arriva a Google Play, e
+    Google Play può trasmetterlo all’app dopo un’installazione, in modo che sappiamo quale campagna
+    ha portato a un’installazione.
+  </p>
+  <p>
+    <strong>Base giuridica:</strong> art. 6, par. 1, lett. f) del GDPR (legittimo interesse a
+    verificare il successo della nostra pubblicità e a impiegare il nostro budget pubblicitario in
+    modo economico). Salviamo i dati di campagna nella memoria di sessione senza chiedere il
+    consenso; restano limitati alla vostra scheda del browser e servono solo alla misurazione.<br />
+    <strong>Opposizione:</strong> potete opporvi a questo trattamento in qualsiasi momento ai sensi
+    dell’art. 21 del GDPR (vedi sezione 17). Il modo più semplice per impedire la misurazione è un
+    blocco dei contenuti nel vostro browser che non carichi www.googletagmanager.com; la chiusura
+    della scheda svuota la memoria di sessione. Potete inoltre gestire la personalizzazione degli
+    annunci di Google su
+    <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>.
+    Potete anche esercitare i vostri diritti direttamente nei confronti di Google.<br />
+    <strong>Periodo di conservazione:</strong> memoria di sessione: fino alla chiusura della scheda
+    del browser. Presso Google il periodo di conservazione segue le indicazioni di Google.<br />
+    <strong>Destinatari:</strong> Google Ireland Limited. Il trasferimento verso gli USA si basa sul
+    EU-US Data Privacy Framework, a cui Google LLC dichiara di aderire (vedi sezione 16). Maggiori
+    informazioni nell’<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">informativa sulla privacy di Google</a>.
+  </p>
+
+  <h2>14. Link di affiliazione (Programma di affiliazione Amazon)</h2>
+  <p>
+    In qualità di partecipanti al Programma di affiliazione Amazon, guadagniamo dagli acquisti
+    idonei: alcuni link su kortscore.com a prodotti di Amazon (ad esempio smartwatch) sono link di
+    affiliazione e, se dopo un clic acquistate qualcosa lì, riceviamo una commissione. Il prezzo
+    per voi non cambia. Su kortscore.com stessa non vengono trasmessi dati ad Amazon e non vengono
+    impostati cookie di Amazon. Solo dopo il vostro clic un servizio di reindirizzamento (link.amazon
+    o amzlink.to) vi porta su Amazon; da quel momento vale l’<a href="https://www.amazon.at/gp/help/customer/display.html?nodeId=201909010" target="_blank" rel="noopener">informativa sulla privacy di Amazon</a>,
+    e Amazon può impostare cookie per attribuire l’acquisto alla nostra raccomandazione. Contiamo i
+    clic su questi link con Umami, senza cookie e senza dati sulla vostra persona (sezione 12).
+  </p>
+
+  <h2>15. Nessuna cessione di dati a fini pubblicitari</h2>
+  <p>
+    Non vendiamo dati, non mostriamo pubblicità nell’app e non vi utilizziamo servizi di pubblicità
+    o di tracciamento. Non usiamo i dati dei visitatori del sito web né per il remarketing né per
+    annunci personalizzati. Su kortscore.com misuriamo soltanto se i nostri annunci Google portano a
+    visite e clic; ciò è descritto nella sezione 13. Oltre ai servizi di Google (incluso Google
+    Ads), Apple e Umami indicati nella presente informativa, non avviene alcuna cessione di dati a
+    terzi. Il reindirizzamento ad Amazon tramite link di affiliazione avviene solo dopo il vostro
+    clic ed è descritto nella sezione 14.
+  </p>
+
+  <h2>16. Destinatari e trasferimento verso paesi terzi</h2>
   <table>
     <thead><tr><th>Servizio</th><th>Fornitore</th><th>Luogo di trattamento</th></tr></thead>
     <tbody>
@@ -1950,16 +2642,18 @@
       <tr><td>Android Auto-Backup</td><td>Google LLC</td><td>secondo le impostazioni dell’account Google</td></tr>
       <tr><td>Backup iCloud / iCloud Drive</td><td>Apple Inc.</td><td>secondo le vostre impostazioni iCloud</td></tr>
       <tr><td>Google Sheets (liste d’attesa)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
+      <tr><td>Umami Cloud (statistiche del sito web)</td><td>Umami Software, Inc. (USA)</td><td>UE (dati di analisi); servizi di esercizio in parte negli USA (clausole contrattuali standard UE)</td></tr>
+      <tr><td>Google Ads (misurazione delle campagne, sito web)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (EU-US Data Privacy Framework)</td></tr>
     </tbody>
   </table>
   <p>
     Nella misura in cui i dati vengono trasferiti a Google negli USA, ciò si basa sulle clausole
     contrattuali standard della Commissione UE con le rispettive società di Google. I dati relativi
     ad App Store, App Attest e iCloud sono trattati da Apple secondo la propria informativa sulla
-    privacy.
+    privacy. Presso Umami i dati di analisi sono ospitati nell’UE; quando servizi di esercizio di Umami trattano dati negli USA, ciò si basa sulle clausole contrattuali standard UE del contratto di trattamento dei dati di Umami. Per Google Ads (sezione 13) il trasferimento verso gli USA si basa sul EU-US Data Privacy Framework, a cui Google LLC dichiara di aderire.
   </p>
 
-  <h2>14. I vostri diritti</h2>
+  <h2>17. I vostri diritti</h2>
   <p>Ai sensi del GDPR vi spettano i seguenti diritti:</p>
   <ul>
     <li>Accesso (art. 15 GDPR)</li>
@@ -1976,7 +2670,7 @@
     «Titolare del trattamento».
   </p>
 
-  <h2>15. Contatto</h2>
+  <h2>18. Contatto</h2>
   <p>
     Per domande in materia di privacy, contattateci all’indirizzo:
     <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>

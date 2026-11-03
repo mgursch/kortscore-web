@@ -120,6 +120,6 @@ Datenschutzerklärung.
 
 Beschrieben in `static/legal/privacy.html`, Abschnitt 11 „Wartelisten
 (Website)“, in allen fünf Sprachen, dazu die Zeile „Google Sheets
-(Wartelisten)“ in Abschnitt 13. Zugesagt ist dort: Die Adressen dienen nur der
+(Wartelisten)“ in Abschnitt 16. Zugesagt ist dort: Die Adressen dienen nur der
 einen Benachrichtigung zum App-Start und werden danach gelöscht, spätestens
 12 Monate nach der Eintragung.
