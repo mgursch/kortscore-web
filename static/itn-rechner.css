@@ -43,7 +43,7 @@
 .itn__shell {
   max-width: var(--shell);
   margin-inline: auto;
-  padding: 40px var(--gutter) 0;
+  padding: 32px var(--gutter) 0;
 }
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
@@ -51,14 +51,15 @@
   margin: 0;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: var(--step-4);
-  line-height: 0.9;
+  font-size: var(--step-3);
+  line-height: 0.95;
+  max-width: min(22ch, 760px);
   text-transform: uppercase;
   text-wrap: balance;
 }
 
 .itn__lead {
-  margin-top: 28px;
+  margin-top: 16px;
   max-width: 65ch;
   font-size: var(--step-2);
   line-height: 1.45;
@@ -72,6 +73,7 @@
   font-weight: 700;
   font-size: var(--step-3);
   line-height: 1;
+  max-width: min(22ch, 760px);
   text-transform: uppercase;
   text-wrap: balance;
 }
@@ -81,7 +83,7 @@
    stapelt beide, sobald die linke Seite ihre 420px nicht mehr bekommt.
    ───────────────────────────────────────────────────────────────────────── */
 .calc {
-  margin-top: 40px;
+  margin-top: 28px;
   display: flex;
   flex-wrap: wrap;
   border-radius: var(--radius);
@@ -547,7 +549,9 @@
    ───────────────────────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .itn__shell { padding-top: 24px; }
-  .itn__title { font-size: var(--step-3); }
+  .itn__title { font-size: 40px; }
+  .itn__lead { margin-top: 12px; font-size: var(--step-1); }
+  .calc { margin-top: 20px; }
 
   .calc__in,
   .calc__out { padding: 24px 20px; }

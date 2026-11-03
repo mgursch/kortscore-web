@@ -23,7 +23,7 @@ teaser:
     Du spielst Meisterschaft in Österreich? Der ITN-Rechner zeigt dir vor dem
     Match, wo dein ITN nach einem Sieg oder einer Niederlage steht, im Einzel
     und im Doppel.
-  link: Zum ITN-Rechner →
+  link: Zum ITN-Rechner
 
 hero:
   title: ITN-Rechner <br>für Österreich
@@ -167,7 +167,7 @@ band:
   text: >-
     Ein Tap pro Punkt auf Apple Watch oder Wear OS, mit Statistik und
     Live-Spielstand für alle, die nicht am Platz stehen.
-  button: Gratis für iPhone &amp; Android
+  button: App laden
 
 legal: >-
   Kein offizielles Angebot des Österreichischen Tennisverbands. Berechnung nach
