@@ -15,7 +15,6 @@
   --itn-green-on-dark: #7fd3a1;  /* sinkender ITN (Verbesserung) auf Dunkel */
   --itn-red-on-dark:   #f2b8b5;  /* steigender ITN auf Dunkel                */
   --itn-error:         #b3261e;  /* ungültiges Feld                          */
-  --itn-placeholder:   #8a867c;
 
   font-size: 16px;
   line-height: 1.5;

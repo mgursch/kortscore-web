@@ -219,8 +219,8 @@ Tennis-Seite (`teaser` in `i18n/de/itn.yaml`). Design aus dem App-Repo
   gegen die Testwerte der App und die vorgerenderten Zahlen der gebauten Seite
   gegen das Bundle. Ändert sich die Formel, schlägt das Deployment an, bis
   `calc.example` und die Tabelle angepasst sind.
-- **Kortform-Block:** Werbeblock für die App unter kortform.at am Ende der
-  Seite (Texte unter `kortform:` in `i18n/de/itn.yaml`, Bilder
+- **Kortform-Block:** Werbeblock für die App unter kortform.at unter den
+  Rechenregeln, vor dem Kortscore-Band (Texte unter `kortform:` in `i18n/de/itn.yaml`, Bilder
   `static/assets/kortform-*.webp`, Echt-Screenshots der Android-App). Er löste
   die frühere Warteliste ab; `tools/waitlist.gs` und
   `tools/waitlist-setup.md` bleiben nur für die einmalige Startmail an die

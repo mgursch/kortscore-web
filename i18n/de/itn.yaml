@@ -145,11 +145,11 @@ rules:
 # derselben Reihenfolge. Bilder: static/assets/kortform-<name>.webp, Echtbilder
 # der Android-App mit Beispieldaten.
 kortform:
-  eyebrow: Jetzt als App
-  title: Kortform, die App zum Rechner
+  eyebrow: Die App zum Rechner
+  title: Kortform hält deinen ITN im Blick
   text: >-
-    Kortform holt deinen ITN jeden Morgen aus der ÖTV-Liste und rechnet vor
-    dem Match durch, was Sieg oder Niederlage bringen.
+    Kortform holt deinen ITN regelmäßig aus der öffentlichen ÖTV-Liste und
+    rechnet vor dem Match durch, was ein Sieg oder eine Niederlage bringt.
   features:
     - Eigener ITN-Verlauf und Matches
     - Spieler*innen und Mannschaften folgen
