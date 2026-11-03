@@ -236,8 +236,10 @@
       a.setAttribute('href', href + '&referrer=' + encodeURIComponent(ref));
     }
 
+    /* Nur der Play-Klick ist die Ads-Conversion. Der App-Store-Klick zaehlt
+       nur in der eigenen Statistik weiter unten. */
     a.addEventListener('click', function () {
-      if (ADS_LABEL && typeof gtag === 'function') {
+      if (play && ADS_LABEL && typeof gtag === 'function') {
         gtag('event', 'conversion', {
           send_to: ADS_ID + '/' + ADS_LABEL,
           value: 1.0,
