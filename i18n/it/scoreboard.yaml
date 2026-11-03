@@ -23,7 +23,7 @@ btn_reset: Ricomincia
 
 golden:
   tennis: NoAd
-  padel: Golden point
+  padel: Punto d’oro
 golden_note: Sul 40:40 decide il punto successivo
 
 deuce: Parità
@@ -41,4 +41,5 @@ games_say: "Game {me} a {opp}"
 undone: Annullato
 flipped: Punto invertito
 nothing: Niente da annullare
+nothing_flip: Nessun punto da invertire
 new_game: Si ricomincia

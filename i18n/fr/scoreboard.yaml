@@ -23,11 +23,11 @@ btn_reset: Recommencer
 
 golden:
   tennis: NoAd
-  padel: Golden point
-golden_note: À 40:40, le point suivant décide
+  padel: Point en or
+golden_note: À 40-40, le point suivant décide
 
 deuce: Égalité
-deciding: "{name} : le point suivant décide"
+deciding: "{name} : le point suivant décide"
 adv_me: Avantage moi
 adv_opp: Avantage adversaire
 adv_short: A
@@ -41,4 +41,5 @@ games_say: "Jeux {me} à {opp}"
 undone: Annulé
 flipped: Point inversé
 nothing: Rien à annuler
+nothing_flip: Aucun point à inverser
 new_game: Nouveau départ

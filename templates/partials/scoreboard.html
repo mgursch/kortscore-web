@@ -3,6 +3,13 @@
    Gestaltung in static/scoreboard.css, Verhalten und Zählregeln in
    static/scoreboard.js, Texte in i18n/<sprache>/scoreboard.yaml.
 
+   Woher die Texte kommen: build.py lädt i18n/<sprache>/scoreboard.yaml
+   (wie common.yaml, alle Sprachen mit gleichem Aufbau wie en) und legt sie
+   als `sb` in den page_context. In der Seitenvorlage wird `sb` als erstes
+   Argument übergeben, im Makro heißt der Parameter `s`. Dieselben Texte
+   landen als JSON in data-sb-text, daraus schreibt das Skript alle späteren
+   Anzeigen und Ansagen.
+
    Einbinden:
      {% from "partials/scoreboard.html" import scoreboard %}
      {{ scoreboard(sb, sport="padel", points=[3, 3], golden=true) }}
@@ -15,10 +22,21 @@
      sport     "tennis" oder "padel", benennt den Schalter (NoAd bzw. Golden
                Point) und landet als data-sport an der Wurzel
      points    Punkte im laufenden Spiel als Rohzahl, 3 heißt 40, [4, 3] ist
-               Vorteil für mich; bei Spielen 6:6 sind es Tiebreak-Punkte
-     games     Spiele im Satz, [6, 6] startet im Tiebreak
-     sets      gewonnene Sätze
-     golden    NoAd/Golden Point zu Beginn eingeschaltet
+               Vorteil für mich; bei Spielen 6:6 sind es Tiebreak-Punkte.
+               Gültig: beide 0 bis 3, oder ab 3:3 mit höchstens einem Punkt
+               Abstand ([4, 3], [3, 4], [3, 3]); im Tiebreak jede Zahl, die
+               das Spiel nicht schon beendet hat (kein [7, 0]).
+     games     Spiele im Satz, jeweils 0 bis 6; [6, 5] und [6, 6] sind gültig
+               (6:6 startet im Tiebreak), [6, 0] bis [6, 4] nicht, denn der
+               Satz wäre schon entschieden
+     sets      gewonnene Sätze, 0 bis 9
+               Ungültige Werte (z. B. points=[4, 0]) rückt scoreboard.js beim
+               Start auf den nächsten gültigen Stand (hier [3, 0]); die
+               serverseitige Anzeige unten kürzt nur grob und ist dafür nicht
+               gedacht, bitte gültige Werte übergeben.
+     golden    NoAd/Golden Point zu Beginn eingeschaltet. Bei Vorteil behält
+               die führende Seite ihn: gewinnt sie den Punkt, ist das Spiel
+               aus, sonst steht es 40:40 und der nächste Punkt entscheidet.
      controls  was zu sehen ist: "pad" (Tippfläche samt Legende), "buttons"
                (Punkt für mich, Punkt Gegner, Zurück), "reset", "golden"
      id        Präfix für die IDs, bei mehreren Scoreboards je Seite eindeutig
@@ -53,8 +71,8 @@
     {% set v.status = s.adv_opp %}
   {% endif %}
 {% else %}
-  {% set v.a = labels[pa] %}
-  {% set v.b = labels[pb] %}
+  {% set v.a = labels[[pa, 3]|min] %}
+  {% set v.b = labels[[pb, 3]|min] %}
 {% endif %}
 <section class="sb sb--{{ sport }}" id="{{ id }}" data-scoreboard data-sport="{{ sport }}" data-phase="{{ v.phase }}" data-lead="{{ v.lead }}"
          data-sb-state='{{ {"points": points, "games": games, "sets": sets, "golden": golden}|tojson }}'

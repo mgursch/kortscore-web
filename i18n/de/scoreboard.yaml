@@ -47,4 +47,5 @@ games_say: "Spiele {me} zu {opp}"
 undone: Zurückgenommen
 flipped: Punkt gedreht
 nothing: Nichts zum Zurücknehmen
+nothing_flip: Kein Punkt zum Drehen
 new_game: Neu gestartet

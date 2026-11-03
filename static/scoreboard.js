@@ -25,7 +25,8 @@
      games    Spiele im laufenden Satz
      sets     gewonnene Sätze
      golden   NoAd (Tennis) bzw. Golden Point (Padel): bei 40:40 entscheidet
-              der nächste Punkt
+              der nächste Punkt. Vorteil gibt es dann nicht mehr; wer beim
+              Einschalten gerade Vorteil hat, behält ihn (siehe scorePoint)
      last     was der letzte Punkt ausgelöst hat: null, {type: 'game', side}
               oder {type: 'set', side, score: [6, 4]}
      history  frühere Stände für Rückgängig, jüngster zuletzt
@@ -38,13 +39,38 @@ const HISTORY_LIMIT = 300;
 const pair = (v, fallback = [0, 0]) =>
   Array.isArray(v) && v.length === 2 ? [Number(v[0]) || 0, Number(v[1]) || 0] : [...fallback];
 
+/* Ganzzahl zwischen 0 und max. Alles Unbrauchbare (NaN, Text, Unendlich)
+   wird 0. */
+const clampInt = (n, max) => (Number.isFinite(n) ? Math.min(max, Math.max(0, Math.trunc(n))) : 0);
+
+/* Startwerte, die im echten Spiel nicht vorkommen, werden auf den nächsten
+   gültigen Stand gezogen, damit die Anzeige nie leer bleibt:
+     Sätze    0 bis 9
+     Spiele   0 bis 6; ist ein Satz mit 6:0 bis 6:4 schon entschieden, bleibt
+              der Führende bei 5 (6:5 und 6:6 sind gültig)
+     Punkte   im Spiel höchstens 40 mit zwei Punkten Abstand: [4, 0] wird
+              [3, 0], [5, 2] wird [3, 2], [6, 3] wird [4, 3]; ab 3:3 zählt
+              nur der Abstand (siehe deuceNormal). Im Tiebreak ebenso mit 7
+              statt 4 als Spielende. */
+function normalizeStart({ points, games, sets }) {
+  const g = pair(games).map((n) => clampInt(n, 6));
+  const hi = g[0] >= g[1] ? 0 : 1;
+  if (g[hi] === 6 && g[1 - hi] < 5) g[hi] = 5;
+
+  const tb = g[0] === 6 && g[1] === 6;
+  const end = tb ? 7 : 4;
+  const p = pair(points).map((n) => clampInt(n, 99));
+  const lead = p[0] >= p[1] ? 0 : 1;
+  if (p[lead] >= end && p[lead] - p[1 - lead] >= 2) {
+    p[lead] = Math.max(end - 1, p[1 - lead] + 1);
+  }
+  return { points: deuceNormal(p, g), games: g, sets: pair(sets).map((n) => clampInt(n, 9)) };
+}
+
 /** Neuer Stand, optional mitten im Spiel (z. B. 40:30, Spiele 2:1). */
 export function newScore({ points, games, sets, golden = false } = {}) {
-  const g = pair(games);
   return {
-    points: deuceNormal(pair(points), g),
-    games: g,
-    sets: pair(sets),
+    ...normalizeStart({ points, games, sets }),
     golden: Boolean(golden),
     last: null,
     history: [],
@@ -82,10 +108,21 @@ export function scorePoint(s, side) {
   if (inTiebreak(s)) {
     // Tiebreak bis 7, mit zwei Punkten Abstand. Golden Point gilt hier nicht.
     won = p[side] >= 7 && p[side] - p[o] >= 2;
+  } else if (p[side] < 4) {
+    won = false;
+  } else if (s.golden) {
+    /* NoAd/Golden Point: wer ab dem vierten Punkt vorne liegt, gewinnt. Bei
+       40:40 (3:3) entscheidet damit der nächste Punkt. Wird der Schalter
+       mitten im Vorteil eingeschaltet, behält die Seite mit Vorteil ihren
+       Vorteil: gewinnt sie den Punkt, ist das Spiel aus; gewinnt die andere
+       Seite ihn, steht es wieder 40:40, und der Punkt danach entscheidet.
+       Der Gegner mit Rückstand kann das Spiel also nie mit einem einzelnen
+       Punkt holen (4:4 ist kein Vorsprung). Dieselbe Regel gilt für den
+       Startstand [4, 3] mit golden. */
+    won = p[side] > p[o];
   } else {
-    // Spiel ab dem vierten Punkt mit zwei Punkten Abstand. Mit Golden Point
-    // reicht bei 40:40 ein Punkt: aus 3:3 wird 4:3, und das ist das Spiel.
-    won = p[side] >= 4 && (p[side] - p[o] >= 2 || s.golden);
+    // Normal: ab dem vierten Punkt mit zwei Punkten Abstand.
+    won = p[side] - p[o] >= 2;
   }
 
   if (!won) {
@@ -128,7 +165,8 @@ export function flipPoint(s) {
 
 export const canUndo = (s) => s.history.length > 0;
 
-/** NoAd bzw. Golden Point ein- oder ausschalten. Gilt ab dem nächsten Punkt. */
+/** NoAd bzw. Golden Point ein- oder ausschalten. Gilt ab dem nächsten Punkt;
+    ein laufender Vorteil bleibt dabei bestehen (siehe scorePoint). */
 export const setGolden = (s, on) => ({ ...s, golden: Boolean(on) });
 
 /** Alles auf 0, der Schalter bleibt. */
@@ -154,11 +192,12 @@ export function scoreView(s, advLabel = 'A') {
 /* ── Tippgruppen ───────────────────────────────────────────────────────────
    Tipps, die in kurzem Abstand kommen, gehören zusammen. Nach dem letzten
    Tipp wartet der Zähler windowMs; kommt bis dahin keiner mehr, meldet er die
-   Anzahl. Die Uhr macht es genauso. Zeitgeber lassen sich für den Test
+   Anzahl. Die Uhr macht es genauso (MULTI_TAP_WINDOW_MS = 600 in
+   InputTiming.kt der Uhren-App). Zeitgeber lassen sich für den Test
    austauschen.
    ─────────────────────────────────────────────────────────────────────── */
 
-export const TAP_WINDOW_MS = 400;
+export const TAP_WINDOW_MS = 600;
 
 /** Was eine Anzahl Tipps bedeutet: 'me', 'opp', 'flip' oder 'undo'. */
 export const tapAction = (n) => (n <= 1 ? 'me' : n === 2 ? 'opp' : n === 3 ? 'flip' : 'undo');
@@ -306,7 +345,10 @@ export function initScoreboard(root) {
       state = scorePoint(state, action === 'me' ? 0 : 1);
       prefix = action === 'me' ? T.btn_me : T.btn_opp;
     } else if (action === 'undo' || action === 'flip') {
-      if (!canUndo(state)) { announce(T.nothing); return; }
+      if (!canUndo(state)) {
+        announce(action === 'undo' ? T.nothing : T.nothing_flip);
+        return;
+      }
       state = action === 'undo' ? undoPoint(state) : flipPoint(state);
       prefix = action === 'undo' ? T.undone : T.flipped;
     } else if (action === 'reset') {
@@ -341,6 +383,9 @@ export function initScoreboard(root) {
   if (pad) {
     // click kommt von Maus, Finger und von Enter/Leertaste auf dem Knopf.
     pad.addEventListener('click', () => grouper.tap());
+    // Gehaltene Enter-Taste löst sonst laufend click aus, und vier Tipps
+    // würden zum Zurücknehmen. Nur der erste Tastendruck zählt.
+    pad.addEventListener('keydown', (e) => { if (e.repeat) e.preventDefault(); });
   }
   root.querySelectorAll('[data-sb-act]').forEach((btn) => {
     btn.addEventListener('click', () => {

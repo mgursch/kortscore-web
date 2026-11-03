@@ -161,6 +161,7 @@
   touch-action: manipulation;          /* kein Doppeltipp-Zoom, keine 300ms */
   user-select: none;
   -webkit-user-select: none;
+  -webkit-touch-callout: none;         /* kein Lupen-/Kontextmenü beim Halten (iOS) */
   -webkit-tap-highlight-color: transparent;
   transition: transform 140ms var(--sb-ease), background-color 180ms ease;
 }
@@ -304,6 +305,13 @@
     align-items: start;
   }
   .sb__controls { align-self: end; }
+}
+
+/* Schmal bricht die Statuszeile um (z. B. "Golden Point: der nächste Punkt
+   entscheidet"). Zwei Zeilen sind deshalb von Anfang an reserviert, sonst
+   springt alles darunter, sobald der Text erscheint. */
+@container sb (max-width: 460px) {
+  .sb__status { min-height: 2.8em; }
 }
 
 @container sb (max-width: 380px) {

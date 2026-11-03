@@ -41,4 +41,5 @@ games_say: "Juegos {me} a {opp}"
 undone: Deshecho
 flipped: Punto invertido
 nothing: Nada que deshacer
+nothing_flip: Ningún punto que invertir
 new_game: Empezamos de nuevo

@@ -24,7 +24,7 @@ btn_reset: Start over
 golden:
   tennis: NoAd
   padel: Golden point
-golden_note: At 40:40 the next point decides
+golden_note: At 40-40 the next point decides
 
 deuce: Deuce
 deciding: "{name}: next point decides"
@@ -41,4 +41,5 @@ games_say: "Games {me} to {opp}"
 undone: Undone
 flipped: Point switched
 nothing: Nothing to undo
+nothing_flip: No point to switch
 new_game: Started over

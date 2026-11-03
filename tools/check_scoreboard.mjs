@@ -8,12 +8,17 @@
      - Einstand, Vorteil, zurück auf Einstand, Spiel nach Vorteil
      - NoAd/Golden Point: bei 40:40 entscheidet der nächste Punkt, in beide
        Richtungen, und erst ab dem nächsten Punkt nach dem Einschalten
+     - Golden Point mitten im Vorteil (eingeschaltet oder als Startstand
+       [4, 3]): wer Vorteil hat, gewinnt mit dem nächsten Punkt, der andere
+       holt nur 40:40 zurück und der Punkt danach entscheidet
+     - Startwerte: ungültige Punkte, Spiele und Sätze werden auf den
+       nächsten gültigen Stand gezogen, die Anzeige bleibt nie leer
      - Rückgängig über mehrere Punkte, über ein gewonnenes Spiel hinweg, ohne
        Verlauf, und dass der NoAd-Schalter dabei stehen bleibt
      - Punkt drehen (dreimal tippen)
      - Satz 6:4, kein Satz bei 6:5, 7:5, Tiebreak bei 6:6 bis 7 mit zwei
        Punkten Abstand, Satz 7:6, kein Golden Point im Tiebreak
-     - Tippgruppen: 1 = ich, 2 = Gegner, 3 = drehen, 4 = zurück, Gruppen
+     - Tippgruppen: Zeitfenster wie auf der Uhr (600 ms), 1 = ich, 2 = Gegner, 3 = drehen, 4 = zurück, Gruppen
        trennen sich nach dem Zeitfenster
 
    Die Datei ist ein Browser-Modul ohne package.json daneben. Damit Node sie
@@ -30,7 +35,7 @@ const source = readFileSync(join(ROOT, 'static/scoreboard.js'), 'utf8');
 const sb = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
 const {
   newScore, scorePoint, undoPoint, flipPoint, setGolden, resetScore, scoreView,
-  inTiebreak, canUndo, tapAction, createTapGrouper,
+  inTiebreak, canUndo, tapAction, createTapGrouper, TAP_WINDOW_MS,
 } = sb;
 
 const errors = [];
@@ -88,6 +93,59 @@ eq(scorePoint(s, 1).games, [0, 1], 'Golden Point eingeschaltet bei 40:40');
 s = play(setGolden(newScore(), true), '1112221');
 eq(s.games, [1, 0], 'Golden Point schon beim ersten 40:40');
 
+// Golden Point eingeschaltet, während eine Seite Vorteil hat.
+s = setGolden(play(newScore(), '1112221'), true);
+eq([shown(s), phase(s)], ['A:40', 'advantage'], 'Golden Point mitten im Vorteil: Anzeige bleibt');
+eq([scorePoint(s, 0).games, scorePoint(s, 0).last], [[1, 0], { type: 'game', side: 0 }], 'Vorteil mit Golden Point: Seite mit Vorteil gewinnt');
+eq(scorePoint(s, 1).games, [0, 0], 'Vorteil mit Golden Point: Rückstand gewinnt das Spiel nicht');
+eq([shown(scorePoint(s, 1)), phase(scorePoint(s, 1)), scorePoint(s, 1).points], ['40:40', 'deuce', [3, 3]], 'Vorteil mit Golden Point: Punkt der anderen Seite gibt 40:40');
+eq(scorePoint(scorePoint(s, 1), 1).games, [0, 1], 'danach entscheidet der nächste Punkt (Gegner)');
+eq(scorePoint(scorePoint(s, 1), 0).games, [1, 0], 'danach entscheidet der nächste Punkt (ich)');
+s = setGolden(play(newScore(), '1112222'), true);
+eq(shown(s), '40:A', 'Golden Point mitten im Vorteil des Gegners: Anzeige');
+eq(scorePoint(s, 0).games, [0, 0], 'Gegnervorteil mit Golden Point: ich gewinne das Spiel nicht');
+eq(shown(scorePoint(s, 0)), '40:40', 'Gegnervorteil mit Golden Point: zurück auf 40:40');
+eq(scorePoint(s, 1).games, [0, 1], 'Gegnervorteil mit Golden Point: Gegner gewinnt');
+s = newScore({ points: [4, 3], golden: true });
+eq(scorePoint(s, 1).games, [0, 0], 'Startstand [4, 3] golden: Rückstand gewinnt nicht');
+eq(scorePoint(s, 0).games, [1, 0], 'Startstand [4, 3] golden: Vorteil gewinnt');
+s = newScore({ points: [3, 4], golden: true });
+eq([scorePoint(s, 0).games, scorePoint(s, 1).games], [[0, 0], [0, 1]], 'Startstand [3, 4] golden');
+s = setGolden(play(newScore(), '1112221'), false);
+eq(scorePoint(s, 1).games, [0, 0], 'Golden Point wieder aus: Vorteil wie gehabt');
+eq(scorePoint(s, 0).games, [1, 0], 'Golden Point aus: Spiel nach Vorteil');
+
+// ── Startwerte ───────────────────────────────────────────────────────────
+eq(newScore({ points: [4, 0] }).points, [3, 0], 'Start [4, 0] wird 40:0');
+eq(shown(newScore({ points: [5, 2] })), '40:30', 'Start [5, 2] wird 40:30');
+eq(shown(newScore({ points: [6, 3] })), 'A:40', 'Start [6, 3] wird Vorteil');
+eq(shown(newScore({ points: [5, 5] })), '40:40', 'Start [5, 5] wird 40:40');
+eq(shown(newScore({ points: [-2, 1] })), '0:15', 'negative Punkte werden 0');
+eq(shown(newScore({ points: ['x', null] })), '0:0', 'Text und null werden 0');
+eq(shown(newScore({ points: [1.7, 2.2] })), '15:30', 'Kommazahlen werden abgeschnitten');
+eq(shown(newScore({ points: [Infinity, 0] })), '0:0', 'Unendlich wird 0');
+eq(shown(newScore({ points: [3] })), '0:0', 'falsche Länge wird 0:0');
+eq(newScore({ games: [6, 0] }).games, [5, 0], 'Spiele [6, 0] sind kein offener Satz');
+eq(newScore({ games: [2, 6] }).games, [2, 5], 'Spiele [2, 6] werden [2, 5]');
+eq(newScore({ games: [6, 5] }).games, [6, 5], 'Spiele [6, 5] gültig');
+eq(newScore({ games: [9, 9] }).games, [6, 6], 'Spiele werden auf 6 gekappt');
+eq(newScore({ sets: [12, -1] }).sets, [9, 0], 'Sätze 0 bis 9');
+eq(newScore({ games: [6, 6], points: [7, 0] }).points, [6, 0], 'Tiebreak [7, 0] wird [6, 0]');
+eq(newScore({ games: [6, 6], points: [9, 6] }).points, [7, 6], 'Tiebreak [9, 6] wird [7, 6]');
+eq(newScore({ games: [6, 6], points: [8, 7] }).points, [8, 7], 'Tiebreak [8, 7] bleibt');
+eq(shown(newScore({ games: [6, 6], points: [6, 3] })), '6:3', 'Tiebreak [6, 3] bleibt');
+eq(scoreView(newScore({ points: [4, 0] })).points.every((x) => x !== '' && x !== undefined), true, 'Anzeige nie leer');
+const empty = [];
+for (let a = -1; a < 12; a += 1) {
+  for (let b = -1; b < 12; b += 1) {
+    for (const games of [[0, 0], [6, 6]]) {
+      const v = scoreView(newScore({ points: [a, b], games }));
+      if (v.points.some((x) => !x)) empty.push(`${a}:${b} bei Spielen ${games}`);
+    }
+  }
+}
+eq(empty, [], 'Anzeige bleibt für alle Startpunkte von -1 bis 11 gefüllt');
+
 // ── Rückgängig ───────────────────────────────────────────────────────────
 s = play(newScore(), '112');
 eq(shown(undoPoint(s)), '30:0', 'einen Punkt zurück');
@@ -143,6 +201,7 @@ eq(undoPoint(scorePoint(s, 0)).games, [6, 6], 'Rückgängig stellt 6:6 wieder he
 eq(resetScore(setGolden(s, true)), { ...newScore(), golden: true }, 'Neu starten behält Schalter');
 
 // ── Tippgruppen ──────────────────────────────────────────────────────────
+eq(TAP_WINDOW_MS, 600, 'Zeitfenster wie die Uhr (MULTI_TAP_WINDOW_MS)');
 eq([1, 2, 3, 4, 5].map(tapAction), ['me', 'opp', 'flip', 'undo', 'undo'], 'Bedeutung der Tippanzahl');
 
 // Fake-Zeitgeber: Zeit läuft nur, wenn der Test es sagt.
@@ -160,22 +219,22 @@ function fakeClock() {
 const clock = fakeClock();
 const commits = []; const pending = [];
 const g = createTapGrouper({
-  windowMs: 400, setTimer: clock.set, clearTimer: clock.clear,
+  windowMs: TAP_WINDOW_MS, setTimer: clock.set, clearTimer: clock.clear,
   onTap: (n) => pending.push(n), onCommit: (n) => commits.push(n),
 });
-g.tap(); clock.advance(399);
+g.tap(); clock.advance(599);
 eq(commits, [], 'noch im Zeitfenster');
 clock.advance(1);
-eq(commits, [1], 'ein Tipp nach 400 ms');
-g.tap(); clock.advance(250); g.tap(); clock.advance(399);
+eq(commits, [1], 'ein Tipp nach 600 ms');
+g.tap(); clock.advance(250); g.tap(); clock.advance(599);
 eq(commits, [1], 'zweiter Tipp verlängert das Fenster');
 clock.advance(1);
 eq(commits, [1, 2], 'zwei Tipps');
 for (let i = 0; i < 4; i += 1) { g.tap(); clock.advance(150); }
-clock.advance(400);
+clock.advance(600);
 eq(commits, [1, 2, 4], 'vier Tipps');
 eq(pending, [1, 1, 2, 1, 2, 3, 4], 'Zwischenstand je Tipp');
-g.tap(); clock.advance(500); g.tap(); clock.advance(500);
+g.tap(); clock.advance(700); g.tap(); clock.advance(700);
 eq(commits, [1, 2, 4, 1, 1], 'Pause trennt zwei Gruppen');
 g.tap(); g.tap(); g.tap(); g.flush();
 eq([commits.at(-1), g.pending], [3, 0], 'flush schließt sofort ab');
