@@ -5,9 +5,9 @@
 # Gendern mit Genderstern wie in der App: Partner*in, Gegner*in.
 
 meta:
-  title: "ITN-Rechner (ÖTV): Was bringt dir das nächste Match? | Kortscore"
+  title: "ITN-Rechner für Österreich (ÖTV) | Kortscore"
   description: "ITN-Rechner für Österreich: Gib deinen ITN und den deines Gegenübers ein und sieh, wo du nach Sieg oder Niederlage stehst. Nach ÖTV-Formel, Einzel und Doppel."
-  og_title: "ITN-Rechner (ÖTV): Was bringt dir das nächste Match?"
+  og_title: "ITN-Rechner für Österreich (ÖTV)"
 
 # Name im Breadcrumb- und WebApplication-JSON-LD.
 breadcrumb: ITN-Rechner
@@ -26,11 +26,10 @@ teaser:
   link: Zum ITN-Rechner →
 
 hero:
-  eyebrow: Tennis · ÖTV ITN-Rechner
-  title: Was bringt dir <em>das nächste Match?</em>
+  title: ITN-Rechner <br>für Österreich
   lead: >-
-    Gib deinen ITN und den deines Gegenübers ein. Du siehst sofort, wo du nach
-    einem Sieg oder einer Niederlage stehst.
+    Gib deinen ITN und den deines Gegenübers ein und sieh nach der ÖTV-Formel,
+    was dir das nächste Match bringt.
 
 calc:
   label: Rechner
@@ -141,12 +140,11 @@ rules:
     - Niederlagen kannst du innerhalb von 7 Tagen streichen lassen.
 
 # Werbeblock für die App Kortform (kortform.at), ersetzt die frühere Warteliste.
-# Die Funktionen stehen nummeriert neben den App-Bildschirmen (shots), in
-# derselben Reihenfolge. Bilder: static/assets/kortform-<name>.webp, Echtbilder
+# Die Funktionen stehen neben den App-Bildschirmen (shots), in derselben
+# Reihenfolge. Bilder: static/assets/kortform-<name>.webp, Echtbilder
 # der Android-App mit Beispieldaten.
 kortform:
-  eyebrow: Die App zum Rechner
-  title: Kortform hält deinen ITN im Blick
+  title: Kortform, die App zum Rechner
   text: >-
     Kortform holt deinen ITN regelmäßig aus der öffentlichen ÖTV-Liste und
     rechnet vor dem Match durch, was ein Sieg oder eine Niederlage bringt.
@@ -165,7 +163,7 @@ kortform:
       alt: "Gegner*in wählen in der App Kortform: Suche nach Muster mit sechs gefundenen Spieler*innen und ihrem ITN, Tippen übernimmt Name und ITN in den Rechner"
 
 band:
-  title: Das Match selbst<br><em>zählt Kortscore.</em>
+  title: Das Match selbst zählt Kortscore.
   text: >-
     Ein Tap pro Punkt auf Apple Watch oder Wear OS, mit Statistik und
     Live-Spielstand für alle, die nicht am Platz stehen.

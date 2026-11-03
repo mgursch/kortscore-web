@@ -46,7 +46,6 @@
 <div class="itn__shell">
 
 <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
-  <p class="itn__eyebrow">{{ t.hero.eyebrow }}</p>
   <h1 class="itn__title">{{ t.hero.title }}</h1>
   <p class="itn__lead">{{ t.hero.lead }}</p>
 
@@ -125,7 +124,7 @@
           <p class="calc__label">{{ r.win }}</p>
           <p class="calc__row">
             <span class="calc__value mono" data-itn-win>{{ ex.win }}</span>
-            <span class="calc__delta calc__delta--down"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12l7 7 7-7"/></svg><span data-itn-win-change>{{ ex.win_change }}</span></span>
+            <span class="calc__delta calc__delta--down"><span data-itn-win-change>{{ ex.win_change }}</span></span>
           </p>
           <p class="calc__partner" data-itn-only="doubles" hidden>{{ r.partner }} <span class="mono" data-itn-partner-win></span></p>
         </div>
@@ -133,7 +132,7 @@
           <p class="calc__label">{{ r.loss }}</p>
           <p class="calc__row">
             <span class="calc__value mono" data-itn-loss>{{ ex.loss }}</span>
-            <span class="calc__delta calc__delta--up"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg><span data-itn-loss-change>{{ ex.loss_change }}</span></span>
+            <span class="calc__delta calc__delta--up"><span data-itn-loss-change>{{ ex.loss_change }}</span></span>
           </p>
           <p class="calc__partner" data-itn-only="doubles" hidden>{{ r.partner }} <span class="mono" data-itn-partner-loss></span></p>
         </div>
@@ -177,18 +176,16 @@
 
 <!-- ── Kortform: die App zum Rechner ────────────────────────────────────────
      Werbeblock für die App unter kortform.at (ersetzt die frühere Warteliste).
-     Drei Funktionen links, die passenden App-Bildschirme rechts mit denselben
-     Nummern. Bilder und Texte: static/assets/kortform-*.webp, i18n/de/itn.yaml. -->
+     Drei Funktionen links, die passenden App-Bildschirme rechts. Bilder und Texte: static/assets/kortform-*.webp, i18n/de/itn.yaml. -->
   <section class="kf" id="kortform" aria-labelledby="kortform-title">
     <div class="kf__copy">
-      <p class="itn__eyebrow">{{ t.kortform.eyebrow }}</p>
       <h2 class="itn__h2 kf__title" id="kortform-title">{{ t.kortform.title }}</h2>
       <p class="kf__text">{{ t.kortform.text }}</p>
-      <ol class="kf__features">
+      <ul class="kf__features">
 {% for f in t.kortform.features %}
-        <li><span class="kf__num" aria-hidden="true">{{ loop.index }}</span><span>{{ f }}</span></li>
+        <li>{{ f }}</li>
 {% endfor %}
-      </ol>
+      </ul>
       <a class="kf__button" href="{{ t.kortform.url }}" target="_blank" rel="noopener" data-umami-event="kortform-klick">{{ t.kortform.button }}</a>
     </div>
     <div class="kf__shots">
@@ -196,7 +193,6 @@
       <figure class="kf__shot">
         <div class="kf__phone">
           <img src="{{ static('assets/kortform-' ~ s.name ~ '.webp') }}" alt="{{ s.alt|inattr }}" width="540" height="1212" loading="lazy" decoding="async">
-          <span class="kf__tag" aria-hidden="true">{{ loop.index }}</span>
         </div>
       </figure>
 {% endfor %}
