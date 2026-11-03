@@ -10,17 +10,16 @@ meta:
 breadcrumb: Orologi
 llms: Orologi consigliati
 
-eyebrow: Quale orologio
-title: Quattro orologi <br>su misura
+title: Quattro orologi per Kortscore
 lead: >-
   Kortscore funziona su ogni orologio Wear OS 3 e sull’Apple Watch. Se devi
   ancora sceglierne uno, in campo questi quattro fanno il loro lavoro.
-compat_link: Hai già un orologio? Consulta l’elenco completo di compatibilità, Apple Watch e Wear OS →
+compat_link: Hai già un orologio? Vedi l’elenco di compatibilità
 
 watches:
   apple:
     alt: Apple Watch Series 11, cassa color grafite con cinturino blu scuro
-    text: Quello per chi ha l’iPhone. Display luminoso, e il punteggio è a un tocco di distanza, al polso.
+    text: Quello per chi ha l’iPhone. Display luminoso, punteggio al polso.
   galaxy:
     alt: Samsung Galaxy Watch 8, cassa argento con cinturino scuro
     text: Wear OS 6, leggibile anche in pieno sole, batteria per un lungo programma di partite.

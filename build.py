@@ -151,11 +151,13 @@ def load_strings(site, langs):
     strings = {}
     for l in langs:
         code = l["code"]
-        names = ["common"] + [pid for pid, p in site["pages"].items() if code in p["langs"]]
+        # scoreboard.yaml gilt wie common.yaml für jede Sprache: die Texte des
+        # Scoreboards zum Selbstzählen (templates/partials/scoreboard.html).
+        names = ["common", "scoreboard"] + [pid for pid, p in site["pages"].items() if code in p["langs"]]
         strings[code] = {n: load_yaml(ROOT / "i18n" / code / f"{n}.yaml") for n in names}
         for n in names:
             check_keys(strings[code][n], f"i18n/{code}/{n}.yaml")
-    groups = {"common": [l["code"] for l in langs]}
+    groups = {"common": [l["code"] for l in langs], "scoreboard": [l["code"] for l in langs]}
     groups.update({pid: p["langs"] for pid, p in site["pages"].items()})
     for n, group in groups.items():
         ref = site["x_default"] if site["x_default"] in group else group[0]
@@ -331,13 +333,14 @@ def page_context(site, langs, strings, paths, versions, pid, code):
 
     t = resolve_urls(strings[code][pid], url)
     c = resolve_urls(strings[code]["common"], url)
+    sb = resolve_urls(strings[code]["scoreboard"], url)
     others = [dict(l, strings=strings[l["code"]]["common"]) for l in page_langs if l["code"] != code]
     x_default = site["x_default"] if site["x_default"] in page["langs"] else None
     og_image = page.get("og_image") or lasset("og")
     return dict(
         site=site, page=pid, P=page, lang=code, L=lang, languages=page_langs,
         other_languages=others, x_default=x_default, og_image=og_image,
-        t=t, c=c, url=url, abs_url=abs_url, home=home,
+        t=t, c=c, sb=sb, url=url, abs_url=abs_url, home=home,
         asset=asset, lasset=lasset, abs_asset=abs_asset, static=static, legal=legal,
         breadcrumbs=breadcrumbs, faq_page=faq_page, has=has, page_text=page_text,
     )

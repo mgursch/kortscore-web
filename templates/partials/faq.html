@@ -1,12 +1,14 @@
-{# Sichtbare Fragen und Antworten. Dieselbe Liste geht über faq_page() ins
-   FAQPage-JSON-LD, Antworten dort ohne HTML. #}
+{# Sichtbare Fragen und Antworten als Lesetext: Frage als h3, Antwort als
+   Absatz, nichts zum Aufklappen. Dieselbe Liste geht über faq_page() ins
+   FAQPage-JSON-LD, Antworten dort ohne HTML. Die Vorlage darüber setzt die
+   Überschrift (h2); auf der Startseite stehen die Fragen in zwei Spalten. #}
 {% macro faq_list(questions) %}
 <div class="faq__list">
 {% for item in questions %}
-  <details class="faq__item">
-    <summary class="faq__q">{{ item.q }}</summary>
-    <div class="faq__a"><p>{{ item.a }}</p></div>
-  </details>
+  <div class="faq__item">
+    <h3 class="faq__q">{{ item.q }}</h3>
+    <p class="faq__a">{{ item.a }}</p>
+  </div>
 {% endfor %}
 </div>
 {%- endmacro %}

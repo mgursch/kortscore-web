@@ -17,14 +17,21 @@
 </table>
 {% endmacro %}
 
+{% block footer_class %}footer--column{% endblock %}
+
 {% block main %}
 {% set gen = t.generation %}
 <main>
+<!-- Head of the page: title, sentence, then the page's main action and the
+     way back as a plain link below them (not a small label above the title).
+     The parts arrive once on load (styles.css, .js .subhead). -->
 <div class="subhead">
-  <a class="back" href="{{ url('index') }}">{{ c.back_home }}</a>
-  <p class="eyebrow">{{ t.eyebrow }}</p>
   <h1 class="subhead__title">{{ t.title }}</h1>
   <p class="lead">{{ t.lead }}</p>
+  <div class="subhead__actions">
+    <a class="btn btn--accent" href="{{ home('get') }}">{{ t.cta.download }}</a>
+    <a class="textlink subhead__home" href="{{ url('index') }}">{{ c.back_home }}</a>
+  </div>
 </div>
 
 <!-- ── Compatibility ──────────────────────────────────────────────────────
@@ -32,11 +39,11 @@
      out per brand. Plain tables: this page is a reference, people scan it for
      their model. Model data lives here, the copy in compatible.yaml. -->
 <div class="compat">
-  <section class="compat__section">
+  <section class="compat__section" data-reveal>
     <h2>{{ t.version.title }}</h2>
     {{ t.version.body }}
   </section>
-  <section class="compat__section">
+  <section class="compat__section" data-reveal>
     <h2>Apple Watch</h2>
     <p>{{ t.apple.text }}</p>
 {{ table([t.col.model, t.col.year, "watchOS"], [
@@ -53,7 +60,7 @@
 ]) }}
   </section>
 
-  <section class="compat__section">
+  <section class="compat__section" data-reveal>
     <h2>Samsung Galaxy Watch</h2>
     <p>{{ t.samsung.text }}</p>
 {{ table([t.col.model, t.col.year, "Wear OS"], [
@@ -67,7 +74,7 @@
 ]) }}
   </section>
 
-  <section class="compat__section">
+  <section class="compat__section" data-reveal>
     <h2>Google Pixel Watch</h2>
     <p>{{ t.pixel.text }}</p>
 {{ table([t.col.model, t.col.year, "Wear OS"], [
@@ -79,7 +86,7 @@
 ]) }}
   </section>
 
-  <section class="compat__section">
+  <section class="compat__section" data-reveal>
     <h2>{{ t.others.title }}</h2>
     <p>{{ t.others.text }}</p>
 {{ table([t.col.model, "Wear OS"], [
@@ -90,7 +97,7 @@
 ]) }}
   </section>
 
-  <section class="compat__section">
+  <section class="compat__section" data-reveal>
     <h2>{{ t.unsupported.title }}</h2>
     <ul class="compat__list">
     {% for line in t.unsupported.list %}
@@ -99,24 +106,24 @@
     </ul>
   </section>
 
-  <section class="compat__section">
+  <section class="compat__section" data-reveal>
     <h2>{{ t.phone.title }}</h2>
     <p>{{ t.phone.text }}</p>
   </section>
 
-  <section class="compat__section">
+  <section class="compat__section" data-reveal>
     <h2>{{ t.faq.title }}</h2>
     {{ faq_list(t.faq.questions)|indent(4) }}
   </section>
 
-  <div class="compat__cta">
+  <div class="compat__cta" data-reveal>
     <div>
-      <p class="eyebrow">{{ t.cta.fits }}</p>
+      <h2>{{ t.cta.fits }}</h2>
       <a class="btn btn--accent" href="{{ home('get') }}">{{ t.cta.download }}</a>
     </div>
     <div>
-      <p class="eyebrow">{{ t.cta.no_watch }}</p>
-      <a class="back" href="{{ url('watches') }}">{{ t.cta.picks }}</a>
+      <h2>{{ t.cta.no_watch }}</h2>
+      <a class="textlink" href="{{ url('watches') }}">{{ t.cta.picks }}</a>
     </div>
   </div>
 </div>

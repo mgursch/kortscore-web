@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Marks a page with JavaScript before the first paint. The scoreboard keeps
+     the room for its tap pad and buttons with it (scoreboard.css), so nothing
+     moves when the module script reveals them; the load entrances of the
+     subpages hang on it too. Without JavaScript the class never appears. -->
+<script>document.documentElement.classList.add('js')</script>
 <title>{{ t.meta.title }}</title>
 <meta name="description" content="{{ t.meta.description|inattr }}">
 
@@ -20,7 +25,7 @@
 <meta property="og:url" content="{{ abs_url(page) }}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="{{ abs_asset(og_image) }}">
-<meta name="theme-color" content="#faf9f5">
+<meta name="theme-color" content="#f4f5f5">
 <link rel="canonical" href="{{ abs_url(page) }}">
 
 <!-- Every language points at all the others so search engines serve the right
@@ -161,11 +166,17 @@ gtag('event', 'conversion', {
 
 {% block main %}{% endblock %}
 
-<!-- ── Footer ───────────────────────────────────────────────────────────── -->
-<footer class="footer">
+<!-- ── Footer ───────────────────────────────────────────────────────────────
+     Links and the claim, then the name across the full width as the close of
+     every page. The wordmark is SVG text: at font-size 240 Barlow Condensed
+     700 sets KORTSCORE 1001 units wide (measured in Chrome), so the viewBox
+     is that wide and the word fills the column at any width. textLength only
+     corrects the spacing should a fallback face show. -->
+{# Seiten mit einer Lesespalte setzen footer_class auf footer--column: Links
+   und Satz stehen dann an derselben linken Kante wie der Text darüber. #}
+<footer class="footer {% block footer_class %}{% endblock %}">
   <div class="footer__inner">
-    <p class="footer__claim">{{ c.footer.claim }}</p>
-    <p class="footer__links">
+    <nav class="footer__links" aria-label="{{ c.footer.nav }}">
 {% if page != 'index' %}
       <a href="{{ url('index') }}">{{ c.footer.home }}</a>
 {% endif %}
@@ -183,7 +194,11 @@ gtag('event', 'conversion', {
       <a href="{{ legal('privacy') }}">{{ c.footer.privacy }}</a>
       <a href="{{ legal('terms') }}">{{ c.footer.terms }}</a>
       <a href="https://www.swordistudios.com" target="_blank" rel="noopener">swordi.studios</a>
-    </p>
+    </nav>
+    <p class="footer__claim">{{ c.footer.claim }}</p>
+    <svg class="footer__mark" viewBox="0 0 1001 172" role="img" aria-label="Kortscore">
+      <text x="0" y="169" font-size="240" textLength="1001" lengthAdjust="spacing">KORTSCORE</text>
+    </svg>
   </div>
 </footer>
 

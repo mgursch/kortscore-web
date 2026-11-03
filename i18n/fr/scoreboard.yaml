@@ -1,0 +1,45 @@
+# Texte des Scoreboards zum Selbstzählen (templates/partials/scoreboard.html,
+# static/scoreboard.js). Reiner Text ohne HTML: die Werte landen auch als JSON
+# im Attribut data-sb-text. Platzhalter in {geschweiften Klammern} bleiben
+# stehen. Die Datei wird geladen wie common.yaml, siehe Kopf des Partials.
+
+label: Tableau de score à essayer
+caption: Score
+player: Joueur
+me: Moi
+opponent: Adversaire
+col_sets: Sets
+col_games: Jeux
+col_points: Points
+
+pad: Tape ici
+pad_note: comme sur la montre
+
+btn_me: Point pour moi
+btn_opp: Point adversaire
+act_flip: Inverser le point
+btn_undo: Annuler
+btn_reset: Recommencer
+
+golden:
+  tennis: NoAd
+  padel: Point en or
+golden_note: À 40-40, le point suivant décide
+
+deuce: Égalité
+deciding: "{name} : le point suivant décide"
+adv_me: Avantage moi
+adv_opp: Avantage adversaire
+adv_short: A
+tiebreak: Tie-break
+game_me: Jeu pour moi
+game_opp: Jeu adversaire
+set_me: "Set pour moi, {games}"
+set_opp: "Set adversaire, {games}"
+score_say: "{me} à {opp}"
+games_say: "Jeux {me} à {opp}"
+undone: Annulé
+flipped: Point inversé
+nothing: Rien à annuler
+nothing_flip: Aucun point à inverser
+new_game: Nouveau départ

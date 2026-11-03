@@ -1,10 +1,10 @@
 /* ============================================================================
-   Kortscore — Website
+   Kortscore, Website
    ============================================================================
    Die Seite funktioniert vollstaendig ohne JavaScript. Dieses Skript ergaenzt
-   drei Dinge: die Sprachweiche auf den Seiten der Standardsprache, den
-   Sprachhinweis auf allen anderen und die Messung der Store-Klicks samt
-   Kampagnen-Referrer.
+   vier Dinge: die Sprachweiche auf den Seiten der Standardsprache, den
+   Sprachhinweis auf allen anderen, die Messung der Store-Klicks samt
+   Kampagnen-Referrer und den Eintritt der Sektionen beim Scrollen.
    ========================================================================= */
 (function () {
   'use strict';
@@ -150,7 +150,7 @@
 /* ============================================================================
    Play-Store-Klick: messen und die Kampagne in den Store mitnehmen
    ============================================================================
-   Zwei Aufgaben, beide freiwillig — ohne JavaScript bleibt der Badge ein
+   Zwei Aufgaben, beide freiwillig: ohne JavaScript bleibt der Badge ein
    normaler Link auf den Store, nur eben ungemessen.
 
    1. Der Klick auf den Badge wird als Google-Ads-Conversion gemeldet. Das ist
@@ -160,7 +160,7 @@
    2. An den Store-Link kommt ein referrer-Parameter. Google Play reicht
       dessen Inhalt nach der Installation an die App weiter, das Firebase-SDK
       liest ihn beim ersten Start aus. Dadurch laesst sich spaeter sagen,
-      welche Kampagne zu einer Installation gefuehrt hat — und nicht nur zu
+      welche Kampagne zu einer Installation gefuehrt hat, und nicht nur zu
       einem Klick. Der Weg funktioniert ohne Cookies, weil die Kennung in der
       URL reist.
    ========================================================================= */
@@ -254,4 +254,94 @@
       }
     });
   });
+})();
+
+/* ============================================================================
+   Eintritt beim Scrollen
+   ============================================================================
+   Die Teile jeder Sektion mit data-reveal steigen einmal auf, wenn die
+   Sektion ins Bild kommt: Ueberschrift, Text, Bild, Listenzeilen, je 70ms
+   versetzt (Gestaltung in styles.css unter .rv). Versteckt wird nur, was beim
+   Laden noch unter dem Fensterrand liegt, damit nichts Sichtbares kurz
+   verschwindet. Ohne IntersectionObserver oder mit reduzierter Bewegung
+   passiert nichts, alles steht dann einfach da.
+   ========================================================================= */
+(function () {
+  'use strict';
+
+  if (!('IntersectionObserver' in window)) { return; }
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
+
+  var STEP = 70;      /* Versatz zwischen zwei Teilen in ms */
+  var MAX_STEPS = 6;  /* danach kommen die restlichen Teile gemeinsam */
+
+  /* Listen treten Zeile fuer Zeile ein, alles andere als Ganzes. */
+  var LISTS = '.tap__codes, .watches__list, .faq__list, .clubs__copy, .clubsteps';
+
+  function partsOf(section) {
+    var parts = [];
+    Array.prototype.forEach.call(section.children, function (child) {
+      if (child.matches(LISTS)) {
+        Array.prototype.push.apply(parts, child.children);
+      } else {
+        parts.push(child);
+      }
+    });
+    return parts;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) { return; }
+      observer.unobserve(entry.target);
+      Array.prototype.forEach.call(entry.target.querySelectorAll('.rv'), function (el) {
+        el.classList.add('rv-in');
+      });
+    });
+  }, { rootMargin: '0px 0px -8% 0px' });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-reveal]'), function (section) {
+    if (section.getBoundingClientRect().top < window.innerHeight) { return; }
+    partsOf(section).forEach(function (el, i) {
+      el.style.setProperty('--rv-delay', Math.min(i, MAX_STEPS) * STEP + 'ms');
+      el.classList.add('rv');
+    });
+    observer.observe(section);
+  });
+})();
+
+/* ============================================================================
+   Live-Ticker zaehlt einen Punkt weiter
+   ============================================================================
+   Das Beispiel im dunklen Feld der Startseite tut einmal, was der echte
+   Ticker staendig tut: Sobald es gut im Bild ist, geht im Doppel ein Punkt an
+   die aufschlagende Seite (data-ticker-to traegt den neuen Stand). Einmal,
+   keine Schleife; mit reduzierter Bewegung oder ohne Skript bleibt der
+   gerenderte Stand stehen. Gestaltung in styles.css unter .ticker__pts.is-new.
+   ========================================================================= */
+(function () {
+  'use strict';
+
+  var pts = document.querySelector('[data-ticker-to]');
+  if (!pts || !('IntersectionObserver' in window)) { return; }
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
+
+  var match = pts.closest('.ticker__match');
+  var row = pts.closest('.ticker__row');
+  if (!match || !row) { return; }
+
+  var observer = new IntersectionObserver(function (entries) {
+    if (!entries.some(function (e) { return e.isIntersecting; })) { return; }
+    observer.disconnect();
+    /* Kurz warten, bis der Eintritt der Sektion vorbei ist und man hinsieht. */
+    setTimeout(function () {
+      pts.textContent = pts.getAttribute('data-ticker-to');
+      pts.classList.add('is-new');
+      Array.prototype.forEach.call(match.querySelectorAll('.ticker__row'), function (r) {
+        r.classList.toggle('is-lead', r === row);
+      });
+    }, 1100);
+  }, { threshold: 0.8 });
+
+  observer.observe(match);
 })();

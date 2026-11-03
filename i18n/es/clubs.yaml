@@ -8,15 +8,14 @@ meta:
 breadcrumb: Para clubes
 llms: Para clubes (folleto en el club, descuento en Kortscore Plus para los socios)
 
-eyebrow: Para clubes
-title: Colgad el folleto. <br>Los socios ahorran.
+title: Kortscore Plus para clubes
 lead: >-
   Vuestro club cuelga el folleto de Kortscore en la cafetería o junto a las
   pistas, y a cambio vuestros socios reciben un código de descuento para
-  Kortscore Plus. Escribidnos sin más; el resto lo resolvemos por correo.
+  Kortscore Plus. Escribidnos, el resto lo resolvemos por correo.
 
 steps:
-  title: Cómo funciona
+  title: Los pasos
   list:
     - title: Escribidnos
       body: >-
@@ -33,7 +32,7 @@ steps:
         Con él, Plus sale más barato en la app.
 
 redeem:
-  title: Cómo canjean el código vuestros socios
+  title: Canjear el código
   list:
     - >-
       Abrir Kortscore e ir a la pantalla de compra de Kortscore Plus, por
@@ -45,15 +44,12 @@ redeem:
   note: Funciona igual en iPhone y en Android.
 
 plus:
-  title: ¿Qué es Kortscore Plus?
+  title: Kortscore Plus
   text: >-
-    Kortscore en sí es gratis: contar los puntos en la muñeca, el marcador en
-    directo y los 10 partidos más recientes del historial, sin anuncios y sin
-    registro. Kortscore Plus es una compra única, no una suscripción, y añade el
-    historial completo de partidos con el registro punto a punto, estadísticas
+    Kortscore Plus es una compra única, no una suscripción. Añade el historial
+    completo de partidos con el registro punto a punto, estadísticas
     detalladas, copias de seguridad automáticas y el Kortscore Trainer (IA),
-    que analiza los partidos. Con vuestro código, vuestros socios consiguen
-    Plus más barato.
+    que analiza los partidos.
 
 # Der Flyer selbst ist bisher nur auf Deutsch, das sagt der Text dazu.
 flyer:
@@ -92,7 +88,6 @@ faq:
 # Die Anfrage ist eine vorausgefüllte Mail. Betreff und Text als reiner Text
 # (\n = Zeilenumbruch), der Build kodiert sie für den mailto-Link.
 ask:
-  eyebrow: ¿Os apuntáis?
   button: Solicitud por correo
   alt: o escribid directamente a
   mail_subject: Kortscore Plus para nuestro club

@@ -4,7 +4,7 @@
 nav_cta: Scarica l’app
 # alt-Text des offiziellen Google-Play-Badges (Text wie auf dem Badge).
 google_play_alt: Disponibile su Google Play
-back_home: ← Torna alla home
+back_home: Torna alla home
 
 # aria-label des Sprachumschalters, gefolgt vom Namen der aktuellen Sprache.
 lang_menu: Lingua
@@ -17,7 +17,9 @@ langbar:
   close: No, grazie
 
 footer:
-  claim: Kortscore · Il punteggio di tennis e padel al polso
+  # aria-label der Linkleiste im Footer
+  nav: Altre pagine
+  claim: "Kortscore: il punteggio di tennis e padel al polso"
   home: Home
   compatible: Orologi compatibili
   tennis: Punteggio nel tennis

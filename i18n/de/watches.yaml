@@ -10,17 +10,16 @@ meta:
 breadcrumb: Uhren
 llms: Empfohlene Uhren
 
-eyebrow: Welche Uhr
-title: Vier Uhren, <br>die passen
+title: Vier Uhren für Kortscore
 lead: >-
   Kortscore läuft auf jeder Wear-OS-3-Uhr und auf der Apple Watch. Wer noch
   keine hat, fährt mit diesen vier am Platz gut.
-compat_link: Schon eine Uhr? Zur vollständigen Kompatibilitätsliste, Apple Watch und Wear OS →
+compat_link: Schon eine Uhr? Zur Kompatibilitätsliste
 
 watches:
   apple:
     alt: Apple Watch Series 11, graphitfarbenes Gehäuse mit dunkelblauem Armband
-    text: Die für iPhone-Leute. Helles Display, und der Spielstand liegt einen Tap entfernt am Handgelenk.
+    text: Die für iPhone-Besitzer. Helles Display, Spielstand am Handgelenk.
   galaxy:
     alt: Samsung Galaxy Watch 8, silbernes Gehäuse mit dunklem Armband
     text: Wear OS 6, in praller Sonne ablesbar, Akku für ein langes Matchprogramm.

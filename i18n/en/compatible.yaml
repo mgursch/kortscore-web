@@ -9,15 +9,14 @@ meta:
 breadcrumb: Compatible watches
 llms: Compatible watches (full model list)
 
-eyebrow: Compatibility
-title: Does Kortscore run <br>on my watch?
+title: Compatible watches
 lead: >-
-  The short answer: yes, on every Apple Watch on watchOS 26 or newer paired
-  with an iPhone, and on every watch running Wear OS 3 or newer paired with an
-  Android phone on Android 8 or newer. That covers every Apple Watch since the
-  Series 6, the SE from the second generation and every Ultra, every Samsung
-  Galaxy Watch since 2021, every Google Pixel Watch and the current watches from
-  OnePlus, Mobvoi and Xiaomi. The long answer is below.
+  Kortscore runs on every Apple Watch on watchOS 26 or newer paired with an
+  iPhone, and on every watch running Wear OS 3 or newer paired with an Android
+  phone on Android 8 or newer. That covers every Apple Watch since the Series
+  6, the SE from the second generation and every Ultra, every Samsung Galaxy
+  Watch since 2021, every Google Pixel Watch and the current watches from
+  OnePlus, Mobvoi and Xiaomi. The details are below.
 
 # Spaltenköpfe und Generationsangaben in den Tabellen.
 col:
@@ -31,12 +30,12 @@ generation:
 version:
   title: How to find your system version
   body: >-
-    <p>On the Wear OS watch under <em>Settings → About → Software version</em>,
-    on Samsung under <em>Settings → About watch → Software information</em>. If
+    <p>On the Wear OS watch under <em>Settings &gt; About &gt; Software version</em>,
+    on Samsung under <em>Settings &gt; About watch &gt; Software information</em>. If
     it says Wear OS 3, 4, 5, 6 or 7, Kortscore runs.</p><p><strong>On the Apple
-    Watch:</strong> <em>Settings → General → About → Version</em>. If it says
+    Watch:</strong> <em>Settings &gt; General &gt; About &gt; Version</em>. If it says
     watchOS 26 or higher, Kortscore runs. Older version on a model from the list
-    below? Update it first under <em>Settings → General → Software Update</em>.</p>
+    below? Update it first under <em>Settings &gt; General &gt; Software Update</em>.</p>
 
 apple:
   text: >-
@@ -54,8 +53,8 @@ pixel:
 others:
   title: Other brands
   text: >-
-    We have not had all of these on our own wrists. But Wear OS is Wear OS: if
-    it runs version 3 or newer, it runs Kortscore. If something does not work
+    We have not had all of these on our own wrists. What matters is the
+    version: on Wear OS 3 or newer, Kortscore runs. If something does not work
     for you, write to <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>.
 
 unsupported:
@@ -67,7 +66,7 @@ unsupported:
     - "<strong>Apple Watch Series 5, SE (1st gen) and older:</strong> end at watchOS 10 or earlier, Kortscore needs watchOS 26."
 
 phone:
-  title: And the phone?
+  title: The phone
   text: >-
     The Kortscore iPhone app needs iOS 18 or newer; paired with an Apple Watch
     on watchOS 26, Apple requires the iPhone to be on iOS 26. A Wear OS watch
@@ -79,12 +78,12 @@ phone:
 
 # Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
 faq:
-  title: Common questions
+  title: Questions
   questions:
     - q: My watch is not in the list.
       a: >-
-        No problem. All that matters is the system version: watchOS 26 or Wear
-        OS 3, or newer in each case, and Kortscore runs. How to find it is
+        All that matters is the system version: watchOS 26 or Wear OS 3, or
+        newer in each case, and Kortscore runs. How to find it is
         explained above.
     - q: Is an LTE watch enough without the phone?
       a: >-
@@ -97,7 +96,7 @@ faq:
         watch. A fully charged watch gets you through a whole league day.
 
 cta:
-  fits: Watch fits?
-  download: Get it free
+  fits: Is your watch on the list?
+  download: Get the app
   no_watch: No watch yet?
-  picks: Four picks for the court →
+  picks: Four watches for the court

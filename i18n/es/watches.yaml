@@ -10,17 +10,16 @@ meta:
 breadcrumb: Relojes
 llms: Relojes recomendados
 
-eyebrow: Qué reloj
-title: Cuatro relojes <br>que encajan
+title: Cuatro relojes para Kortscore
 lead: >-
   Kortscore funciona en cualquier reloj Wear OS 3 y en el Apple Watch. Si aún
   estás eligiendo, estos cuatro cumplen de sobra en la pista.
-compat_link: ¿Ya tienes reloj? Consulta la lista completa de compatibilidad, Apple Watch y Wear OS →
+compat_link: ¿Ya tienes reloj? Mira la lista de compatibilidad
 
 watches:
   apple:
     alt: Apple Watch Series 11, caja en grafito con correa azul oscuro
-    text: El reloj para quien tiene iPhone. Pantalla luminosa y el marcador a un toque en la muñeca.
+    text: El reloj para quien tiene iPhone. Pantalla luminosa, marcador en la muñeca.
   galaxy:
     alt: Samsung Galaxy Watch 8, caja plateada con correa oscura
     text: Wear OS 6, legible a pleno sol, batería para una larga jornada de partidos.
