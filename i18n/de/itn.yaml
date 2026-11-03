@@ -18,11 +18,10 @@ footer_label: ITN-Rechner
 
 # Hinweis auf der deutschen Tennis-Zählweise-Seite (templates/partials/rules.html).
 teaser:
-  eyebrow: ITN-Rechner
+  title: ITN-Rechner für Österreich
   text: >-
-    Du spielst Meisterschaft in Österreich? Der ITN-Rechner zeigt dir vor dem
-    Match, wo dein ITN nach einem Sieg oder einer Niederlage steht, im Einzel
-    und im Doppel.
+    Vor einem Meisterschaftsmatch in Österreich zeigt der ITN-Rechner, wo dein
+    ITN nach einem Sieg oder einer Niederlage steht, im Einzel und im Doppel.
   link: Zum ITN-Rechner
 
 hero:
