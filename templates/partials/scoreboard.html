@@ -1,0 +1,129 @@
+{# Scoreboard zum Selbstzählen: der Besucher zählt ein echtes Spiel mit dem
+   Tippcode der Uhr (1× mein Punkt, 2× Gegner, 3× Punkt drehen, 4× zurück).
+   Gestaltung in static/scoreboard.css, Verhalten und Zählregeln in
+   static/scoreboard.js, Texte in i18n/<sprache>/scoreboard.yaml.
+
+   Einbinden:
+     {% from "partials/scoreboard.html" import scoreboard %}
+     {{ scoreboard(sb, sport="padel", points=[3, 3], golden=true) }}
+   und im head-Block der Seite:
+     <link rel="stylesheet" href="{{ static('scoreboard.css') }}">
+     <script type="module" src="{{ static('scoreboard.js') }}"></script>
+
+   Parameter:
+     s         die Texte aus scoreboard.yaml in der Sprache der Seite
+     sport     "tennis" oder "padel", benennt den Schalter (NoAd bzw. Golden
+               Point) und landet als data-sport an der Wurzel
+     points    Punkte im laufenden Spiel als Rohzahl, 3 heißt 40, [4, 3] ist
+               Vorteil für mich; bei Spielen 6:6 sind es Tiebreak-Punkte
+     games     Spiele im Satz, [6, 6] startet im Tiebreak
+     sets      gewonnene Sätze
+     golden    NoAd/Golden Point zu Beginn eingeschaltet
+     controls  was zu sehen ist: "pad" (Tippfläche samt Legende), "buttons"
+               (Punkt für mich, Punkt Gegner, Zurück), "reset", "golden"
+     id        Präfix für die IDs, bei mehreren Scoreboards je Seite eindeutig
+
+   Ohne JavaScript steht der hier gerenderte Stand da (Vorgabe 40:30, Spiele
+   2:1), Tippfläche und Knöpfe bleiben versteckt, die Legende erklärt den
+   Tippcode trotzdem. Die Anzeige unten rechnet wie scoreView() im Skript;
+   ändert sich dort etwas, muss es hier mit. #}
+{% macro scoreboard(s, sport="tennis", points=[3, 2], games=[2, 1], sets=[0, 0], golden=false, controls=["pad", "buttons", "reset", "golden"], id="sb") %}
+{% set pa = points[0] %}
+{% set pb = points[1] %}
+{% set v = namespace(a=pa ~ "", b=pb ~ "", status="", phase="points", lead="") %}
+{% set labels = ["0", "15", "30", "40"] %}
+{% if games[0] == 6 and games[1] == 6 %}
+  {% set v.phase = "tiebreak" %}
+  {% set v.status = s.tiebreak %}
+{% elif pa >= 3 and pb >= 3 %}
+  {% set v.a = "40" %}
+  {% set v.b = "40" %}
+  {% if pa == pb %}
+    {% set v.phase = "deuce" %}
+    {% set v.status = s.deciding|replace("{name}", s.golden[sport]) if golden else s.deuce %}
+  {% elif pa > pb %}
+    {% set v.phase = "advantage" %}
+    {% set v.a = s.adv_short %}
+    {% set v.lead = "0" %}
+    {% set v.status = s.adv_me %}
+  {% else %}
+    {% set v.phase = "advantage" %}
+    {% set v.b = s.adv_short %}
+    {% set v.lead = "1" %}
+    {% set v.status = s.adv_opp %}
+  {% endif %}
+{% else %}
+  {% set v.a = labels[pa] %}
+  {% set v.b = labels[pb] %}
+{% endif %}
+<section class="sb sb--{{ sport }}" id="{{ id }}" data-scoreboard data-sport="{{ sport }}" data-phase="{{ v.phase }}" data-lead="{{ v.lead }}"
+         data-sb-state='{{ {"points": points, "games": games, "sets": sets, "golden": golden}|tojson }}'
+         data-sb-text='{{ s|tojson }}'
+         aria-label="{{ s.label|inattr }}">
+<div class="sb__grid">
+  <div class="sb__board">
+    <table class="sb__table">
+      <caption class="sb__vh">{{ s.caption }}</caption>
+      <thead>
+        <tr>
+          <th scope="col"><span class="sb__vh">{{ s.player }}</span></th>
+          <th scope="col">{{ s.col_sets }}</th>
+          <th scope="col">{{ s.col_games }}</th>
+          <th scope="col" class="sb__pts">{{ s.col_points }}</th>
+        </tr>
+      </thead>
+      <tbody>
+{% for name in [s.me, s.opponent] %}
+        <tr>
+          <th scope="row">{{ name }}</th>
+          <td><span class="sb__num" data-sb="sets-{{ loop.index0 }}">{{ sets[loop.index0] }}</span></td>
+          <td><span class="sb__num" data-sb="games-{{ loop.index0 }}">{{ games[loop.index0] }}</span></td>
+          <td class="sb__pts"><span class="sb__num" data-sb="points-{{ loop.index0 }}">{{ v.a if loop.first else v.b }}</span></td>
+        </tr>
+{% endfor %}
+      </tbody>
+    </table>
+    <p class="sb__status" data-sb="status">{{ v.status }}</p>
+  </div>
+{% if "pad" in controls %}
+
+  <div class="sb__side">
+    <button type="button" class="sb__pad" data-sb="pad" data-sb-js hidden
+            aria-label="{{ s.pad|inattr }}" aria-describedby="{{ id }}-hints">
+      <span class="sb__pips" aria-hidden="true">
+        <span class="sb__pip" data-sb="pip"></span><span class="sb__pip" data-sb="pip"></span><span class="sb__pip" data-sb="pip"></span><span class="sb__pip" data-sb="pip"></span>
+      </span>
+      <span class="sb__pad-count" data-sb="pad-count" aria-hidden="true">{{ s.pad }}</span>
+      <span class="sb__pad-action" data-sb="pad-action" aria-hidden="true">{{ s.pad_note }}</span>
+    </button>
+    <ul class="sb__hints" id="{{ id }}-hints">
+      <li><span class="sb__key">1×</span> {{ s.btn_me }}</li>
+      <li><span class="sb__key">2×</span> {{ s.btn_opp }}</li>
+      <li><span class="sb__key">3×</span> {{ s.act_flip }}</li>
+      <li><span class="sb__key">4×</span> {{ s.btn_undo }}</li>
+    </ul>
+  </div>
+{% endif %}
+{% if "buttons" in controls or "reset" in controls or "golden" in controls %}
+
+  <div class="sb__controls" data-sb-js hidden>
+{% if "buttons" in controls %}
+    <button type="button" class="sb__btn sb__btn--me" data-sb-act="me">{{ s.btn_me }}</button>
+    <button type="button" class="sb__btn" data-sb-act="opp">{{ s.btn_opp }}</button>
+    <button type="button" class="sb__btn" data-sb-act="undo">{{ s.btn_undo }}</button>
+{% endif %}
+{% if "reset" in controls %}
+    <button type="button" class="sb__btn sb__btn--quiet" data-sb-act="reset">{{ s.btn_reset }}</button>
+{% endif %}
+{% if "golden" in controls %}
+    <label class="sb__toggle">
+      <input type="checkbox" data-sb="golden"{{ " checked" if golden }}>
+      <span><span class="sb__toggle-name">{{ s.golden[sport] }}</span> <span class="sb__toggle-note">{{ s.golden_note }}</span></span>
+    </label>
+{% endif %}
+  </div>
+{% endif %}
+</div>
+  <p class="sb__vh" aria-live="polite" data-sb="live"></p>
+</section>
+{% endmacro %}

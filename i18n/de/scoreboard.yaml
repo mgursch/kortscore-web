@@ -1,0 +1,50 @@
+# Texte des Scoreboards zum Selbstzählen (templates/partials/scoreboard.html,
+# static/scoreboard.js). Reiner Text ohne HTML: die Werte landen auch als JSON
+# im Attribut data-sb-text. Platzhalter in {geschweiften Klammern} bleiben
+# stehen. Die Datei wird geladen wie common.yaml, siehe Kopf des Partials.
+
+# aria-label der ganzen Komponente und Tabellenüberschrift (nur vorgelesen)
+label: Scoreboard zum Ausprobieren
+caption: Spielstand
+player: Spieler
+me: Ich
+opponent: Gegner
+col_sets: Sätze
+col_games: Spiele
+col_points: Punkte
+
+# Tippfläche: Ruhetext und Unterzeile, solange niemand tippt
+pad: Hier tippen
+pad_note: wie auf der Uhr
+
+# Knöpfe und was 1, 2, 3 und 4 Tipps bedeuten
+btn_me: Punkt für mich
+btn_opp: Punkt Gegner
+act_flip: Punkt drehen
+btn_undo: Zurück
+btn_reset: Neu starten
+
+# Schalter für den entscheidenden Punkt bei 40:40, je Sportart benannt
+golden:
+  tennis: NoAd
+  padel: Golden Point
+golden_note: Bei 40:40 entscheidet der nächste Punkt
+
+# Statuszeile und Ansagen
+deuce: Einstand
+deciding: "{name}: der nächste Punkt entscheidet"
+adv_me: Vorteil für mich
+adv_opp: Vorteil Gegner
+# Kurzzeichen für Vorteil in der Punktespalte, wie auf der Uhr
+adv_short: A
+tiebreak: Tiebreak
+game_me: Spiel für mich
+game_opp: Spiel Gegner
+set_me: "Satz für mich, {games}"
+set_opp: "Satz Gegner, {games}"
+score_say: "{me} zu {opp}"
+games_say: "Spiele {me} zu {opp}"
+undone: Zurückgenommen
+flipped: Punkt gedreht
+nothing: Nichts zum Zurücknehmen
+new_game: Neu gestartet

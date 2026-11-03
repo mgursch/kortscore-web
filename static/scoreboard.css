@@ -1,0 +1,320 @@
+/* ============================================================================
+   Kortscore, Scoreboard zum Selbstzählen
+   ============================================================================
+   Gestaltung zu templates/partials/scoreboard.html. Sieht aus wie die Tafel
+   am Platz: dunkles Feld, große schmale Ziffern, rechts die runde Tippfläche
+   wie das Zifferblatt der Uhr.
+
+   Baut nur auf den Tokens aus styles.css auf (--bg-dark, --text-on-dark,
+   --accent, --on-accent, --font-display, --font-body). Alle Abstufungen auf
+   dem dunklen Feld entstehen hier per color-mix, damit die Komponente keine
+   eigenen Farbwerte mitbringt. Flächen statt Linien, keine Schatten.
+
+   Das Layout richtet sich nach der Breite der Komponente, nicht nach dem
+   Fenster (Container Query): schmal untereinander, ab 640px Tafel links und
+   Tippfläche rechts. So passt dieselbe Komponente in den Hero und in die
+   schmale Spalte der Regelseiten.
+   ========================================================================= */
+
+.sb {
+  --sb-field:    var(--bg-dark);
+  --sb-ink:      var(--text-on-dark);
+  --sb-ink-soft: color-mix(in oklab, var(--text-on-dark) 66%, var(--bg-dark));
+  --sb-tile:     color-mix(in oklab, var(--text-on-dark) 7%, var(--bg-dark));
+  --sb-tile-up:  color-mix(in oklab, var(--text-on-dark) 13%, var(--bg-dark));
+  --sb-tile-hi:  color-mix(in oklab, var(--text-on-dark) 19%, var(--bg-dark));
+  --sb-ease:     cubic-bezier(0.22, 1, 0.36, 1);
+
+  container: sb / inline-size;
+  padding: clamp(16px, 3vw, 32px);
+  border-radius: 20px;
+  background: var(--sb-field);
+  color: var(--sb-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+/* Ohne JavaScript bleiben Tippfläche und Knöpfe versteckt. Das hidden-Attribut
+   muss gegen die display-Werte unten gewinnen. */
+.sb [hidden] { display: none !important; }
+
+.sb__vh {
+  position: absolute;
+  width: 1px;
+  height: 1px; /* nur vorgelesen, keine Linie: taste-skill-ignore */
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.sb__grid {
+  display: grid;
+  grid-template-areas: "board" "side" "controls";
+  gap: 24px;
+}
+
+/* ── Tafel ─────────────────────────────────────────────────────────────── */
+.sb__board { grid-area: board; min-width: 0; }
+
+.sb__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.sb__table thead th {
+  padding: 0 4px 2px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--sb-ink-soft);
+  text-align: center;
+}
+
+.sb__table tbody th,
+.sb__table td {
+  background: var(--sb-tile);
+  padding: 10px 6px;
+  overflow: hidden;
+}
+
+.sb__table tbody th {
+  padding-inline-start: 18px;
+  border-radius: 12px 0 0 12px;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 5cqi, 30px);
+  font-weight: 600;
+  line-height: 1;
+  text-align: start;
+  white-space: nowrap;
+}
+
+.sb__table td {
+  width: 3.2ch;
+  font-size: clamp(30px, 8cqi, 48px);
+  color: var(--sb-ink-soft);
+  text-align: center;
+}
+
+/* Punktespalte: größer, heller, eigene Fläche. */
+.sb__table .sb__pts {
+  width: 2.6ch;
+  padding-inline: 12px 16px;
+}
+
+.sb__table td.sb__pts {
+  border-radius: 0 12px 12px 0;
+  background: var(--sb-tile-up);
+  font-size: clamp(44px, 14cqi, 92px);
+  color: var(--sb-ink);
+}
+
+.sb__num {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+/* Wer Vorteil hat, bekommt das A in Grün. */
+.sb[data-lead="0"] tbody tr:first-child .sb__pts .sb__num,
+.sb[data-lead="1"] tbody tr:last-child .sb__pts .sb__num { color: var(--accent); }
+
+.sb__status {
+  min-height: 1.4em;
+  margin-top: 10px;
+  padding-inline-start: 18px;
+  font-family: var(--font-display);
+  font-size: clamp(20px, 4cqi, 24px);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--accent);
+}
+
+/* ── Tippfläche ────────────────────────────────────────────────────────── */
+.sb__side {
+  grid-area: side;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 18px;
+}
+
+.sb__pad {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 8px;
+  width: min(100%, 236px);
+  aspect-ratio: 1;
+  margin: 0;
+  padding: 16px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--sb-tile-up);
+  color: var(--sb-ink);
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;          /* kein Doppeltipp-Zoom, keine 300ms */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 140ms var(--sb-ease), background-color 180ms ease;
+}
+
+.sb__pad:hover { background: var(--sb-tile-hi); }
+.sb__pad:active { transform: scale(0.96); }
+
+/* Solange eine Tippgruppe läuft, färbt sich das Zifferblatt leicht grün. */
+.sb__pad[data-taps]:not([data-taps="0"]) {
+  background: color-mix(in oklab, var(--accent) 24%, var(--bg-dark));
+}
+
+.sb__pips { display: flex; gap: 8px; }
+
+.sb__pip {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--text-on-dark) 26%, var(--bg-dark));
+  transition: transform 140ms var(--sb-ease), background-color 120ms ease;
+}
+
+.sb__pip.is-on {
+  background: var(--accent);
+  transform: scale(1.25);
+}
+
+.sb__pad-count {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 8cqi, 42px);
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.sb__pad-action {
+  min-height: 1.4em;
+  font-size: 14px;
+  color: var(--sb-ink-soft);
+}
+
+.sb__hints {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 6px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 15px;
+  color: var(--sb-ink-soft);
+}
+
+.sb__key {
+  display: inline-block;
+  min-width: 2ch;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--sb-ink);
+}
+
+/* ── Knöpfe und Schalter ───────────────────────────────────────────────── */
+.sb__controls {
+  grid-area: controls;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.sb__btn {
+  min-height: 44px;
+  margin: 0;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--sb-tile-up);
+  color: var(--sb-ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 140ms var(--sb-ease), background-color 180ms ease;
+}
+
+.sb__btn:hover { background: var(--sb-tile-hi); }
+.sb__btn:active { transform: scale(0.97); }
+
+.sb__btn--me { background: var(--accent); color: var(--on-accent); }
+.sb__btn--me:hover { background: color-mix(in oklab, var(--accent) 86%, var(--text-on-dark)); }
+
+.sb__btn--quiet { background: transparent; color: var(--sb-ink-soft); }
+.sb__btn--quiet:hover { background: var(--sb-tile); color: var(--sb-ink); }
+
+.sb__btn[aria-disabled="true"] { opacity: 0.45; cursor: default; }
+.sb__btn[aria-disabled="true"]:active { transform: none; }
+
+.sb__toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding-inline: 4px;
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--sb-ink-soft);
+  cursor: pointer;
+}
+
+.sb__toggle input {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.sb__toggle-name { font-weight: 600; color: var(--sb-ink); }
+
+/* Fokus: auf dem dunklen Feld trägt das helle Grün, nicht --accent-text. Die
+   Rundung folgt dem Element, styles.css setzt sonst 4px. */
+.sb :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.sb__pad:focus-visible { border-radius: 50%; }
+.sb__btn:focus-visible { border-radius: 999px; }
+.sb__toggle input:focus-visible { border-radius: 4px; }
+
+/* ── Breit: Tafel links, Tippfläche rechts ─────────────────────────────── */
+@container sb (min-width: 640px) {
+  .sb__grid {
+    grid-template-columns: minmax(0, 1.55fr) minmax(220px, 1fr);
+    grid-template-areas: "board side" "controls side";
+    grid-template-rows: auto 1fr;
+    column-gap: clamp(24px, 5cqi, 48px);
+    align-items: start;
+  }
+  .sb__controls { align-self: end; }
+}
+
+@container sb (max-width: 380px) {
+  .sb__table tbody th { padding-inline-start: 12px; }
+  .sb__status { padding-inline-start: 12px; }
+  .sb__hints { font-size: 14px; gap: 6px 14px; }
+}
+
+/* Reduzierte Bewegung: Knöpfe geben ohne Weg nach, Farbe wechselt sofort. Das
+   Rollen der Ziffern schaltet scoreboard.js selbst ab. */
+@media (prefers-reduced-motion: reduce) {
+  .sb__pad, .sb__btn, .sb__pip { transition: none; }
+  .sb__pad:active, .sb__btn:active, .sb__pip.is-on { transform: none; }
+}
