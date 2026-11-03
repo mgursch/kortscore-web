@@ -16,8 +16,8 @@
   --itn-red-on-dark:   #f2b8b5;  /* steigender ITN auf Dunkel                */
   --itn-error:         #b3261e;  /* ungültiges Feld                          */
 
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: var(--step-1);
+  line-height: 1.55;
 }
 
 /* Alles mit data-itn-only und die Zustände des Ergebnisses schaltet
@@ -29,7 +29,7 @@
 .vh {
   position: absolute;
   width: 1px;
-  height: 1px;
+  height: 1px; /* taste-skill-ignore: Screenreader-Text, keine Linie */
   padding: 0;
   margin: -1px;
   overflow: hidden;
@@ -38,7 +38,7 @@
   border: 0;
 }
 
-.itn .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.itn .mono { font-family: var(--font-display); font-weight: 600; font-variant-numeric: tabular-nums; }
 
 .itn__shell {
   max-width: var(--shell);
@@ -47,30 +47,21 @@
 }
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
-.itn__eyebrow {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-}
-
 .itn__title {
-  margin: 14px 0 0;
-  max-width: 760px;
+  margin: 0;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(44px, 7vw, 76px);
-  line-height: 0.95;
+  font-size: var(--step-4);
+  line-height: 0.9;
   text-transform: uppercase;
   text-wrap: balance;
 }
-.itn__title em { font-style: normal; color: var(--accent-text); }
 
 .itn__lead {
-  margin-top: 20px;
-  max-width: 620px;
-  font-size: 18px;
+  margin-top: 28px;
+  max-width: 65ch;
+  font-size: var(--step-2);
+  line-height: 1.45;
   color: var(--text-secondary);
   text-wrap: pretty;
 }
@@ -79,14 +70,14 @@
   margin: 0;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 44px;
+  font-size: var(--step-3);
   line-height: 1;
   text-transform: uppercase;
   text-wrap: balance;
 }
 
 /* ── Rechner ────────────────────────────────────────────────────────────────
-   Weiße Karte, links die Eingaben, rechts das dunkle Ergebnis. flex-wrap
+   Tonfläche statt Rahmen, links die Eingaben, rechts das dunkle Ergebnis. flex-wrap
    stapelt beide, sobald die linke Seite ihre 420px nicht mehr bekommt.
    ───────────────────────────────────────────────────────────────────────── */
 .calc {
@@ -94,9 +85,7 @@
   display: flex;
   flex-wrap: wrap;
   border-radius: var(--radius);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-card);
+  background: var(--bg-alt);
   overflow: hidden;
 }
 
@@ -120,8 +109,8 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 4px;
-  border-radius: 12px;
-  background: var(--bg-alt);
+  border-radius: var(--radius);
+  background: var(--bg-deep);
 }
 .seg__opt { position: relative; display: block; }
 .seg__opt input {
@@ -139,17 +128,16 @@
   justify-content: center;
   min-height: 44px;
   padding: 4px 8px;
-  border-radius: 9px;
-  font-size: 15px;
+  border-radius: calc(var(--radius) - 4px);
+  font-size: var(--step-1);
   font-weight: 500;
   line-height: 1.2;
   text-align: center;
   color: var(--text-secondary);
-  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+  transition: background-color 0.15s ease;
 }
 .seg__opt input:checked + span {
   background: var(--surface);
-  box-shadow: 0 1px 3px rgba(22, 21, 15, 0.12);
   font-weight: 600;
   color: var(--text);
 }
@@ -170,7 +158,7 @@
   flex-direction: column;
   gap: 6px;
   min-width: 0;
-  font-size: 14px;
+  font-size: var(--step-0);
   font-weight: 600;
   color: var(--text-secondary);
 }
@@ -179,12 +167,12 @@
   min-width: 0;
   height: 56px;
   border: 1.5px solid var(--text);
-  border-radius: 12px;
+  border-radius: var(--radius);
   background: var(--surface);
   padding: 0 16px;
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-weight: 600;
-  font-size: 22px;
+  font-size: var(--step-2);
   font-variant-numeric: tabular-nums;
   color: var(--text);
 }
@@ -201,10 +189,10 @@
   gap: 2px;
   min-width: 0;
 }
-.check--field {
+.check.check--field {
   min-height: 40px;
   gap: 10px;
-  font-size: 14px;
+  font-size: var(--step-0);
 }
 .check--field input { width: 20px; height: 20px; }
 
@@ -224,7 +212,7 @@
   align-items: center;
   gap: 12px;
   min-height: 44px;
-  font-size: 15px;
+  font-size: var(--step-1);
   line-height: 1.35;
   color: var(--text-secondary);
   cursor: pointer;
@@ -241,16 +229,16 @@
 .check__text { display: flex; flex-direction: column; gap: 2px; }
 .check__hint,
 .calc__hint {
-  font-size: 13px;
+  font-size: var(--step-0);
   line-height: 1.4;
   color: var(--text-muted);
 }
 .calc__hint { margin: 0; }
 .calc__hint--fields { margin-top: -6px; }
 
-/* Das Ergebnis: dunkle Fläche, große Mono-Werte. Ein sinkender ITN ist eine
-   Verbesserung, deshalb grün mit Pfeil nach unten, ein steigender rötlich mit
-   Pfeil nach oben. Die Pfeile tragen die Richtung auch ohne Farbe. */
+/* Das Ergebnis: dunkle Fläche, große tabellarische Werte. Ein sinkender ITN ist eine
+   Verbesserung, deshalb grün, ein steigender rötlich. Die Richtung trägt auch
+   ohne Farbe das Vorzeichen der Änderung. */
 .calc__out {
   flex: 1 1 360px;
   min-width: 0;
@@ -264,33 +252,29 @@
 
 .calc__valid { display: flex; flex-direction: column; gap: 16px; }
 
-/* Doppel: die beiden Teamschnitte als kleine Mono-Zeile über dem Ergebnis. */
+/* Doppel: die beiden Teamschnitte als kleine Zeile über dem Ergebnis. */
 .calc__teams {
   display: flex;
   flex-wrap: wrap;
   gap: 4px 20px;
   padding-bottom: 14px;
-  border-bottom: 1px solid var(--surface-dark);
-  font-size: 14px;
+  font-size: var(--step-0);
   color: var(--text-on-dark-muted);
 }
 .calc__teams .mono { color: var(--text-on-dark); font-weight: 600; }
 
 .calc__case { display: flex; flex-direction: column; gap: 4px; }
-.calc__case--win {
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--surface-dark);
-}
+.calc__case--win { padding-bottom: 16px; }
 
 .calc__label {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 20px;
+  font-size: var(--step-2);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-on-dark-muted);
 }
-.calc__case--win .calc__label { color: var(--accent); }
+.calc__case--win .calc__label { color: var(--text-on-dark); }
 
 .calc__row {
   display: flex;
@@ -300,50 +284,52 @@
 }
 .calc__value {
   font-weight: 600;
-  font-size: 52px;
+  font-size: var(--step-3);
   line-height: 1.05;
 }
 .calc__delta {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-family: var(--font-mono);
-  font-size: 18px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--step-1);
   font-variant-numeric: tabular-nums;
 }
-.calc__delta svg { flex-shrink: 0; }
 .calc__delta--down { color: var(--itn-green-on-dark); }
 .calc__delta--up   { color: var(--itn-red-on-dark); }
 
 /* Doppel: der neue Wert der Partner*in, klein unter dem eigenen. */
 .calc__partner {
-  font-size: 14px;
+  font-size: var(--step-0);
   color: var(--text-on-dark-muted);
 }
 .calc__partner .mono { color: var(--text-on-dark); font-weight: 600; }
 
 .calc__weight,
 .calc__noscript {
-  font-size: 14px;
+  font-size: var(--step-0);
   color: var(--text-on-dark-muted);
 }
 .calc__invalid {
-  font-size: 16px;
+  font-size: var(--step-1);
   color: var(--text-on-dark-muted);
 }
 
-/* Hinweis bei aktiver Jugendregel, mit grüner Kante vom Rest abgesetzt. */
+/* Hinweis bei aktiver Jugendregel, als Tonfläche vom Rest abgesetzt. */
 .calc__note {
-  padding-left: 12px;
-  border-left: 2px solid var(--accent);
-  font-size: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background: var(--surface-dark);
+  font-size: var(--step-0);
   line-height: 1.45;
   color: var(--text-on-dark);
 }
 
 .itn__disclaimer {
   margin-top: 14px;
-  font-size: 13px;
+  max-width: 65ch;
+  font-size: var(--step-0);
   color: var(--text-muted);
 }
 
@@ -358,41 +344,39 @@
 .rules__side { flex: 1 1 380px; min-width: 0; }
 .rules__side { display: flex; flex-direction: column; }
 
-.rules__text { margin-top: 16px; color: var(--text-secondary); }
+.rules__text { margin-top: 16px; max-width: 65ch; color: var(--text-secondary); }
 
 .rules__formula {
   margin-top: 24px;
-  border-radius: 12px;
+  border-radius: var(--radius);
   background: var(--bg-alt);
   padding: 18px 20px;
-  font-size: 15px;
+  font-size: var(--step-1);
   line-height: 1.7;
   overflow-x: auto;
 }
 .rules__formula span { color: var(--text-secondary); }
 
-/* Die Beispieltabelle ist eine echte Tabelle, gesetzt wie die Zeilenliste im
-   Design: Kopf in Mono-Versalien mit dunkler Linie, Zeilen mit Haarlinie. */
+/* Die Beispieltabelle ist eine echte Tabelle: Kopf in Fließtextschrift,
+   jede zweite Zeile als Tonstreifen statt Linie. */
 .rules__table {
   width: 100%;
   border-collapse: collapse;
 }
 .rules__table th {
-  padding: 0 0 10px;
-  border-bottom: 1.5px solid var(--text);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  padding: 0 12px 10px;
+  font-size: var(--step-0);
+  font-weight: 600;
   text-align: left;
   color: var(--text-secondary);
 }
 .rules__table td {
-  padding: 14px 0;
-  border-bottom: 1px solid var(--border);
+  padding: 14px 12px;
   vertical-align: baseline;
 }
+.rules__table tbody tr:nth-child(odd) td { background: var(--bg-alt); }
+.rules__table td:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+.rules__table td:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
 .rules__table th:last-child,
 .rules__table td:last-child {
   padding-left: 16px;
@@ -409,13 +393,13 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  font-size: 15px;
+  font-size: var(--step-1);
   color: var(--text-secondary);
 }
 
 /* ── Kortform ───────────────────────────────────────────────────────────────
-   Werbeblock für die App: links Text, nummerierte Funktionen und Button,
-   rechts drei App-Bildschirme mit denselben Nummern. Wie früher die
+   Werbeblock für die App: links Text, Funktionen und Button, rechts drei
+   App-Bildschirme. Wie früher die
    Warteliste auf --bg-alt, damit er sich vom Rechner abhebt.
    ───────────────────────────────────────────────────────────────────────── */
 .kf {
@@ -429,7 +413,7 @@
   background: var(--bg-alt);
 }
 .kf__copy { flex: 1 1 380px; min-width: 0; }
-.kf__title { margin-top: 10px; }
+.kf__title { margin-top: 0; }
 .kf__text { margin-top: 14px; max-width: 460px; color: var(--text-secondary); text-wrap: pretty; }
 
 .kf__features {
@@ -441,29 +425,10 @@
   gap: 12px;
 }
 .kf__features li {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  max-width: 40ch;
   font-weight: 600;
   line-height: 1.35;
 }
-.kf__num,
-.kf__tag {
-  flex: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: var(--on-accent);
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1;
-}
-.kf__features .kf__num { margin-top: -1px; }
 
 .kf__button {
   display: inline-flex;
@@ -476,7 +441,7 @@
   color: var(--on-dark);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 18px;
+  font-size: var(--step-1);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
@@ -499,23 +464,14 @@
 .kf__phone {
   position: relative;
   padding: 4px;
-  border-radius: 18px;
+  border-radius: var(--radius);
   background: #1c1d1f;
-  box-shadow: var(--shadow-shot);
 }
 .kf__phone img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 14px;
-}
-.kf__tag {
-  position: absolute;
-  top: -8px;
-  left: -8px;
-  width: 24px;
-  height: 24px;
-  box-shadow: 0 0 0 3px var(--bg-alt);
+  border-radius: calc(var(--radius) - 4px);
 }
 
 /* ── Kortscore-Band ─────────────────────────────────────────────────────── */
@@ -536,17 +492,17 @@
 .band__copy { flex: 1 1 460px; min-width: 0; }
 .band__title {
   margin: 0;
+  text-wrap: balance;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 52px;
+  font-size: var(--step-3);
   line-height: 0.95;
   text-transform: uppercase;
 }
-.band__title em { font-style: normal; color: var(--accent); }
 .band__text {
   margin-top: 18px;
-  max-width: 520px;
-  font-size: 18px;
+  max-width: 52ch;
+  font-size: var(--step-1);
   color: var(--text-on-dark-muted);
 }
 
@@ -566,7 +522,7 @@
   color: var(--on-accent);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 20px;
+  font-size: var(--step-2);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
@@ -577,10 +533,11 @@
 
 /* ── Rechtshinweis über dem Footer ──────────────────────────────────────── */
 .itn__legal {
-  max-width: var(--shell);
-  margin-inline: auto;
+  /* 65ch Text, linksbündig mit dem Inhalt darüber (Shell zentriert). */
+  max-width: calc(65ch + 2 * var(--gutter));
+  margin-left: max(0px, calc((100% - var(--shell)) / 2));
   padding: 32px var(--gutter);
-  font-size: 13px;
+  font-size: var(--step-0);
   color: var(--text-muted);
 }
 
@@ -590,30 +547,25 @@
    ───────────────────────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .itn__shell { padding-top: 24px; }
-  .itn__lead { font-size: 17px; }
+  .itn__title { font-size: var(--step-3); }
 
   .calc__in,
   .calc__out { padding: 24px 20px; }
-  .seg__opt span { font-size: 14px; }
-  .field input { font-size: 20px; padding: 0 12px; }
-  .calc__value { font-size: 44px; }
+  .seg__opt span { font-size: var(--step-0); }
+  .field input { padding: 0 12px; }
 
-  .itn__h2 { font-size: 32px; }
   .rules, .kf, .band { margin-top: 64px; }
   .rules { gap: 32px; }
-  .rules__formula { font-size: 14px; padding: 16px; }
+  .rules__formula { font-size: var(--step-0); padding: 16px; }
 
   .kf { padding: 32px 20px; gap: 32px; }
   .kf__shots { gap: 10px; }
   .kf__shot:nth-child(2) { margin-top: 20px; }
-  .kf__phone { padding: 3px; border-radius: 14px; }
-  .kf__phone img { border-radius: 11px; }
-  .kf__tag { width: 22px; height: 22px; top: -7px; left: -7px; font-size: 12px; }
+  .kf__phone { padding: 3px; }
+  .kf__phone img { border-radius: calc(var(--radius) - 3px); }
   .kf__button { width: 100%; justify-content: center; }
 
   .band__inner { padding-block: 56px; }
-  .band__title { font-size: 40px; }
-  .band__text { font-size: 17px; }
   .band__actions { width: 100%; }
   .band .storebadges { flex-direction: row; }
 }
