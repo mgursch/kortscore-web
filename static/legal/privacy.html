@@ -142,8 +142,8 @@
   <p>
     Kortscore ist eine Zählapp für Tennis und Padel für Apple Watch und Wear OS mit Begleit-App für iPhone bzw. Android-Smartphone. Die App funktioniert
     grundsätzlich lokal auf dem Gerät. Es gibt <strong>keine Nutzerkonten</strong>, und die App enthält <strong>keine
-    Werbe-SDKs</strong>, erfasst <strong>keine standortbezogenen Daten</strong> und betreibt <strong>kein Tracking über
-    andere Apps oder Websites hinweg</strong>. Daten werden nur in den unten beschriebenen Fällen
+    Werbe-SDKs</strong>, erfasst <strong>keinen genauen Standort</strong> (kein GPS; Firebase Analytics leitet nur einen ungefähren Standort aus der IP-Adresse ab, Abschnitt 3) und betreibt <strong>kein Tracking über
+    andere Apps oder Websites hinweg</strong> (ausgenommen die Zuordnung einer Installation zu einer Kampagne und, auf Android, die Meldung an Google Ads, Abschnitt 3). Daten werden nur in den unten beschriebenen Fällen
     verarbeitet. Auf der Website messen wir Seitenaufrufe und Klicks mit Umami und die Wirkung unserer Google-Anzeigen mit Google Ads (Abschnitte 12 und 13). Gesundheitsdaten (Herzfrequenz) verarbeitet die App nur auf der Uhr, siehe Abschnitt 8. Die Apple-Watch-App enthält kein Firebase und überträgt selbst keine Daten; beendete Matches gibt sie nur an Ihr iPhone weiter.
   </p>
 
@@ -153,24 +153,58 @@
     grober Produktnutzungs-Ereignisse, u. a.:
   </p>
   <ul>
-    <li>Match archiviert (nur: Doppel ja/nein, Anzahl Sätze, grobe Dauer-Kategorie)</li>
-    <li>Live-Übertragung geöffnet ("Share opened")</li>
-    <li>Backup erstellt</li>
-    <li>Kortscore Plus gekauft</li>
+    <li>Match archiviert (Doppel ja/nein, Anzahl Sätze, grobe Dauer-Kategorie, abgebrochen ja/nein)</li>
+    <li>Match geteilt, Live-Übertragung und Live-Freigabe gestartet, beendet oder bestätigt, geteiltes Match hinzugefügt (u. a. Doppel ja/nein, Herkunft des Starts)</li>
+    <li>Punkt rückgängig gemacht (nur der Auslöser: Handy oder Uhr)</li>
+    <li>Backup erstellt oder wiederhergestellt (automatisch ja/nein, Anzahl der Matches)</li>
+    <li>Onboarding (angesehene Schritte, übersprungen, abgeschlossen mit grober Dauer-Kategorie und Uhr-Status), Tipp-Demo abgeschlossen, erstes Match und erster Punkt (grobe Zeitkategorie seit dem ersten Start)</li>
+    <li>Kortscore Plus: Paywall geöffnet, Kauf (Stufe), Einlösen eines Aktionscodes (gültig ja/nein, Stufe, bei gültigem Code der von uns ausgegebene Code, bei ungültigem nur ein Ablehnungsgrund, nie Ihre Eingabe)</li>
+    <li>Bewertungsanfrage ausgelöst und Ergebnis der Benachrichtigungsabfrage (erteilt ja/nein)</li>
+    <li>Eigener Name oder Gegnername gesetzt bzw. geändert (nur wo und wodurch, nie der Name)</li>
+    <li>KI-Analyse (erzeugt, fehlgeschlagen mit Phase, Cloud-Einwilligung erteilt oder abgelehnt, Download des Modells auf dem Gerät erfolgreich ja/nein)</li>
     <li>Bildschirmaufrufe (Screen Views)</li>
   </ul>
   <p>
-    Es werden dabei <strong>keine Namen und keine exakten Zeitstempel/Dauern</strong> übertragen:
-    lediglich grobe, produktbezogene Kategorien. Analytics ist in Debug-Builds vollständig
+    In unseren eigenen Ereignisparametern werden <strong>keine Namen und keine exakten Zeitstempel/Dauern</strong> übertragen:
+    lediglich grobe, produktbezogene Kategorien. Firebase speichert zu jedem Ereignis allerdings automatisch einen Zeitstempel. Dazu kommt die Nutzereigenschaft „plus_user“ (ob Kortscore Plus aktiv ist, ja oder nein). Analytics ist in Debug-Builds vollständig
     deaktiviert.
   </p>
   <p>
-    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der
-    Verbesserung und Fehlerbehebung der App).<br />
+    <strong>Kampagnenzuordnung bei der Installation (Android):</strong> Haben Sie die Android-App über einen
+    Google-Play-Link von kortscore.com oder aus einer unserer Anzeigen installiert, enthält dieser Link einen
+    Parameter „referrer“ mit Kampagnenangaben: Quelle und Medium, falls vorhanden Kampagne und weitere utm-Werte,
+    bei einem Anzeigenklick außerdem die Klick-Kennung (gclid); den Aufbau beschreibt Abschnitt 13. Google Play stellt diese Angaben der App nach
+    der Installation zur Verfügung. Das Firebase-SDK liest sie beim ersten Start der App aus, und Firebase
+    Analytics ordnet die Installation damit einer Kampagne zu. So erkennen wir, welche Anzeige oder welcher
+    Link zu einer Installation geführt hat, und nicht nur zu einem Klick. Fehlt ein solcher Link, etwa bei einer
+    Installation über die Suche im Store, gibt es diese Angaben nicht. Für das iPhone gibt es diesen Weg nicht.
+    Die Kampagnenangaben enthalten keine Namen.
+  </p>
+  <p>
+    <strong>Gerätedaten und ungefährer Standort:</strong> Wie bei den übrigen Ereignissen verarbeitet Firebase
+    Analytics technische Angaben zu App und Gerät sowie die IP-Adresse der Übertragung. Daraus leitet Google
+    einen ungefähren Standort ab (z. B. Land, Region oder Stadt); nach Angaben von Google wird die IP-Adresse bei Nutzern
+    aus der EU, der Schweiz und dem Vereinigten Königreich dafür nur verwendet und nicht gespeichert. Auf Android erfasst Firebase Analytics standardmäßig außerdem die
+    Werbe-ID Ihres Geräts, sofern vorhanden und nicht in den Android-Einstellungen gelöscht.
+    Die App selbst greift weder auf GPS noch auf einen genauen Standort zu und fragt keine Standortberechtigung an.
+  </p>
+  <p>
+    <strong>Verknüpfung mit Google Ads (nur Android):</strong> Firebase Analytics der Android-App ist mit unserem
+    Google-Ads-Konto verknüpft. Dadurch übermittelt Firebase Installationen und ausgewählte App-Ereignisse als
+    Conversions an Google Ads, damit wir den Erfolg unserer Anzeigen messen können. Zielgruppen oder Remarketing
+    nutzen wir nicht. Auf Android sendet Firebase nach der Standardeinstellung von Google außerdem Signale, die
+    Google für personalisierte Werbung nutzen kann; das haben wir nicht abgeschaltet. Auf dem iPhone ist das
+    abgeschaltet, und es findet dort kein Conversion-Import statt. Soweit Google in diesem Zusammenhang Daten zu
+    eigenen Zwecken verarbeitet, geschieht das in eigener Verantwortung von Google (siehe auch Abschnitt 13). Die
+    Anzeigenpersonalisierung steuern Sie unter <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>.
+  </p>
+  <p>
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Verbesserung und Fehlerbehebung der App und, für die Kampagnenzuordnung und die Conversion-Meldung an Google Ads, an der Erfolgskontrolle unserer
+    Werbung, siehe Abschnitt 13).<br />
     <strong>Speicherdauer:</strong> gemäß den Standard-Aufbewahrungsfristen von Google Analytics
     for Firebase (derzeit standardmäßig 14 Monate für nutzerbezogene Ereignisdaten, siehe Google-
     Dokumentation).<br />
-    <strong>Empfänger:</strong> Google LLC / Google Ireland Limited als Auftragsverarbeiter.
+    <strong>Empfänger:</strong> Google LLC / Google Ireland Limited als Auftragsverarbeiter; soweit Google im Zusammenhang mit der Verknüpfung mit Google Ads Daten zu eigenen Zwecken verarbeitet, geschieht das in eigener Verantwortung von Google (siehe Abschnitt 13).
   </p>
 
   <h2>4. Firebase Crashlytics</h2>
@@ -471,8 +505,7 @@
     Wir schalten Anzeigen bei Google (Google Ads). Auf der Startseite und auf der Seite mit den
     Uhrenempfehlungen von kortscore.com, in allen Sprachfassungen, messen wir deshalb, ob eine
     Anzeige zu einem Seitenaufruf oder zu einem Klick auf den Google-Play-Button geführt hat. Das
-    hilft uns einzuschätzen, ob sich die Anzeigen lohnen. Auf den übrigen Seiten und in der App
-    findet diese Messung nicht statt.
+    hilft uns einzuschätzen, ob sich die Anzeigen lohnen. Auf den übrigen Seiten findet diese Messung nicht statt, und die App enthält kein Google-Ads-Skript; wie eine Installation der App einer Kampagne zugeordnet wird, beschreibt Abschnitt 3, ebenso die Verknüpfung von Firebase Analytics mit Google Ads.
   </p>
   <p>
     Anbieter ist für Nutzer im Europäischen Wirtschaftsraum Google Ireland Limited, Gordon House,
@@ -516,8 +549,7 @@
     einen Parameter „referrer“ an. Er enthält die Herkunft „kortscore.com“ und „website“; kommt der
     Besuch aus einer Anzeige, stattdessen „google“ und „cpc“ samt Klick-Kennung (gclid). Enthielt
     die Adresse Kampagnenangaben (utm_…), übernimmt er diese, und sie gehen den genannten Werten vor. Mit Ihrem Klick auf den Link gelangt dieser Wert zu Google Play, und
-    Google Play kann ihn nach einer Installation an die App weitergeben, damit wir erkennen, welche
-    Kampagne zu einer Installation geführt hat.
+    Google Play kann ihn nach einer Installation an die App weitergeben, damit wir erkennen, welche Kampagne zu einer Installation geführt hat. Näheres dazu steht in Abschnitt 3.
   </p>
   <p>
     <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der
@@ -551,10 +583,9 @@
     mit Umami, ohne Cookies und ohne Angaben zu Ihrer Person (Abschnitt 12).
   </p>
 
-  <h2>15. Keine Datenweitergabe zu Werbezwecken</h2>
+  <h2>15. Kein Verkauf von Daten, keine Werbung in der App</h2>
   <p>
-    Wir verkaufen keine Daten, zeigen in der App keine Werbung und nutzen dort keine Werbe- oder
-    Tracking-Dienste. Daten von Website-Besuchern verwenden wir weder für Remarketing noch für
+    Wir verkaufen keine Daten, zeigen in der App keine Werbung und nutzen dort keine Werbenetzwerke. Die Zuordnung einer Installation zu einer Kampagne und die Meldung von Installationen und App-Ereignissen der Android-App als Conversions an Google Ads (Abschnitt 3) dienen allein der Erfolgskontrolle unserer Anzeigen; Zielgruppen und Remarketing nutzen wir dafür nicht. Auf Android sendet Firebase nach der Standardeinstellung von Google außerdem Signale, die Google für personalisierte Werbung nutzen kann (Abschnitt 3); die App selbst zeigt dadurch keine Werbung an. Daten von Website-Besuchern verwenden wir weder für Remarketing noch für
     personalisierte Anzeigen. Auf kortscore.com messen wir lediglich, ob unsere Google-Anzeigen zu
     Aufrufen und Klicks führen; das ist in Abschnitt 13 beschrieben. Über die in dieser Erklärung
     genannten Dienste von Google (einschließlich Google Ads), Apple und Umami hinaus findet keine
@@ -580,7 +611,7 @@
       <tr><td>iCloud-Backup / iCloud Drive</td><td>Apple Inc.</td><td>gemäß Ihren iCloud-Einstellungen</td></tr>
       <tr><td>Google Sheets (Wartelisten)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-Standardvertragsklauseln)</td></tr>
       <tr><td>Umami Cloud (Website-Statistik)</td><td>Umami Software, Inc. (USA)</td><td>EU (Analysedaten); Betriebsdienste teils USA (EU-Standardvertragsklauseln)</td></tr>
-      <tr><td>Google Ads (Kampagnenmessung, Website)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-US Data Privacy Framework)</td></tr>
+      <tr><td>Google Ads (Kampagnenmessung, Website und Android-App)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/USA (EU-US Data Privacy Framework)</td></tr>
     </tbody>
   </table>
   <p>
@@ -588,7 +619,7 @@
     Standardvertragsklauseln der EU-Kommission mit den jeweiligen Google-Gesellschaften. Daten im
     Zusammenhang mit App Store, App Attest und iCloud verarbeitet Apple nach den eigenen
     Datenschutzbestimmungen von Apple.
-    Bei Umami liegen die Analysedaten in der EU; soweit Betriebsdienste von Umami in den USA Daten verarbeiten, stützt sich dies auf die EU-Standardvertragsklauseln im Auftragsverarbeitungsvertrag von Umami. Für Google Ads (Abschnitt 13) stützt sich die Übermittlung in die USA auf das EU-US Data Privacy Framework, dem Google LLC nach eigenen Angaben beigetreten ist.
+    Bei Umami liegen die Analysedaten in der EU; soweit Betriebsdienste von Umami in den USA Daten verarbeiten, stützt sich dies auf die EU-Standardvertragsklauseln im Auftragsverarbeitungsvertrag von Umami. Für Google Ads (Abschnitte 3 und 13) stützt sich die Übermittlung in die USA auf das EU-US Data Privacy Framework, dem Google LLC nach eigenen Angaben beigetreten ist.
   </p>
 
   <h2>17. Ihre Rechte</h2>
@@ -647,8 +678,8 @@
   <p>
     Kortscore is a tennis and padel scoring app for Apple Watch and Wear OS with a companion app for iPhone or Android phones. The app works
     primarily locally on your device. There are <strong>no user accounts</strong>, and the app contains <strong>no
-    advertising SDKs</strong>, collects <strong>no location data</strong> and does <strong>no
-    cross-app/cross-site tracking</strong>. Data is processed only in the cases described below. On the website we measure page views and clicks with Umami and the effect of our Google ads with Google Ads (sections 12 and 13). Health data (heart rate) is processed only on the watch, see section 8. The Apple Watch app contains no Firebase and transmits no data on its own; it only hands finished matches to your iPhone.
+    advertising SDKs</strong>, collects <strong>no precise location</strong> (no GPS; Firebase Analytics only derives an approximate location from the IP address, section 3) and does <strong>no
+    cross-app/cross-site tracking</strong> (except for attributing an installation to a campaign and, on Android, reporting to Google Ads, section 3). Data is processed only in the cases described below. On the website we measure page views and clicks with Umami and the effect of our Google ads with Google Ads (sections 12 and 13). Health data (heart rate) is processed only on the watch, see section 8. The Apple Watch app contains no Firebase and transmits no data on its own; it only hands finished matches to your iPhone.
   </p>
 
   <h2>3. Firebase Analytics</h2>
@@ -657,22 +688,54 @@
     usage events, including:
   </p>
   <ul>
-    <li>Match archived (only: doubles yes/no, number of sets, coarse duration bucket)</li>
-    <li>Share opened (live match sharing)</li>
-    <li>Backup created</li>
-    <li>Kortscore Plus purchased</li>
+    <li>Match archived (doubles yes/no, number of sets, coarse duration bucket, aborted yes/no)</li>
+    <li>Match shared, live broadcast and live sharing started, finished or acknowledged, shared match added (among others doubles yes/no, where the start came from)</li>
+    <li>Point undone (only the trigger: phone or watch)</li>
+    <li>Backup created or restored (automatic yes/no, number of matches)</li>
+    <li>Onboarding (steps viewed, skipped, completed with a coarse duration bucket and watch status), tap demo completed, first match and first point (coarse time bucket since first launch)</li>
+    <li>Kortscore Plus: paywall opened, purchase (tier), promo code redeemed (valid yes/no, tier, for a valid code the code we issued, for an invalid one only a rejection reason, never what you typed)</li>
+    <li>Review prompt triggered and result of the notification prompt (granted yes/no)</li>
+    <li>Own name or opponent name set or changed (only where and how, never the name)</li>
+    <li>AI analysis (generated, failed with stage, cloud consent granted or declined, on-device model download succeeded yes/no)</li>
     <li>Screen views</li>
   </ul>
   <p>
-    No names and no precise timestamps or durations are transmitted: only coarse, product-level
-    categories. Analytics is fully disabled in debug builds.
+    In our own event parameters, no names and no precise timestamps or durations are transmitted: only coarse, product-level
+    categories. Firebase does, however, automatically store a timestamp with every event. In addition there is the user property “plus_user” (whether Kortscore Plus is active, yes or no). Analytics is fully disabled in debug builds.
   </p>
   <p>
-    <strong>Legal basis:</strong> Art. 6(1)(f) GDPR (legitimate interest in improving and fixing
-    the app).<br />
+    <strong>Campaign attribution at installation (Android):</strong> If you installed the Android app through a
+    Google Play link from kortscore.com or from one of our ads, that link carries a “referrer” parameter with
+    campaign details: source and medium, where present the campaign and further utm values, and for an ad click
+    also the click identifier (gclid); section 13
+    describes how it is built. Google Play makes these details available to the app after installation. The
+    Firebase SDK reads them when the app is first started, and Firebase Analytics uses them to attribute the
+    installation to a campaign. This lets us see which ad or link led to an installation, not just to a click.
+    Without such a link, for example when installing via a store search, these details do not exist. There is
+    no such path for the iPhone. The campaign details contain no names.
+  </p>
+  <p>
+    <strong>Device data and approximate location:</strong> As with the other events, Firebase Analytics processes
+    technical information about the app and the device as well as the IP address of the transmission. Google
+    derives an approximate location from it (for example country, region or city); according to Google, for users in the
+    EU, Switzerland and the UK the IP address is only used for this and not stored. On Android, Firebase Analytics also collects your device’s
+    advertising ID by default, where one exists and has not been deleted in the Android settings.
+    The app itself does not access GPS or a precise location and does not request any location permission.
+  </p>
+  <p>
+    <strong>Link to Google Ads (Android only):</strong> Firebase Analytics of the Android app is linked to our
+    Google Ads account. As a result, Firebase transmits installations and selected app events to Google Ads as
+    conversions so that we can measure the success of our ads. We do not use audiences or remarketing. On Android,
+    Firebase also sends, under Google’s default setting, signals that Google may use for personalised advertising;
+    we have not turned this off. On the iPhone this is turned off, and no conversion import takes place there.
+    Where Google processes data in this context for its own purposes, it does so under its own responsibility
+    (see also section 13). You can control ad personalisation at <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>.
+  </p>
+  <p>
+    <strong>Legal basis:</strong> Art. 6(1)(f) GDPR (legitimate interest in improving and fixing the app and, for campaign attribution and the conversion reporting to Google Ads, in measuring the success of our advertising, see section 13).<br />
     <strong>Retention:</strong> per Google Analytics for Firebase's standard retention settings
     (currently 14 months by default for user-level event data; see Google's documentation).<br />
-    <strong>Recipients:</strong> Google LLC / Google Ireland Limited as processor.
+    <strong>Recipients:</strong> Google LLC / Google Ireland Limited as processor; where Google processes data in connection with the Google Ads link for its own purposes, it does so under its own responsibility (see section 13).
   </p>
 
   <h2>4. Firebase Crashlytics</h2>
@@ -958,7 +1021,7 @@
     We run ads with Google (Google Ads). On the home page and on the page with the watch
     recommendations of kortscore.com, in all language versions, we therefore measure whether an ad
     led to a page view or to a click on the Google Play button. This helps us judge whether the ads
-    are worthwhile. This measurement does not take place on the other pages or in the app.
+    are worthwhile. This measurement does not take place on the other pages, and the app contains no Google Ads script; section 3 describes how an installation of the app is attributed to a campaign, and likewise the link between Firebase Analytics and Google Ads.
   </p>
   <p>
     For users in the European Economic Area, the provider is Google Ireland Limited, Gordon House,
@@ -1002,7 +1065,7 @@
     together with the click identifier (gclid). If the address contained campaign details (utm_…),
     it adopts them, and they take precedence over these values. When you click the
     link, this value reaches Google Play, and Google Play can pass it on to the app after an
-    installation so that we can tell which campaign led to an installation.
+    installation so that we can tell which campaign led to an installation. More on this in section 3.
   </p>
   <p>
     <strong>Legal basis:</strong> Art. 6(1)(f) GDPR (legitimate interest in checking the success of
@@ -1034,10 +1097,9 @@
     these links with Umami, without cookies and without any details about you (section 12).
   </p>
 
-  <h2>15. No sale or third-party sharing</h2>
+  <h2>15. No sale of data, no advertising in the app</h2>
   <p>
-    We do not sell data, show no advertising in the app and use no advertising or tracking
-    services there. We use website visitors’ data neither for remarketing nor for personalised ads.
+    We do not sell data, show no advertising in the app and use no advertising networks there. Attributing an installation to a campaign and reporting installations and app events of the Android app to Google Ads as conversions (section 3) serve only to measure the success of our ads; we use neither audiences nor remarketing for this. On Android, Firebase also sends, by Google’s default setting, signals that Google may use for personalised advertising (section 3); the app itself shows no advertising as a result. We use website visitors’ data neither for remarketing nor for personalised ads.
     On kortscore.com we only measure whether our Google ads lead to visits and clicks; this is
     described in section 13. Beyond the Google services (including Google Ads), Apple and Umami
     named in this policy, no data is shared with third parties. The redirect to Amazon via
@@ -1062,14 +1124,14 @@
       <tr><td>iCloud backup / iCloud Drive</td><td>Apple Inc.</td><td>per your iCloud settings</td></tr>
       <tr><td>Google Sheets (waitlists)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU Standard Contractual Clauses)</td></tr>
       <tr><td>Umami Cloud (website statistics)</td><td>Umami Software, Inc. (US)</td><td>EU (analytics data); operations services partly US (EU Standard Contractual Clauses)</td></tr>
-      <tr><td>Google Ads (campaign measurement, website)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU-US Data Privacy Framework)</td></tr>
+      <tr><td>Google Ads (campaign measurement, website and Android app)</td><td>Google Ireland Ltd. / Google LLC</td><td>EU/US (EU-US Data Privacy Framework)</td></tr>
     </tbody>
   </table>
   <p>
     Where data is transferred to Google in the US, this relies on the European Commission’s
     Standard Contractual Clauses with the respective Google entities. Data relating to the App
     Store, App Attest and iCloud is processed by Apple under Apple’s own privacy policy.
-    At Umami, the analytics data is held in the EU; where Umami’s operations services process data in the US, this relies on the EU Standard Contractual Clauses in Umami’s data processing agreement. For Google Ads (section 13), the transfer to the US relies on the EU-US Data Privacy Framework, to which Google LLC states it has adhered.
+    At Umami, the analytics data is held in the EU; where Umami’s operations services process data in the US, this relies on the EU Standard Contractual Clauses in Umami’s data processing agreement. For Google Ads (sections 3 and 13), the transfer to the US relies on the EU-US Data Privacy Framework, to which Google LLC states it has adhered.
   </p>
 
   <h2>17. Your rights</h2>
@@ -1130,8 +1192,8 @@
   <p>
     Kortscore est une application de comptage de points de tennis et de padel pour Apple Watch et Wear OS, avec une application compagnon pour iPhone ou smartphone Android. L’application fonctionne par principe localement sur l’appareil. Il
     n’y a <strong>aucun compte utilisateur</strong>, et l’application ne contient <strong>aucun SDK publicitaire</strong>,
-    ne collecte <strong>aucune donnée de localisation</strong> et ne pratique <strong>aucun suivi (tracking) au-delà
-    d’autres applications ou sites web</strong>. Les données ne sont traitées que dans les cas
+    ne collecte <strong>aucune localisation précise</strong> (pas de GPS&nbsp;; Firebase Analytics ne déduit de l’adresse IP qu’une localisation approximative, section 3) et ne pratique <strong>aucun suivi (tracking) au-delà
+    d’autres applications ou sites web</strong> (à l’exception de l’attribution d’une installation à une campagne et, sur Android, du signalement à Google Ads, section 3). Les données ne sont traitées que dans les cas
     décrits ci-dessous. Sur le site web, nous mesurons les consultations de pages et les clics avec Umami, et l’effet de nos annonces Google avec Google Ads (sections 12 et 13). Les données de santé (fréquence cardiaque) ne sont traitées que sur la montre, voir la section 8. L’application Apple Watch ne contient pas Firebase et ne transmet elle-même aucune donnée&nbsp;; elle transmet uniquement les matchs terminés à votre iPhone.
   </p>
 
@@ -1141,25 +1203,60 @@
     événements d’utilisation du produit de manière sommaire, notamment&nbsp;:
   </p>
   <ul>
-    <li>Match archivé (uniquement&nbsp;: double oui/non, nombre de sets, catégorie de durée sommaire)</li>
-    <li>Diffusion en direct ouverte (« Share opened »)</li>
-    <li>Sauvegarde créée</li>
-    <li>Kortscore Plus acheté</li>
+    <li>Match archivé (double oui/non, nombre de sets, catégorie de durée sommaire, abandonné oui/non)</li>
+    <li>Match partagé, diffusion en direct et partage en direct démarrés, terminés ou confirmés, match partagé ajouté (notamment double oui/non, origine du démarrage)</li>
+    <li>Point annulé (uniquement le déclencheur&nbsp;: téléphone ou montre)</li>
+    <li>Sauvegarde créée ou restaurée (automatique oui/non, nombre de matchs)</li>
+    <li>Onboarding (étapes consultées, passé, terminé avec une catégorie de durée sommaire et l’état de la montre), démo de saisie par tapotement terminée, premier match et premier point (catégorie de temps sommaire depuis le premier lancement)</li>
+    <li>Kortscore Plus&nbsp;: paywall ouvert, achat (niveau), utilisation d’un code promotionnel (valide oui/non, niveau, pour un code valide le code que nous avons émis, pour un code invalide seulement un motif de refus, jamais votre saisie)</li>
+    <li>Demande d’avis déclenchée et résultat de la demande de notifications (accordée oui/non)</li>
+    <li>Nom propre ou nom de l’adversaire défini ou modifié (uniquement où et comment, jamais le nom)</li>
+    <li>Analyse IA (générée, échouée avec l’étape, consentement au cloud accordé ou refusé, téléchargement du modèle sur l’appareil réussi oui/non)</li>
     <li>Affichages d’écran (Screen Views)</li>
   </ul>
   <p>
-    Aucun nom ni horodatage/durée exact n’est transmis à cette occasion&nbsp;: uniquement des
-    catégories sommaires liées au produit. Analytics est entièrement désactivé dans les versions de
+    Dans nos propres paramètres d’événement, aucun nom ni horodatage/durée exact n’est transmis&nbsp;: uniquement des
+    catégories sommaires liées au produit. Firebase enregistre toutefois automatiquement un horodatage pour chaque événement. S’y ajoute la propriété utilisateur «&nbsp;plus_user&nbsp;» (si Kortscore Plus est actif, oui ou non). Analytics est entièrement désactivé dans les versions de
     débogage (debug builds).
   </p>
   <p>
-    <strong>Base juridique&nbsp;:</strong> art. 6, par. 1, point f) du RGPD (intérêt légitime à
-    l’amélioration et à la correction des dysfonctionnements de l’application).<br />
+    <strong>Attribution à une campagne lors de l’installation (Android)&nbsp;:</strong> Si vous avez installé
+    l’application Android via un lien Google Play provenant de kortscore.com ou de l’une de nos annonces, ce
+    lien contient un paramètre «&nbsp;referrer&nbsp;» avec des informations de campagne&nbsp;: source et support,
+    le cas échéant la campagne et d’autres valeurs utm, et, en cas de clic sur une annonce, l’identifiant de clic (gclid)&nbsp;; la section 13 décrit sa
+    structure. Google Play met ces informations à la disposition de l’application après l’installation. Le SDK
+    Firebase les lit au premier lancement de l’application, et Firebase Analytics s’en sert pour attribuer
+    l’installation à une campagne. Nous voyons ainsi quelle annonce ou quel lien a conduit à une installation, et
+    pas seulement à un clic. Sans un tel lien, par exemple en cas d’installation après une recherche dans la
+    boutique, ces informations n’existent pas. Il n’existe pas de voie comparable pour l’iPhone. Les informations
+    de campagne ne contiennent aucun nom.
+  </p>
+  <p>
+    <strong>Données de l’appareil et localisation approximative&nbsp;:</strong> Comme pour les autres événements,
+    Firebase Analytics traite des informations techniques sur l’application et l’appareil ainsi que l’adresse IP
+    de la transmission. Google en déduit une localisation approximative (par exemple le pays, la région ou la
+    ville)&nbsp;; selon Google, pour les utilisateurs de l’UE, de la Suisse et du Royaume-Uni, l’adresse IP n’est utilisée qu’à
+    cette fin et n’est pas conservée. Sur Android,
+    Firebase Analytics collecte en outre par défaut l’identifiant publicitaire de votre appareil, s’il existe et
+    n’a pas été supprimé dans les paramètres d’Android. L’application elle-même n’accède ni au GPS
+    ni à une localisation précise et ne demande aucune autorisation de localisation.
+  </p>
+  <p>
+    <strong>Liaison avec Google Ads (Android uniquement)&nbsp;:</strong> Firebase Analytics de l’application Android
+    est lié à notre compte Google Ads. Firebase transmet ainsi à Google Ads des installations et certains événements
+    de l’application en tant que conversions, afin que nous puissions mesurer les résultats de nos annonces. Nous
+    n’utilisons ni audiences ni remarketing. Sur Android, Firebase envoie en outre, selon le paramétrage par défaut
+    de Google, des signaux que Google peut utiliser pour de la publicité personnalisée&nbsp;; nous ne l’avons pas
+    désactivé. Sur l’iPhone, cela est désactivé et aucune importation de conversions n’a lieu. Dans la mesure où
+    Google traite des données dans ce cadre à ses propres fins, il le fait sous sa propre responsabilité (voir aussi
+    la section 13). Vous pouvez gérer la personnalisation des annonces sur <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>.
+  </p>
+  <p>
+    <strong>Base juridique&nbsp;:</strong> art. 6, par. 1, point f) du RGPD (intérêt légitime à l’amélioration et à la correction des dysfonctionnements de l’application et, pour l’attribution à une campagne et le signalement de conversions à Google Ads, au suivi des résultats de notre publicité, voir la section 13).<br />
     <strong>Durée de conservation&nbsp;:</strong> selon les délais de conservation standard de
     Google Analytics for Firebase (actuellement 14 mois par défaut pour les données d’événements
     liées à l’utilisateur, voir la documentation Google).<br />
-    <strong>Destinataires&nbsp;:</strong> Google LLC / Google Ireland Limited en tant que
-    sous-traitant.
+    <strong>Destinataires&nbsp;:</strong> Google LLC / Google Ireland Limited en tant que sous-traitant&nbsp;; dans la mesure où Google traite des données liées à la liaison avec Google Ads à ses propres fins, il le fait sous sa propre responsabilité (voir la section 13).
   </p>
 
   <h2>4. Firebase Crashlytics</h2>
@@ -1482,8 +1579,7 @@
     Nous diffusons des annonces avec Google (Google Ads). Sur la page d’accueil et sur la page des
     recommandations de montres de kortscore.com, dans toutes les versions linguistiques, nous
     mesurons donc si une annonce a conduit à une consultation de page ou à un clic sur le bouton
-    Google Play. Cela nous aide à évaluer si les annonces en valent la peine. Cette mesure n’a pas
-    lieu sur les autres pages ni dans l’application.
+    Google Play. Cela nous aide à évaluer si les annonces en valent la peine. Cette mesure n’a pas lieu sur les autres pages, et l’application ne contient aucun script Google Ads&nbsp;; la section 3 décrit comment une installation de l’application est attribuée à une campagne, ainsi que la liaison de Firebase Analytics avec Google Ads.
   </p>
   <p>
     Pour les utilisateurs de l’Espace économique européen, le fournisseur est Google Ireland
@@ -1532,8 +1628,7 @@
     «&nbsp;cpc&nbsp;» ainsi que l’identifiant de clic (gclid). Si l’adresse contenait des données de
     campagne (utm_…), il les reprend, et elles priment sur ces valeurs. Lorsque
     vous cliquez sur le lien, cette valeur parvient à Google Play, et Google Play peut la
-    transmettre à l’application après une installation afin que nous sachions quelle campagne a
-    conduit à une installation.
+    transmettre à l’application après une installation afin que nous sachions quelle campagne a conduit à une installation. Plus de détails à la section 3.
   </p>
   <p>
     <strong>Base juridique&nbsp;:</strong> art. 6, par. 1, point f) du RGPD (intérêt légitime à
@@ -1570,10 +1665,9 @@
     sans informations sur votre personne (section 12).
   </p>
 
-  <h2>15. Aucune transmission de données à des fins publicitaires</h2>
+  <h2>15. Aucune vente de données, aucune publicité dans l’application</h2>
   <p>
-    Nous ne vendons aucune donnée, n’affichons aucune publicité dans l’application et n’y utilisons
-    aucun service de publicité ou de suivi. Nous n’utilisons les données des visiteurs du site web
+    Nous ne vendons aucune donnée, n’affichons aucune publicité dans l’application et n’y utilisons aucun réseau publicitaire. L’attribution d’une installation à une campagne et le signalement d’installations et d’événements de l’application Android à Google Ads en tant que conversions (section 3) servent uniquement à mesurer les résultats de nos annonces&nbsp;; nous n’utilisons pour cela ni audiences ni remarketing. Sur Android, Firebase envoie en outre, selon le réglage par défaut de Google, des signaux que Google peut utiliser pour de la publicité personnalisée (section 3)&nbsp;; l’application elle-même n’affiche aucune publicité pour autant. Nous n’utilisons les données des visiteurs du site web
     ni pour le remarketing ni pour des annonces personnalisées. Sur kortscore.com, nous mesurons
     seulement si nos annonces Google conduisent à des visites et à des clics&nbsp;; cela est décrit
     à la section 13. Au-delà des services de Google (y compris Google Ads), d’Apple et d’Umami
@@ -1600,7 +1694,7 @@
       <tr><td>Sauvegarde iCloud / iCloud Drive</td><td>Apple Inc.</td><td>selon vos réglages iCloud</td></tr>
       <tr><td>Google Sheets (listes d’attente)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (clauses contractuelles types de l’UE)</td></tr>
       <tr><td>Umami Cloud (statistiques du site web)</td><td>Umami Software, Inc. (États-Unis)</td><td>UE (données d’analyse)&nbsp;; services d’exploitation en partie aux États-Unis (clauses contractuelles types de l’UE)</td></tr>
-      <tr><td>Google Ads (mesure des campagnes, site web)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (EU-US Data Privacy Framework)</td></tr>
+      <tr><td>Google Ads (mesure des campagnes, site web et application Android)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/États-Unis (EU-US Data Privacy Framework)</td></tr>
     </tbody>
   </table>
   <p>
@@ -1608,7 +1702,7 @@
     clauses contractuelles types de la Commission européenne conclues avec les entités Google
     concernées. Les données liées à l’App Store, à App Attest et à iCloud sont traitées par Apple
     selon sa propre politique de confidentialité.
-    Chez Umami, les données d’analyse sont hébergées dans l’UE&nbsp;; lorsque des services d’exploitation d’Umami traitent des données aux États-Unis, cela repose sur les clauses contractuelles types de l’UE figurant dans le contrat de sous-traitance d’Umami. Pour Google Ads (section 13), le transfert vers les États-Unis repose sur le EU-US Data Privacy Framework, auquel Google LLC déclare avoir adhéré.
+    Chez Umami, les données d’analyse sont hébergées dans l’UE&nbsp;; lorsque des services d’exploitation d’Umami traitent des données aux États-Unis, cela repose sur les clauses contractuelles types de l’UE figurant dans le contrat de sous-traitance d’Umami. Pour Google Ads (sections 3 et 13), le transfert vers les États-Unis repose sur le EU-US Data Privacy Framework, auquel Google LLC déclare avoir adhéré.
   </p>
 
   <h2>17. Vos droits</h2>
@@ -1669,8 +1763,8 @@
   <p>
     Kortscore es una aplicación de conteo de tenis y pádel para Apple Watch y Wear OS con aplicación complementaria para iPhone o smartphone Android. La aplicación funciona básicamente de forma local en el dispositivo. No
     existen <strong>cuentas de usuario</strong>, y la aplicación no contiene <strong>SDK publicitarios</strong>,
-    no recoge <strong>datos de localización</strong> ni realiza <strong>seguimiento entre otras aplicaciones o sitios
-    web</strong>. Los datos solo se tratan en los casos descritos a continuación. En el sitio web medimos las visitas de páginas y los clics con Umami, y el efecto de nuestros anuncios de Google con Google Ads (secciones 12 y 13). Los datos de salud (frecuencia cardíaca) solo se tratan en el reloj, véase la sección 8. La aplicación para Apple Watch no contiene Firebase y no transmite datos por sí misma; solo pasa los partidos terminados a su iPhone.
+    no recoge <strong>ninguna localización precisa</strong> (sin GPS; Firebase Analytics solo deduce de la dirección IP una localización aproximada, sección 3) ni realiza <strong>seguimiento entre otras aplicaciones o sitios
+    web</strong> (salvo la atribución de una instalación a una campaña y, en Android, la notificación a Google Ads, sección 3). Los datos solo se tratan en los casos descritos a continuación. En el sitio web medimos las visitas de páginas y los clics con Umami, y el efecto de nuestros anuncios de Google con Google Ads (secciones 12 y 13). Los datos de salud (frecuencia cardíaca) solo se tratan en el reloj, véase la sección 8. La aplicación para Apple Watch no contiene Firebase y no transmite datos por sí misma; solo pasa los partidos terminados a su iPhone.
   </p>
 
   <h2>3. Firebase Analytics</h2>
@@ -1679,25 +1773,59 @@
     generales de uso del producto, entre ellos:
   </p>
   <ul>
-    <li>Partido archivado (solo: dobles sí/no, número de sets, categoría aproximada de duración)</li>
-    <li>Transmisión en directo abierta («Share opened»)</li>
-    <li>Copia de seguridad creada</li>
-    <li>Compra de Kortscore Plus</li>
+    <li>Partido archivado (dobles sí/no, número de sets, categoría aproximada de duración, abandonado sí/no)</li>
+    <li>Partido compartido, transmisión en directo y compartición en directo iniciadas, terminadas o confirmadas, partido compartido añadido (entre otros, dobles sí/no, origen del inicio)</li>
+    <li>Punto deshecho (solo el origen: teléfono o reloj)</li>
+    <li>Copia de seguridad creada o restaurada (automática sí/no, número de partidos)</li>
+    <li>Onboarding (pasos vistos, omitido, completado con una categoría aproximada de duración y el estado del reloj), demo de toques completada, primer partido y primer punto (categoría aproximada de tiempo desde el primer inicio)</li>
+    <li>Kortscore Plus: paywall abierto, compra (nivel), canje de un código promocional (válido sí/no, nivel, con un código válido el código que hemos emitido, con uno no válido solo un motivo de rechazo, nunca lo que usted escribió)</li>
+    <li>Solicitud de valoración activada y resultado de la solicitud de notificaciones (concedida sí/no)</li>
+    <li>Nombre propio o nombre del rival establecido o cambiado (solo dónde y cómo, nunca el nombre)</li>
+    <li>Análisis de IA (generado, fallido con la fase, consentimiento para la nube concedido o denegado, descarga del modelo en el dispositivo correcta sí/no)</li>
     <li>Visualizaciones de pantalla (Screen Views)</li>
   </ul>
   <p>
-    En este proceso <strong>no se transmiten nombres ni marcas de tiempo o duraciones
-    exactas</strong>, solo categorías generales relacionadas con el producto. Analytics está
+    En nuestros propios parámetros de evento <strong>no se transmiten nombres ni marcas de tiempo o duraciones
+    exactas</strong>, solo categorías generales relacionadas con el producto. Firebase, no obstante, guarda automáticamente una marca de tiempo con cada evento. Además se establece la propiedad de usuario «plus_user» (si Kortscore Plus está activo, sí o no). Analytics está
     completamente desactivado en las compilaciones de depuración (debug builds).
   </p>
   <p>
-    <strong>Base jurídica:</strong> art. 6, apdo. 1, letra f) del RGPD (interés legítimo en la
-    mejora y corrección de errores de la aplicación).<br />
+    <strong>Atribución a una campaña al instalar (Android):</strong> Si ha instalado la aplicación de Android a
+    través de un enlace de Google Play de kortscore.com o de uno de nuestros anuncios, ese enlace lleva un
+    parámetro «referrer» con datos de campaña: fuente y medio, en su caso la campaña y otros valores utm y, en caso de clic en un anuncio, el
+    identificador de clic (gclid); la sección 13 describe cómo está formado. Google Play pone estos datos a
+    disposición de la aplicación tras la instalación. El SDK de Firebase los lee en el primer inicio de la
+    aplicación, y Firebase Analytics los utiliza para atribuir la instalación a una campaña. Así vemos qué
+    anuncio o enlace ha llevado a una instalación, y no solo a un clic. Sin un enlace de este tipo, por
+    ejemplo al instalar tras una búsqueda en la tienda, estos datos no existen. Para el iPhone no existe este
+    camino. Los datos de campaña no contienen nombres.
+  </p>
+  <p>
+    <strong>Datos del dispositivo y localización aproximada:</strong> Como con los demás eventos, Firebase
+    Analytics trata información técnica sobre la aplicación y el dispositivo, así como la dirección IP de la
+    transmisión. Google deduce de ella una localización aproximada (por ejemplo, país, región o ciudad); según
+    Google, para los usuarios de la UE, Suiza y el Reino Unido la dirección IP solo se usa para ello y no se almacena. En Android, Firebase Analytics recoge
+    además de forma predeterminada el identificador de publicidad de su dispositivo, si existe y no se ha
+    eliminado en los ajustes de Android. La propia aplicación no accede ni al GPS ni a una
+    localización precisa y no solicita ningún permiso de localización.
+  </p>
+  <p>
+    <strong>Vinculación con Google Ads (solo Android):</strong> Firebase Analytics de la aplicación de Android está
+    vinculado a nuestra cuenta de Google Ads. Con ello, Firebase transmite a Google Ads instalaciones y determinados
+    eventos de la aplicación como conversiones, para que podamos medir el éxito de nuestros anuncios. No utilizamos
+    audiencias ni remarketing. En Android, Firebase envía además, según la configuración predeterminada de Google,
+    señales que Google puede utilizar para publicidad personalizada; no lo hemos desactivado. En el iPhone esto está
+    desactivado y no se realiza ninguna importación de conversiones. En la medida en que Google trate datos en este
+    contexto para sus propios fines, lo hace bajo su propia responsabilidad (véase también la sección 13). Puede
+    gestionar la personalización de anuncios en <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>.
+  </p>
+  <p>
+    <strong>Base jurídica:</strong> art. 6, apdo. 1, letra f) del RGPD (interés legítimo en la mejora y corrección de errores de la aplicación y, para la atribución a una campaña y la notificación de conversiones a Google Ads, en medir el éxito de
+    nuestra publicidad, véase la sección 13).<br />
     <strong>Plazo de conservación:</strong> según los plazos de conservación estándar de Google
     Analytics for Firebase (actualmente 14 meses de forma predeterminada para los datos de
     eventos a nivel de usuario; véase la documentación de Google).<br />
-    <strong>Destinatarios:</strong> Google LLC / Google Ireland Limited como encargado del
-    tratamiento.
+    <strong>Destinatarios:</strong> Google LLC / Google Ireland Limited como encargado del tratamiento; en la medida en que Google trate datos relacionados con la vinculación con Google Ads para sus propios fines, lo hace bajo su propia responsabilidad (véase la sección 13).
   </p>
 
   <h2>4. Firebase Crashlytics</h2>
@@ -2015,8 +2143,7 @@
     Publicamos anuncios con Google (Google Ads). En la página de inicio y en la página con las
     recomendaciones de relojes de kortscore.com, en todas las versiones de idioma, medimos por ello
     si un anuncio ha llevado a una visita de página o a un clic en el botón de Google Play. Esto
-    nos ayuda a valorar si los anuncios merecen la pena. Esta medición no se realiza en las demás
-    páginas ni en la aplicación.
+    nos ayuda a valorar si los anuncios merecen la pena. Esta medición no se realiza en las demás páginas, y la aplicación no contiene ningún script de Google Ads; la sección 3 describe cómo se atribuye una instalación de la aplicación a una campaña, así como la vinculación de Firebase Analytics con Google Ads.
   </p>
   <p>
     Para los usuarios del Espacio Económico Europeo, el proveedor es Google Ireland Limited, Gordon
@@ -2062,7 +2189,7 @@
     y «cpc», junto con el identificador de clic (gclid). Si la dirección contenía datos de campaña
     (utm_…), los adopta, y estos prevalecen sobre dichos valores. Al hacer clic
     en el enlace, este valor llega a Google Play, y Google Play puede transmitirlo a la aplicación
-    tras una instalación para que sepamos qué campaña ha llevado a una instalación.
+    tras una instalación para que sepamos qué campaña ha llevado a una instalación. Más detalles en la sección 3.
   </p>
   <p>
     <strong>Base jurídica:</strong> art. 6, apdo. 1, letra f) del RGPD (interés legítimo en
@@ -2099,10 +2226,9 @@
     enlaces con Umami, sin cookies y sin datos sobre su persona (sección 12).
   </p>
 
-  <h2>15. Sin cesión de datos con fines publicitarios</h2>
+  <h2>15. Sin venta de datos, sin publicidad en la aplicación</h2>
   <p>
-    No vendemos datos, no mostramos publicidad en la aplicación y no utilizamos allí servicios de
-    publicidad o seguimiento. No usamos los datos de los visitantes del sitio web ni para
+    No vendemos datos, no mostramos publicidad en la aplicación y no utilizamos allí redes publicitarias. La atribución de una instalación a una campaña y la notificación de instalaciones y eventos de la aplicación de Android a Google Ads como conversiones (sección 3) sirven únicamente para medir el éxito de nuestros anuncios; para ello no utilizamos audiencias ni remarketing. En Android, Firebase envía además, según la configuración predeterminada de Google, señales que Google puede utilizar para publicidad personalizada (sección 3); con ello la aplicación en sí no muestra publicidad. No usamos los datos de los visitantes del sitio web ni para
     remarketing ni para anuncios personalizados. En kortscore.com solo medimos si nuestros anuncios
     de Google llevan a visitas y clics; esto se describe en la sección 13. Más allá de los
     servicios de Google (incluido Google Ads), Apple y Umami mencionados en esta política, no se
@@ -2128,7 +2254,7 @@
       <tr><td>Copia de seguridad de iCloud / iCloud Drive</td><td>Apple Inc.</td><td>según sus ajustes de iCloud</td></tr>
       <tr><td>Google Sheets (listas de espera)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
       <tr><td>Umami Cloud (estadísticas del sitio web)</td><td>Umami Software, Inc. (EE. UU.)</td><td>UE (datos de análisis); servicios de operación en parte en EE. UU. (cláusulas contractuales tipo de la UE)</td></tr>
-      <tr><td>Google Ads (medición de campañas, sitio web)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (EU-US Data Privacy Framework)</td></tr>
+      <tr><td>Google Ads (medición de campañas, sitio web y aplicación de Android)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/EE. UU. (EU-US Data Privacy Framework)</td></tr>
     </tbody>
   </table>
   <p>
@@ -2136,7 +2262,7 @@
     cláusulas contractuales tipo de la Comisión Europea con las respectivas sociedades de Google.
     Los datos relacionados con el App Store, App Attest e iCloud los trata Apple conforme a su
     propia política de privacidad.
-    En el caso de Umami, los datos de análisis se alojan en la UE; cuando servicios de operación de Umami tratan datos en EE. UU., ello se basa en las cláusulas contractuales tipo de la UE del contrato de encargo del tratamiento de Umami. Para Google Ads (sección 13), la transferencia a EE. UU. se basa en el EU-US Data Privacy Framework, al que Google LLC declara haberse adherido.
+    En el caso de Umami, los datos de análisis se alojan en la UE; cuando servicios de operación de Umami tratan datos en EE. UU., ello se basa en las cláusulas contractuales tipo de la UE del contrato de encargo del tratamiento de Umami. Para Google Ads (secciones 3 y 13), la transferencia a EE. UU. se basa en el EU-US Data Privacy Framework, al que Google LLC declara haberse adherido.
   </p>
 
   <h2>17. Sus derechos</h2>
@@ -2196,8 +2322,7 @@
   <h2>2. Panoramica</h2>
   <p>
     Kortscore è un’app per il conteggio dei punti a tennis e padel per Apple Watch e Wear OS con app companion per iPhone o smartphone Android. L’app funziona in linea di principio localmente sul dispositivo. Non sono presenti
-    <strong>account utente</strong>; l’app non contiene <strong>SDK pubblicitari</strong>, non raccoglie <strong>dati di
-    geolocalizzazione</strong> né effettua <strong>tracciamento tra app o siti web diversi</strong>. I dati
+    <strong>account utente</strong>; l’app non contiene <strong>SDK pubblicitari</strong>, non raccoglie <strong>alcuna posizione precisa</strong> (niente GPS; Firebase Analytics ricava dall’indirizzo IP solo una posizione approssimativa, sezione 3) né effettua <strong>tracciamento tra app o siti web diversi</strong> (fatta eccezione per l’attribuzione di un’installazione a una campagna e, su Android, per la segnalazione a Google Ads, sezione 3). I dati
     vengono trattati solo nei casi descritti di seguito. Sul sito web misuriamo le visualizzazioni di pagina e i clic con Umami e l’effetto dei nostri annunci Google con Google Ads (sezioni 12 e 13). I dati sanitari (frequenza cardiaca) vengono trattati solo sull’orologio, vedi la sezione 8. L’app per Apple Watch non contiene Firebase e non trasmette dati di propria iniziativa; passa solo le partite concluse al vostro iPhone.
   </p>
 
@@ -2207,24 +2332,59 @@
     generici sull’utilizzo del prodotto, tra cui:
   </p>
   <ul>
-    <li>Match archiviato (solo: doppio sì/no, numero di set, categoria approssimativa di durata)</li>
-    <li>Trasmissione live aperta ("Share opened")</li>
-    <li>Backup creato</li>
-    <li>Acquisto di Kortscore Plus</li>
+    <li>Match archiviato (doppio sì/no, numero di set, categoria approssimativa di durata, interrotto sì/no)</li>
+    <li>Match condiviso, trasmissione live e condivisione live avviate, concluse o confermate, match condiviso aggiunto (tra l’altro doppio sì/no, origine dell’avvio)</li>
+    <li>Punto annullato (solo l’origine: telefono o orologio)</li>
+    <li>Backup creato o ripristinato (automatico sì/no, numero di match)</li>
+    <li>Onboarding (passaggi visualizzati, saltato, completato con una categoria approssimativa di durata e lo stato dell’orologio), demo dei tocchi completata, primo match e primo punto (categoria approssimativa di tempo dal primo avvio)</li>
+    <li>Kortscore Plus: paywall aperta, acquisto (livello), riscatto di un codice promozionale (valido sì/no, livello, per un codice valido il codice da noi emesso, per uno non valido solo un motivo di rifiuto, mai quanto avete digitato)</li>
+    <li>Richiesta di recensione attivata e risultato della richiesta di notifiche (concessa sì/no)</li>
+    <li>Nome proprio o nome dell’avversario impostato o modificato (solo dove e come, mai il nome)</li>
+    <li>Analisi IA (generata, non riuscita con la fase, consenso al cloud concesso o negato, download del modello sul dispositivo riuscito sì/no)</li>
     <li>Visualizzazioni di schermata (Screen View)</li>
   </ul>
   <p>
-    Non vengono trasmessi <strong>né nomi né timestamp/durate esatte</strong> – solo categorie
-    generiche relative al prodotto. Analytics è completamente disattivato nelle build di debug.
+    Nei nostri parametri di evento propri non vengono trasmessi <strong>né nomi né timestamp/durate esatte</strong>, solo categorie
+    generiche relative al prodotto. Firebase salva tuttavia automaticamente un timestamp per ogni evento. Si aggiunge la proprietà utente «plus_user» (se Kortscore Plus è attivo, sì o no). Analytics è completamente disattivato nelle build di debug.
   </p>
   <p>
-    <strong>Base giuridica:</strong> art. 6, par. 1, lett. f) del GDPR (interesse legittimo al
-    miglioramento e alla correzione degli errori dell’app).<br />
+    <strong>Attribuzione a una campagna all’installazione (Android):</strong> Se avete installato l’app Android
+    tramite un link di Google Play da kortscore.com o da uno dei nostri annunci, tale link contiene un parametro
+    «referrer» con i dati di campagna: fonte e mezzo, se presenti la campagna e altri valori utm e, in caso di clic su un annuncio, l’identificativo
+    del clic (gclid); la sezione 13 descrive come è costruito. Google Play mette questi dati a disposizione
+    dell’app dopo l’installazione. L’SDK di Firebase li legge al primo avvio dell’app, e Firebase Analytics li
+    usa per attribuire l’installazione a una campagna. In questo modo vediamo quale annuncio o link ha portato a
+    un’installazione, e non solo a un clic. Senza un link di questo tipo, ad esempio con un’installazione dopo
+    una ricerca nello store, questi dati non esistono. Per l’iPhone non esiste questo percorso. I dati di
+    campagna non contengono nomi.
+  </p>
+  <p>
+    <strong>Dati del dispositivo e posizione approssimativa:</strong> Come per gli altri eventi, Firebase
+    Analytics tratta informazioni tecniche sull’app e sul dispositivo nonché l’indirizzo IP della trasmissione.
+    Google ne ricava una posizione approssimativa (ad esempio paese, regione o città); secondo Google,
+    per gli utenti dell’UE, della Svizzera e del Regno Unito l’indirizzo IP viene utilizzato solo a tale scopo e non
+    viene memorizzato. Su Android, Firebase Analytics
+    raccoglie inoltre per impostazione predefinita l’ID pubblicitario del dispositivo, se presente e non
+    eliminato nelle impostazioni di Android. L’app stessa non accede né al GPS né a una posizione
+    precisa e non richiede alcuna autorizzazione di localizzazione.
+  </p>
+  <p>
+    <strong>Collegamento con Google Ads (solo Android):</strong> Firebase Analytics dell’app Android è collegato al
+    nostro account Google Ads. In questo modo Firebase trasmette a Google Ads installazioni ed eventi selezionati
+    dell’app come conversioni, in modo che possiamo misurare il successo dei nostri annunci. Non utilizziamo
+    segmenti di pubblico né remarketing. Su Android, Firebase invia inoltre, secondo l’impostazione predefinita di
+    Google, segnali che Google può utilizzare per la pubblicità personalizzata; non li abbiamo disattivati. Su
+    iPhone ciò è disattivato e non avviene alcuna importazione di conversioni. Nella misura in cui Google tratta
+    dati in questo contesto per scopi propri, lo fa sotto la propria responsabilità (vedi anche la sezione 13).
+    Potete gestire la personalizzazione degli annunci su <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>.
+  </p>
+  <p>
+    <strong>Base giuridica:</strong> art. 6, par. 1, lett. f) del GDPR (interesse legittimo al miglioramento e alla correzione degli errori dell’app e, per l’attribuzione a una campagna e la segnalazione di conversioni a Google Ads, alla misurazione
+    del successo della nostra pubblicità, vedi sezione 13).<br />
     <strong>Durata di conservazione:</strong> secondo i periodi di conservazione standard di
     Google Analytics for Firebase (attualmente 14 mesi per i dati di evento riferiti all’utente,
     per impostazione predefinita; vedere la documentazione Google).<br />
-    <strong>Destinatari:</strong> Google LLC / Google Ireland Limited in qualità di responsabile
-    del trattamento.
+    <strong>Destinatari:</strong> Google LLC / Google Ireland Limited in qualità di responsabile del trattamento; nella misura in cui Google tratta dati connessi al collegamento con Google Ads per scopi propri, lo fa sotto la propria responsabilità (vedi la sezione 13).
   </p>
 
   <h2>4. Firebase Crashlytics</h2>
@@ -2534,8 +2694,7 @@
     Pubblichiamo annunci con Google (Google Ads). Sulla pagina iniziale e sulla pagina con i
     consigli sugli orologi di kortscore.com, in tutte le versioni linguistiche, misuriamo quindi se
     un annuncio ha portato a una visualizzazione di pagina o a un clic sul pulsante di Google Play.
-    Questo ci aiuta a valutare se gli annunci valgono la pena. Questa misurazione non avviene sulle
-    altre pagine né nell’app.
+    Questo ci aiuta a valutare se gli annunci valgono la pena. Questa misurazione non avviene sulle altre pagine, e l’app non contiene alcuno script di Google Ads; la sezione 3 descrive come un’installazione dell’app viene attribuita a una campagna, nonché il collegamento di Firebase Analytics con Google Ads.
   </p>
   <p>
     Per gli utenti dello Spazio economico europeo il fornitore è Google Ireland Limited, Gordon
@@ -2580,8 +2739,7 @@
     aggiunge un parametro «referrer». Contiene l’origine «kortscore.com» e «website»; se la visita
     proviene da un annuncio, invece «google» e «cpc» insieme all’identificatore di clic (gclid). Se
     l’indirizzo conteneva dati di campagna (utm_…), li riprende, e questi prevalgono su tali valori. Con il vostro clic sul link questo valore arriva a Google Play, e
-    Google Play può trasmetterlo all’app dopo un’installazione, in modo che sappiamo quale campagna
-    ha portato a un’installazione.
+    Google Play può trasmetterlo all’app dopo un’installazione, in modo che sappiamo quale campagna ha portato a un’installazione. Maggiori dettagli nella sezione 3.
   </p>
   <p>
     <strong>Base giuridica:</strong> art. 6, par. 1, lett. f) del GDPR (legittimo interesse a
@@ -2614,10 +2772,9 @@
     clic su questi link con Umami, senza cookie e senza dati sulla vostra persona (sezione 12).
   </p>
 
-  <h2>15. Nessuna cessione di dati a fini pubblicitari</h2>
+  <h2>15. Nessuna vendita di dati, nessuna pubblicità nell’app</h2>
   <p>
-    Non vendiamo dati, non mostriamo pubblicità nell’app e non vi utilizziamo servizi di pubblicità
-    o di tracciamento. Non usiamo i dati dei visitatori del sito web né per il remarketing né per
+    Non vendiamo dati, non mostriamo pubblicità nell’app e non vi utilizziamo reti pubblicitarie. L’attribuzione di un’installazione a una campagna e la segnalazione di installazioni ed eventi dell’app Android a Google Ads come conversioni (sezione 3) servono soltanto a misurare il successo dei nostri annunci; a tal fine non utilizziamo né segmenti di pubblico né remarketing. Su Android, Firebase invia inoltre, secondo l’impostazione predefinita di Google, segnali che Google può utilizzare per la pubblicità personalizzata (sezione 3); l’app stessa non mostra per questo alcuna pubblicità. Non usiamo i dati dei visitatori del sito web né per il remarketing né per
     annunci personalizzati. Su kortscore.com misuriamo soltanto se i nostri annunci Google portano a
     visite e clic; ciò è descritto nella sezione 13. Oltre ai servizi di Google (incluso Google
     Ads), Apple e Umami indicati nella presente informativa, non avviene alcuna cessione di dati a
@@ -2643,14 +2800,14 @@
       <tr><td>Backup iCloud / iCloud Drive</td><td>Apple Inc.</td><td>secondo le vostre impostazioni iCloud</td></tr>
       <tr><td>Google Sheets (liste d’attesa)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (clausole contrattuali standard UE)</td></tr>
       <tr><td>Umami Cloud (statistiche del sito web)</td><td>Umami Software, Inc. (USA)</td><td>UE (dati di analisi); servizi di esercizio in parte negli USA (clausole contrattuali standard UE)</td></tr>
-      <tr><td>Google Ads (misurazione delle campagne, sito web)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (EU-US Data Privacy Framework)</td></tr>
+      <tr><td>Google Ads (misurazione delle campagne, sito web e app Android)</td><td>Google Ireland Ltd. / Google LLC</td><td>UE/USA (EU-US Data Privacy Framework)</td></tr>
     </tbody>
   </table>
   <p>
     Nella misura in cui i dati vengono trasferiti a Google negli USA, ciò si basa sulle clausole
     contrattuali standard della Commissione UE con le rispettive società di Google. I dati relativi
     ad App Store, App Attest e iCloud sono trattati da Apple secondo la propria informativa sulla
-    privacy. Presso Umami i dati di analisi sono ospitati nell’UE; quando servizi di esercizio di Umami trattano dati negli USA, ciò si basa sulle clausole contrattuali standard UE del contratto di trattamento dei dati di Umami. Per Google Ads (sezione 13) il trasferimento verso gli USA si basa sul EU-US Data Privacy Framework, a cui Google LLC dichiara di aderire.
+    privacy. Presso Umami i dati di analisi sono ospitati nell’UE; quando servizi di esercizio di Umami trattano dati negli USA, ciò si basa sulle clausole contrattuali standard UE del contratto di trattamento dei dati di Umami. Per Google Ads (sezioni 3 e 13) il trasferimento verso gli USA si basa sul EU-US Data Privacy Framework, a cui Google LLC dichiara di aderire.
   </p>
 
   <h2>17. I vostri diritti</h2>
