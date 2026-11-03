@@ -138,14 +138,8 @@ pages:
     og_type: website
     og_image: og-itn.png
     google_ads: false
-    lastmod: 2026-10-21
+    lastmod: 2026-11-03
     priority: "0.7"
-
-# Endpunkt der Warteliste für die ITN-App (Google Apps Script, siehe
-# tools/waitlist-setup.md, Liste itn-app). Solange hier der Platzhalter
-# ITN_WAITLIST_ENDPOINT steht, baut der Build den Block "Bald als App" gar
-# nicht erst ein: kein Formular, das ins Leere läuft.
-itn_waitlist_endpoint: 'https://script.google.com/macros/s/AKfycbyzek-ItlIcUJlNqKSrOBpI5yJqJVdtqaPBS_t0b7kl-tqJ6Wwg_lsdS6vwrLDmRcTh/exec'
 
 # Bilder mit Text oder App-Oberfläche gibt es je Sprache. Die Vorlagen fragen
 # nur den Basisnamen ab (lasset('shot-live')), die Datei steht hier.

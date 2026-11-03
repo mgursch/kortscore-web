@@ -140,28 +140,29 @@ rules:
     - "Nur im Einzel: Gewinnen Jugendliche (11 bis 16) gegen Erwachsene (ab 21), zählt das für sie 200 % und für die Erwachsenen 50 %, egal wer als unsicher gilt. Verlieren sie, gilt die normale Regel."
     - Niederlagen kannst du innerhalb von 7 Tagen streichen lassen.
 
-# Warteliste. Nur sichtbar, wenn in site.yaml itn_waitlist_endpoint gesetzt ist.
-app:
-  eyebrow: Bald als App
-  title: Dein ITN-Verlauf, jeden Morgen aktuell
+# Werbeblock für die App Kortform (kortform.at), ersetzt die frühere Warteliste.
+# Die Funktionen stehen nummeriert neben den App-Bildschirmen (shots), in
+# derselben Reihenfolge. Bilder: static/assets/kortform-<name>.webp, Echtbilder
+# der Android-App mit Beispieldaten.
+kortform:
+  eyebrow: Jetzt als App
+  title: Kortform, die App zum Rechner
   text: >-
-    Profil einmal verknüpfen, dann siehst du jede Veränderung als Kurve und
-    rechnest Gegner*innen per Namenssuche durch. Für Android und iPhone.
-  email_label: E-Mail
-  placeholder: du@beispiel.at
-  button: Benachrichtige mich
-  # Unsichtbares Feld gegen Bots (Honeypot), nur für Screenreader-Nutzer als
-  # Hinweis lesbar, falls es doch jemand erreicht.
-  trap: Dieses Feld bitte leer lassen
-  # {privacy} wird zum Link auf die Datenschutzerklärung.
-  note: >-
-    Wir schreiben dir einmal, wenn die App erscheint. Kein Newsletter, keine
-    Weitergabe. Mit dem Absenden willigst du ein, dass wir deine Adresse dafür
-    speichern. {privacy}
-  privacy: Datenschutz
-  sending: Wird eingetragen …
-  ok: Danke, du stehst auf der Liste.
-  err: Das hat nicht geklappt. Bitte später noch einmal versuchen.
+    Kortform holt deinen ITN jeden Morgen aus der ÖTV-Liste und rechnet vor
+    dem Match durch, was Sieg oder Niederlage bringen.
+  features:
+    - Eigener ITN-Verlauf und Matches
+    - Spieler*innen und Mannschaften folgen
+    - Komfortable ITN-Berechnung direkt über die Spielersuche
+  button: Zu Kortform
+  url: https://kortform.at
+  shots:
+    - name: verlauf
+      alt: "Verlauf in der App Kortform: aktueller ITN 7,512, minus 0,270 seit 2. Jänner, Diagramm der Saison mit fallender Kurve und das letzte Match"
+    - name: folgen
+      alt: "Spieler*innen in der App Kortform: du und weitere Spieler*innen, denen du folgst, mit ITN, letztem Spiel, Änderung und den Ergebnissen der letzten fünf Spiele"
+    - name: suche
+      alt: "Gegner*in wählen in der App Kortform: Suche nach Muster mit sechs gefundenen Spieler*innen und ihrem ITN, Tippen übernimmt Name und ITN in den Rechner"
 
 band:
   title: Das Match selbst<br><em>zählt Kortscore.</em>

@@ -174,39 +174,34 @@
       </ul>
     </div>
   </section>
-{% if site.itn_waitlist_endpoint != "ITN_WAITLIST_ENDPOINT" %}
 
-<!-- ── Coming as an app: waitlist ───────────────────────────────────────────
-     Only built once site.yaml has the real endpoint (Google Apps Script, list
-     itn-app). itn-rechner.js sends it in the background as form-encoded
-     no-cors POST; without JavaScript the browser posts it and lands on the
-     script's JSON reply. "website" is a honeypot for bots. -->
-  <section class="app" id="app">
-    <div class="app__copy">
-      <p class="itn__eyebrow">{{ t.app.eyebrow }}</p>
-      <h2 class="itn__h2 app__title">{{ t.app.title }}</h2>
-      <p class="app__text">{{ t.app.text }}</p>
+<!-- ── Kortform: die App zum Rechner ────────────────────────────────────────
+     Werbeblock für die App unter kortform.at (ersetzt die frühere Warteliste).
+     Drei Funktionen links, die passenden App-Bildschirme rechts mit denselben
+     Nummern. Bilder und Texte: static/assets/kortform-*.webp, i18n/de/itn.yaml. -->
+  <section class="kf" id="kortform" aria-labelledby="kortform-title">
+    <div class="kf__copy">
+      <p class="itn__eyebrow">{{ t.kortform.eyebrow }}</p>
+      <h2 class="itn__h2 kf__title" id="kortform-title">{{ t.kortform.title }}</h2>
+      <p class="kf__text">{{ t.kortform.text }}</p>
+      <ol class="kf__features">
+{% for f in t.kortform.features %}
+        <li><span class="kf__num" aria-hidden="true">{{ loop.index }}</span><span>{{ f }}</span></li>
+{% endfor %}
+      </ol>
+      <a class="kf__button" href="{{ t.kortform.url }}" target="_blank" rel="noopener" data-umami-event="kortform-klick">{{ t.kortform.button }}</a>
     </div>
-    <form class="app__form" action="{{ site.itn_waitlist_endpoint }}" method="post" data-itn-waitlist
-          data-msg-sending="{{ t.app.sending|inattr }}"
-          data-msg-ok="{{ t.app.ok|inattr }}"
-          data-msg-err="{{ t.app.err|inattr }}">
-      <input type="hidden" name="list" value="itn-app">
-      <input type="hidden" name="lang" value="{{ lang }}">
-      <label class="app__trap" aria-hidden="true">
-        {{ t.app.trap }}
-        <input type="text" name="website" tabindex="-1" autocomplete="off">
-      </label>
-      <label class="app__field">
-        <span>{{ t.app.email_label }}</span>
-        <input type="email" name="email" required autocomplete="email" placeholder="{{ t.app.placeholder|inattr }}">
-      </label>
-      <button class="app__button" type="submit">{{ t.app.button }}</button>
-      <p class="app__note">{{ t.app.note|replace('{privacy}', '<a href="' ~ legal('privacy') ~ '">' ~ t.app.privacy ~ '</a>') }}</p>
-      <p class="app__msg" role="status" aria-live="polite" data-itn-waitlist-msg></p>
-    </form>
+    <div class="kf__shots">
+{% for s in t.kortform.shots %}
+      <figure class="kf__shot">
+        <div class="kf__phone">
+          <img src="{{ static('assets/kortform-' ~ s.name ~ '.webp') }}" alt="{{ s.alt|inattr }}" width="540" height="1212" loading="lazy" decoding="async">
+          <span class="kf__tag" aria-hidden="true">{{ loop.index }}</span>
+        </div>
+      </figure>
+{% endfor %}
+    </div>
   </section>
-{% endif %}
 </div>
 
 <!-- ── Kortscore band ───────────────────────────────────────────────────── -->

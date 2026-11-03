@@ -1,5 +1,12 @@
 # Warteliste einrichten (Google Apps Script)
 
+> **Stand 2026-11-03:** Das Formular auf `kortscore.com/itn-rechner/` ist seit
+> dem Kortform-Start (2026-11-03) offline, die Seite bewirbt jetzt die App
+> (kortform.at). Die Liste wird nur noch für die eine Startmail an die
+> bestehenden Einträge aufgehoben und danach gelöscht. Die Anleitung unten
+> beschreibt den früheren Aufbau (den Schlüssel `itn_waitlist_endpoint` in
+> `site.yaml` gibt es nicht mehr).
+
 Das Skript `tools/waitlist.gs` nimmt die E-Mail-Adressen aus dem Block
 „Bald als App“ auf `kortscore.com/itn-rechner/` entgegen, hängt sie an eine
 Google-Tabelle an und schickt dir pro neuem Eintrag eine kurze Mail. Kein

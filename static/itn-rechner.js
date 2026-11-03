@@ -15,9 +15,6 @@ import { itnParse, itnFormat, itnSingles, itnDoubles } from './assets/js/itn-cor
 const calc = document.querySelector('[data-itn-calc]');
 if (calc) { initCalculator(calc); }
 
-const waitlist = document.querySelector('[data-itn-waitlist]');
-if (waitlist) { initWaitlist(waitlist); }
-
 /* ── Rechner ───────────────────────────────────────────────────────────────
    Jede Eingabe, jeder Umschalter und jede Checkbox löst eine Neuberechnung
    aus. Die Ergebnisse stehen in einem aria-live-Bereich, Screenreader lesen
@@ -140,57 +137,4 @@ function initCalculator(root) {
   /* Einmal sofort: Der Browser kann nach "Zurück" alte Eingaben wiederherstellen,
      dann passt das vorgerenderte Beispiel nicht mehr dazu. */
   update();
-}
-
-/* ── Warteliste "Bald als App" ─────────────────────────────────────────────
-   Der Block steht nur im HTML, wenn site.yaml einen echten Endpunkt hat.
-   Abgeschickt wird wie bei der alten iOS-Liste (Commit 49489a3): als
-   form-urlencoded POST mit mode no-cors an ein Google Apps Script.
-
-   Die Antwort lesen wir bewusst nicht aus: Apps Script leitet auf eine andere
-   Domain um, die Anfrage kommt deshalb undurchsichtig zurück. Ob der Eintrag
-   geklappt hat, steht nur im Sheet. Für eine Warteliste vertretbar: ein
-   Fehlschlag kostet eine Adresse, keine Bestellung.
-   ─────────────────────────────────────────────────────────────────────── */
-function initWaitlist(form) {
-  const msg = form.querySelector('[data-itn-waitlist-msg]');
-  const button = form.querySelector('button[type="submit"]');
-  const endpoint = form.getAttribute('action') || '';
-
-  function say(key, kind) {
-    if (!msg) { return; }
-    msg.textContent = form.getAttribute(`data-msg-${key}`) || '';
-    msg.className = 'app__msg' + (kind ? ` app__msg--${kind}` : '');
-  }
-
-  form.addEventListener('submit', (event) => {
-    /* Ungültige Adressen fängt der Browser selbst ab (required, type=email),
-       dann kommt dieses Ereignis gar nicht erst an. */
-    event.preventDefault();
-    if (button.disabled) { return; }
-    button.disabled = true;
-    say('sending');
-
-    /* Felder laut Vertrag mit tools/waitlist.gs: email, list (itn-app),
-       lang, der leere Honeypot website und source. URLSearchParams statt
-       FormData als Körper: FormData sendet multipart und löst einen
-       Preflight aus, den Apps Script nicht beantwortet. */
-    const data = new URLSearchParams(new FormData(form));
-    data.set('source', location.pathname);
-
-    fetch(endpoint, { method: 'POST', mode: 'no-cors', body: data })
-      .then(() => {
-        form.reset();
-        say('ok', 'ok');
-        if (window.umami && typeof window.umami.track === 'function') {
-          try { window.umami.track('itn-app-warteliste'); } catch (e) { /* egal */ }
-        }
-      })
-      .catch(() => { say('err', 'err'); })
-      .then(() => {
-        /* In beiden Fällen wieder freigeben: Wer eine zweite Adresse
-           eintragen will, etwa für den Doppelpartner, soll das können. */
-        button.disabled = false;
-      });
-  });
 }

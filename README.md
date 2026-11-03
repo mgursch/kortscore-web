@@ -219,11 +219,12 @@ Tennis-Seite (`teaser` in `i18n/de/itn.yaml`). Design aus dem App-Repo
   gegen die Testwerte der App und die vorgerenderten Zahlen der gebauten Seite
   gegen das Bundle. Ändert sich die Formel, schlägt das Deployment an, bis
   `calc.example` und die Tabelle angepasst sind.
-- **Warteliste „Bald als App“:** schickt `email`, `list=itn-app`, `lang` und
-  `source` an das Apps Script aus `tools/waitlist.gs` (Einrichtung:
-  `tools/waitlist-setup.md`). Der Endpunkt steht in
-  `site.yaml` unter `itn_waitlist_endpoint`; solange dort der Platzhalter
-  `ITN_WAITLIST_ENDPOINT` steht, baut der Build den Block nicht ein.
+- **Kortform-Block:** Werbeblock für die App unter kortform.at am Ende der
+  Seite (Texte unter `kortform:` in `i18n/de/itn.yaml`, Bilder
+  `static/assets/kortform-*.webp`, Echt-Screenshots der Android-App). Er löste
+  die frühere Warteliste ab; `tools/waitlist.gs` und
+  `tools/waitlist-setup.md` bleiben nur für die einmalige Startmail an die
+  bestehenden Einträge.
 
 ## Statistik (Umami)
 

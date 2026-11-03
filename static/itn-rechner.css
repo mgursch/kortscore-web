@@ -7,8 +7,8 @@
    hat, steht das Token; die übrigen Werte stammen aus der Design-Spezifikation
    der App (DESIGN.md) und stehen unten als eigene Variablen.
 
-   Reihenfolge wie auf der Seite: Hero, Rechner, So rechnet der ÖTV, Bald als
-   App, Kortscore-Band, Rechtshinweis, dann die schmalen Bildschirme.
+   Reihenfolge wie auf der Seite: Hero, Rechner, So rechnet der ÖTV, Kortform,
+   Kortscore-Band, Rechtshinweis, dann die schmalen Bildschirme.
    ========================================================================= */
 
 .itn {
@@ -414,61 +414,64 @@
   color: var(--text-secondary);
 }
 
-/* ── Bald als App ───────────────────────────────────────────────────────── */
-.app {
+/* ── Kortform ───────────────────────────────────────────────────────────────
+   Werbeblock für die App: links Text, nummerierte Funktionen und Button,
+   rechts drei App-Bildschirme mit denselben Nummern. Wie früher die
+   Warteliste auf --bg-alt, damit er sich vom Rechner abhebt.
+   ───────────────────────────────────────────────────────────────────────── */
+.kf {
   margin-top: 96px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 32px;
-  padding: 40px;
+  gap: 40px 48px;
+  padding: 48px 40px;
   border-radius: var(--radius);
   background: var(--bg-alt);
 }
-.app__copy { flex: 1 1 420px; min-width: 0; }
-.app__title { margin-top: 10px; }
-.app__text { margin-top: 14px; color: var(--text-secondary); }
+.kf__copy { flex: 1 1 380px; min-width: 0; }
+.kf__title { margin-top: 10px; }
+.kf__text { margin-top: 14px; max-width: 460px; color: var(--text-secondary); text-wrap: pretty; }
 
-.app__form {
-  flex: 1 1 320px;
-  min-width: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.app__field {
-  flex: 1 1 200px;
-  min-width: 0;
+.kf__features {
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  font-size: 14px;
+  gap: 12px;
+}
+.kf__features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
   font-weight: 600;
-  color: var(--text-secondary);
+  line-height: 1.35;
 }
-.app__field input {
-  width: 100%;
-  height: 52px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--surface);
-  padding: 0 20px;
-  font-family: inherit;
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--text);
+.kf__num,
+.kf__tag {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
 }
-.app__field input::placeholder { color: var(--itn-placeholder); }
-.app__field input:focus-visible {
-  outline: 2px solid var(--accent-text);
-  outline-offset: 2px;
-}
+.kf__features .kf__num { margin-top: -1px; }
 
-.app__button {
-  align-self: flex-end;
-  height: 52px;
-  padding: 0 24px;
-  border: 0;
+.kf__button {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 28px;
+  min-height: 52px;
+  padding: 8px 28px;
   border-radius: 999px;
   background: var(--text);
   color: var(--on-dark);
@@ -477,32 +480,43 @@
   font-size: 18px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  cursor: pointer;
+  text-decoration: none;
 }
-.app__button:hover { filter: brightness(1.15); }
-.app__button:disabled { opacity: 0.6; cursor: progress; }
+.kf__button:hover { filter: brightness(1.15); }
+.kf__button:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 3px; }
 
-.app__note,
-.app__msg { flex-basis: 100%; }
-.app__note {
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--text-muted);
+.kf__shots {
+  flex: 1 1 380px;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+  max-width: 520px;
+  margin-inline: auto;
 }
-.app__note a { color: var(--accent-text); }
-.app__msg { font-size: 14px; font-weight: 600; }
-.app__msg:empty { display: none; }
-.app__msg--ok  { color: var(--accent-text); }
-.app__msg--err { color: var(--itn-error); }
-
-/* Honeypot: für Menschen unsichtbar und nicht per Tab erreichbar. Kein
-   display:none, das erkennen manche Bots und lassen das Feld dann leer. */
-.app__trap {
+.kf__shot { margin: 0; }
+.kf__shot:nth-child(2) { margin-top: 28px; }
+.kf__phone {
+  position: relative;
+  padding: 4px;
+  border-radius: 18px;
+  background: #1c1d1f;
+  box-shadow: var(--shadow-shot);
+}
+.kf__phone img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+}
+.kf__tag {
   position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
+  top: -8px;
+  left: -8px;
+  width: 24px;
+  height: 24px;
+  box-shadow: 0 0 0 3px var(--bg-alt);
 }
 
 /* ── Kortscore-Band ─────────────────────────────────────────────────────── */
@@ -586,12 +600,17 @@
   .calc__value { font-size: 44px; }
 
   .itn__h2 { font-size: 32px; }
-  .rules, .app, .band { margin-top: 64px; }
+  .rules, .kf, .band { margin-top: 64px; }
   .rules { gap: 32px; }
   .rules__formula { font-size: 14px; padding: 16px; }
 
-  .app { padding: 28px 20px; }
-  .app__button { flex: 1 1 100%; }
+  .kf { padding: 32px 20px; gap: 32px; }
+  .kf__shots { gap: 10px; }
+  .kf__shot:nth-child(2) { margin-top: 20px; }
+  .kf__phone { padding: 3px; border-radius: 14px; }
+  .kf__phone img { border-radius: 11px; }
+  .kf__tag { width: 22px; height: 22px; top: -7px; left: -7px; font-size: 12px; }
+  .kf__button { width: 100%; justify-content: center; }
 
   .band__inner { padding-block: 56px; }
   .band__title { font-size: 40px; }
