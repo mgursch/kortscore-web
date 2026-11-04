@@ -24,6 +24,12 @@ teaser:
     ITN nach einem Sieg oder einer Niederlage steht, im Einzel und im Doppel.
   link: Zum ITN-Rechner
 
+# Kopf der Seite (templates/itn.html): Kortform neben der Wortmarke und als
+# Aktion rechts. Die Aktion führt auf kortform.at, das den App-Store-Link
+# anbietet und auch Android-Besucher:innen weiterhilft.
+nav:
+  cta: App laden
+
 hero:
   title: ITN-Rechner <br>für Österreich
   lead: >-
@@ -166,7 +172,10 @@ band:
   text: >-
     Ein Tap pro Punkt auf Apple Watch oder Wear OS, mit Statistik und
     Live-Spielstand für alle, die nicht am Platz stehen.
-  button: App laden
+  button: Kortscore laden
+  # Schlichter Textlink zurück zur Kortscore-Seite (kortscore.com), zusätzlich
+  # zur Wortmarke im Kopf und zum Button.
+  link: Mehr über Kortscore auf kortscore.com
 
 legal: >-
   Kein offizielles Angebot des Österreichischen Tennisverbands. Berechnung nach
