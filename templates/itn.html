@@ -16,6 +16,20 @@
 <script type="module" src="{{ static('itn-rechner.js') }}"></script>
 {% endblock %}
 
+{# Kopf dieser Seite: neben der Wortmarke Kortform mit App-Icon, rechts die
+   Aktion führt zu Kortform statt zu Kortscore. Kortform steht noch in keinem
+   Store, darum sagt die Beschriftung nicht "laden". #}
+{% block nav_partner %}
+  <a class="nav__partner" href="{{ t.kortform.url }}" target="_blank" rel="noopener" data-umami-event="kortform-klick-header-logo">
+    <img src="{{ static('assets/kortform-icon.webp') }}" alt="{{ t.nav.partner_alt|inattr }}" width="32" height="32">
+    <span>Kortform</span>
+  </a>
+{% endblock %}
+
+{% block nav_cta %}
+    <a class="btn btn--small nav__cta" href="{{ t.kortform.url }}" target="_blank" rel="noopener" data-umami-event="kortform-klick-header">{{ t.nav.cta }}</a>
+{% endblock %}
+
 {% block jsonld %}
 <!-- Breadcrumbs (Kortscore DE home > ITN-Rechner) and the calculator itself as
      a free web application. -->
@@ -145,6 +159,31 @@
   </section>
   <p class="itn__disclaimer">{{ t.calc.disclaimer }}</p>
 
+<!-- ── Kortform: die App zum Rechner ────────────────────────────────────────
+     Werbeblock für die App unter kortform.at (ersetzt die frühere Warteliste),
+     gleich unter dem Rechner, vor der Erklärung der ÖTV-Formel. Drei Funktionen links, die passenden App-Bildschirme rechts. Bilder und Texte: static/assets/kortform-*.webp, i18n/de/itn.yaml. -->
+  <section class="kf" id="kortform" aria-labelledby="kortform-title">
+    <div class="kf__copy">
+      <h2 class="itn__h2 kf__title" id="kortform-title">{{ t.kortform.title }}</h2>
+      <p class="kf__text">{{ t.kortform.text }}</p>
+      <ul class="kf__features">
+{% for f in t.kortform.features %}
+        <li>{{ f }}</li>
+{% endfor %}
+      </ul>
+      <a class="kf__button" href="{{ t.kortform.url }}" target="_blank" rel="noopener" data-umami-event="kortform-klick">{{ t.kortform.button }}</a>
+    </div>
+    <div class="kf__shots">
+{% for s in t.kortform.shots %}
+      <figure class="kf__shot">
+        <div class="kf__phone">
+          <img src="{{ static('assets/kortform-' ~ s.name ~ '.webp') }}" alt="{{ s.alt|inattr }}" width="540" height="1212" loading="lazy" decoding="async">
+        </div>
+      </figure>
+{% endfor %}
+    </div>
+  </section>
+
 <!-- ── How the ÖTV calculates ───────────────────────────────────────────────
      The example values are static text; tools/check_itn.mjs recomputes each
      row from data-winner and data-loser with itn-core.mjs. -->
@@ -173,31 +212,6 @@
       </ul>
     </div>
   </section>
-
-<!-- ── Kortform: die App zum Rechner ────────────────────────────────────────
-     Werbeblock für die App unter kortform.at (ersetzt die frühere Warteliste).
-     Drei Funktionen links, die passenden App-Bildschirme rechts. Bilder und Texte: static/assets/kortform-*.webp, i18n/de/itn.yaml. -->
-  <section class="kf" id="kortform" aria-labelledby="kortform-title">
-    <div class="kf__copy">
-      <h2 class="itn__h2 kf__title" id="kortform-title">{{ t.kortform.title }}</h2>
-      <p class="kf__text">{{ t.kortform.text }}</p>
-      <ul class="kf__features">
-{% for f in t.kortform.features %}
-        <li>{{ f }}</li>
-{% endfor %}
-      </ul>
-      <a class="kf__button" href="{{ t.kortform.url }}" target="_blank" rel="noopener" data-umami-event="kortform-klick">{{ t.kortform.button }}</a>
-    </div>
-    <div class="kf__shots">
-{% for s in t.kortform.shots %}
-      <figure class="kf__shot">
-        <div class="kf__phone">
-          <img src="{{ static('assets/kortform-' ~ s.name ~ '.webp') }}" alt="{{ s.alt|inattr }}" width="540" height="1212" loading="lazy" decoding="async">
-        </div>
-      </figure>
-{% endfor %}
-    </div>
-  </section>
 </div>
 
 <!-- ── Kortscore band ───────────────────────────────────────────────────── -->
@@ -206,6 +220,7 @@
     <div class="band__copy">
       <h2 class="band__title">{{ t.band.title }}</h2>
       <p class="band__text">{{ t.band.text }}</p>
+      <a class="band__link" href="{{ url('index') }}">{{ t.band.link }}</a>
     </div>
     <div class="band__actions">
       <a class="band__button" href="{{ url('index') }}">{{ t.band.button }}</a>

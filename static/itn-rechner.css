@@ -7,7 +7,7 @@
    hat, steht das Token; die übrigen Werte stammen aus der Design-Spezifikation
    der App (DESIGN.md) und stehen unten als eigene Variablen.
 
-   Reihenfolge wie auf der Seite: Hero, Rechner, So rechnet der ÖTV, Kortform,
+   Reihenfolge wie auf der Seite: Hero, Rechner, Kortform, So rechnet der ÖTV,
    Kortscore-Band, Rechtshinweis, dann die schmalen Bildschirme.
    ========================================================================= */
 
@@ -45,6 +45,44 @@
   margin-inline: auto;
   padding: 32px var(--gutter) 0;
 }
+
+/* ── Kopf: Kortform neben der Wortmarke ─────────────────────────────────────
+   Nur auf dieser Seite (block nav_partner in itn.html). Der Auto-Rand schiebt
+   Sprache und Aktion nach rechts, die Wortmarke und Kortform stehen links
+   nebeneinander. Ab 640px steht rechts zusätzlich die Aktion zu Kortform. Unter
+   420px ist der Name kleiner, unter 350px bleibt nur das Icon, der alt-Text
+   benennt den Link. */
+.nav__partner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-right: auto;
+  margin-left: 4px;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+/* Beide Links behalten ihre Breite: sonst schrumpft die Wortmarke in den
+   Abstand zu Kortform hinein. */
+.nav__brand,
+.nav__partner { flex: none; }
+.nav__partner img { border-radius: 22%; }
+.nav__partner span {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+@media (max-width: 419px) {
+  .nav__partner { margin-left: 0; }
+  .nav__partner span { font-size: var(--step-1); }
+}
+@media (max-width: 349px) {
+  .nav__partner span { display: none; }
+}
+.nav__partner:hover { color: var(--text); }
+.nav__partner:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; border-radius: 8px; }
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 .itn__title {
@@ -507,6 +545,21 @@
   font-size: var(--step-1);
   color: var(--text-on-dark-muted);
 }
+
+.band__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 12px;
+  font-size: var(--step-1);
+  font-weight: 600;
+  color: var(--text-on-dark);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+.band__link:hover { color: var(--accent); text-decoration-thickness: 2px; }
+.band__link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 .band__actions {
   display: flex;

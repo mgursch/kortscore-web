@@ -144,6 +144,9 @@ gtag('event', 'conversion', {
     <img src="{{ asset('icon.png') }}" alt="" width="30" height="30">
     <span>Kortscore</span>
   </a>
+{# Seiten mit eigenem Partner im Kopf (der ITN-Rechner mit Kortform) füllen
+   den Block, alle anderen lassen ihn leer. #}
+{% block nav_partner %}{% endblock %}
   <div class="nav__right">
 {% if languages|length > 1 %}
     <!-- Language switcher: a plain <details>, so it opens without JavaScript.
@@ -160,7 +163,9 @@ gtag('event', 'conversion', {
     <!-- This page exists in one language only: no switcher, just its code. -->
     <span class="nav__lang-single" title="{{ L.name }}">{{ lang|upper }}</span>
 {% endif %}
+{% block nav_cta %}
     <a class="btn btn--small nav__cta" href="{{ home('get') }}">{{ c.nav_cta }}</a>
+{% endblock %}
   </div>
 </header>
 
