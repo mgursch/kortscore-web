@@ -17,11 +17,11 @@
 {% endblock %}
 
 {# Kopf dieser Seite: neben der Wortmarke Kortform mit App-Icon, rechts die
-   Aktion führt zu Kortform statt zu Kortscore. Kortform steht noch in keinem
-   Store, darum sagt die Beschriftung nicht "laden". #}
+   Aktion "App laden" führt auf kortform.at. Dort steht der App-Store-Link,
+   und Android-Besucher:innen kommen ebenfalls weiter. #}
 {% block nav_partner %}
   <a class="nav__partner" href="{{ t.kortform.url }}" target="_blank" rel="noopener" data-umami-event="kortform-klick-header-logo">
-    <img src="{{ static('assets/kortform-icon.webp') }}" alt="{{ t.nav.partner_alt|inattr }}" width="32" height="32">
+    <img src="{{ static('assets/kortform-icon.webp') }}" alt="" width="32" height="32">
     <span>Kortform</span>
   </a>
 {% endblock %}

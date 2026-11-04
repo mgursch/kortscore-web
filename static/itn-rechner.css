@@ -50,8 +50,8 @@
    Nur auf dieser Seite (block nav_partner in itn.html). Der Auto-Rand schiebt
    Sprache und Aktion nach rechts, die Wortmarke und Kortform stehen links
    nebeneinander. Ab 640px steht rechts zusätzlich die Aktion zu Kortform. Unter
-   420px ist der Name kleiner, unter 350px bleibt nur das Icon, der alt-Text
-   benennt den Link. */
+   420px ist der Name kleiner, unter 350px bleibt nur das Icon, der Name steht
+   visuell verborgen im Link. */
 .nav__partner {
   display: flex;
   align-items: center;
@@ -79,7 +79,15 @@
   .nav__partner span { font-size: var(--step-1); }
 }
 @media (max-width: 349px) {
-  .nav__partner span { display: none; }
+  .nav__partner { min-width: 44px; justify-content: center; }
+  .nav__partner span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
 }
 .nav__partner:hover { color: var(--text); }
 .nav__partner:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; border-radius: 8px; }
