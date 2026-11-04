@@ -447,8 +447,7 @@
 
 /* ── Kortform ───────────────────────────────────────────────────────────────
    Werbeblock für die App: links Text, Funktionen und Button, rechts drei
-   App-Bildschirme. Wie früher die
-   Warteliste auf --bg-alt, damit er sich vom Rechner abhebt.
+   App-Bildschirme. Auf --bg-alt, damit er sich vom Rechner abhebt.
    ───────────────────────────────────────────────────────────────────────── */
 .kf {
   margin-top: 96px;

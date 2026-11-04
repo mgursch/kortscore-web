@@ -144,7 +144,7 @@ rules:
     - "Nur im Einzel: Gewinnen Jugendliche (11 bis 16) gegen Erwachsene (ab 21), zählt das für sie 200 % und für die Erwachsenen 50 %, egal wer als unsicher gilt. Verlieren sie, gilt die normale Regel."
     - Niederlagen kannst du innerhalb von 7 Tagen streichen lassen.
 
-# Werbeblock für die App Kortform (kortform.at), ersetzt die frühere Warteliste.
+# Werbeblock für die App Kortform (kortform.at) unter dem Rechner.
 # Die Funktionen stehen neben den App-Bildschirmen (shots), in derselben
 # Reihenfolge. Bilder: static/assets/kortform-<name>.webp, Echtbilder
 # der Android-App mit Beispieldaten.

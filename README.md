@@ -41,7 +41,7 @@ static/             wird 1:1 nach _site/ kopiert
   de/rechtliches.html dito
   CNAME, .nojekyll, .well-known/assetlinks.json
 tools/              nicht veröffentlicht: check_site.py, check_itn.mjs,
-                    sync_itn_core.sh, Apps Script der Wartelisten
+                    sync_itn_core.sh
 ```
 
 Die Seiten und ihre Adressen:
@@ -221,10 +221,7 @@ Tennis-Seite (`teaser` in `i18n/de/itn.yaml`). Design aus dem App-Repo
   `calc.example` und die Tabelle angepasst sind.
 - **Kortform-Block:** Werbeblock für die App unter kortform.at unter den
   Rechenregeln, vor dem Kortscore-Band (Texte unter `kortform:` in `i18n/de/itn.yaml`, Bilder
-  `static/assets/kortform-*.webp`, Echt-Screenshots der Android-App). Er löste
-  die frühere Warteliste ab; `tools/waitlist.gs` und
-  `tools/waitlist-setup.md` bleiben nur für die einmalige Startmail an die
-  bestehenden Einträge.
+  `static/assets/kortform-*.webp`, Echt-Screenshots der Android-App).
 
 ## Statistik (Umami)
 
