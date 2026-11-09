@@ -96,12 +96,12 @@ faq:
     - q: Quelles montres fonctionnent avec Kortscore ?
       a: >-
         Toute Apple Watch sous watchOS 26 ou plus récent, donc Series 6, SE à
-        partir de la deuxième génération, Ultra et modèles plus récents,
-        jumelée à un iPhone. Et toute montre sous Wear OS 3 ou plus récent,
-        donc Samsung Galaxy Watch à partir de la Watch 4, Google Pixel Watch et
-        d’autres, associée à un téléphone Android sous Android 8 ou plus récent.
-        La liste complète des modèles est sur la
-        <a href="{url:compatible}">page de compatibilité</a>.
+        partir de la deuxième génération, Ultra et modèles plus récents, jumelée
+        à un iPhone. Et les montres Wear OS (Wear OS 3 ou plus récent), par
+        exemple Samsung Galaxy Watch à partir de la Watch 6, Google Pixel Watch
+        à partir de la Pixel Watch 2 et d’autres, associées à un téléphone
+        Android sous Android 8 ou plus récent. La liste complète des modèles est
+        sur la <a href="{url:compatible}">page de compatibilité</a>.
     - q: Kortscore suit-il les vraies règles, tie-break et NoAd compris ?
       a: >-
         Oui. Avantage ou NoAd, sets en 6 ou en 4 jeux, tie-break et super

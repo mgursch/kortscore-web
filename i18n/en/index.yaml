@@ -96,11 +96,11 @@ faq:
     - q: Which watches work with Kortscore?
       a: >-
         Any Apple Watch on watchOS 26 or newer, so Series 6, SE from the second
-        generation, Ultra and later, paired with an iPhone. And any watch running
-        Wear OS 3 or newer, so Samsung Galaxy Watch from the Watch 4 on, Google
-        Pixel Watch and others, paired with an Android phone on Android 8 or
-        newer. The full model list is on the <a href="{url:compatible}">compatibility
-        page</a>.
+        generation, Ultra and later, paired with an iPhone. And Wear OS watches
+        (Wear OS 3 or newer), for example Samsung Galaxy Watch from the Watch 6
+        on, Google Pixel Watch from the Pixel Watch 2 on and others, paired with
+        an Android phone on Android 8 or newer. The full model list is on the <a
+        href="{url:compatible}">compatibility page</a>.
     - q: Does Kortscore follow the real rules, including tiebreaks and NoAd?
       a: >-
         Yes. Advantage or NoAd, sets to 6 or to 4, tiebreak and champions

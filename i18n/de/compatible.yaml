@@ -3,7 +3,7 @@
 
 meta:
   title: "Kompatible Uhren: Läuft Kortscore auf meiner Apple Watch oder Wear-OS-Uhr?"
-  description: Kortscore läuft auf jeder Apple Watch ab watchOS 26 und jeder Uhr mit Wear OS 3 oder neuer. Alle Apple-Watch-, Galaxy-Watch-, Pixel-Watch-, OnePlus- und TicWatch-Modelle im Überblick.
+  description: Kortscore läuft auf jeder Apple Watch ab watchOS 26 und auf den Wear-OS-Uhren aus der Liste, etwa ab Galaxy Watch 6 und Pixel Watch 2. Alle Apple-Watch-, Galaxy-Watch-, Pixel-Watch-, OnePlus- und TicWatch-Modelle im Überblick.
   og_title: Läuft Kortscore auf meiner Uhr?
 
 breadcrumb: Kompatible Uhren
@@ -12,18 +12,17 @@ llms: Kompatible Uhren
 title: Kompatible Uhren
 lead: >-
   Kortscore läuft auf jeder Apple Watch ab watchOS 26 mit einem iPhone und auf
-  jeder Uhr mit Wear OS 3 oder neuer mit einem Android-Handy ab Android 8. Das
-  sind alle Apple Watches ab der Series 6, die SE ab der zweiten Generation und
-  jede Ultra, jede Samsung Galaxy Watch seit 2021, jede Google Pixel Watch und
-  die aktuellen Uhren von OnePlus, Mobvoi und Xiaomi. Die Details stehen
-  unten.
+  den Wear-OS-Uhren aus der Liste unten mit einem Android-Handy ab Android 8.
+  Technisch braucht die Uhr Wear OS 3 oder neuer. Das sind alle Apple Watches ab
+  der Series 6, die SE ab der zweiten Generation und jede Ultra, die Samsung
+  Galaxy Watch ab der Watch 6, die Google Pixel Watch ab der Pixel Watch 2 und
+  die aktuellen Uhren von OnePlus, Mobvoi und Xiaomi. Die Details stehen unten.
 
 # Spaltenköpfe und Generationsangaben in den Tabellen.
 col:
   model: Modell
   year: Jahr
 generation:
-  first: 1. Gen.
   second: 2. Gen.
   third: 3. Gen.
 
@@ -32,7 +31,7 @@ version:
   body: >-
     <p>Auf der Wear-OS-Uhr unter <em>Einstellungen &gt; Info &gt; Softwareversion</em>,
     bei Samsung unter <em>Einstellungen &gt; Info zur Uhr &gt; Softwareinformationen</em>.
-    Steht dort Wear OS 3, 4, 5, 6 oder 7, läuft Kortscore.</p><p><strong>Auf der
+    Steht dort Wear OS 3 oder höher, passt die Systemversion.</p><p><strong>Auf der
     Apple Watch:</strong> <em>Einstellungen &gt; Allgemein &gt; Info &gt; Version</em>.
     Steht dort watchOS 26 oder höher, läuft Kortscore. Ältere Version auf einem
     Modell aus der Liste unten? Dann zuerst unter <em>Einstellungen &gt; Allgemein &gt;
@@ -47,17 +46,18 @@ apple:
     an bleibt.
 samsung:
   text: >-
-    Alle Galaxy Watches ab der Watch 4 laufen mit Wear OS. Die Watch 4 ist die
-    älteste Uhr, auf der Kortscore läuft. Galaxy Watch 3, Active 2 und älter
-    laufen mit Tizen und sind nicht kompatibel.
+    Kortscore läuft auf den Galaxy Watches ab der Watch 6, auch auf Ultra und
+    FE. Sie laufen alle mit Wear OS. Galaxy Watch 3, Active 2 und älter laufen
+    mit Tizen und sind nicht kompatibel.
 pixel:
-  text: Jede Pixel Watch läuft mit Wear OS und bekommt Updates direkt von Google, meist als erste.
+  text: Kortscore läuft auf den Pixel Watches ab der Pixel Watch 2. Sie laufen mit Wear OS und bekommen Updates direkt von Google, meist als erste.
 others:
   title: Weitere Hersteller
   text: >-
-    Diese Uhren haben wir nicht alle selbst in der Hand gehabt. Entscheidend ist
-    die Version: Mit Wear OS 3 oder neuer läuft Kortscore. Wenn bei dir etwas
-    nicht funktioniert, schreib uns an <a href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>.
+    Diese Uhren haben wir nicht alle selbst in der Hand gehabt. Technisch
+    braucht Kortscore Wear OS 3 oder neuer. Wenn bei dir etwas nicht
+    funktioniert, schreib uns an <a
+    href="mailto:swordistudios@gmail.com">swordistudios@gmail.com</a>.
 
 unsupported:
   title: Was nicht geht
@@ -85,9 +85,9 @@ faq:
   questions:
     - q: Meine Uhr steht nicht in der Liste.
       a: >-
-        Entscheidend ist nur die Systemversion: watchOS 26 oder Wear OS 3,
-        jeweils oder neuer, dann läuft Kortscore. Wie du sie findest,
-        steht oben.
+        Technisch braucht Kortscore watchOS 26 oder Wear OS 3, jeweils oder
+        neuer. Wie du deine Version findest, steht oben. Die Tabellen nennen die
+        Modelle, auf denen Kortscore läuft.
     - q: Reicht eine LTE-Uhr ohne Handy?
       a: >-
         Zum Zählen ja, die Uhr braucht dafür keine Verbindung. Für den

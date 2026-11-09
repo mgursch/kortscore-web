@@ -96,10 +96,11 @@ faq:
       a: >-
         Ogni Apple Watch con watchOS 26 o successivo, quindi Series 6, SE dalla
         seconda generazione, Ultra e modelli più recenti, abbinato a un iPhone.
-        E ogni orologio con Wear OS 3 o successivo, quindi Samsung Galaxy Watch
-        dal Watch 4 in poi, Google Pixel Watch e altri, abbinato a un telefono
-        Android con Android 8 o successivo. L’elenco completo dei modelli è
-        nella <a href="{url:compatible}">pagina sulla compatibilità</a>.
+        E gli orologi Wear OS (Wear OS 3 o successivo), per esempio Samsung
+        Galaxy Watch dal Watch 6 in poi, Google Pixel Watch dal Pixel Watch 2 in
+        poi e altri, abbinati a un telefono Android con Android 8 o successivo.
+        L’elenco completo dei modelli è nella <a href="{url:compatible}">pagina
+        sulla compatibilità</a>.
     - q: Kortscore segue le vere regole, tie-break e NoAd compresi?
       a: >-
         Sì. Vantaggio o NoAd, set a 6 o a 4 game, tie-break e super tie-break,

@@ -96,10 +96,11 @@ faq:
     - q: Welche Uhren funktionieren mit Kortscore?
       a: >-
         Jede Apple Watch ab watchOS 26, also Series 6, SE ab der zweiten
-        Generation, Ultra und neuer, mit einem iPhone. Und jede Uhr mit Wear OS 3
-        oder neuer, also Samsung Galaxy Watch ab der Watch 4, Google Pixel Watch
-        und andere, mit einem Android-Handy ab Android 8. Die ganze Modellliste
-        steht auf der <a href="{url:compatible}">Kompatibilitätsseite</a>.
+        Generation, Ultra und neuer, mit einem iPhone. Und Wear-OS-Uhren (ab
+        Wear OS 3), zum Beispiel Samsung Galaxy Watch ab der Watch 6, Google
+        Pixel Watch ab der Pixel Watch 2 und andere, mit einem Android-Handy ab
+        Android 8. Die ganze Modellliste steht auf der <a
+        href="{url:compatible}">Kompatibilitätsseite</a>.
     - q: Zählt Kortscore nach echten Regeln, auch mit Tiebreak und NoAd?
       a: >-
         Ja. Vorteil oder NoAd, Sätze bis 6 oder bis 4, Tiebreak und

@@ -3,7 +3,7 @@
 
 meta:
   title: Quale orologio per Kortscore? Apple Watch e Wear OS consigliati per tennis e padel
-  description: Kortscore funziona su ogni Apple Watch con watchOS 26 e su ogni orologio Wear OS 3. Quattro modelli a confronto che non deludono sul campo da tennis e da padel.
+  description: Kortscore funziona su ogni Apple Watch con watchOS 26 e su orologi Wear OS come Galaxy Watch e Pixel Watch. Quattro modelli a confronto che non deludono sul campo da tennis e da padel.
   og_title: Quattro orologi per Kortscore
 
 # Name im Breadcrumb-JSON-LD und Zeile in llms.txt.
@@ -12,7 +12,7 @@ llms: Orologi consigliati
 
 title: Quattro orologi per Kortscore
 lead: >-
-  Kortscore funziona su ogni orologio Wear OS 3 e sull’Apple Watch. Se devi
+  Kortscore funziona sull’Apple Watch e su orologi Wear OS come Galaxy Watch e Pixel Watch. Se devi
   ancora sceglierne uno, in campo questi quattro fanno il loro lavoro.
 compat_link: Hai già un orologio? Vedi l’elenco di compatibilità
 

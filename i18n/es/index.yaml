@@ -94,13 +94,13 @@ faq:
         el wifi o el LTE del reloj no basta.
     - q: ¿Qué relojes funcionan con Kortscore?
       a: >-
-        Cualquier Apple Watch con watchOS 26 o posterior, es decir, Series 6,
-        SE a partir de la segunda generación, Ultra y modelos más recientes,
-        enlazado con un iPhone. Y cualquier reloj con Wear OS 3 o posterior, es
-        decir, Samsung Galaxy Watch a partir del Watch 4, Google Pixel Watch y
-        otros, enlazado con un móvil con Android 8 o posterior. La lista
-        completa de modelos está en la <a href="{url:compatible}">página de
-        compatibilidad</a>.
+        Cualquier Apple Watch con watchOS 26 o posterior, es decir, Series 6, SE
+        a partir de la segunda generación, Ultra y modelos más recientes,
+        enlazado con un iPhone. Y los relojes Wear OS (Wear OS 3 o posterior),
+        por ejemplo Samsung Galaxy Watch a partir del Watch 6, Google Pixel
+        Watch a partir del Pixel Watch 2 y otros, enlazados con un móvil con
+        Android 8 o posterior. La lista completa de modelos está en la <a
+        href="{url:compatible}">página de compatibilidad</a>.
     - q: ¿Sigue Kortscore las reglas reales, con tie-break y NoAd?
       a: >-
         Sí. Ventaja o NoAd, sets a 6 o a 4 juegos, tie-break y súper tie-break,
