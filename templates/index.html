@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% from "partials/faq.html" import faq_list %}
+{# Deutsch: eine Frage zu Kortform mehr, aus i18n/de/itn.yaml (promo.faq). Sichtbar und im JSON-LD dieselbe Liste. #}
+{% set faq_items = t.faq.questions + ([page_text('itn').promo.faq] if lang == 'de' else []) %}
 {% from "partials/scoreboard.html" import scoreboard %}
 
 {% block head %}
@@ -9,7 +11,7 @@
 
 {% block jsonld %}
 <!-- FAQPage: generated from the same list as the questions further down. -->
-{{ jsonld(faq_page(t.faq.questions)) }}
+{{ jsonld(faq_page(faq_items)) }}
 <!-- Structured data for search and AI engines: what Kortscore is, who makes it,
      where to get it. Texts come from i18n/<lang>/index.yaml (app). -->
 {{ jsonld({"@graph": [
@@ -229,7 +231,7 @@
      the head comes from the same list (faq.questions). -->
 <section class="faq shell" id="faq" data-reveal>
   <h2 class="h2">{{ t.faq.title }}</h2>
-{{ faq_list(t.faq.questions)|indent(2, first=True) }}
+{{ faq_list(faq_items)|indent(2, first=True) }}
 </section>
 
 <!-- ── Close ────────────────────────────────────────────────────────────────

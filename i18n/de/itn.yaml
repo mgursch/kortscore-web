@@ -24,6 +24,40 @@ teaser:
     ITN nach einem Sieg oder einer Niederlage steht, im Einzel und im Doppel.
   link: Zum ITN-Rechner
 
+# Dezente Werbung für Kortform (kortform.at) auf den anderen deutschen Seiten.
+# Nur auf Deutsch, weil Kortform auf der österreichischen ÖTV-Liste beruht: die
+# Texte stehen deshalb hier und nicht in index/tennis/clubs/common.yaml, die
+# in allen Sprachen dieselben Schlüssel brauchen. Gerendert wird jeder Block
+# nur bei lang == 'de'. Links in den Texten: target="_blank", rel="noopener"
+# und eigenes data-umami-event je Platz (kortform-faq, -regeln, -verein, -footer).
+promo:
+  url: https://kortform.at
+  # Startseite: eine Frage mehr am Ende des FAQ, auch im FAQPage-JSON-LD
+  # (templates/index.html).
+  faq:
+    q: Zählt Kortscore auch meinen ITN?
+    a: >-
+      Kortscore zählt das Match auf der Uhr. Deinen ITN und deine Matches
+      verfolgst du mit <a class="kflink" href="https://kortform.at"
+      target="_blank" rel="noopener" data-umami-event="kortform-faq">Kortform</a>,
+      unserer zweiten App, dazu den ITN der Spieler*innen, denen du folgst.
+  # Tennis-Zählweise, unter dem Hinweis auf den ITN-Rechner (partials/rules.html).
+  rules: >-
+    Deinen ITN im Verlauf der Saison verfolgst du mit <a class="kflink"
+    href="https://kortform.at" target="_blank" rel="noopener"
+    data-umami-event="kortform-regeln">Kortform</a>.
+  # Vereine, unter dem Angebot (templates/clubs.html). Nach kortform.at:
+  # Abfrage per Link, Aufstellung nach ITN, Siegchance je Position.
+  club:
+    title: Du führst eine Mannschaft?
+    text: >-
+      Mit Kortform fragst du die Verfügbarkeit per Link ab, stellst Einzel und
+      Doppel nach ITN auf und siehst die Siegchance je Position.
+    link: Mehr zu Kortform
+  # Footer jeder deutschen Seite außer dem ITN-Rechner (templates/base.html),
+  # dessen Kopf und Seite schon Kortform zeigen.
+  footer: "Auch von uns: Kortform"
+
 # Kopf der Seite (templates/itn.html): Kortform neben der Wortmarke und als
 # Aktion rechts. Die Aktion führt auf kortform.at, das den App-Store-Link
 # anbietet und auch Android-Besucher:innen weiterhilft.

@@ -200,6 +200,15 @@ gtag('event', 'conversion', {
       <a href="{{ legal('terms') }}">{{ c.footer.terms }}</a>
       <a href="https://www.swordistudios.com" target="_blank" rel="noopener">swordi.studios</a>
     </nav>
+{# Deutsch, außer im ITN-Rechner (Kopf und Seite zeigen dort schon Kortform): #}
+{% if lang == 'de' and page != 'itn' %}
+    <p class="footer__kf">
+      <a href="{{ page_text('itn').promo.url }}" target="_blank" rel="noopener" data-umami-event="kortform-footer">
+        <img src="{{ static('assets/kortform-icon.webp') }}" alt="" width="24" height="24" loading="lazy" decoding="async">
+        <span>{{ page_text('itn').promo.footer }}</span>
+      </a>
+    </p>
+{% endif %}
     <p class="footer__claim">{{ c.footer.claim }}</p>
     <svg class="footer__mark" viewBox="0 0 1001 172" role="img" aria-label="Kortscore">
       <text x="0" y="169" font-size="240" textLength="1001" lengthAdjust="spacing">KORTSCORE</text>

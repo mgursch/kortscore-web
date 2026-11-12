@@ -790,10 +790,29 @@ a:hover { color: var(--accent-text); }
 }
 .footer__links a:hover { color: var(--text); text-decoration-color: currentColor; }
 .footer__claim { font-size: var(--step-0); color: var(--text-secondary); }
+/* Kortform, nur auf den deutschen Seiten: eine leise Zeile unter den Links. */
+.footer__kf { font-size: var(--step-0); }
+.footer__kf a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.footer__kf img { border-radius: 22%; }
+.footer__kf span {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, currentColor 40%, transparent);
+  text-underline-offset: 0.22em;
+}
+.footer__kf a:hover { color: var(--text); }
+.footer__kf a:hover span { text-decoration-color: currentColor; }
 /* Unterseiten mit Lesespalte: Links und Satz in derselben Spalte wie der
    Inhalt, die Wortmarke bleibt über die volle Breite. So hat die Seite eine
    linke Kante und links wie rechts denselben Rand. */
 .footer--column .footer__links,
+.footer--column .footer__kf,
 .footer--column .footer__claim {
   width: 100%;
   max-width: var(--column);
@@ -1065,6 +1084,26 @@ a:hover { color: var(--accent-text); }
 .clubflyer__size { margin-left: 6px; font-size: var(--step-0); color: var(--text-secondary); }
 
 .clubask .btn { margin-top: 2px; }
+
+/* Kortform für Mannschaftsführer*innen, nach dem Vereinsangebot: Icon und
+   Text nebeneinander, nur ein Textlink als Aktion (Grün bleibt der Anfrage). */
+.kfclub { display: flex; gap: 16px; align-items: flex-start; }
+.kfclub__icon { flex: none; border-radius: 22%; }
+.kfclub h2 { margin: 0 0 10px; }
+.kfclub > div { min-width: 0; }
+.kfclub .textlink { margin-top: 4px; }
+
+/* Link im Satz (Kortform in FAQ und Regeln): unterstrichen, das Polster macht
+   die Trefferfläche 44px hoch, ohne die Zeilenhöhe zu ändern. */
+.kflink {
+  padding-block: 13px;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+.kflink:hover { color: var(--accent-text); text-decoration-thickness: 2px; }
 .clubask__alt { margin: 12px 0 0; font-size: var(--step-0); color: var(--text-secondary); }
 
 /* ═══ Regelseiten (Tennis, Padel) ═══════════════════════════════════════════

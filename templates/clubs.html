@@ -84,6 +84,20 @@
       <p class="clubask__alt">{{ t.ask.alt }} <a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a></p>
     </div>
   </div>
+{% if lang == 'de' %}
+{% set kf = page_text('itn').promo %}
+  <!-- Quiet pointer to Kortform (German only, copy in i18n/de/itn.yaml): team
+       captains manage their team there. A text link, not a button, green stays
+       with the request above. -->
+  <section class="compat__section kfclub" data-reveal>
+    <img class="kfclub__icon" src="{{ static('assets/kortform-icon.webp') }}" alt="" width="44" height="44" loading="lazy" decoding="async">
+    <div>
+      <h2>{{ kf.club.title }}</h2>
+      <p>{{ kf.club.text }}</p>
+      <a class="textlink" href="{{ kf.url }}" target="_blank" rel="noopener" data-umami-event="kortform-verein">{{ kf.club.link }}</a>
+    </div>
+  </section>
+{% endif %}
 </div>
 </main>
 {% endblock %}
