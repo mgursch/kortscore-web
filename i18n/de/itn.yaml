@@ -37,8 +37,8 @@ promo:
   faq:
     q: Zählt Kortscore auch meinen ITN?
     a: >-
-      Kortscore zählt das Match auf der Uhr. Deinen ITN und deine Matches
-      verfolgst du mit <a class="kflink" href="https://kortform.at"
+      Kortscore zählt das Match auf der Uhr. Deinen ITN aus der ÖTV-Liste und
+      deine Matches verfolgst du mit <a class="kflink" href="https://kortform.at"
       target="_blank" rel="noopener" data-umami-event="kortform-faq">Kortform</a>,
       unserer zweiten App, dazu den ITN der Spieler*innen, denen du folgst.
   # Tennis-Zählweise, unter dem Hinweis auf den ITN-Rechner (partials/rules.html).
@@ -60,8 +60,8 @@ promo:
     Du bist Mannschaftsführer*in? Dann könnte <a class="kflink"
     href="https://kortform.at" target="_blank" rel="noopener"
     data-umami-event="kortform-ticker">Kortform</a> für dich spannend sein.
-  # Footer jeder deutschen Seite außer dem ITN-Rechner (templates/base.html),
-  # dessen Kopf und Seite schon Kortform zeigen.
+  # Footer der deutschen Seiten außer ITN-Rechner und Vereinsseite
+  # (templates/base.html). Dort zeigen Kopf bzw. Angebot schon Kortform.
   footer: "Auch von uns: Kortform"
 
 # Kopf der Seite (templates/itn.html): Kortform neben der Wortmarke und als

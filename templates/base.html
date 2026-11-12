@@ -200,8 +200,8 @@ gtag('event', 'conversion', {
       <a href="{{ legal('terms') }}">{{ c.footer.terms }}</a>
       <a href="https://www.swordistudios.com" target="_blank" rel="noopener">swordi.studios</a>
     </nav>
-{# Deutsch, außer im ITN-Rechner (Kopf und Seite zeigen dort schon Kortform): #}
-{% if lang == 'de' and page != 'itn' %}
+{# Deutsch, außer im ITN-Rechner (Kopf und Seite zeigen dort schon Kortform) und auf den Vereinen (Angebot dort): #}
+{% if lang == 'de' and page not in ('itn', 'clubs') %}
     <p class="footer__kf">
       <a href="{{ page_text('itn').promo.url }}" target="_blank" rel="noopener" data-umami-event="kortform-footer">
         <img src="{{ static('assets/kortform-icon.webp') }}" alt="" width="24" height="24" loading="lazy" decoding="async">

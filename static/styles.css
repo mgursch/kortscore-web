@@ -558,10 +558,18 @@ a:hover { color: var(--accent-text); }
 .clubs__flyer { display: block; line-height: 0; transition: opacity 0.18s ease; }
 .clubs__flyer:hover { opacity: 0.88; }
 .clubs__flyer img { width: 100%; height: auto; }
-/* Letzte Zeile im Feld, nur deutsch: leise, eine Stufe kleiner, gedämpft.
-   Der Link bekommt per .kflink 44px Trefferhöhe, hier hell und unterstrichen. */
+/* Letzte Zeile im Feld, nur deutsch: leise, eine Stufe kleiner, gedämpft. */
 .clubs__kf { max-width: 52ch; font-size: var(--step-0); color: var(--text-on-dark-muted); }
-.clubs .clubs__kf .kflink { color: var(--text-on-dark); }
+/* Der Link ist ein Inline-Block mit 44px Höhe: Er vergrößert die Zeilenbox, statt
+   in die Nachbarzeilen zu ragen (ein Polster am Inline-Link würde das tun). Der
+   Fokusring liegt innen, damit er nicht in die Zeile darüber reicht. */
+.clubs .clubs__kf .kflink {
+  display: inline-block;
+  min-height: 44px;
+  line-height: 44px;
+  color: var(--text-on-dark);
+}
+.clubs .clubs__kf .kflink:focus-visible { outline-offset: -3px; }
 .clubs .clubs__kf .kflink:hover { color: var(--accent); }
 
 /* Ticker-Ansicht im Browser, als Beispiel mit erfundenen Namen. Eigene
@@ -1098,11 +1106,9 @@ a:hover { color: var(--accent-text); }
 .kfclub > div { min-width: 0; }
 .kfclub .textlink { margin-top: 4px; }
 
-/* Link im Satz (Kortform in FAQ und Regeln): unterstrichen, das Polster macht
-   die Trefferfläche 44px hoch, ohne die Zeilenhöhe zu ändern. */
+/* Link im Satz (Kortform in FAQ und Regeln): unterstrichen, ohne Polster,
+   damit er im Zeilenfluss bleibt wie die anderen Textlinks. */
 .kflink {
-  padding-block: 13px;
-  font-weight: 600;
   color: var(--text);
   text-decoration: underline;
   text-decoration-thickness: 1px;
