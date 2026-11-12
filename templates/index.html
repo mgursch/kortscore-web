@@ -172,6 +172,12 @@
         <a class="textlink" href="{{ url('clubs') }}">{{ t.clubs.offer_link }}</a>
       </div>
     </div>
+{% if lang == 'de' %}
+
+    <!-- Quiet last line (German only, copy in i18n/de/itn.yaml, promo.ticker):
+         a pointer for team captains, muted text with one link, no button. -->
+    <p class="clubs__kf">{{ page_text('itn').promo.ticker }}</p>
+{% endif %}
   </div>
 </section>
 

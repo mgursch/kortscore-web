@@ -558,6 +558,11 @@ a:hover { color: var(--accent-text); }
 .clubs__flyer { display: block; line-height: 0; transition: opacity 0.18s ease; }
 .clubs__flyer:hover { opacity: 0.88; }
 .clubs__flyer img { width: 100%; height: auto; }
+/* Letzte Zeile im Feld, nur deutsch: leise, eine Stufe kleiner, gedämpft.
+   Der Link bekommt per .kflink 44px Trefferhöhe, hier hell und unterstrichen. */
+.clubs__kf { max-width: 52ch; font-size: var(--step-0); color: var(--text-on-dark-muted); }
+.clubs .clubs__kf .kflink { color: var(--text-on-dark); }
+.clubs .clubs__kf .kflink:hover { color: var(--accent); }
 
 /* Ticker-Ansicht im Browser, als Beispiel mit erfundenen Namen. Eigene
    Flächen wie in der echten Ansicht; Führung in heller Schrift, der Rest
@@ -1258,6 +1263,7 @@ a:hover { color: var(--accent-text); }
   }
   .clubs__copy { grid-column: 1 / span 5; }
   .clubs__offer { grid-column: 1 / span 5; grid-template-columns: 180px minmax(0, 1fr); }
+  .clubs__kf { grid-column: 1 / span 5; }
   .ticker { grid-column: 7 / -1; grid-row: 1 / span 2; align-self: start; padding: 10px; }
   .ticker__match { padding: 16px 18px; }
   .ticker__row { grid-template-columns: minmax(0, 1fr) 1.6em 1.6em 2.6em; }

@@ -29,7 +29,7 @@ teaser:
 # Texte stehen deshalb hier und nicht in index/tennis/clubs/common.yaml, die
 # in allen Sprachen dieselben Schlüssel brauchen. Gerendert wird jeder Block
 # nur bei lang == 'de'. Links in den Texten: target="_blank", rel="noopener"
-# und eigenes data-umami-event je Platz (kortform-faq, -regeln, -verein, -footer).
+# und eigenes data-umami-event je Platz (kortform-faq, -regeln, -verein, -ticker, -footer).
 promo:
   url: https://kortform.at
   # Startseite: eine Frage mehr am Ende des FAQ, auch im FAQPage-JSON-LD
@@ -54,6 +54,12 @@ promo:
       Mit Kortform fragst du die Verfügbarkeit per Link ab, stellst Einzel und
       Doppel nach ITN auf und siehst die Siegchance je Position.
     link: Mehr zu Kortform
+  # Startseite, letzte Zeile im dunklen Vereinsfeld, nach Ticker und Flyer
+  # (templates/index.html, #verein).
+  ticker: >-
+    Du bist Mannschaftsführer*in? Dann könnte <a class="kflink"
+    href="https://kortform.at" target="_blank" rel="noopener"
+    data-umami-event="kortform-ticker">Kortform</a> für dich spannend sein.
   # Footer jeder deutschen Seite außer dem ITN-Rechner (templates/base.html),
   # dessen Kopf und Seite schon Kortform zeigen.
   footer: "Auch von uns: Kortform"
