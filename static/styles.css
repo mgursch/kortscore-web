@@ -558,6 +558,19 @@ a:hover { color: var(--accent-text); }
 .clubs__flyer { display: block; line-height: 0; transition: opacity 0.18s ease; }
 .clubs__flyer:hover { opacity: 0.88; }
 .clubs__flyer img { width: 100%; height: auto; }
+/* Letzte Zeile im Feld, nur deutsch: leise, eine Stufe kleiner, gedämpft. */
+.clubs__kf { max-width: 52ch; font-size: var(--step-0); color: var(--text-on-dark-muted); }
+/* Der Link ist ein Inline-Block mit 44px Höhe: Er vergrößert die Zeilenbox, statt
+   in die Nachbarzeilen zu ragen (ein Polster am Inline-Link würde das tun). Der
+   Fokusring liegt innen, damit er nicht in die Zeile darüber reicht. */
+.clubs .clubs__kf .kflink {
+  display: inline-block;
+  min-height: 44px;
+  line-height: 44px;
+  color: var(--text-on-dark);
+}
+.clubs .clubs__kf .kflink:focus-visible { outline-offset: -3px; }
+.clubs .clubs__kf .kflink:hover { color: var(--accent); }
 
 /* Ticker-Ansicht im Browser, als Beispiel mit erfundenen Namen. Eigene
    Flächen wie in der echten Ansicht; Führung in heller Schrift, der Rest
@@ -790,10 +803,29 @@ a:hover { color: var(--accent-text); }
 }
 .footer__links a:hover { color: var(--text); text-decoration-color: currentColor; }
 .footer__claim { font-size: var(--step-0); color: var(--text-secondary); }
+/* Kortform, nur auf den deutschen Seiten: eine leise Zeile unter den Links. */
+.footer__kf { font-size: var(--step-0); }
+.footer__kf a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.footer__kf img { border-radius: 22%; }
+.footer__kf span {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, currentColor 40%, transparent);
+  text-underline-offset: 0.22em;
+}
+.footer__kf a:hover { color: var(--text); }
+.footer__kf a:hover span { text-decoration-color: currentColor; }
 /* Unterseiten mit Lesespalte: Links und Satz in derselben Spalte wie der
    Inhalt, die Wortmarke bleibt über die volle Breite. So hat die Seite eine
    linke Kante und links wie rechts denselben Rand. */
 .footer--column .footer__links,
+.footer--column .footer__kf,
 .footer--column .footer__claim {
   width: 100%;
   max-width: var(--column);
@@ -1065,6 +1097,24 @@ a:hover { color: var(--accent-text); }
 .clubflyer__size { margin-left: 6px; font-size: var(--step-0); color: var(--text-secondary); }
 
 .clubask .btn { margin-top: 2px; }
+
+/* Kortform für Mannschaftsführer*innen, nach dem Vereinsangebot: Icon und
+   Text nebeneinander, nur ein Textlink als Aktion (Grün bleibt der Anfrage). */
+.kfclub { display: flex; gap: 16px; align-items: flex-start; }
+.kfclub__icon { flex: none; border-radius: 22%; }
+.kfclub h2 { margin: 0 0 10px; }
+.kfclub > div { min-width: 0; }
+.kfclub .textlink { margin-top: 4px; }
+
+/* Link im Satz (Kortform in FAQ und Regeln): unterstrichen, ohne Polster,
+   damit er im Zeilenfluss bleibt wie die anderen Textlinks. */
+.kflink {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+.kflink:hover { color: var(--accent-text); text-decoration-thickness: 2px; }
 .clubask__alt { margin: 12px 0 0; font-size: var(--step-0); color: var(--text-secondary); }
 
 /* ═══ Regelseiten (Tennis, Padel) ═══════════════════════════════════════════
@@ -1219,6 +1269,7 @@ a:hover { color: var(--accent-text); }
   }
   .clubs__copy { grid-column: 1 / span 5; }
   .clubs__offer { grid-column: 1 / span 5; grid-template-columns: 180px minmax(0, 1fr); }
+  .clubs__kf { grid-column: 1 / span 5; }
   .ticker { grid-column: 7 / -1; grid-row: 1 / span 2; align-self: start; padding: 10px; }
   .ticker__match { padding: 16px 18px; }
   .ticker__row { grid-template-columns: minmax(0, 1fr) 1.6em 1.6em 2.6em; }
