@@ -85,10 +85,33 @@
     </picture>
   </div>
   <div class="hero__board" data-ui>
-{{ scoreboard(sb, sport="tennis", points=[3, 1], games=[0, 0], id="hero", reset="zero")|indent(4, first=True) }}
+{# Padel zuerst (site.yaml: padel_first): Tafel im Padel-Modus mit Golden Point. #}
+{{ scoreboard(sb, sport="padel" if padel_first else "tennis", points=[3, 1], games=[0, 0], golden=padel_first, id="hero", reset="zero")|indent(4, first=True) }}
   </div>
 </section>
 
+{# Die Reihenfolge der Sektionen steht in site.yaml (padel_first): bei es und it
+   folgt der Padel-Abschnitt direkt auf den Hero, sonst auf den Live-Ticker. #}
+{% set padel_section %}
+<!-- ── Padel ────────────────────────────────────────────────────────────────
+     A statement band instead of a second board: the score where golden point
+     decides, in display type across the width, then one sentence. The number
+     is a picture of the moment, so it stays out of the reading order. -->
+<section class="padel" id="padel">
+  <div class="shell padel__inner" data-reveal>
+    <p class="padel__score" aria-hidden="true">40:40</p>
+    <h2 class="h2 padel__title">{{ t.padel.title }}</h2>
+    <div class="padel__copy">
+      <p class="padel__lead">{{ t.padel.lead }}</p>
+      <a class="textlink" href="{{ url('padel') }}">{{ t.padel.link }}</a>
+    </div>
+  </div>
+</section>
+{% endset %}
+
+{% if padel_first %}
+{{ padel_section }}
+{% endif %}
 <!-- ── Tap code ─────────────────────────────────────────────────────────────
      The four tap counts as one list in display type, the Apple Watch beside
      the intro. A definition list: the count is the term, the action its
@@ -181,21 +204,9 @@
   </div>
 </section>
 
-<!-- ── Padel ────────────────────────────────────────────────────────────────
-     A statement band instead of a second board: the score where golden point
-     decides, in display type across the width, then one sentence. The number
-     is a picture of the moment, so it stays out of the reading order. -->
-<section class="padel" id="padel">
-  <div class="shell padel__inner" data-reveal>
-    <p class="padel__score" aria-hidden="true">40:40</p>
-    <h2 class="h2 padel__title">{{ t.padel.title }}</h2>
-    <div class="padel__copy">
-      <p class="padel__lead">{{ t.padel.lead }}</p>
-      <a class="textlink" href="{{ url('padel') }}">{{ t.padel.link }}</a>
-    </div>
-  </div>
-</section>
-
+{% if not padel_first %}
+{{ padel_section }}
+{% endif %}
 <!-- ── Watches ──────────────────────────────────────────────────────────────
      Our own photos, large and square, as a plain list. The recommendations
      with their affiliate links live on their own page. -->

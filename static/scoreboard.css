@@ -301,6 +301,56 @@
 
 .sb__toggle-name { font-weight: 600; color: var(--sb-ink); }
 
+/* Regelwahl bei 40:40 (Padel): drei Pillen in einer Zeile, die Auswahl ist
+   gefüllt. Das Radio bleibt für Tastatur und Screenreader im Baum, nur
+   unsichtbar; der Fokus sitzt auf der Pille. */
+.sb__rule {
+  flex: 1 1 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.sb__rule-legend {
+  float: left;
+  width: 100%;
+  margin: 0 0 2px;
+  padding: 0;
+  font-size: 14px;
+  color: var(--sb-ink-soft);
+}
+.sb__chip { position: relative; display: inline-flex; }
+.sb__chip input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.sb__chip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--sb-tile-up);
+  color: var(--sb-ink);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  pointer-events: none;
+  transition: background-color 180ms ease;
+}
+.sb__chip:hover span { background: var(--sb-tile-hi); }
+.sb__chip input:checked + span { background: var(--accent); color: var(--on-accent); }
+.sb__chip input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 3px; }
+
 /* Fokus: auf dem dunklen Feld trägt das helle Grün, nicht --accent-text. Die
    Rundung folgt dem Element, styles.css setzt sonst 4px. */
 .sb :focus-visible {

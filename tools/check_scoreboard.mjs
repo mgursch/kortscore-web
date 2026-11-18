@@ -34,7 +34,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const source = readFileSync(join(ROOT, 'static/scoreboard.js'), 'utf8');
 const sb = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
 const {
-  newScore, scorePoint, undoPoint, flipPoint, setGolden, resetScore, scoreView,
+  newScore, scorePoint, undoPoint, flipPoint, setGolden, setRule, resetScore, scoreView,
   inTiebreak, canUndo, tapAction, createTapGrouper, TAP_WINDOW_MS,
 } = sb;
 
@@ -203,6 +203,33 @@ eq(shown(resetScore(play(newScore({ points: [3, 3] }), '1112'), { points: [3, 3]
 eq(resetScore(play(newScore({ points: [5, 4], games: [6, 6] }), '11'), { points: [5, 4], games: [6, 6] }).games, [6, 6], 'Neu starten zurück in den Tiebreak');
 eq(shown(resetScore(play(newScore({ points: [5, 4], games: [6, 6] }), '1'), { points: [5, 4], games: [6, 6] })), '5:4', 'Neu starten zurück auf Tiebreak 5:4');
 eq(resetScore(setGolden(newScore({ points: [3, 3], golden: true }), false), { points: [3, 3], golden: true }).golden, false, 'Neu starten an den Start behält den Schalter');
+
+// ── Star Point (Padel) ───────────────────────────────────────────────────
+// 40:40, Vorteil ich, Gegner gleicht aus (erster verlorener Vorteil), Vorteil
+// Gegner, ich gleiche aus (zweiter): jetzt entscheidet der nächste Punkt.
+s = play(newScore({ points: [3, 3], star: true }), '1');
+eq([shown(s), s.lost, Boolean(scoreView(s).star)], ['A:40', 0, false], 'Star Point: erster Vorteil');
+s = play(s, '2');
+eq([shown(s), s.lost, Boolean(scoreView(s).star)], ['40:40', 1, false], 'Star Point: erster Vorteil verloren, noch kein Star Point');
+s = play(s, '21');
+eq([shown(s), s.lost, scoreView(s).star], ['40:40', 2, true], 'Star Point: zweiter Vorteil verloren, Star Point steht an');
+eq(scorePoint(s, 0).games, [1, 0], 'Star Point entscheidet für mich');
+eq(scorePoint(s, 1).games, [0, 1], 'Star Point entscheidet für den Gegner');
+eq(scorePoint(s, 0).lost, 0, 'nach dem Spiel beginnt die Zählung neu');
+eq(shown(undoPoint(scorePoint(s, 0))), '40:40', 'Rückgängig nach dem Star Point');
+eq(undoPoint(scorePoint(s, 0)).lost, 2, 'Rückgängig stellt die verlorenen Vorteile wieder her');
+s = play(newScore({ points: [3, 3], star: true }), '1');
+eq(scorePoint(s, 0).games, [1, 0], 'Star Point: ein Vorteil gewonnen, Spiel aus');
+eq(play(newScore({ points: [3, 3] }), '1221').lost, 2, 'ohne Star Point zählt der Verlust trotzdem mit');
+eq(scorePoint(play(newScore({ points: [3, 3] }), '1221'), 0).games, [0, 0], 'ohne Star Point entscheidet kein einzelner Punkt');
+eq(scoreView(play(newScore({ points: [3, 3], golden: true }), '')).star, false, 'Golden Point ist kein Star Point');
+s = setRule(newScore(), 'star');
+eq([s.golden, s.star], [false, true], 'setRule star');
+eq([setRule(s, 'golden').golden, setRule(s, 'golden').star], [true, false], 'setRule golden schaltet Star aus');
+eq([setRule(s, 'advantage').golden, setRule(s, 'advantage').star], [false, false], 'setRule advantage');
+eq(resetScore(s).star, true, 'Neu starten behält Star Point');
+s = play(newScore({ games: [6, 6], star: true }), '12121212');
+eq(inTiebreak(s) && s.lost, 0, 'kein Star Point im Tiebreak');
 
 // ── Tippgruppen ──────────────────────────────────────────────────────────
 eq(TAP_WINDOW_MS, 600, 'Zeitfenster wie die Uhr (MULTI_TAP_WINDOW_MS)');

@@ -26,6 +26,11 @@ golden:
   padel: Punto d’oro
 golden_note: Sul 40:40 decide il punto successivo
 
+rule_label: Regola sul 40-40
+rule_advantage: Vantaggi
+rule_star: Star Point
+star_deciding: "★ Star Point: decide il punto successivo"
+
 deuce: Parità
 deciding: "{name}: decide il punto successivo"
 adv_me: Vantaggio mio

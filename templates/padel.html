@@ -1,2 +1,48 @@
 {% extends "partials/rules.html" %}
-{# Padel-Zählweise: alles Weitere in partials/rules.html und i18n/<lang>/padel.yaml. #}
+{% from "partials/scoreboard.html" import scoreboard %}
+{# Padel: Landingpage und Regelseite in einem. Kopf mit der Tafel zum
+   Ausprobieren und den Store-Buttons, dann die Funktionen der Padel-Zählung,
+   danach die Regeln, das FAQ und der Schluss aus partials/rules.html. Alle
+   Texte in i18n/<lang>/padel.yaml. #}
+
+{% block rules_head %}
+  <!-- ── Hero ────────────────────────────────────────────────────────────────
+       Padel board in star-point mode, starting at 40:40: win the advantage and
+       lose it twice, and the "★ Star Point" label appears. The rule group below
+       the board changes the rule. Without JavaScript the fixed score stays. -->
+  <header class="rulebook__head">
+    <a class="back" href="{{ url('index') }}">{{ c.back_home }}</a>
+    <h1 class="rulebook__title">{{ t.hero.title }}</h1>
+    <p class="lead">{{ t.hero.lead }}</p>
+    <div class="rulebook__board rulebook__board--hero" data-ui>
+{{ scoreboard(sb, sport="padel", points=[3, 3], games=[2, 1], star=true, controls=["pad", "buttons", "reset", "rule"], id="hero")|indent(6, first=True) }}
+    </div>
+    <p class="rulebook__note">{{ t.hero.board_note }}</p>
+{% filter indent(4, first=True) %}{% include "partials/storebadges.html" %}{% endfilter %}
+  </header>
+
+{% endblock %}
+
+{% block rules_intro %}
+    <!-- ── Features ──────────────────────────────────────────────────────────
+         What the app does for padel, one short block each. -->
+    <section class="rulebook__sec" data-reveal>
+      <h2 class="rulebook__h">{{ t.features.title }}</h2>
+      <ul class="rulebook__features">
+{% for item in t.features.blocks %}
+        <li class="rulebook__feature">
+          <h3 class="rulebook__feature-title">{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </li>
+{% endfor %}
+      </ul>
+    </section>
+
+    <!-- ── Rules ─────────────────────────────────────────────────────────────
+         The reference part: heading and introduction, then one section per rule. -->
+    <section class="rulebook__sec" data-reveal>
+      <h2 class="rulebook__h">{{ t.title }}</h2>
+      <p>{{ t.lead }}</p>
+    </section>
+
+{% endblock %}

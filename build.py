@@ -338,6 +338,7 @@ def page_context(site, langs, strings, paths, versions, pid, code):
     x_default = site["x_default"] if site["x_default"] in page["langs"] else None
     og_image = page.get("og_image") or lasset("og")
     return dict(
+        padel_first=code in site.get("padel_first", []),
         site=site, page=pid, P=page, lang=code, L=lang, languages=page_langs,
         other_languages=others, x_default=x_default, og_image=og_image,
         t=t, c=c, sb=sb, url=url, abs_url=abs_url, home=home,

@@ -1,33 +1,81 @@
-# Regelseite Padel. Gerüst in templates/partials/rules.html.
-# meta.title und meta.description stehen auch im Article-JSON-LD.
+# Padel: Landingpage und Regelseite. Gerüst in templates/padel.html und
+# templates/partials/rules.html. Aufbau: hero (Kopf mit Tafel), features
+# (Funktionen der App), dann title/lead und sections (die Regeln), faq, cta.
+# meta.title und meta.description stehen auch im Article- und
+# SoftwareApplication-JSON-LD. hero.app_name ist der alternateName der App.
 
 meta:
-  title: Wie zählt man beim Padel? Punkte, Golden Point, Sätze und Tiebreak erklärt
-  description: "Padel-Zählweise einfach erklärt: 15, 30, 40 wie im Tennis, Golden Point statt Vorteil, Doppel-Aufschlagreihenfolge, Sätze, Tiebreak und die üblichen Matchformate."
-  og_title: Wie zählt man beim Padel?
+  title: "Padel-Zähler und Regeln: Golden Point, Star Point, Sätze bis 4 und Super-Tiebreak"
+  description: "Padel mit einem Tipp auf der Apple Watch oder Wear-OS-Uhr zählen: Golden Point, Star Point oder Vorteil, Sätze bis 6 oder 4 Games, Super-Tiebreak und Partner-Statistik. Dazu die Padel-Zählweise einfach erklärt."
+  og_title: "Kortscore für Padel: Zählen am Handgelenk"
 
-breadcrumb: Padel-Zählweise
-llms: Wie zählt man beim Padel
+breadcrumb: "Padel-Zählweise"
+llms: "Padel: Zähler und Regeln (Golden Point, Star Point, Kurzsätze)"
 # Article-JSON-LD "about".
 about: Padel
 
-title: Zählweise im Padel
-lead: >-
-  Padel zählt wie Tennis: 15, 30, 40, Game, Satz. Der Unterschied ist der
-  Golden Point: Viele Matches spielen bei 40:40 einen entscheidenden Punkt
-  statt Vorteil. Dazu kommen die Aufschlagreihenfolge im Doppel und der
-  Aufschlag von unten.
+# Kopf: h1, Satz, Hinweis zur Tafel; app_name ist der alternateName im JSON-LD.
+hero:
+  title: "Padel zählen am Handgelenk"
+  lead: >-
+    Kortscore zählt dein Padelmatch mit einem Tipp pro Punkt auf der Apple
+    Watch oder Wear-OS-Uhr. Golden Point, Star Point oder Vorteil, Sätze bis
+    6 oder 4 Games, Super-Tiebreak: Stell es so ein, wie deine Liga spielt.
+  board_note: >-
+    Probier es mit der Star-Point-Regel: Hol dir den Vorteil und verliere
+    ihn zweimal, dann ist der nächste Punkt der Star Point. Wähle die Regel unter der Anzeige.
+  app_name: "Kortscore: Padel-Zähler"
 
-# Jeder Abschnitt: title und text (Liste von Absätzen). Mit demo (Name der
-# Tafel, siehe templates/partials/rules.html) und note steht darunter ein
-# Scoreboard zum Ausprobieren.
+# Funktionen der App für Padel, nur Produktbeschreibung (keine Termine).
+features:
+  title: "Was Kortscore für Padel kann"
+  blocks:
+    - title: "Zählen per Tipp auf der Uhr"
+      text: >-
+        Ein Tipp für deinen Punkt, zwei für den Gegner, drei drehen den
+        letzten Punkt um, vier nehmen ihn zurück. Im Onboarding wählst du
+        Tennis oder Padel, die App passt sich an, und die Uhr übernimmt die
+        Sportart vom Handy. Padel gibt es in Kortscore nur im Doppel.
+    - title: "Golden Point, Star Point oder Vorteil"
+      text: >-
+        Bei 40:40 wählst du die Regel, die deine Liga spielt. Golden Point:
+        ein entscheidender Punkt. Star Point, die FIP-Regel seit 2026: Es
+        werden zwei Vorteile gespielt, gehen beide verloren, entscheidet ein
+        einziger Star Point das Game (nicht im Tiebreak). Beim Star Point
+        zeigt die Uhr den Hinweis "★ Star Point". Oder klassisch mit
+        Vorteil.
+    - title: "Sätze bis 6 oder bis 4 Games"
+      text: >-
+        Spiel 6 Games pro Satz oder Kurzsätze bis 4 Games mit Tiebreak bei
+        3:3 oder bei 4:4. Mit Tiebreak bei 4:4 braucht ein Satz zwei Games
+        Vorsprung (zum Beispiel 5:3), bei 4:4 entscheidet ein Tiebreak mit
+        5:4.
+    - title: "Voller Satz oder Super-Tiebreak"
+      text: >-
+        Für den Entscheidungssatz wählst du zwischen einem vollen Satz und
+        einem Super-Tiebreak bis 10.
+    - title: "Partner-Statistik"
+      text: >-
+        Die Statistiken laufen für jede Sportart getrennt. Padel bringt
+        Partner-Statistiken dazu (deine Siegquote mit jedem Partner) und die
+        Bilanz gegen Paarungen.
+
+# Die Regeln: Überschrift, Einleitung, dann ein Abschnitt je Regel. Mit demo
+# (Name der Tafel, siehe templates/partials/rules.html) und note steht darunter
+# ein Scoreboard zum Ausprobieren.
+title: "Zählweise im Padel"
+lead: >-
+  Padel zählt wie Tennis: 15, 30, 40, Game, Satz. Der Unterschied liegt bei
+  40:40: Viele Matches spielen dort einen entscheidenden Punkt statt
+  Vorteil. Dazu kommen die Aufschlagreihenfolge im Doppel und der Aufschlag
+  von unten.
 sections:
   - title: "Punkte: 15, 30, 40 wie im Tennis"
     text:
       - >-
         Ein Game startet bei 0:0, dann 15, 30, 40. Wer bei 40 den nächsten
-        Punkt gewinnt, holt das Game, außer der Gegner steht auch bei 40. Der
-        Aufschläger wird zuerst genannt.
+        Punkt gewinnt, holt das Game, außer der Gegner steht auch bei 40.
+        Der Aufschläger wird zuerst genannt.
   - title: "Bei 40:40: Vorteil, Golden Point oder Star Point"
     text:
       - >-
@@ -38,15 +86,17 @@ sections:
         Tennis heißt dieselbe Regel NoAd. Viele Vereine und Ligen spielen
         Golden Point, kläre das Format also vor dem Match.
       - >-
-        Den Star Point spielen die Profitouren seit 2026. Steht es zum dritten
-        Mal Einstand, entscheidet ein einziger Punkt das Game.
+        Der Star Point ist die FIP-Regel seit 2026. Bei 40:40 werden zwei
+        Vorteile gespielt. Gehen beide verloren, steht es also zum dritten
+        Mal 40:40, entscheidet ein einziger Star Point das Game. Im Tiebreak
+        gibt es keinen Star Point.
       - >-
-        Kortscore zählt Vorteil und Golden Point (als NoAd), aber keinen Star
-        Point.
+        Kortscore zählt alle drei: Vorteil, Golden Point und Star Point.
     demo: golden
     note: >-
-      Die Tafel steht bei 40:40 mit Golden Point. Der Schalter wechselt auf
-      Vorteil.
+      Die Tafel steht bei 40:40. Wechsle zwischen Vorteil, Golden Point und
+      Star Point. Für den Star Point holst du den Vorteil und verlierst ihn
+      zweimal.
   - title: "Doppel: Aufschlag wechselt nach jedem Game"
     text:
       - >-
@@ -61,53 +111,70 @@ sections:
       - >-
         Der Ball wird hinter der Aufschlaglinie einmal aufgeprallt und auf
         Taillenhöhe oder darunter diagonal ins gegnerische Aufschlagfeld
-        geschlagen. Berührt der Ball nach dem Aufprall im Feld das Gitter, ist
-        es ein Fehler; trifft er die Glaswand, bleibt er im Spiel.
-  - title: "Sätze: 6 Games, Tiebreak bei 6:6"
+        geschlagen. Berührt der Ball nach dem Aufprall im Feld das Gitter,
+        ist es ein Fehler; trifft er die Glaswand, bleibt er im Spiel.
+  - title: "Sätze: bis 6 Games oder Kurzsatz bis 4"
     text:
       - >-
-        Ein Satz geht bis 6 Games mit zwei Games Vorsprung, bei 6:6 folgt der
-        Tiebreak bis 7 Punkte mit zwei Punkten Vorsprung. Der Aufschlag
+        Ein Satz geht bis 6 Games mit zwei Games Vorsprung, bei 6:6 folgt
+        der Tiebreak bis 7 Punkte mit zwei Punkten Vorsprung. Der Aufschlag
         wechselt nach dem ersten Punkt und dann alle zwei Punkte.
       - >-
+        Kurzsätze gehen bis 4 Games. Der Tiebreak wird je nach Format bei
+        3:3 oder bei 4:4 gespielt. Mit Tiebreak bei 4:4 braucht ein Satz
+        zwei Games Vorsprung (zum Beispiel 5:3), bei 4:4 entscheidet ein
+        Tiebreak mit 5:4.
+      - >-
         Ein Match ist normalerweise Best of 3; viele Turniere ersetzen den
-        dritten Satz durch einen Match-Tiebreak bis 10.
+        dritten Satz durch einen Match-Tiebreak bis 10, den Super-Tiebreak.
   - title: "Seitenwechsel: wie im Tennis"
     text:
       - >-
         Die Seiten werden nach dem ersten Game gewechselt, dann bei jeder
         ungeraden Gamesumme und im Tiebreak alle sechs Punkte.
-  - title: "Übliche Formate: Liga, Gruppenphase, Americano"
+  - title: "Übliche Formate: Liga und Gruppenphase"
     text:
       - >-
-        Liga: zwei Gewinnsätze mit Golden Point. Turnier-Gruppenphase: oft ein
-        Satz oder ein Kurzsatz bis 4 Games (Kortscore spielt den Tiebreak bei
-        3:3). Americano und Mexicano: feste Punktzahl pro Runde, meist 16, 24
-        oder 32 Punkte, ohne Games.
+        Liga: zwei Gewinnsätze, meist mit Golden Point.
+        Turnier-Gruppenphase: oft ein Satz oder ein Kurzsatz bis 4 Games.
       - >-
-        Kortscore zählt Einzel und Doppel, Vorteil und NoAd, Sätze bis 4 oder
-        6, Best of 3 oder einen Satz.
+        Kortscore zählt Padel im Doppel mit Vorteil, Golden Point oder Star
+        Point, Sätze bis 6 oder 4 Games, Best of 3 mit vollem
+        Entscheidungssatz oder Super-Tiebreak bis 10.
 
 # Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
 faq:
-  title: Fragen
+  title: "Fragen"
   questions:
-    - q: Wer nimmt beim Golden Point den Aufschlag an?
+    - q: "Was ist der Star Point im Padel?"
       a: >-
-        Das rückschlagende Team entscheidet, welcher Partner annimmt, muss aber
-        die normale Seitenaufteilung beibehalten: Jeder nimmt von seiner eigenen
-        Seite an.
-    - q: Spielt man Padel immer im Doppel?
+        Der Star Point ist die FIP-Regel seit 2026. Bei 40:40 werden zwei
+        Vorteile gespielt. Gehen beide verloren, entscheidet ein einziger
+        Star Point das Game. Im Tiebreak gilt er nicht. Kortscore zählt ihn
+        mit, die Uhr zeigt bei diesem Punkt den Hinweis "★ Star Point".
+    - q: "Wie funktioniert ein Satz bis 4 Games mit Tiebreak bei 4:4?"
+      a: >-
+        Der Satz geht bis 4 Games. Mit Tiebreak bei 4:4 braucht ein Satz
+        zwei Games Vorsprung, zum Beispiel 5:3. Steht es 4:4, entscheidet
+        ein Tiebreak den Satz mit 5:4. Alternativ spielst du den Tiebreak
+        schon bei 3:3.
+    - q: "Wer nimmt beim Golden Point den Aufschlag an?"
+      a: >-
+        Das rückschlagende Team entscheidet, welcher Partner annimmt, muss
+        aber die normale Seitenaufteilung beibehalten: Jeder nimmt von
+        seiner eigenen Seite an.
+    - q: "Spielt man Padel immer im Doppel?"
       a: >-
         Fast immer. Einzel-Padel gibt es auf schmaleren Plätzen (sechs statt
-        zehn Meter breit), ist aber selten.
-    - q: Zählt Kortscore Americano-Turniere?
+        zehn Meter breit), ist aber selten. Padel in Kortscore gibt es nur
+        im Doppel.
+    - q: "Zählt Kortscore Americano-Turniere?"
       a: >-
         Nicht als eigenes Format. Kortscore ist für Liga- und Turniermatches
         mit Sätzen da.
 
 cta:
-  title: Zählen mit Kortscore
+  title: "Zählen mit Kortscore"
   text: >-
     Du tippst einmal pro Punkt, die App zählt Games, Sätze und Tiebreak nach
     diesen Regeln mit.

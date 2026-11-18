@@ -2,8 +2,8 @@
 # Aufbau wie i18n/en/index.yaml; dort steht, welche Aussage wo steht.
 
 meta:
-  title: "Kortscore: marcador de tenis y pádel para Apple Watch y Wear OS"
-  description: Lleva la cuenta de tus partidos de tenis y pádel con un toque en tu Apple Watch o reloj Wear OS. Gratis, con marcador en directo para espectadores, estadísticas e historial de partidos.
+  title: "Kortscore: marcador de pádel y tenis para Apple Watch y Wear OS"
+  description: Lleva la cuenta de tus partidos de pádel y tenis con un toque en tu Apple Watch o reloj Wear OS. Gratis, con marcador en directo para espectadores, estadísticas e historial de partidos.
   og_title: "Kortscore: un toque por punto"
 
 # Zeile in llms.txt.
@@ -12,7 +12,7 @@ llms: Página de inicio (español)
 hero:
   title: Un toque por punto
   lede: >-
-    Kortscore lleva la cuenta de tu partido de tenis o pádel en la muñeca,
+    Kortscore lleva la cuenta de tu partido de pádel o tenis en la muñeca,
     punto por punto, sin que tengas que mirar la pantalla.
   cta: Descargar la app →
   platforms: Gratis para Apple Watch y Wear OS, con iPhone o móvil Android.
@@ -65,11 +65,13 @@ clubs:
       - Dobles 1, pista 3
 
 padel:
-  title: Pádel con punto de oro
+  title: Pádel con punto de oro y Star Point
   lead: >-
-    El pádel se cuenta como el tenis: 15, 30, 40, juego, set. En Kortscore el
-    punto de oro se elige como NoAd: con 40-40 decide el siguiente punto.
-  link: Cómo se cuenta en pádel
+    El pádel se cuenta como el tenis: 15, 30, 40, juego, set. En Kortscore
+    eliges cómo se decide el 40-40: ventaja, punto de oro o Star Point. Los
+    sets se juegan a 6 o 4 juegos, y un súper tie-break puede decidir el
+    partido.
+  link: Kortscore para pádel
 
 watches:
   title: Relojes para la pista
@@ -103,7 +105,7 @@ faq:
         href="{url:compatible}">página de compatibilidad</a>.
     - q: ¿Sigue Kortscore las reglas reales, con tie-break y NoAd?
       a: >-
-        Sí. Ventaja o NoAd, sets a 6 o a 4 juegos, tie-break y súper tie-break,
+        Sí. Ventaja o NoAd, sets a 6 o a 4 juegos, tie-break y súper tie-break, punto de oro y Star Point en pádel,
         al mejor de tres sets o un solo set. Las reglas en detalle:
         <a href="{url:tennis}">puntuación en tenis</a>,
         <a href="{url:padel}">puntuación en pádel</a>.
@@ -148,12 +150,12 @@ cta:
 
 # JSON-LD SoftwareApplication (nur im Quelltext, nicht sichtbar).
 app:
-  alternate_name: "Kortscore: Tenis y pádel"
-  description: Kortscore lleva la cuenta en tenis y pádel con un toque en tu Apple Watch o reloj Wear OS. Gratis, con marcador en directo para espectadores, estadísticas e historial de partidos en iPhone y Android.
+  alternate_name: "Kortscore: Pádel y tenis"
+  description: Kortscore lleva la cuenta en pádel y tenis con un toque en tu Apple Watch o reloj Wear OS. Gratis, con marcador en directo para espectadores, estadísticas e historial de partidos en iPhone y Android.
   features:
     - Cuenta los puntos con un toque en el reloj
-    - Tenis y pádel, individual y dobles
-    - Ventaja y NoAd, tie-breaks, sets a 4 o 6 juegos
+    - Pádel (dobles) y tenis (individual y dobles)
+    - Punto de oro, Star Point y ventaja, tie-breaks, sets a 4 o 6 juegos
     - Marcador en directo con un enlace para compartir, sin app para los espectadores
     - Estadísticas del partido e historial punto por punto
     - Sin anuncios, sin registro

@@ -1,111 +1,173 @@
-# Regelseite Padel. Gerüst in templates/partials/rules.html.
-# meta.title und meta.description stehen auch im Article-JSON-LD.
+# Padel: Landingpage und Regelseite. Gerüst in templates/padel.html und
+# templates/partials/rules.html. Aufbau: hero (Kopf mit Tafel), features
+# (Funktionen der App), dann title/lead und sections (die Regeln), faq, cta.
+# meta.title und meta.description stehen auch im Article- und
+# SoftwareApplication-JSON-LD. hero.app_name ist der alternateName der App.
 
 meta:
-  title: How Does Padel Scoring Work? Points, Golden Point, Sets and Tiebreaks Explained
-  description: "Padel scoring made simple: 15, 30, 40 like tennis, golden point instead of advantage, doubles serve order, sets, tiebreak and the usual match formats."
-  og_title: How does padel scoring work?
+  title: "Padel Scoring App and Rules: Golden Point, Star Point, 4-Game Sets and Super Tiebreak"
+  description: "Score padel with one tap on your Apple Watch or Wear OS watch: Golden Point, Star Point or advantage, sets of 6 or 4 games, super tiebreak and partner statistics. Plus the padel scoring rules explained."
+  og_title: "Kortscore for padel: scoring on your wrist"
 
-breadcrumb: Padel scoring
-llms: How padel scoring works (golden point, doubles serve order)
+breadcrumb: "Padel scoring"
+llms: "Padel: scoring app and rules (golden point, star point, short sets)"
 # Article-JSON-LD "about".
 about: Padel
 
-title: Padel scoring
-lead: >-
-  Padel scores like tennis: 15, 30, 40, game, set. The difference is the golden
-  point: many matches play one deciding point at 40-40 instead of advantage.
-  Add the doubles serve order and the underarm serve.
+# Kopf: h1, Satz, Hinweis zur Tafel; app_name ist der alternateName im JSON-LD.
+hero:
+  title: "Padel scoring on your wrist"
+  lead: >-
+    Kortscore counts your padel match with one tap per point on your Apple
+    Watch or Wear OS watch. Golden Point, Star Point or advantage, sets of 6
+    or 4 games, super tiebreak: set it up the way your league plays.
+  board_note: >-
+    Try it with the Star Point rule: take the advantage and lose it twice,
+    and the next point is the Star Point. Pick the rule below the board.
+  app_name: "Kortscore: Padel Scorekeeper"
 
-# Every section: title and text (a list of paragraphs). With demo (name of the
-# board, see templates/partials/rules.html) and note, a scoreboard to try out
-# follows below.
+# Funktionen der App für Padel, nur Produktbeschreibung (keine Termine).
+features:
+  title: "What Kortscore does for padel"
+  blocks:
+    - title: "Scoring by tap on your watch"
+      text: >-
+        One tap for your point, two for the opponent, three switch the last
+        point, four undo it. In onboarding you pick Tennis or Padel and the
+        app adapts; the watch takes the sport over from the phone. Padel in
+        Kortscore is doubles only.
+    - title: "Golden Point, Star Point or advantage"
+      text: >-
+        At 40-40 you choose the rule your league plays. Golden Point: one
+        deciding point. Star Point, the FIP rule since 2026: two advantages
+        are played, and if both are lost, a single Star Point decides the
+        game (not in tiebreaks). During a Star Point the watch shows a "★
+        Star Point" hint. Or classic advantage.
+    - title: "Sets of 6 or 4 games"
+      text: >-
+        Play 6 games per set, or short sets to 4 games with the tiebreak at
+        3-3 or at 4-4. With the tiebreak at 4-4, a set needs a two-game lead
+        (for example 5-3); at 4-4 a tiebreak decides it 5-4.
+    - title: "Full set or super tiebreak"
+      text: >-
+        For a deciding set you choose between a full set and a super
+        tiebreak to 10.
+    - title: "Partner statistics"
+      text: >-
+        Statistics are kept separately for each sport. Padel adds partner
+        statistics (your win rate with each partner) and head-to-head
+        records against pairs.
+
+# Die Regeln: Überschrift, Einleitung, dann ein Abschnitt je Regel. Mit demo
+# (Name der Tafel, siehe templates/partials/rules.html) und note steht darunter
+# ein Scoreboard zum Ausprobieren.
+title: "Padel scoring rules"
+lead: >-
+  Padel scores like tennis: 15, 30, 40, game, set. The difference is what
+  happens at 40-40: many matches play one deciding point instead of
+  advantage. Add the doubles serve order and the underarm serve.
 sections:
   - title: "Points: 15, 30, 40 like tennis"
     text:
       - >-
-        A game starts at 0-0, then 15, 30, 40. Whoever wins the next point at 40
-        takes the game, unless the opponent is also at 40. The server's score
-        is called first.
-  - title: "At 40-40: advantage, golden point or star point"
+        A game starts at 0-0, then 15, 30, 40. Whoever wins the next point
+        at 40 takes the game, unless the opponent is also at 40. The
+        server's score is called first.
+  - title: "At 40-40: advantage, Golden Point or Star Point"
     text:
       - >-
-        At 40-40 the FIP rules allow three methods: advantage, golden point or
-        star point.
+        At 40-40 the FIP rules allow three methods: advantage, Golden Point
+        or Star Point.
       - >-
-        With golden point the next point at 40-40 decides the game. In tennis
-        the same rule is called NoAd. Many clubs and leagues play golden point,
-        so settle the format before the match.
+        With Golden Point the next point at 40-40 decides the game. In
+        tennis the same rule is called NoAd. Many clubs and leagues play
+        Golden Point, so settle the format before the match.
       - >-
-        The pro tours have played the star point since 2026. If the game goes
-        back to deuce a third time, one deciding point settles it.
+        The Star Point is the FIP rule since 2026. At 40-40 two advantages
+        are played. If both are lost, so the game is back at 40-40 for the
+        third time, a single Star Point decides it. There is no Star Point
+        in a tiebreak.
       - >-
-        Kortscore counts advantage and golden point (as NoAd), not the star
-        point.
+        Kortscore counts all three: advantage, Golden Point and Star Point.
     demo: golden
     note: >-
-      The board stands at 40-40 with golden point. The switch changes to
-      advantage.
+      The board stands at 40-40. Switch between advantage, Golden Point and
+      Star Point. For the Star Point, win the advantage and lose it twice.
   - title: "Doubles: serve changes after every game"
     text:
       - >-
-        Serve alternates between the teams after every game, and within a team
-        the partners take turns: whoever served the first game serves the fifth
-        again.
+        Serve alternates between the teams after every game, and within a
+        team the partners take turns: whoever served the first game serves
+        the fifth again.
       - >-
-        Receiving sides (deuce side and advantage side) stay fixed for a whole
-        set and may only be swapped for the next set.
+        Receiving sides (deuce side and advantage side) stay fixed for a
+        whole set and may only be swapped for the next set.
   - title: "Serve: underarm, two attempts"
     text:
       - >-
-        The ball is bounced once behind the service line and struck at or below
-        waist height, diagonally into the opponents' service box. If the ball
-        touches the wire fence after bouncing in the box it is a fault; if it
-        hits the glass wall it stays in play.
-  - title: "Sets: 6 games, tiebreak at 6-6"
+        The ball is bounced once behind the service line and struck at or
+        below waist height, diagonally into the opponents' service box. If
+        the ball touches the wire fence after bouncing in the box it is a
+        fault; if it hits the glass wall it stays in play.
+  - title: "Sets: 6 games or short sets to 4"
     text:
       - >-
         A set goes to 6 games with a two-game margin; at 6-6 a tiebreak to 7
-        points with a two-point margin follows. Serve changes after the first
-        point and then every two points.
+        points with a two-point margin follows. Serve changes after the
+        first point and then every two points.
       - >-
-        A match is normally best of three; many tournaments replace the third
-        set with a match tiebreak to 10.
+        Short sets go to 4 games. The tiebreak is played at 3-3 or at 4-4,
+        depending on the format. With the tiebreak at 4-4, a set needs a
+        two-game lead (for example 5-3); at 4-4 a tiebreak decides it 5-4.
+      - >-
+        A match is normally best of three; many tournaments replace the
+        third set with a match tiebreak to 10, the super tiebreak.
   - title: "Changing ends: as in tennis"
     text:
       - >-
-        Players change ends after the first game, then whenever the game total
-        is odd, and in the tiebreak every six points.
-  - title: "Common formats: league, group stage, Americano"
+        Players change ends after the first game, then whenever the game
+        total is odd, and in the tiebreak every six points.
+  - title: "Common formats: league and group stage"
     text:
       - >-
-        League: two sets to win, golden point. Tournament group stage: often one
-        set or a short set to 4 games (Kortscore plays its tiebreak at 3-3).
-        Americano and Mexicano: a fixed number of points per round, usually 16,
-        24 or 32, no games.
+        League: two sets to win, usually with Golden Point. Tournament group
+        stage: often one set or a short set to 4 games.
       - >-
-        Kortscore counts singles and doubles, advantage and NoAd, sets to 4 or
-        6, best of three or a single set.
+        Kortscore counts padel doubles with advantage, Golden Point or Star
+        Point, sets of 6 or 4 games, best of three with a full deciding set
+        or a super tiebreak to 10.
 
 # Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
 faq:
-  title: Questions
+  title: "Questions"
   questions:
-    - q: Who receives the golden point?
+    - q: "What is the Star Point in padel?"
       a: >-
-        The receiving team decides which partner receives, but has to keep its
-        normal side split: each player receives from their own side.
-    - q: Is padel always doubles?
+        The Star Point is the FIP rule since 2026. At 40-40 two advantages
+        are played. If both are lost, a single Star Point decides the game.
+        It is not used in tiebreaks. Kortscore counts it, and the watch
+        shows a "★ Star Point" hint during that point.
+    - q: "How does a 4-game set with a tiebreak at 4-4 work?"
       a: >-
-        Almost always. Singles padel exists on narrower courts (six metres wide
-        instead of ten) but is rare.
-    - q: Does Kortscore score Americano tournaments?
+        The set is played to 4 games. With the tiebreak at 4-4, a set needs
+        a two-game lead, for example 5-3. If it reaches 4-4, a tiebreak
+        decides the set 5-4. You can also play the tiebreak at 3-3 instead.
+    - q: "Who receives the Golden Point?"
+      a: >-
+        The receiving team decides which partner receives, but has to keep
+        its normal side split: each player receives from their own side.
+    - q: "Is padel always doubles?"
+      a: >-
+        Almost always. Singles padel exists on narrower courts (six metres
+        wide instead of ten) but is rare. Padel in Kortscore is doubles
+        only.
+    - q: "Does Kortscore score Americano tournaments?"
       a: >-
         Not as a format of its own. Kortscore is for league and tournament
         matches with sets.
 
 cta:
-  title: Count with Kortscore
+  title: "Count with Kortscore"
   text: >-
-    You tap once per point; the app keeps track of games, sets and the tiebreak
-    by exactly these rules.
+    You tap once per point; the app keeps track of games, sets and the
+    tiebreak by exactly these rules.

@@ -37,8 +37,14 @@
      golden    NoAd/Golden Point zu Beginn eingeschaltet. Bei Vorteil behält
                die führende Seite ihn: gewinnt sie den Punkt, ist das Spiel
                aus, sonst steht es 40:40 und der nächste Punkt entscheidet.
+     star      Star Point zu Beginn eingeschaltet (nur Padel; schließt golden
+               aus): bei 40:40 werden zwei Vorteile gespielt, gehen beide
+               verloren, entscheidet der nächste Punkt (Anzeige "★ Star
+               Point"). Der Start steht immer bei null verlorenen Vorteilen.
      controls  was zu sehen ist: "pad" (Tippfläche samt Legende), "buttons"
                (Punkt für mich, Punkt Gegner, Zurück), "reset", "golden"
+               (Schalter NoAd/Golden Point), "rule" (Auswahl Vorteil, Golden
+               Point, Star Point, für Padel; ersetzt "golden")
      id        Präfix für die IDs, bei mehreren Scoreboards je Seite eindeutig
      reset     wohin "Neu starten" führt: "start" (Vorgabe) zurück an den
                Stand oben, "zero" auf ein frisches Spiel bei 0:0; der
@@ -48,7 +54,7 @@
    2:1), Tippfläche und Knöpfe bleiben versteckt, die Legende erklärt den
    Tippcode trotzdem. Die Anzeige unten rechnet wie scoreView() im Skript;
    ändert sich dort etwas, muss es hier mit. #}
-{% macro scoreboard(s, sport="tennis", points=[3, 2], games=[2, 1], sets=[0, 0], golden=false, controls=["pad", "buttons", "reset", "golden"], id="sb", reset="start") %}
+{% macro scoreboard(s, sport="tennis", points=[3, 2], games=[2, 1], sets=[0, 0], golden=false, star=false, controls=["pad", "buttons", "reset", "golden"], id="sb", reset="start") %}
 {% set pa = points[0] %}
 {% set pb = points[1] %}
 {% set v = namespace(a=pa ~ "", b=pb ~ "", status="", phase="points", lead="") %}
@@ -78,7 +84,7 @@
   {% set v.b = labels[[pb, 3]|min] %}
 {% endif %}
 <section class="sb sb--{{ sport }}" id="{{ id }}" data-scoreboard data-sport="{{ sport }}" data-phase="{{ v.phase }}" data-lead="{{ v.lead }}"{% if reset == "zero" %} data-sb-reset="zero"{% endif %}
-         data-sb-state='{{ {"points": points, "games": games, "sets": sets, "golden": golden}|tojson }}'
+         data-sb-state='{{ {"points": points, "games": games, "sets": sets, "golden": golden, "star": star and not golden}|tojson }}'
          data-sb-text='{{ s|tojson }}'
          aria-label="{{ s.label|inattr }}">
 <div class="sb__grid">
@@ -125,7 +131,7 @@
     </ul>
   </div>
 {% endif %}
-{% if "buttons" in controls or "reset" in controls or "golden" in controls %}
+{% if "buttons" in controls or "reset" in controls or "golden" in controls or "rule" in controls %}
 
   <div class="sb__controls" data-sb-js hidden>
 {% if "buttons" in controls %}
@@ -135,6 +141,14 @@
 {% endif %}
 {% if "reset" in controls %}
     <button type="button" class="sb__btn sb__btn--quiet" data-sb-act="reset">{{ s.btn_reset }}</button>
+{% endif %}
+{% if "rule" in controls %}
+    <fieldset class="sb__rule">
+      <legend class="sb__rule-legend">{{ s.rule_label }}</legend>
+{% for value, label in [("advantage", s.rule_advantage), ("golden", s.golden.padel), ("star", s.rule_star)] %}
+      <label class="sb__chip"><input type="radio" name="{{ id }}-rule" value="{{ value }}" data-sb-rule{{ " checked" if (value == "golden" and golden) or (value == "star" and star and not golden) or (value == "advantage" and not golden and not star) }}><span>{{ label }}</span></label>
+{% endfor %}
+    </fieldset>
 {% endif %}
 {% if "golden" in controls %}
     <label class="sb__toggle">

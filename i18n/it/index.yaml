@@ -2,8 +2,8 @@
 # Aufbau wie i18n/en/index.yaml; dort steht, welche Aussage wo steht.
 
 meta:
-  title: "Kortscore: il contapunti per tennis e padel su Apple Watch e Wear OS"
-  description: Conta i punti di tennis e padel con un tocco sull’Apple Watch o sull’orologio Wear OS. Gratis, con punteggio live per gli spettatori, statistiche e cronologia delle partite.
+  title: "Kortscore: il contapunti per padel e tennis su Apple Watch e Wear OS"
+  description: Conta i punti di padel e tennis con un tocco sull’Apple Watch o sull’orologio Wear OS. Gratis, con punteggio live per gli spettatori, statistiche e cronologia delle partite.
   og_title: "Kortscore: un tocco per punto"
 
 # Zeile in llms.txt.
@@ -12,7 +12,7 @@ llms: Pagina iniziale (italiano)
 hero:
   title: Un tocco per punto
   lede: >-
-    Kortscore conta la tua partita di tennis o padel al polso, punto per punto,
+    Kortscore conta la tua partita di padel o tennis al polso, punto per punto,
     senza che tu debba guardare il display.
   cta: Scarica l’app →
   platforms: Gratis per Apple Watch e Wear OS, con iPhone o telefono Android.
@@ -65,11 +65,13 @@ clubs:
       - Doppio 1, campo 3
 
 padel:
-  title: Padel con punto d’oro
+  title: Padel con punto d’oro e Star Point
   lead: >-
-    Il padel si conta come il tennis: 15, 30, 40, game, set. In Kortscore il
-    punto d’oro si sceglie come NoAd: sul 40-40 decide il punto successivo.
-  link: Come si conta nel padel
+    Il padel si conta come il tennis: 15, 30, 40, game, set. In Kortscore
+    scegli come si decide il 40-40: vantaggi, punto d’oro o Star Point. I
+    set si giocano a 6 o a 4 game, e un super tie-break può decidere la
+    partita.
+  link: Kortscore per il padel
 
 watches:
   title: Orologi per il campo
@@ -147,12 +149,12 @@ cta:
 
 # JSON-LD SoftwareApplication (nur im Quelltext, nicht sichtbar).
 app:
-  alternate_name: "Kortscore: tennis e padel"
-  description: Kortscore conta i punti di tennis e padel con un tocco sull’Apple Watch o sull’orologio Wear OS. Gratis, con punteggio live per gli spettatori, statistiche e cronologia delle partite su iPhone e Android.
+  alternate_name: "Kortscore: padel e tennis"
+  description: Kortscore conta i punti di padel e tennis con un tocco sull’Apple Watch o sull’orologio Wear OS. Gratis, con punteggio live per gli spettatori, statistiche e cronologia delle partite su iPhone e Android.
   features:
     - Punteggio con un tocco sull’orologio
-    - Tennis e padel, singolare e doppio
-    - Vantaggio e NoAd, tie-break, set a 4 o a 6 game
+    - Padel (doppio) e tennis (singolare e doppio)
+    - Punto d’oro, Star Point e vantaggi, tie-break, set a 4 o a 6 game
     - Punteggio live tramite link condivisibile, senza app per gli spettatori
     - Statistiche e registro dei punti di ogni partita
     - Senza pubblicità, senza account

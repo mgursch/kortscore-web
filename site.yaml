@@ -52,6 +52,11 @@ legal_first_language: de
 # Sprachen der App selbst (JSON-LD inLanguage der SoftwareApplication).
 app_languages: [en, de, fr, it, es]
 
+# Sprachen, in denen die Startseite Padel vor Tennis zeigt (Hero-Anspruch in
+# i18n/<code>/index.yaml, Tafel im Hero im Padel-Modus, Padel-Abschnitt direkt
+# nach dem Hero). Alle anderen Sprachen bleiben bei Tennis zuerst.
+padel_first: [es, it]
+
 stores:
   app_store: https://apps.apple.com/app/kortscore/id6809131189
   google_play: https://play.google.com/store/apps/details?id=com.swordistudios.kortscore
@@ -121,9 +126,9 @@ pages:
       es: puntuacion-padel.html
     og_type: article
     google_ads: false
-    lastmod: 2026-09-22
-    priority: "0.6"
-    article: {published: 2026-09-22, modified: 2026-09-22}
+    lastmod: 2026-11-18
+    priority: "0.8"
+    article: {published: 2026-09-22, modified: 2026-11-18}
   clubs:
     slugs: {en: clubs.html, de: vereine.html, fr: clubs.html, it: circoli.html, es: clubes.html}
     og_type: website
@@ -195,3 +200,22 @@ localized_assets:
     fr: shot-ios-stats-fr.webp
     it: shot-ios-stats-it.webp
     es: shot-ios-stats-es.webp
+
+  # TODO(Padel-Screenshots): Platzhalter. Die Padel-Oberfläche der App gibt es
+  # noch nicht als Bild, deshalb zeigen diese Einträge auf die Tennis-
+  # Screenshots. Sobald die Padel-Screenshots da sind (Dateien
+  # shot-padel-live-<code>.webp, shot-padel-stats-<code>.webp), hier
+  # umstellen. Die Vorlagen verwenden sie noch nirgends; für Padel-Seiten
+  # gilt lasset('shot-padel-live') bzw. lasset('shot-padel-stats').
+  shot-padel-live:
+    en: shot-live-en.webp
+    de: shot-live-de.webp
+    fr: shot-live-fr.webp
+    it: shot-live-it.webp
+    es: shot-live-es.webp
+  shot-padel-stats:
+    en: shot-stats-en.webp
+    de: shot-stats-de.webp
+    fr: shot-stats-fr.webp
+    it: shot-stats-it.webp
+    es: shot-stats-es.webp
