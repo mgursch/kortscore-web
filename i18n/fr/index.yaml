@@ -65,12 +65,13 @@ clubs:
       - Double 1, court 3
 
 padel:
-  title: Le padel avec point en or
+  title: Le padel avec point en or et Star Point
   lead: >-
-    Au padel, on compte comme au tennis : 15, 30, 40, jeu, set. Dans
-    Kortscore, le point en or se choisit avec NoAd : à 40-40, le point suivant
-    décide.
-  link: Comment compter au padel
+    Au padel, on compte comme au tennis : 15, 30, 40, jeu, set. Dans
+    Kortscore, tu choisis comment se règle le 40-40 : avantage, point en or
+    ou Star Point. Les sets se jouent en 6 ou 4 jeux, et un super tie-break
+    peut décider du match.
+  link: Kortscore pour le padel
 
 watches:
   title: Montres pour le court
@@ -153,8 +154,8 @@ app:
   description: Kortscore compte les points au tennis et au padel d’un simple tap sur ton Apple Watch ou ta montre Wear OS. Gratuit, avec score en direct pour les spectateurs, statistiques et historique des matchs sur iPhone et Android.
   features:
     - Comptage d’un simple tap sur la montre
-    - Tennis et padel, simple et double
-    - Avantage et NoAd, tie-breaks, sets en 4 ou 6 jeux
+    - Tennis (simple et double) et padel (double)
+    - Avantage et NoAd, point en or et Star Point au padel, tie-breaks, sets en 4 ou 6 jeux
     - Score en direct via un lien à partager, sans app pour les spectateurs
     - Statistiques de match et historique point par point
     - Sans publicité, sans compte

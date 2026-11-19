@@ -1,53 +1,101 @@
-# Regelseite Padel. Gerüst in templates/partials/rules.html.
-# meta.title und meta.description stehen auch im Article-JSON-LD.
+# Padel: Landingpage und Regelseite. Gerüst in templates/padel.html und
+# templates/partials/rules.html. Aufbau: hero (Kopf mit Tafel), features
+# (Funktionen der App), dann title/lead und sections (die Regeln), faq, cta.
+# meta.title und meta.description stehen auch im Article- und
+# SoftwareApplication-JSON-LD. hero.app_name ist der alternateName der App.
 
 meta:
-  title: Come si conta nel padel? Punti, punto d’oro, set e tie-break spiegati
-  description: "Il punteggio del padel spiegato in modo semplice: 15, 30, 40 come nel tennis, punto d’oro al posto del vantaggio, ordine di servizio nel doppio, set, tie-break e i formati di gioco più comuni."
-  og_title: Come si conta nel padel?
+  title: "Contapunti e regole del padel: punto d’oro, Star Point, set a 4 game e super tie-break"
+  description: "Conta i punti di padel con un tocco sull’Apple Watch o sull’orologio Wear OS: punto d’oro, Star Point o vantaggi, set a 6 o a 4 game, super tie-break e statistiche per compagno. Con il punteggio del padel spiegato in modo semplice."
+  og_title: "Kortscore per il padel: il punteggio al polso"
 
-breadcrumb: Punteggio nel padel
-llms: Come si conta nel padel (punto d’oro, ordine di servizio nel doppio)
+breadcrumb: "Punteggio nel padel"
+llms: "Padel: contapunti e regole (punto d’oro, Star Point, set brevi)"
 # Article-JSON-LD "about".
 about: Padel
 
-title: Punteggio nel padel
-lead: >-
-  Il padel si conta come il tennis: 15, 30, 40, game, set. La differenza è il
-  punto d’oro: sul 40:40 molte partite giocano un punto decisivo invece dei
-  vantaggi. Si aggiungono l’ordine di servizio nel doppio e il servizio dal
-  basso.
+# Kopf: h1, Satz, Hinweis zur Tafel; app_name ist der alternateName im JSON-LD.
+hero:
+  title: "Il punteggio del padel al polso"
+  lead: >-
+    Kortscore conta la tua partita di padel con un tocco per punto
+    sull’Apple Watch o sull’orologio Wear OS. Punto d’oro, Star Point o
+    vantaggi, set a 6 o a 4 game, super tie-break: imposta l’app come si
+    gioca nel tuo campionato.
+  board_note: >-
+    Provalo con la regola dello Star Point: conquista il vantaggio e perdilo
+    due volte, il punto successivo è lo Star Point. Scegli la regola sotto il tabellone.
+  app_name: "Kortscore: contapunti per padel"
 
-# Jeder Abschnitt: title und text (Liste von Absätzen). Mit demo (Name der
-# Tafel, siehe templates/partials/rules.html) und note steht darunter ein
-# Scoreboard zum Ausprobieren.
+# Funktionen der App für Padel, nur Produktbeschreibung (keine Termine).
+features:
+  title: "Cosa fa Kortscore per il padel"
+  blocks:
+    - title: "Punteggio con un tocco sull’orologio"
+      text: >-
+        Un tocco per il tuo punto, due per quello dell’avversario, tre
+        invertono l’ultimo punto, quattro lo annullano. Nell’onboarding
+        scegli tra Tennis e Padel e l’app si adatta; l’orologio riprende lo
+        sport dal telefono. In Kortscore il padel si gioca solo in doppio.
+    - title: "Punto d’oro, Star Point o vantaggi"
+      text: >-
+        Sul 40-40 scegli la regola del tuo campionato. Punto d’oro: un solo
+        punto decisivo. Star Point, la regola FIP dal 2026: si giocano due
+        vantaggi e, se si perdono entrambi, un unico Star Point decide il game
+        (non nei tie-break). Durante lo Star Point l’orologio mostra
+        l’avviso «★ Star Point». Oppure i vantaggi classici.
+    - title: "Set a 6 o a 4 game"
+      text: >-
+        Gioca 6 game per set oppure set brevi a 4 game con tie-break sul 3-3
+        o sul 4-4. Con il tie-break sul 4-4 un set richiede due game di
+        scarto (per esempio 5-3); sul 4-4 un tie-break decide per 5-4.
+    - title: "Set completo o super tie-break"
+      text: >-
+        Per il set decisivo scegli tra un set completo e un super tie-break
+        a 10.
+    - title: "Statistiche per compagno"
+      text: >-
+        Le statistiche sono separate per ogni sport. Il padel aggiunge le
+        statistiche per compagno (la tua percentuale di vittorie con
+        ciascuno) e il bilancio contro le coppie.
+
+# Die Regeln: Überschrift, Einleitung, dann ein Abschnitt je Regel. Mit demo
+# (Name der Tafel, siehe templates/partials/rules.html) und note steht darunter
+# ein Scoreboard zum Ausprobieren.
+title: "Punteggio nel padel"
+lead: >-
+  Il padel si conta come il tennis: 15, 30, 40, game, set. La differenza sta
+  sul 40-40: molte partite giocano un punto decisivo invece dei vantaggi. Si
+  aggiungono l’ordine di servizio nel doppio e il servizio dal basso.
 sections:
   - title: "Punti: 15, 30, 40 come nel tennis"
     text:
       - >-
-        Un game parte da 0:0, poi 15, 30, 40. Chi è a 40 e vince il punto
-        successivo si aggiudica il game, a meno che anche l’avversario non sia
-        a 40. Il punteggio di chi serve si dice per primo.
-  - title: "Sul 40:40: vantaggi, punto d’oro o star point"
+        Un game parte da 0-0, poi 15, 30, 40. Chi è a 40 e vince il punto
+        successivo si aggiudica il game, a meno che anche l’avversario non
+        sia a 40. Il punteggio di chi serve si dice per primo.
+  - title: "Sul 40-40: vantaggi, punto d’oro o Star Point"
     text:
       - >-
-        Sul 40:40 il regolamento FIP ammette tre metodi: i vantaggi, il punto
-        d’oro o lo star point.
+        Sul 40-40 il regolamento FIP ammette tre metodi: i vantaggi, il
+        punto d’oro o lo Star Point.
       - >-
-        Con il punto d’oro il punto successivo sul 40:40 decide il game. Nel
+        Con il punto d’oro il punto successivo sul 40-40 decide il game. Nel
         tennis la stessa regola si chiama NoAd. Molti circoli e campionati
         giocano con il punto d’oro, quindi meglio chiarire il formato prima
         della partita.
       - >-
-        I circuiti professionistici giocano lo star point dal 2026. Alla terza
-        parità, un solo punto decisivo chiude il game.
+        Lo Star Point è la regola FIP dal 2026. Sul 40-40 si giocano due
+        vantaggi. Se si perdono entrambi, cioè se si torna sul 40-40 per la
+        terza volta, un unico Star Point decide il game. Nel tie-break non
+        c’è lo Star Point.
       - >-
-        Kortscore conta i vantaggi e il punto d’oro (come NoAd), non lo star
-        point.
+        Kortscore conta tutti e tre: i vantaggi, il punto d’oro e lo Star
+        Point.
     demo: golden
     note: >-
-      Il tabellone è sul 40:40 con punto d’oro. L’interruttore passa ai
-      vantaggi.
+      Il tabellone è sul 40-40. Passa tra vantaggi, punto d’oro e Star
+      Point. Per lo Star Point, conquista il vantaggio e perdilo due volte.
   - title: "Doppio: il servizio cambia dopo ogni game"
     text:
       - >-
@@ -55,8 +103,8 @@ sections:
         all’interno della coppia i compagni si alternano: chi ha servito nel
         primo game serve di nuovo nel quinto.
       - >-
-        I lati di risposta (destro e sinistro) restano fissi per tutto il set
-        e si possono scambiare solo al set successivo.
+        I lati di risposta (destro e sinistro) restano fissi per tutto il
+        set e si possono scambiare solo al set successivo.
   - title: "Servizio: dal basso, due tentativi"
     text:
       - >-
@@ -65,12 +113,17 @@ sections:
         riquadro di servizio avversario. Se dopo il rimbalzo nel riquadro la
         palla tocca la rete metallica è fallo; se colpisce il vetro resta in
         gioco.
-  - title: "Set: 6 game, tie-break sul 6:6"
+  - title: "Set: a 6 game o set brevi a 4"
     text:
       - >-
-        Un set si gioca a 6 game con due game di scarto; sul 6:6 segue un
+        Un set si gioca a 6 game con due game di scarto; sul 6-6 segue un
         tie-break a 7 punti con due punti di scarto. Il servizio cambia dopo
         il primo punto e poi ogni due punti.
+      - >-
+        I set brevi si giocano a 4 game. Il tie-break si gioca sul 3-3 o sul
+        4-4, a seconda del formato. Con il tie-break sul 4-4 un set richiede
+        due game di scarto (per esempio 5-3); sul 4-4 un tie-break decide
+        per 5-4.
       - >-
         Di norma una partita si gioca al meglio dei tre set; molti tornei
         sostituiscono il terzo set con un super tie-break a 10.
@@ -79,37 +132,49 @@ sections:
       - >-
         Si cambia campo dopo il primo game, poi ogni volta che la somma dei
         game è dispari e nel tie-break ogni sei punti.
-  - title: "Formati comuni: campionato, gironi, Americano"
+  - title: "Formati comuni: campionato e gironi"
     text:
       - >-
-        Campionato: due set vinti, punto d’oro. Fase a gironi dei tornei:
-        spesso un set unico o un set breve a 4 game (Kortscore gioca il
-        tie-break sul 3:3). Americano e Mexicano: un numero fisso di punti per
-        turno, di solito 16, 24 o 32, senza game.
+        Campionato: due set vinti, di solito con punto d’oro. Fase a gironi
+        dei tornei: spesso un set unico o un set breve a 4 game.
       - >-
-        Kortscore conta singolare e doppio, vantaggio e NoAd, set a 4 o a 6,
-        al meglio dei tre set o set unico.
+        Kortscore conta il padel in doppio con vantaggi, punto d’oro o Star
+        Point, set a 6 o a 4 game, al meglio dei tre set con set decisivo
+        completo o super tie-break a 10.
 
 # Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
 faq:
-  title: Domande frequenti
+  title: "Domande frequenti"
   questions:
-    - q: Chi riceve sul punto d’oro?
+    - q: "Cos’è lo Star Point nel padel?"
+      a: >-
+        Lo Star Point è la regola FIP dal 2026. Sul 40-40 si giocano due
+        vantaggi. Se si perdono entrambi, un unico Star Point decide il game.
+        Non vale nel tie-break. Kortscore lo conta, e durante quel punto
+        l’orologio mostra l’avviso «★ Star Point».
+    - q: "Come funziona un set a 4 game con tie-break sul 4-4?"
+      a: >-
+        Il set si gioca a 4 game. Con il tie-break sul 4-4 un set richiede
+        due game di scarto, per esempio 5-3. Se si arriva al 4-4, un
+        tie-break decide il set per 5-4. In alternativa puoi giocare il
+        tie-break già sul 3-3.
+    - q: "Chi riceve sul punto d’oro?"
       a: >-
         La coppia in risposta decide quale dei due giocatori riceve, ma deve
         mantenere la normale divisione dei lati: ognuno riceve dal proprio
         lato.
-    - q: Il padel si gioca sempre in doppio?
+    - q: "Il padel si gioca sempre in doppio?"
       a: >-
-        Quasi sempre. Il padel in singolare esiste, su campi più stretti (sei
-        metri di larghezza invece di dieci), ma è raro.
-    - q: Kortscore conta i tornei Americano?
+        Quasi sempre. Il padel in singolare esiste, su campi più stretti
+        (sei metri di larghezza invece di dieci), ma è raro. In Kortscore il
+        padel si gioca solo in doppio.
+    - q: "Kortscore conta i tornei Americano?"
       a: >-
-        Non come formato a sé. Kortscore è fatto per le partite di campionato
-        e di torneo con i set.
+        Non come formato a sé. Kortscore è fatto per le partite di
+        campionato e di torneo con i set.
 
 cta:
-  title: Contare con Kortscore
+  title: "Contare con Kortscore"
   text: >-
     Tocchi una volta per punto; l’app conta game, set e tie-break secondo
     esattamente queste regole.

@@ -1,113 +1,176 @@
-# Regelseite Padel. Gerüst in templates/partials/rules.html.
-# meta.title und meta.description stehen auch im Article-JSON-LD.
+# Padel: Landingpage und Regelseite. Gerüst in templates/padel.html und
+# templates/partials/rules.html. Aufbau: hero (Kopf mit Tafel), features
+# (Funktionen der App), dann title/lead und sections (die Regeln), faq, cta.
+# meta.title und meta.description stehen auch im Article- und
+# SoftwareApplication-JSON-LD. hero.app_name ist der alternateName der App.
 
 meta:
-  title: ¿Cómo se cuenta en el pádel? Puntos, punto de oro, sets y tie-break explicados
-  description: "La puntuación del pádel, explicada de forma sencilla: 15, 30, 40 como en el tenis, punto de oro en lugar de ventaja, orden de saque en dobles, sets, tie-break y los formatos de partido habituales."
-  og_title: ¿Cómo se cuenta en el pádel?
+  title: "Marcador y reglas del pádel: punto de oro, Star Point, sets a 4 juegos y súper tie-break"
+  description: "Lleva la cuenta del pádel con un toque en tu Apple Watch o reloj Wear OS: punto de oro, Star Point o ventaja, sets a 6 o 4 juegos, súper tie-break y estadísticas por compañero. Con la puntuación del pádel explicada de forma sencilla."
+  og_title: "Kortscore para pádel: el marcador en la muñeca"
 
-breadcrumb: Puntuación en pádel
-llms: Cómo se cuenta en el pádel (punto de oro, orden de saque en dobles)
+breadcrumb: "Puntuación en pádel"
+llms: "Pádel: marcador y reglas (punto de oro, Star Point, sets cortos)"
 # Article-JSON-LD "about".
 about: Pádel
 
-title: Puntuación en pádel
-lead: >-
-  El pádel se cuenta como el tenis: 15, 30, 40, juego, set. La diferencia es
-  el punto de oro: con 40:40, muchos partidos juegan un punto decisivo en
-  lugar de la ventaja. A eso se suman el orden de saque en dobles y el saque
-  por debajo.
+# Kopf: h1, Satz, Hinweis zur Tafel; app_name ist der alternateName im JSON-LD.
+hero:
+  title: "El marcador de pádel en tu muñeca"
+  lead: >-
+    Kortscore lleva la cuenta de tu partido de pádel con un toque por punto
+    en tu Apple Watch o reloj Wear OS. Punto de oro, Star Point o ventaja,
+    sets a 6 o 4 juegos, súper tie-break: configúralo como se juega en tu
+    liga.
+  board_note: >-
+    Pruébalo con la regla del Star Point: consigue la ventaja y piérdela dos
+    veces, y el siguiente punto es el Star Point. Elige la regla bajo el marcador.
+  app_name: "Kortscore: marcador de pádel"
 
-# Jeder Abschnitt: title und text (Liste von Absätzen). Mit demo (Name der
-# Tafel, siehe templates/partials/rules.html) und note steht darunter ein
-# Scoreboard zum Ausprobieren.
+# Funktionen der App für Padel, nur Produktbeschreibung (keine Termine).
+features:
+  title: "Qué hace Kortscore por el pádel"
+  blocks:
+    - title: "Cuenta los puntos con un toque en el reloj"
+      text: >-
+        Un toque para tu punto, dos para el del rival, tres invierten el
+        último punto y cuatro lo deshacen. En la configuración inicial
+        eliges Tenis o Pádel y la app se adapta; el reloj toma el deporte
+        del móvil. En Kortscore el pádel se juega solo en dobles.
+    - title: "Punto de oro, Star Point o ventaja"
+      text: >-
+        Con 40-40 eliges la regla que juega tu liga. Punto de oro: un único
+        punto decisivo. Star Point, la regla de la FIP desde 2026: se juegan
+        dos ventajas y, si se pierden las dos, un único Star Point decide el
+        juego (no en los tie-breaks). Durante un Star Point el reloj muestra
+        el aviso «★ Star Point». O la ventaja clásica.
+    - title: "Sets a 6 o a 4 juegos"
+      text: >-
+        Juega 6 juegos por set o sets cortos a 4 juegos con tie-break en el 3-3 o en el 4-4. Con tie-break en el 4-4, un set necesita dos juegos
+        de diferencia (por ejemplo 5-3); con 4-4, un tie-break lo decide por
+        5-4.
+    - title: "Set completo o súper tie-break"
+      text: >-
+        Para el set decisivo eliges entre un set completo y un super
+        tie-break a 10.
+    - title: "Estadísticas por compañero"
+      text: >-
+        Las estadísticas se llevan por separado para cada deporte. El pádel
+        añade estadísticas por compañero (tu porcentaje de victorias con
+        cada uno) y el balance frente a parejas.
+
+# Die Regeln: Überschrift, Einleitung, dann ein Abschnitt je Regel. Mit demo
+# (Name der Tafel, siehe templates/partials/rules.html) und note steht darunter
+# ein Scoreboard zum Ausprobieren.
+title: "Puntuación en pádel"
+lead: >-
+  El pádel se cuenta como el tenis: 15, 30, 40, juego, set. La diferencia
+  está en el 40-40: muchos partidos juegan un punto decisivo en lugar de la
+  ventaja. A eso se suman el orden de saque en dobles y el saque por debajo.
 sections:
   - title: "Puntos: 15, 30, 40 como en el tenis"
     text:
       - >-
-        Un juego empieza con 0:0 y sigue con 15, 30, 40. Quien está en 40 y
-        gana el siguiente punto se lleva el juego, salvo que el rival también
-        esté en 40. El tanteo del que saca se canta primero.
-  - title: "Con 40:40: ventaja, punto de oro o Star Point"
+        Un juego empieza con 0-0 y sigue con 15, 30, 40. Quien está en 40 y
+        gana el siguiente punto se lleva el juego, salvo que el rival
+        también esté en 40. El tanteo del que saca se canta primero.
+  - title: "Con 40-40: ventaja, punto de oro o Star Point"
     text:
       - >-
-        Con 40:40, el reglamento de la FIP admite tres métodos: ventaja, punto
-        de oro o Star Point.
+        Con 40-40, el reglamento de la FIP admite tres métodos: ventaja,
+        punto de oro o Star Point (también llamado punto estrella).
       - >-
-        Con punto de oro, el siguiente punto con 40:40 decide el juego. En
-        tenis, la misma regla se llama NoAd. Muchos clubes y ligas juegan con
-        punto de oro, así que deja claro el formato antes del partido.
+        Con punto de oro, el siguiente punto con 40-40 decide el juego. En
+        tenis, la misma regla se llama NoAd. Muchos clubes y ligas juegan
+        con punto de oro, así que deja claro el formato antes del partido.
       - >-
-        Los circuitos profesionales juegan el Star Point desde 2026. Si se
-        llega a iguales por tercera vez, un único punto decisivo cierra el
-        juego.
+        El Star Point es la regla de la FIP desde 2026. Con 40-40 se juegan
+        dos ventajas. Si se pierden las dos, es decir, si se vuelve a 40-40
+        por tercera vez, un único Star Point decide el juego. En el
+        tie-break no hay Star Point.
       - >-
-        Kortscore cuenta la ventaja y el punto de oro (como NoAd), pero no el
-        Star Point.
+        Kortscore cuenta los tres: ventaja, punto de oro y Star Point.
     demo: golden
     note: >-
-      El marcador está en 40:40 con punto de oro. El interruptor cambia a
-      ventaja.
+      El marcador está en 40-40. Cambia entre ventaja, punto de oro y Star
+      Point. Para el Star Point, consigue la ventaja y piérdela dos veces.
   - title: "Dobles: el saque cambia tras cada juego"
     text:
       - >-
-        El saque pasa de una pareja a la otra después de cada juego, y dentro
-        de cada pareja los compañeros se turnan: quien sacó en el primer juego
-        vuelve a sacar en el quinto.
+        El saque pasa de una pareja a la otra después de cada juego, y
+        dentro de cada pareja los compañeros se turnan: quien sacó en el
+        primer juego vuelve a sacar en el quinto.
       - >-
-        Los lados de resto (derecha y revés) se mantienen durante todo el set
-        y solo pueden cambiarse para el set siguiente.
+        Los lados de resto (derecha y revés) se mantienen durante todo el
+        set y solo pueden cambiarse para el set siguiente.
   - title: "Saque: por debajo, dos intentos"
     text:
       - >-
         La bola se bota una vez detrás de la línea de saque y se golpea a la
         altura de la cintura o por debajo, en diagonal hacia el cuadro de
-        saque contrario. Si la bola toca la malla metálica después de botar en
-        el cuadro, es falta; si toca el cristal, sigue en juego.
-  - title: "Sets: 6 juegos, tie-break con 6:6"
+        saque contrario. Si la bola toca la malla metálica después de botar
+        en el cuadro, es falta; si toca el cristal, sigue en juego.
+  - title: "Sets: 6 juegos o sets cortos a 4"
     text:
       - >-
-        Un set se juega a 6 juegos con dos de diferencia; con 6:6 llega un
+        Un set se juega a 6 juegos con dos de diferencia; con 6-6 llega un
         tie-break a 7 puntos con dos de diferencia. El saque cambia tras el
         primer punto y después cada dos puntos.
       - >-
-        Un partido se juega normalmente al mejor de tres sets; muchos torneos
-        sustituyen el tercer set por un súper tie-break a 10.
+        Los sets cortos se juegan a 4 juegos. Según el formato, el tie-break
+        se juega en el 3-3 o en el 4-4. Con tie-break en el 4-4, un set
+        necesita dos juegos de diferencia (por ejemplo 5-3); con 4-4, un
+        tie-break lo decide por 5-4.
+      - >-
+        Un partido se juega normalmente al mejor de tres sets; muchos
+        torneos sustituyen el tercer set por un súper tie-break a 10.
   - title: "Cambio de lado: como en el tenis"
     text:
       - >-
-        Se cambia de lado tras el primer juego y después cada vez que la suma
-        de juegos es impar; en el tie-break, cada seis puntos.
-  - title: "Formatos habituales: liga, fase de grupos, Americano"
+        Se cambia de lado tras el primer juego y después cada vez que la
+        suma de juegos es impar; en el tie-break, cada seis puntos.
+  - title: "Formatos habituales: liga y fase de grupos"
     text:
       - >-
-        Liga: a dos sets ganados, con punto de oro. Fase de grupos de un
-        torneo: a menudo un solo set o un set corto a 4 juegos (Kortscore
-        juega el tie-break con 3:3). Americano y Mexicano: un número fijo de
-        puntos por ronda, normalmente 16, 24 o 32, sin juegos.
+        Liga: a dos sets ganados, normalmente con punto de oro. Fase de
+        grupos de un torneo: a menudo un solo set o un set corto a 4 juegos.
       - >-
-        Kortscore cuenta individual y dobles, ventaja y NoAd, sets a 4 o 6
-        juegos, al mejor de tres sets o un solo set.
+        Kortscore cuenta el pádel en dobles con ventaja, punto de oro o Star
+        Point, sets a 6 o 4 juegos, al mejor de tres sets con set decisivo
+        completo o súper tie-break a 10.
 
 # Sichtbares FAQ und FAQPage-JSON-LD kommen beide aus questions.
 faq:
-  title: Preguntas frecuentes
+  title: "Preguntas frecuentes"
   questions:
-    - q: ¿Quién resta el punto de oro?
+    - q: "¿Qué es el Star Point en el pádel?"
       a: >-
-        La pareja restadora decide qué jugador resta, pero tiene que mantener
-        su reparto de lados habitual: cada jugador resta desde su propio lado.
-    - q: ¿El pádel es siempre de dobles?
+        El Star Point es la regla de la FIP desde 2026. Con 40-40 se juegan
+        dos ventajas. Si se pierden las dos, un único Star Point decide el
+        juego. No se usa en los tie-breaks. Kortscore lo cuenta, y durante
+        ese punto el reloj muestra el aviso «★ Star Point».
+    - q: "¿Cómo funciona un set a 4 juegos con tie-break en el 4-4?"
       a: >-
-        Casi siempre. Existe el pádel individual en pistas más estrechas (seis
-        metros de ancho en lugar de diez), pero es poco habitual.
-    - q: ¿Sirve Kortscore para torneos americanos?
+        El set se juega a 4 juegos. Con tie-break en el 4-4, un set
+        necesita dos juegos de diferencia, por ejemplo 5-3. Si se llega a
+        4-4, un tie-break decide el set por 5-4. También puedes jugar el tie-break ya en el 3-3.
+    - q: "¿Quién resta el punto de oro?"
       a: >-
-        No como formato propio. Kortscore es para partidos de liga y de torneo
-        con sets.
+        La pareja restadora decide qué jugador resta, pero tiene que
+        mantener su reparto de lados habitual: cada jugador resta desde su
+        propio lado.
+    - q: "¿El pádel es siempre de dobles?"
+      a: >-
+        Casi siempre. Existe el pádel individual en pistas más estrechas
+        (seis metros de ancho en lugar de diez), pero es poco habitual. En
+        Kortscore el pádel se juega solo en dobles.
+    - q: "¿Sirve Kortscore para torneos americanos?"
+      a: >-
+        No como formato propio. Kortscore es para partidos de liga y de
+        torneo con sets.
 
 cta:
-  title: Contar con Kortscore
+  title: "Contar con Kortscore"
   text: >-
-    Tocas una vez por punto; la app cuenta juegos, sets y tie-break siguiendo
-    exactamente estas reglas.
+    Tocas una vez por punto; la app cuenta juegos, sets y tie-break
+    siguiendo exactamente estas reglas.

@@ -1307,3 +1307,24 @@ a:hover { color: var(--accent-text); }
   }
   .hero__board { grid-column: 5 / -1; margin-top: 0; }
 }
+
+/* Padel-Landingpage (templates/padel.html): Tafel im Kopf der Lesespalte und
+   die Funktionen als Liste mit Zwischenüberschriften. */
+.rulebook__head .rulebook__board { align-self: stretch; margin-top: 12px; }
+.rulebook__head .storebadges { align-items: flex-start; justify-content: flex-start; margin-top: 8px; }
+.rulebook__features {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.rulebook__feature { display: flex; flex-direction: column; gap: 6px; }
+.rulebook__feature p { line-height: 1.6; text-wrap: pretty; }
+.rulebook__feature-title {
+  font-size: var(--step-2);
+  font-weight: 600;
+  line-height: 1.25;
+  text-wrap: balance;
+}

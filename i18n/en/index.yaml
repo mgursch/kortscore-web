@@ -66,11 +66,12 @@ clubs:
       - Doubles 1, court 3
 
 padel:
-  title: Padel with golden point
+  title: Padel with Golden Point and Star Point
   lead: >-
     Padel scores like tennis: 15, 30, 40, game, set. In Kortscore you choose
-    golden point as NoAd: at 40-40 the next point decides.
-  link: How padel scoring works
+    how 40-40 is decided: advantage, Golden Point or Star Point. Sets run to
+    6 or 4 games, and a super tiebreak can decide the match.
+  link: Kortscore for padel
 
 watches:
   title: Watches for the court
@@ -150,8 +151,8 @@ app:
   description: Kortscore keeps score in tennis and padel with one tap on your Apple Watch or Wear OS watch. Free, with a live score ticker for spectators, match statistics and history on iPhone and Android.
   features:
     - One-tap scoring on the watch
-    - Tennis and padel, singles and doubles
-    - Advantage and NoAd, tiebreaks, sets to 4 or 6
+    - Tennis (singles and doubles) and padel (doubles)
+    - Advantage and NoAd, Golden Point and Star Point in padel, tiebreaks, sets to 4 or 6
     - Live score ticker via shareable link, no app needed for spectators
     - Match statistics and point-by-point history
     - No ads, no account

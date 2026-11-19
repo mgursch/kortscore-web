@@ -31,6 +31,11 @@ golden:
 golden_note: Bei 40:40 entscheidet der nächste Punkt
 
 # Statuszeile und Ansagen
+rule_label: Regel bei 40:40
+rule_advantage: Vorteil
+rule_star: Star Point
+star_deciding: "★ Star Point: der nächste Punkt entscheidet"
+
 deuce: Einstand
 deciding: "{name}: der nächste Punkt entscheidet"
 adv_me: Vorteil für mich

@@ -67,11 +67,13 @@ clubs:
       - Doppel 1, Platz 3
 
 padel:
-  title: Padel mit Golden Point
+  title: Padel mit Golden Point und Star Point
   lead: >-
-    Padel zählt wie Tennis: 15, 30, 40, Game, Satz. Golden Point wählst du in
-    Kortscore als NoAd: bei 40:40 entscheidet der nächste Punkt.
-  link: So zählt man beim Padel
+    Padel zählt wie Tennis: 15, 30, 40, Game, Satz. In Kortscore wählst du,
+    wie bei 40:40 entschieden wird: Vorteil, Golden Point oder Star Point.
+    Sätze gehen bis 6 oder 4 Games, ein Super-Tiebreak kann das Match
+    entscheiden.
+  link: Kortscore für Padel
 
 watches:
   title: Uhren für den Platz
@@ -151,8 +153,8 @@ app:
   description: Kortscore zählt Tennis- und Padelmatches mit einem Tipp auf der Apple Watch oder Wear-OS-Uhr mit. Gratis, mit Live-Ticker für Zuschauer, Statistiken und Matchverlauf auf iPhone und Android.
   features:
     - Zählen mit einem Tipp auf der Uhr
-    - Tennis und Padel, Einzel und Doppel
-    - Vorteil und NoAd, Tiebreaks, Sätze bis 4 oder 6
+    - Tennis (Einzel und Doppel) und Padel (Doppel)
+    - Vorteil und NoAd, Golden Point und Star Point im Padel, Tiebreaks, Sätze bis 4 oder 6
     - Live-Ticker per Link, Zuschauer brauchen keine App
     - Statistiken und Punkt-für-Punkt-Verlauf
     - Keine Werbung, kein Konto

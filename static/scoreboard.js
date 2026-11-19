@@ -27,6 +27,11 @@
      golden   NoAd (Tennis) bzw. Golden Point (Padel): bei 40:40 entscheidet
               der nächste Punkt. Vorteil gibt es dann nicht mehr; wer beim
               Einschalten gerade Vorteil hat, behält ihn (siehe scorePoint)
+     star     Star Point (FIP seit 2026, nur Padel): bei 40:40 werden zwei
+              Vorteile gespielt; gehen beide verloren (zweimal wieder 40:40),
+              entscheidet der nächste Punkt. Nicht im Tiebreak. Schließt
+              golden aus (siehe setRule)
+     lost     verlorene Vorteile im laufenden Spiel (zählt für den Star Point)
      last     was der letzte Punkt ausgelöst hat: null, {type: 'game', side}
               oder {type: 'set', side, score: [6, 4]}
      history  frühere Stände für Rückgängig, jüngster zuletzt
@@ -68,10 +73,12 @@ function normalizeStart({ points, games, sets }) {
 }
 
 /** Neuer Stand, optional mitten im Spiel (z. B. 40:30, Spiele 2:1). */
-export function newScore({ points, games, sets, golden = false } = {}) {
+export function newScore({ points, games, sets, golden = false, star = false } = {}) {
   return {
     ...normalizeStart({ points, games, sets }),
     golden: Boolean(golden),
+    star: Boolean(star) && !golden,
+    lost: 0,
     last: null,
     history: [],
   };
@@ -92,7 +99,7 @@ function deuceNormal(p, games) {
 
 const snapshot = (s, side) => ({
   points: [...s.points], games: [...s.games], sets: [...s.sets],
-  golden: s.golden, last: s.last, side,
+  golden: s.golden, star: s.star, lost: s.lost, last: s.last, side,
 });
 
 /** Punkt für Seite 0 (ich) oder 1 (Gegner). */
@@ -120,13 +127,21 @@ export function scorePoint(s, side) {
        Punkt holen (4:4 ist kein Vorsprung). Dieselbe Regel gilt für den
        Startstand [4, 3] mit golden. */
     won = p[side] > p[o];
+  } else if (s.star && s.lost >= 2) {
+    // Star Point: beide Vorteile sind verloren, der nächste Punkt entscheidet.
+    won = p[side] > p[o];
   } else {
     // Normal: ab dem vierten Punkt mit zwei Punkten Abstand.
     won = p[side] - p[o] >= 2;
   }
 
   if (!won) {
-    return { ...s, points: deuceNormal(p, games), games, sets, last: null, history };
+    // Verlorener Vorteil: die Seite ohne Vorteil gleicht aus (4:3 wird 4:4).
+    const lostAdv = !inTiebreak(s) && s.points[o] >= 4 && s.points[o] > s.points[side];
+    return {
+      ...s, points: deuceNormal(p, games), games, sets,
+      lost: s.lost + (lostAdv ? 1 : 0), last: null, history,
+    };
   }
 
   games[side] += 1;
@@ -137,11 +152,11 @@ export function scorePoint(s, side) {
     const score = [...games];
     sets[side] += 1;
     return {
-      ...s, points: [0, 0], games: [0, 0], sets,
+      ...s, points: [0, 0], games: [0, 0], sets, lost: 0,
       last: { type: 'set', side, score }, history,
     };
   }
-  return { ...s, points: [0, 0], games, sets, last: { type: 'game', side }, history };
+  return { ...s, points: [0, 0], games, sets, lost: 0, last: { type: 'game', side }, history };
 }
 
 /** Letzten Punkt zurücknehmen. Ohne Verlauf bleibt der Stand, wie er ist.
@@ -152,7 +167,7 @@ export function undoPoint(s) {
   const prev = s.history[s.history.length - 1];
   return {
     points: [...prev.points], games: [...prev.games], sets: [...prev.sets],
-    golden: s.golden, last: prev.last, history,
+    golden: s.golden, star: s.star, lost: prev.lost, last: prev.last, history,
   };
 }
 
@@ -167,12 +182,16 @@ export const canUndo = (s) => s.history.length > 0;
 
 /** NoAd bzw. Golden Point ein- oder ausschalten. Gilt ab dem nächsten Punkt;
     ein laufender Vorteil bleibt dabei bestehen (siehe scorePoint). */
-export const setGolden = (s, on) => ({ ...s, golden: Boolean(on) });
+export const setGolden = (s, on) => ({ ...s, golden: Boolean(on), star: Boolean(on) ? false : s.star });
+
+/** Regel bei 40:40 wählen (Padel): 'advantage', 'golden' oder 'star'. Gilt ab
+    dem nächsten Punkt, verlorene Vorteile im laufenden Spiel bleiben gezählt. */
+export const setRule = (s, rule) => ({ ...s, golden: rule === 'golden', star: rule === 'star' });
 
 /** Zurück an den Start: ohne start auf 0:0, sonst auf den vorgegebenen
     Stand (z. B. Einstand oder Tiebreak 5:4 auf den Regelseiten). Der
     Schalter bleibt, wie ihn der Besucher gestellt hat. */
-export const resetScore = (s, start = {}) => newScore({ ...start, golden: s.golden });
+export const resetScore = (s, start = {}) => newScore({ ...start, golden: s.golden, star: s.star });
 
 /** Was die Anzeige zeigt. phase ist 'points', 'deuce', 'advantage' oder
     'tiebreak'; lead ist bei Vorteil die führende Seite. */
@@ -182,7 +201,9 @@ export function scoreView(s, advLabel = 'A') {
     return { points: [String(a), String(b)], phase: 'tiebreak', lead: null };
   }
   if (a >= 3 && b >= 3) {
-    if (a === b) return { points: ['40', '40'], phase: 'deuce', lead: null };
+    if (a === b) {
+      return { points: ['40', '40'], phase: 'deuce', lead: null, star: s.star && s.lost >= 2 };
+    }
     const lead = a > b ? 0 : 1;
     const pts = ['40', '40'];
     pts[lead] = advLabel;
@@ -264,6 +285,7 @@ export function initScoreboard(root) {
   const padAction = el('pad-action');
   const pips = [...root.querySelectorAll('[data-sb="pip"]')];
   const goldenBox = el('golden');
+  const ruleInputs = [...root.querySelectorAll('input[data-sb-rule]')];
   const undoBtn = root.querySelector('[data-sb-act="undo"]');
   const motion = window.matchMedia('(prefers-reduced-motion: no-preference)');
 
@@ -294,7 +316,10 @@ export function initScoreboard(root) {
     if (last && last.type === 'game') return last.side === 0 ? T.game_me : T.game_opp;
     const v = scoreView(state, T.adv_short);
     if (v.phase === 'tiebreak') return T.tiebreak;
-    if (v.phase === 'deuce') return state.golden ? fill(T.deciding, { name: T.golden[sport] }) : T.deuce;
+    if (v.phase === 'deuce') {
+      if (state.golden) return fill(T.deciding, { name: T.golden[sport] });
+      return v.star ? T.star_deciding : T.deuce;
+    }
     if (v.phase === 'advantage') return v.lead === 0 ? T.adv_me : T.adv_opp;
     return '';
   }
@@ -316,6 +341,11 @@ export function initScoreboard(root) {
     return parts.join('. ');
   }
 
+  const currentRule = () => (state.golden ? 'golden' : state.star ? 'star' : 'advantage');
+  function syncRule() {
+    ruleInputs.forEach((input) => { input.checked = input.value === currentRule(); });
+  }
+
   function render() {
     const v = scoreView(state, T.adv_short);
     for (const side of [0, 1]) {
@@ -325,6 +355,8 @@ export function initScoreboard(root) {
     }
     root.dataset.phase = v.phase;
     root.dataset.lead = v.lead === null ? '' : String(v.lead);
+    root.dataset.star = v.star ? '1' : '';
+    syncRule();
     const st = statusText();
     if (status && status.textContent !== st) {
       status.textContent = st;
@@ -408,6 +440,14 @@ export function initScoreboard(root) {
       render();
     });
   }
+
+  ruleInputs.forEach((input) => {
+    input.addEventListener('change', () => {
+      if (!input.checked) return;
+      state = setRule(state, input.value);
+      render();
+    });
+  });
 
   root.querySelectorAll('[data-sb-js]').forEach((node) => { node.hidden = false; });
   root.classList.add('is-live');

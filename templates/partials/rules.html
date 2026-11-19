@@ -17,7 +17,7 @@
 
 {% block jsonld %}
 <!-- Breadcrumbs, the article itself and FAQPage for the questions at the end. -->
-{{ jsonld({"@graph": [
+{% set graph = [
   breadcrumbs(),
   {
     "@type": "Article",
@@ -33,7 +33,29 @@
     "about": {"@type": "Thing", "name": t.about|plain}
   },
   faq_page(t.faq.questions)
-]}) }}
+] %}
+{% if page == 'padel' %}
+{# Die Padel-Seite ist auch Produktseite: die App für Padel, mit den Funktionen aus features.blocks. #}
+{% set graph = graph + [{
+  "@type": ["SoftwareApplication", "MobileApplication"],
+  "@id": abs_url(page) ~ "#app",
+  "name": "Kortscore",
+  "alternateName": t.hero.app_name|plain,
+  "url": abs_url(page),
+  "image": abs_asset("icon.png"),
+  "description": t.meta.description|plain,
+  "applicationCategory": "SportsApplication",
+  "operatingSystem": "iOS 18+, iPadOS 18+, macOS 15+ (Apple silicon), watchOS 26+, Android 8.0+, Wear OS 3+",
+  "inLanguage": site.app_languages,
+  "isAccessibleForFree": true,
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR", "category": "free"},
+  "installUrl": [site.stores.app_store, site.stores.google_play],
+  "featureList": t.features.blocks|map(attribute="title")|map("plain")|list,
+  "author": {"@id": site.base_url ~ "#organization"},
+  "publisher": {"@id": site.base_url ~ "#organization"}
+}] %}
+{% endif %}
+{{ jsonld({"@graph": graph}) }}
 {% endblock %}
 
 {% block main %}
@@ -43,20 +65,24 @@
 {% set demos = {
   "deuce":    {"sport": "tennis", "points": [3, 3], "games": [3, 2], "golden": false, "controls": ["buttons", "reset", "golden"]},
   "tiebreak": {"sport": "tennis", "points": [5, 4], "games": [6, 6], "golden": false, "controls": ["buttons", "reset"]},
-  "golden":   {"sport": "padel",  "points": [3, 3], "games": [3, 2], "golden": true,  "controls": ["buttons", "reset", "golden"]}
+  "golden":   {"sport": "padel",  "points": [3, 3], "games": [3, 2], "golden": true,  "controls": ["buttons", "reset", "rule"]}
 } %}
 <main class="rulebook">
+{% block rules_head %}
   <header class="rulebook__head">
     <a class="back" href="{{ url('index') }}">{{ c.back_home }}</a>
     <h1 class="rulebook__title">{{ t.title }}</h1>
     <p class="lead">{{ t.lead }}</p>
   </header>
 
+{% endblock %}
+
   <!-- ── Rules ───────────────────────────────────────────────────────────────
        Evergreen reference page: one column, one section per rule. The heading
        states the rule, the paragraphs say it once, and where trying it helps
        the section carries a working scoreboard (data-ui, own type). -->
   <div class="rulebook__body">
+{% block rules_intro %}{% endblock %}
 {% for section in t.sections %}
     <section class="rulebook__sec" data-reveal>
       <h2 class="rulebook__h">{{ section.title }}</h2>
