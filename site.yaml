@@ -201,21 +201,18 @@ localized_assets:
     it: shot-ios-stats-it.webp
     es: shot-ios-stats-es.webp
 
-  # TODO(Padel-Screenshots): Platzhalter. Die Padel-Oberfläche der App gibt es
-  # noch nicht als Bild, deshalb zeigen diese Einträge auf die Tennis-
-  # Screenshots. Sobald die Padel-Screenshots da sind (Dateien
-  # shot-padel-live-<code>.webp, shot-padel-stats-<code>.webp), hier
-  # umstellen. Die Vorlagen verwenden sie noch nirgends; für Padel-Seiten
-  # gilt lasset('shot-padel-live') bzw. lasset('shot-padel-stats').
+  # Padel-Screenshots (540x1212, aus der Padel-Oberfläche der App). Die
+  # Vorlagen verwenden sie noch nirgends; für Padel-Seiten gilt
+  # lasset('shot-padel-live') bzw. lasset('shot-padel-stats').
   shot-padel-live:
-    en: shot-live-en.webp
-    de: shot-live-de.webp
-    fr: shot-live-fr.webp
-    it: shot-live-it.webp
-    es: shot-live-es.webp
+    en: shot-padel-live-en.webp
+    de: shot-padel-live-de.webp
+    fr: shot-padel-live-fr.webp
+    it: shot-padel-live-it.webp
+    es: shot-padel-live-es.webp
   shot-padel-stats:
-    en: shot-stats-en.webp
-    de: shot-stats-de.webp
-    fr: shot-stats-fr.webp
-    it: shot-stats-it.webp
-    es: shot-stats-es.webp
+    en: shot-padel-stats-en.webp
+    de: shot-padel-stats-de.webp
+    fr: shot-padel-stats-fr.webp
+    it: shot-padel-stats-it.webp
+    es: shot-padel-stats-es.webp
